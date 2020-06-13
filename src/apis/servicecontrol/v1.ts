@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace servicecontrol_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace servicecontrol_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -162,6 +172,36 @@ export namespace servicecontrol_v1 {
     serviceConfigId?: string | null;
   }
   /**
+   * A set of attributes, each in the format `[KEY]:[VALUE]`.
+   */
+  export interface Schema$Attributes {
+    /**
+     * The set of attributes. Each attribute&#39;s key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example:      &quot;/instance_id&quot;: &quot;my-instance&quot;     &quot;/http/user_agent&quot;: &quot;&quot;     &quot;/http/request_bytes&quot;: 300     &quot;abc.com/myattribute&quot;: true
+     */
+    attributeMap?: {[key: string]: Schema$AttributeValue} | null;
+    /**
+     * The number of attributes that were discarded. Attributes can be discarded because their keys are too long or because there are too many attributes. If this value is 0 then all attributes are valid.
+     */
+    droppedAttributesCount?: number | null;
+  }
+  /**
+   * The allowed types for [VALUE] in a `[KEY]:[VALUE]` attribute.
+   */
+  export interface Schema$AttributeValue {
+    /**
+     * A Boolean value represented by `true` or `false`.
+     */
+    boolValue?: boolean | null;
+    /**
+     * A 64-bit signed integer.
+     */
+    intValue?: string | null;
+    /**
+     * A string up to 256 bytes long.
+     */
+    stringValue?: Schema$TruncatableString;
+  }
+  /**
    * Common audit log format for Google Cloud Platform API operations.
    */
   export interface Schema$AuditLog {
@@ -231,7 +271,7 @@ export namespace servicecontrol_v1 {
      */
     accessLevels?: string[] | null;
     /**
-     * The intended audience(s) for this authentication information. Reflects the audience (`aud`) claim within a JWT. The audience value(s) depends on the `issuer`, but typically include one or more of the following pieces of information:  *  The services intended to receive the credential such as    [&quot;pubsub.googleapis.com&quot;, &quot;storage.googleapis.com&quot;] *  A set of service-based scopes. For example,    [&quot;https://www.googleapis.com/auth/cloud-platform&quot;] *  The client id of an app, such as the Firebase project id for JWTs    from Firebase Auth.  Consult the documentation for the credential issuer to determine the information provided.
+     * The intended audience(s) for this authentication information. Reflects the audience (`aud`) claim within a JWT. The audience value(s) depends on the `issuer`, but typically include one or more of the following pieces of information:  *  The services intended to receive the credential. For example,    [&quot;https://pubsub.googleapis.com/&quot;, &quot;https://storage.googleapis.com/&quot;]. *  A set of service-based scopes. For example,    [&quot;https://www.googleapis.com/auth/cloud-platform&quot;]. *  The client id of an app, such as the Firebase project id for JWTs    from Firebase Auth.  Consult the documentation for the credential issuer to determine the information provided.
      */
     audiences?: string[] | null;
     /**
@@ -259,6 +299,10 @@ export namespace servicecontrol_v1 {
      * The email address of the authenticated user (or service account on behalf of third party principal) making the request. For privacy reasons, the principal email address is redacted for all read-only operations that fail with a &quot;permission denied&quot; error.
      */
     principalEmail?: string | null;
+    /**
+     * String representation of identity of requesting party. Populated for both first and third party identities.
+     */
+    principalSubject?: string | null;
     /**
      * Identity delegation history of an authenticated service account that makes the request. It contains information on the real authorities that try to access GCP resources by delegating on a service account. When multiple authorities present, they are guaranteed to be sorted based on the original ordering of the identity delegation events.
      */
@@ -310,7 +354,7 @@ export namespace servicecontrol_v1 {
      */
     status?: Schema$Status;
     /**
-     * Subject to whom this error applies. See the specific code enum for more details on this field. For example:     - “project:&lt;project-id or project-number&gt;”     - “folder:&lt;folder-id&gt;”     - “organization:&lt;organization-id&gt;”
+     * Subject to whom this error applies. See the specific code enum for more details on this field. For example:  - &quot;project:&lt;project-id or project-number&gt;&quot; - &quot;folder:&lt;folder-id&gt;&quot; - &quot;organization:&lt;organization-id&gt;&quot;
      */
     subject?: string | null;
   }
@@ -373,7 +417,7 @@ export namespace servicecontrol_v1 {
      */
     serviceConfigId?: string | null;
     /**
-     * Unimplemented. The current service rollout id used to process the request.
+     * The current service rollout id used to process the request.
      */
     serviceRolloutId?: string | null;
   }
@@ -693,7 +737,7 @@ export namespace servicecontrol_v1 {
      */
     int64Value?: string | null;
     /**
-     * The labels describing the metric value. See comments on google.api.servicecontrol.v1.Operation.labels for the overriding relationship.
+     * The labels describing the metric value. See comments on google.api.servicecontrol.v1.Operation.labels for the overriding relationship. Note that this map must not contain monitored resource labels.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -780,10 +824,6 @@ export namespace servicecontrol_v1 {
      */
     quotaProperties?: Schema$QuotaProperties;
     /**
-     * DO NOT USE. This field is deprecated, use &quot;resources&quot; field instead. The resource name of the parent of a resource in the resource hierarchy.  This can be in one of the following formats:     - “projects/&lt;project-id or project-number&gt;”     - “folders/&lt;folder-id&gt;”     - “organizations/&lt;organization-id&gt;”
-     */
-    resourceContainer?: string | null;
-    /**
      * The resources that are involved in the operation. The maximum supported number of entries in this field is 100.
      */
     resources?: Schema$ResourceInfo[];
@@ -791,6 +831,10 @@ export namespace servicecontrol_v1 {
      * Required. Start time of the operation.
      */
     startTime?: string | null;
+    /**
+     * Unimplemented. A list of Cloud Trace spans. The span names shall contain the id of the destination project which can be either the produce or the consumer project.
+     */
+    traceSpans?: Schema$TraceSpan[];
     /**
      * User defined labels for the resource that this operation is associated with. Only a combination of 1000 user labels per consumer project are allowed.
      */
@@ -872,7 +916,7 @@ export namespace servicecontrol_v1 {
      */
     methodName?: string | null;
     /**
-     * Identity of the operation. This is expected to be unique within the scope of the service that generated the operation, and guarantees idempotency in case of retries.  UUID version 4 is recommended, though not required. In scenarios where an operation is computed from existing information and an idempotent id is desirable for deduplication purpose, UUID version 5 is recommended. See RFC 4122 for details.
+     * Identity of the operation. This is expected to be unique within the scope of the service that generated the operation, and guarantees idempotency in case of retries.  In order to ensure best performance and latency in the Quota backends, operation_ids are optimally associated with time, so that related operations can be accessed fast in storage. For this reason, the recommended token for services that intend to operate at a high QPS is Unix time in nanos + UUID
      */
     operationId?: string | null;
     /**
@@ -924,7 +968,7 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$ReportRequest {
     /**
-     * Operations to be reported.  Typically the service should report one operation per request. Putting multiple operations into a single request is allowed, but should be used only when multiple operations are natually available at the time of the report.  If multiple operations are in a single request, the total request size should be no larger than 1MB. See ReportResponse.report_errors for partial failure behavior.
+     * Operations to be reported.  Typically the service should report one operation per request. Putting multiple operations into a single request is allowed, but should be used only when multiple operations are natually available at the time of the report.  There is no limit on the number of operations in the same ReportRequest, however the ReportRequest size should be no larger than 1MB. See ReportResponse.report_errors for partial failure behavior.
      */
     operations?: Schema$Operation[];
     /**
@@ -949,7 +993,7 @@ export namespace servicecontrol_v1 {
      */
     serviceConfigId?: string | null;
     /**
-     * Unimplemented. The current service rollout id used to process the request.
+     * The current service rollout id used to process the request.
      */
     serviceRolloutId?: string | null;
   }
@@ -986,7 +1030,7 @@ export namespace servicecontrol_v1 {
      */
     protocol?: string | null;
     /**
-     * The HTTP URL query in the format of `name1=value`&amp;name2=value2`, as it appears in the first line of the HTTP request. No decoding is performed.
+     * The HTTP URL query in the format of `name1=value1&amp;name2=value2`, as it appears in the first line of the HTTP request. No decoding is performed.
      */
     query?: string | null;
     /**
@@ -1096,6 +1140,15 @@ export namespace servicecontrol_v1 {
     thirdPartyPrincipal?: Schema$ThirdPartyPrincipal;
   }
   /**
+   * The context of a span, attached to Exemplars in Distribution values during aggregation.  It contains the name of a span with format:      projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]
+   */
+  export interface Schema$SpanContext {
+    /**
+     * The resource name of the span. The format is:      projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]  `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
+     */
+    spanName?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1121,6 +1174,68 @@ export namespace servicecontrol_v1 {
      */
     thirdPartyClaims?: {[key: string]: any} | null;
   }
+  /**
+   * A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous&amp;mdash;there may be gaps or overlaps between spans in a trace.
+   */
+  export interface Schema$TraceSpan {
+    /**
+     * A set of attributes on the span. You can have up to 32 attributes per span.
+     */
+    attributes?: Schema$Attributes;
+    /**
+     * An optional number of child spans that were generated while this span was active. If set, allows implementation to detect missing child spans.
+     */
+    childSpanCount?: number | null;
+    /**
+     * A description of the span&#39;s operation (up to 128 bytes). Stackdriver Trace displays the description in the Google Cloud Platform Console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces.
+     */
+    displayName?: Schema$TruncatableString;
+    /**
+     * The end time of the span. On the client side, this is the time kept by the local machine where the span execution ends. On the server side, this is the time when the server application handler stops running.
+     */
+    endTime?: string | null;
+    /**
+     * The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
+     */
+    name?: string | null;
+    /**
+     * The [SPAN_ID] of this span&#39;s parent span. If this is a root span, then this field must be empty.
+     */
+    parentSpanId?: string | null;
+    /**
+     * (Optional) Set this parameter to indicate whether this span is in the same process as its parent. If you do not set this parameter, Stackdriver Trace is unable to take advantage of this helpful information.
+     */
+    sameProcessAsParentSpan?: boolean | null;
+    /**
+     * The [SPAN_ID] portion of the span&#39;s resource name.
+     */
+    spanId?: string | null;
+    /**
+     * Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call.
+     */
+    spanKind?: string | null;
+    /**
+     * The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server&#39;s application handler starts running.
+     */
+    startTime?: string | null;
+    /**
+     * An optional final status for this span.
+     */
+    status?: Schema$Status;
+  }
+  /**
+   * Represents a string that might be shortened to a specified length.
+   */
+  export interface Schema$TruncatableString {
+    /**
+     * The number of bytes removed from the original string. If this value is 0, then the string was not shortened.
+     */
+    truncatedByteCount?: number | null;
+    /**
+     * The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string.  Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit.
+     */
+    value?: string | null;
+  }
 
   export class Resource$Services {
     context: APIRequestContext;
@@ -1131,20 +1246,88 @@ export namespace servicecontrol_v1 {
     /**
      * servicecontrol.services.allocateQuota
      * @desc Attempts to allocate quota for the specified consumer. It should be called before the operation is executed.  This method requires the `servicemanagement.services.quota` permission on the specified service. For more information, see [Cloud IAM](https://cloud.google.com/iam).  **NOTE:** The client **must** fail-open on server errors `INTERNAL`, `UNKNOWN`, `DEADLINE_EXCEEDED`, and `UNAVAILABLE`. To ensure system reliability, the server may inject these errors to prohibit any hard dependency on the quota functionality.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicecontrol.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicecontrol = google.servicecontrol('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/servicecontrol',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await servicecontrol.services.allocateQuota({
+     *     // Name of the service as specified in the service configuration. For example,
+     *     // `"pubsub.googleapis.com"`.
+     *     //
+     *     // See google.api.Service for the definition of a service name.
+     *     serviceName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allocateOperation": {},
+     *       //   "serviceConfigId": "my_serviceConfigId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allocateErrors": [],
+     *   //   "allocateInfo": {},
+     *   //   "operationId": "my_operationId",
+     *   //   "quotaMetrics": [],
+     *   //   "serviceConfigId": "my_serviceConfigId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicecontrol.services.allocateQuota
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
-     * @param {().AllocateQuotaRequest} params.resource Request body data
+     * @param {().AllocateQuotaRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     allocateQuota(
+      params: Params$Resource$Services$Allocatequota,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    allocateQuota(
       params?: Params$Resource$Services$Allocatequota,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AllocateQuotaResponse>;
+    allocateQuota(
+      params: Params$Resource$Services$Allocatequota,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     allocateQuota(
       params: Params$Resource$Services$Allocatequota,
       options:
@@ -1162,12 +1345,20 @@ export namespace servicecontrol_v1 {
     allocateQuota(
       paramsOrCallback?:
         | Params$Resource$Services$Allocatequota
-        | BodyResponseCallback<Schema$AllocateQuotaResponse>,
+        | BodyResponseCallback<Schema$AllocateQuotaResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AllocateQuotaResponse>,
-      callback?: BodyResponseCallback<Schema$AllocateQuotaResponse>
-    ): void | GaxiosPromise<Schema$AllocateQuotaResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AllocateQuotaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AllocateQuotaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AllocateQuotaResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Allocatequota;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1202,7 +1393,10 @@ export namespace servicecontrol_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AllocateQuotaResponse>(parameters, callback);
+        createAPIRequest<Schema$AllocateQuotaResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AllocateQuotaResponse>(parameters);
       }
@@ -1211,20 +1405,93 @@ export namespace servicecontrol_v1 {
     /**
      * servicecontrol.services.check
      * @desc Checks whether an operation on a service should be allowed to proceed based on the configuration of the service and related policies. It must be called before the operation is executed.  If feasible, the client should cache the check results and reuse them for 60 seconds. In case of any server errors, the client should rely on the cached results for much longer time to avoid outage. WARNING: There is general 60s delay for the configuration and policy propagation, therefore callers MUST NOT depend on the `Check` method having the latest policy information.  NOTE: the CheckRequest has the size limit of 64KB.  This method requires the `servicemanagement.services.check` permission on the specified service. For more information, see [Cloud IAM](https://cloud.google.com/iam).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicecontrol.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicecontrol = google.servicecontrol('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/servicecontrol',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await servicecontrol.services.check({
+     *     // The service name as specified in its service configuration. For example,
+     *     // `"pubsub.googleapis.com"`.
+     *     //
+     *     // See
+     *     // [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service)
+     *     // for the definition of a service name.
+     *     serviceName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "operation": {},
+     *       //   "requestProjectSettings": false,
+     *       //   "serviceConfigId": "my_serviceConfigId",
+     *       //   "skipActivationCheck": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "checkErrors": [],
+     *   //   "checkInfo": {},
+     *   //   "operationId": "my_operationId",
+     *   //   "quotaInfo": {},
+     *   //   "serviceConfigId": "my_serviceConfigId",
+     *   //   "serviceRolloutId": "my_serviceRolloutId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicecontrol.services.check
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
-     * @param {().CheckRequest} params.resource Request body data
+     * @param {().CheckRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     check(
+      params: Params$Resource$Services$Check,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    check(
       params?: Params$Resource$Services$Check,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CheckResponse>;
+    check(
+      params: Params$Resource$Services$Check,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     check(
       params: Params$Resource$Services$Check,
       options: MethodOptions | BodyResponseCallback<Schema$CheckResponse>,
@@ -1238,12 +1505,17 @@ export namespace servicecontrol_v1 {
     check(
       paramsOrCallback?:
         | Params$Resource$Services$Check
-        | BodyResponseCallback<Schema$CheckResponse>,
+        | BodyResponseCallback<Schema$CheckResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CheckResponse>,
-      callback?: BodyResponseCallback<Schema$CheckResponse>
-    ): void | GaxiosPromise<Schema$CheckResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CheckResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1277,7 +1549,10 @@ export namespace servicecontrol_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CheckResponse>(parameters, callback);
+        createAPIRequest<Schema$CheckResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CheckResponse>(parameters);
       }
@@ -1285,21 +1560,90 @@ export namespace servicecontrol_v1 {
 
     /**
      * servicecontrol.services.report
-     * @desc Reports operation results to Google Service Control, such as logs and metrics. It should be called after an operation is completed.  If feasible, the client should aggregate reporting data for up to 5 seconds to reduce API traffic. Limiting aggregation to 5 seconds is to reduce data loss during client crashes. Clients should carefully choose the aggregation time window to avoid data loss risk more than 0.01% for business and compliance reasons.  NOTE: the ReportRequest has the size limit of 1MB.  This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).
+     * @desc Reports operation results to Google Service Control, such as logs and metrics. It should be called after an operation is completed.  If feasible, the client should aggregate reporting data for up to 5 seconds to reduce API traffic. Limiting aggregation to 5 seconds is to reduce data loss during client crashes. Clients should carefully choose the aggregation time window to avoid data loss risk more than 0.01% for business and compliance reasons.  NOTE: the ReportRequest has the size limit (wire-format byte size) of 1MB.  This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicecontrol.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicecontrol = google.servicecontrol('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/servicecontrol',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await servicecontrol.services.report({
+     *     // The service name as specified in its service configuration. For example,
+     *     // `"pubsub.googleapis.com"`.
+     *     //
+     *     // See
+     *     // [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service)
+     *     // for the definition of a service name.
+     *     serviceName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "operations": [],
+     *       //   "serviceConfigId": "my_serviceConfigId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "reportErrors": [],
+     *   //   "reportInfos": [],
+     *   //   "serviceConfigId": "my_serviceConfigId",
+     *   //   "serviceRolloutId": "my_serviceRolloutId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias servicecontrol.services.report
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
-     * @param {().ReportRequest} params.resource Request body data
+     * @param {().ReportRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     report(
+      params: Params$Resource$Services$Report,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    report(
       params?: Params$Resource$Services$Report,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReportResponse>;
+    report(
+      params: Params$Resource$Services$Report,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     report(
       params: Params$Resource$Services$Report,
       options: MethodOptions | BodyResponseCallback<Schema$ReportResponse>,
@@ -1313,12 +1657,17 @@ export namespace servicecontrol_v1 {
     report(
       paramsOrCallback?:
         | Params$Resource$Services$Report
-        | BodyResponseCallback<Schema$ReportResponse>,
+        | BodyResponseCallback<Schema$ReportResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReportResponse>,
-      callback?: BodyResponseCallback<Schema$ReportResponse>
-    ): void | GaxiosPromise<Schema$ReportResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReportResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReportResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ReportResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Report;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1352,7 +1701,10 @@ export namespace servicecontrol_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ReportResponse>(parameters, callback);
+        createAPIRequest<Schema$ReportResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ReportResponse>(parameters);
       }
@@ -1361,11 +1713,6 @@ export namespace servicecontrol_v1 {
 
   export interface Params$Resource$Services$Allocatequota
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
      */
@@ -1378,11 +1725,6 @@ export namespace servicecontrol_v1 {
   }
   export interface Params$Resource$Services$Check extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      */
     serviceName?: string;
@@ -1393,11 +1735,6 @@ export namespace servicecontrol_v1 {
     requestBody?: Schema$CheckRequest;
   }
   export interface Params$Resource$Services$Report extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      */

@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace manufacturers_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace manufacturers_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -225,6 +235,10 @@ export namespace manufacturers_v1 {
      * The release date of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#release.
      */
     releaseDate?: string | null;
+    /**
+     * Rich product content. For more information, see https://support.google.com/manufacturers/answer/9389865
+     */
+    richProductContent?: string[] | null;
     /**
      * The scent of the product. For more information, see  https://support.google.com/manufacturers/answer/6124116#scent.
      */
@@ -472,6 +486,57 @@ export namespace manufacturers_v1 {
     /**
      * manufacturers.accounts.products.delete
      * @desc Deletes the product from a Manufacturer Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/manufacturers.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const manufacturers = google.manufacturers('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/manufacturercenter'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await manufacturers.accounts.products.delete({
+     *     // Name in the format `{target_country}:{content_language}:{product_id}`.
+     *     //
+     *     // `target_country`   - The target country of the product as a CLDR territory
+     *     //                      code (for example, US).
+     *     //
+     *     // `content_language` - The content language of the product as a two-letter
+     *     //                      ISO 639-1 language code (for example, en).
+     *     //
+     *     // `product_id`     -   The ID of the product. For more information, see
+     *     //                      https://support.google.com/manufacturers/answer/6124116#id.
+     *     name: '[^/]+',
+     *     // Parent ID in the format `accounts/{account_id}`.
+     *     //
+     *     // `account_id` - The ID of the Manufacturer Center account.
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias manufacturers.accounts.products.delete
      * @memberOf! ()
      *
@@ -483,9 +548,18 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Products$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Products$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Accounts$Products$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Products$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -499,10 +573,17 @@ export namespace manufacturers_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Products$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -537,7 +618,10 @@ export namespace manufacturers_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -546,6 +630,69 @@ export namespace manufacturers_v1 {
     /**
      * manufacturers.accounts.products.get
      * @desc Gets the product from a Manufacturer Center account, including product issues.  A recently updated product takes around 15 minutes to process. Changes are only visible after it has been processed. While some issues may be available once the product has been processed, other issues may take days to appear.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/manufacturers.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const manufacturers = google.manufacturers('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/manufacturercenter'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await manufacturers.accounts.products.get({
+     *     // The information to be included in the response. Only sections listed here
+     *     // will be returned.
+     *     include: 'placeholder-value',
+     *     // Name in the format `{target_country}:{content_language}:{product_id}`.
+     *     //
+     *     // `target_country`   - The target country of the product as a CLDR territory
+     *     //                      code (for example, US).
+     *     //
+     *     // `content_language` - The content language of the product as a two-letter
+     *     //                      ISO 639-1 language code (for example, en).
+     *     //
+     *     // `product_id`     -   The ID of the product. For more information, see
+     *     //                      https://support.google.com/manufacturers/answer/6124116#id.
+     *     name: '[^/]+',
+     *     // Parent ID in the format `accounts/{account_id}`.
+     *     //
+     *     // `account_id` - The ID of the Manufacturer Center account.
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "destinationStatuses": [],
+     *   //   "issues": [],
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "productId": "my_productId",
+     *   //   "targetCountry": "my_targetCountry"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias manufacturers.accounts.products.get
      * @memberOf! ()
      *
@@ -558,9 +705,18 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Products$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Products$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Product>;
+    get(
+      params: Params$Resource$Accounts$Products$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Products$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Product>,
@@ -574,10 +730,17 @@ export namespace manufacturers_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Products$Get
-        | BodyResponseCallback<Schema$Product>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
-      callback?: BodyResponseCallback<Schema$Product>
-    ): void | GaxiosPromise<Schema$Product> {
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -612,7 +775,10 @@ export namespace manufacturers_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Product>(parameters, callback);
+        createAPIRequest<Schema$Product>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
       }
@@ -621,6 +787,57 @@ export namespace manufacturers_v1 {
     /**
      * manufacturers.accounts.products.list
      * @desc Lists all the products in a Manufacturer Center account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/manufacturers.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const manufacturers = google.manufacturers('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/manufacturercenter'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await manufacturers.accounts.products.list({
+     *     // The information to be included in the response. Only sections listed here
+     *     // will be returned.
+     *     include: 'placeholder-value',
+     *     // Maximum number of product statuses to return in the response, used for
+     *     // paging.
+     *     pageSize: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // Parent ID in the format `accounts/{account_id}`.
+     *     //
+     *     // `account_id` - The ID of the Manufacturer Center account.
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "products": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias manufacturers.accounts.products.list
      * @memberOf! ()
      *
@@ -634,9 +851,18 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Products$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Products$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListProductsResponse>;
+    list(
+      params: Params$Resource$Accounts$Products$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Products$List,
       options:
@@ -652,12 +878,20 @@ export namespace manufacturers_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Products$List
-        | BodyResponseCallback<Schema$ListProductsResponse>,
+        | BodyResponseCallback<Schema$ListProductsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListProductsResponse>,
-      callback?: BodyResponseCallback<Schema$ListProductsResponse>
-    ): void | GaxiosPromise<Schema$ListProductsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProductsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProductsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListProductsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -692,7 +926,10 @@ export namespace manufacturers_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListProductsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListProductsResponse>(parameters);
       }
@@ -701,21 +938,124 @@ export namespace manufacturers_v1 {
     /**
      * manufacturers.accounts.products.update
      * @desc Inserts or updates the attributes of the product in a Manufacturer Center account.  Creates a product with the provided attributes. If the product already exists, then all attributes are replaced with the new ones. The checks at upload time are minimal. All required attributes need to be present for a product to be valid. Issues may show up later after the API has accepted a new upload for a product and it is possible to overwrite an existing valid product with an invalid product. To detect this, you should retrieve the product and check it for issues once the new version is available.  Uploaded attributes first need to be processed before they can be retrieved. Until then, new products will be unavailable, and retrieval of previously uploaded products will return the original state of the product.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/manufacturers.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const manufacturers = google.manufacturers('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/manufacturercenter'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await manufacturers.accounts.products.update({
+     *     // Name in the format `{target_country}:{content_language}:{product_id}`.
+     *     //
+     *     // `target_country`   - The target country of the product as a CLDR territory
+     *     //                      code (for example, US).
+     *     //
+     *     // `content_language` - The content language of the product as a two-letter
+     *     //                      ISO 639-1 language code (for example, en).
+     *     //
+     *     // `product_id`     -   The ID of the product. For more information, see
+     *     //                      https://support.google.com/manufacturers/answer/6124116#id.
+     *     name: '[^/]+',
+     *     // Parent ID in the format `accounts/{account_id}`.
+     *     //
+     *     // `account_id` - The ID of the Manufacturer Center account.
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalImageLink": [],
+     *       //   "ageGroup": "my_ageGroup",
+     *       //   "brand": "my_brand",
+     *       //   "capacity": {},
+     *       //   "color": "my_color",
+     *       //   "count": {},
+     *       //   "description": "my_description",
+     *       //   "disclosureDate": "my_disclosureDate",
+     *       //   "excludedDestination": [],
+     *       //   "featureDescription": [],
+     *       //   "flavor": "my_flavor",
+     *       //   "format": "my_format",
+     *       //   "gender": "my_gender",
+     *       //   "gtin": [],
+     *       //   "imageLink": {},
+     *       //   "includedDestination": [],
+     *       //   "itemGroupId": "my_itemGroupId",
+     *       //   "material": "my_material",
+     *       //   "mpn": "my_mpn",
+     *       //   "pattern": "my_pattern",
+     *       //   "productDetail": [],
+     *       //   "productLine": "my_productLine",
+     *       //   "productName": "my_productName",
+     *       //   "productPageUrl": "my_productPageUrl",
+     *       //   "productType": [],
+     *       //   "releaseDate": "my_releaseDate",
+     *       //   "richProductContent": [],
+     *       //   "scent": "my_scent",
+     *       //   "size": "my_size",
+     *       //   "sizeSystem": "my_sizeSystem",
+     *       //   "sizeType": "my_sizeType",
+     *       //   "suggestedRetailPrice": {},
+     *       //   "targetClientId": "my_targetClientId",
+     *       //   "theme": "my_theme",
+     *       //   "title": "my_title",
+     *       //   "videoLink": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias manufacturers.accounts.products.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
      * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
-     * @param {().Attributes} params.resource Request body data
+     * @param {().Attributes} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Products$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Products$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    update(
+      params: Params$Resource$Accounts$Products$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Products$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -729,10 +1069,17 @@ export namespace manufacturers_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Products$Update
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -767,7 +1114,10 @@ export namespace manufacturers_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -776,11 +1126,6 @@ export namespace manufacturers_v1 {
 
   export interface Params$Resource$Accounts$Products$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
      */
@@ -792,11 +1137,6 @@ export namespace manufacturers_v1 {
   }
   export interface Params$Resource$Accounts$Products$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The information to be included in the response. Only sections listed here will be returned.
      */
@@ -812,11 +1152,6 @@ export namespace manufacturers_v1 {
   }
   export interface Params$Resource$Accounts$Products$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The information to be included in the response. Only sections listed here will be returned.
      */
@@ -836,11 +1171,6 @@ export namespace manufacturers_v1 {
   }
   export interface Params$Resource$Accounts$Products$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
      */

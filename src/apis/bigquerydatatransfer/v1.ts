@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace bigquerydatatransfer_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace bigquerydatatransfer_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -277,6 +287,15 @@ export namespace bigquerydatatransfer_v1 {
     validationRegex?: string | null;
   }
   /**
+   * Represents preferences for sending email notifications for transfer run events.
+   */
+  export interface Schema$EmailPreferences {
+    /**
+     * If true, email notifications will be sent on transfer run failures.
+     */
+    enableFailureEmail?: boolean | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
@@ -392,11 +411,11 @@ export namespace bigquerydatatransfer_v1 {
    */
   export interface Schema$ScheduleTransferRunsRequest {
     /**
-     * End time of the range of transfer runs. For example, `&quot;2017-05-30T00:00:00+00:00&quot;`.
+     * Required. End time of the range of transfer runs. For example, `&quot;2017-05-30T00:00:00+00:00&quot;`.
      */
     endTime?: string | null;
     /**
-     * Start time of the range of transfer runs. For example, `&quot;2017-05-25T00:00:00+00:00&quot;`.
+     * Required. Start time of the range of transfer runs. For example, `&quot;2017-05-25T00:00:00+00:00&quot;`.
      */
     startTime?: string | null;
   }
@@ -490,6 +509,10 @@ export namespace bigquerydatatransfer_v1 {
      */
     displayName?: string | null;
     /**
+     * Email notifications will be sent according to these preferences to the email address of the user who owns this transfer config.
+     */
+    emailPreferences?: Schema$EmailPreferences;
+    /**
      * The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      */
     name?: string | null;
@@ -497,6 +520,10 @@ export namespace bigquerydatatransfer_v1 {
      * Output only. Next time when data transfer will run.
      */
     nextRunTime?: string | null;
+    /**
+     * Pub/Sub topic where notifications will be sent after transfer runs associated with this transfer config finish.
+     */
+    notificationPubsubTopic?: string | null;
     /**
      * Data transfer specific parameters.
      */
@@ -552,6 +579,10 @@ export namespace bigquerydatatransfer_v1 {
      */
     destinationDatasetId?: string | null;
     /**
+     * Output only. Email notifications will be sent according to these preferences to the email address of the user who owns the transfer config this run was derived from.
+     */
+    emailPreferences?: Schema$EmailPreferences;
+    /**
      * Output only. Time when transfer run ended. Parameter ignored by server for input requests.
      */
     endTime?: string | null;
@@ -563,6 +594,10 @@ export namespace bigquerydatatransfer_v1 {
      * The resource name of the transfer run. Transfer run names have the form `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`. The name is ignored when creating a transfer run.
      */
     name?: string | null;
+    /**
+     * Output only. Pub/Sub topic where a notification will be sent after this transfer run finishes
+     */
+    notificationPubsubTopic?: string | null;
     /**
      * Output only. Data transfer specific parameters.
      */
@@ -621,20 +656,82 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.dataSources.checkValidCreds
      * @desc Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.dataSources.checkValidCreds({
+     *     // Required. The data source in the form:
+     *     // `projects/{project_id}/dataSources/{data_source_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+     *     name: 'projects/my-project/dataSources/my-dataSource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hasValidCreds": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.dataSources.checkValidCreds
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
-     * @param {().CheckValidCredsRequest} params.resource Request body data
+     * @param {string} params.name Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+     * @param {().CheckValidCredsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     checkValidCreds(
+      params: Params$Resource$Projects$Datasources$Checkvalidcreds,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkValidCreds(
       params?: Params$Resource$Projects$Datasources$Checkvalidcreds,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CheckValidCredsResponse>;
+    checkValidCreds(
+      params: Params$Resource$Projects$Datasources$Checkvalidcreds,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     checkValidCreds(
       params: Params$Resource$Projects$Datasources$Checkvalidcreds,
       options:
@@ -652,12 +749,20 @@ export namespace bigquerydatatransfer_v1 {
     checkValidCreds(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasources$Checkvalidcreds
-        | BodyResponseCallback<Schema$CheckValidCredsResponse>,
+        | BodyResponseCallback<Schema$CheckValidCredsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CheckValidCredsResponse>,
-      callback?: BodyResponseCallback<Schema$CheckValidCredsResponse>
-    ): void | GaxiosPromise<Schema$CheckValidCredsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckValidCredsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckValidCredsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CheckValidCredsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasources$Checkvalidcreds;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -692,7 +797,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CheckValidCredsResponse>(parameters, callback);
+        createAPIRequest<Schema$CheckValidCredsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CheckValidCredsResponse>(parameters);
       }
@@ -701,19 +809,92 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.dataSources.get
      * @desc Retrieves a supported data source and returns its settings, which can be used for UI rendering.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.dataSources.get({
+     *     // Required. The field will contain name of the resource requested, for example:
+     *     // `projects/{project_id}/dataSources/{data_source_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
+     *     name: 'projects/my-project/dataSources/my-dataSource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorizationType": "my_authorizationType",
+     *   //   "clientId": "my_clientId",
+     *   //   "dataRefreshType": "my_dataRefreshType",
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "defaultDataRefreshWindowDays": 0,
+     *   //   "defaultSchedule": "my_defaultSchedule",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "helpUrl": "my_helpUrl",
+     *   //   "manualRunsDisabled": false,
+     *   //   "minimumScheduleInterval": "my_minimumScheduleInterval",
+     *   //   "name": "my_name",
+     *   //   "parameters": [],
+     *   //   "scopes": [],
+     *   //   "supportsCustomSchedule": false,
+     *   //   "supportsMultipleTransfers": false,
+     *   //   "transferType": "my_transferType",
+     *   //   "updateDeadlineSeconds": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.dataSources.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Datasources$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Datasources$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DataSource>;
+    get(
+      params: Params$Resource$Projects$Datasources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Datasources$Get,
       options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
@@ -727,12 +908,17 @@ export namespace bigquerydatatransfer_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasources$Get
-        | BodyResponseCallback<Schema$DataSource>,
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DataSource>,
-      callback?: BodyResponseCallback<Schema$DataSource>
-    ): void | GaxiosPromise<Schema$DataSource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DataSource> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -764,7 +950,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DataSource>(parameters, callback);
+        createAPIRequest<Schema$DataSource>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
       }
@@ -773,21 +962,86 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.dataSources.list
      * @desc Lists supported data sources and returns their settings, which can be used for UI rendering.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.dataSources.list({
+     *     // Page size. The default page size is the maximum value of 1000 results.
+     *     pageSize: 'placeholder-value',
+     *     // Pagination token, which can be used to request a specific page
+     *     // of `ListDataSourcesRequest` list results. For multiple-page
+     *     // results, `ListDataSourcesResponse` outputs
+     *     // a `next_page` token, which can be used as the
+     *     // `page_token` value to request the next page of list results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The BigQuery project id for which data sources should be returned.
+     *     // Must be in the form: `projects/{project_id}` or
+     *     // `projects/{project_id}/locations/{location_id}
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSources": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.dataSources.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
+     * @param {string} params.parent Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Datasources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Datasources$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDataSourcesResponse>;
+    list(
+      params: Params$Resource$Projects$Datasources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Datasources$List,
       options:
@@ -803,12 +1057,20 @@ export namespace bigquerydatatransfer_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasources$List
-        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
-      callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>
-    ): void | GaxiosPromise<Schema$ListDataSourcesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDataSourcesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -843,7 +1105,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDataSourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDataSourcesResponse>(parameters);
       }
@@ -853,12 +1118,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Datasources$Checkvalidcreds
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
+     * Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
      */
     name?: string;
 
@@ -870,22 +1130,12 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Datasources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Datasources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -895,7 +1145,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
+     * Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}
      */
     parent?: string;
   }
@@ -917,6 +1167,55 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.get
      * @desc Gets information about a location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.get
      * @memberOf! ()
      *
@@ -927,9 +1226,18 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Location>,
@@ -943,10 +1251,17 @@ export namespace bigquerydatatransfer_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Get
-        | BodyResponseCallback<Schema$Location>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback?: BodyResponseCallback<Schema$Location>
-    ): void | GaxiosPromise<Schema$Location> {
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -978,7 +1293,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Location>(parameters, callback);
+        createAPIRequest<Schema$Location>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
       }
@@ -987,6 +1305,58 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.list
      * @memberOf! ()
      *
@@ -1000,9 +1370,18 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLocationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
@@ -1018,12 +1397,20 @@ export namespace bigquerydatatransfer_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$List
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLocationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1058,7 +1445,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
@@ -1068,22 +1458,12 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name for the location.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -1111,20 +1491,85 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.dataSources.checkValidCreds
      * @desc Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.dataSources.checkValidCreds(
+     *     {
+     *       // Required. The data source in the form:
+     *       // `projects/{project_id}/dataSources/{data_source_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+     *       name:
+     *         'projects/my-project/locations/my-location/dataSources/my-dataSource',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hasValidCreds": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.dataSources.checkValidCreds
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
-     * @param {().CheckValidCredsRequest} params.resource Request body data
+     * @param {string} params.name Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+     * @param {().CheckValidCredsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     checkValidCreds(
+      params: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkValidCreds(
       params?: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CheckValidCredsResponse>;
+    checkValidCreds(
+      params: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     checkValidCreds(
       params: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
       options:
@@ -1142,12 +1587,20 @@ export namespace bigquerydatatransfer_v1 {
     checkValidCreds(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Datasources$Checkvalidcreds
-        | BodyResponseCallback<Schema$CheckValidCredsResponse>,
+        | BodyResponseCallback<Schema$CheckValidCredsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CheckValidCredsResponse>,
-      callback?: BodyResponseCallback<Schema$CheckValidCredsResponse>
-    ): void | GaxiosPromise<Schema$CheckValidCredsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckValidCredsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckValidCredsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CheckValidCredsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasources$Checkvalidcreds;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1182,7 +1635,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CheckValidCredsResponse>(parameters, callback);
+        createAPIRequest<Schema$CheckValidCredsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CheckValidCredsResponse>(parameters);
       }
@@ -1191,19 +1647,92 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.dataSources.get
      * @desc Retrieves a supported data source and returns its settings, which can be used for UI rendering.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.dataSources.get({
+     *     // Required. The field will contain name of the resource requested, for example:
+     *     // `projects/{project_id}/dataSources/{data_source_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
+     *     name: 'projects/my-project/locations/my-location/dataSources/my-dataSource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorizationType": "my_authorizationType",
+     *   //   "clientId": "my_clientId",
+     *   //   "dataRefreshType": "my_dataRefreshType",
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "defaultDataRefreshWindowDays": 0,
+     *   //   "defaultSchedule": "my_defaultSchedule",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "helpUrl": "my_helpUrl",
+     *   //   "manualRunsDisabled": false,
+     *   //   "minimumScheduleInterval": "my_minimumScheduleInterval",
+     *   //   "name": "my_name",
+     *   //   "parameters": [],
+     *   //   "scopes": [],
+     *   //   "supportsCustomSchedule": false,
+     *   //   "supportsMultipleTransfers": false,
+     *   //   "transferType": "my_transferType",
+     *   //   "updateDeadlineSeconds": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.dataSources.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Datasources$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Datasources$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DataSource>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Datasources$Get,
       options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
@@ -1217,12 +1746,17 @@ export namespace bigquerydatatransfer_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Datasources$Get
-        | BodyResponseCallback<Schema$DataSource>,
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DataSource>,
-      callback?: BodyResponseCallback<Schema$DataSource>
-    ): void | GaxiosPromise<Schema$DataSource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DataSource> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1254,7 +1788,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DataSource>(parameters, callback);
+        createAPIRequest<Schema$DataSource>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
       }
@@ -1263,21 +1800,86 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.dataSources.list
      * @desc Lists supported data sources and returns their settings, which can be used for UI rendering.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.dataSources.list({
+     *     // Page size. The default page size is the maximum value of 1000 results.
+     *     pageSize: 'placeholder-value',
+     *     // Pagination token, which can be used to request a specific page
+     *     // of `ListDataSourcesRequest` list results. For multiple-page
+     *     // results, `ListDataSourcesResponse` outputs
+     *     // a `next_page` token, which can be used as the
+     *     // `page_token` value to request the next page of list results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The BigQuery project id for which data sources should be returned.
+     *     // Must be in the form: `projects/{project_id}` or
+     *     // `projects/{project_id}/locations/{location_id}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSources": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.dataSources.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
+     * @param {string} params.parent Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Datasources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Datasources$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDataSourcesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datasources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Datasources$List,
       options:
@@ -1293,12 +1895,20 @@ export namespace bigquerydatatransfer_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Datasources$List
-        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
-      callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>
-    ): void | GaxiosPromise<Schema$ListDataSourcesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDataSourcesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1333,7 +1943,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDataSourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDataSourcesResponse>(parameters);
       }
@@ -1343,12 +1956,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Datasources$Checkvalidcreds
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
+     * Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
      */
     name?: string;
 
@@ -1360,22 +1968,12 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Datasources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -1385,7 +1983,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
+     * Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}
      */
     parent?: string;
   }
@@ -1403,22 +2001,144 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.create
      * @desc Creates a new data transfer configuration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.create(
+     *     {
+     *       // Optional OAuth2 authorization code to use with this transfer configuration.
+     *       // This is required if new credentials are needed, as indicated by
+     *       // `CheckValidCreds`.
+     *       // In order to obtain authorization_code, please make a
+     *       // request to
+     *       // https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
+     *       //
+     *       // * client_id should be OAuth client_id of BigQuery DTS API for the given
+     *       //   data source returned by ListDataSources method.
+     *       // * data_source_scopes are the scopes returned by ListDataSources method.
+     *       // * redirect_uri is an optional parameter. If not specified, then
+     *       //   authorization code is posted to the opener of authorization flow window.
+     *       //   Otherwise it will be sent to the redirect uri. A special value of
+     *       //   urn:ietf:wg:oauth:2.0:oob means that authorization code should be
+     *       //   returned in the title bar of the browser, with the page text prompting
+     *       //   the user to copy the code and paste it in the application.
+     *       authorizationCode: 'placeholder-value',
+     *       // Required. The BigQuery project id where the transfer configuration should be created.
+     *       // Must be in the format projects/{project_id}/locations/{location_id} or
+     *       // projects/{project_id}. If specified location and location of the
+     *       // destination bigquery dataset do not match - the request will fail.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Optional service account name. If this field is set, transfer config will
+     *       // be created with this service account credentials. It requires that
+     *       // requesting user calling this API has permissions to act as this service
+     *       // account.
+     *       serviceAccountName: 'placeholder-value',
+     *       // Optional version info. If users want to find a very recent access token,
+     *       // that is, immediately after approving access, users have to set the
+     *       // version_info claim in the token request. To obtain the version_info, users
+     *       // must use the "none+gsession" response type. which be return a
+     *       // version_info back in the authorization response which be be put in a JWT
+     *       // claim in the token request.
+     *       versionInfo: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dataRefreshWindowDays": 0,
+     *         //   "dataSourceId": "my_dataSourceId",
+     *         //   "datasetRegion": "my_datasetRegion",
+     *         //   "destinationDatasetId": "my_destinationDatasetId",
+     *         //   "disabled": false,
+     *         //   "displayName": "my_displayName",
+     *         //   "emailPreferences": {},
+     *         //   "name": "my_name",
+     *         //   "nextRunTime": "my_nextRunTime",
+     *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *         //   "params": {},
+     *         //   "schedule": "my_schedule",
+     *         //   "scheduleOptions": {},
+     *         //   "state": "my_state",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "userId": "my_userId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataRefreshWindowDays": 0,
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "datasetRegion": "my_datasetRegion",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "emailPreferences": {},
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleOptions": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
-     * @param {string} params.parent The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * @param {string} params.parent Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * @param {string=} params.serviceAccountName Optional service account name. If this field is set, transfer config will be created with this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
-     * @param {().TransferConfig} params.resource Request body data
+     * @param {().TransferConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TransferConfig>;
+    create(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Transferconfigs$Create,
       options: MethodOptions | BodyResponseCallback<Schema$TransferConfig>,
@@ -1432,12 +2152,17 @@ export namespace bigquerydatatransfer_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Transferconfigs$Create
-        | BodyResponseCallback<Schema$TransferConfig>,
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TransferConfig>,
-      callback?: BodyResponseCallback<Schema$TransferConfig>
-    ): void | GaxiosPromise<Schema$TransferConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TransferConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1472,7 +2197,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TransferConfig>(parameters, callback);
+        createAPIRequest<Schema$TransferConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
       }
@@ -1481,19 +2209,74 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.delete
      * @desc Deletes a data transfer configuration, including any associated transfer runs and logs.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.delete(
+     *     {
+     *       // Required. The field will contain name of the resource requested, for example:
+     *       // `projects/{project_id}/transferConfigs/{config_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *       name:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Transferconfigs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1507,10 +2290,17 @@ export namespace bigquerydatatransfer_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Transferconfigs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1542,7 +2332,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1551,19 +2344,93 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.get
      * @desc Returns information about a data transfer config.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.get(
+     *     {
+     *       // Required. The field will contain name of the resource requested, for example:
+     *       // `projects/{project_id}/transferConfigs/{config_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *       name:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataRefreshWindowDays": 0,
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "datasetRegion": "my_datasetRegion",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "emailPreferences": {},
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleOptions": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TransferConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Transferconfigs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$TransferConfig>,
@@ -1577,12 +2444,17 @@ export namespace bigquerydatatransfer_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Transferconfigs$Get
-        | BodyResponseCallback<Schema$TransferConfig>,
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TransferConfig>,
-      callback?: BodyResponseCallback<Schema$TransferConfig>
-    ): void | GaxiosPromise<Schema$TransferConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TransferConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1614,7 +2486,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TransferConfig>(parameters, callback);
+        createAPIRequest<Schema$TransferConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
       }
@@ -1623,6 +2498,66 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.list
      * @desc Returns information about all data transfers in the project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.list(
+     *     {
+     *       // When specified, only configurations of requested data sources are returned.
+     *       dataSourceIds: 'placeholder-value',
+     *       // Page size. The default page size is the maximum value of 1000 results.
+     *       pageSize: 'placeholder-value',
+     *       // Pagination token, which can be used to request a specific page
+     *       // of `ListTransfersRequest` list results. For multiple-page
+     *       // results, `ListTransfersResponse` outputs
+     *       // a `next_page` token, which can be used as the
+     *       // `page_token` value to request the next page of list results.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The BigQuery project id for which data sources
+     *       // should be returned: `projects/{project_id}` or
+     *       // `projects/{project_id}/locations/{location_id}`
+     *       parent: 'projects/my-project/locations/my-location',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.list
      * @memberOf! ()
      *
@@ -1630,15 +2565,24 @@ export namespace bigquerydatatransfer_v1 {
      * @param {string=} params.dataSourceIds When specified, only configurations of requested data sources are returned.
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent The BigQuery project id for which data sources should be returned: `projects/{project_id}`.
+     * @param {string} params.parent Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Transferconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Transferconfigs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTransferConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Transferconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$List,
       options:
@@ -1656,12 +2600,20 @@ export namespace bigquerydatatransfer_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Transferconfigs$List
-        | BodyResponseCallback<Schema$ListTransferConfigsResponse>,
+        | BodyResponseCallback<Schema$ListTransferConfigsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTransferConfigsResponse>,
-      callback?: BodyResponseCallback<Schema$ListTransferConfigsResponse>
-    ): void | GaxiosPromise<Schema$ListTransferConfigsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTransferConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTransferConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTransferConfigsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1698,7 +2650,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferConfigsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListTransferConfigsResponse>(parameters);
@@ -1708,23 +2660,152 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.patch
      * @desc Updates a data transfer configuration. All fields must be set, even if they are not updated.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.patch(
+     *     {
+     *       // Optional OAuth2 authorization code to use with this transfer configuration.
+     *       // If it is provided, the transfer configuration will be associated with the
+     *       // authorizing user.
+     *       // In order to obtain authorization_code, please make a
+     *       // request to
+     *       // https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
+     *       //
+     *       // * client_id should be OAuth client_id of BigQuery DTS API for the given
+     *       //   data source returned by ListDataSources method.
+     *       // * data_source_scopes are the scopes returned by ListDataSources method.
+     *       // * redirect_uri is an optional parameter. If not specified, then
+     *       //   authorization code is posted to the opener of authorization flow window.
+     *       //   Otherwise it will be sent to the redirect uri. A special value of
+     *       //   urn:ietf:wg:oauth:2.0:oob means that authorization code should be
+     *       //   returned in the title bar of the browser, with the page text prompting
+     *       //   the user to copy the code and paste it in the application.
+     *       authorizationCode: 'placeholder-value',
+     *       // The resource name of the transfer config.
+     *       // Transfer config names have the form of
+     *       // `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
+     *       // The name is automatically generated based on the config_id specified in
+     *       // CreateTransferConfigRequest along with project_id and region. If config_id
+     *       // is not provided, usually a uuid, even though it is not guaranteed or
+     *       // required, will be generated for config_id.
+     *       name:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *       // Optional service account name. If this field is set and
+     *       // "service_account_name" is set in update_mask, transfer config will be
+     *       // updated to use this service account credentials. It requires that
+     *       // requesting user calling this API has permissions to act as this service
+     *       // account.
+     *       serviceAccountName: 'placeholder-value',
+     *       // Required. Required list of fields to be updated in this request.
+     *       updateMask: 'placeholder-value',
+     *       // Optional version info. If users want to find a very recent access token,
+     *       // that is, immediately after approving access, users have to set the
+     *       // version_info claim in the token request. To obtain the version_info, users
+     *       // must use the "none+gsession" response type. which be return a
+     *       // version_info back in the authorization response which be be put in a JWT
+     *       // claim in the token request.
+     *       versionInfo: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dataRefreshWindowDays": 0,
+     *         //   "dataSourceId": "my_dataSourceId",
+     *         //   "datasetRegion": "my_datasetRegion",
+     *         //   "destinationDatasetId": "my_destinationDatasetId",
+     *         //   "disabled": false,
+     *         //   "displayName": "my_displayName",
+     *         //   "emailPreferences": {},
+     *         //   "name": "my_name",
+     *         //   "nextRunTime": "my_nextRunTime",
+     *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *         //   "params": {},
+     *         //   "schedule": "my_schedule",
+     *         //   "scheduleOptions": {},
+     *         //   "state": "my_state",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "userId": "my_userId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataRefreshWindowDays": 0,
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "datasetRegion": "my_datasetRegion",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "emailPreferences": {},
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleOptions": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      * @param {string} params.name The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
-     * @param {string=} params.updateMask Required list of fields to be updated in this request.
+     * @param {string=} params.serviceAccountName Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
+     * @param {string=} params.updateMask Required. Required list of fields to be updated in this request.
      * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
-     * @param {().TransferConfig} params.resource Request body data
+     * @param {().TransferConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TransferConfig>;
+    patch(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Transferconfigs$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$TransferConfig>,
@@ -1738,12 +2819,17 @@ export namespace bigquerydatatransfer_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Transferconfigs$Patch
-        | BodyResponseCallback<Schema$TransferConfig>,
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TransferConfig>,
-      callback?: BodyResponseCallback<Schema$TransferConfig>
-    ): void | GaxiosPromise<Schema$TransferConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TransferConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1775,7 +2861,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TransferConfig>(parameters, callback);
+        createAPIRequest<Schema$TransferConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
       }
@@ -1784,20 +2873,86 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns
      * @desc Creates transfer runs for a time range [start_time, end_time]. For each date - or whatever granularity the data source supports - in the range, one transfer run is created. Note that runs are created per UTC time in the time range. DEPRECATED: use StartManualTransferRuns instead.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns(
+     *     {
+     *       // Required. Transfer configuration name in the form:
+     *       // `projects/{project_id}/transferConfigs/{config_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "endTime": "my_endTime",
+     *         //   "startTime": "my_startTime"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "runs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
-     * @param {().ScheduleTransferRunsRequest} params.resource Request body data
+     * @param {string} params.parent Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     * @param {().ScheduleTransferRunsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     scheduleRuns(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    scheduleRuns(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ScheduleTransferRunsResponse>;
+    scheduleRuns(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     scheduleRuns(
       params: Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
       options:
@@ -1815,12 +2970,20 @@ export namespace bigquerydatatransfer_v1 {
     scheduleRuns(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns
-        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
+        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
-      callback?: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
-    ): void | GaxiosPromise<Schema$ScheduleTransferRunsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ScheduleTransferRunsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1857,7 +3020,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ScheduleTransferRunsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ScheduleTransferRunsResponse>(
@@ -1869,20 +3032,86 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns
      * @desc Start manual transfer runs to be executed now with schedule_time equal to current time. The transfer runs can be created for a time range where the run_time is between start_time (inclusive) and end_time (exclusive), or for a specific run_time.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns(
+     *     {
+     *       // Transfer configuration name in the form:
+     *       // `projects/{project_id}/transferConfigs/{config_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "requestedRunTime": "my_requestedRunTime",
+     *         //   "requestedTimeRange": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "runs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
-     * @param {().StartManualTransferRunsRequest} params.resource Request body data
+     * @param {string} params.parent Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     * @param {().StartManualTransferRunsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     startManualRuns(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    startManualRuns(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
       options?: MethodOptions
     ): GaxiosPromise<Schema$StartManualTransferRunsResponse>;
+    startManualRuns(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     startManualRuns(
       params: Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
       options:
@@ -1900,12 +3129,20 @@ export namespace bigquerydatatransfer_v1 {
     startManualRuns(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns
-        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
-      callback?: BodyResponseCallback<Schema$StartManualTransferRunsResponse>
-    ): void | GaxiosPromise<Schema$StartManualTransferRunsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$StartManualTransferRunsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1942,7 +3179,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$StartManualTransferRunsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$StartManualTransferRunsResponse>(
@@ -1955,18 +3192,17 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      */
     authorizationCode?: string;
     /**
-     * The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
      */
     parent?: string;
+    /**
+     * Optional service account name. If this field is set, transfer config will be created with this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
+     */
+    serviceAccountName?: string;
     /**
      * Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      */
@@ -1980,34 +3216,19 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When specified, only configurations of requested data sources are returned.
      */
@@ -2021,17 +3242,12 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * The BigQuery project id for which data sources should be returned: `projects/{project_id}`.
+     * Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      */
@@ -2041,7 +3257,11 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
     /**
-     * Required list of fields to be updated in this request.
+     * Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
+     */
+    serviceAccountName?: string;
+    /**
+     * Required. Required list of fields to be updated in this request.
      */
     updateMask?: string;
     /**
@@ -2057,12 +3277,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
+     * Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
 
@@ -2074,12 +3289,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
+     * Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
 
@@ -2102,19 +3312,74 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.runs.delete
      * @desc Deletes the specified transfer run.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.delete(
+     *     {
+     *       // Required. The field will contain name of the resource requested, for example:
+     *       // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       name:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.runs.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2128,10 +3393,17 @@ export namespace bigquerydatatransfer_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2163,7 +3435,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2172,19 +3447,92 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.runs.get
      * @desc Returns information about the particular transfer run.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.get(
+     *     {
+     *       // Required. The field will contain name of the resource requested, for example:
+     *       // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       name:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "emailPreferences": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "errorStatus": {},
+     *   //   "name": "my_name",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "runTime": "my_runTime",
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleTime": "my_scheduleTime",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.runs.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TransferRun>;
+    get(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$TransferRun>,
@@ -2198,12 +3546,17 @@ export namespace bigquerydatatransfer_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Transferconfigs$Runs$Get
-        | BodyResponseCallback<Schema$TransferRun>,
+        | BodyResponseCallback<Schema$TransferRun>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TransferRun>,
-      callback?: BodyResponseCallback<Schema$TransferRun>
-    ): void | GaxiosPromise<Schema$TransferRun> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TransferRun>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TransferRun>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TransferRun> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Runs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2235,7 +3588,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TransferRun>(parameters, callback);
+        createAPIRequest<Schema$TransferRun>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TransferRun>(parameters);
       }
@@ -2244,13 +3600,77 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.runs.list
      * @desc Returns information about running and completed jobs.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.list(
+     *     {
+     *       // Page size. The default page size is the maximum value of 1000 results.
+     *       pageSize: 'placeholder-value',
+     *       // Pagination token, which can be used to request a specific page
+     *       // of `ListTransferRunsRequest` list results. For multiple-page
+     *       // results, `ListTransferRunsResponse` outputs
+     *       // a `next_page` token, which can be used as the
+     *       // `page_token` value to request the next page of list results.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Name of transfer configuration for which transfer runs should be retrieved.
+     *       // Format of transfer configuration resource name is:
+     *       // `projects/{project_id}/transferConfigs/{config_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *       // Indicates how run attempts are to be pulled.
+     *       runAttempt: 'placeholder-value',
+     *       // When specified, only transfer runs with requested states are returned.
+     *       states: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferRuns": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.runs.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
+     * @param {string} params.parent Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      * @param {string=} params.runAttempt Indicates how run attempts are to be pulled.
      * @param {string=} params.states When specified, only transfer runs with requested states are returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2258,9 +3678,18 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTransferRunsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
       options:
@@ -2276,12 +3705,20 @@ export namespace bigquerydatatransfer_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Transferconfigs$Runs$List
-        | BodyResponseCallback<Schema$ListTransferRunsResponse>,
+        | BodyResponseCallback<Schema$ListTransferRunsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTransferRunsResponse>,
-      callback?: BodyResponseCallback<Schema$ListTransferRunsResponse>
-    ): void | GaxiosPromise<Schema$ListTransferRunsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTransferRunsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTransferRunsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTransferRunsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Runs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2313,7 +3750,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTransferRunsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTransferRunsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTransferRunsResponse>(parameters);
       }
@@ -2323,34 +3763,19 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -2360,7 +3785,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
+     * Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
     /**
@@ -2382,6 +3807,68 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list
      * @desc Returns user facing log messages for the data transfer run.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list(
+     *     {
+     *       // Message types to return. If not populated - INFO, WARNING and ERROR
+     *       // messages are returned.
+     *       messageTypes: 'placeholder-value',
+     *       // Page size. The default page size is the maximum value of 1000 results.
+     *       pageSize: 'placeholder-value',
+     *       // Pagination token, which can be used to request a specific page
+     *       // of `ListTransferLogsRequest` list results. For multiple-page
+     *       // results, `ListTransferLogsResponse` outputs
+     *       // a `next_page` token, which can be used as the
+     *       // `page_token` value to request the next page of list results.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Transfer run name in the form:
+     *       // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       parent:
+     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferMessages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list
      * @memberOf! ()
      *
@@ -2389,15 +3876,24 @@ export namespace bigquerydatatransfer_v1 {
      * @param {string=} params.messageTypes Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
+     * @param {string} params.parent Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTransferLogsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
       options:
@@ -2413,12 +3909,20 @@ export namespace bigquerydatatransfer_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List
-        | BodyResponseCallback<Schema$ListTransferLogsResponse>,
+        | BodyResponseCallback<Schema$ListTransferLogsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTransferLogsResponse>,
-      callback?: BodyResponseCallback<Schema$ListTransferLogsResponse>
-    ): void | GaxiosPromise<Schema$ListTransferLogsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTransferLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTransferLogsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTransferLogsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2453,7 +3957,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTransferLogsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTransferLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTransferLogsResponse>(parameters);
       }
@@ -2462,11 +3969,6 @@ export namespace bigquerydatatransfer_v1 {
 
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
      */
@@ -2480,7 +3982,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
+     * Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     parent?: string;
   }
@@ -2496,22 +3998,142 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.create
      * @desc Creates a new data transfer configuration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.create({
+     *     // Optional OAuth2 authorization code to use with this transfer configuration.
+     *     // This is required if new credentials are needed, as indicated by
+     *     // `CheckValidCreds`.
+     *     // In order to obtain authorization_code, please make a
+     *     // request to
+     *     // https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
+     *     //
+     *     // * client_id should be OAuth client_id of BigQuery DTS API for the given
+     *     //   data source returned by ListDataSources method.
+     *     // * data_source_scopes are the scopes returned by ListDataSources method.
+     *     // * redirect_uri is an optional parameter. If not specified, then
+     *     //   authorization code is posted to the opener of authorization flow window.
+     *     //   Otherwise it will be sent to the redirect uri. A special value of
+     *     //   urn:ietf:wg:oauth:2.0:oob means that authorization code should be
+     *     //   returned in the title bar of the browser, with the page text prompting
+     *     //   the user to copy the code and paste it in the application.
+     *     authorizationCode: 'placeholder-value',
+     *     // Required. The BigQuery project id where the transfer configuration should be created.
+     *     // Must be in the format projects/{project_id}/locations/{location_id} or
+     *     // projects/{project_id}. If specified location and location of the
+     *     // destination bigquery dataset do not match - the request will fail.
+     *     parent: 'projects/my-project',
+     *     // Optional service account name. If this field is set, transfer config will
+     *     // be created with this service account credentials. It requires that
+     *     // requesting user calling this API has permissions to act as this service
+     *     // account.
+     *     serviceAccountName: 'placeholder-value',
+     *     // Optional version info. If users want to find a very recent access token,
+     *     // that is, immediately after approving access, users have to set the
+     *     // version_info claim in the token request. To obtain the version_info, users
+     *     // must use the "none+gsession" response type. which be return a
+     *     // version_info back in the authorization response which be be put in a JWT
+     *     // claim in the token request.
+     *     versionInfo: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataRefreshWindowDays": 0,
+     *       //   "dataSourceId": "my_dataSourceId",
+     *       //   "datasetRegion": "my_datasetRegion",
+     *       //   "destinationDatasetId": "my_destinationDatasetId",
+     *       //   "disabled": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "emailPreferences": {},
+     *       //   "name": "my_name",
+     *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *       //   "params": {},
+     *       //   "schedule": "my_schedule",
+     *       //   "scheduleOptions": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataRefreshWindowDays": 0,
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "datasetRegion": "my_datasetRegion",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "emailPreferences": {},
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleOptions": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
-     * @param {string} params.parent The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * @param {string} params.parent Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * @param {string=} params.serviceAccountName Optional service account name. If this field is set, transfer config will be created with this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
-     * @param {().TransferConfig} params.resource Request body data
+     * @param {().TransferConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Transferconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Transferconfigs$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TransferConfig>;
+    create(
+      params: Params$Resource$Projects$Transferconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Transferconfigs$Create,
       options: MethodOptions | BodyResponseCallback<Schema$TransferConfig>,
@@ -2525,12 +4147,17 @@ export namespace bigquerydatatransfer_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Transferconfigs$Create
-        | BodyResponseCallback<Schema$TransferConfig>,
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TransferConfig>,
-      callback?: BodyResponseCallback<Schema$TransferConfig>
-    ): void | GaxiosPromise<Schema$TransferConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TransferConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2565,7 +4192,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TransferConfig>(parameters, callback);
+        createAPIRequest<Schema$TransferConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
       }
@@ -2574,19 +4204,71 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.delete
      * @desc Deletes a data transfer configuration, including any associated transfer runs and logs.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.delete({
+     *     // Required. The field will contain name of the resource requested, for example:
+     *     // `projects/{project_id}/transferConfigs/{config_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *     name: 'projects/my-project/transferConfigs/my-transferConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Transferconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Transferconfigs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Transferconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Transferconfigs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2600,10 +4282,17 @@ export namespace bigquerydatatransfer_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Transferconfigs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2635,7 +4324,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2644,19 +4336,90 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.get
      * @desc Returns information about a data transfer config.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.get({
+     *     // Required. The field will contain name of the resource requested, for example:
+     *     // `projects/{project_id}/transferConfigs/{config_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *     name: 'projects/my-project/transferConfigs/my-transferConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataRefreshWindowDays": 0,
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "datasetRegion": "my_datasetRegion",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "emailPreferences": {},
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleOptions": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Transferconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Transferconfigs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TransferConfig>;
+    get(
+      params: Params$Resource$Projects$Transferconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Transferconfigs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$TransferConfig>,
@@ -2670,12 +4433,17 @@ export namespace bigquerydatatransfer_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Transferconfigs$Get
-        | BodyResponseCallback<Schema$TransferConfig>,
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TransferConfig>,
-      callback?: BodyResponseCallback<Schema$TransferConfig>
-    ): void | GaxiosPromise<Schema$TransferConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TransferConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2707,7 +4475,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TransferConfig>(parameters, callback);
+        createAPIRequest<Schema$TransferConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
       }
@@ -2716,6 +4487,64 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.list
      * @desc Returns information about all data transfers in the project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.list({
+     *     // When specified, only configurations of requested data sources are returned.
+     *     dataSourceIds: 'placeholder-value',
+     *     // Page size. The default page size is the maximum value of 1000 results.
+     *     pageSize: 'placeholder-value',
+     *     // Pagination token, which can be used to request a specific page
+     *     // of `ListTransfersRequest` list results. For multiple-page
+     *     // results, `ListTransfersResponse` outputs
+     *     // a `next_page` token, which can be used as the
+     *     // `page_token` value to request the next page of list results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The BigQuery project id for which data sources
+     *     // should be returned: `projects/{project_id}` or
+     *     // `projects/{project_id}/locations/{location_id}`
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.list
      * @memberOf! ()
      *
@@ -2723,15 +4552,24 @@ export namespace bigquerydatatransfer_v1 {
      * @param {string=} params.dataSourceIds When specified, only configurations of requested data sources are returned.
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent The BigQuery project id for which data sources should be returned: `projects/{project_id}`.
+     * @param {string} params.parent Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Transferconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Transferconfigs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTransferConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Transferconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Transferconfigs$List,
       options:
@@ -2749,12 +4587,20 @@ export namespace bigquerydatatransfer_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Transferconfigs$List
-        | BodyResponseCallback<Schema$ListTransferConfigsResponse>,
+        | BodyResponseCallback<Schema$ListTransferConfigsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTransferConfigsResponse>,
-      callback?: BodyResponseCallback<Schema$ListTransferConfigsResponse>
-    ): void | GaxiosPromise<Schema$ListTransferConfigsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTransferConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTransferConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTransferConfigsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2791,7 +4637,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferConfigsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListTransferConfigsResponse>(parameters);
@@ -2801,23 +4647,149 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.patch
      * @desc Updates a data transfer configuration. All fields must be set, even if they are not updated.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.patch({
+     *     // Optional OAuth2 authorization code to use with this transfer configuration.
+     *     // If it is provided, the transfer configuration will be associated with the
+     *     // authorizing user.
+     *     // In order to obtain authorization_code, please make a
+     *     // request to
+     *     // https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
+     *     //
+     *     // * client_id should be OAuth client_id of BigQuery DTS API for the given
+     *     //   data source returned by ListDataSources method.
+     *     // * data_source_scopes are the scopes returned by ListDataSources method.
+     *     // * redirect_uri is an optional parameter. If not specified, then
+     *     //   authorization code is posted to the opener of authorization flow window.
+     *     //   Otherwise it will be sent to the redirect uri. A special value of
+     *     //   urn:ietf:wg:oauth:2.0:oob means that authorization code should be
+     *     //   returned in the title bar of the browser, with the page text prompting
+     *     //   the user to copy the code and paste it in the application.
+     *     authorizationCode: 'placeholder-value',
+     *     // The resource name of the transfer config.
+     *     // Transfer config names have the form of
+     *     // `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
+     *     // The name is automatically generated based on the config_id specified in
+     *     // CreateTransferConfigRequest along with project_id and region. If config_id
+     *     // is not provided, usually a uuid, even though it is not guaranteed or
+     *     // required, will be generated for config_id.
+     *     name: 'projects/my-project/transferConfigs/my-transferConfig',
+     *     // Optional service account name. If this field is set and
+     *     // "service_account_name" is set in update_mask, transfer config will be
+     *     // updated to use this service account credentials. It requires that
+     *     // requesting user calling this API has permissions to act as this service
+     *     // account.
+     *     serviceAccountName: 'placeholder-value',
+     *     // Required. Required list of fields to be updated in this request.
+     *     updateMask: 'placeholder-value',
+     *     // Optional version info. If users want to find a very recent access token,
+     *     // that is, immediately after approving access, users have to set the
+     *     // version_info claim in the token request. To obtain the version_info, users
+     *     // must use the "none+gsession" response type. which be return a
+     *     // version_info back in the authorization response which be be put in a JWT
+     *     // claim in the token request.
+     *     versionInfo: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataRefreshWindowDays": 0,
+     *       //   "dataSourceId": "my_dataSourceId",
+     *       //   "datasetRegion": "my_datasetRegion",
+     *       //   "destinationDatasetId": "my_destinationDatasetId",
+     *       //   "disabled": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "emailPreferences": {},
+     *       //   "name": "my_name",
+     *       //   "nextRunTime": "my_nextRunTime",
+     *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *       //   "params": {},
+     *       //   "schedule": "my_schedule",
+     *       //   "scheduleOptions": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataRefreshWindowDays": 0,
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "datasetRegion": "my_datasetRegion",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "emailPreferences": {},
+     *   //   "name": "my_name",
+     *   //   "nextRunTime": "my_nextRunTime",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleOptions": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      * @param {string} params.name The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
-     * @param {string=} params.updateMask Required list of fields to be updated in this request.
+     * @param {string=} params.serviceAccountName Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
+     * @param {string=} params.updateMask Required. Required list of fields to be updated in this request.
      * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
-     * @param {().TransferConfig} params.resource Request body data
+     * @param {().TransferConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Transferconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Transferconfigs$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TransferConfig>;
+    patch(
+      params: Params$Resource$Projects$Transferconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Transferconfigs$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$TransferConfig>,
@@ -2831,12 +4803,17 @@ export namespace bigquerydatatransfer_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Transferconfigs$Patch
-        | BodyResponseCallback<Schema$TransferConfig>,
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TransferConfig>,
-      callback?: BodyResponseCallback<Schema$TransferConfig>
-    ): void | GaxiosPromise<Schema$TransferConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TransferConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TransferConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2868,7 +4845,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TransferConfig>(parameters, callback);
+        createAPIRequest<Schema$TransferConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
       }
@@ -2877,20 +4857,83 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.scheduleRuns
      * @desc Creates transfer runs for a time range [start_time, end_time]. For each date - or whatever granularity the data source supports - in the range, one transfer run is created. Note that runs are created per UTC time in the time range. DEPRECATED: use StartManualTransferRuns instead.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.scheduleRuns({
+     *     // Required. Transfer configuration name in the form:
+     *     // `projects/{project_id}/transferConfigs/{config_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *     parent: 'projects/my-project/transferConfigs/my-transferConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "endTime": "my_endTime",
+     *       //   "startTime": "my_startTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "runs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.scheduleRuns
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
-     * @param {().ScheduleTransferRunsRequest} params.resource Request body data
+     * @param {string} params.parent Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     * @param {().ScheduleTransferRunsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     scheduleRuns(
+      params: Params$Resource$Projects$Transferconfigs$Scheduleruns,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    scheduleRuns(
       params?: Params$Resource$Projects$Transferconfigs$Scheduleruns,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ScheduleTransferRunsResponse>;
+    scheduleRuns(
+      params: Params$Resource$Projects$Transferconfigs$Scheduleruns,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     scheduleRuns(
       params: Params$Resource$Projects$Transferconfigs$Scheduleruns,
       options:
@@ -2908,12 +4951,20 @@ export namespace bigquerydatatransfer_v1 {
     scheduleRuns(
       paramsOrCallback?:
         | Params$Resource$Projects$Transferconfigs$Scheduleruns
-        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
+        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
-      callback?: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
-    ): void | GaxiosPromise<Schema$ScheduleTransferRunsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ScheduleTransferRunsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Scheduleruns;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2950,7 +5001,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ScheduleTransferRunsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ScheduleTransferRunsResponse>(
@@ -2962,20 +5013,85 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.startManualRuns
      * @desc Start manual transfer runs to be executed now with schedule_time equal to current time. The transfer runs can be created for a time range where the run_time is between start_time (inclusive) and end_time (exclusive), or for a specific run_time.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.startManualRuns(
+     *     {
+     *       // Transfer configuration name in the form:
+     *       // `projects/{project_id}/transferConfigs/{config_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       parent: 'projects/my-project/transferConfigs/my-transferConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "requestedRunTime": "my_requestedRunTime",
+     *         //   "requestedTimeRange": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "runs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.startManualRuns
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
-     * @param {().StartManualTransferRunsRequest} params.resource Request body data
+     * @param {string} params.parent Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     * @param {().StartManualTransferRunsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     startManualRuns(
+      params: Params$Resource$Projects$Transferconfigs$Startmanualruns,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    startManualRuns(
       params?: Params$Resource$Projects$Transferconfigs$Startmanualruns,
       options?: MethodOptions
     ): GaxiosPromise<Schema$StartManualTransferRunsResponse>;
+    startManualRuns(
+      params: Params$Resource$Projects$Transferconfigs$Startmanualruns,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     startManualRuns(
       params: Params$Resource$Projects$Transferconfigs$Startmanualruns,
       options:
@@ -2993,12 +5109,20 @@ export namespace bigquerydatatransfer_v1 {
     startManualRuns(
       paramsOrCallback?:
         | Params$Resource$Projects$Transferconfigs$Startmanualruns
-        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
-      callback?: BodyResponseCallback<Schema$StartManualTransferRunsResponse>
-    ): void | GaxiosPromise<Schema$StartManualTransferRunsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$StartManualTransferRunsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Startmanualruns;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3035,7 +5159,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$StartManualTransferRunsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$StartManualTransferRunsResponse>(
@@ -3048,18 +5172,17 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      */
     authorizationCode?: string;
     /**
-     * The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
      */
     parent?: string;
+    /**
+     * Optional service account name. If this field is set, transfer config will be created with this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
+     */
+    serviceAccountName?: string;
     /**
      * Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      */
@@ -3073,34 +5196,19 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When specified, only configurations of requested data sources are returned.
      */
@@ -3114,17 +5222,12 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * The BigQuery project id for which data sources should be returned: `projects/{project_id}`.
+     * Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      */
@@ -3134,7 +5237,11 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
     /**
-     * Required list of fields to be updated in this request.
+     * Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
+     */
+    serviceAccountName?: string;
+    /**
+     * Required. Required list of fields to be updated in this request.
      */
     updateMask?: string;
     /**
@@ -3150,12 +5257,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Scheduleruns
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
+     * Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
 
@@ -3167,12 +5269,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Startmanualruns
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
+     * Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
 
@@ -3195,19 +5292,71 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.runs.delete
      * @desc Deletes the specified transfer run.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.delete({
+     *     // Required. The field will contain name of the resource requested, for example:
+     *     // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *     name: 'projects/my-project/transferConfigs/my-transferConfig/runs/my-run',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.runs.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Transferconfigs$Runs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Transferconfigs$Runs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Transferconfigs$Runs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Transferconfigs$Runs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3221,10 +5370,17 @@ export namespace bigquerydatatransfer_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Transferconfigs$Runs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Runs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3256,7 +5412,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3265,19 +5424,89 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.runs.get
      * @desc Returns information about the particular transfer run.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.get({
+     *     // Required. The field will contain name of the resource requested, for example:
+     *     // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *     name: 'projects/my-project/transferConfigs/my-transferConfig/runs/my-run',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "destinationDatasetId": "my_destinationDatasetId",
+     *   //   "emailPreferences": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "errorStatus": {},
+     *   //   "name": "my_name",
+     *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "params": {},
+     *   //   "runTime": "my_runTime",
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleTime": "my_scheduleTime",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.runs.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Transferconfigs$Runs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Transferconfigs$Runs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TransferRun>;
+    get(
+      params: Params$Resource$Projects$Transferconfigs$Runs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Transferconfigs$Runs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$TransferRun>,
@@ -3291,12 +5520,17 @@ export namespace bigquerydatatransfer_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Transferconfigs$Runs$Get
-        | BodyResponseCallback<Schema$TransferRun>,
+        | BodyResponseCallback<Schema$TransferRun>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TransferRun>,
-      callback?: BodyResponseCallback<Schema$TransferRun>
-    ): void | GaxiosPromise<Schema$TransferRun> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TransferRun>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TransferRun>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TransferRun> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Runs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3328,7 +5562,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TransferRun>(parameters, callback);
+        createAPIRequest<Schema$TransferRun>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TransferRun>(parameters);
       }
@@ -3337,13 +5574,74 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.runs.list
      * @desc Returns information about running and completed jobs.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.list({
+     *     // Page size. The default page size is the maximum value of 1000 results.
+     *     pageSize: 'placeholder-value',
+     *     // Pagination token, which can be used to request a specific page
+     *     // of `ListTransferRunsRequest` list results. For multiple-page
+     *     // results, `ListTransferRunsResponse` outputs
+     *     // a `next_page` token, which can be used as the
+     *     // `page_token` value to request the next page of list results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of transfer configuration for which transfer runs should be retrieved.
+     *     // Format of transfer configuration resource name is:
+     *     // `projects/{project_id}/transferConfigs/{config_id}` or
+     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *     parent: 'projects/my-project/transferConfigs/my-transferConfig',
+     *     // Indicates how run attempts are to be pulled.
+     *     runAttempt: 'placeholder-value',
+     *     // When specified, only transfer runs with requested states are returned.
+     *     states: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferRuns": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.runs.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
+     * @param {string} params.parent Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      * @param {string=} params.runAttempt Indicates how run attempts are to be pulled.
      * @param {string=} params.states When specified, only transfer runs with requested states are returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3351,9 +5649,18 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Transferconfigs$Runs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Transferconfigs$Runs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTransferRunsResponse>;
+    list(
+      params: Params$Resource$Projects$Transferconfigs$Runs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Transferconfigs$Runs$List,
       options:
@@ -3369,12 +5676,20 @@ export namespace bigquerydatatransfer_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Transferconfigs$Runs$List
-        | BodyResponseCallback<Schema$ListTransferRunsResponse>,
+        | BodyResponseCallback<Schema$ListTransferRunsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTransferRunsResponse>,
-      callback?: BodyResponseCallback<Schema$ListTransferRunsResponse>
-    ): void | GaxiosPromise<Schema$ListTransferRunsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTransferRunsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTransferRunsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTransferRunsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Runs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3406,7 +5721,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTransferRunsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTransferRunsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTransferRunsResponse>(parameters);
       }
@@ -3416,34 +5734,19 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Runs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$Runs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$Runs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -3453,7 +5756,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
+     * Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
     /**
@@ -3475,6 +5778,68 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list
      * @desc Returns user facing log messages for the data transfer run.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list(
+     *     {
+     *       // Message types to return. If not populated - INFO, WARNING and ERROR
+     *       // messages are returned.
+     *       messageTypes: 'placeholder-value',
+     *       // Page size. The default page size is the maximum value of 1000 results.
+     *       pageSize: 'placeholder-value',
+     *       // Pagination token, which can be used to request a specific page
+     *       // of `ListTransferLogsRequest` list results. For multiple-page
+     *       // results, `ListTransferLogsResponse` outputs
+     *       // a `next_page` token, which can be used as the
+     *       // `page_token` value to request the next page of list results.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Transfer run name in the form:
+     *       // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       parent:
+     *         'projects/my-project/transferConfigs/my-transferConfig/runs/my-run',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferMessages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list
      * @memberOf! ()
      *
@@ -3482,15 +5847,24 @@ export namespace bigquerydatatransfer_v1 {
      * @param {string=} params.messageTypes Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
+     * @param {string} params.parent Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTransferLogsResponse>;
+    list(
+      params: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
       options:
@@ -3506,12 +5880,20 @@ export namespace bigquerydatatransfer_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List
-        | BodyResponseCallback<Schema$ListTransferLogsResponse>,
+        | BodyResponseCallback<Schema$ListTransferLogsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTransferLogsResponse>,
-      callback?: BodyResponseCallback<Schema$ListTransferLogsResponse>
-    ): void | GaxiosPromise<Schema$ListTransferLogsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTransferLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTransferLogsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTransferLogsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3546,7 +5928,10 @@ export namespace bigquerydatatransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTransferLogsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTransferLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTransferLogsResponse>(parameters);
       }
@@ -3555,11 +5940,6 @@ export namespace bigquerydatatransfer_v1 {
 
   export interface Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
      */
@@ -3573,7 +5953,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
+     * Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     parent?: string;
   }

@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace identitytoolkit_v3 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace identitytoolkit_v3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -1536,19 +1546,96 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.createAuthUri
      * @desc Creates the URI used by the IdP to authenticate the user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.createAuthUri({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appId": "my_appId",
+     *       //   "authFlowType": "my_authFlowType",
+     *       //   "clientId": "my_clientId",
+     *       //   "context": "my_context",
+     *       //   "continueUri": "my_continueUri",
+     *       //   "customParameter": {},
+     *       //   "hostedDomain": "my_hostedDomain",
+     *       //   "identifier": "my_identifier",
+     *       //   "oauthConsumerKey": "my_oauthConsumerKey",
+     *       //   "oauthScope": "my_oauthScope",
+     *       //   "openidRealm": "my_openidRealm",
+     *       //   "otaApp": "my_otaApp",
+     *       //   "providerId": "my_providerId",
+     *       //   "sessionId": "my_sessionId",
+     *       //   "tenantId": "my_tenantId",
+     *       //   "tenantProjectNumber": "my_tenantProjectNumber"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allProviders": [],
+     *   //   "authUri": "my_authUri",
+     *   //   "captchaRequired": false,
+     *   //   "forExistingProvider": false,
+     *   //   "kind": "my_kind",
+     *   //   "providerId": "my_providerId",
+     *   //   "registered": false,
+     *   //   "sessionId": "my_sessionId",
+     *   //   "signinMethods": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.createAuthUri
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyCreateAuthUriRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyCreateAuthUriRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     createAuthUri(
+      params: Params$Resource$Relyingparty$Createauthuri,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createAuthUri(
       params?: Params$Resource$Relyingparty$Createauthuri,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CreateAuthUriResponse>;
+    createAuthUri(
+      params: Params$Resource$Relyingparty$Createauthuri,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     createAuthUri(
       params: Params$Resource$Relyingparty$Createauthuri,
       options:
@@ -1566,12 +1653,20 @@ export namespace identitytoolkit_v3 {
     createAuthUri(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Createauthuri
-        | BodyResponseCallback<Schema$CreateAuthUriResponse>,
+        | BodyResponseCallback<Schema$CreateAuthUriResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CreateAuthUriResponse>,
-      callback?: BodyResponseCallback<Schema$CreateAuthUriResponse>
-    ): void | GaxiosPromise<Schema$CreateAuthUriResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreateAuthUriResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreateAuthUriResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CreateAuthUriResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Createauthuri;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1604,7 +1699,10 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CreateAuthUriResponse>(parameters, callback);
+        createAPIRequest<Schema$CreateAuthUriResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CreateAuthUriResponse>(parameters);
       }
@@ -1613,19 +1711,75 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.deleteAccount
      * @desc Delete user account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.deleteAccount({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "idToken": "my_idToken",
+     *       //   "localId": "my_localId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.deleteAccount
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyDeleteAccountRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyDeleteAccountRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     deleteAccount(
+      params: Params$Resource$Relyingparty$Deleteaccount,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteAccount(
       params?: Params$Resource$Relyingparty$Deleteaccount,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DeleteAccountResponse>;
+    deleteAccount(
+      params: Params$Resource$Relyingparty$Deleteaccount,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteAccount(
       params: Params$Resource$Relyingparty$Deleteaccount,
       options:
@@ -1643,12 +1797,20 @@ export namespace identitytoolkit_v3 {
     deleteAccount(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Deleteaccount
-        | BodyResponseCallback<Schema$DeleteAccountResponse>,
+        | BodyResponseCallback<Schema$DeleteAccountResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DeleteAccountResponse>,
-      callback?: BodyResponseCallback<Schema$DeleteAccountResponse>
-    ): void | GaxiosPromise<Schema$DeleteAccountResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeleteAccountResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeleteAccountResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DeleteAccountResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Deleteaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1681,7 +1843,10 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DeleteAccountResponse>(parameters, callback);
+        createAPIRequest<Schema$DeleteAccountResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DeleteAccountResponse>(parameters);
       }
@@ -1690,19 +1855,81 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.downloadAccount
      * @desc Batch download user accounts.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.downloadAccount({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "maxResults": 0,
+     *       //   "nextPageToken": "my_nextPageToken",
+     *       //   "targetProjectId": "my_targetProjectId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "users": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.downloadAccount
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyDownloadAccountRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyDownloadAccountRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     downloadAccount(
+      params: Params$Resource$Relyingparty$Downloadaccount,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    downloadAccount(
       params?: Params$Resource$Relyingparty$Downloadaccount,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DownloadAccountResponse>;
+    downloadAccount(
+      params: Params$Resource$Relyingparty$Downloadaccount,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     downloadAccount(
       params: Params$Resource$Relyingparty$Downloadaccount,
       options:
@@ -1720,12 +1947,20 @@ export namespace identitytoolkit_v3 {
     downloadAccount(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Downloadaccount
-        | BodyResponseCallback<Schema$DownloadAccountResponse>,
+        | BodyResponseCallback<Schema$DownloadAccountResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DownloadAccountResponse>,
-      callback?: BodyResponseCallback<Schema$DownloadAccountResponse>
-    ): void | GaxiosPromise<Schema$DownloadAccountResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DownloadAccountResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DownloadAccountResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DownloadAccountResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Downloadaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1758,7 +1993,10 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DownloadAccountResponse>(parameters, callback);
+        createAPIRequest<Schema$DownloadAccountResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DownloadAccountResponse>(parameters);
       }
@@ -1767,19 +2005,81 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.emailLinkSignin
      * @desc Reset password for a user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.emailLinkSignin({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "email": "my_email",
+     *       //   "idToken": "my_idToken",
+     *       //   "oobCode": "my_oobCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "idToken": "my_idToken",
+     *   //   "isNewUser": false,
+     *   //   "kind": "my_kind",
+     *   //   "localId": "my_localId",
+     *   //   "refreshToken": "my_refreshToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.emailLinkSignin
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyEmailLinkSigninRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyEmailLinkSigninRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     emailLinkSignin(
+      params: Params$Resource$Relyingparty$Emaillinksignin,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    emailLinkSignin(
       params?: Params$Resource$Relyingparty$Emaillinksignin,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EmailLinkSigninResponse>;
+    emailLinkSignin(
+      params: Params$Resource$Relyingparty$Emaillinksignin,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     emailLinkSignin(
       params: Params$Resource$Relyingparty$Emaillinksignin,
       options:
@@ -1797,12 +2097,20 @@ export namespace identitytoolkit_v3 {
     emailLinkSignin(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Emaillinksignin
-        | BodyResponseCallback<Schema$EmailLinkSigninResponse>,
+        | BodyResponseCallback<Schema$EmailLinkSigninResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EmailLinkSigninResponse>,
-      callback?: BodyResponseCallback<Schema$EmailLinkSigninResponse>
-    ): void | GaxiosPromise<Schema$EmailLinkSigninResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EmailLinkSigninResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EmailLinkSigninResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EmailLinkSigninResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Emaillinksignin;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1835,7 +2143,10 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EmailLinkSigninResponse>(parameters, callback);
+        createAPIRequest<Schema$EmailLinkSigninResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EmailLinkSigninResponse>(parameters);
       }
@@ -1844,19 +2155,78 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.getAccountInfo
      * @desc Returns the account info.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.getAccountInfo({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "email": [],
+     *       //   "idToken": "my_idToken",
+     *       //   "localId": [],
+     *       //   "phoneNumber": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "users": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.getAccountInfo
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyGetAccountInfoRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyGetAccountInfoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getAccountInfo(
+      params: Params$Resource$Relyingparty$Getaccountinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAccountInfo(
       params?: Params$Resource$Relyingparty$Getaccountinfo,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetAccountInfoResponse>;
+    getAccountInfo(
+      params: Params$Resource$Relyingparty$Getaccountinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAccountInfo(
       params: Params$Resource$Relyingparty$Getaccountinfo,
       options:
@@ -1874,12 +2244,20 @@ export namespace identitytoolkit_v3 {
     getAccountInfo(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Getaccountinfo
-        | BodyResponseCallback<Schema$GetAccountInfoResponse>,
+        | BodyResponseCallback<Schema$GetAccountInfoResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetAccountInfoResponse>,
-      callback?: BodyResponseCallback<Schema$GetAccountInfoResponse>
-    ): void | GaxiosPromise<Schema$GetAccountInfoResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetAccountInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetAccountInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetAccountInfoResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Getaccountinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1912,7 +2290,10 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetAccountInfoResponse>(parameters, callback);
+        createAPIRequest<Schema$GetAccountInfoResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetAccountInfoResponse>(parameters);
       }
@@ -1921,19 +2302,89 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.getOobConfirmationCode
      * @desc Get a code for user action confirmation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.getOobConfirmationCode({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "androidInstallApp": false,
+     *       //   "androidMinimumVersion": "my_androidMinimumVersion",
+     *       //   "androidPackageName": "my_androidPackageName",
+     *       //   "canHandleCodeInApp": false,
+     *       //   "captchaResp": "my_captchaResp",
+     *       //   "challenge": "my_challenge",
+     *       //   "continueUrl": "my_continueUrl",
+     *       //   "email": "my_email",
+     *       //   "iOSAppStoreId": "my_iOSAppStoreId",
+     *       //   "iOSBundleId": "my_iOSBundleId",
+     *       //   "idToken": "my_idToken",
+     *       //   "kind": "my_kind",
+     *       //   "newEmail": "my_newEmail",
+     *       //   "requestType": "my_requestType",
+     *       //   "userIp": "my_userIp"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "kind": "my_kind",
+     *   //   "oobCode": "my_oobCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.getOobConfirmationCode
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Relyingparty} params.resource Request body data
+     * @param {().Relyingparty} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getOobConfirmationCode(
+      params: Params$Resource$Relyingparty$Getoobconfirmationcode,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getOobConfirmationCode(
       params?: Params$Resource$Relyingparty$Getoobconfirmationcode,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetOobConfirmationCodeResponse>;
+    getOobConfirmationCode(
+      params: Params$Resource$Relyingparty$Getoobconfirmationcode,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getOobConfirmationCode(
       params: Params$Resource$Relyingparty$Getoobconfirmationcode,
       options:
@@ -1951,12 +2402,20 @@ export namespace identitytoolkit_v3 {
     getOobConfirmationCode(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Getoobconfirmationcode
-        | BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
+        | BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
-      callback?: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>
-    ): void | GaxiosPromise<Schema$GetOobConfirmationCodeResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetOobConfirmationCodeResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Getoobconfirmationcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1992,7 +2451,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$GetOobConfirmationCodeResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GetOobConfirmationCodeResponse>(
@@ -2004,6 +2463,59 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.getProjectConfig
      * @desc Get project configuration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.getProjectConfig({
+     *     // Delegated GCP project number of the request.
+     *     delegatedProjectNumber: 'placeholder-value',
+     *     // GCP project number of the request.
+     *     projectNumber: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowPasswordUser": false,
+     *   //   "apiKey": "my_apiKey",
+     *   //   "authorizedDomains": [],
+     *   //   "changeEmailTemplate": {},
+     *   //   "dynamicLinksDomain": "my_dynamicLinksDomain",
+     *   //   "enableAnonymousUser": false,
+     *   //   "idpConfig": [],
+     *   //   "legacyResetPasswordTemplate": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "resetPasswordTemplate": {},
+     *   //   "useEmailSending": false,
+     *   //   "verifyEmailTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.getProjectConfig
      * @memberOf! ()
      *
@@ -2015,11 +2527,20 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     getProjectConfig(
+      params: Params$Resource$Relyingparty$Getprojectconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getProjectConfig(
       params?: Params$Resource$Relyingparty$Getprojectconfig,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
     >;
+    getProjectConfig(
+      params: Params$Resource$Relyingparty$Getprojectconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getProjectConfig(
       params: Params$Resource$Relyingparty$Getprojectconfig,
       options:
@@ -2047,18 +2568,26 @@ export namespace identitytoolkit_v3 {
         | Params$Resource$Relyingparty$Getprojectconfig
         | BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Getprojectconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2093,7 +2622,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<
           Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
@@ -2104,6 +2633,41 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.getPublicKeys
      * @desc Get token signing public key.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.getPublicKeys({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.getPublicKeys
      * @memberOf! ()
      *
@@ -2113,9 +2677,18 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     getPublicKeys(
+      params: Params$Resource$Relyingparty$Getpublickeys,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getPublicKeys(
       params?: Params$Resource$Relyingparty$Getpublickeys,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>;
+    getPublicKeys(
+      params: Params$Resource$Relyingparty$Getpublickeys,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getPublicKeys(
       params: Params$Resource$Relyingparty$Getpublickeys,
       options:
@@ -2143,18 +2716,24 @@ export namespace identitytoolkit_v3 {
         | Params$Resource$Relyingparty$Getpublickeys
         | BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Getpublickeys;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2189,7 +2768,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<
           Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
@@ -2200,6 +2779,45 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.getRecaptchaParam
      * @desc Get recaptcha secure param.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.getRecaptchaParam({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "recaptchaSiteKey": "my_recaptchaSiteKey",
+     *   //   "recaptchaStoken": "my_recaptchaStoken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.getRecaptchaParam
      * @memberOf! ()
      *
@@ -2209,9 +2827,18 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     getRecaptchaParam(
+      params: Params$Resource$Relyingparty$Getrecaptchaparam,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getRecaptchaParam(
       params?: Params$Resource$Relyingparty$Getrecaptchaparam,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetRecaptchaParamResponse>;
+    getRecaptchaParam(
+      params: Params$Resource$Relyingparty$Getrecaptchaparam,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getRecaptchaParam(
       params: Params$Resource$Relyingparty$Getrecaptchaparam,
       options:
@@ -2229,12 +2856,20 @@ export namespace identitytoolkit_v3 {
     getRecaptchaParam(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Getrecaptchaparam
-        | BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
+        | BodyResponseCallback<Schema$GetRecaptchaParamResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
-      callback?: BodyResponseCallback<Schema$GetRecaptchaParamResponse>
-    ): void | GaxiosPromise<Schema$GetRecaptchaParamResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetRecaptchaParamResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetRecaptchaParamResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetRecaptchaParamResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Getrecaptchaparam;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2269,7 +2904,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$GetRecaptchaParamResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GetRecaptchaParamResponse>(parameters);
@@ -2279,19 +2914,79 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.resetPassword
      * @desc Reset password for a user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.resetPassword({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "email": "my_email",
+     *       //   "newPassword": "my_newPassword",
+     *       //   "oldPassword": "my_oldPassword",
+     *       //   "oobCode": "my_oobCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "kind": "my_kind",
+     *   //   "newEmail": "my_newEmail",
+     *   //   "requestType": "my_requestType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.resetPassword
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyResetPasswordRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyResetPasswordRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     resetPassword(
+      params: Params$Resource$Relyingparty$Resetpassword,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetPassword(
       params?: Params$Resource$Relyingparty$Resetpassword,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ResetPasswordResponse>;
+    resetPassword(
+      params: Params$Resource$Relyingparty$Resetpassword,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetPassword(
       params: Params$Resource$Relyingparty$Resetpassword,
       options:
@@ -2309,12 +3004,20 @@ export namespace identitytoolkit_v3 {
     resetPassword(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Resetpassword
-        | BodyResponseCallback<Schema$ResetPasswordResponse>,
+        | BodyResponseCallback<Schema$ResetPasswordResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ResetPasswordResponse>,
-      callback?: BodyResponseCallback<Schema$ResetPasswordResponse>
-    ): void | GaxiosPromise<Schema$ResetPasswordResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResetPasswordResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResetPasswordResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResetPasswordResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Resetpassword;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2347,7 +3050,10 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ResetPasswordResponse>(parameters, callback);
+        createAPIRequest<Schema$ResetPasswordResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ResetPasswordResponse>(parameters);
       }
@@ -2356,21 +3062,78 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.sendVerificationCode
      * @desc Send SMS verification code.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.sendVerificationCode({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "iosReceipt": "my_iosReceipt",
+     *       //   "iosSecret": "my_iosSecret",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "recaptchaToken": "my_recaptchaToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sessionInfo": "my_sessionInfo"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.sendVerificationCode
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySendVerificationCodeRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartySendVerificationCodeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    sendVerificationCode(
+      params: Params$Resource$Relyingparty$Sendverificationcode,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
     sendVerificationCode(
       params?: Params$Resource$Relyingparty$Sendverificationcode,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
     >;
+    sendVerificationCode(
+      params: Params$Resource$Relyingparty$Sendverificationcode,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     sendVerificationCode(
       params: Params$Resource$Relyingparty$Sendverificationcode,
       options:
@@ -2398,18 +3161,26 @@ export namespace identitytoolkit_v3 {
         | Params$Resource$Relyingparty$Sendverificationcode
         | BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Sendverificationcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2444,7 +3215,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<
           Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
@@ -2455,19 +3226,106 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.setAccountInfo
      * @desc Set account info for a user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.setAccountInfo({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "captchaChallenge": "my_captchaChallenge",
+     *       //   "captchaResponse": "my_captchaResponse",
+     *       //   "createdAt": "my_createdAt",
+     *       //   "customAttributes": "my_customAttributes",
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "deleteAttribute": [],
+     *       //   "deleteProvider": [],
+     *       //   "disableUser": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "email": "my_email",
+     *       //   "emailVerified": false,
+     *       //   "idToken": "my_idToken",
+     *       //   "instanceId": "my_instanceId",
+     *       //   "lastLoginAt": "my_lastLoginAt",
+     *       //   "localId": "my_localId",
+     *       //   "oobCode": "my_oobCode",
+     *       //   "password": "my_password",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "photoUrl": "my_photoUrl",
+     *       //   "provider": [],
+     *       //   "returnSecureToken": false,
+     *       //   "upgradeToFederatedLogin": false,
+     *       //   "validSince": "my_validSince"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "emailVerified": false,
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "idToken": "my_idToken",
+     *   //   "kind": "my_kind",
+     *   //   "localId": "my_localId",
+     *   //   "newEmail": "my_newEmail",
+     *   //   "passwordHash": "my_passwordHash",
+     *   //   "photoUrl": "my_photoUrl",
+     *   //   "providerUserInfo": [],
+     *   //   "refreshToken": "my_refreshToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.setAccountInfo
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySetAccountInfoRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartySetAccountInfoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     setAccountInfo(
+      params: Params$Resource$Relyingparty$Setaccountinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setAccountInfo(
       params?: Params$Resource$Relyingparty$Setaccountinfo,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SetAccountInfoResponse>;
+    setAccountInfo(
+      params: Params$Resource$Relyingparty$Setaccountinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setAccountInfo(
       params: Params$Resource$Relyingparty$Setaccountinfo,
       options:
@@ -2485,12 +3343,20 @@ export namespace identitytoolkit_v3 {
     setAccountInfo(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Setaccountinfo
-        | BodyResponseCallback<Schema$SetAccountInfoResponse>,
+        | BodyResponseCallback<Schema$SetAccountInfoResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SetAccountInfoResponse>,
-      callback?: BodyResponseCallback<Schema$SetAccountInfoResponse>
-    ): void | GaxiosPromise<Schema$SetAccountInfoResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SetAccountInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SetAccountInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SetAccountInfoResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Setaccountinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2523,7 +3389,10 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SetAccountInfoResponse>(parameters, callback);
+        createAPIRequest<Schema$SetAccountInfoResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SetAccountInfoResponse>(parameters);
       }
@@ -2532,21 +3401,85 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.setProjectConfig
      * @desc Set project configuration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.setProjectConfig({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowPasswordUser": false,
+     *       //   "apiKey": "my_apiKey",
+     *       //   "authorizedDomains": [],
+     *       //   "changeEmailTemplate": {},
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "enableAnonymousUser": false,
+     *       //   "idpConfig": [],
+     *       //   "legacyResetPasswordTemplate": {},
+     *       //   "resetPasswordTemplate": {},
+     *       //   "useEmailSending": false,
+     *       //   "verifyEmailTemplate": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "projectId": "my_projectId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.setProjectConfig
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySetProjectConfigRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartySetProjectConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    setProjectConfig(
+      params: Params$Resource$Relyingparty$Setprojectconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
     setProjectConfig(
       params?: Params$Resource$Relyingparty$Setprojectconfig,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
     >;
+    setProjectConfig(
+      params: Params$Resource$Relyingparty$Setprojectconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setProjectConfig(
       params: Params$Resource$Relyingparty$Setprojectconfig,
       options:
@@ -2574,18 +3507,26 @@ export namespace identitytoolkit_v3 {
         | Params$Resource$Relyingparty$Setprojectconfig
         | BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Setprojectconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2620,7 +3561,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<
           Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
@@ -2631,19 +3572,74 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.signOutUser
      * @desc Sign out user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.signOutUser({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "instanceId": "my_instanceId",
+     *       //   "localId": "my_localId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "localId": "my_localId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.signOutUser
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySignOutUserRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartySignOutUserRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     signOutUser(
+      params: Params$Resource$Relyingparty$Signoutuser,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    signOutUser(
       params?: Params$Resource$Relyingparty$Signoutuser,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>;
+    signOutUser(
+      params: Params$Resource$Relyingparty$Signoutuser,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     signOutUser(
       params: Params$Resource$Relyingparty$Signoutuser,
       options:
@@ -2671,18 +3667,24 @@ export namespace identitytoolkit_v3 {
         | Params$Resource$Relyingparty$Signoutuser
         | BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySignOutUserResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySignOutUserResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartySignOutUserResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$IdentitytoolkitRelyingpartySignOutUserResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySignOutUserResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Signoutuser;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2717,7 +3719,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -2729,19 +3731,92 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.signupNewUser
      * @desc Signup new user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.signupNewUser({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "captchaChallenge": "my_captchaChallenge",
+     *       //   "captchaResponse": "my_captchaResponse",
+     *       //   "disabled": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "email": "my_email",
+     *       //   "emailVerified": false,
+     *       //   "idToken": "my_idToken",
+     *       //   "instanceId": "my_instanceId",
+     *       //   "localId": "my_localId",
+     *       //   "password": "my_password",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "photoUrl": "my_photoUrl",
+     *       //   "tenantId": "my_tenantId",
+     *       //   "tenantProjectNumber": "my_tenantProjectNumber"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "idToken": "my_idToken",
+     *   //   "kind": "my_kind",
+     *   //   "localId": "my_localId",
+     *   //   "refreshToken": "my_refreshToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.signupNewUser
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySignupNewUserRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartySignupNewUserRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     signupNewUser(
+      params: Params$Resource$Relyingparty$Signupnewuser,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    signupNewUser(
       params?: Params$Resource$Relyingparty$Signupnewuser,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SignupNewUserResponse>;
+    signupNewUser(
+      params: Params$Resource$Relyingparty$Signupnewuser,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     signupNewUser(
       params: Params$Resource$Relyingparty$Signupnewuser,
       options:
@@ -2759,12 +3834,20 @@ export namespace identitytoolkit_v3 {
     signupNewUser(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Signupnewuser
-        | BodyResponseCallback<Schema$SignupNewUserResponse>,
+        | BodyResponseCallback<Schema$SignupNewUserResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SignupNewUserResponse>,
-      callback?: BodyResponseCallback<Schema$SignupNewUserResponse>
-    ): void | GaxiosPromise<Schema$SignupNewUserResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SignupNewUserResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SignupNewUserResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SignupNewUserResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Signupnewuser;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2797,7 +3880,10 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SignupNewUserResponse>(parameters, callback);
+        createAPIRequest<Schema$SignupNewUserResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SignupNewUserResponse>(parameters);
       }
@@ -2806,19 +3892,90 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.uploadAccount
      * @desc Batch upload existing user accounts.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.uploadAccount({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowOverwrite": false,
+     *       //   "blockSize": 0,
+     *       //   "cpuMemCost": 0,
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "dkLen": 0,
+     *       //   "hashAlgorithm": "my_hashAlgorithm",
+     *       //   "memoryCost": 0,
+     *       //   "parallelization": 0,
+     *       //   "rounds": 0,
+     *       //   "saltSeparator": "my_saltSeparator",
+     *       //   "sanityCheck": false,
+     *       //   "signerKey": "my_signerKey",
+     *       //   "targetProjectId": "my_targetProjectId",
+     *       //   "users": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "error": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.uploadAccount
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyUploadAccountRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyUploadAccountRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     uploadAccount(
+      params: Params$Resource$Relyingparty$Uploadaccount,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    uploadAccount(
       params?: Params$Resource$Relyingparty$Uploadaccount,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UploadAccountResponse>;
+    uploadAccount(
+      params: Params$Resource$Relyingparty$Uploadaccount,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     uploadAccount(
       params: Params$Resource$Relyingparty$Uploadaccount,
       options:
@@ -2836,12 +3993,20 @@ export namespace identitytoolkit_v3 {
     uploadAccount(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Uploadaccount
-        | BodyResponseCallback<Schema$UploadAccountResponse>,
+        | BodyResponseCallback<Schema$UploadAccountResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UploadAccountResponse>,
-      callback?: BodyResponseCallback<Schema$UploadAccountResponse>
-    ): void | GaxiosPromise<Schema$UploadAccountResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadAccountResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadAccountResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UploadAccountResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Uploadaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2874,7 +4039,10 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UploadAccountResponse>(parameters, callback);
+        createAPIRequest<Schema$UploadAccountResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UploadAccountResponse>(parameters);
       }
@@ -2883,19 +4051,123 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.verifyAssertion
      * @desc Verifies the assertion returned by the IdP.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.verifyAssertion({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoCreate": false,
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "idToken": "my_idToken",
+     *       //   "instanceId": "my_instanceId",
+     *       //   "pendingIdToken": "my_pendingIdToken",
+     *       //   "postBody": "my_postBody",
+     *       //   "requestUri": "my_requestUri",
+     *       //   "returnIdpCredential": false,
+     *       //   "returnRefreshToken": false,
+     *       //   "returnSecureToken": false,
+     *       //   "sessionId": "my_sessionId",
+     *       //   "tenantId": "my_tenantId",
+     *       //   "tenantProjectNumber": "my_tenantProjectNumber"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "appInstallationUrl": "my_appInstallationUrl",
+     *   //   "appScheme": "my_appScheme",
+     *   //   "context": "my_context",
+     *   //   "dateOfBirth": "my_dateOfBirth",
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "emailRecycled": false,
+     *   //   "emailVerified": false,
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "federatedId": "my_federatedId",
+     *   //   "firstName": "my_firstName",
+     *   //   "fullName": "my_fullName",
+     *   //   "idToken": "my_idToken",
+     *   //   "inputEmail": "my_inputEmail",
+     *   //   "isNewUser": false,
+     *   //   "kind": "my_kind",
+     *   //   "language": "my_language",
+     *   //   "lastName": "my_lastName",
+     *   //   "localId": "my_localId",
+     *   //   "needConfirmation": false,
+     *   //   "needEmail": false,
+     *   //   "nickName": "my_nickName",
+     *   //   "oauthAccessToken": "my_oauthAccessToken",
+     *   //   "oauthAuthorizationCode": "my_oauthAuthorizationCode",
+     *   //   "oauthExpireIn": 0,
+     *   //   "oauthIdToken": "my_oauthIdToken",
+     *   //   "oauthRequestToken": "my_oauthRequestToken",
+     *   //   "oauthScope": "my_oauthScope",
+     *   //   "oauthTokenSecret": "my_oauthTokenSecret",
+     *   //   "originalEmail": "my_originalEmail",
+     *   //   "photoUrl": "my_photoUrl",
+     *   //   "providerId": "my_providerId",
+     *   //   "rawUserInfo": "my_rawUserInfo",
+     *   //   "refreshToken": "my_refreshToken",
+     *   //   "screenName": "my_screenName",
+     *   //   "timeZone": "my_timeZone",
+     *   //   "verifiedProvider": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.verifyAssertion
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyVerifyAssertionRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyVerifyAssertionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     verifyAssertion(
+      params: Params$Resource$Relyingparty$Verifyassertion,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    verifyAssertion(
       params?: Params$Resource$Relyingparty$Verifyassertion,
       options?: MethodOptions
     ): GaxiosPromise<Schema$VerifyAssertionResponse>;
+    verifyAssertion(
+      params: Params$Resource$Relyingparty$Verifyassertion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     verifyAssertion(
       params: Params$Resource$Relyingparty$Verifyassertion,
       options:
@@ -2913,12 +4185,20 @@ export namespace identitytoolkit_v3 {
     verifyAssertion(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Verifyassertion
-        | BodyResponseCallback<Schema$VerifyAssertionResponse>,
+        | BodyResponseCallback<Schema$VerifyAssertionResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$VerifyAssertionResponse>,
-      callback?: BodyResponseCallback<Schema$VerifyAssertionResponse>
-    ): void | GaxiosPromise<Schema$VerifyAssertionResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VerifyAssertionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VerifyAssertionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VerifyAssertionResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Verifyassertion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2951,7 +4231,10 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$VerifyAssertionResponse>(parameters, callback);
+        createAPIRequest<Schema$VerifyAssertionResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$VerifyAssertionResponse>(parameters);
       }
@@ -2960,19 +4243,80 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.verifyCustomToken
      * @desc Verifies the developer asserted ID token.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.verifyCustomToken({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "instanceId": "my_instanceId",
+     *       //   "returnSecureToken": false,
+     *       //   "token": "my_token"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "idToken": "my_idToken",
+     *   //   "isNewUser": false,
+     *   //   "kind": "my_kind",
+     *   //   "refreshToken": "my_refreshToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.verifyCustomToken
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyVerifyCustomTokenRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyVerifyCustomTokenRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     verifyCustomToken(
+      params: Params$Resource$Relyingparty$Verifycustomtoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    verifyCustomToken(
       params?: Params$Resource$Relyingparty$Verifycustomtoken,
       options?: MethodOptions
     ): GaxiosPromise<Schema$VerifyCustomTokenResponse>;
+    verifyCustomToken(
+      params: Params$Resource$Relyingparty$Verifycustomtoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     verifyCustomToken(
       params: Params$Resource$Relyingparty$Verifycustomtoken,
       options:
@@ -2990,12 +4334,20 @@ export namespace identitytoolkit_v3 {
     verifyCustomToken(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Verifycustomtoken
-        | BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
+        | BodyResponseCallback<Schema$VerifyCustomTokenResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
-      callback?: BodyResponseCallback<Schema$VerifyCustomTokenResponse>
-    ): void | GaxiosPromise<Schema$VerifyCustomTokenResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VerifyCustomTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VerifyCustomTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VerifyCustomTokenResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Verifycustomtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3030,7 +4382,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<Schema$VerifyCustomTokenResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$VerifyCustomTokenResponse>(parameters);
@@ -3040,19 +4392,94 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.verifyPassword
      * @desc Verifies the user entered password.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.verifyPassword({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "captchaChallenge": "my_captchaChallenge",
+     *       //   "captchaResponse": "my_captchaResponse",
+     *       //   "delegatedProjectNumber": "my_delegatedProjectNumber",
+     *       //   "email": "my_email",
+     *       //   "idToken": "my_idToken",
+     *       //   "instanceId": "my_instanceId",
+     *       //   "password": "my_password",
+     *       //   "pendingIdToken": "my_pendingIdToken",
+     *       //   "returnSecureToken": false,
+     *       //   "tenantId": "my_tenantId",
+     *       //   "tenantProjectNumber": "my_tenantProjectNumber"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "idToken": "my_idToken",
+     *   //   "kind": "my_kind",
+     *   //   "localId": "my_localId",
+     *   //   "oauthAccessToken": "my_oauthAccessToken",
+     *   //   "oauthAuthorizationCode": "my_oauthAuthorizationCode",
+     *   //   "oauthExpireIn": 0,
+     *   //   "photoUrl": "my_photoUrl",
+     *   //   "refreshToken": "my_refreshToken",
+     *   //   "registered": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.verifyPassword
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyVerifyPasswordRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyVerifyPasswordRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     verifyPassword(
+      params: Params$Resource$Relyingparty$Verifypassword,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    verifyPassword(
       params?: Params$Resource$Relyingparty$Verifypassword,
       options?: MethodOptions
     ): GaxiosPromise<Schema$VerifyPasswordResponse>;
+    verifyPassword(
+      params: Params$Resource$Relyingparty$Verifypassword,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     verifyPassword(
       params: Params$Resource$Relyingparty$Verifypassword,
       options:
@@ -3070,12 +4497,20 @@ export namespace identitytoolkit_v3 {
     verifyPassword(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Verifypassword
-        | BodyResponseCallback<Schema$VerifyPasswordResponse>,
+        | BodyResponseCallback<Schema$VerifyPasswordResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$VerifyPasswordResponse>,
-      callback?: BodyResponseCallback<Schema$VerifyPasswordResponse>
-    ): void | GaxiosPromise<Schema$VerifyPasswordResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VerifyPasswordResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VerifyPasswordResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VerifyPasswordResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Verifypassword;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3108,7 +4543,10 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$VerifyPasswordResponse>(parameters, callback);
+        createAPIRequest<Schema$VerifyPasswordResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$VerifyPasswordResponse>(parameters);
       }
@@ -3117,21 +4555,90 @@ export namespace identitytoolkit_v3 {
     /**
      * identitytoolkit.relyingparty.verifyPhoneNumber
      * @desc Verifies ownership of a phone number and creates/updates the user account accordingly.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.relyingparty.verifyPhoneNumber({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "code": "my_code",
+     *       //   "idToken": "my_idToken",
+     *       //   "operation": "my_operation",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "sessionInfo": "my_sessionInfo",
+     *       //   "temporaryProof": "my_temporaryProof",
+     *       //   "verificationProof": "my_verificationProof"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "idToken": "my_idToken",
+     *   //   "isNewUser": false,
+     *   //   "localId": "my_localId",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "refreshToken": "my_refreshToken",
+     *   //   "temporaryProof": "my_temporaryProof",
+     *   //   "temporaryProofExpiresIn": "my_temporaryProofExpiresIn",
+     *   //   "verificationProof": "my_verificationProof",
+     *   //   "verificationProofExpiresIn": "my_verificationProofExpiresIn"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias identitytoolkit.relyingparty.verifyPhoneNumber
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    verifyPhoneNumber(
+      params: Params$Resource$Relyingparty$Verifyphonenumber,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
     verifyPhoneNumber(
       params?: Params$Resource$Relyingparty$Verifyphonenumber,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
     >;
+    verifyPhoneNumber(
+      params: Params$Resource$Relyingparty$Verifyphonenumber,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     verifyPhoneNumber(
       params: Params$Resource$Relyingparty$Verifyphonenumber,
       options:
@@ -3159,18 +4666,26 @@ export namespace identitytoolkit_v3 {
         | Params$Resource$Relyingparty$Verifyphonenumber
         | BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Verifyphonenumber;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3205,7 +4720,7 @@ export namespace identitytoolkit_v3 {
       if (callback) {
         createAPIRequest<
           Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
@@ -3217,22 +4732,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Createauthuri
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyCreateAuthUriRequest;
   }
   export interface Params$Resource$Relyingparty$Deleteaccount
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -3241,22 +4746,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Downloadaccount
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyDownloadAccountRequest;
   }
   export interface Params$Resource$Relyingparty$Emaillinksignin
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -3265,11 +4760,6 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Getaccountinfo
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyGetAccountInfoRequest;
@@ -3277,22 +4767,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Getoobconfirmationcode
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Relyingparty;
   }
   export interface Params$Resource$Relyingparty$Getprojectconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Delegated GCP project number of the request.
      */
@@ -3303,26 +4783,11 @@ export namespace identitytoolkit_v3 {
     projectNumber?: string;
   }
   export interface Params$Resource$Relyingparty$Getpublickeys
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Relyingparty$Getrecaptchaparam
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Relyingparty$Resetpassword
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -3331,22 +4796,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Sendverificationcode
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySendVerificationCodeRequest;
   }
   export interface Params$Resource$Relyingparty$Setaccountinfo
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -3355,22 +4810,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Setprojectconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySetProjectConfigRequest;
   }
   export interface Params$Resource$Relyingparty$Signoutuser
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -3379,22 +4824,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Signupnewuser
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySignupNewUserRequest;
   }
   export interface Params$Resource$Relyingparty$Uploadaccount
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -3403,22 +4838,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Verifyassertion
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyAssertionRequest;
   }
   export interface Params$Resource$Relyingparty$Verifycustomtoken
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -3427,22 +4852,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Verifypassword
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyPasswordRequest;
   }
   export interface Params$Resource$Relyingparty$Verifyphonenumber
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

@@ -1,11 +1,17 @@
 {
-  "updateTime": "2019-10-01T11:07:04.501896Z",
   "sources": [
     {
-      "template": {
-        "name": "node_library",
-        "origin": "synthtool.gcp",
-        "version": "2019.5.2"
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-api-nodejs-client.git",
+        "sha": "971580e3e3d1c8f99cf5d1ed06a10b2145be9e29"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "be74d3e532faa47eb59f1a0eaebde0860d1d8ab4"
       }
     }
   ]

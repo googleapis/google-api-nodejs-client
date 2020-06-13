@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace fcm_v1 {
   export interface Options extends GlobalOptions {
@@ -43,13 +42,20 @@ export namespace fcm_v1 {
 
   interface StandardParameters {
     /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
+    /**
      * V1 error format.
      */
     '$.xgafv'?: string;
-    /**
-     * OAuth access token.
-     */
-    access_token?: string;
     /**
      * Data format for response.
      */
@@ -66,10 +72,6 @@ export namespace fcm_v1 {
      * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
-    /**
-     * OAuth 2.0 token for the current user.
-     */
-    oauth_token?: string;
     /**
      * Returns response with indentations and line breaks.
      */
@@ -129,6 +131,10 @@ export namespace fcm_v1 {
      * Arbitrary key/value payload. If present, it will override google.firebase.fcm.v1.Message.data.
      */
     data?: {[key: string]: string} | null;
+    /**
+     * If set to true, messages will be allowed to be delivered to the app while the device is in direct boot mode. See [Support Direct Boot mode](https://developer.android.com/training/articles/direct-boot).
+     */
+    directBootOk?: boolean | null;
     /**
      * Options for features provided by the FCM SDK for Android.
      */
@@ -273,11 +279,11 @@ export namespace fcm_v1 {
      */
     fcmOptions?: Schema$ApnsFcmOptions;
     /**
-     * HTTP request headers defined in Apple Push Notification Service. Refer to [APNs request headers](https://goo.gl/C6Yhia) for supported headers, e.g. &quot;apns-priority&quot;: &quot;10&quot;.
+     * HTTP request headers defined in Apple Push Notification Service. Refer to [APNs request headers](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns) for supported headers, e.g. &quot;apns-priority&quot;: &quot;10&quot;.
      */
     headers?: {[key: string]: string} | null;
     /**
-     * APNs payload as a JSON object, including both `aps` dictionary and custom payload. See [Payload Key Reference](https://goo.gl/32Pl5W). If present, it overrides google.firebase.fcm.v1.Notification.title and google.firebase.fcm.v1.Notification.body.
+     * APNs payload as a JSON object, including both `aps` dictionary and custom payload. See [Payload Key Reference](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification). If present, it overrides google.firebase.fcm.v1.Notification.title and google.firebase.fcm.v1.Notification.body.
      */
     payload?: {[key: string]: any} | null;
   }
@@ -358,7 +364,7 @@ export namespace fcm_v1 {
      */
     condition?: string | null;
     /**
-     * Input only. Arbitrary key/value payload.
+     * Input only. Arbitrary key/value payload. The key should not be a reserved word (&quot;from&quot;, &quot;message_type&quot;, or any word starting with &quot;google&quot; or &quot;gcm&quot;).
      */
     data?: {[key: string]: string} | null;
     /**
@@ -442,6 +448,10 @@ export namespace fcm_v1 {
    */
   export interface Schema$WebpushFcmOptions {
     /**
+     * Label associated with the message&#39;s analytics data.
+     */
+    analyticsLabel?: string | null;
+    /**
      * The link to open when the user clicks on the notification. For all URL values, HTTPS is required.
      */
     link?: string | null;
@@ -465,20 +475,90 @@ export namespace fcm_v1 {
     /**
      * fcm.projects.messages.send
      * @desc Send a message to specified target (a registration token, topic or condition).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fcm.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fcm = google.fcm('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fcm.projects.messages.send({
+     *     // Required. It contains the Firebase project id (i.e. the unique identifier
+     *     // for your Firebase project), in the format of `projects/{project_id}`.
+     *     // For legacy support, the numeric project number with no padding is also
+     *     // supported in the format of `projects/{project_number}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {},
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "android": {},
+     *   //   "apns": {},
+     *   //   "condition": "my_condition",
+     *   //   "data": {},
+     *   //   "fcmOptions": {},
+     *   //   "name": "my_name",
+     *   //   "notification": {},
+     *   //   "token": "my_token",
+     *   //   "topic": "my_topic",
+     *   //   "webpush": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fcm.projects.messages.send
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. It contains the Firebase project id (i.e. the unique identifier for your Firebase project), in the format of `projects/{project_id}`. For legacy support, the numeric project number with no padding is also supported in the format of `projects/{project_number}`.
-     * @param {().SendMessageRequest} params.resource Request body data
+     * @param {().SendMessageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     send(
+      params: Params$Resource$Projects$Messages$Send,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    send(
       params?: Params$Resource$Projects$Messages$Send,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Message>;
+    send(
+      params: Params$Resource$Projects$Messages$Send,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     send(
       params: Params$Resource$Projects$Messages$Send,
       options: MethodOptions | BodyResponseCallback<Schema$Message>,
@@ -492,10 +572,17 @@ export namespace fcm_v1 {
     send(
       paramsOrCallback?:
         | Params$Resource$Projects$Messages$Send
-        | BodyResponseCallback<Schema$Message>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>
-    ): void | GaxiosPromise<Schema$Message> {
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Messages$Send;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -529,7 +616,10 @@ export namespace fcm_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(parameters, callback);
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
       }
@@ -538,11 +628,6 @@ export namespace fcm_v1 {
 
   export interface Params$Resource$Projects$Messages$Send
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. It contains the Firebase project id (i.e. the unique identifier for your Firebase project), in the format of `projects/{project_id}`. For legacy support, the numeric project number with no padding is also supported in the format of `projects/{project_number}`.
      */

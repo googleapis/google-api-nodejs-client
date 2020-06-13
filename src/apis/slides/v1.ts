@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace slides_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace slides_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1226,11 +1236,11 @@ export namespace slides_v1 {
      */
     locale?: string | null;
     /**
-     * The slide masters in the presentation. A slide master contains all common page elements and the common properties for a set of layouts. They serve three purposes:  - Placeholder shapes on a master contain the default text styles and shape   properties of all placeholder shapes on pages that use that master. - The master page properties define the common page properties inherited by   its layouts. - Any other shapes on the master slide will appear on all slides using that   master, regardless of their layout.
+     * The slide masters in the presentation. A slide master contains all common page elements and the common properties for a set of layouts. They serve three purposes:  - Placeholder shapes on a master contain the default text styles and shape   properties of all placeholder shapes on pages that use that master. - The master page properties define the common page properties inherited by   its layouts. - Any other shapes on the master slide appear on all slides using that   master, regardless of their layout.
      */
     masters?: Schema$Page[];
     /**
-     * The notes master in the presentation. It serves three purposes:  - Placeholder shapes on a notes master contain the default text styles and   shape properties of all placeholder shapes on notes pages. Specifically,   a `SLIDE_IMAGE` placeholder shape contains the slide thumbnail, and a   `BODY` placeholder shape contains the speaker notes. - The notes master page properties define the common page properties   inherited by all notes pages. - Any other shapes on the notes master will appear on all notes pages.  The notes master is read-only.
+     * The notes master in the presentation. It serves three purposes:  - Placeholder shapes on a notes master contain the default text styles and   shape properties of all placeholder shapes on notes pages. Specifically,   a `SLIDE_IMAGE` placeholder shape contains the slide thumbnail, and a   `BODY` placeholder shape contains the speaker notes. - The notes master page properties define the common page properties   inherited by all notes pages. - Any other shapes on the notes master appears on all notes pages.  The notes master is read-only.
      */
     notesMaster?: Schema$Page;
     /**
@@ -2589,20 +2599,87 @@ export namespace slides_v1 {
     /**
      * slides.presentations.batchUpdate
      * @desc Applies one or more updates to the presentation.  Each request is validated before being applied. If any request is not valid, then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they are applied. Other requests do not need to return information; these each return an empty reply. The order of replies matches that of the requests.  For example, suppose you call batchUpdate with four updates, and only the third one returns information. The response would have two empty replies: the reply to the third request, and another empty reply, in that order.  Because other users may be editing the presentation, the presentation might not exactly reflect your changes: your changes may be altered with respect to collaborator changes. If there are no collaborators, the presentation should reflect your changes. In any case, the updates in your request are guaranteed to be applied together atomically.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/slides.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const slides = google.slides('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/presentations',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await slides.presentations.batchUpdate({
+     *     // The presentation to apply the updates to.
+     *     presentationId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": [],
+     *       //   "writeControl": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "presentationId": "my_presentationId",
+     *   //   "replies": [],
+     *   //   "writeControl": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias slides.presentations.batchUpdate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.presentationId The presentation to apply the updates to.
-     * @param {().BatchUpdatePresentationRequest} params.resource Request body data
+     * @param {().BatchUpdatePresentationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Presentations$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Presentations$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchUpdatePresentationResponse>;
+    batchUpdate(
+      params: Params$Resource$Presentations$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Presentations$Batchupdate,
       options:
@@ -2620,12 +2697,20 @@ export namespace slides_v1 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Presentations$Batchupdate
-        | BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
+        | BodyResponseCallback<Schema$BatchUpdatePresentationResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
-      callback?: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>
-    ): void | GaxiosPromise<Schema$BatchUpdatePresentationResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdatePresentationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdatePresentationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdatePresentationResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2660,7 +2745,7 @@ export namespace slides_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdatePresentationResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdatePresentationResponse>(
@@ -2672,19 +2757,93 @@ export namespace slides_v1 {
     /**
      * slides.presentations.create
      * @desc Creates a blank presentation using the title given in the request. If a `presentationId` is provided, it is used as the ID of the new presentation. Otherwise, a new ID is generated. Other fields in the request, including any provided content, are ignored. Returns the created presentation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/slides.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const slides = google.slides('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/presentations',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await slides.presentations.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "layouts": [],
+     *       //   "locale": "my_locale",
+     *       //   "masters": [],
+     *       //   "notesMaster": {},
+     *       //   "pageSize": {},
+     *       //   "presentationId": "my_presentationId",
+     *       //   "revisionId": "my_revisionId",
+     *       //   "slides": [],
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "layouts": [],
+     *   //   "locale": "my_locale",
+     *   //   "masters": [],
+     *   //   "notesMaster": {},
+     *   //   "pageSize": {},
+     *   //   "presentationId": "my_presentationId",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "slides": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias slides.presentations.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Presentation} params.resource Request body data
+     * @param {().Presentation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Presentations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Presentations$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Presentation>;
+    create(
+      params: Params$Resource$Presentations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Presentations$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Presentation>,
@@ -2698,12 +2857,17 @@ export namespace slides_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Presentations$Create
-        | BodyResponseCallback<Schema$Presentation>,
+        | BodyResponseCallback<Schema$Presentation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Presentation>,
-      callback?: BodyResponseCallback<Schema$Presentation>
-    ): void | GaxiosPromise<Schema$Presentation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Presentation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Presentation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Presentation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2734,7 +2898,10 @@ export namespace slides_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Presentation>(parameters, callback);
+        createAPIRequest<Schema$Presentation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Presentation>(parameters);
       }
@@ -2743,6 +2910,60 @@ export namespace slides_v1 {
     /**
      * slides.presentations.get
      * @desc Gets the latest version of the specified presentation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/slides.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const slides = google.slides('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/presentations',
+     *       'https://www.googleapis.com/auth/presentations.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await slides.presentations.get({
+     *     // The ID of the presentation to retrieve.
+     *     presentationId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "layouts": [],
+     *   //   "locale": "my_locale",
+     *   //   "masters": [],
+     *   //   "notesMaster": {},
+     *   //   "pageSize": {},
+     *   //   "presentationId": "my_presentationId",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "slides": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias slides.presentations.get
      * @memberOf! ()
      *
@@ -2753,9 +2974,18 @@ export namespace slides_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Presentations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Presentations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Presentation>;
+    get(
+      params: Params$Resource$Presentations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Presentations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Presentation>,
@@ -2769,12 +2999,17 @@ export namespace slides_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Presentations$Get
-        | BodyResponseCallback<Schema$Presentation>,
+        | BodyResponseCallback<Schema$Presentation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Presentation>,
-      callback?: BodyResponseCallback<Schema$Presentation>
-    ): void | GaxiosPromise<Schema$Presentation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Presentation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Presentation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Presentation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2808,7 +3043,10 @@ export namespace slides_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Presentation>(parameters, callback);
+        createAPIRequest<Schema$Presentation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Presentation>(parameters);
       }
@@ -2817,11 +3055,6 @@ export namespace slides_v1 {
 
   export interface Params$Resource$Presentations$Batchupdate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The presentation to apply the updates to.
      */
@@ -2835,22 +3068,12 @@ export namespace slides_v1 {
   export interface Params$Resource$Presentations$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Presentation;
   }
   export interface Params$Resource$Presentations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the presentation to retrieve.
      */
@@ -2866,6 +3089,62 @@ export namespace slides_v1 {
     /**
      * slides.presentations.pages.get
      * @desc Gets the latest version of the specified page in the presentation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/slides.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const slides = google.slides('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/presentations',
+     *       'https://www.googleapis.com/auth/presentations.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await slides.presentations.pages.get({
+     *     // The object ID of the page to retrieve.
+     *     pageObjectId: 'placeholder-value',
+     *     // The ID of the presentation to retrieve.
+     *     presentationId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "layoutProperties": {},
+     *   //   "masterProperties": {},
+     *   //   "notesProperties": {},
+     *   //   "objectId": "my_objectId",
+     *   //   "pageElements": [],
+     *   //   "pageProperties": {},
+     *   //   "pageType": "my_pageType",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "slideProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias slides.presentations.pages.get
      * @memberOf! ()
      *
@@ -2877,9 +3156,18 @@ export namespace slides_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Presentations$Pages$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Presentations$Pages$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Page>;
+    get(
+      params: Params$Resource$Presentations$Pages$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Presentations$Pages$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Page>,
@@ -2893,10 +3181,17 @@ export namespace slides_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Presentations$Pages$Get
-        | BodyResponseCallback<Schema$Page>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Page>,
-      callback?: BodyResponseCallback<Schema$Page>
-    ): void | GaxiosPromise<Schema$Page> {
+        | BodyResponseCallback<Schema$Page>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Page>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Page>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Page> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2930,7 +3225,10 @@ export namespace slides_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Page>(parameters, callback);
+        createAPIRequest<Schema$Page>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
       }
@@ -2939,22 +3237,90 @@ export namespace slides_v1 {
     /**
      * slides.presentations.pages.getThumbnail
      * @desc Generates a thumbnail of the latest version of the specified page in the presentation and returns a URL to the thumbnail image.  This request counts as an [expensive read request](/slides/limits) for quota purposes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/slides.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const slides = google.slides('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/presentations',
+     *       'https://www.googleapis.com/auth/presentations.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await slides.presentations.pages.getThumbnail({
+     *     // The object ID of the page whose thumbnail to retrieve.
+     *     pageObjectId: 'placeholder-value',
+     *     // The ID of the presentation to retrieve.
+     *     presentationId: 'placeholder-value',
+     *     // The optional mime type of the thumbnail image.
+     *     //
+     *     // If you don't specify the mime type, the mime type defaults to PNG.
+     *     'thumbnailProperties.mimeType': 'placeholder-value',
+     *     // The optional thumbnail image size.
+     *     //
+     *     // If you don't specify the size, the server chooses a default size of the
+     *     // image.
+     *     'thumbnailProperties.thumbnailSize': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentUrl": "my_contentUrl",
+     *   //   "height": 0,
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias slides.presentations.pages.getThumbnail
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.pageObjectId The object ID of the page whose thumbnail to retrieve.
      * @param {string} params.presentationId The ID of the presentation to retrieve.
-     * @param {string=} params.thumbnailProperties.mimeType The optional mime type of the thumbnail image.  If you don't specify the mime type, the default mime type will be PNG.
+     * @param {string=} params.thumbnailProperties.mimeType The optional mime type of the thumbnail image.  If you don't specify the mime type, the mime type defaults to PNG.
      * @param {string=} params.thumbnailProperties.thumbnailSize The optional thumbnail image size.  If you don't specify the size, the server chooses a default size of the image.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getThumbnail(
+      params: Params$Resource$Presentations$Pages$Getthumbnail,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getThumbnail(
       params?: Params$Resource$Presentations$Pages$Getthumbnail,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Thumbnail>;
+    getThumbnail(
+      params: Params$Resource$Presentations$Pages$Getthumbnail,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getThumbnail(
       params: Params$Resource$Presentations$Pages$Getthumbnail,
       options: MethodOptions | BodyResponseCallback<Schema$Thumbnail>,
@@ -2968,12 +3334,17 @@ export namespace slides_v1 {
     getThumbnail(
       paramsOrCallback?:
         | Params$Resource$Presentations$Pages$Getthumbnail
-        | BodyResponseCallback<Schema$Thumbnail>,
+        | BodyResponseCallback<Schema$Thumbnail>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Thumbnail>,
-      callback?: BodyResponseCallback<Schema$Thumbnail>
-    ): void | GaxiosPromise<Schema$Thumbnail> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Thumbnail>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Thumbnail>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Thumbnail> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Pages$Getthumbnail;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3007,7 +3378,10 @@ export namespace slides_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Thumbnail>(parameters, callback);
+        createAPIRequest<Schema$Thumbnail>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Thumbnail>(parameters);
       }
@@ -3016,11 +3390,6 @@ export namespace slides_v1 {
 
   export interface Params$Resource$Presentations$Pages$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The object ID of the page to retrieve.
      */
@@ -3033,11 +3402,6 @@ export namespace slides_v1 {
   export interface Params$Resource$Presentations$Pages$Getthumbnail
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The object ID of the page whose thumbnail to retrieve.
      */
     pageObjectId?: string;
@@ -3046,7 +3410,7 @@ export namespace slides_v1 {
      */
     presentationId?: string;
     /**
-     * The optional mime type of the thumbnail image.  If you don't specify the mime type, the default mime type will be PNG.
+     * The optional mime type of the thumbnail image.  If you don't specify the mime type, the mime type defaults to PNG.
      */
     'thumbnailProperties.mimeType'?: string;
     /**

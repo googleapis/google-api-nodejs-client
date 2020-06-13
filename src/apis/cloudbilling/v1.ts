@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace cloudbilling_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace cloudbilling_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -154,10 +164,6 @@ export namespace cloudbilling_v1 {
      */
     exemptedMembers?: string[] | null;
     /**
-     * Specifies whether principals can be exempted for the same LogType in lower-level resource policies. If true, any lower-level exemptions will be ignored.
-     */
-    ignoreChildExemptions?: boolean | null;
-    /**
      * The log type that this config enables.
      */
     logType?: string | null;
@@ -179,7 +185,7 @@ export namespace cloudbilling_v1 {
      */
     name?: string | null;
     /**
-     * True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it will be unable to use paid services.
+     * Output only. True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it will be unable to use paid services.
      */
     open?: boolean | null;
   }
@@ -188,11 +194,11 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -222,23 +228,23 @@ export namespace cloudbilling_v1 {
     usageType?: string | null;
   }
   /**
-   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
   }
@@ -312,7 +318,7 @@ export namespace cloudbilling_v1 {
     units?: string | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -320,15 +326,15 @@ export namespace cloudbilling_v1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Deprecated.
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -441,7 +447,7 @@ export namespace cloudbilling_v1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
@@ -522,65 +528,78 @@ export namespace cloudbilling_v1 {
      * cloudbilling.billingAccounts.create
      * @desc Creates a billing account. This method can only be used to create [billing subaccounts](https://cloud.google.com/billing/docs/concepts) by GCP resellers. When creating a subaccount, the current authenticated user must have the `billing.accounts.update` IAM permission on the master account, which is typically given to billing account [administrators](https://cloud.google.com/billing/docs/how-to/billing-access). This method will return an error if the master account has not been provisioned as a reseller account.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Billing API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudbilling = google.cloudbilling('v1');
+     * const cloudbilling = google.cloudbilling('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudbilling.billingAccounts.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.billingAccounts.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "masterBillingAccount": "my_masterBillingAccount",
+     *       //   "name": "my_name",
+     *       //   "open": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "masterBillingAccount": "my_masterBillingAccount",
+     *   //   "name": "my_name",
+     *   //   "open": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudbilling.billingAccounts.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().BillingAccount} params.resource Request body data
+     * @param {().BillingAccount} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Billingaccounts$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Billingaccounts$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BillingAccount>;
+    create(
+      params: Params$Resource$Billingaccounts$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Billingaccounts$Create,
       options: MethodOptions | BodyResponseCallback<Schema$BillingAccount>,
@@ -594,12 +613,17 @@ export namespace cloudbilling_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Create
-        | BodyResponseCallback<Schema$BillingAccount>,
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BillingAccount>,
-      callback?: BodyResponseCallback<Schema$BillingAccount>
-    ): void | GaxiosPromise<Schema$BillingAccount> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -633,7 +657,10 @@ export namespace cloudbilling_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BillingAccount>(parameters, callback);
+        createAPIRequest<Schema$BillingAccount>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BillingAccount>(parameters);
       }
@@ -643,65 +670,71 @@ export namespace cloudbilling_v1 {
      * cloudbilling.billingAccounts.get
      * @desc Gets information about a billing account. The current authenticated user must be a [viewer of the billing account](https://cloud.google.com/billing/docs/how-to/billing-access).
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Billing API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudbilling = google.cloudbilling('v1');
+     * const cloudbilling = google.cloudbilling('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the billing account to retrieve. For example,
-     *     // `billingAccounts/012345-567890-ABCDEF`.
-     *     name: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudbilling.billingAccounts.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.billingAccounts.get({
+     *     // Required. The resource name of the billing account to retrieve. For example,
+     *     // `billingAccounts/012345-567890-ABCDEF`.
+     *     name: 'billingAccounts/my-billingAccount',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "masterBillingAccount": "my_masterBillingAccount",
+     *   //   "name": "my_name",
+     *   //   "open": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudbilling.billingAccounts.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the billing account to retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * @param {string} params.name Required. The resource name of the billing account to retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Billingaccounts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Billingaccounts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BillingAccount>;
+    get(
+      params: Params$Resource$Billingaccounts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Billingaccounts$Get,
       options: MethodOptions | BodyResponseCallback<Schema$BillingAccount>,
@@ -715,12 +748,17 @@ export namespace cloudbilling_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Get
-        | BodyResponseCallback<Schema$BillingAccount>,
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BillingAccount>,
-      callback?: BodyResponseCallback<Schema$BillingAccount>
-    ): void | GaxiosPromise<Schema$BillingAccount> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -751,7 +789,10 @@ export namespace cloudbilling_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BillingAccount>(parameters, callback);
+        createAPIRequest<Schema$BillingAccount>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BillingAccount>(parameters);
       }
@@ -761,66 +802,85 @@ export namespace cloudbilling_v1 {
      * cloudbilling.billingAccounts.getIamPolicy
      * @desc Gets the access control policy for a billing account. The caller must have the `billing.accounts.getIamPolicy` permission on the account, which is often given to billing account [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Billing API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudbilling = google.cloudbilling('v1');
+     * const cloudbilling = google.cloudbilling('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.billingAccounts.getIamPolicy({
+     *     // Optional. The policy format version to be returned.
+     *     //
+     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+     *     // rejected.
+     *     //
+     *     // Requests for policies with any conditional bindings must specify version 3.
+     *     // Policies without any conditional bindings may specify any valid value or
+     *     // leave the field unset.
+     *     //
+     *     // To learn which resources support conditions in their IAM policies, see the
+     *     // [IAM
+     *     // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
      *     // REQUIRED: The resource for which the policy is being requested.
      *     // See the operation documentation for the appropriate value for this field.
-     *     resource_: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudbilling.billingAccounts.getIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     resource: 'billingAccounts/my-billingAccount',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudbilling.billingAccounts.getIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Billingaccounts$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Billingaccounts$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Billingaccounts$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Billingaccounts$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -834,10 +894,17 @@ export namespace cloudbilling_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -871,7 +938,10 @@ export namespace cloudbilling_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -881,61 +951,58 @@ export namespace cloudbilling_v1 {
      * cloudbilling.billingAccounts.list
      * @desc Lists the billing accounts that the current authenticated user has permission to [view](https://cloud.google.com/billing/docs/how-to/billing-access).
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Billing API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudbilling = google.cloudbilling('v1');
+     * const cloudbilling = google.cloudbilling('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     auth: authClient,
-     *   };
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
      *
-     *     var billingAccountsPage = response['billingAccounts'];
-     *     if (!billingAccountsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < billingAccountsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `billingAccountsPage`:
-     *       console.log(JSON.stringify(billingAccountsPage[i], null, 2));
-     *     }
+     *   // Do the magic
+     *   const res = await cloudbilling.billingAccounts.list({
+     *     // Options for how to filter the returned billing accounts.
+     *     // Currently this only supports filtering for
+     *     // [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
+     *     // single provided reseller billing account.
+     *     // (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF").
+     *     // Boolean algebra and other fields are not currently supported.
+     *     filter: 'placeholder-value',
+     *     // Requested page size. The maximum page size is 100; this is also the
+     *     // default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results to return. This should be a
+     *     // `next_page_token` value returned from a previous `ListBillingAccounts`
+     *     // call. If unspecified, the first page of results is returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       cloudbilling.billingAccounts.list(request, handlePage);
-     *     }
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "billingAccounts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
      *
-     *   cloudbilling.billingAccounts.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudbilling.billingAccounts.list
      * @memberOf! ()
      *
@@ -948,9 +1015,18 @@ export namespace cloudbilling_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Billingaccounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Billingaccounts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBillingAccountsResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Billingaccounts$List,
       options:
@@ -968,12 +1044,20 @@ export namespace cloudbilling_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$List
-        | BodyResponseCallback<Schema$ListBillingAccountsResponse>,
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBillingAccountsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBillingAccountsResponse>
-    ): void | GaxiosPromise<Schema$ListBillingAccountsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBillingAccountsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1009,7 +1093,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$ListBillingAccountsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListBillingAccountsResponse>(parameters);
@@ -1020,71 +1104,86 @@ export namespace cloudbilling_v1 {
      * cloudbilling.billingAccounts.patch
      * @desc Updates a billing account's fields. Currently the only field that can be edited is `display_name`. The current authenticated user must have the `billing.accounts.update` IAM permission, which is typically given to the [administrator](https://cloud.google.com/billing/docs/how-to/billing-access) of the billing account.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Billing API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudbilling = google.cloudbilling('v1');
+     * const cloudbilling = google.cloudbilling('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the billing account resource to be updated.
-     *     name: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudbilling.billingAccounts.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.billingAccounts.patch({
+     *     // Required. The name of the billing account resource to be updated.
+     *     name: 'billingAccounts/my-billingAccount',
+     *     // The update mask applied to the resource.
+     *     // Only "display_name" is currently supported.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "masterBillingAccount": "my_masterBillingAccount",
+     *       //   "name": "my_name",
+     *       //   "open": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "masterBillingAccount": "my_masterBillingAccount",
+     *   //   "name": "my_name",
+     *   //   "open": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudbilling.billingAccounts.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the billing account resource to be updated.
+     * @param {string} params.name Required. The name of the billing account resource to be updated.
      * @param {string=} params.updateMask The update mask applied to the resource. Only "display_name" is currently supported.
-     * @param {().BillingAccount} params.resource Request body data
+     * @param {().BillingAccount} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Billingaccounts$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Billingaccounts$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BillingAccount>;
+    patch(
+      params: Params$Resource$Billingaccounts$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Billingaccounts$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$BillingAccount>,
@@ -1098,12 +1197,17 @@ export namespace cloudbilling_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Patch
-        | BodyResponseCallback<Schema$BillingAccount>,
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BillingAccount>,
-      callback?: BodyResponseCallback<Schema$BillingAccount>
-    ): void | GaxiosPromise<Schema$BillingAccount> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BillingAccount> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1134,7 +1238,10 @@ export namespace cloudbilling_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BillingAccount>(parameters, callback);
+        createAPIRequest<Schema$BillingAccount>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BillingAccount>(parameters);
       }
@@ -1144,70 +1251,81 @@ export namespace cloudbilling_v1 {
      * cloudbilling.billingAccounts.setIamPolicy
      * @desc Sets the access control policy for a billing account. Replaces any existing policy. The caller must have the `billing.accounts.setIamPolicy` permission on the account, which is often given to billing account [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Billing API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudbilling = google.cloudbilling('v1');
+     * const cloudbilling = google.cloudbilling('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.billingAccounts.setIamPolicy({
      *     // REQUIRED: The resource for which the policy is being specified.
      *     // See the operation documentation for the appropriate value for this field.
-     *     resource_: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
+     *     resource: 'billingAccounts/my-billingAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudbilling.billingAccounts.setIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudbilling.billingAccounts.setIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Billingaccounts$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Billingaccounts$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Billingaccounts$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Billingaccounts$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1221,10 +1339,17 @@ export namespace cloudbilling_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1258,7 +1383,10 @@ export namespace cloudbilling_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -1268,70 +1396,77 @@ export namespace cloudbilling_v1 {
      * cloudbilling.billingAccounts.testIamPermissions
      * @desc Tests the access control policy for a billing account. This method takes the resource and a set of permissions as input and returns the subset of the input permissions that the caller is allowed for that resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Billing API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudbilling = google.cloudbilling('v1');
+     * const cloudbilling = google.cloudbilling('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.billingAccounts.testIamPermissions({
      *     // REQUIRED: The resource for which the policy detail is being requested.
      *     // See the operation documentation for the appropriate value for this field.
-     *     resource_: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
+     *     resource: 'billingAccounts/my-billingAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudbilling.billingAccounts.testIamPermissions(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudbilling.billingAccounts.testIamPermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Billingaccounts$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Billingaccounts$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Billingaccounts$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Billingaccounts$Testiampermissions,
       options:
@@ -1349,12 +1484,20 @@ export namespace cloudbilling_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1390,7 +1533,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1401,11 +1544,6 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$BillingAccount;
@@ -1413,24 +1551,14 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the billing account to retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * Required. The resource name of the billing account to retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
     name?: string;
   }
   export interface Params$Resource$Billingaccounts$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -1440,11 +1568,6 @@ export namespace cloudbilling_v1 {
   }
   export interface Params$Resource$Billingaccounts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Options for how to filter the returned billing accounts. Currently this only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided reseller billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.
      */
@@ -1461,12 +1584,7 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the billing account resource to be updated.
+     * Required. The name of the billing account resource to be updated.
      */
     name?: string;
     /**
@@ -1482,11 +1600,6 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -1498,11 +1611,6 @@ export namespace cloudbilling_v1 {
   }
   export interface Params$Resource$Billingaccounts$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -1524,70 +1632,59 @@ export namespace cloudbilling_v1 {
      * cloudbilling.billingAccounts.projects.list
      * @desc Lists the projects associated with a billing account. The current authenticated user must have the `billing.resourceAssociations.list` IAM permission, which is often given to billing account [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Billing API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudbilling = google.cloudbilling('v1');
+     * const cloudbilling = google.cloudbilling('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the billing account associated with the projects that
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.billingAccounts.projects.list({
+     *     // Required. The resource name of the billing account associated with the projects that
      *     // you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
-     *     name: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
+     *     name: 'billingAccounts/my-billingAccount',
+     *     // Requested page size. The maximum page size is 100; this is also the
+     *     // default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results to be returned. This should be a
+     *     // `next_page_token` value returned from a previous `ListProjectBillingInfo`
+     *     // call. If unspecified, the first page of results is returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "projectBillingInfo": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var projectBillingInfoPage = response['projectBillingInfo'];
-     *     if (!projectBillingInfoPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < projectBillingInfoPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `projectBillingInfoPage`:
-     *       console.log(JSON.stringify(projectBillingInfoPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       cloudbilling.billingAccounts.projects.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   cloudbilling.billingAccounts.projects.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudbilling.billingAccounts.projects.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the billing account associated with the projects that you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * @param {string} params.name Required. The resource name of the billing account associated with the projects that you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
      * @param {integer=} params.pageSize Requested page size. The maximum page size is 100; this is also the default.
      * @param {string=} params.pageToken A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous `ListProjectBillingInfo` call. If unspecified, the first page of results is returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1595,9 +1692,18 @@ export namespace cloudbilling_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Billingaccounts$Projects$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Billingaccounts$Projects$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListProjectBillingInfoResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Projects$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Billingaccounts$Projects$List,
       options:
@@ -1615,12 +1721,20 @@ export namespace cloudbilling_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Projects$List
-        | BodyResponseCallback<Schema$ListProjectBillingInfoResponse>,
+        | BodyResponseCallback<Schema$ListProjectBillingInfoResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListProjectBillingInfoResponse>,
-      callback?: BodyResponseCallback<Schema$ListProjectBillingInfoResponse>
-    ): void | GaxiosPromise<Schema$ListProjectBillingInfoResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProjectBillingInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProjectBillingInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListProjectBillingInfoResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1656,7 +1770,7 @@ export namespace cloudbilling_v1 {
       if (callback) {
         createAPIRequest<Schema$ListProjectBillingInfoResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListProjectBillingInfoResponse>(
@@ -1669,12 +1783,7 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Projects$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the billing account associated with the projects that you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * Required. The resource name of the billing account associated with the projects that you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
     name?: string;
     /**
@@ -1697,65 +1806,71 @@ export namespace cloudbilling_v1 {
      * cloudbilling.projects.getBillingInfo
      * @desc Gets the billing information for a project. The current authenticated user must have [permission to view the project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo ).
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Billing API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudbilling = google.cloudbilling('v1');
+     * const cloudbilling = google.cloudbilling('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the project for which billing information is
-     *     // retrieved. For example, `projects/tokyo-rain-123`.
-     *     name: 'projects/my-project',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudbilling.projects.getBillingInfo(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.projects.getBillingInfo({
+     *     // Required. The resource name of the project for which billing information is
+     *     // retrieved. For example, `projects/tokyo-rain-123`.
+     *     name: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingAccountName": "my_billingAccountName",
+     *   //   "billingEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "projectId": "my_projectId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudbilling.projects.getBillingInfo
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the project for which billing information is retrieved. For example, `projects/tokyo-rain-123`.
+     * @param {string} params.name Required. The resource name of the project for which billing information is retrieved. For example, `projects/tokyo-rain-123`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getBillingInfo(
+      params: Params$Resource$Projects$Getbillinginfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getBillingInfo(
       params?: Params$Resource$Projects$Getbillinginfo,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ProjectBillingInfo>;
+    getBillingInfo(
+      params: Params$Resource$Projects$Getbillinginfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getBillingInfo(
       params: Params$Resource$Projects$Getbillinginfo,
       options: MethodOptions | BodyResponseCallback<Schema$ProjectBillingInfo>,
@@ -1771,12 +1886,20 @@ export namespace cloudbilling_v1 {
     getBillingInfo(
       paramsOrCallback?:
         | Params$Resource$Projects$Getbillinginfo
-        | BodyResponseCallback<Schema$ProjectBillingInfo>,
+        | BodyResponseCallback<Schema$ProjectBillingInfo>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ProjectBillingInfo>,
-      callback?: BodyResponseCallback<Schema$ProjectBillingInfo>
-    ): void | GaxiosPromise<Schema$ProjectBillingInfo> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProjectBillingInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProjectBillingInfo>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ProjectBillingInfo>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getbillinginfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1810,7 +1933,10 @@ export namespace cloudbilling_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ProjectBillingInfo>(parameters, callback);
+        createAPIRequest<Schema$ProjectBillingInfo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ProjectBillingInfo>(parameters);
       }
@@ -1820,71 +1946,83 @@ export namespace cloudbilling_v1 {
      * cloudbilling.projects.updateBillingInfo
      * @desc Sets or updates the billing account associated with a project. You specify the new billing account by setting the `billing_account_name` in the `ProjectBillingInfo` resource to the resource name of a billing account. Associating a project with an open billing account enables billing on the project and allows charges for resource usage. If the project already had a billing account, this method changes the billing account used for resource usage charges.  *Note:* Incurred charges that have not yet been reported in the transaction history of the GCP Console might be billed to the new billing account, even if the charge occurred before the new billing account was assigned to the project.  The current authenticated user must have ownership privileges for both the [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo ) and the [billing account](https://cloud.google.com/billing/docs/how-to/billing-access).  You can disable billing on the project by setting the `billing_account_name` field to empty. This action disassociates the current billing account from the project. Any billable activity of your in-use services will stop, and your application could stop functioning as expected. Any unbilled charges to date will be billed to the previously associated account. The current authenticated user must be either an owner of the project or an owner of the billing account for the project.  Note that associating a project with a *closed* billing account will have much the same effect as disabling billing on the project: any paid resources used by the project will be shut down. Thus, unless you wish to disable billing, you should always call this method with the name of an *open* billing account.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Billing API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudbilling = google.cloudbilling('v1');
+     * const cloudbilling = google.cloudbilling('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the project associated with the billing information
-     *     // that you want to update. For example, `projects/tokyo-rain-123`.
-     *     name: 'projects/my-project',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudbilling.projects.updateBillingInfo(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.projects.updateBillingInfo({
+     *     // Required. The resource name of the project associated with the billing information
+     *     // that you want to update. For example, `projects/tokyo-rain-123`.
+     *     name: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billingAccountName": "my_billingAccountName",
+     *       //   "billingEnabled": false,
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingAccountName": "my_billingAccountName",
+     *   //   "billingEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "projectId": "my_projectId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudbilling.projects.updateBillingInfo
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the project associated with the billing information that you want to update. For example, `projects/tokyo-rain-123`.
-     * @param {().ProjectBillingInfo} params.resource Request body data
+     * @param {string} params.name Required. The resource name of the project associated with the billing information that you want to update. For example, `projects/tokyo-rain-123`.
+     * @param {().ProjectBillingInfo} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     updateBillingInfo(
+      params: Params$Resource$Projects$Updatebillinginfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateBillingInfo(
       params?: Params$Resource$Projects$Updatebillinginfo,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ProjectBillingInfo>;
+    updateBillingInfo(
+      params: Params$Resource$Projects$Updatebillinginfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateBillingInfo(
       params: Params$Resource$Projects$Updatebillinginfo,
       options: MethodOptions | BodyResponseCallback<Schema$ProjectBillingInfo>,
@@ -1900,12 +2038,20 @@ export namespace cloudbilling_v1 {
     updateBillingInfo(
       paramsOrCallback?:
         | Params$Resource$Projects$Updatebillinginfo
-        | BodyResponseCallback<Schema$ProjectBillingInfo>,
+        | BodyResponseCallback<Schema$ProjectBillingInfo>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ProjectBillingInfo>,
-      callback?: BodyResponseCallback<Schema$ProjectBillingInfo>
-    ): void | GaxiosPromise<Schema$ProjectBillingInfo> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProjectBillingInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProjectBillingInfo>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ProjectBillingInfo>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updatebillinginfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1939,7 +2085,10 @@ export namespace cloudbilling_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ProjectBillingInfo>(parameters, callback);
+        createAPIRequest<Schema$ProjectBillingInfo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ProjectBillingInfo>(parameters);
       }
@@ -1949,24 +2098,14 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Projects$Getbillinginfo
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the project for which billing information is retrieved. For example, `projects/tokyo-rain-123`.
+     * Required. The resource name of the project for which billing information is retrieved. For example, `projects/tokyo-rain-123`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Updatebillinginfo
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the project associated with the billing information that you want to update. For example, `projects/tokyo-rain-123`.
+     * Required. The resource name of the project associated with the billing information that you want to update. For example, `projects/tokyo-rain-123`.
      */
     name?: string;
 
@@ -1988,61 +2127,50 @@ export namespace cloudbilling_v1 {
      * cloudbilling.services.list
      * @desc Lists all public cloud services.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Billing API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudbilling = google.cloudbilling('v1');
+     * const cloudbilling = google.cloudbilling('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     auth: authClient,
-     *   };
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
      *
-     *     var servicesPage = response['services'];
-     *     if (!servicesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < servicesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `servicesPage`:
-     *       console.log(JSON.stringify(servicesPage[i], null, 2));
-     *     }
+     *   // Do the magic
+     *   const res = await cloudbilling.services.list({
+     *     // Requested page size. Defaults to 5000.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results to return. This should be a
+     *     // `next_page_token` value returned from a previous `ListServices`
+     *     // call. If unspecified, the first page of results is returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       cloudbilling.services.list(request, handlePage);
-     *     }
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "services": []
+     *   // }
+     * }
      *
-     *   cloudbilling.services.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudbilling.services.list
      * @memberOf! ()
      *
@@ -2054,9 +2182,18 @@ export namespace cloudbilling_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Services$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Services$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListServicesResponse>;
+    list(
+      params: Params$Resource$Services$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Services$List,
       options:
@@ -2072,12 +2209,20 @@ export namespace cloudbilling_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Services$List
-        | BodyResponseCallback<Schema$ListServicesResponse>,
+        | BodyResponseCallback<Schema$ListServicesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListServicesResponse>,
-      callback?: BodyResponseCallback<Schema$ListServicesResponse>
-    ): void | GaxiosPromise<Schema$ListServicesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListServicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListServicesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2107,7 +2252,10 @@ export namespace cloudbilling_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListServicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
       }
@@ -2115,11 +2263,6 @@ export namespace cloudbilling_v1 {
   }
 
   export interface Params$Resource$Services$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Requested page size. Defaults to 5000.
      */
@@ -2140,65 +2283,71 @@ export namespace cloudbilling_v1 {
      * cloudbilling.services.skus.list
      * @desc Lists all publicly available SKUs for a given cloud service.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Billing API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudbilling = google.cloudbilling('v1');
+     * const cloudbilling = google.cloudbilling('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the service.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.services.skus.list({
+     *     // The ISO 4217 currency code for the pricing info in the response proto.
+     *     // Will use the conversion rate as of start_time.
+     *     // Optional. If not specified USD will be used.
+     *     currencyCode: 'placeholder-value',
+     *     // Optional exclusive end time of the time range for which the pricing
+     *     // versions will be returned. Timestamps in the future are not allowed.
+     *     // The time range has to be within a single calendar month in
+     *     // America/Los_Angeles timezone. Time range as a whole is optional. If not
+     *     // specified, the latest pricing will be returned (up to 12 hours old at
+     *     // most).
+     *     endTime: 'placeholder-value',
+     *     // Requested page size. Defaults to 5000.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results to return. This should be a
+     *     // `next_page_token` value returned from a previous `ListSkus`
+     *     // call. If unspecified, the first page of results is returned.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the service.
      *     // Example: "services/DA34-426B-A397"
-     *     parent: 'services/my-service',  // TODO: Update placeholder value.
+     *     parent: 'services/my-service',
+     *     // Optional inclusive start time of the time range for which the pricing
+     *     // versions will be returned. Timestamps in the future are not allowed.
+     *     // The time range has to be within a single calendar month in
+     *     // America/Los_Angeles timezone. Time range as a whole is optional. If not
+     *     // specified, the latest pricing will be returned (up to 12 hours old at
+     *     // most).
+     *     startTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "skus": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var skusPage = response['skus'];
-     *     if (!skusPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < skusPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `skusPage`:
-     *       console.log(JSON.stringify(skusPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       cloudbilling.services.skus.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   cloudbilling.services.skus.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudbilling.services.skus.list
      * @memberOf! ()
      *
@@ -2207,16 +2356,25 @@ export namespace cloudbilling_v1 {
      * @param {string=} params.endTime Optional exclusive end time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. The time range has to be within a single calendar month in America/Los_Angeles timezone. Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most).
      * @param {integer=} params.pageSize Requested page size. Defaults to 5000.
      * @param {string=} params.pageToken A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListSkus` call. If unspecified, the first page of results is returned.
-     * @param {string} params.parent The name of the service. Example: "services/DA34-426B-A397"
+     * @param {string} params.parent Required. The name of the service. Example: "services/DA34-426B-A397"
      * @param {string=} params.startTime Optional inclusive start time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. The time range has to be within a single calendar month in America/Los_Angeles timezone. Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Services$Skus$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Services$Skus$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSkusResponse>;
+    list(
+      params: Params$Resource$Services$Skus$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Services$Skus$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSkusResponse>,
@@ -2230,12 +2388,17 @@ export namespace cloudbilling_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Services$Skus$List
-        | BodyResponseCallback<Schema$ListSkusResponse>,
+        | BodyResponseCallback<Schema$ListSkusResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSkusResponse>,
-      callback?: BodyResponseCallback<Schema$ListSkusResponse>
-    ): void | GaxiosPromise<Schema$ListSkusResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSkusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSkusResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListSkusResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Skus$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2266,7 +2429,10 @@ export namespace cloudbilling_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSkusResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSkusResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSkusResponse>(parameters);
       }
@@ -2275,11 +2441,6 @@ export namespace cloudbilling_v1 {
 
   export interface Params$Resource$Services$Skus$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ISO 4217 currency code for the pricing info in the response proto. Will use the conversion rate as of start_time. Optional. If not specified USD will be used.
      */
@@ -2297,7 +2458,7 @@ export namespace cloudbilling_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the service. Example: "services/DA34-426B-A397"
+     * Required. The name of the service. Example: "services/DA34-426B-A397"
      */
     parent?: string;
     /**

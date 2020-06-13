@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace cloudshell_v1alpha1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace cloudshell_v1alpha1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -156,7 +166,7 @@ export namespace cloudshell_v1alpha1 {
      */
     dockerImage?: string | null;
     /**
-     * Output only. The environment&#39;s identifier, which is always &quot;default&quot;.
+     * Output only. The environment&#39;s identifier, unique among the user&#39;s environments.
      */
     id?: string | null;
     /**
@@ -167,6 +177,10 @@ export namespace cloudshell_v1alpha1 {
      * Output only. Public keys associated with the environment. Clients can connect to this environment via SSH only if they possess a private key corresponding to at least one of these public keys. Keys can be added to or removed from the environment using the CreatePublicKey and DeletePublicKey methods.
      */
     publicKeys?: Schema$PublicKey[];
+    /**
+     * Indicates the size of the backing VM running the environment.  If set to something other than DEFAULT, it will be reverted to the default VM size after vm_size_expire_time.
+     */
+    size?: string | null;
     /**
      * Output only. Host to which clients can connect to initiate SSH sessions with the environment.
      */
@@ -184,9 +198,17 @@ export namespace cloudshell_v1alpha1 {
      */
     state?: string | null;
     /**
+     * Output only. The time when the Environment will expire back to the default VM size.
+     */
+    vmSizeExpireTime?: string | null;
+    /**
      * Output only. Host to which clients can connect to initiate HTTPS or WSS connections with the environment.
      */
     webHost?: string | null;
+    /**
+     * Output only. Ports to which clients can connect to initiate HTTPS or WSS connections with the environment.
+     */
+    webPorts?: number[] | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -247,6 +269,10 @@ export namespace cloudshell_v1alpha1 {
      * The initial access token passed to the environment. If this is present and valid, the environment will be pre-authenticated with gcloud so that the user can run gcloud commands in Cloud Shell without having to log in. This code can be updated later by calling AuthorizeEnvironment.
      */
     accessToken?: string | null;
+    /**
+     * Public keys that should be added to the environment before it is started.
+     */
+    publicKeys?: Schema$PublicKey[];
   }
   /**
    * Message included in the response field of operations returned from StartEnvironment once the operation is complete.
@@ -297,20 +323,79 @@ export namespace cloudshell_v1alpha1 {
     /**
      * cloudshell.users.environments.authorize
      * @desc Sends OAuth credentials to a running environment on behalf of a user. When this completes, the environment will be authorized to run various Google Cloud command line tools without requiring the user to manually authenticate.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudshell.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudshell = google.cloudshell('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudshell.users.environments.authorize({
+     *     // Name of the resource that should receive the credentials, for example
+     *     // `users/me/environments/default` or
+     *     // `users/someone@example.com/environments/default`.
+     *     name: 'users/my-user/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessToken": "my_accessToken",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "idToken": "my_idToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudshell.users.environments.authorize
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the resource that should receive the credentials, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
-     * @param {().AuthorizeEnvironmentRequest} params.resource Request body data
+     * @param {().AuthorizeEnvironmentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     authorize(
+      params: Params$Resource$Users$Environments$Authorize,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    authorize(
       params?: Params$Resource$Users$Environments$Authorize,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    authorize(
+      params: Params$Resource$Users$Environments$Authorize,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     authorize(
       params: Params$Resource$Users$Environments$Authorize,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -324,10 +409,17 @@ export namespace cloudshell_v1alpha1 {
     authorize(
       paramsOrCallback?:
         | Params$Resource$Users$Environments$Authorize
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Authorize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -361,7 +453,10 @@ export namespace cloudshell_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -370,6 +465,58 @@ export namespace cloudshell_v1alpha1 {
     /**
      * cloudshell.users.environments.get
      * @desc Gets an environment. Returns NOT_FOUND if the environment does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudshell.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudshell = google.cloudshell('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudshell.users.environments.get({
+     *     // Name of the requested resource, for example `users/me/environments/default`
+     *     // or `users/someone@example.com/environments/default`.
+     *     name: 'users/my-user/environments/my-environment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dockerImage": "my_dockerImage",
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "publicKeys": [],
+     *   //   "size": "my_size",
+     *   //   "sshHost": "my_sshHost",
+     *   //   "sshPort": 0,
+     *   //   "sshUsername": "my_sshUsername",
+     *   //   "state": "my_state",
+     *   //   "vmSizeExpireTime": "my_vmSizeExpireTime",
+     *   //   "webHost": "my_webHost",
+     *   //   "webPorts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudshell.users.environments.get
      * @memberOf! ()
      *
@@ -380,9 +527,18 @@ export namespace cloudshell_v1alpha1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Environments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Environments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Environment>;
+    get(
+      params: Params$Resource$Users$Environments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Environments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Environment>,
@@ -396,12 +552,17 @@ export namespace cloudshell_v1alpha1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Environments$Get
-        | BodyResponseCallback<Schema$Environment>,
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Environment>,
-      callback?: BodyResponseCallback<Schema$Environment>
-    ): void | GaxiosPromise<Schema$Environment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -432,7 +593,10 @@ export namespace cloudshell_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
+        createAPIRequest<Schema$Environment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
       }
@@ -441,21 +605,104 @@ export namespace cloudshell_v1alpha1 {
     /**
      * cloudshell.users.environments.patch
      * @desc Updates an existing environment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudshell.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudshell = google.cloudshell('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudshell.users.environments.patch({
+     *     // Name of the resource to be updated, for example
+     *     // `users/me/environments/default` or
+     *     // `users/someone@example.com/environments/default`.
+     *     name: 'users/my-user/environments/my-environment',
+     *     // Mask specifying which fields in the environment should be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dockerImage": "my_dockerImage",
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "publicKeys": [],
+     *       //   "size": "my_size",
+     *       //   "sshHost": "my_sshHost",
+     *       //   "sshPort": 0,
+     *       //   "sshUsername": "my_sshUsername",
+     *       //   "state": "my_state",
+     *       //   "vmSizeExpireTime": "my_vmSizeExpireTime",
+     *       //   "webHost": "my_webHost",
+     *       //   "webPorts": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dockerImage": "my_dockerImage",
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "publicKeys": [],
+     *   //   "size": "my_size",
+     *   //   "sshHost": "my_sshHost",
+     *   //   "sshPort": 0,
+     *   //   "sshUsername": "my_sshUsername",
+     *   //   "state": "my_state",
+     *   //   "vmSizeExpireTime": "my_vmSizeExpireTime",
+     *   //   "webHost": "my_webHost",
+     *   //   "webPorts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudshell.users.environments.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the resource to be updated, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      * @param {string=} params.updateMask Mask specifying which fields in the environment should be updated.
-     * @param {().Environment} params.resource Request body data
+     * @param {().Environment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Users$Environments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Users$Environments$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Environment>;
+    patch(
+      params: Params$Resource$Users$Environments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Users$Environments$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Environment>,
@@ -469,12 +716,17 @@ export namespace cloudshell_v1alpha1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Users$Environments$Patch
-        | BodyResponseCallback<Schema$Environment>,
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Environment>,
-      callback?: BodyResponseCallback<Schema$Environment>
-    ): void | GaxiosPromise<Schema$Environment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -505,7 +757,10 @@ export namespace cloudshell_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
+        createAPIRequest<Schema$Environment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
       }
@@ -514,20 +769,84 @@ export namespace cloudshell_v1alpha1 {
     /**
      * cloudshell.users.environments.start
      * @desc Starts an existing environment, allowing clients to connect to it. The returned operation will contain an instance of StartEnvironmentMetadata in its metadata field. Users can wait for the environment to start by polling this operation via GetOperation. Once the environment has finished starting and is ready to accept connections, the operation will contain a StartEnvironmentResponse in its response field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudshell.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudshell = google.cloudshell('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudshell.users.environments.start({
+     *     // Name of the resource that should be started, for example
+     *     // `users/me/environments/default` or
+     *     // `users/someone@example.com/environments/default`.
+     *     name: 'users/my-user/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessToken": "my_accessToken",
+     *       //   "publicKeys": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudshell.users.environments.start
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the resource that should be started, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
-     * @param {().StartEnvironmentRequest} params.resource Request body data
+     * @param {().StartEnvironmentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     start(
+      params: Params$Resource$Users$Environments$Start,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    start(
       params?: Params$Resource$Users$Environments$Start,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    start(
+      params: Params$Resource$Users$Environments$Start,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     start(
       params: Params$Resource$Users$Environments$Start,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -541,12 +860,17 @@ export namespace cloudshell_v1alpha1 {
     start(
       paramsOrCallback?:
         | Params$Resource$Users$Environments$Start
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -580,7 +904,10 @@ export namespace cloudshell_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -589,11 +916,6 @@ export namespace cloudshell_v1alpha1 {
 
   export interface Params$Resource$Users$Environments$Authorize
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource that should receive the credentials, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      */
@@ -607,22 +929,12 @@ export namespace cloudshell_v1alpha1 {
   export interface Params$Resource$Users$Environments$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the requested resource, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      */
     name?: string;
   }
   export interface Params$Resource$Users$Environments$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource to be updated, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      */
@@ -639,11 +951,6 @@ export namespace cloudshell_v1alpha1 {
   }
   export interface Params$Resource$Users$Environments$Start
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource that should be started, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      */
@@ -664,20 +971,79 @@ export namespace cloudshell_v1alpha1 {
     /**
      * cloudshell.users.environments.publicKeys.create
      * @desc Adds a public SSH key to an environment, allowing clients with the corresponding private key to connect to that environment via SSH. If a key with the same format and content already exists, this will return the existing key.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudshell.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudshell = google.cloudshell('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudshell.users.environments.publicKeys.create({
+     *     // Parent resource name, e.g. `users/me/environments/default`.
+     *     parent: 'users/my-user/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "key": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "format": "my_format",
+     *   //   "key": "my_key",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudshell.users.environments.publicKeys.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Parent resource name, e.g. `users/me/environments/default`.
-     * @param {().CreatePublicKeyRequest} params.resource Request body data
+     * @param {().CreatePublicKeyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Users$Environments$Publickeys$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Users$Environments$Publickeys$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PublicKey>;
+    create(
+      params: Params$Resource$Users$Environments$Publickeys$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Users$Environments$Publickeys$Create,
       options: MethodOptions | BodyResponseCallback<Schema$PublicKey>,
@@ -691,12 +1057,17 @@ export namespace cloudshell_v1alpha1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Users$Environments$Publickeys$Create
-        | BodyResponseCallback<Schema$PublicKey>,
+        | BodyResponseCallback<Schema$PublicKey>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PublicKey>,
-      callback?: BodyResponseCallback<Schema$PublicKey>
-    ): void | GaxiosPromise<Schema$PublicKey> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PublicKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PublicKey>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PublicKey> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Publickeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -730,7 +1101,10 @@ export namespace cloudshell_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PublicKey>(parameters, callback);
+        createAPIRequest<Schema$PublicKey>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PublicKey>(parameters);
       }
@@ -739,6 +1113,45 @@ export namespace cloudshell_v1alpha1 {
     /**
      * cloudshell.users.environments.publicKeys.delete
      * @desc Removes a public SSH key from an environment. Clients will no longer be able to connect to the environment using the corresponding private key.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudshell.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudshell = google.cloudshell('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudshell.users.environments.publicKeys.delete({
+     *     // Name of the resource to be deleted, e.g.
+     *     // `users/me/environments/default/publicKeys/my-key`.
+     *     name: 'users/my-user/environments/my-environment/publicKeys/my-publicKey',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudshell.users.environments.publicKeys.delete
      * @memberOf! ()
      *
@@ -749,9 +1162,18 @@ export namespace cloudshell_v1alpha1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Environments$Publickeys$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Environments$Publickeys$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Users$Environments$Publickeys$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Environments$Publickeys$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -765,10 +1187,17 @@ export namespace cloudshell_v1alpha1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Environments$Publickeys$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Publickeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -799,7 +1228,10 @@ export namespace cloudshell_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -808,11 +1240,6 @@ export namespace cloudshell_v1alpha1 {
 
   export interface Params$Resource$Users$Environments$Publickeys$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Parent resource name, e.g. `users/me/environments/default`.
      */
@@ -825,11 +1252,6 @@ export namespace cloudshell_v1alpha1 {
   }
   export interface Params$Resource$Users$Environments$Publickeys$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource to be deleted, e.g. `users/me/environments/default/publicKeys/my-key`.
      */

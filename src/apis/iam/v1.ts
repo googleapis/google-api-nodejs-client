@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace iam_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace iam_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -183,11 +193,11 @@ export namespace iam_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -204,7 +214,7 @@ export namespace iam_v1 {
      */
     action?: string | null;
     /**
-     * The condition that is associated with this binding. This field is logged only for Cloud Audit Logging.
+     * The condition that is associated with this binding.
      */
     condition?: Schema$Expr;
     /**
@@ -251,7 +261,7 @@ export namespace iam_v1 {
      */
     accountId?: string | null;
     /**
-     * The ServiceAccount resource to create. Currently, only the following values are user assignable: `display_name` .
+     * The ServiceAccount resource to create. Currently, only the following values are user assignable: `display_name` and `description`.
      */
     serviceAccount?: Schema$ServiceAccount;
   }
@@ -268,57 +278,45 @@ export namespace iam_v1 {
    */
   export interface Schema$EnableServiceAccountRequest {}
   /**
-   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
   }
   /**
-   * The request to lint a Cloud IAM policy object. LintPolicy is currently functional only for `lint_object` of type `condition`.
+   * The request to lint a Cloud IAM policy object.
    */
   export interface Schema$LintPolicyRequest {
-    /**
-     * Binding object to be linted. The functionality of linting a binding is not yet implemented and if this field is set, it returns NOT_IMPLEMENTED error.
-     */
-    binding?: Schema$Binding;
     /**
      * google.iam.v1.Binding.condition object to be linted.
      */
     condition?: Schema$Expr;
     /**
-     * `context` contains additional *permission-controlled* data that any lint unit may depend on, in form of `{key: value}` pairs. Currently, this field is non-operational and it will not be used during the lint operation.
-     */
-    context?: {[key: string]: any} | null;
-    /**
      * The full resource name of the policy this lint request is about.  The name follows the Google Cloud Platform (GCP) resource format. For example, a GCP project with ID `my-project` will be named `//cloudresourcemanager.googleapis.com/projects/my-project`.  The resource name is not used to read the policy instance from the Cloud IAM database. The candidate policy for lint has to be provided in the same request object.
      */
     fullResourceName?: string | null;
-    /**
-     * Policy object to be linted. The functionality of linting a policy is not yet implemented and if this field is set, it returns NOT_IMPLEMENTED error.
-     */
-    policy?: Schema$Policy;
   }
   /**
    * The response of a lint operation. An empty response indicates the operation was able to fully execute and no lint issue was found.
    */
   export interface Schema$LintPolicyResponse {
     /**
-     * List of lint results sorted by a composite &lt;severity, binding_ordinal&gt; key, descending order of severity and ascending order of binding_ordinal. There is no certain order among the same keys.  For cross-binding results (only if the input object to lint is instance of google.iam.v1.Policy), there will be a google.iam.admin.v1.LintResult for each of the involved bindings, and the associated debug_message may enumerate the other involved binding ordinal number(s).
+     * List of lint results sorted by `severity` in descending order.
      */
     lintResults?: Schema$LintResult[];
   }
@@ -327,15 +325,11 @@ export namespace iam_v1 {
    */
   export interface Schema$LintResult {
     /**
-     * 0-based index ordinality of the binding in the input object associated with this result. This field is populated only if the input object to lint is of type google.iam.v1.Policy, which can comprise more than one binding. It is set to -1 if the result is not associated with any particular binding and only targets the policy as a whole, such as results about policy size violations.
-     */
-    bindingOrdinal?: number | null;
-    /**
      * Human readable debug message associated with the issue.
      */
     debugMessage?: string | null;
     /**
-     * The name of the field for which this lint result is about.  For nested messages, `field_name` consists of names of the embedded fields separated by period character. The top-level qualifier is the input object to lint in the request. For instance, if the lint request is on a google.iam.v1.Policy and this lint result is about a condition expression of one of the input policy bindings, the field would be populated as `policy.bindings.condition.expression`.  This field does not identify the ordinality of the repetitive fields (for instance bindings in a policy).
+     * The name of the field for which this lint result is about.  For nested messages `field_name` consists of names of the embedded fields separated by period character. The top-level qualifier is the input object to lint in the request. For example, the `field_name` value `condition.expression` identifies a lint result for the `expression` field of the provided condition.
      */
     fieldName?: string | null;
     /**
@@ -351,7 +345,7 @@ export namespace iam_v1 {
      */
     severity?: string | null;
     /**
-     * The validation unit name, for instance “lintValidationUnits/ConditionComplexityCheck”.
+     * The validation unit name, for instance &quot;lintValidationUnits/ConditionComplexityCheck&quot;.
      */
     validationUnitName?: string | null;
   }
@@ -410,16 +404,13 @@ export namespace iam_v1 {
      */
     customRolesSupportLevel?: string | null;
     /**
-     * A brief description of what this Permission is used for.
+     * A brief description of what this Permission is used for. This permission can ONLY be used in predefined roles.
      */
     description?: string | null;
     /**
      * The name of this Permission.
      */
     name?: string | null;
-    /**
-     * This permission can ONLY be used in predefined roles.
-     */
     onlyInPredefinedRoles?: boolean | null;
     /**
      * The preferred name for this permission. If present, then this permission is an alias of, and equivalent to, the listed primary_permission.
@@ -448,7 +439,7 @@ export namespace iam_v1 {
     removedPermissions?: string[] | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -456,15 +447,15 @@ export namespace iam_v1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -643,6 +634,10 @@ export namespace iam_v1 {
      */
     keyOrigin?: string | null;
     /**
+     * The key type.
+     */
+    keyType?: string | null;
+    /**
      * The resource name of the service account key in the following format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.
      */
     name?: string | null;
@@ -676,7 +671,7 @@ export namespace iam_v1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
@@ -685,7 +680,7 @@ export namespace iam_v1 {
    */
   export interface Schema$SignBlobRequest {
     /**
-     * The bytes to sign.
+     * Required. The bytes to sign.
      */
     bytesToSign?: string | null;
   }
@@ -707,7 +702,7 @@ export namespace iam_v1 {
    */
   export interface Schema$SignJwtRequest {
     /**
-     * The JWT payload to sign, a JSON JWT Claim set.
+     * Required. The JWT payload to sign, a JSON JWT Claim set.
      */
     payload?: string | null;
   }
@@ -779,67 +774,75 @@ export namespace iam_v1 {
 
     /**
      * iam.iamPolicies.lintPolicy
-     * @desc Lints a Cloud IAM policy object or its sub fields. Currently supports google.iam.v1.Policy, google.iam.v1.Binding and google.iam.v1.Binding.condition.  Each lint operation consists of multiple lint validation units. Validation units have the following properties:  - Each unit inspects the input object in regard to a particular   linting aspect and issues a google.iam.admin.v1.LintResult   disclosing the result. - Domain of discourse of each unit can be either   google.iam.v1.Policy, google.iam.v1.Binding, or   google.iam.v1.Binding.condition depending on the purpose of the   validation. - A unit may require additional data (like the list of all possible   enumerable values of a particular attribute used in the policy instance)   which shall be provided by the caller. Refer to the comments of   google.iam.admin.v1.LintPolicyRequest.context for more details.  The set of applicable validation units is determined by the Cloud IAM server and is not configurable.  Regardless of any lint issues or their severities, successful calls to `lintPolicy` return an HTTP 200 OK status code.
+     * @desc Lints a Cloud IAM policy object or its sub fields. Currently supports google.iam.v1.Binding.condition.  Each lint operation consists of multiple lint validation units. Each unit inspects the input object in regard to a particular linting aspect and issues a google.iam.admin.v1.LintResult disclosing the result.  The set of applicable validation units is determined by the Cloud IAM server and is not configurable.  Regardless of any lint issues or their severities, successful calls to `lintPolicy` return an HTTP 200 OK status code.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.iamPolicies.lintPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.iamPolicies.lintPolicy({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "condition": {},
+     *       //   "fullResourceName": "my_fullResourceName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lintResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.iamPolicies.lintPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().LintPolicyRequest} params.resource Request body data
+     * @param {().LintPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     lintPolicy(
+      params: Params$Resource$Iampolicies$Lintpolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lintPolicy(
       params?: Params$Resource$Iampolicies$Lintpolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LintPolicyResponse>;
+    lintPolicy(
+      params: Params$Resource$Iampolicies$Lintpolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     lintPolicy(
       params: Params$Resource$Iampolicies$Lintpolicy,
       options: MethodOptions | BodyResponseCallback<Schema$LintPolicyResponse>,
@@ -853,12 +856,20 @@ export namespace iam_v1 {
     lintPolicy(
       paramsOrCallback?:
         | Params$Resource$Iampolicies$Lintpolicy
-        | BodyResponseCallback<Schema$LintPolicyResponse>,
+        | BodyResponseCallback<Schema$LintPolicyResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LintPolicyResponse>,
-      callback?: BodyResponseCallback<Schema$LintPolicyResponse>
-    ): void | GaxiosPromise<Schema$LintPolicyResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LintPolicyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LintPolicyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LintPolicyResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Iampolicies$Lintpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -892,7 +903,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LintPolicyResponse>(parameters, callback);
+        createAPIRequest<Schema$LintPolicyResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LintPolicyResponse>(parameters);
       }
@@ -902,65 +916,72 @@ export namespace iam_v1 {
      * iam.iamPolicies.queryAuditableServices
      * @desc Returns a list of services that support service level audit logging configuration for the given resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.iamPolicies.queryAuditableServices(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.iamPolicies.queryAuditableServices({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fullResourceName": "my_fullResourceName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "services": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.iamPolicies.queryAuditableServices
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().QueryAuditableServicesRequest} params.resource Request body data
+     * @param {().QueryAuditableServicesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     queryAuditableServices(
+      params: Params$Resource$Iampolicies$Queryauditableservices,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    queryAuditableServices(
       params?: Params$Resource$Iampolicies$Queryauditableservices,
       options?: MethodOptions
     ): GaxiosPromise<Schema$QueryAuditableServicesResponse>;
+    queryAuditableServices(
+      params: Params$Resource$Iampolicies$Queryauditableservices,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     queryAuditableServices(
       params: Params$Resource$Iampolicies$Queryauditableservices,
       options:
@@ -978,12 +999,20 @@ export namespace iam_v1 {
     queryAuditableServices(
       paramsOrCallback?:
         | Params$Resource$Iampolicies$Queryauditableservices
-        | BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
+        | BodyResponseCallback<Schema$QueryAuditableServicesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
-      callback?: BodyResponseCallback<Schema$QueryAuditableServicesResponse>
-    ): void | GaxiosPromise<Schema$QueryAuditableServicesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryAuditableServicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryAuditableServicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$QueryAuditableServicesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Iampolicies$Queryauditableservices;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1019,7 +1048,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$QueryAuditableServicesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$QueryAuditableServicesResponse>(
@@ -1032,22 +1061,12 @@ export namespace iam_v1 {
   export interface Params$Resource$Iampolicies$Lintpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$LintPolicyRequest;
   }
   export interface Params$Resource$Iampolicies$Queryauditableservices
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1073,71 +1092,102 @@ export namespace iam_v1 {
      * iam.organizations.roles.create
      * @desc Creates a new Role.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the parent resource in one of the following formats:
-     *     // `organizations/{ORGANIZATION_ID}`
-     *     // `projects/{PROJECT_ID}`
-     *     parent: 'organizations/my-organization',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.organizations.roles.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.organizations.roles.create({
+     *     // The `parent` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `parent` value format is described below:
+     *     //
+     *     // * [`projects.roles.create()`](/iam/reference/rest/v1/projects.roles/create):
+     *     //   `projects/{PROJECT_ID}`. This method creates project-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`
+     *     //
+     *     // * [`organizations.roles.create()`](/iam/reference/rest/v1/organizations.roles/create):
+     *     //   `organizations/{ORGANIZATION_ID}`. This method creates organization-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles). Example request
+     *     //   URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "role": {},
+     *       //   "roleId": "my_roleId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.organizations.roles.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The `parent` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `parent` value format is described below:  * [`projects.roles.create()`](/iam/reference/rest/v1/projects.roles/create):   `projects/{PROJECT_ID}`. This method creates project-level   [custom roles](/iam/docs/understanding-custom-roles).   Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`  * [`organizations.roles.create()`](/iam/reference/rest/v1/organizations.roles/create):   `organizations/{ORGANIZATION_ID}`. This method creates organization-level   [custom roles](/iam/docs/understanding-custom-roles). Example request   URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
-     * @param {().CreateRoleRequest} params.resource Request body data
+     * @param {().CreateRoleRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Organizations$Roles$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Organizations$Roles$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Role>;
+    create(
+      params: Params$Resource$Organizations$Roles$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Organizations$Roles$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Role>,
@@ -1151,10 +1201,17 @@ export namespace iam_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Organizations$Roles$Create
-        | BodyResponseCallback<Schema$Role>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
-      callback?: BodyResponseCallback<Schema$Role>
-    ): void | GaxiosPromise<Schema$Role> {
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Roles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1188,7 +1245,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Role>(parameters, callback);
+        createAPIRequest<Schema$Role>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
       }
@@ -1198,53 +1258,72 @@ export namespace iam_v1 {
      * iam.organizations.roles.delete
      * @desc Soft deletes a role. The role is suspended and cannot be used to create new IAM Policy Bindings. The Role will not be included in `ListRoles()` unless `show_deleted` is set in the `ListRolesRequest`. The Role contains the deleted boolean set. Existing Bindings remains, but are inactive. The Role can be undeleted within 7 days. After 7 days the Role is deleted and all Bindings associated with the role are removed.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'organizations/my-organization/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.organizations.roles.delete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.organizations.roles.delete({
+     *     // Used to perform a consistent read-modify-write.
+     *     etag: 'placeholder-value',
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`projects.roles.delete()`](/iam/reference/rest/v1/projects.roles/delete):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method deletes only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.delete()`](/iam/reference/rest/v1/organizations.roles/delete):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   deletes only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'organizations/my-organization/roles/my-role',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.organizations.roles.delete
      * @memberOf! ()
      *
@@ -1256,9 +1335,18 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Organizations$Roles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Organizations$Roles$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Role>;
+    delete(
+      params: Params$Resource$Organizations$Roles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Organizations$Roles$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Role>,
@@ -1272,10 +1360,17 @@ export namespace iam_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Roles$Delete
-        | BodyResponseCallback<Schema$Role>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
-      callback?: BodyResponseCallback<Schema$Role>
-    ): void | GaxiosPromise<Schema$Role> {
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Roles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1306,7 +1401,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Role>(parameters, callback);
+        createAPIRequest<Schema$Role>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
       }
@@ -1316,54 +1414,77 @@ export namespace iam_v1 {
      * iam.organizations.roles.get
      * @desc Gets a Role definition.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `roles/{ROLE_NAME}`
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'organizations/my-organization/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.organizations.roles.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.organizations.roles.get({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`roles`](/iam/reference/rest/v1/roles),
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles), or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`roles.get()`](/iam/reference/rest/v1/roles/get): `roles/{ROLE_NAME}`.
+     *     //   This method returns results from all
+     *     //   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in
+     *     //   Cloud IAM. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/roles/{ROLE_NAME}`
+     *     //
+     *     // * [`projects.roles.get()`](/iam/reference/rest/v1/projects.roles/get):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.get()`](/iam/reference/rest/v1/organizations.roles/get):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   returns only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'organizations/my-organization/roles/my-role',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.organizations.roles.get
      * @memberOf! ()
      *
@@ -1374,9 +1495,18 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Roles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Roles$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Role>;
+    get(
+      params: Params$Resource$Organizations$Roles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Roles$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Role>,
@@ -1390,10 +1520,17 @@ export namespace iam_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Roles$Get
-        | BodyResponseCallback<Schema$Role>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
-      callback?: BodyResponseCallback<Schema$Role>
-    ): void | GaxiosPromise<Schema$Role> {
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1424,7 +1561,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Role>(parameters, callback);
+        createAPIRequest<Schema$Role>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
       }
@@ -1434,67 +1574,83 @@ export namespace iam_v1 {
      * iam.organizations.roles.list
      * @desc Lists the Roles defined on a resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the parent resource in one of the following formats:
-     *     // `` (empty string) -- this refers to curated roles.
-     *     // `organizations/{ORGANIZATION_ID}`
-     *     // `projects/{PROJECT_ID}`
-     *     parent: 'organizations/my-organization',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
      *
-     *     auth: authClient,
-     *   };
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *   // Do the magic
+     *   const res = await iam.organizations.roles.list({
+     *     // Optional limit on the number of roles to include in the response.
+     *     pageSize: 'placeholder-value',
+     *     // Optional pagination token returned in an earlier ListRolesResponse.
+     *     pageToken: 'placeholder-value',
+     *     // The `parent` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`roles`](/iam/reference/rest/v1/roles),
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles), or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `parent` value format is described below:
+     *     //
+     *     // * [`roles.list()`](/iam/reference/rest/v1/roles/list): An empty string.
+     *     //   This method doesn't require a resource; it simply returns all
+     *     //   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in
+     *     //   Cloud IAM. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/roles`
+     *     //
+     *     // * [`projects.roles.list()`](/iam/reference/rest/v1/projects.roles/list):
+     *     //   `projects/{PROJECT_ID}`. This method lists all project-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`
+     *     //
+     *     // * [`organizations.roles.list()`](/iam/reference/rest/v1/organizations.roles/list):
+     *     //   `organizations/{ORGANIZATION_ID}`. This method lists all
+     *     //   organization-level [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     parent: 'organizations/my-organization',
+     *     // Include Roles that have been deleted.
+     *     showDeleted: 'placeholder-value',
+     *     // Optional view for the returned Role objects. When `FULL` is specified,
+     *     // the `includedPermissions` field is returned, which includes a list of all
+     *     // permissions in the role. The default value is `BASIC`, which does not
+     *     // return the `includedPermissions` field.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     var rolesPage = response['roles'];
-     *     if (!rolesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < rolesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `rolesPage`:
-     *       console.log(JSON.stringify(rolesPage[i], null, 2));
-     *     }
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "roles": []
+     *   // }
+     * }
      *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       iam.organizations.roles.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   iam.organizations.roles.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.organizations.roles.list
      * @memberOf! ()
      *
@@ -1509,9 +1665,18 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Roles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Roles$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListRolesResponse>;
+    list(
+      params: Params$Resource$Organizations$Roles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Roles$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListRolesResponse>,
@@ -1525,12 +1690,20 @@ export namespace iam_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Roles$List
-        | BodyResponseCallback<Schema$ListRolesResponse>,
+        | BodyResponseCallback<Schema$ListRolesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListRolesResponse>,
-      callback?: BodyResponseCallback<Schema$ListRolesResponse>
-    ): void | GaxiosPromise<Schema$ListRolesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRolesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRolesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRolesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1564,7 +1737,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListRolesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListRolesResponse>(parameters);
       }
@@ -1574,74 +1750,110 @@ export namespace iam_v1 {
      * iam.organizations.roles.patch
      * @desc Updates a Role definition.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `roles/{ROLE_NAME}`
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'organizations/my-organization/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.organizations.roles.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.organizations.roles.patch({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`projects.roles.patch()`](/iam/reference/rest/v1/projects.roles/patch):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method updates only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.patch()`](/iam/reference/rest/v1/organizations.roles/patch):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   updates only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'organizations/my-organization/roles/my-role',
+     *     // A mask describing which fields in the Role have changed.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "includedPermissions": [],
+     *       //   "name": "my_name",
+     *       //   "stage": "my_stage",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.organizations.roles.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The `name` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`projects.roles.patch()`](/iam/reference/rest/v1/projects.roles/patch):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method updates only   [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.patch()`](/iam/reference/rest/v1/organizations.roles/patch):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   updates only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      * @param {string=} params.updateMask A mask describing which fields in the Role have changed.
-     * @param {().Role} params.resource Request body data
+     * @param {().Role} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Organizations$Roles$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Organizations$Roles$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Role>;
+    patch(
+      params: Params$Resource$Organizations$Roles$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Organizations$Roles$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Role>,
@@ -1655,10 +1867,17 @@ export namespace iam_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Organizations$Roles$Patch
-        | BodyResponseCallback<Schema$Role>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
-      callback?: BodyResponseCallback<Schema$Role>
-    ): void | GaxiosPromise<Schema$Role> {
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Roles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1689,7 +1908,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Role>(parameters, callback);
+        createAPIRequest<Schema$Role>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
       }
@@ -1699,71 +1921,101 @@ export namespace iam_v1 {
      * iam.organizations.roles.undelete
      * @desc Undelete a Role, bringing it back in its previous state.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'organizations/my-organization/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.organizations.roles.undelete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.organizations.roles.undelete({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`projects.roles.undelete()`](/iam/reference/rest/v1/projects.roles/undelete):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method undeletes
+     *     //   only [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.undelete()`](/iam/reference/rest/v1/organizations.roles/undelete):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   undeletes only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'organizations/my-organization/roles/my-role',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.organizations.roles.undelete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The `name` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`projects.roles.undelete()`](/iam/reference/rest/v1/projects.roles/undelete):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method undeletes   only [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.undelete()`](/iam/reference/rest/v1/organizations.roles/undelete):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   undeletes only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
-     * @param {().UndeleteRoleRequest} params.resource Request body data
+     * @param {().UndeleteRoleRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     undelete(
+      params: Params$Resource$Organizations$Roles$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
       params?: Params$Resource$Organizations$Roles$Undelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Role>;
+    undelete(
+      params: Params$Resource$Organizations$Roles$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     undelete(
       params: Params$Resource$Organizations$Roles$Undelete,
       options: MethodOptions | BodyResponseCallback<Schema$Role>,
@@ -1777,10 +2029,17 @@ export namespace iam_v1 {
     undelete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Roles$Undelete
-        | BodyResponseCallback<Schema$Role>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
-      callback?: BodyResponseCallback<Schema$Role>
-    ): void | GaxiosPromise<Schema$Role> {
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Roles$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1814,7 +2073,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Role>(parameters, callback);
+        createAPIRequest<Schema$Role>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
       }
@@ -1823,11 +2085,6 @@ export namespace iam_v1 {
 
   export interface Params$Resource$Organizations$Roles$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The `parent` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `parent` value format is described below:  * [`projects.roles.create()`](/iam/reference/rest/v1/projects.roles/create):   `projects/{PROJECT_ID}`. This method creates project-level   [custom roles](/iam/docs/understanding-custom-roles).   Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`  * [`organizations.roles.create()`](/iam/reference/rest/v1/organizations.roles/create):   `organizations/{ORGANIZATION_ID}`. This method creates organization-level   [custom roles](/iam/docs/understanding-custom-roles). Example request   URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
@@ -1841,11 +2098,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Organizations$Roles$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Used to perform a consistent read-modify-write.
      */
     etag?: string;
@@ -1857,22 +2109,12 @@ export namespace iam_v1 {
   export interface Params$Resource$Organizations$Roles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `name` parameter's value depends on the target resource for the request, namely [`roles`](/iam/reference/rest/v1/roles), [`projects`](/iam/reference/rest/v1/projects.roles), or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`roles.get()`](/iam/reference/rest/v1/roles/get): `roles/{ROLE_NAME}`.   This method returns results from all   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in   Cloud IAM. Example request URL:   `https://iam.googleapis.com/v1/roles/{ROLE_NAME}`  * [`projects.roles.get()`](/iam/reference/rest/v1/projects.roles/get):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only   [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.get()`](/iam/reference/rest/v1/organizations.roles/get):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   returns only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Roles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional limit on the number of roles to include in the response.
      */
@@ -1897,11 +2139,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Organizations$Roles$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `name` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`projects.roles.patch()`](/iam/reference/rest/v1/projects.roles/patch):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method updates only   [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.patch()`](/iam/reference/rest/v1/organizations.roles/patch):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   updates only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     name?: string;
@@ -1917,11 +2154,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Organizations$Roles$Undelete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The `name` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`projects.roles.undelete()`](/iam/reference/rest/v1/projects.roles/undelete):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method undeletes   only [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.undelete()`](/iam/reference/rest/v1/organizations.roles/undelete):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   undeletes only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
@@ -1943,78 +2175,75 @@ export namespace iam_v1 {
      * iam.permissions.queryTestablePermissions
      * @desc Lists the permissions testable on a resource. A permission is testable if it can be tested for an identity on a resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.permissions.queryTestablePermissions({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fullResourceName": "my_fullResourceName",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken"
+     *       // }
      *     },
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "permissions": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var permissionsPage = response['permissions'];
-     *     if (!permissionsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < permissionsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `permissionsPage`:
-     *       console.log(JSON.stringify(permissionsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.resource.pageToken = response.nextPageToken;
-     *       iam.permissions.queryTestablePermissions(request, handlePage);
-     *     }
-     *   };
-     *
-     *   iam.permissions.queryTestablePermissions(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.permissions.queryTestablePermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().QueryTestablePermissionsRequest} params.resource Request body data
+     * @param {().QueryTestablePermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     queryTestablePermissions(
+      params: Params$Resource$Permissions$Querytestablepermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    queryTestablePermissions(
       params?: Params$Resource$Permissions$Querytestablepermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$QueryTestablePermissionsResponse>;
+    queryTestablePermissions(
+      params: Params$Resource$Permissions$Querytestablepermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     queryTestablePermissions(
       params: Params$Resource$Permissions$Querytestablepermissions,
       options:
@@ -2032,12 +2261,20 @@ export namespace iam_v1 {
     queryTestablePermissions(
       paramsOrCallback?:
         | Params$Resource$Permissions$Querytestablepermissions
-        | BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
+        | BodyResponseCallback<Schema$QueryTestablePermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$QueryTestablePermissionsResponse>
-    ): void | GaxiosPromise<Schema$QueryTestablePermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryTestablePermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryTestablePermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$QueryTestablePermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Querytestablepermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2073,7 +2310,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$QueryTestablePermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$QueryTestablePermissionsResponse>(
@@ -2085,11 +2322,6 @@ export namespace iam_v1 {
 
   export interface Params$Resource$Permissions$Querytestablepermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -2119,71 +2351,102 @@ export namespace iam_v1 {
      * iam.projects.roles.create
      * @desc Creates a new Role.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the parent resource in one of the following formats:
-     *     // `organizations/{ORGANIZATION_ID}`
-     *     // `projects/{PROJECT_ID}`
-     *     parent: 'projects/my-project',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.roles.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.roles.create({
+     *     // The `parent` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `parent` value format is described below:
+     *     //
+     *     // * [`projects.roles.create()`](/iam/reference/rest/v1/projects.roles/create):
+     *     //   `projects/{PROJECT_ID}`. This method creates project-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`
+     *     //
+     *     // * [`organizations.roles.create()`](/iam/reference/rest/v1/organizations.roles/create):
+     *     //   `organizations/{ORGANIZATION_ID}`. This method creates organization-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles). Example request
+     *     //   URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "role": {},
+     *       //   "roleId": "my_roleId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.roles.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The `parent` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `parent` value format is described below:  * [`projects.roles.create()`](/iam/reference/rest/v1/projects.roles/create):   `projects/{PROJECT_ID}`. This method creates project-level   [custom roles](/iam/docs/understanding-custom-roles).   Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`  * [`organizations.roles.create()`](/iam/reference/rest/v1/organizations.roles/create):   `organizations/{ORGANIZATION_ID}`. This method creates organization-level   [custom roles](/iam/docs/understanding-custom-roles). Example request   URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
-     * @param {().CreateRoleRequest} params.resource Request body data
+     * @param {().CreateRoleRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Roles$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Roles$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Role>;
+    create(
+      params: Params$Resource$Projects$Roles$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Roles$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Role>,
@@ -2197,10 +2460,17 @@ export namespace iam_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Roles$Create
-        | BodyResponseCallback<Schema$Role>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
-      callback?: BodyResponseCallback<Schema$Role>
-    ): void | GaxiosPromise<Schema$Role> {
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Roles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2234,7 +2504,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Role>(parameters, callback);
+        createAPIRequest<Schema$Role>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
       }
@@ -2244,53 +2517,72 @@ export namespace iam_v1 {
      * iam.projects.roles.delete
      * @desc Soft deletes a role. The role is suspended and cannot be used to create new IAM Policy Bindings. The Role will not be included in `ListRoles()` unless `show_deleted` is set in the `ListRolesRequest`. The Role contains the deleted boolean set. Existing Bindings remains, but are inactive. The Role can be undeleted within 7 days. After 7 days the Role is deleted and all Bindings associated with the role are removed.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'projects/my-project/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.roles.delete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.roles.delete({
+     *     // Used to perform a consistent read-modify-write.
+     *     etag: 'placeholder-value',
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`projects.roles.delete()`](/iam/reference/rest/v1/projects.roles/delete):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method deletes only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.delete()`](/iam/reference/rest/v1/organizations.roles/delete):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   deletes only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'projects/my-project/roles/my-role',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.roles.delete
      * @memberOf! ()
      *
@@ -2302,9 +2594,18 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Roles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Roles$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Role>;
+    delete(
+      params: Params$Resource$Projects$Roles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Roles$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Role>,
@@ -2318,10 +2619,17 @@ export namespace iam_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Roles$Delete
-        | BodyResponseCallback<Schema$Role>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
-      callback?: BodyResponseCallback<Schema$Role>
-    ): void | GaxiosPromise<Schema$Role> {
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Roles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2352,7 +2660,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Role>(parameters, callback);
+        createAPIRequest<Schema$Role>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
       }
@@ -2362,54 +2673,77 @@ export namespace iam_v1 {
      * iam.projects.roles.get
      * @desc Gets a Role definition.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `roles/{ROLE_NAME}`
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'projects/my-project/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.roles.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.roles.get({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`roles`](/iam/reference/rest/v1/roles),
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles), or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`roles.get()`](/iam/reference/rest/v1/roles/get): `roles/{ROLE_NAME}`.
+     *     //   This method returns results from all
+     *     //   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in
+     *     //   Cloud IAM. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/roles/{ROLE_NAME}`
+     *     //
+     *     // * [`projects.roles.get()`](/iam/reference/rest/v1/projects.roles/get):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.get()`](/iam/reference/rest/v1/organizations.roles/get):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   returns only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'projects/my-project/roles/my-role',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.roles.get
      * @memberOf! ()
      *
@@ -2420,9 +2754,18 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Roles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Roles$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Role>;
+    get(
+      params: Params$Resource$Projects$Roles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Roles$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Role>,
@@ -2436,10 +2779,17 @@ export namespace iam_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Roles$Get
-        | BodyResponseCallback<Schema$Role>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
-      callback?: BodyResponseCallback<Schema$Role>
-    ): void | GaxiosPromise<Schema$Role> {
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2470,7 +2820,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Role>(parameters, callback);
+        createAPIRequest<Schema$Role>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
       }
@@ -2480,67 +2833,83 @@ export namespace iam_v1 {
      * iam.projects.roles.list
      * @desc Lists the Roles defined on a resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the parent resource in one of the following formats:
-     *     // `` (empty string) -- this refers to curated roles.
-     *     // `organizations/{ORGANIZATION_ID}`
-     *     // `projects/{PROJECT_ID}`
-     *     parent: 'projects/my-project',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
      *
-     *     auth: authClient,
-     *   };
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *   // Do the magic
+     *   const res = await iam.projects.roles.list({
+     *     // Optional limit on the number of roles to include in the response.
+     *     pageSize: 'placeholder-value',
+     *     // Optional pagination token returned in an earlier ListRolesResponse.
+     *     pageToken: 'placeholder-value',
+     *     // The `parent` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`roles`](/iam/reference/rest/v1/roles),
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles), or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `parent` value format is described below:
+     *     //
+     *     // * [`roles.list()`](/iam/reference/rest/v1/roles/list): An empty string.
+     *     //   This method doesn't require a resource; it simply returns all
+     *     //   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in
+     *     //   Cloud IAM. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/roles`
+     *     //
+     *     // * [`projects.roles.list()`](/iam/reference/rest/v1/projects.roles/list):
+     *     //   `projects/{PROJECT_ID}`. This method lists all project-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`
+     *     //
+     *     // * [`organizations.roles.list()`](/iam/reference/rest/v1/organizations.roles/list):
+     *     //   `organizations/{ORGANIZATION_ID}`. This method lists all
+     *     //   organization-level [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     parent: 'projects/my-project',
+     *     // Include Roles that have been deleted.
+     *     showDeleted: 'placeholder-value',
+     *     // Optional view for the returned Role objects. When `FULL` is specified,
+     *     // the `includedPermissions` field is returned, which includes a list of all
+     *     // permissions in the role. The default value is `BASIC`, which does not
+     *     // return the `includedPermissions` field.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     var rolesPage = response['roles'];
-     *     if (!rolesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < rolesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `rolesPage`:
-     *       console.log(JSON.stringify(rolesPage[i], null, 2));
-     *     }
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "roles": []
+     *   // }
+     * }
      *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       iam.projects.roles.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   iam.projects.roles.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.roles.list
      * @memberOf! ()
      *
@@ -2555,9 +2924,18 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Roles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Roles$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListRolesResponse>;
+    list(
+      params: Params$Resource$Projects$Roles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Roles$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListRolesResponse>,
@@ -2571,12 +2949,20 @@ export namespace iam_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Roles$List
-        | BodyResponseCallback<Schema$ListRolesResponse>,
+        | BodyResponseCallback<Schema$ListRolesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListRolesResponse>,
-      callback?: BodyResponseCallback<Schema$ListRolesResponse>
-    ): void | GaxiosPromise<Schema$ListRolesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRolesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRolesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRolesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2610,7 +2996,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListRolesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListRolesResponse>(parameters);
       }
@@ -2620,74 +3009,110 @@ export namespace iam_v1 {
      * iam.projects.roles.patch
      * @desc Updates a Role definition.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `roles/{ROLE_NAME}`
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'projects/my-project/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.roles.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.roles.patch({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`projects.roles.patch()`](/iam/reference/rest/v1/projects.roles/patch):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method updates only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.patch()`](/iam/reference/rest/v1/organizations.roles/patch):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   updates only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'projects/my-project/roles/my-role',
+     *     // A mask describing which fields in the Role have changed.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "includedPermissions": [],
+     *       //   "name": "my_name",
+     *       //   "stage": "my_stage",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.roles.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The `name` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`projects.roles.patch()`](/iam/reference/rest/v1/projects.roles/patch):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method updates only   [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.patch()`](/iam/reference/rest/v1/organizations.roles/patch):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   updates only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      * @param {string=} params.updateMask A mask describing which fields in the Role have changed.
-     * @param {().Role} params.resource Request body data
+     * @param {().Role} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Roles$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Roles$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Role>;
+    patch(
+      params: Params$Resource$Projects$Roles$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Roles$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Role>,
@@ -2701,10 +3126,17 @@ export namespace iam_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Roles$Patch
-        | BodyResponseCallback<Schema$Role>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
-      callback?: BodyResponseCallback<Schema$Role>
-    ): void | GaxiosPromise<Schema$Role> {
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Roles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2735,7 +3167,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Role>(parameters, callback);
+        createAPIRequest<Schema$Role>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
       }
@@ -2745,71 +3180,101 @@ export namespace iam_v1 {
      * iam.projects.roles.undelete
      * @desc Undelete a Role, bringing it back in its previous state.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'projects/my-project/roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.roles.undelete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.roles.undelete({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles) or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`projects.roles.undelete()`](/iam/reference/rest/v1/projects.roles/undelete):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method undeletes
+     *     //   only [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.undelete()`](/iam/reference/rest/v1/organizations.roles/undelete):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   undeletes only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'projects/my-project/roles/my-role',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.roles.undelete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The `name` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`projects.roles.undelete()`](/iam/reference/rest/v1/projects.roles/undelete):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method undeletes   only [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.undelete()`](/iam/reference/rest/v1/organizations.roles/undelete):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   undeletes only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
-     * @param {().UndeleteRoleRequest} params.resource Request body data
+     * @param {().UndeleteRoleRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     undelete(
+      params: Params$Resource$Projects$Roles$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
       params?: Params$Resource$Projects$Roles$Undelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Role>;
+    undelete(
+      params: Params$Resource$Projects$Roles$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     undelete(
       params: Params$Resource$Projects$Roles$Undelete,
       options: MethodOptions | BodyResponseCallback<Schema$Role>,
@@ -2823,10 +3288,17 @@ export namespace iam_v1 {
     undelete(
       paramsOrCallback?:
         | Params$Resource$Projects$Roles$Undelete
-        | BodyResponseCallback<Schema$Role>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
-      callback?: BodyResponseCallback<Schema$Role>
-    ): void | GaxiosPromise<Schema$Role> {
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Roles$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2860,7 +3332,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Role>(parameters, callback);
+        createAPIRequest<Schema$Role>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
       }
@@ -2869,11 +3344,6 @@ export namespace iam_v1 {
 
   export interface Params$Resource$Projects$Roles$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The `parent` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `parent` value format is described below:  * [`projects.roles.create()`](/iam/reference/rest/v1/projects.roles/create):   `projects/{PROJECT_ID}`. This method creates project-level   [custom roles](/iam/docs/understanding-custom-roles).   Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`  * [`organizations.roles.create()`](/iam/reference/rest/v1/organizations.roles/create):   `organizations/{ORGANIZATION_ID}`. This method creates organization-level   [custom roles](/iam/docs/understanding-custom-roles). Example request   URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
@@ -2887,11 +3357,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Roles$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Used to perform a consistent read-modify-write.
      */
     etag?: string;
@@ -2903,22 +3368,12 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Roles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `name` parameter's value depends on the target resource for the request, namely [`roles`](/iam/reference/rest/v1/roles), [`projects`](/iam/reference/rest/v1/projects.roles), or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`roles.get()`](/iam/reference/rest/v1/roles/get): `roles/{ROLE_NAME}`.   This method returns results from all   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in   Cloud IAM. Example request URL:   `https://iam.googleapis.com/v1/roles/{ROLE_NAME}`  * [`projects.roles.get()`](/iam/reference/rest/v1/projects.roles/get):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only   [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.get()`](/iam/reference/rest/v1/organizations.roles/get):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   returns only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Roles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional limit on the number of roles to include in the response.
      */
@@ -2943,11 +3398,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Roles$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `name` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`projects.roles.patch()`](/iam/reference/rest/v1/projects.roles/patch):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method updates only   [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.patch()`](/iam/reference/rest/v1/organizations.roles/patch):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   updates only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     name?: string;
@@ -2963,11 +3413,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Projects$Roles$Undelete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The `name` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`projects.roles.undelete()`](/iam/reference/rest/v1/projects.roles/undelete):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method undeletes   only [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.undelete()`](/iam/reference/rest/v1/organizations.roles/undelete):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   undeletes only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
@@ -2991,70 +3436,86 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.create
      * @desc Creates a ServiceAccount and returns it.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.create({
      *     // Required. The resource name of the project associated with the service
      *     // accounts, such as `projects/my-project-123`.
-     *     name: 'projects/my-project',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "serviceAccount": {}
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "oauth2ClientId": "my_oauth2ClientId",
+     *   //   "projectId": "my_projectId",
+     *   //   "uniqueId": "my_uniqueId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
-     * @param {().CreateServiceAccountRequest} params.resource Request body data
+     * @param {().CreateServiceAccountRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Serviceaccounts$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Serviceaccounts$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ServiceAccount>;
+    create(
+      params: Params$Resource$Projects$Serviceaccounts$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Serviceaccounts$Create,
       options: MethodOptions | BodyResponseCallback<Schema$ServiceAccount>,
@@ -3068,12 +3529,17 @@ export namespace iam_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Create
-        | BodyResponseCallback<Schema$ServiceAccount>,
+        | BodyResponseCallback<Schema$ServiceAccount>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ServiceAccount>,
-      callback?: BodyResponseCallback<Schema$ServiceAccount>
-    ): void | GaxiosPromise<Schema$ServiceAccount> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ServiceAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ServiceAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ServiceAccount> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3107,7 +3573,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ServiceAccount>(parameters, callback);
+        createAPIRequest<Schema$ServiceAccount>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
       }
@@ -3117,65 +3586,69 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.delete
      * @desc Deletes a ServiceAccount.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.delete({
+     *     // Required. The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {string} params.name Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Serviceaccounts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Serviceaccounts$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Serviceaccounts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Serviceaccounts$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3189,10 +3662,17 @@ export namespace iam_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3223,7 +3703,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3231,72 +3714,78 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.disable
-     * @desc DisableServiceAccount is currently in the alpha launch stage.  Disables a ServiceAccount, which immediately prevents the service account from authenticating and gaining access to APIs.  Disabled service accounts can be safely restored by using EnableServiceAccount at any point. Deleted service accounts cannot be restored using this method.  Disabling a service account that is bound to VMs, Apps, Functions, or other jobs will cause those jobs to lose access to resources if they are using the disabled service account.  To improve reliability of your services and avoid unexpected outages, it is recommended to first disable a service account rather than delete it. After disabling the service account, wait at least 24 hours to verify there are no unintended consequences, and then delete the service account.
+     * @desc DisableServiceAccount is currently in the alpha launch stage.  Disables a ServiceAccount, which immediately prevents the service account from authenticating and gaining access to APIs.  Disabled service accounts can be safely restored by using EnableServiceAccount at any point. Deleted service accounts cannot be restored using this method.  Disabling a service account that is bound to VMs, Apps, Functions, or other jobs will cause those jobs to lose access to resources if they are using the disabled service account.  Previously issued Access tokens for a service account will be rejected while the service account is disabled but will start working again if the account is re-enabled. Issuance of new tokens will fail while the account is disabled.  To improve reliability of your services and avoid unexpected outages, it is recommended to first disable a service account rather than delete it. After disabling the service account, wait at least 24 hours to verify there are no unintended consequences, and then delete the service account.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.disable({
      *     // The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.disable(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.disable
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-     * @param {().DisableServiceAccountRequest} params.resource Request body data
+     * @param {().DisableServiceAccountRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     disable(
+      params: Params$Resource$Projects$Serviceaccounts$Disable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    disable(
       params?: Params$Resource$Projects$Serviceaccounts$Disable,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    disable(
+      params: Params$Resource$Projects$Serviceaccounts$Disable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     disable(
       params: Params$Resource$Projects$Serviceaccounts$Disable,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3310,10 +3799,17 @@ export namespace iam_v1 {
     disable(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Disable
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3347,7 +3843,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3357,69 +3856,76 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.enable
      * @desc EnableServiceAccount is currently in the alpha launch stage.   Restores a disabled ServiceAccount  that has been manually disabled by using DisableServiceAccount. Service  accounts that have been disabled by other means or for other reasons,  such as abuse, cannot be restored using this method.   EnableServiceAccount will have no effect on a service account that is  not disabled.  Enabling an already enabled service account will have no  effect.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
-     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'.
-     *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
-     *     // the account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.enable(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.enable({
+     *     // The resource name of the service account in the following format:
+     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
+     *     // the account. The `ACCOUNT` value can be the `email` address or the
+     *     // `unique_id` of the service account.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.enable
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-     * @param {().EnableServiceAccountRequest} params.resource Request body data
+     * @param {().EnableServiceAccountRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     enable(
+      params: Params$Resource$Projects$Serviceaccounts$Enable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enable(
       params?: Params$Resource$Projects$Serviceaccounts$Enable,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    enable(
+      params: Params$Resource$Projects$Serviceaccounts$Enable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     enable(
       params: Params$Resource$Projects$Serviceaccounts$Enable,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3433,10 +3939,17 @@ export namespace iam_v1 {
     enable(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Enable
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3467,7 +3980,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3477,68 +3993,79 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.get
      * @desc Gets a ServiceAccount.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.get({
+     *     // Required. The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "oauth2ClientId": "my_oauth2ClientId",
+     *   //   "projectId": "my_projectId",
+     *   //   "uniqueId": "my_uniqueId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {string} params.name Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Serviceaccounts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Serviceaccounts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ServiceAccount>;
+    get(
+      params: Params$Resource$Projects$Serviceaccounts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Serviceaccounts$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ServiceAccount>,
@@ -3552,12 +4079,17 @@ export namespace iam_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Get
-        | BodyResponseCallback<Schema$ServiceAccount>,
+        | BodyResponseCallback<Schema$ServiceAccount>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ServiceAccount>,
-      callback?: BodyResponseCallback<Schema$ServiceAccount>
-    ): void | GaxiosPromise<Schema$ServiceAccount> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ServiceAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ServiceAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ServiceAccount> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3588,7 +4120,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ServiceAccount>(parameters, callback);
+        createAPIRequest<Schema$ServiceAccount>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
       }
@@ -3598,66 +4133,85 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.getIamPolicy
      * @desc Returns the Cloud IAM access control policy for a ServiceAccount.  Note: Service accounts are both [resources and identities](/iam/docs/service-accounts#service_account_permissions). This method treats the service account as a resource. It returns the Cloud IAM policy that reflects what members have access to the service account.  This method does not return what resources the service account has access to. To see if a service account has access to a resource, call the `getIamPolicy` method on the target resource. For example, to view grants for a project, call the [projects.getIamPolicy](/resource-manager/reference/rest/v1/projects/getIamPolicy) method.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.getIamPolicy({
+     *     // Optional. The policy format version to be returned.
+     *     //
+     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+     *     // rejected.
+     *     //
+     *     // Requests for policies with any conditional bindings must specify version 3.
+     *     // Policies without any conditional bindings may specify any valid value or
+     *     // leave the field unset.
+     *     //
+     *     // To learn which resources support conditions in their IAM policies, see the
+     *     // [IAM
+     *     // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
      *     // REQUIRED: The resource for which the policy is being requested.
      *     // See the operation documentation for the appropriate value for this field.
-     *     resource_: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.getIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     resource: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.getIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -3671,10 +4225,17 @@ export namespace iam_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3708,7 +4269,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -3718,65 +4282,55 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.list
      * @desc Lists ServiceAccounts for a project.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.list({
      *     // Required. The resource name of the project associated with the service
      *     // accounts, such as `projects/my-project-123`.
-     *     name: 'projects/my-project',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project',
+     *     // Optional limit on the number of service accounts to include in the
+     *     // response. Further accounts can subsequently be obtained by including the
+     *     // ListServiceAccountsResponse.next_page_token
+     *     // in a subsequent request.
+     *     pageSize: 'placeholder-value',
+     *     // Optional pagination token returned in an earlier
+     *     // ListServiceAccountsResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "accounts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var accountsPage = response['accounts'];
-     *     if (!accountsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < accountsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `accountsPage`:
-     *       console.log(JSON.stringify(accountsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       iam.projects.serviceAccounts.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   iam.projects.serviceAccounts.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.list
      * @memberOf! ()
      *
@@ -3789,9 +4343,18 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Serviceaccounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Serviceaccounts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListServiceAccountsResponse>;
+    list(
+      params: Params$Resource$Projects$Serviceaccounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Serviceaccounts$List,
       options:
@@ -3809,12 +4372,20 @@ export namespace iam_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$List
-        | BodyResponseCallback<Schema$ListServiceAccountsResponse>,
+        | BodyResponseCallback<Schema$ListServiceAccountsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListServiceAccountsResponse>,
-      callback?: BodyResponseCallback<Schema$ListServiceAccountsResponse>
-    ): void | GaxiosPromise<Schema$ListServiceAccountsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListServiceAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListServiceAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListServiceAccountsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3850,7 +4421,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ListServiceAccountsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListServiceAccountsResponse>(parameters);
@@ -3861,76 +4432,93 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.patch
      * @desc Patches a ServiceAccount.  Currently, only the following fields are updatable: `display_name` and `description`.  Only fields specified in the request are guaranteed to be returned in the response. Other fields in the response may be empty.  Note: The field mask is required.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.patch({
      *     // The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     //
      *     // Requests using `-` as a wildcard for the `PROJECT_ID` will infer the
      *     // project from the `account` and the `ACCOUNT` value can be the `email`
      *     // address or the `unique_id` of the service account.
+     *     //
      *     // In responses the resource name will always be in the format
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "serviceAccount": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "oauth2ClientId": "my_oauth2ClientId",
+     *   //   "projectId": "my_projectId",
+     *   //   "uniqueId": "my_uniqueId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as a wildcard for the `PROJECT_ID` will infer the project from the `account` and the `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.  In responses the resource name will always be in the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
-     * @param {().PatchServiceAccountRequest} params.resource Request body data
+     * @param {().PatchServiceAccountRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Serviceaccounts$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Serviceaccounts$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ServiceAccount>;
+    patch(
+      params: Params$Resource$Projects$Serviceaccounts$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Serviceaccounts$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$ServiceAccount>,
@@ -3944,12 +4532,17 @@ export namespace iam_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Patch
-        | BodyResponseCallback<Schema$ServiceAccount>,
+        | BodyResponseCallback<Schema$ServiceAccount>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ServiceAccount>,
-      callback?: BodyResponseCallback<Schema$ServiceAccount>
-    ): void | GaxiosPromise<Schema$ServiceAccount> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ServiceAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ServiceAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ServiceAccount> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3980,7 +4573,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ServiceAccount>(parameters, callback);
+        createAPIRequest<Schema$ServiceAccount>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
       }
@@ -3990,70 +4586,81 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.setIamPolicy
      * @desc Sets the Cloud IAM access control policy for a ServiceAccount.  Note: Service accounts are both [resources and identities](/iam/docs/service-accounts#service_account_permissions). This method treats the service account as a resource. Use it to grant members access to the service account, such as when they need to impersonate it.  This method does not grant the service account access to other resources, such as projects. To grant a service account access to resources, include the service account in the Cloud IAM policy for the desired resource, then call the appropriate `setIamPolicy` method on the target resource. For example, to grant a service account access to a project, call the [projects.setIamPolicy](/resource-manager/reference/rest/v1/projects/setIamPolicy) method.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.setIamPolicy({
      *     // REQUIRED: The resource for which the policy is being specified.
      *     // See the operation documentation for the appropriate value for this field.
-     *     resource_: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     resource: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.setIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.setIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -4067,10 +4674,17 @@ export namespace iam_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4104,7 +4718,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -4114,73 +4731,81 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.signBlob
      * @desc **Note**: This method is in the process of being deprecated. Call the [`signBlob()`](/iam/credentials/reference/rest/v1/projects.serviceAccounts/signBlob) method of the Cloud IAM Service Account Credentials API instead.  Signs a blob using a service account's system-managed private key.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.signBlob({
+     *     // Required. The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bytesToSign": "my_bytesToSign"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.signBlob(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyId": "my_keyId",
+     *   //   "signature": "my_signature"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.signBlob
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-     * @param {().SignBlobRequest} params.resource Request body data
+     * @param {string} params.name Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {().SignBlobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     signBlob(
+      params: Params$Resource$Projects$Serviceaccounts$Signblob,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    signBlob(
       params?: Params$Resource$Projects$Serviceaccounts$Signblob,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SignBlobResponse>;
+    signBlob(
+      params: Params$Resource$Projects$Serviceaccounts$Signblob,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     signBlob(
       params: Params$Resource$Projects$Serviceaccounts$Signblob,
       options: MethodOptions | BodyResponseCallback<Schema$SignBlobResponse>,
@@ -4194,12 +4819,17 @@ export namespace iam_v1 {
     signBlob(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Signblob
-        | BodyResponseCallback<Schema$SignBlobResponse>,
+        | BodyResponseCallback<Schema$SignBlobResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SignBlobResponse>,
-      callback?: BodyResponseCallback<Schema$SignBlobResponse>
-    ): void | GaxiosPromise<Schema$SignBlobResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SignBlobResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SignBlobResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SignBlobResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Signblob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4233,7 +4863,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SignBlobResponse>(parameters, callback);
+        createAPIRequest<Schema$SignBlobResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SignBlobResponse>(parameters);
       }
@@ -4243,73 +4876,81 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.signJwt
      * @desc **Note**: This method is in the process of being deprecated. Call the [`signJwt()`](/iam/credentials/reference/rest/v1/projects.serviceAccounts/signJwt) method of the Cloud IAM Service Account Credentials API instead.  Signs a JWT using a service account's system-managed private key.  If no expiry time (`exp`) is provided in the `SignJwtRequest`, IAM sets an an expiry time of one hour by default. If you request an expiry time of more than one hour, the request will fail.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.signJwt({
+     *     // Required. The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "payload": "my_payload"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.signJwt(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyId": "my_keyId",
+     *   //   "signedJwt": "my_signedJwt"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.signJwt
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-     * @param {().SignJwtRequest} params.resource Request body data
+     * @param {string} params.name Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {().SignJwtRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     signJwt(
+      params: Params$Resource$Projects$Serviceaccounts$Signjwt,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    signJwt(
       params?: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SignJwtResponse>;
+    signJwt(
+      params: Params$Resource$Projects$Serviceaccounts$Signjwt,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     signJwt(
       params: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options: MethodOptions | BodyResponseCallback<Schema$SignJwtResponse>,
@@ -4323,12 +4964,17 @@ export namespace iam_v1 {
     signJwt(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Signjwt
-        | BodyResponseCallback<Schema$SignJwtResponse>,
+        | BodyResponseCallback<Schema$SignJwtResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SignJwtResponse>,
-      callback?: BodyResponseCallback<Schema$SignJwtResponse>
-    ): void | GaxiosPromise<Schema$SignJwtResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SignJwtResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SignJwtResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SignJwtResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Signjwt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4362,7 +5008,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SignJwtResponse>(parameters, callback);
+        createAPIRequest<Schema$SignJwtResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SignJwtResponse>(parameters);
       }
@@ -4372,70 +5021,77 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.testIamPermissions
      * @desc Tests the specified permissions against the IAM access control policy for a ServiceAccount.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.testIamPermissions({
      *     // REQUIRED: The resource for which the policy detail is being requested.
      *     // See the operation documentation for the appropriate value for this field.
-     *     resource_: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     resource: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.testIamPermissions(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.testIamPermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
       options:
@@ -4453,12 +5109,20 @@ export namespace iam_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4494,7 +5158,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -4505,72 +5169,77 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.undelete
      * @desc Restores a deleted ServiceAccount. This is to be used as an action of last resort.  A service account may not always be restorable.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.undelete({
      *     // The resource name of the service account in the following format:
-     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'.
+     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.undelete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "restoredAccount": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.undelete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account.
-     * @param {().UndeleteServiceAccountRequest} params.resource Request body data
+     * @param {().UndeleteServiceAccountRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     undelete(
+      params: Params$Resource$Projects$Serviceaccounts$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
       params?: Params$Resource$Projects$Serviceaccounts$Undelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UndeleteServiceAccountResponse>;
+    undelete(
+      params: Params$Resource$Projects$Serviceaccounts$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     undelete(
       params: Params$Resource$Projects$Serviceaccounts$Undelete,
       options:
@@ -4588,12 +5257,20 @@ export namespace iam_v1 {
     undelete(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Undelete
-        | BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
+        | BodyResponseCallback<Schema$UndeleteServiceAccountResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
-      callback?: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>
-    ): void | GaxiosPromise<Schema$UndeleteServiceAccountResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UndeleteServiceAccountResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UndeleteServiceAccountResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UndeleteServiceAccountResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4629,7 +5306,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$UndeleteServiceAccountResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$UndeleteServiceAccountResponse>(
@@ -4642,76 +5319,100 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.update
      * @desc Note: This method is in the process of being deprecated. Use PatchServiceAccount instead.  Updates a ServiceAccount.  Currently, only the following fields are updatable: `display_name` and `description`.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.update({
      *     // The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     //
      *     // Requests using `-` as a wildcard for the `PROJECT_ID` will infer the
      *     // project from the `account` and the `ACCOUNT` value can be the `email`
      *     // address or the `unique_id` of the service account.
+     *     //
      *     // In responses the resource name will always be in the format
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "email": "my_email",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "oauth2ClientId": "my_oauth2ClientId",
+     *       //   "projectId": "my_projectId",
+     *       //   "uniqueId": "my_uniqueId"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "oauth2ClientId": "my_oauth2ClientId",
+     *   //   "projectId": "my_projectId",
+     *   //   "uniqueId": "my_uniqueId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as a wildcard for the `PROJECT_ID` will infer the project from the `account` and the `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.  In responses the resource name will always be in the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
-     * @param {().ServiceAccount} params.resource Request body data
+     * @param {().ServiceAccount} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Serviceaccounts$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Serviceaccounts$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ServiceAccount>;
+    update(
+      params: Params$Resource$Projects$Serviceaccounts$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Serviceaccounts$Update,
       options: MethodOptions | BodyResponseCallback<Schema$ServiceAccount>,
@@ -4725,12 +5426,17 @@ export namespace iam_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Update
-        | BodyResponseCallback<Schema$ServiceAccount>,
+        | BodyResponseCallback<Schema$ServiceAccount>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ServiceAccount>,
-      callback?: BodyResponseCallback<Schema$ServiceAccount>
-    ): void | GaxiosPromise<Schema$ServiceAccount> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ServiceAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ServiceAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ServiceAccount> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4761,7 +5467,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ServiceAccount>(parameters, callback);
+        createAPIRequest<Schema$ServiceAccount>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
       }
@@ -4770,11 +5479,6 @@ export namespace iam_v1 {
 
   export interface Params$Resource$Projects$Serviceaccounts$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
      */
@@ -4788,22 +5492,12 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Disable
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
@@ -4817,11 +5511,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Enable
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
@@ -4834,24 +5523,14 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -4861,11 +5540,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Projects$Serviceaccounts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
      */
@@ -4882,11 +5556,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as a wildcard for the `PROJECT_ID` will infer the project from the `account` and the `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.  In responses the resource name will always be in the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      */
     name?: string;
@@ -4898,11 +5567,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Projects$Serviceaccounts$Setiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
@@ -4916,12 +5580,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Signblob
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
 
@@ -4933,12 +5592,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Signjwt
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
 
@@ -4949,11 +5603,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Projects$Serviceaccounts$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -4967,11 +5616,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Undelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account.
      */
     name?: string;
@@ -4983,11 +5627,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Projects$Serviceaccounts$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as a wildcard for the `PROJECT_ID` will infer the project from the `account` and the `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.  In responses the resource name will always be in the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      */
@@ -5009,73 +5648,89 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.keys.create
      * @desc Creates a ServiceAccountKey and returns it.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.keys.create({
+     *     // Required. The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "keyAlgorithm": "my_keyAlgorithm",
+     *       //   "privateKeyType": "my_privateKeyType"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.keys.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyAlgorithm": "my_keyAlgorithm",
+     *   //   "keyOrigin": "my_keyOrigin",
+     *   //   "keyType": "my_keyType",
+     *   //   "name": "my_name",
+     *   //   "privateKeyData": "my_privateKeyData",
+     *   //   "privateKeyType": "my_privateKeyType",
+     *   //   "publicKeyData": "my_publicKeyData",
+     *   //   "validAfterTime": "my_validAfterTime",
+     *   //   "validBeforeTime": "my_validBeforeTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.keys.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-     * @param {().CreateServiceAccountKeyRequest} params.resource Request body data
+     * @param {string} params.name Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {().CreateServiceAccountKeyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Serviceaccounts$Keys$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ServiceAccountKey>;
+    create(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Create,
       options: MethodOptions | BodyResponseCallback<Schema$ServiceAccountKey>,
@@ -5089,12 +5744,20 @@ export namespace iam_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Keys$Create
-        | BodyResponseCallback<Schema$ServiceAccountKey>,
+        | BodyResponseCallback<Schema$ServiceAccountKey>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ServiceAccountKey>,
-      callback?: BodyResponseCallback<Schema$ServiceAccountKey>
-    ): void | GaxiosPromise<Schema$ServiceAccountKey> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ServiceAccountKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ServiceAccountKey>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ServiceAccountKey>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Keys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5125,7 +5788,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
+        createAPIRequest<Schema$ServiceAccountKey>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ServiceAccountKey>(parameters);
       }
@@ -5135,65 +5801,69 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.keys.delete
      * @desc Deletes a ServiceAccountKey.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account key in the following format:
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.keys.delete({
+     *     // Required. The resource name of the service account key in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account/keys/my-key',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.keys.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount/keys/my-key',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.keys.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {string} params.name Required. The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -5207,10 +5877,17 @@ export namespace iam_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Keys$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Keys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5241,7 +5918,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -5251,69 +5931,84 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.keys.get
      * @desc Gets the ServiceAccountKey by key id.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account key in the following format:
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.keys.get({
+     *     // Required. The resource name of the service account key in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.
+     *     //
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account/keys/my-key',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.keys.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount/keys/my-key',
+     *     // The output format of the public key requested.
+     *     // X509_PEM is the default output format.
+     *     publicKeyType: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyAlgorithm": "my_keyAlgorithm",
+     *   //   "keyOrigin": "my_keyOrigin",
+     *   //   "keyType": "my_keyType",
+     *   //   "name": "my_name",
+     *   //   "privateKeyData": "my_privateKeyData",
+     *   //   "privateKeyType": "my_privateKeyType",
+     *   //   "publicKeyData": "my_publicKeyData",
+     *   //   "validAfterTime": "my_validAfterTime",
+     *   //   "validBeforeTime": "my_validBeforeTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.keys.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.  Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {string} params.name Required. The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.  Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      * @param {string=} params.publicKeyType The output format of the public key requested. X509_PEM is the default output format.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Serviceaccounts$Keys$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ServiceAccountKey>;
+    get(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ServiceAccountKey>,
@@ -5327,12 +6022,20 @@ export namespace iam_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Keys$Get
-        | BodyResponseCallback<Schema$ServiceAccountKey>,
+        | BodyResponseCallback<Schema$ServiceAccountKey>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ServiceAccountKey>,
-      callback?: BodyResponseCallback<Schema$ServiceAccountKey>
-    ): void | GaxiosPromise<Schema$ServiceAccountKey> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ServiceAccountKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ServiceAccountKey>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ServiceAccountKey>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Keys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5363,7 +6066,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
+        createAPIRequest<Schema$ServiceAccountKey>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ServiceAccountKey>(parameters);
       }
@@ -5373,69 +6079,77 @@ export namespace iam_v1 {
      * iam.projects.serviceAccounts.keys.list
      * @desc Lists ServiceAccountKeys.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the service account in the following format:
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.keys.list({
+     *     // Filters the types of keys the user wants to include in the list
+     *     // response. Duplicate key types are not allowed. If no key type
+     *     // is provided, all keys are returned.
+     *     keyTypes: 'placeholder-value',
+     *     // Required. The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     //
      *     // Using `-` as a wildcard for the `PROJECT_ID`, will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
      *     // `unique_id` of the service account.
-     *     name: 'projects/my-project/serviceAccounts/my-service-account',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.projects.serviceAccounts.keys.list(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keys": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.projects.serviceAccounts.keys.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.keyTypes Filters the types of keys the user wants to include in the list response. Duplicate key types are not allowed. If no key type is provided, all keys are returned.
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Using `-` as a wildcard for the `PROJECT_ID`, will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {string} params.name Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Using `-` as a wildcard for the `PROJECT_ID`, will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Serviceaccounts$Keys$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListServiceAccountKeysResponse>;
+    list(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Serviceaccounts$Keys$List,
       options:
@@ -5453,12 +6167,20 @@ export namespace iam_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Keys$List
-        | BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
+        | BodyResponseCallback<Schema$ListServiceAccountKeysResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
-      callback?: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>
-    ): void | GaxiosPromise<Schema$ListServiceAccountKeysResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListServiceAccountKeysResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListServiceAccountKeysResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListServiceAccountKeysResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Keys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5491,7 +6213,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ListServiceAccountKeysResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListServiceAccountKeysResponse>(
@@ -5503,20 +6225,89 @@ export namespace iam_v1 {
     /**
      * iam.projects.serviceAccounts.keys.upload
      * @desc Upload public key for a given service account. This rpc will create a ServiceAccountKey that has the provided public key and returns it.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.keys.upload({
+     *     // The resource name of the service account in the following format:
+     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
+     *     // the account. The `ACCOUNT` value can be the `email` address or the
+     *     // `unique_id` of the service account.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "publicKeyData": "my_publicKeyData"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyAlgorithm": "my_keyAlgorithm",
+     *   //   "keyOrigin": "my_keyOrigin",
+     *   //   "keyType": "my_keyType",
+     *   //   "name": "my_name",
+     *   //   "privateKeyData": "my_privateKeyData",
+     *   //   "privateKeyType": "my_privateKeyType",
+     *   //   "publicKeyData": "my_publicKeyData",
+     *   //   "validAfterTime": "my_validAfterTime",
+     *   //   "validBeforeTime": "my_validBeforeTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias iam.projects.serviceAccounts.keys.upload
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-     * @param {().UploadServiceAccountKeyRequest} params.resource Request body data
+     * @param {().UploadServiceAccountKeyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     upload(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
       params?: Params$Resource$Projects$Serviceaccounts$Keys$Upload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ServiceAccountKey>;
+    upload(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     upload(
       params: Params$Resource$Projects$Serviceaccounts$Keys$Upload,
       options: MethodOptions | BodyResponseCallback<Schema$ServiceAccountKey>,
@@ -5530,12 +6321,20 @@ export namespace iam_v1 {
     upload(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Keys$Upload
-        | BodyResponseCallback<Schema$ServiceAccountKey>,
+        | BodyResponseCallback<Schema$ServiceAccountKey>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ServiceAccountKey>,
-      callback?: BodyResponseCallback<Schema$ServiceAccountKey>
-    ): void | GaxiosPromise<Schema$ServiceAccountKey> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ServiceAccountKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ServiceAccountKey>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ServiceAccountKey>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Keys$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5569,7 +6368,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
+        createAPIRequest<Schema$ServiceAccountKey>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ServiceAccountKey>(parameters);
       }
@@ -5579,12 +6381,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Keys$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
 
@@ -5596,24 +6393,14 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Keys$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * Required. The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Keys$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.  Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * Required. The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.  Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
     /**
@@ -5624,26 +6411,16 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Keys$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Filters the types of keys the user wants to include in the list response. Duplicate key types are not allowed. If no key type is provided, all keys are returned.
      */
     keyTypes?: string[];
     /**
-     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Using `-` as a wildcard for the `PROJECT_ID`, will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Using `-` as a wildcard for the `PROJECT_ID`, will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Keys$Upload
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
@@ -5665,54 +6442,77 @@ export namespace iam_v1 {
      * iam.roles.get
      * @desc Gets a Role definition.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the role in one of the following formats:
-     *     // `roles/{ROLE_NAME}`
-     *     // `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
-     *     // `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
-     *     name: 'roles/my-role',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   iam.roles.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.roles.get({
+     *     // The `name` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`roles`](/iam/reference/rest/v1/roles),
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles), or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `name` value format is described below:
+     *     //
+     *     // * [`roles.get()`](/iam/reference/rest/v1/roles/get): `roles/{ROLE_NAME}`.
+     *     //   This method returns results from all
+     *     //   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in
+     *     //   Cloud IAM. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/roles/{ROLE_NAME}`
+     *     //
+     *     // * [`projects.roles.get()`](/iam/reference/rest/v1/projects.roles/get):
+     *     //   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only
+     *     //   [custom roles](/iam/docs/understanding-custom-roles) that have been
+     *     //   created at the project level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // * [`organizations.roles.get()`](/iam/reference/rest/v1/organizations.roles/get):
+     *     //   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method
+     *     //   returns only [custom roles](/iam/docs/understanding-custom-roles) that
+     *     //   have been created at the organization level. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     name: 'roles/my-role',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "includedPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "stage": "my_stage",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.roles.get
      * @memberOf! ()
      *
@@ -5723,9 +6523,18 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Roles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Roles$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Role>;
+    get(
+      params: Params$Resource$Roles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Roles$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Role>,
@@ -5739,10 +6548,17 @@ export namespace iam_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Roles$Get
-        | BodyResponseCallback<Schema$Role>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
-      callback?: BodyResponseCallback<Schema$Role>
-    ): void | GaxiosPromise<Schema$Role> {
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Role>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Role> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5772,7 +6588,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Role>(parameters, callback);
+        createAPIRequest<Schema$Role>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
       }
@@ -5782,61 +6601,83 @@ export namespace iam_v1 {
      * iam.roles.list
      * @desc Lists the Roles defined on a resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     auth: authClient,
-     *   };
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
      *
-     *     var rolesPage = response['roles'];
-     *     if (!rolesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < rolesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `rolesPage`:
-     *       console.log(JSON.stringify(rolesPage[i], null, 2));
-     *     }
+     *   // Do the magic
+     *   const res = await iam.roles.list({
+     *     // Optional limit on the number of roles to include in the response.
+     *     pageSize: 'placeholder-value',
+     *     // Optional pagination token returned in an earlier ListRolesResponse.
+     *     pageToken: 'placeholder-value',
+     *     // The `parent` parameter's value depends on the target resource for the
+     *     // request, namely
+     *     // [`roles`](/iam/reference/rest/v1/roles),
+     *     // [`projects`](/iam/reference/rest/v1/projects.roles), or
+     *     // [`organizations`](/iam/reference/rest/v1/organizations.roles). Each
+     *     // resource type's `parent` value format is described below:
+     *     //
+     *     // * [`roles.list()`](/iam/reference/rest/v1/roles/list): An empty string.
+     *     //   This method doesn't require a resource; it simply returns all
+     *     //   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in
+     *     //   Cloud IAM. Example request URL:
+     *     //   `https://iam.googleapis.com/v1/roles`
+     *     //
+     *     // * [`projects.roles.list()`](/iam/reference/rest/v1/projects.roles/list):
+     *     //   `projects/{PROJECT_ID}`. This method lists all project-level
+     *     //   [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`
+     *     //
+     *     // * [`organizations.roles.list()`](/iam/reference/rest/v1/organizations.roles/list):
+     *     //   `organizations/{ORGANIZATION_ID}`. This method lists all
+     *     //   organization-level [custom roles](/iam/docs/understanding-custom-roles).
+     *     //   Example request URL:
+     *     //   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`
+     *     //
+     *     // Note: Wildcard (*) values are invalid; you must specify a complete project
+     *     // ID or organization ID.
+     *     parent: 'placeholder-value',
+     *     // Include Roles that have been deleted.
+     *     showDeleted: 'placeholder-value',
+     *     // Optional view for the returned Role objects. When `FULL` is specified,
+     *     // the `includedPermissions` field is returned, which includes a list of all
+     *     // permissions in the role. The default value is `BASIC`, which does not
+     *     // return the `includedPermissions` field.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       iam.roles.list(request, handlePage);
-     *     }
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "roles": []
+     *   // }
+     * }
      *
-     *   iam.roles.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.roles.list
      * @memberOf! ()
      *
@@ -5851,9 +6692,18 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Roles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Roles$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListRolesResponse>;
+    list(
+      params: Params$Resource$Roles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Roles$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListRolesResponse>,
@@ -5867,12 +6717,20 @@ export namespace iam_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Roles$List
-        | BodyResponseCallback<Schema$ListRolesResponse>,
+        | BodyResponseCallback<Schema$ListRolesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListRolesResponse>,
-      callback?: BodyResponseCallback<Schema$ListRolesResponse>
-    ): void | GaxiosPromise<Schema$ListRolesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRolesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRolesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRolesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5902,7 +6760,10 @@ export namespace iam_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListRolesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListRolesResponse>(parameters);
       }
@@ -5912,78 +6773,76 @@ export namespace iam_v1 {
      * iam.roles.queryGrantableRoles
      * @desc Queries roles that can be granted on a particular resource. A role is grantable if it can be used as the role in a binding for a policy for that resource.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Identity and Access Management (IAM) API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/iam
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var iam = google.iam('v1');
+     * const iam = google.iam('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.roles.queryGrantableRoles({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fullResourceName": "my_fullResourceName",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "view": "my_view"
+     *       // }
      *     },
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "roles": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var rolesPage = response['roles'];
-     *     if (!rolesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < rolesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `rolesPage`:
-     *       console.log(JSON.stringify(rolesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.resource.pageToken = response.nextPageToken;
-     *       iam.roles.queryGrantableRoles(request, handlePage);
-     *     }
-     *   };
-     *
-     *   iam.roles.queryGrantableRoles(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias iam.roles.queryGrantableRoles
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().QueryGrantableRolesRequest} params.resource Request body data
+     * @param {().QueryGrantableRolesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     queryGrantableRoles(
+      params: Params$Resource$Roles$Querygrantableroles,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    queryGrantableRoles(
       params?: Params$Resource$Roles$Querygrantableroles,
       options?: MethodOptions
     ): GaxiosPromise<Schema$QueryGrantableRolesResponse>;
+    queryGrantableRoles(
+      params: Params$Resource$Roles$Querygrantableroles,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     queryGrantableRoles(
       params: Params$Resource$Roles$Querygrantableroles,
       options:
@@ -6001,12 +6860,20 @@ export namespace iam_v1 {
     queryGrantableRoles(
       paramsOrCallback?:
         | Params$Resource$Roles$Querygrantableroles
-        | BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
+        | BodyResponseCallback<Schema$QueryGrantableRolesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
-      callback?: BodyResponseCallback<Schema$QueryGrantableRolesResponse>
-    ): void | GaxiosPromise<Schema$QueryGrantableRolesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryGrantableRolesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryGrantableRolesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$QueryGrantableRolesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Roles$Querygrantableroles;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6042,7 +6909,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$QueryGrantableRolesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$QueryGrantableRolesResponse>(parameters);
@@ -6052,21 +6919,11 @@ export namespace iam_v1 {
 
   export interface Params$Resource$Roles$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `name` parameter's value depends on the target resource for the request, namely [`roles`](/iam/reference/rest/v1/roles), [`projects`](/iam/reference/rest/v1/projects.roles), or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`roles.get()`](/iam/reference/rest/v1/roles/get): `roles/{ROLE_NAME}`.   This method returns results from all   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in   Cloud IAM. Example request URL:   `https://iam.googleapis.com/v1/roles/{ROLE_NAME}`  * [`projects.roles.get()`](/iam/reference/rest/v1/projects.roles/get):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only   [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.get()`](/iam/reference/rest/v1/organizations.roles/get):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   returns only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     name?: string;
   }
   export interface Params$Resource$Roles$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional limit on the number of roles to include in the response.
      */
@@ -6090,11 +6947,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Roles$Querygrantableroles
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

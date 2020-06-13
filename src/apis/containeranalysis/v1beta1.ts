@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace containeranalysis_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace containeranalysis_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -148,6 +158,18 @@ export namespace containeranalysis_v1beta1 {
     names?: string[] | null;
   }
   /**
+   * Defines a hash object for use in Materials and Products.
+   */
+  export interface Schema$ArtifactHashes {
+    sha256?: string | null;
+  }
+  /**
+   * Defines an object to declare an in-toto artifact rule
+   */
+  export interface Schema$ArtifactRule {
+    artifactRule?: string[] | null;
+  }
+  /**
    * Occurrence that represents a single &quot;attestation&quot;. The authenticity of an attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the authority to which this attestation is attached is primarily useful for look-up (how to find this attestation if you already know the authority and artifact to be verified) and intent (which authority was this attestation intended to sign for).
    */
   export interface Schema$Attestation {
@@ -184,7 +206,7 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$BatchCreateNotesRequest {
     /**
-     * The notes to create. Max allowed length is 1000.
+     * Required. The notes to create. Max allowed length is 1000.
      */
     notes?: {[key: string]: Schema$Note} | null;
   }
@@ -202,7 +224,7 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$BatchCreateOccurrencesRequest {
     /**
-     * The occurrences to create. Max allowed length is 1000.
+     * Required. The occurrences to create. Max allowed length is 1000.
      */
     occurrences?: Schema$Occurrence[];
   }
@@ -220,11 +242,11 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -322,6 +344,12 @@ export namespace containeranalysis_v1beta1 {
      * Required. Signature of the related `BuildProvenance`. In JSON, this is base-64 encoded.
      */
     signature?: string | null;
+  }
+  /**
+   * Defines an object for the byproducts field in in-toto links. The suggested fields are &quot;stderr&quot;, &quot;stdout&quot;, and &quot;return-value&quot;.
+   */
+  export interface Schema$ByProducts {
+    customValues?: {[key: string]: string} | null;
   }
   /**
    * A CloudRepoSourceContext denotes a particular revision in a Google Cloud Source Repo.
@@ -475,7 +503,7 @@ export namespace containeranalysis_v1beta1 {
      */
     isObsolete?: boolean | null;
     /**
-     * Deprecated, do not use. Use fixed_location instead.  The max version of the package in which the vulnerability exists.
+     * The max version of the package in which the vulnerability exists.
      */
     maxAffectedVersion?: Schema$Version;
     /**
@@ -572,23 +600,29 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
-   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Defines an object for the environment field in in-toto links. The suggested fields are &quot;variables&quot;, &quot;filesystem&quot;, and &quot;workdir&quot;.
+   */
+  export interface Schema$Environment {
+    customValues?: {[key: string]: string} | null;
+  }
+  /**
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
   }
@@ -682,7 +716,7 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$GetIamPolicyRequest {
     /**
-     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`. This field is only used by Cloud IAM.
+     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`.
      */
     options?: Schema$GetPolicyOptions;
   }
@@ -691,7 +725,7 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
   }
@@ -760,6 +794,24 @@ export namespace containeranalysis_v1beta1 {
      * Required. Immutable. The child image derived from the base image.
      */
     derivedImage?: Schema$Derived;
+  }
+  export interface Schema$GrafeasV1beta1IntotoArtifact {
+    hashes?: Schema$ArtifactHashes;
+    resourceUri?: string | null;
+  }
+  /**
+   * This corresponds to a signed in-toto link - it is made up of one or more signatures and the in-toto link itself. This is used for occurrences of a Grafeas in-toto note.
+   */
+  export interface Schema$GrafeasV1beta1IntotoDetails {
+    signatures?: Schema$GrafeasV1beta1IntotoSignature[];
+    signed?: Schema$Link;
+  }
+  /**
+   * A signature object consists of the KeyID used and the signature itself.
+   */
+  export interface Schema$GrafeasV1beta1IntotoSignature {
+    keyid?: string | null;
+    sig?: string | null;
   }
   /**
    * Details of a package occurrence.
@@ -842,6 +894,32 @@ export namespace containeranalysis_v1beta1 {
      */
     name?: string | null;
   }
+  /**
+   * This contains the fields corresponding to the definition of a software supply chain step in an in-toto layout. This information goes into a Grafeas note.
+   */
+  export interface Schema$InToto {
+    /**
+     * This field contains the expected command used to perform the step.
+     */
+    expectedCommand?: string[] | null;
+    /**
+     * The following fields contain in-toto artifact rules identifying the artifacts that enter this supply chain step, and exit the supply chain step, i.e. materials and products of the step.
+     */
+    expectedMaterials?: Schema$ArtifactRule[];
+    expectedProducts?: Schema$ArtifactRule[];
+    /**
+     * This field contains the public keys that can be used to verify the signatures on the step metadata.
+     */
+    signingKeys?: Schema$SigningKey[];
+    /**
+     * This field identifies the name of the step in the supply chain.
+     */
+    stepName?: string | null;
+    /**
+     * This field contains a value that indicates the minimum number of keys that need to be used to sign the step&#39;s in-toto link.
+     */
+    threshold?: string | null;
+  }
   export interface Schema$KnowledgeBase {
     /**
      * The KB name (generally of the form KB[0-9]+ i.e. KB123456).
@@ -864,6 +942,31 @@ export namespace containeranalysis_v1beta1 {
      * Required. The recovered Dockerfile directive used to construct this layer.
      */
     directive?: string | null;
+  }
+  /**
+   * This corresponds to an in-toto link.
+   */
+  export interface Schema$Link {
+    /**
+     * ByProducts are data generated as part of a software supply chain step, but are not the actual result of the step.
+     */
+    byproducts?: Schema$ByProducts;
+    /**
+     * This field contains the full command executed for the step. This can also be empty if links are generated for operations that aren&#39;t directly mapped to a specific command. Each term in the command is an independent string in the list. An example of a command in the in-toto metadata field is: &quot;command&quot;: [&quot;git&quot;, &quot;clone&quot;, &quot;https://github.com/in-toto/demo-project.git&quot;]
+     */
+    command?: string[] | null;
+    /**
+     * This is a field that can be used to capture information about the environment. It is suggested for this field to contain information that details environment variables, filesystem information, and the present working directory. The recommended structure of this field is: &quot;environment&quot;: {   &quot;custom_values&quot;: {     &quot;variables&quot;: &quot;&lt;ENV&gt;&quot;,     &quot;filesystem&quot;: &quot;&lt;FS&gt;&quot;,     &quot;workdir&quot;: &quot;&lt;CWD&gt;&quot;,     &quot;&lt;ANY OTHER RELEVANT FIELDS&gt;&quot;: &quot;...&quot;   } }
+     */
+    environment?: Schema$Environment;
+    /**
+     * Materials are the supply chain artifacts that go into the step and are used for the operation performed. The key of the map is the path of the artifact and the structure contains the recorded hash information. An example is: &quot;materials&quot;: [   {     &quot;resource_uri&quot;: &quot;foo/bar&quot;,     &quot;hashes&quot;: {       &quot;sha256&quot;: &quot;ebebf...&quot;,       &lt;OTHER HASH ALGORITHMS&gt;: &lt;HASH VALUE&gt;     }   } ]
+     */
+    materials?: Schema$GrafeasV1beta1IntotoArtifact[];
+    /**
+     * Products are the supply chain artifacts generated as a result of the step. The structure is identical to that of materials.
+     */
+    products?: Schema$GrafeasV1beta1IntotoArtifact[];
   }
   /**
    * Response for listing occurrences for a note.
@@ -967,6 +1070,10 @@ export namespace containeranalysis_v1beta1 {
      */
     expirationTime?: string | null;
     /**
+     * A note describing an in-toto link.
+     */
+    intoto?: Schema$InToto;
+    /**
      * Output only. The type of analysis. This field can be used as a filter in list requests.
      */
     kind?: string | null;
@@ -1035,6 +1142,10 @@ export namespace containeranalysis_v1beta1 {
      * Describes the installation of a package on the linked resource.
      */
     installation?: Schema$GrafeasV1beta1PackageDetails;
+    /**
+     * Describes a specific in-toto link.
+     */
+    intoto?: Schema$GrafeasV1beta1IntotoDetails;
     /**
      * Output only. This explicitly denotes which of the occurrence details are specified. This field can be used as a filter in list requests.
      */
@@ -1112,19 +1223,19 @@ export namespace containeranalysis_v1beta1 {
     signature?: string | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Deprecated.
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -1230,6 +1341,27 @@ export namespace containeranalysis_v1beta1 {
      * The content of the signature, an opaque bytestring. The payload that this signature verifies MUST be unambiguously provided with the Signature during verification. A wrapper message might provide the payload explicitly. Alternatively, a message might have a canonical serialization that can always be unambiguously computed to derive the payload.
      */
     signature?: string | null;
+  }
+  /**
+   * This defines the format used to record keys used in the software supply chain. An in-toto link is attested using one or more keys defined in the in-toto layout. An example of this is: {   &quot;key_id&quot;: &quot;776a00e29f3559e0141b3b096f696abc6cfb0c657ab40f441132b345b0...&quot;,   &quot;key_type&quot;: &quot;rsa&quot;,   &quot;public_key_value&quot;: &quot;-----BEGIN PUBLIC KEY-----x/MIIBojANBgkqhkiG9w0B...&quot;,   &quot;key_scheme&quot;: &quot;rsassa-pss-sha256&quot; } The format for in-toto&#39;s key definition can be found in section 4.2 of the in-toto specification.
+   */
+  export interface Schema$SigningKey {
+    /**
+     * key_id is an identifier for the signing key.
+     */
+    keyId?: string | null;
+    /**
+     * This field contains the corresponding signature scheme. Eg: &quot;rsassa-pss-sha256&quot;.
+     */
+    keyScheme?: string | null;
+    /**
+     * This field identifies the specific signing method. Eg: &quot;rsa&quot;, &quot;ed25519&quot;, and &quot;ecdsa&quot;.
+     */
+    keyType?: string | null;
+    /**
+     * This field contains the actual public key.
+     */
+    publicKeyValue?: string | null;
   }
   /**
    * Source describes the location of the source used for the build.
@@ -1427,20 +1559,78 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.notes.batchCreate
      * @desc Creates new notes in batch.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.notes.batchCreate({
+     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which
+     *     // the notes are to be created.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "notes": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "notes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.notes.batchCreate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The name of the project in the form of `projects/[PROJECT_ID]`, under which the notes are to be created.
-     * @param {().BatchCreateNotesRequest} params.resource Request body data
+     * @param {string} params.parent Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the notes are to be created.
+     * @param {().BatchCreateNotesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchCreate(
+      params: Params$Resource$Projects$Notes$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
       params?: Params$Resource$Projects$Notes$Batchcreate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchCreateNotesResponse>;
+    batchCreate(
+      params: Params$Resource$Projects$Notes$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchCreate(
       params: Params$Resource$Projects$Notes$Batchcreate,
       options:
@@ -1458,12 +1648,20 @@ export namespace containeranalysis_v1beta1 {
     batchCreate(
       paramsOrCallback?:
         | Params$Resource$Projects$Notes$Batchcreate
-        | BodyResponseCallback<Schema$BatchCreateNotesResponse>,
+        | BodyResponseCallback<Schema$BatchCreateNotesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchCreateNotesResponse>,
-      callback?: BodyResponseCallback<Schema$BatchCreateNotesResponse>
-    ): void | GaxiosPromise<Schema$BatchCreateNotesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchCreateNotesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchCreateNotesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchCreateNotesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1498,7 +1696,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BatchCreateNotesResponse>(parameters, callback);
+        createAPIRequest<Schema$BatchCreateNotesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BatchCreateNotesResponse>(parameters);
       }
@@ -1507,21 +1708,113 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.notes.create
      * @desc Creates a new note.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.notes.create({
+     *     // Required. The ID to use for this note.
+     *     noteId: 'placeholder-value',
+     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which
+     *     // the note is to be created.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attestationAuthority": {},
+     *       //   "baseImage": {},
+     *       //   "build": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "deployable": {},
+     *       //   "discovery": {},
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "intoto": {},
+     *       //   "kind": "my_kind",
+     *       //   "longDescription": "my_longDescription",
+     *       //   "name": "my_name",
+     *       //   "package": {},
+     *       //   "relatedNoteNames": [],
+     *       //   "relatedUrl": [],
+     *       //   "shortDescription": "my_shortDescription",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "vulnerability": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestationAuthority": {},
+     *   //   "baseImage": {},
+     *   //   "build": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deployable": {},
+     *   //   "discovery": {},
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "intoto": {},
+     *   //   "kind": "my_kind",
+     *   //   "longDescription": "my_longDescription",
+     *   //   "name": "my_name",
+     *   //   "package": {},
+     *   //   "relatedNoteNames": [],
+     *   //   "relatedUrl": [],
+     *   //   "shortDescription": "my_shortDescription",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vulnerability": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.notes.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.noteId The ID to use for this note.
-     * @param {string} params.parent The name of the project in the form of `projects/[PROJECT_ID]`, under which the note is to be created.
-     * @param {().Note} params.resource Request body data
+     * @param {string=} params.noteId Required. The ID to use for this note.
+     * @param {string} params.parent Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the note is to be created.
+     * @param {().Note} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Notes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Notes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Note>;
+    create(
+      params: Params$Resource$Projects$Notes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Notes$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Note>,
@@ -1535,10 +1828,17 @@ export namespace containeranalysis_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Notes$Create
-        | BodyResponseCallback<Schema$Note>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Note>,
-      callback?: BodyResponseCallback<Schema$Note>
-    ): void | GaxiosPromise<Schema$Note> {
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Note> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1573,7 +1873,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Note>(parameters, callback);
+        createAPIRequest<Schema$Note>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Note>(parameters);
       }
@@ -1582,19 +1885,67 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.notes.delete
      * @desc Deletes the specified note.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.notes.delete({
+     *     // Required. The name of the note in the form of
+     *     // `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     *     name: 'projects/my-project/notes/my-note',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.notes.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     * @param {string} params.name Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Notes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Notes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Notes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Notes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1608,10 +1959,17 @@ export namespace containeranalysis_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Notes$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1643,7 +2001,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1652,19 +2013,85 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.notes.get
      * @desc Gets the specified note.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.notes.get({
+     *     // Required. The name of the note in the form of
+     *     // `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     *     name: 'projects/my-project/notes/my-note',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestationAuthority": {},
+     *   //   "baseImage": {},
+     *   //   "build": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deployable": {},
+     *   //   "discovery": {},
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "intoto": {},
+     *   //   "kind": "my_kind",
+     *   //   "longDescription": "my_longDescription",
+     *   //   "name": "my_name",
+     *   //   "package": {},
+     *   //   "relatedNoteNames": [],
+     *   //   "relatedUrl": [],
+     *   //   "shortDescription": "my_shortDescription",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vulnerability": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.notes.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     * @param {string} params.name Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Notes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Notes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Note>;
+    get(
+      params: Params$Resource$Projects$Notes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Notes$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Note>,
@@ -1678,10 +2105,17 @@ export namespace containeranalysis_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Notes$Get
-        | BodyResponseCallback<Schema$Note>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Note>,
-      callback?: BodyResponseCallback<Schema$Note>
-    ): void | GaxiosPromise<Schema$Note> {
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Note> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1713,7 +2147,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Note>(parameters, callback);
+        createAPIRequest<Schema$Note>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Note>(parameters);
       }
@@ -1722,20 +2159,80 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.notes.getIamPolicy
      * @desc Gets the access control policy for a note or an occurrence resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively.  The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.notes.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/notes/my-note',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.notes.getIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Notes$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Notes$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Notes$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Notes$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1749,10 +2246,17 @@ export namespace containeranalysis_v1beta1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Notes$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1787,7 +2291,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -1796,6 +2303,55 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.notes.list
      * @desc Lists notes for the specified project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.notes.list({
+     *     // The filter expression.
+     *     filter: 'placeholder-value',
+     *     // Number of notes to return in the list. Must be positive. Max allowed page
+     *     // size is 1000. If not specified, page size defaults to 20.
+     *     pageSize: 'placeholder-value',
+     *     // Token to provide to skip to a particular spot in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project to list notes for in the form of
+     *     // `projects/[PROJECT_ID]`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "notes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.notes.list
      * @memberOf! ()
      *
@@ -1803,15 +2359,24 @@ export namespace containeranalysis_v1beta1 {
      * @param {string=} params.filter The filter expression.
      * @param {integer=} params.pageSize Number of notes to return in the list. Must be positive. Max allowed page size is 1000. If not specified, page size defaults to 20.
      * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
-     * @param {string} params.parent The name of the project to list notes for in the form of `projects/[PROJECT_ID]`.
+     * @param {string} params.parent Required. The name of the project to list notes for in the form of `projects/[PROJECT_ID]`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Notes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Notes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListNotesResponse>;
+    list(
+      params: Params$Resource$Projects$Notes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Notes$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListNotesResponse>,
@@ -1825,12 +2390,20 @@ export namespace containeranalysis_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Notes$List
-        | BodyResponseCallback<Schema$ListNotesResponse>,
+        | BodyResponseCallback<Schema$ListNotesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListNotesResponse>,
-      callback?: BodyResponseCallback<Schema$ListNotesResponse>
-    ): void | GaxiosPromise<Schema$ListNotesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNotesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNotesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNotesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1865,7 +2438,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListNotesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListNotesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListNotesResponse>(parameters);
       }
@@ -1874,21 +2450,113 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.notes.patch
      * @desc Updates the specified note.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.notes.patch({
+     *     // Required. The name of the note in the form of
+     *     // `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     *     name: 'projects/my-project/notes/my-note',
+     *     // The fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attestationAuthority": {},
+     *       //   "baseImage": {},
+     *       //   "build": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "deployable": {},
+     *       //   "discovery": {},
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "intoto": {},
+     *       //   "kind": "my_kind",
+     *       //   "longDescription": "my_longDescription",
+     *       //   "name": "my_name",
+     *       //   "package": {},
+     *       //   "relatedNoteNames": [],
+     *       //   "relatedUrl": [],
+     *       //   "shortDescription": "my_shortDescription",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "vulnerability": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestationAuthority": {},
+     *   //   "baseImage": {},
+     *   //   "build": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deployable": {},
+     *   //   "discovery": {},
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "intoto": {},
+     *   //   "kind": "my_kind",
+     *   //   "longDescription": "my_longDescription",
+     *   //   "name": "my_name",
+     *   //   "package": {},
+     *   //   "relatedNoteNames": [],
+     *   //   "relatedUrl": [],
+     *   //   "shortDescription": "my_shortDescription",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vulnerability": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.notes.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     * @param {string} params.name Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      * @param {string=} params.updateMask The fields to update.
-     * @param {().Note} params.resource Request body data
+     * @param {().Note} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Notes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Notes$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Note>;
+    patch(
+      params: Params$Resource$Projects$Notes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Notes$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Note>,
@@ -1902,10 +2570,17 @@ export namespace containeranalysis_v1beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Notes$Patch
-        | BodyResponseCallback<Schema$Note>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Note>,
-      callback?: BodyResponseCallback<Schema$Note>
-    ): void | GaxiosPromise<Schema$Note> {
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Note> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1937,7 +2612,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Note>(parameters, callback);
+        createAPIRequest<Schema$Note>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Note>(parameters);
       }
@@ -1946,20 +2624,80 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.notes.setIamPolicy
      * @desc Sets the access control policy on the specified note or occurrence. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or an occurrence, respectively.  The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.notes.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/notes/my-note',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.notes.setIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Notes$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Notes$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Notes$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Notes$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1973,10 +2711,17 @@ export namespace containeranalysis_v1beta1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Notes$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2011,7 +2756,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -2020,20 +2768,78 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.notes.testIamPermissions
      * @desc Returns the permissions that a caller has on the specified note or occurrence. Requires list permission on the project (for example, `containeranalysis.notes.list`).  The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.notes.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/notes/my-note',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.notes.testIamPermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Notes$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Notes$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Notes$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Notes$Testiampermissions,
       options:
@@ -2051,12 +2857,20 @@ export namespace containeranalysis_v1beta1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Notes$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2093,7 +2907,7 @@ export namespace containeranalysis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2104,12 +2918,7 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Batchcreate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the project in the form of `projects/[PROJECT_ID]`, under which the notes are to be created.
+     * Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the notes are to be created.
      */
     parent?: string;
 
@@ -2121,16 +2930,11 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID to use for this note.
+     * Required. The ID to use for this note.
      */
     noteId?: string;
     /**
-     * The name of the project in the form of `projects/[PROJECT_ID]`, under which the note is to be created.
+     * Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the note is to be created.
      */
     parent?: string;
 
@@ -2142,34 +2946,19 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Notes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Notes$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2183,11 +2972,6 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The filter expression.
      */
     filter?: string;
@@ -2200,19 +2984,14 @@ export namespace containeranalysis_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The name of the project to list notes for in the form of `projects/[PROJECT_ID]`.
+     * Required. The name of the project to list notes for in the form of `projects/[PROJECT_ID]`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Notes$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      */
     name?: string;
     /**
@@ -2228,11 +3007,6 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2244,11 +3018,6 @@ export namespace containeranalysis_v1beta1 {
   }
   export interface Params$Resource$Projects$Notes$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2269,12 +3038,60 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.notes.occurrences.list
      * @desc Lists occurrences referencing the specified note. Provider projects can use this method to get all occurrences across consumer projects referencing the specified note.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.notes.occurrences.list({
+     *     // The filter expression.
+     *     filter: 'placeholder-value',
+     *     // Required. The name of the note to list occurrences for in the form of
+     *     // `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     *     name: 'projects/my-project/notes/my-note',
+     *     // Number of occurrences to return in the list.
+     *     pageSize: 'placeholder-value',
+     *     // Token to provide to skip to a particular spot in the list.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "occurrences": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.notes.occurrences.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The filter expression.
-     * @param {string} params.name The name of the note to list occurrences for in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     * @param {string} params.name Required. The name of the note to list occurrences for in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      * @param {integer=} params.pageSize Number of occurrences to return in the list.
      * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2282,9 +3099,18 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Notes$Occurrences$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Notes$Occurrences$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListNoteOccurrencesResponse>;
+    list(
+      params: Params$Resource$Projects$Notes$Occurrences$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Notes$Occurrences$List,
       options:
@@ -2302,12 +3128,20 @@ export namespace containeranalysis_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Notes$Occurrences$List
-        | BodyResponseCallback<Schema$ListNoteOccurrencesResponse>,
+        | BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListNoteOccurrencesResponse>,
-      callback?: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
-    ): void | GaxiosPromise<Schema$ListNoteOccurrencesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNoteOccurrencesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Notes$Occurrences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2344,7 +3178,7 @@ export namespace containeranalysis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListNoteOccurrencesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListNoteOccurrencesResponse>(parameters);
@@ -2355,16 +3189,11 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Occurrences$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The filter expression.
      */
     filter?: string;
     /**
-     * The name of the note to list occurrences for in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     * Required. The name of the note to list occurrences for in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      */
     name?: string;
     /**
@@ -2386,20 +3215,78 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.occurrences.batchCreate
      * @desc Creates new occurrences in batch.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.occurrences.batchCreate({
+     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which
+     *     // the occurrences are to be created.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "occurrences": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "occurrences": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.occurrences.batchCreate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrences are to be created.
-     * @param {().BatchCreateOccurrencesRequest} params.resource Request body data
+     * @param {string} params.parent Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrences are to be created.
+     * @param {().BatchCreateOccurrencesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchCreate(
+      params: Params$Resource$Projects$Occurrences$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
       params?: Params$Resource$Projects$Occurrences$Batchcreate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchCreateOccurrencesResponse>;
+    batchCreate(
+      params: Params$Resource$Projects$Occurrences$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchCreate(
       params: Params$Resource$Projects$Occurrences$Batchcreate,
       options:
@@ -2417,12 +3304,20 @@ export namespace containeranalysis_v1beta1 {
     batchCreate(
       paramsOrCallback?:
         | Params$Resource$Projects$Occurrences$Batchcreate
-        | BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>,
+        | BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>,
-      callback?: BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>
-    ): void | GaxiosPromise<Schema$BatchCreateOccurrencesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchCreateOccurrencesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2458,7 +3353,7 @@ export namespace containeranalysis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$BatchCreateOccurrencesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchCreateOccurrencesResponse>(
@@ -2470,20 +3365,106 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.occurrences.create
      * @desc Creates a new occurrence.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.occurrences.create({
+     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which
+     *     // the occurrence is to be created.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attestation": {},
+     *       //   "build": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "deployment": {},
+     *       //   "derivedImage": {},
+     *       //   "discovered": {},
+     *       //   "installation": {},
+     *       //   "intoto": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "noteName": "my_noteName",
+     *       //   "remediation": "my_remediation",
+     *       //   "resource": {},
+     *       //   "updateTime": "my_updateTime",
+     *       //   "vulnerability": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestation": {},
+     *   //   "build": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deployment": {},
+     *   //   "derivedImage": {},
+     *   //   "discovered": {},
+     *   //   "installation": {},
+     *   //   "intoto": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "noteName": "my_noteName",
+     *   //   "remediation": "my_remediation",
+     *   //   "resource": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vulnerability": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.occurrences.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrence is to be created.
-     * @param {().Occurrence} params.resource Request body data
+     * @param {string} params.parent Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrence is to be created.
+     * @param {().Occurrence} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Occurrences$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Occurrences$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Occurrence>;
+    create(
+      params: Params$Resource$Projects$Occurrences$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Occurrences$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Occurrence>,
@@ -2497,12 +3478,17 @@ export namespace containeranalysis_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Occurrences$Create
-        | BodyResponseCallback<Schema$Occurrence>,
+        | BodyResponseCallback<Schema$Occurrence>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Occurrence>,
-      callback?: BodyResponseCallback<Schema$Occurrence>
-    ): void | GaxiosPromise<Schema$Occurrence> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Occurrence>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Occurrence>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Occurrence> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2537,7 +3523,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Occurrence>(parameters, callback);
+        createAPIRequest<Schema$Occurrence>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Occurrence>(parameters);
       }
@@ -2546,19 +3535,67 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.occurrences.delete
      * @desc Deletes the specified occurrence. For example, use this method to delete an occurrence when the occurrence is no longer applicable for the given resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.occurrences.delete({
+     *     // Required. The name of the occurrence in the form of
+     *     // `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     *     name: 'projects/my-project/occurrences/my-occurrence',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.occurrences.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     * @param {string} params.name Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Occurrences$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Occurrences$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Occurrences$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Occurrences$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2572,10 +3609,17 @@ export namespace containeranalysis_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Occurrences$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2607,7 +3651,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2616,19 +3663,83 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.occurrences.get
      * @desc Gets the specified occurrence.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.occurrences.get({
+     *     // Required. The name of the occurrence in the form of
+     *     // `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     *     name: 'projects/my-project/occurrences/my-occurrence',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestation": {},
+     *   //   "build": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deployment": {},
+     *   //   "derivedImage": {},
+     *   //   "discovered": {},
+     *   //   "installation": {},
+     *   //   "intoto": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "noteName": "my_noteName",
+     *   //   "remediation": "my_remediation",
+     *   //   "resource": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vulnerability": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.occurrences.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     * @param {string} params.name Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Occurrences$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Occurrences$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Occurrence>;
+    get(
+      params: Params$Resource$Projects$Occurrences$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Occurrences$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Occurrence>,
@@ -2642,12 +3753,17 @@ export namespace containeranalysis_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Occurrences$Get
-        | BodyResponseCallback<Schema$Occurrence>,
+        | BodyResponseCallback<Schema$Occurrence>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Occurrence>,
-      callback?: BodyResponseCallback<Schema$Occurrence>
-    ): void | GaxiosPromise<Schema$Occurrence> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Occurrence>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Occurrence>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Occurrence> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2679,7 +3795,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Occurrence>(parameters, callback);
+        createAPIRequest<Schema$Occurrence>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Occurrence>(parameters);
       }
@@ -2688,20 +3807,80 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.occurrences.getIamPolicy
      * @desc Gets the access control policy for a note or an occurrence resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively.  The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.occurrences.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/occurrences/my-occurrence',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.occurrences.getIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Occurrences$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Occurrences$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Occurrences$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Occurrences$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -2715,10 +3894,17 @@ export namespace containeranalysis_v1beta1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Occurrences$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2753,7 +3939,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -2762,19 +3951,85 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.occurrences.getNotes
      * @desc Gets the note attached to the specified occurrence. Consumer projects can use this method to get a note that belongs to a provider project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.occurrences.getNotes({
+     *     // Required. The name of the occurrence in the form of
+     *     // `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     *     name: 'projects/my-project/occurrences/my-occurrence',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestationAuthority": {},
+     *   //   "baseImage": {},
+     *   //   "build": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deployable": {},
+     *   //   "discovery": {},
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "intoto": {},
+     *   //   "kind": "my_kind",
+     *   //   "longDescription": "my_longDescription",
+     *   //   "name": "my_name",
+     *   //   "package": {},
+     *   //   "relatedNoteNames": [],
+     *   //   "relatedUrl": [],
+     *   //   "shortDescription": "my_shortDescription",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vulnerability": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.occurrences.getNotes
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     * @param {string} params.name Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getNotes(
+      params: Params$Resource$Projects$Occurrences$Getnotes,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getNotes(
       params?: Params$Resource$Projects$Occurrences$Getnotes,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Note>;
+    getNotes(
+      params: Params$Resource$Projects$Occurrences$Getnotes,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getNotes(
       params: Params$Resource$Projects$Occurrences$Getnotes,
       options: MethodOptions | BodyResponseCallback<Schema$Note>,
@@ -2788,10 +4043,17 @@ export namespace containeranalysis_v1beta1 {
     getNotes(
       paramsOrCallback?:
         | Params$Resource$Projects$Occurrences$Getnotes
-        | BodyResponseCallback<Schema$Note>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Note>,
-      callback?: BodyResponseCallback<Schema$Note>
-    ): void | GaxiosPromise<Schema$Note> {
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Note> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Getnotes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2826,7 +4088,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Note>(parameters, callback);
+        createAPIRequest<Schema$Note>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Note>(parameters);
       }
@@ -2835,20 +4100,74 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.occurrences.getVulnerabilitySummary
      * @desc Gets a summary of the number and severity of occurrences.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.occurrences.getVulnerabilitySummary(
+     *     {
+     *       // The filter expression.
+     *       filter: 'placeholder-value',
+     *       // Required. The name of the project to get a vulnerability summary for in the form of
+     *       // `projects/[PROJECT_ID]`.
+     *       parent: 'projects/my-project',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "counts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.occurrences.getVulnerabilitySummary
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The filter expression.
-     * @param {string} params.parent The name of the project to get a vulnerability summary for in the form of `projects/[PROJECT_ID]`.
+     * @param {string} params.parent Required. The name of the project to get a vulnerability summary for in the form of `projects/[PROJECT_ID]`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getVulnerabilitySummary(
+      params: Params$Resource$Projects$Occurrences$Getvulnerabilitysummary,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getVulnerabilitySummary(
       params?: Params$Resource$Projects$Occurrences$Getvulnerabilitysummary,
       options?: MethodOptions
     ): GaxiosPromise<Schema$VulnerabilityOccurrencesSummary>;
+    getVulnerabilitySummary(
+      params: Params$Resource$Projects$Occurrences$Getvulnerabilitysummary,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getVulnerabilitySummary(
       params: Params$Resource$Projects$Occurrences$Getvulnerabilitysummary,
       options:
@@ -2866,12 +4185,20 @@ export namespace containeranalysis_v1beta1 {
     getVulnerabilitySummary(
       paramsOrCallback?:
         | Params$Resource$Projects$Occurrences$Getvulnerabilitysummary
-        | BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>,
+        | BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>,
-      callback?: BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
-    ): void | GaxiosPromise<Schema$VulnerabilityOccurrencesSummary> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VulnerabilityOccurrencesSummary>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Getvulnerabilitysummary;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2907,7 +4234,7 @@ export namespace containeranalysis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$VulnerabilityOccurrencesSummary>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$VulnerabilityOccurrencesSummary>(
@@ -2919,6 +4246,55 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.occurrences.list
      * @desc Lists occurrences for the specified project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.occurrences.list({
+     *     // The filter expression.
+     *     filter: 'placeholder-value',
+     *     // Number of occurrences to return in the list. Must be positive. Max allowed
+     *     // page size is 1000. If not specified, page size defaults to 20.
+     *     pageSize: 'placeholder-value',
+     *     // Token to provide to skip to a particular spot in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project to list occurrences for in the form of
+     *     // `projects/[PROJECT_ID]`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "occurrences": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.occurrences.list
      * @memberOf! ()
      *
@@ -2926,15 +4302,24 @@ export namespace containeranalysis_v1beta1 {
      * @param {string=} params.filter The filter expression.
      * @param {integer=} params.pageSize Number of occurrences to return in the list. Must be positive. Max allowed page size is 1000. If not specified, page size defaults to 20.
      * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
-     * @param {string} params.parent The name of the project to list occurrences for in the form of `projects/[PROJECT_ID]`.
+     * @param {string} params.parent Required. The name of the project to list occurrences for in the form of `projects/[PROJECT_ID]`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Occurrences$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Occurrences$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOccurrencesResponse>;
+    list(
+      params: Params$Resource$Projects$Occurrences$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Occurrences$List,
       options:
@@ -2950,12 +4335,20 @@ export namespace containeranalysis_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Occurrences$List
-        | BodyResponseCallback<Schema$ListOccurrencesResponse>,
+        | BodyResponseCallback<Schema$ListOccurrencesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOccurrencesResponse>,
-      callback?: BodyResponseCallback<Schema$ListOccurrencesResponse>
-    ): void | GaxiosPromise<Schema$ListOccurrencesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOccurrencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOccurrencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOccurrencesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2990,7 +4383,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOccurrencesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOccurrencesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOccurrencesResponse>(parameters);
       }
@@ -2999,21 +4395,109 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.occurrences.patch
      * @desc Updates the specified occurrence.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.occurrences.patch({
+     *     // Required. The name of the occurrence in the form of
+     *     // `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     *     name: 'projects/my-project/occurrences/my-occurrence',
+     *     // The fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attestation": {},
+     *       //   "build": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "deployment": {},
+     *       //   "derivedImage": {},
+     *       //   "discovered": {},
+     *       //   "installation": {},
+     *       //   "intoto": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "noteName": "my_noteName",
+     *       //   "remediation": "my_remediation",
+     *       //   "resource": {},
+     *       //   "updateTime": "my_updateTime",
+     *       //   "vulnerability": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestation": {},
+     *   //   "build": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deployment": {},
+     *   //   "derivedImage": {},
+     *   //   "discovered": {},
+     *   //   "installation": {},
+     *   //   "intoto": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "noteName": "my_noteName",
+     *   //   "remediation": "my_remediation",
+     *   //   "resource": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vulnerability": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.occurrences.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     * @param {string} params.name Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      * @param {string=} params.updateMask The fields to update.
-     * @param {().Occurrence} params.resource Request body data
+     * @param {().Occurrence} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Occurrences$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Occurrences$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Occurrence>;
+    patch(
+      params: Params$Resource$Projects$Occurrences$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Occurrences$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Occurrence>,
@@ -3027,12 +4511,17 @@ export namespace containeranalysis_v1beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Occurrences$Patch
-        | BodyResponseCallback<Schema$Occurrence>,
+        | BodyResponseCallback<Schema$Occurrence>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Occurrence>,
-      callback?: BodyResponseCallback<Schema$Occurrence>
-    ): void | GaxiosPromise<Schema$Occurrence> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Occurrence>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Occurrence>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Occurrence> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3064,7 +4553,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Occurrence>(parameters, callback);
+        createAPIRequest<Schema$Occurrence>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Occurrence>(parameters);
       }
@@ -3073,20 +4565,80 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.occurrences.setIamPolicy
      * @desc Sets the access control policy on the specified note or occurrence. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or an occurrence, respectively.  The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.occurrences.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/occurrences/my-occurrence',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.occurrences.setIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Occurrences$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Occurrences$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Occurrences$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Occurrences$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -3100,10 +4652,17 @@ export namespace containeranalysis_v1beta1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Occurrences$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3138,7 +4697,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -3147,20 +4709,78 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.occurrences.testIamPermissions
      * @desc Returns the permissions that a caller has on the specified note or occurrence. Requires list permission on the project (for example, `containeranalysis.notes.list`).  The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.occurrences.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/occurrences/my-occurrence',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.occurrences.testIamPermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Occurrences$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Occurrences$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Occurrences$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Occurrences$Testiampermissions,
       options:
@@ -3178,12 +4798,20 @@ export namespace containeranalysis_v1beta1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Occurrences$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Occurrences$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3220,7 +4848,7 @@ export namespace containeranalysis_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -3231,12 +4859,7 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Batchcreate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrences are to be created.
+     * Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrences are to be created.
      */
     parent?: string;
 
@@ -3248,12 +4871,7 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrence is to be created.
+     * Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrence is to be created.
      */
     parent?: string;
 
@@ -3265,34 +4883,19 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Occurrences$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Occurrences$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -3306,38 +4909,23 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Getnotes
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Occurrences$Getvulnerabilitysummary
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The filter expression.
      */
     filter?: string;
     /**
-     * The name of the project to get a vulnerability summary for in the form of `projects/[PROJECT_ID]`.
+     * Required. The name of the project to get a vulnerability summary for in the form of `projects/[PROJECT_ID]`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Occurrences$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter expression.
      */
@@ -3351,19 +4939,14 @@ export namespace containeranalysis_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The name of the project to list occurrences for in the form of `projects/[PROJECT_ID]`.
+     * Required. The name of the project to list occurrences for in the form of `projects/[PROJECT_ID]`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Occurrences$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
     /**
@@ -3379,11 +4962,6 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -3395,11 +4973,6 @@ export namespace containeranalysis_v1beta1 {
   }
   export interface Params$Resource$Projects$Occurrences$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -3420,19 +4993,73 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.scanConfigs.get
      * @desc Gets the specified scan configuration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.scanConfigs.get({
+     *     // Required. The name of the scan configuration in the form of
+     *     // `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
+     *     name: 'projects/my-project/scanConfigs/my-scanConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "enabled": false,
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.scanConfigs.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
+     * @param {string} params.name Required. The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Scanconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Scanconfigs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ScanConfig>;
+    get(
+      params: Params$Resource$Projects$Scanconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Scanconfigs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ScanConfig>,
@@ -3446,12 +5073,17 @@ export namespace containeranalysis_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Scanconfigs$Get
-        | BodyResponseCallback<Schema$ScanConfig>,
+        | BodyResponseCallback<Schema$ScanConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ScanConfig>,
-      callback?: BodyResponseCallback<Schema$ScanConfig>
-    ): void | GaxiosPromise<Schema$ScanConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ScanConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ScanConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ScanConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3483,7 +5115,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ScanConfig>(parameters, callback);
+        createAPIRequest<Schema$ScanConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ScanConfig>(parameters);
       }
@@ -3492,22 +5127,79 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.scanConfigs.list
      * @desc Lists scan configurations for the specified project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.scanConfigs.list({
+     *     // Required. The filter expression.
+     *     filter: 'placeholder-value',
+     *     // The number of scan configs to return in the list.
+     *     pageSize: 'placeholder-value',
+     *     // Token to provide to skip to a particular spot in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project to list scan configurations for in the form of
+     *     // `projects/[PROJECT_ID]`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "scanConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.scanConfigs.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression.
+     * @param {string=} params.filter Required. The filter expression.
      * @param {integer=} params.pageSize The number of scan configs to return in the list.
      * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
-     * @param {string} params.parent The name of the project to list scan configurations for in the form of `projects/[PROJECT_ID]`.
+     * @param {string} params.parent Required. The name of the project to list scan configurations for in the form of `projects/[PROJECT_ID]`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Scanconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Scanconfigs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListScanConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Scanconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Scanconfigs$List,
       options:
@@ -3523,12 +5215,20 @@ export namespace containeranalysis_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Scanconfigs$List
-        | BodyResponseCallback<Schema$ListScanConfigsResponse>,
+        | BodyResponseCallback<Schema$ListScanConfigsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListScanConfigsResponse>,
-      callback?: BodyResponseCallback<Schema$ListScanConfigsResponse>
-    ): void | GaxiosPromise<Schema$ListScanConfigsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListScanConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListScanConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListScanConfigsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3563,7 +5263,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListScanConfigsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListScanConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListScanConfigsResponse>(parameters);
       }
@@ -3572,20 +5275,86 @@ export namespace containeranalysis_v1beta1 {
     /**
      * containeranalysis.projects.scanConfigs.update
      * @desc Updates the specified scan configuration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await containeranalysis.projects.scanConfigs.update({
+     *     // Required. The name of the scan configuration in the form of
+     *     // `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
+     *     name: 'projects/my-project/scanConfigs/my-scanConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "enabled": false,
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "enabled": false,
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias containeranalysis.projects.scanConfigs.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
-     * @param {().ScanConfig} params.resource Request body data
+     * @param {string} params.name Required. The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
+     * @param {().ScanConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Scanconfigs$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Scanconfigs$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ScanConfig>;
+    update(
+      params: Params$Resource$Projects$Scanconfigs$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Scanconfigs$Update,
       options: MethodOptions | BodyResponseCallback<Schema$ScanConfig>,
@@ -3599,12 +5368,17 @@ export namespace containeranalysis_v1beta1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Scanconfigs$Update
-        | BodyResponseCallback<Schema$ScanConfig>,
+        | BodyResponseCallback<Schema$ScanConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ScanConfig>,
-      callback?: BodyResponseCallback<Schema$ScanConfig>
-    ): void | GaxiosPromise<Schema$ScanConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ScanConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ScanConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ScanConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Scanconfigs$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3636,7 +5410,10 @@ export namespace containeranalysis_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ScanConfig>(parameters, callback);
+        createAPIRequest<Schema$ScanConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ScanConfig>(parameters);
       }
@@ -3646,24 +5423,14 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Scanconfigs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
+     * Required. The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Scanconfigs$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The filter expression.
+     * Required. The filter expression.
      */
     filter?: string;
     /**
@@ -3675,19 +5442,14 @@ export namespace containeranalysis_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The name of the project to list scan configurations for in the form of `projects/[PROJECT_ID]`.
+     * Required. The name of the project to list scan configurations for in the form of `projects/[PROJECT_ID]`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Scanconfigs$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
+     * Required. The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
      */
     name?: string;
 

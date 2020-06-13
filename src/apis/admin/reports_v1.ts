@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace admin_reports_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace admin_reports_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -120,15 +130,15 @@ export namespace admin_reports_v1 {
      */
     etag?: string | null;
     /**
-     * Each record in read response.
+     * Each activity record in the response.
      */
     items?: Schema$Activity[];
     /**
-     * Kind of list response this is.
+     * The type of API resource. For an activity report, the value is reports#activities.
      */
     kind?: string | null;
     /**
-     * Token for retrieving the next page
+     * Token for retrieving the follow-on next page of the report. The nextPageToken value is used in the request&#39;s pageToken query string.
      */
     nextPageToken?: string | null;
   }
@@ -150,7 +160,7 @@ export namespace admin_reports_v1 {
      */
     etag?: string | null;
     /**
-     * Activity events.
+     * Activity events in the report.
      */
     events?: Array<{
       name?: string;
@@ -176,15 +186,15 @@ export namespace admin_reports_v1 {
       uniqueQualifier?: string;
     } | null;
     /**
-     * IP Address of the user doing the action.
+     * IP address of the user doing the action. This is the Internet Protocol (IP) address of the user when logging into G Suite which may or may not reflect the user&#39;s physical location. For example, the IP address can be the user&#39;s proxy server&#39;s address or a virtual private network (VPN) address. The API supports IPv4 and IPv6.
      */
     ipAddress?: string | null;
     /**
-     * Kind of resource this is.
+     * The type of API resource. For an activity report, the value is audit#activity.
      */
     kind?: string | null;
     /**
-     * Domain of source customer.
+     * This is the domain that is affected by the report&#39;s event. For example domain of Admin console or the Drive application&#39;s document owner.
      */
     ownerDomain?: string | null;
   }
@@ -242,7 +252,7 @@ export namespace admin_reports_v1 {
      */
     boolValue?: boolean | null;
     /**
-     * Integral value of the parameter.
+     * Integer value of the parameter.
      */
     intValue?: string | null;
     /**
@@ -250,7 +260,7 @@ export namespace admin_reports_v1 {
      */
     multiBoolValue?: boolean[] | null;
     /**
-     * Multiple integral values of the parameter.
+     * Multiple integer values of the parameter.
      */
     multiIntValue?: string[] | null;
     /**
@@ -271,7 +281,7 @@ export namespace admin_reports_v1 {
    */
   export interface Schema$UsageReport {
     /**
-     * The date to which the record belongs.
+     * The date of the report request.
      */
     date?: string | null;
     /**
@@ -289,11 +299,11 @@ export namespace admin_reports_v1 {
      */
     etag?: string | null;
     /**
-     * The kind of object.
+     * The type of API resource. For a usage report, the value is admin#reports#usageReport.
      */
     kind?: string | null;
     /**
-     * Parameter value pairs for various applications.
+     * Parameter value pairs for various applications. For the Customers usage report parameters and values, see the customer usage parameters reference.
      */
     parameters?: Array<{
       boolValue?: boolean;
@@ -304,20 +314,17 @@ export namespace admin_reports_v1 {
       stringValue?: string;
     }> | null;
   }
-  /**
-   * JSON template for a collection of usage reports.
-   */
   export interface Schema$UsageReports {
     /**
      * ETag of the resource.
      */
     etag?: string | null;
     /**
-     * The kind of object.
+     * The type of API resource. For a usage report, the value is admin#reports#usageReports.
      */
     kind?: string | null;
     /**
-     * Token for retrieving the next page
+     * Token to specify next page. A report with multiple pages has a nextPageToken property in the response. For your follow-on requests getting all of the report&#39;s pages, enter the nextPageToken value in the pageToken query string.
      */
     nextPageToken?: string | null;
     /**
@@ -325,7 +332,7 @@ export namespace admin_reports_v1 {
      */
     usageReports?: Schema$UsageReport[];
     /**
-     * Warnings if any.
+     * Warnings, if any.
      */
     warnings?: Array<{
       code?: string;
@@ -342,30 +349,126 @@ export namespace admin_reports_v1 {
 
     /**
      * reports.activities.list
-     * @desc Retrieves a list of activities for a specific customer and application.
+     * @desc Retrieves a list of activities for a specific customer's account and application such as the Admin console application or the Google Drive application. For more information, see the guides for administrator and Google Drive activity reports. For more information about the activity report's parameters, see the activity parameters reference guides.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('reports_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.reports.audit.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reports.activities.list({
+     *     // The Internet Protocol (IP) Address of host where the event was performed. This is an additional way to filter a report's summary using the IP address of the user whose activity is being reported. This IP address may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. This parameter supports both IPv4 and IPv6 address versions.
+     *     actorIpAddress: 'placeholder-value',
+     *     // Application name for which the events are to be retrieved.
+     *     applicationName:
+     *       '(admin)|(calendar)|(drive)|(login)|(mobile)|(token)|(groups)|(saml)|(chat)|(gplus)|(rules)|(jamboard)|(meet)|(user_accounts)|(access_transparency)|(groups_enterprise)|(gcp)',
+     *     // The unique ID of the customer to retrieve data for.
+     *     customerId: 'C.+',
+     *     // Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The default value is the approximate time of the API request. An API report has three basic time concepts:
+     *     // - Date of the API's request for a report: When the API created and retrieved the report.
+     *     // - Report's start time: The beginning of the timespan shown in the report. The startTime must be before the endTime (if specified) and the current time when the request is made, or the API returns an error.
+     *     // - Report's end time: The end of the timespan shown in the report. For example, the timespan of events summarized in a report can start in April and end in May. The report itself can be requested in August.  If the endTime is not specified, the report returns all activities from the startTime until the current time or the most recent 180 days if the startTime is more than 180 days in the past.
+     *     endTime: '(dddd)-(dd)-(dd)T(dd):(dd):(dd)(?:.(d+))?(?:(Z)|([-+])(dd):(dd))',
+     *     // The name of the event being queried by the API. Each eventName is related to a specific G Suite service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings type structure has all of the Calendar eventName activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings type and eventName parameters. For more information about eventName query strings and parameters, see the list of event names for various applications above in applicationName.
+     *     eventName: 'placeholder-value',
+     *     // The filters query string is a comma-separated list. The list is composed of event parameters that are manipulated by relational operators. Event parameters are in the form [parameter1 name][relational operator][parameter1 value],[parameter2 name][relational operator][parameter2 value],...
+     *     // These event parameters are associated with a specific eventName. An empty report is returned if the filtered request's parameter does not belong to the eventName. For more information about eventName parameters, see the list of event names for various applications above in applicationName.
+     *     //
+     *     // In the following Admin Activity example, the <> operator is URL-encoded in the request's query string (%3C%3E):
+     *     // GET...&eventName=CHANGE_CALENDAR_SETTING &filters=NEW_VALUE%3C%3EREAD_ONLY_ACCESS
+     *     //
+     *     // In the following Drive example, the list can be a view or edit event's doc_id parameter with a value that is manipulated by an 'equal to' (==) or 'not equal to' (<>) relational operator. In the first example, the report returns each edited document's doc_id. In the second example, the report returns each viewed document's doc_id that equals the value 12345 and does not return any viewed document's which have a doc_id value of 98765. The <> operator is URL-encoded in the request's query string (%3C%3E):
+     *     //
+     *     // GET...&eventName=edit&filters=doc_id GET...&eventName=view&filters=doc_id==12345,doc_id%3C%3E98765
+     *     //
+     *     // The relational operators include:
+     *     // - == - 'equal to'.
+     *     // - <> - 'not equal to'. It is URL-encoded (%3C%3E).
+     *     // - < - 'less than'. It is URL-encoded (%3C).
+     *     // - <= - 'less than or equal to'. It is URL-encoded (%3C=).
+     *     // - > - 'greater than'. It is URL-encoded (%3E).
+     *     // - >= - 'greater than or equal to'. It is URL-encoded (%3E=).
+     *     // Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter.
+     *     // In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters. If no parameters are requested, all parameters are returned.
+     *     filters:
+     *       '(.+[&lt;,&lt;=,==,&gt;=,&gt;,&lt;&gt;].+,)*(.+[&lt;,&lt;=,==,&gt;=,&gt;,&lt;&gt;].+)',
+     *     // Determines how many activity records are shown on each response page. For example, if the request sets maxResults=1 and the report has two activities, the report has two pages. The response's nextPageToken property has the token to the second page. The maxResults query string is optional in the request. The default value is 1000.
+     *     maxResults: 'placeholder-value',
+     *     // ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
+     *     orgUnitID: '(id:[a-z0-9]+)',
+     *     // The token to specify next page. A report with multiple pages has a nextPageToken property in the response. In your follow-on request getting the next page of the report, enter the nextPageToken value in the pageToken query string.
+     *     pageToken: 'placeholder-value',
+     *     // Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from startTime until endTime. The startTime must be before the endTime (if specified) and the current time when the request is made, or the API returns an error.
+     *     startTime:
+     *       '(dddd)-(dd)-(dd)T(dd):(dd):(dd)(?:.(d+))?(?:(Z)|([-+])(dd):(dd))',
+     *     // Represents the profile ID or the user email for which the data should be filtered. Can be all for all information, or userKey for a user's unique G Suite profile ID or their primary email address.
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reports.activities.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.actorIpAddress IP Address of host where the event was performed. Supports both IPv4 and IPv6 addresses.
+     * @param {string=} params.actorIpAddress The Internet Protocol (IP) Address of host where the event was performed. This is an additional way to filter a report's summary using the IP address of the user whose activity is being reported. This IP address may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. This parameter supports both IPv4 and IPv6 address versions.
      * @param {string} params.applicationName Application name for which the events are to be retrieved.
-     * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
-     * @param {string=} params.endTime Return events which occurred at or before this time.
-     * @param {string=} params.eventName Name of the event being queried.
-     * @param {string=} params.filters Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
-     * @param {integer=} params.maxResults Number of activity records to be shown in each page.
-     * @param {string=} params.orgUnitID the organizational unit's(OU) ID to filter activities from users belonging to a specific OU or one of its sub-OU(s)
-     * @param {string=} params.pageToken Token to specify next page.
-     * @param {string=} params.startTime Return events which occurred at or after this time.
-     * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
+     * @param {string=} params.customerId The unique ID of the customer to retrieve data for.
+     * @param {string=} params.endTime Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The default value is the approximate time of the API request. An API report has three basic time concepts:   - Date of the API's request for a report: When the API created and retrieved the report.  - Report's start time: The beginning of the timespan shown in the report. The startTime must be before the endTime (if specified) and the current time when the request is made, or the API returns an error.  - Report's end time: The end of the timespan shown in the report. For example, the timespan of events summarized in a report can start in April and end in May. The report itself can be requested in August.  If the endTime is not specified, the report returns all activities from the startTime until the current time or the most recent 180 days if the startTime is more than 180 days in the past.
+     * @param {string=} params.eventName The name of the event being queried by the API. Each eventName is related to a specific G Suite service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings type structure has all of the Calendar eventName activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings type and eventName parameters. For more information about eventName query strings and parameters, see the list of event names for various applications above in applicationName.
+     * @param {string=} params.filters The filters query string is a comma-separated list. The list is composed of event parameters that are manipulated by relational operators. Event parameters are in the form [parameter1 name][relational operator][parameter1 value],[parameter2 name][relational operator][parameter2 value],...  These event parameters are associated with a specific eventName. An empty report is returned if the filtered request's parameter does not belong to the eventName. For more information about eventName parameters, see the list of event names for various applications above in applicationName.  In the following Admin Activity example, the <> operator is URL-encoded in the request's query string (%3C%3E): GET...&eventName=CHANGE_CALENDAR_SETTING &filters=NEW_VALUE%3C%3EREAD_ONLY_ACCESS  In the following Drive example, the list can be a view or edit event's doc_id parameter with a value that is manipulated by an 'equal to' (==) or 'not equal to' (<>) relational operator. In the first example, the report returns each edited document's doc_id. In the second example, the report returns each viewed document's doc_id that equals the value 12345 and does not return any viewed document's which have a doc_id value of 98765. The <> operator is URL-encoded in the request's query string (%3C%3E):  GET...&eventName=edit&filters=doc_id GET...&eventName=view&filters=doc_id==12345,doc_id%3C%3E98765  The relational operators include:   - == - 'equal to'.  - <> - 'not equal to'. It is URL-encoded (%3C%3E).  - < - 'less than'. It is URL-encoded (%3C).  - <= - 'less than or equal to'. It is URL-encoded (%3C=).  - > - 'greater than'. It is URL-encoded (%3E).  - >= - 'greater than or equal to'. It is URL-encoded (%3E=).   Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters. If no parameters are requested, all parameters are returned.
+     * @param {integer=} params.maxResults Determines how many activity records are shown on each response page. For example, if the request sets maxResults=1 and the report has two activities, the report has two pages. The response's nextPageToken property has the token to the second page. The maxResults query string is optional in the request. The default value is 1000.
+     * @param {string=} params.orgUnitID ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
+     * @param {string=} params.pageToken The token to specify next page. A report with multiple pages has a nextPageToken property in the response. In your follow-on request getting the next page of the report, enter the nextPageToken value in the pageToken query string.
+     * @param {string=} params.startTime Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from startTime until endTime. The startTime must be before the endTime (if specified) and the current time when the request is made, or the API returns an error.
+     * @param {string} params.userKey Represents the profile ID or the user email for which the data should be filtered. Can be all for all information, or userKey for a user's unique G Suite profile ID or their primary email address.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Activities$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Activities$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Activities>;
+    list(
+      params: Params$Resource$Activities$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Activities$List,
       options: MethodOptions | BodyResponseCallback<Schema$Activities>,
@@ -379,12 +482,17 @@ export namespace admin_reports_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Activities$List
-        | BodyResponseCallback<Schema$Activities>,
+        | BodyResponseCallback<Schema$Activities>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Activities>,
-      callback?: BodyResponseCallback<Schema$Activities>
-    ): void | GaxiosPromise<Schema$Activities> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Activities>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Activities>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Activities> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -417,7 +525,10 @@ export namespace admin_reports_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Activities>(parameters, callback);
+        createAPIRequest<Schema$Activities>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Activities>(parameters);
       }
@@ -425,31 +536,150 @@ export namespace admin_reports_v1 {
 
     /**
      * reports.activities.watch
-     * @desc Push changes to activities
+     * @desc Start receiving notifications for account activities. For more information, see Receiving Push Notifications.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('reports_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.reports.audit.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reports.activities.watch({
+     *     // The Internet Protocol (IP) Address of host where the event was performed. This is an additional way to filter a report's summary using the IP address of the user whose activity is being reported. This IP address may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. This parameter supports both IPv4 and IPv6 address versions.
+     *     actorIpAddress: 'placeholder-value',
+     *     // Application name for which the events are to be retrieved.
+     *     applicationName:
+     *       '(admin)|(calendar)|(drive)|(login)|(mobile)|(token)|(groups)|(saml)|(chat)|(gplus)|(rules)|(jamboard)|(meet)|(user_accounts)|(access_transparency)|(groups_enterprise)|(gcp)',
+     *     // The unique ID of the customer to retrieve data for.
+     *     customerId: 'C.+',
+     *     // Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The default value is the approximate time of the API request. An API report has three basic time concepts:
+     *     // - Date of the API's request for a report: When the API created and retrieved the report.
+     *     // - Report's start time: The beginning of the timespan shown in the report. The startTime must be before the endTime (if specified) and the current time when the request is made, or the API returns an error.
+     *     // - Report's end time: The end of the timespan shown in the report. For example, the timespan of events summarized in a report can start in April and end in May. The report itself can be requested in August.  If the endTime is not specified, the report returns all activities from the startTime until the current time or the most recent 180 days if the startTime is more than 180 days in the past.
+     *     endTime: '(dddd)-(dd)-(dd)T(dd):(dd):(dd)(?:.(d+))?(?:(Z)|([-+])(dd):(dd))',
+     *     // The name of the event being queried by the API. Each eventName is related to a specific G Suite service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings type structure has all of the Calendar eventName activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings type and eventName parameters. For more information about eventName query strings and parameters, see the list of event names for various applications above in applicationName.
+     *     eventName: 'placeholder-value',
+     *     // The filters query string is a comma-separated list. The list is composed of event parameters that are manipulated by relational operators. Event parameters are in the form [parameter1 name][relational operator][parameter1 value],[parameter2 name][relational operator][parameter2 value],...
+     *     // These event parameters are associated with a specific eventName. An empty report is returned if the filtered request's parameter does not belong to the eventName. For more information about eventName parameters, see the list of event names for various applications above in applicationName.
+     *     //
+     *     // In the following Admin Activity example, the <> operator is URL-encoded in the request's query string (%3C%3E):
+     *     // GET...&eventName=CHANGE_CALENDAR_SETTING &filters=NEW_VALUE%3C%3EREAD_ONLY_ACCESS
+     *     //
+     *     // In the following Drive example, the list can be a view or edit event's doc_id parameter with a value that is manipulated by an 'equal to' (==) or 'not equal to' (<>) relational operator. In the first example, the report returns each edited document's doc_id. In the second example, the report returns each viewed document's doc_id that equals the value 12345 and does not return any viewed document's which have a doc_id value of 98765. The <> operator is URL-encoded in the request's query string (%3C%3E):
+     *     //
+     *     // GET...&eventName=edit&filters=doc_id GET...&eventName=view&filters=doc_id==12345,doc_id%3C%3E98765
+     *     //
+     *     // The relational operators include:
+     *     // - == - 'equal to'.
+     *     // - <> - 'not equal to'. It is URL-encoded (%3C%3E).
+     *     // - < - 'less than'. It is URL-encoded (%3C).
+     *     // - <= - 'less than or equal to'. It is URL-encoded (%3C=).
+     *     // - > - 'greater than'. It is URL-encoded (%3E).
+     *     // - >= - 'greater than or equal to'. It is URL-encoded (%3E=).
+     *     // Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter.
+     *     // In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters. If no parameters are requested, all parameters are returned.
+     *     filters:
+     *       '(.+[&lt;,&lt;=,==,&gt;=,&gt;,&lt;&gt;].+,)*(.+[&lt;,&lt;=,==,&gt;=,&gt;,&lt;&gt;].+)',
+     *     // Determines how many activity records are shown on each response page. For example, if the request sets maxResults=1 and the report has two activities, the report has two pages. The response's nextPageToken property has the token to the second page. The maxResults query string is optional in the request. The default value is 1000.
+     *     maxResults: 'placeholder-value',
+     *     // ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
+     *     orgUnitID: '(id:[a-z0-9]+)',
+     *     // The token to specify next page. A report with multiple pages has a nextPageToken property in the response. In your follow-on request getting the next page of the report, enter the nextPageToken value in the pageToken query string.
+     *     pageToken: 'placeholder-value',
+     *     // Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from startTime until endTime. The startTime must be before the endTime (if specified) and the current time when the request is made, or the API returns an error.
+     *     startTime:
+     *       '(dddd)-(dd)-(dd)T(dd):(dd):(dd)(?:.(d+))?(?:(Z)|([-+])(dd):(dd))',
+     *     // Represents the profile ID or the user email for which the data should be filtered. Can be all for all information, or userKey for a user's unique G Suite profile ID or their primary email address.
+     *     userKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reports.activities.watch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.actorIpAddress IP Address of host where the event was performed. Supports both IPv4 and IPv6 addresses.
+     * @param {string=} params.actorIpAddress The Internet Protocol (IP) Address of host where the event was performed. This is an additional way to filter a report's summary using the IP address of the user whose activity is being reported. This IP address may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. This parameter supports both IPv4 and IPv6 address versions.
      * @param {string} params.applicationName Application name for which the events are to be retrieved.
-     * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
-     * @param {string=} params.endTime Return events which occurred at or before this time.
-     * @param {string=} params.eventName Name of the event being queried.
-     * @param {string=} params.filters Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
-     * @param {integer=} params.maxResults Number of activity records to be shown in each page.
-     * @param {string=} params.orgUnitID the organizational unit's(OU) ID to filter activities from users belonging to a specific OU or one of its sub-OU(s)
-     * @param {string=} params.pageToken Token to specify next page.
-     * @param {string=} params.startTime Return events which occurred at or after this time.
-     * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
-     * @param {().Channel} params.resource Request body data
+     * @param {string=} params.customerId The unique ID of the customer to retrieve data for.
+     * @param {string=} params.endTime Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The default value is the approximate time of the API request. An API report has three basic time concepts:   - Date of the API's request for a report: When the API created and retrieved the report.  - Report's start time: The beginning of the timespan shown in the report. The startTime must be before the endTime (if specified) and the current time when the request is made, or the API returns an error.  - Report's end time: The end of the timespan shown in the report. For example, the timespan of events summarized in a report can start in April and end in May. The report itself can be requested in August.  If the endTime is not specified, the report returns all activities from the startTime until the current time or the most recent 180 days if the startTime is more than 180 days in the past.
+     * @param {string=} params.eventName The name of the event being queried by the API. Each eventName is related to a specific G Suite service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings type structure has all of the Calendar eventName activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings type and eventName parameters. For more information about eventName query strings and parameters, see the list of event names for various applications above in applicationName.
+     * @param {string=} params.filters The filters query string is a comma-separated list. The list is composed of event parameters that are manipulated by relational operators. Event parameters are in the form [parameter1 name][relational operator][parameter1 value],[parameter2 name][relational operator][parameter2 value],...  These event parameters are associated with a specific eventName. An empty report is returned if the filtered request's parameter does not belong to the eventName. For more information about eventName parameters, see the list of event names for various applications above in applicationName.  In the following Admin Activity example, the <> operator is URL-encoded in the request's query string (%3C%3E): GET...&eventName=CHANGE_CALENDAR_SETTING &filters=NEW_VALUE%3C%3EREAD_ONLY_ACCESS  In the following Drive example, the list can be a view or edit event's doc_id parameter with a value that is manipulated by an 'equal to' (==) or 'not equal to' (<>) relational operator. In the first example, the report returns each edited document's doc_id. In the second example, the report returns each viewed document's doc_id that equals the value 12345 and does not return any viewed document's which have a doc_id value of 98765. The <> operator is URL-encoded in the request's query string (%3C%3E):  GET...&eventName=edit&filters=doc_id GET...&eventName=view&filters=doc_id==12345,doc_id%3C%3E98765  The relational operators include:   - == - 'equal to'.  - <> - 'not equal to'. It is URL-encoded (%3C%3E).  - < - 'less than'. It is URL-encoded (%3C).  - <= - 'less than or equal to'. It is URL-encoded (%3C=).  - > - 'greater than'. It is URL-encoded (%3E).  - >= - 'greater than or equal to'. It is URL-encoded (%3E=).   Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters. If no parameters are requested, all parameters are returned.
+     * @param {integer=} params.maxResults Determines how many activity records are shown on each response page. For example, if the request sets maxResults=1 and the report has two activities, the report has two pages. The response's nextPageToken property has the token to the second page. The maxResults query string is optional in the request. The default value is 1000.
+     * @param {string=} params.orgUnitID ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
+     * @param {string=} params.pageToken The token to specify next page. A report with multiple pages has a nextPageToken property in the response. In your follow-on request getting the next page of the report, enter the nextPageToken value in the pageToken query string.
+     * @param {string=} params.startTime Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from startTime until endTime. The startTime must be before the endTime (if specified) and the current time when the request is made, or the API returns an error.
+     * @param {string} params.userKey Represents the profile ID or the user email for which the data should be filtered. Can be all for all information, or userKey for a user's unique G Suite profile ID or their primary email address.
+     * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     watch(
+      params: Params$Resource$Activities$Watch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    watch(
       params?: Params$Resource$Activities$Watch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Channel>;
+    watch(
+      params: Params$Resource$Activities$Watch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     watch(
       params: Params$Resource$Activities$Watch,
       options: MethodOptions | BodyResponseCallback<Schema$Channel>,
@@ -463,10 +693,17 @@ export namespace admin_reports_v1 {
     watch(
       paramsOrCallback?:
         | Params$Resource$Activities$Watch
-        | BodyResponseCallback<Schema$Channel>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
-      callback?: BodyResponseCallback<Schema$Channel>
-    ): void | GaxiosPromise<Schema$Channel> {
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -499,7 +736,10 @@ export namespace admin_reports_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Channel>(parameters, callback);
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
       }
@@ -508,12 +748,7 @@ export namespace admin_reports_v1 {
 
   export interface Params$Resource$Activities$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * IP Address of host where the event was performed. Supports both IPv4 and IPv6 addresses.
+     * The Internet Protocol (IP) Address of host where the event was performed. This is an additional way to filter a report's summary using the IP address of the user whose activity is being reported. This IP address may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. This parameter supports both IPv4 and IPv6 address versions.
      */
     actorIpAddress?: string;
     /**
@@ -521,50 +756,45 @@ export namespace admin_reports_v1 {
      */
     applicationName?: string;
     /**
-     * Represents the customer for which the data is to be fetched.
+     * The unique ID of the customer to retrieve data for.
      */
     customerId?: string;
     /**
-     * Return events which occurred at or before this time.
+     * Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The default value is the approximate time of the API request. An API report has three basic time concepts:   - Date of the API's request for a report: When the API created and retrieved the report.  - Report's start time: The beginning of the timespan shown in the report. The startTime must be before the endTime (if specified) and the current time when the request is made, or the API returns an error.  - Report's end time: The end of the timespan shown in the report. For example, the timespan of events summarized in a report can start in April and end in May. The report itself can be requested in August.  If the endTime is not specified, the report returns all activities from the startTime until the current time or the most recent 180 days if the startTime is more than 180 days in the past.
      */
     endTime?: string;
     /**
-     * Name of the event being queried.
+     * The name of the event being queried by the API. Each eventName is related to a specific G Suite service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings type structure has all of the Calendar eventName activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings type and eventName parameters. For more information about eventName query strings and parameters, see the list of event names for various applications above in applicationName.
      */
     eventName?: string;
     /**
-     * Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
+     * The filters query string is a comma-separated list. The list is composed of event parameters that are manipulated by relational operators. Event parameters are in the form [parameter1 name][relational operator][parameter1 value],[parameter2 name][relational operator][parameter2 value],...  These event parameters are associated with a specific eventName. An empty report is returned if the filtered request's parameter does not belong to the eventName. For more information about eventName parameters, see the list of event names for various applications above in applicationName.  In the following Admin Activity example, the <> operator is URL-encoded in the request's query string (%3C%3E): GET...&eventName=CHANGE_CALENDAR_SETTING &filters=NEW_VALUE%3C%3EREAD_ONLY_ACCESS  In the following Drive example, the list can be a view or edit event's doc_id parameter with a value that is manipulated by an 'equal to' (==) or 'not equal to' (<>) relational operator. In the first example, the report returns each edited document's doc_id. In the second example, the report returns each viewed document's doc_id that equals the value 12345 and does not return any viewed document's which have a doc_id value of 98765. The <> operator is URL-encoded in the request's query string (%3C%3E):  GET...&eventName=edit&filters=doc_id GET...&eventName=view&filters=doc_id==12345,doc_id%3C%3E98765  The relational operators include:   - == - 'equal to'.  - <> - 'not equal to'. It is URL-encoded (%3C%3E).  - < - 'less than'. It is URL-encoded (%3C).  - <= - 'less than or equal to'. It is URL-encoded (%3C=).  - > - 'greater than'. It is URL-encoded (%3E).  - >= - 'greater than or equal to'. It is URL-encoded (%3E=).   Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters. If no parameters are requested, all parameters are returned.
      */
     filters?: string;
     /**
-     * Number of activity records to be shown in each page.
+     * Determines how many activity records are shown on each response page. For example, if the request sets maxResults=1 and the report has two activities, the report has two pages. The response's nextPageToken property has the token to the second page. The maxResults query string is optional in the request. The default value is 1000.
      */
     maxResults?: number;
     /**
-     * the organizational unit's(OU) ID to filter activities from users belonging to a specific OU or one of its sub-OU(s)
+     * ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
      */
     orgUnitID?: string;
     /**
-     * Token to specify next page.
+     * The token to specify next page. A report with multiple pages has a nextPageToken property in the response. In your follow-on request getting the next page of the report, enter the nextPageToken value in the pageToken query string.
      */
     pageToken?: string;
     /**
-     * Return events which occurred at or after this time.
+     * Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from startTime until endTime. The startTime must be before the endTime (if specified) and the current time when the request is made, or the API returns an error.
      */
     startTime?: string;
     /**
-     * Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
+     * Represents the profile ID or the user email for which the data should be filtered. Can be all for all information, or userKey for a user's unique G Suite profile ID or their primary email address.
      */
     userKey?: string;
   }
   export interface Params$Resource$Activities$Watch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * IP Address of host where the event was performed. Supports both IPv4 and IPv6 addresses.
+     * The Internet Protocol (IP) Address of host where the event was performed. This is an additional way to filter a report's summary using the IP address of the user whose activity is being reported. This IP address may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. This parameter supports both IPv4 and IPv6 address versions.
      */
     actorIpAddress?: string;
     /**
@@ -572,39 +802,39 @@ export namespace admin_reports_v1 {
      */
     applicationName?: string;
     /**
-     * Represents the customer for which the data is to be fetched.
+     * The unique ID of the customer to retrieve data for.
      */
     customerId?: string;
     /**
-     * Return events which occurred at or before this time.
+     * Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The default value is the approximate time of the API request. An API report has three basic time concepts:   - Date of the API's request for a report: When the API created and retrieved the report.  - Report's start time: The beginning of the timespan shown in the report. The startTime must be before the endTime (if specified) and the current time when the request is made, or the API returns an error.  - Report's end time: The end of the timespan shown in the report. For example, the timespan of events summarized in a report can start in April and end in May. The report itself can be requested in August.  If the endTime is not specified, the report returns all activities from the startTime until the current time or the most recent 180 days if the startTime is more than 180 days in the past.
      */
     endTime?: string;
     /**
-     * Name of the event being queried.
+     * The name of the event being queried by the API. Each eventName is related to a specific G Suite service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings type structure has all of the Calendar eventName activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings type and eventName parameters. For more information about eventName query strings and parameters, see the list of event names for various applications above in applicationName.
      */
     eventName?: string;
     /**
-     * Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
+     * The filters query string is a comma-separated list. The list is composed of event parameters that are manipulated by relational operators. Event parameters are in the form [parameter1 name][relational operator][parameter1 value],[parameter2 name][relational operator][parameter2 value],...  These event parameters are associated with a specific eventName. An empty report is returned if the filtered request's parameter does not belong to the eventName. For more information about eventName parameters, see the list of event names for various applications above in applicationName.  In the following Admin Activity example, the <> operator is URL-encoded in the request's query string (%3C%3E): GET...&eventName=CHANGE_CALENDAR_SETTING &filters=NEW_VALUE%3C%3EREAD_ONLY_ACCESS  In the following Drive example, the list can be a view or edit event's doc_id parameter with a value that is manipulated by an 'equal to' (==) or 'not equal to' (<>) relational operator. In the first example, the report returns each edited document's doc_id. In the second example, the report returns each viewed document's doc_id that equals the value 12345 and does not return any viewed document's which have a doc_id value of 98765. The <> operator is URL-encoded in the request's query string (%3C%3E):  GET...&eventName=edit&filters=doc_id GET...&eventName=view&filters=doc_id==12345,doc_id%3C%3E98765  The relational operators include:   - == - 'equal to'.  - <> - 'not equal to'. It is URL-encoded (%3C%3E).  - < - 'less than'. It is URL-encoded (%3C).  - <= - 'less than or equal to'. It is URL-encoded (%3C=).  - > - 'greater than'. It is URL-encoded (%3E).  - >= - 'greater than or equal to'. It is URL-encoded (%3E=).   Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters. If no parameters are requested, all parameters are returned.
      */
     filters?: string;
     /**
-     * Number of activity records to be shown in each page.
+     * Determines how many activity records are shown on each response page. For example, if the request sets maxResults=1 and the report has two activities, the report has two pages. The response's nextPageToken property has the token to the second page. The maxResults query string is optional in the request. The default value is 1000.
      */
     maxResults?: number;
     /**
-     * the organizational unit's(OU) ID to filter activities from users belonging to a specific OU or one of its sub-OU(s)
+     * ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
      */
     orgUnitID?: string;
     /**
-     * Token to specify next page.
+     * The token to specify next page. A report with multiple pages has a nextPageToken property in the response. In your follow-on request getting the next page of the report, enter the nextPageToken value in the pageToken query string.
      */
     pageToken?: string;
     /**
-     * Return events which occurred at or after this time.
+     * Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from startTime until endTime. The startTime must be before the endTime (if specified) and the current time when the request is made, or the API returns an error.
      */
     startTime?: string;
     /**
-     * Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
+     * Represents the profile ID or the user email for which the data should be filtered. Can be all for all information, or userKey for a user's unique G Suite profile ID or their primary email address.
      */
     userKey?: string;
 
@@ -623,19 +853,77 @@ export namespace admin_reports_v1 {
     /**
      * admin.channels.stop
      * @desc Stop watching resources through this channel
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('reports_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.reports.audit.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await admin.channels.stop({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias admin.channels.stop
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Channel} params.resource Request body data
+     * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     stop(
+      params: Params$Resource$Channels$Stop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stop(
       params?: Params$Resource$Channels$Stop,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    stop(
+      params: Params$Resource$Channels$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     stop(
       params: Params$Resource$Channels$Stop,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -649,10 +937,15 @@ export namespace admin_reports_v1 {
     stop(
       paramsOrCallback?:
         | Params$Resource$Channels$Stop
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -684,7 +977,10 @@ export namespace admin_reports_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -692,11 +988,6 @@ export namespace admin_reports_v1 {
   }
 
   export interface Params$Resource$Channels$Stop extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -711,23 +1002,88 @@ export namespace admin_reports_v1 {
 
     /**
      * reports.customerUsageReports.get
-     * @desc Retrieves a report which is a collection of properties / statistics for a specific customer.
+     * @desc Retrieves a report which is a collection of properties and statistics for a specific customer's account. For more information, see the Customers Usage Report guide. For more information about the customer report's parameters, see the Customers Usage parameters reference guides.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('reports_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.reports.usage.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reports.customerUsageReports.get({
+     *     // The unique ID of the customer to retrieve data for.
+     *     customerId: 'C.+',
+     *     // Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
+     *     date: '(d){4}-(d){2}-(d){2}',
+     *     // Token to specify next page. A report with multiple pages has a nextPageToken property in the response. For your follow-on requests getting all of the report's pages, enter the nextPageToken value in the pageToken query string.
+     *     pageToken: 'placeholder-value',
+     *     // The parameters query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Customers usage report include accounts, app_maker, apps_scripts, calendar, classroom, cros, docs, gmail, gplus, device_management, meet, and sites.
+     *     // A parameters query string is in the CSV form of app_name1:param_name1, app_name2:param_name2.
+     *     // Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter.
+     *     // In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters.
+     *     //
+     *     // An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned.
+     *     parameters:
+     *       '(((accounts)|(app_maker)|(apps_scripts)|(classroom)|(cros)|(gmail)|(calendar)|(docs)|(gplus)|(sites)|(device_management)|(drive)|(meet)):[^,]+,)*(((accounts)|(app_maker)|(apps_scripts)|(classroom)|(cros)|(gmail)|(calendar)|(docs)|(gplus)|(sites)|(device_management)|(drive)|(meet)):[^,]+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "usageReports": [],
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reports.customerUsageReports.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
-     * @param {string} params.date Represents the date in yyyy-mm-dd format for which the data is to be fetched.
-     * @param {string=} params.pageToken Token to specify next page.
-     * @param {string=} params.parameters Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
+     * @param {string=} params.customerId The unique ID of the customer to retrieve data for.
+     * @param {string} params.date Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
+     * @param {string=} params.pageToken Token to specify next page. A report with multiple pages has a nextPageToken property in the response. For your follow-on requests getting all of the report's pages, enter the nextPageToken value in the pageToken query string.
+     * @param {string=} params.parameters The parameters query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Customers usage report include accounts, app_maker, apps_scripts, calendar, classroom, cros, docs, gmail, gplus, device_management, meet, and sites. A parameters query string is in the CSV form of app_name1:param_name1, app_name2:param_name2. Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters.  An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Customerusagereports$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Customerusagereports$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UsageReports>;
+    get(
+      params: Params$Resource$Customerusagereports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Customerusagereports$Get,
       options: MethodOptions | BodyResponseCallback<Schema$UsageReports>,
@@ -741,12 +1097,17 @@ export namespace admin_reports_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Customerusagereports$Get
-        | BodyResponseCallback<Schema$UsageReports>,
+        | BodyResponseCallback<Schema$UsageReports>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UsageReports>,
-      callback?: BodyResponseCallback<Schema$UsageReports>
-    ): void | GaxiosPromise<Schema$UsageReports> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UsageReports>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UsageReports>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UsageReports> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customerusagereports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -780,7 +1141,10 @@ export namespace admin_reports_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UsageReports>(parameters, callback);
+        createAPIRequest<Schema$UsageReports>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UsageReports>(parameters);
       }
@@ -790,24 +1154,19 @@ export namespace admin_reports_v1 {
   export interface Params$Resource$Customerusagereports$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Represents the customer for which the data is to be fetched.
+     * The unique ID of the customer to retrieve data for.
      */
     customerId?: string;
     /**
-     * Represents the date in yyyy-mm-dd format for which the data is to be fetched.
+     * Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
      */
     date?: string;
     /**
-     * Token to specify next page.
+     * Token to specify next page. A report with multiple pages has a nextPageToken property in the response. For your follow-on requests getting all of the report's pages, enter the nextPageToken value in the pageToken query string.
      */
     pageToken?: string;
     /**
-     * Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
+     * The parameters query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Customers usage report include accounts, app_maker, apps_scripts, calendar, classroom, cros, docs, gmail, gplus, device_management, meet, and sites. A parameters query string is in the CSV form of app_name1:param_name1, app_name2:param_name2. Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters.  An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned.
      */
     parameters?: string;
   }
@@ -820,27 +1179,113 @@ export namespace admin_reports_v1 {
 
     /**
      * reports.entityUsageReports.get
-     * @desc Retrieves a report which is a collection of properties / statistics for a set of objects.
+     * @desc Retrieves a report which is a collection of properties and statistics for entities used by users within the account. For more information, see the Entities Usage Report guide. For more information about the entities report's parameters, see the Entities Usage parameters reference guides.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('reports_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.reports.usage.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reports.entityUsageReports.get({
+     *     // The unique ID of the customer to retrieve data for.
+     *     customerId: 'C.+',
+     *     // Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
+     *     date: '(d){4}-(d){2}-(d){2}',
+     *     // Represents the key of the object to filter the data with.
+     *     entityKey: 'placeholder-value',
+     *     // Represents the type of entity for the report.
+     *     entityType: '(gplus_communities)',
+     *     // The filters query string is a comma-separated list of an application's event parameters where the parameter's value is manipulated by a relational operator. The filters query string includes the name of the application whose usage is returned in the report. The application values for the Entities usage report include accounts, docs, and gmail.
+     *     // Filters are in the form [application name]:[parameter name][relational operator][parameter value],....
+     *     //
+     *     // In this example, the <> 'not equal to' operator is URL-encoded in the request's query string (%3C%3E):
+     *     // GET https://www.googleapis.com/admin/reports/v1/usage/gplus_communities/all/dates/2017-12-01 ?parameters=gplus:community_name,gplus:num_total_members &filters=gplus:num_total_members>0
+     *     //
+     *     //
+     *     // The relational operators include:
+     *     // - == - 'equal to'.
+     *     // - <> - 'not equal to'. It is URL-encoded (%3C%3E).
+     *     // - < - 'less than'. It is URL-encoded (%3C).
+     *     // - <= - 'less than or equal to'. It is URL-encoded (%3C=).
+     *     // - > - 'greater than'. It is URL-encoded (%3E).
+     *     // - >= - 'greater than or equal to'. It is URL-encoded (%3E=).  Filters can only be applied to numeric parameters.
+     *     filters:
+     *       '(((gplus)):[a-z0-9_]+[&lt;,&lt;=,==,&gt;=,&gt;,!=][^,]+,)*(((gplus)):[a-z0-9_]+[&lt;,&lt;=,==,&gt;=,&gt;,!=][^,]+)',
+     *     // Determines how many activity records are shown on each response page. For example, if the request sets maxResults=1 and the report has two activities, the report has two pages. The response's nextPageToken property has the token to the second page.
+     *     maxResults: 'placeholder-value',
+     *     // Token to specify next page. A report with multiple pages has a nextPageToken property in the response. In your follow-on request getting the next page of the report, enter the nextPageToken value in the pageToken query string.
+     *     pageToken: 'placeholder-value',
+     *     // The parameters query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Entities usage report are only gplus.
+     *     // A parameter query string is in the CSV form of [app_name1:param_name1], [app_name2:param_name2]....
+     *     // Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter.
+     *     // In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters.
+     *     //
+     *     // An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned.
+     *     parameters: '(((gplus)):[^,]+,)*(((gplus)):[^,]+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "usageReports": [],
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reports.entityUsageReports.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
-     * @param {string} params.date Represents the date in yyyy-mm-dd format for which the data is to be fetched.
-     * @param {string} params.entityKey Represents the key of object for which the data should be filtered.
-     * @param {string} params.entityType Type of object. Should be one of - gplus_communities.
-     * @param {string=} params.filters Represents the set of filters including parameter operator value.
-     * @param {integer=} params.maxResults Maximum number of results to return. Maximum allowed is 1000
-     * @param {string=} params.pageToken Token to specify next page.
-     * @param {string=} params.parameters Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
+     * @param {string=} params.customerId The unique ID of the customer to retrieve data for.
+     * @param {string} params.date Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
+     * @param {string} params.entityKey Represents the key of the object to filter the data with.
+     * @param {string} params.entityType Represents the type of entity for the report.
+     * @param {string=} params.filters The filters query string is a comma-separated list of an application's event parameters where the parameter's value is manipulated by a relational operator. The filters query string includes the name of the application whose usage is returned in the report. The application values for the Entities usage report include accounts, docs, and gmail. Filters are in the form [application name]:[parameter name][relational operator][parameter value],....  In this example, the <> 'not equal to' operator is URL-encoded in the request's query string (%3C%3E): GET https://www.googleapis.com/admin/reports/v1/usage/gplus_communities/all/dates/2017-12-01 ?parameters=gplus:community_name,gplus:num_total_members &filters=gplus:num_total_members>0   The relational operators include:   - == - 'equal to'.  - <> - 'not equal to'. It is URL-encoded (%3C%3E).  - < - 'less than'. It is URL-encoded (%3C).  - <= - 'less than or equal to'. It is URL-encoded (%3C=).  - > - 'greater than'. It is URL-encoded (%3E).  - >= - 'greater than or equal to'. It is URL-encoded (%3E=).  Filters can only be applied to numeric parameters.
+     * @param {integer=} params.maxResults Determines how many activity records are shown on each response page. For example, if the request sets maxResults=1 and the report has two activities, the report has two pages. The response's nextPageToken property has the token to the second page.
+     * @param {string=} params.pageToken Token to specify next page. A report with multiple pages has a nextPageToken property in the response. In your follow-on request getting the next page of the report, enter the nextPageToken value in the pageToken query string.
+     * @param {string=} params.parameters The parameters query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Entities usage report are only gplus. A parameter query string is in the CSV form of [app_name1:param_name1], [app_name2:param_name2].... Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters.  An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Entityusagereports$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Entityusagereports$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UsageReports>;
+    get(
+      params: Params$Resource$Entityusagereports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Entityusagereports$Get,
       options: MethodOptions | BodyResponseCallback<Schema$UsageReports>,
@@ -854,12 +1299,17 @@ export namespace admin_reports_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Entityusagereports$Get
-        | BodyResponseCallback<Schema$UsageReports>,
+        | BodyResponseCallback<Schema$UsageReports>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UsageReports>,
-      callback?: BodyResponseCallback<Schema$UsageReports>
-    ): void | GaxiosPromise<Schema$UsageReports> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UsageReports>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UsageReports>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UsageReports> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Entityusagereports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -893,7 +1343,10 @@ export namespace admin_reports_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UsageReports>(parameters, callback);
+        createAPIRequest<Schema$UsageReports>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UsageReports>(parameters);
       }
@@ -903,40 +1356,35 @@ export namespace admin_reports_v1 {
   export interface Params$Resource$Entityusagereports$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Represents the customer for which the data is to be fetched.
+     * The unique ID of the customer to retrieve data for.
      */
     customerId?: string;
     /**
-     * Represents the date in yyyy-mm-dd format for which the data is to be fetched.
+     * Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
      */
     date?: string;
     /**
-     * Represents the key of object for which the data should be filtered.
+     * Represents the key of the object to filter the data with.
      */
     entityKey?: string;
     /**
-     * Type of object. Should be one of - gplus_communities.
+     * Represents the type of entity for the report.
      */
     entityType?: string;
     /**
-     * Represents the set of filters including parameter operator value.
+     * The filters query string is a comma-separated list of an application's event parameters where the parameter's value is manipulated by a relational operator. The filters query string includes the name of the application whose usage is returned in the report. The application values for the Entities usage report include accounts, docs, and gmail. Filters are in the form [application name]:[parameter name][relational operator][parameter value],....  In this example, the <> 'not equal to' operator is URL-encoded in the request's query string (%3C%3E): GET https://www.googleapis.com/admin/reports/v1/usage/gplus_communities/all/dates/2017-12-01 ?parameters=gplus:community_name,gplus:num_total_members &filters=gplus:num_total_members>0   The relational operators include:   - == - 'equal to'.  - <> - 'not equal to'. It is URL-encoded (%3C%3E).  - < - 'less than'. It is URL-encoded (%3C).  - <= - 'less than or equal to'. It is URL-encoded (%3C=).  - > - 'greater than'. It is URL-encoded (%3E).  - >= - 'greater than or equal to'. It is URL-encoded (%3E=).  Filters can only be applied to numeric parameters.
      */
     filters?: string;
     /**
-     * Maximum number of results to return. Maximum allowed is 1000
+     * Determines how many activity records are shown on each response page. For example, if the request sets maxResults=1 and the report has two activities, the report has two pages. The response's nextPageToken property has the token to the second page.
      */
     maxResults?: number;
     /**
-     * Token to specify next page.
+     * Token to specify next page. A report with multiple pages has a nextPageToken property in the response. In your follow-on request getting the next page of the report, enter the nextPageToken value in the pageToken query string.
      */
     pageToken?: string;
     /**
-     * Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
+     * The parameters query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Entities usage report are only gplus. A parameter query string is in the CSV form of [app_name1:param_name1], [app_name2:param_name2].... Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters.  An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned.
      */
     parameters?: string;
   }
@@ -949,27 +1397,115 @@ export namespace admin_reports_v1 {
 
     /**
      * reports.userUsageReport.get
-     * @desc Retrieves a report which is a collection of properties / statistics for a set of users.
+     * @desc Retrieves a report which is a collection of properties and statistics for a set of users with the account. For more information, see the User Usage Report guide. For more information about the user report's parameters, see the Users Usage parameters reference guides.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('reports_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.reports.usage.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reports.userUsageReport.get({
+     *     // The unique ID of the customer to retrieve data for.
+     *     customerId: 'C.+',
+     *     // Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
+     *     date: '(d){4}-(d){2}-(d){2}',
+     *     // The filters query string is a comma-separated list of an application's event parameters where the parameter's value is manipulated by a relational operator. The filters query string includes the name of the application whose usage is returned in the report. The application values for the Users Usage Report include accounts, docs, and gmail.
+     *     // Filters are in the form [application name]:[parameter name][relational operator][parameter value],....
+     *     //
+     *     // In this example, the <> 'not equal to' operator is URL-encoded in the request's query string (%3C%3E):
+     *     // GET https://www.googleapis.com/admin/reports/v1/usage/users/all/dates/2013-03-03 ?parameters=accounts:last_login_time &filters=accounts:last_login_time>2010-10-28T10:26:35.000Z
+     *     //
+     *     //
+     *     // The relational operators include:
+     *     // - == - 'equal to'.
+     *     // - <> - 'not equal to'. It is URL-encoded (%3C%3E).
+     *     // - < - 'less than'. It is URL-encoded (%3C).
+     *     // - <= - 'less than or equal to'. It is URL-encoded (%3C=).
+     *     // - > - 'greater than'. It is URL-encoded (%3E).
+     *     // - >= - 'greater than or equal to'. It is URL-encoded (%3E=).
+     *     filters:
+     *       '(((accounts)|(classroom)|(cros)|(gmail)|(calendar)|(docs)|(gplus)|(sites)|(device_management)|(drive)):[a-z0-9_]+[&lt;,&lt;=,==,&gt;=,&gt;,!=][^,]+,)*(((accounts)|(classroom)|(cros)|(gmail)|(calendar)|(docs)|(gplus)|(sites)|(device_management)|(drive)):[a-z0-9_]+[&lt;,&lt;=,==,&gt;=,&gt;,!=][^,]+)',
+     *     // Determines how many activity records are shown on each response page. For example, if the request sets maxResults=1 and the report has two activities, the report has two pages. The response's nextPageToken property has the token to the second page.
+     *     // The maxResults query string is optional.
+     *     maxResults: 'placeholder-value',
+     *     // ID of the organizational unit to report on. User activity will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
+     *     orgUnitID: '(id:[a-z0-9]+)',
+     *     // Token to specify next page. A report with multiple pages has a nextPageToken property in the response. In your follow-on request getting the next page of the report, enter the nextPageToken value in the pageToken query string.
+     *     pageToken: 'placeholder-value',
+     *     // The parameters query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Customers usage report include accounts, app_maker, apps_scripts, calendar, classroom, cros, docs, gmail, gplus, device_management, meet, and sites.
+     *     // A parameters query string is in the CSV form of app_name1:param_name1, app_name2:param_name2.
+     *     // Note: The API doesn't accept multiple values of a parameter.
+     *     // If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters.
+     *     //
+     *     // An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned.
+     *     parameters:
+     *       '(((accounts)|(classroom)|(cros)|(gmail)|(calendar)|(docs)|(gplus)|(sites)|(device_management)|(drive)):[^,]+,)*(((accounts)|(classroom)|(cros)|(gmail)|(calendar)|(docs)|(gplus)|(sites)|(device_management)|(drive)):[^,]+)',
+     *     // Represents the profile ID or the user email for which the data should be filtered. Can be all for all information, or userKey for a user's unique G Suite profile ID or their primary email address.
+     *     userKey: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "usageReports": [],
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reports.userUsageReport.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
-     * @param {string} params.date Represents the date in yyyy-mm-dd format for which the data is to be fetched.
-     * @param {string=} params.filters Represents the set of filters including parameter operator value.
-     * @param {integer=} params.maxResults Maximum number of results to return. Maximum allowed is 1000
-     * @param {string=} params.orgUnitID the organizational unit's ID to filter usage parameters from users belonging to a specific OU or one of its sub-OU(s).
-     * @param {string=} params.pageToken Token to specify next page.
-     * @param {string=} params.parameters Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
-     * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered.
+     * @param {string=} params.customerId The unique ID of the customer to retrieve data for.
+     * @param {string} params.date Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
+     * @param {string=} params.filters The filters query string is a comma-separated list of an application's event parameters where the parameter's value is manipulated by a relational operator. The filters query string includes the name of the application whose usage is returned in the report. The application values for the Users Usage Report include accounts, docs, and gmail. Filters are in the form [application name]:[parameter name][relational operator][parameter value],....  In this example, the <> 'not equal to' operator is URL-encoded in the request's query string (%3C%3E): GET https://www.googleapis.com/admin/reports/v1/usage/users/all/dates/2013-03-03 ?parameters=accounts:last_login_time &filters=accounts:last_login_time>2010-10-28T10:26:35.000Z   The relational operators include:   - == - 'equal to'.  - <> - 'not equal to'. It is URL-encoded (%3C%3E).  - < - 'less than'. It is URL-encoded (%3C).  - <= - 'less than or equal to'. It is URL-encoded (%3C=).  - > - 'greater than'. It is URL-encoded (%3E).  - >= - 'greater than or equal to'. It is URL-encoded (%3E=).
+     * @param {integer=} params.maxResults Determines how many activity records are shown on each response page. For example, if the request sets maxResults=1 and the report has two activities, the report has two pages. The response's nextPageToken property has the token to the second page. The maxResults query string is optional.
+     * @param {string=} params.orgUnitID ID of the organizational unit to report on. User activity will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
+     * @param {string=} params.pageToken Token to specify next page. A report with multiple pages has a nextPageToken property in the response. In your follow-on request getting the next page of the report, enter the nextPageToken value in the pageToken query string.
+     * @param {string=} params.parameters The parameters query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Customers usage report include accounts, app_maker, apps_scripts, calendar, classroom, cros, docs, gmail, gplus, device_management, meet, and sites. A parameters query string is in the CSV form of app_name1:param_name1, app_name2:param_name2. Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters.  An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned.
+     * @param {string} params.userKey Represents the profile ID or the user email for which the data should be filtered. Can be all for all information, or userKey for a user's unique G Suite profile ID or their primary email address.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Userusagereport$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Userusagereport$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UsageReports>;
+    get(
+      params: Params$Resource$Userusagereport$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Userusagereport$Get,
       options: MethodOptions | BodyResponseCallback<Schema$UsageReports>,
@@ -983,12 +1519,17 @@ export namespace admin_reports_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Userusagereport$Get
-        | BodyResponseCallback<Schema$UsageReports>,
+        | BodyResponseCallback<Schema$UsageReports>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UsageReports>,
-      callback?: BodyResponseCallback<Schema$UsageReports>
-    ): void | GaxiosPromise<Schema$UsageReports> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UsageReports>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UsageReports>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UsageReports> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userusagereport$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1021,7 +1562,10 @@ export namespace admin_reports_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UsageReports>(parameters, callback);
+        createAPIRequest<Schema$UsageReports>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UsageReports>(parameters);
       }
@@ -1031,40 +1575,35 @@ export namespace admin_reports_v1 {
   export interface Params$Resource$Userusagereport$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Represents the customer for which the data is to be fetched.
+     * The unique ID of the customer to retrieve data for.
      */
     customerId?: string;
     /**
-     * Represents the date in yyyy-mm-dd format for which the data is to be fetched.
+     * Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
      */
     date?: string;
     /**
-     * Represents the set of filters including parameter operator value.
+     * The filters query string is a comma-separated list of an application's event parameters where the parameter's value is manipulated by a relational operator. The filters query string includes the name of the application whose usage is returned in the report. The application values for the Users Usage Report include accounts, docs, and gmail. Filters are in the form [application name]:[parameter name][relational operator][parameter value],....  In this example, the <> 'not equal to' operator is URL-encoded in the request's query string (%3C%3E): GET https://www.googleapis.com/admin/reports/v1/usage/users/all/dates/2013-03-03 ?parameters=accounts:last_login_time &filters=accounts:last_login_time>2010-10-28T10:26:35.000Z   The relational operators include:   - == - 'equal to'.  - <> - 'not equal to'. It is URL-encoded (%3C%3E).  - < - 'less than'. It is URL-encoded (%3C).  - <= - 'less than or equal to'. It is URL-encoded (%3C=).  - > - 'greater than'. It is URL-encoded (%3E).  - >= - 'greater than or equal to'. It is URL-encoded (%3E=).
      */
     filters?: string;
     /**
-     * Maximum number of results to return. Maximum allowed is 1000
+     * Determines how many activity records are shown on each response page. For example, if the request sets maxResults=1 and the report has two activities, the report has two pages. The response's nextPageToken property has the token to the second page. The maxResults query string is optional.
      */
     maxResults?: number;
     /**
-     * the organizational unit's ID to filter usage parameters from users belonging to a specific OU or one of its sub-OU(s).
+     * ID of the organizational unit to report on. User activity will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
      */
     orgUnitID?: string;
     /**
-     * Token to specify next page.
+     * Token to specify next page. A report with multiple pages has a nextPageToken property in the response. In your follow-on request getting the next page of the report, enter the nextPageToken value in the pageToken query string.
      */
     pageToken?: string;
     /**
-     * Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
+     * The parameters query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Customers usage report include accounts, app_maker, apps_scripts, calendar, classroom, cros, docs, gmail, gplus, device_management, meet, and sites. A parameters query string is in the CSV form of app_name1:param_name1, app_name2:param_name2. Note: The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters.  An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned.
      */
     parameters?: string;
     /**
-     * Represents the profile id or the user email for which the data should be filtered.
+     * Represents the profile ID or the user email for which the data should be filtered. Can be all for all information, or userKey for a user's unique G Suite profile ID or their primary email address.
      */
     userKey?: string;
   }

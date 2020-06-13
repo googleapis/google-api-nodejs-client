@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace indexing_v3 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace indexing_v3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -170,6 +180,48 @@ export namespace indexing_v3 {
     /**
      * indexing.urlNotifications.getMetadata
      * @desc Gets metadata about a Web Document. This method can _only_ be used to query URLs that were previously seen in successful Indexing API notifications. Includes the latest `UrlNotification` received via this API.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/indexing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const indexing = google.indexing('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/indexing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await indexing.urlNotifications.getMetadata({
+     *     // URL that is being queried.
+     *     url: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "latestRemove": {},
+     *   //   "latestUpdate": {},
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias indexing.urlNotifications.getMetadata
      * @memberOf! ()
      *
@@ -180,9 +232,18 @@ export namespace indexing_v3 {
      * @return {object} Request object
      */
     getMetadata(
+      params: Params$Resource$Urlnotifications$Getmetadata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getMetadata(
       params?: Params$Resource$Urlnotifications$Getmetadata,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UrlNotificationMetadata>;
+    getMetadata(
+      params: Params$Resource$Urlnotifications$Getmetadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getMetadata(
       params: Params$Resource$Urlnotifications$Getmetadata,
       options:
@@ -200,12 +261,20 @@ export namespace indexing_v3 {
     getMetadata(
       paramsOrCallback?:
         | Params$Resource$Urlnotifications$Getmetadata
-        | BodyResponseCallback<Schema$UrlNotificationMetadata>,
+        | BodyResponseCallback<Schema$UrlNotificationMetadata>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UrlNotificationMetadata>,
-      callback?: BodyResponseCallback<Schema$UrlNotificationMetadata>
-    ): void | GaxiosPromise<Schema$UrlNotificationMetadata> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UrlNotificationMetadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UrlNotificationMetadata>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UrlNotificationMetadata>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Urlnotifications$Getmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -239,7 +308,10 @@ export namespace indexing_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UrlNotificationMetadata>(parameters, callback);
+        createAPIRequest<Schema$UrlNotificationMetadata>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UrlNotificationMetadata>(parameters);
       }
@@ -248,19 +320,75 @@ export namespace indexing_v3 {
     /**
      * indexing.urlNotifications.publish
      * @desc Notifies that a URL has been updated or deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/indexing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const indexing = google.indexing('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/indexing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await indexing.urlNotifications.publish({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "notifyTime": "my_notifyTime",
+     *       //   "type": "my_type",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "urlNotificationMetadata": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias indexing.urlNotifications.publish
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().UrlNotification} params.resource Request body data
+     * @param {().UrlNotification} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     publish(
+      params: Params$Resource$Urlnotifications$Publish,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    publish(
       params?: Params$Resource$Urlnotifications$Publish,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PublishUrlNotificationResponse>;
+    publish(
+      params: Params$Resource$Urlnotifications$Publish,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     publish(
       params: Params$Resource$Urlnotifications$Publish,
       options:
@@ -278,12 +406,20 @@ export namespace indexing_v3 {
     publish(
       paramsOrCallback?:
         | Params$Resource$Urlnotifications$Publish
-        | BodyResponseCallback<Schema$PublishUrlNotificationResponse>,
+        | BodyResponseCallback<Schema$PublishUrlNotificationResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PublishUrlNotificationResponse>,
-      callback?: BodyResponseCallback<Schema$PublishUrlNotificationResponse>
-    ): void | GaxiosPromise<Schema$PublishUrlNotificationResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PublishUrlNotificationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PublishUrlNotificationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PublishUrlNotificationResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Urlnotifications$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -319,7 +455,7 @@ export namespace indexing_v3 {
       if (callback) {
         createAPIRequest<Schema$PublishUrlNotificationResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PublishUrlNotificationResponse>(
@@ -332,22 +468,12 @@ export namespace indexing_v3 {
   export interface Params$Resource$Urlnotifications$Getmetadata
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * URL that is being queried.
      */
     url?: string;
   }
   export interface Params$Resource$Urlnotifications$Publish
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

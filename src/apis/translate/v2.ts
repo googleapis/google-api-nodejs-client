@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace translate_v2 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace translate_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -231,19 +241,76 @@ export namespace translate_v2 {
     /**
      * language.detections.detect
      * @desc Detects the language of text within a request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.detections.detect({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "q": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "detections": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias language.detections.detect
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().DetectLanguageRequest} params.resource Request body data
+     * @param {().DetectLanguageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     detect(
+      params: Params$Resource$Detections$Detect,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    detect(
       params?: Params$Resource$Detections$Detect,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DetectionsListResponse>;
+    detect(
+      params: Params$Resource$Detections$Detect,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     detect(
       params: Params$Resource$Detections$Detect,
       options:
@@ -259,12 +326,20 @@ export namespace translate_v2 {
     detect(
       paramsOrCallback?:
         | Params$Resource$Detections$Detect
-        | BodyResponseCallback<Schema$DetectionsListResponse>,
+        | BodyResponseCallback<Schema$DetectionsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DetectionsListResponse>,
-      callback?: BodyResponseCallback<Schema$DetectionsListResponse>
-    ): void | GaxiosPromise<Schema$DetectionsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DetectionsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DetectionsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DetectionsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Detections$Detect;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -298,7 +373,10 @@ export namespace translate_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DetectionsListResponse>(parameters, callback);
+        createAPIRequest<Schema$DetectionsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DetectionsListResponse>(parameters);
       }
@@ -307,6 +385,50 @@ export namespace translate_v2 {
     /**
      * language.detections.list
      * @desc Detects the language of text within a request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.detections.list({
+     *     // The input text upon which to perform language detection. Repeat this
+     *     // parameter to perform language detection on multiple text inputs.
+     *     q: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "detections": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias language.detections.list
      * @memberOf! ()
      *
@@ -317,9 +439,18 @@ export namespace translate_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Detections$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Detections$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DetectionsListResponse>;
+    list(
+      params: Params$Resource$Detections$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Detections$List,
       options:
@@ -335,12 +466,20 @@ export namespace translate_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Detections$List
-        | BodyResponseCallback<Schema$DetectionsListResponse>,
+        | BodyResponseCallback<Schema$DetectionsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DetectionsListResponse>,
-      callback?: BodyResponseCallback<Schema$DetectionsListResponse>
-    ): void | GaxiosPromise<Schema$DetectionsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DetectionsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DetectionsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DetectionsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Detections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -373,7 +512,10 @@ export namespace translate_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DetectionsListResponse>(parameters, callback);
+        createAPIRequest<Schema$DetectionsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DetectionsListResponse>(parameters);
       }
@@ -383,21 +525,11 @@ export namespace translate_v2 {
   export interface Params$Resource$Detections$Detect
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$DetectLanguageRequest;
   }
   export interface Params$Resource$Detections$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The input text upon which to perform language detection. Repeat this parameter to perform language detection on multiple text inputs.
      */
@@ -413,6 +545,52 @@ export namespace translate_v2 {
     /**
      * language.languages.list
      * @desc Returns a list of supported languages for translation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.languages.list({
+     *     // The model type for which supported languages should be returned.
+     *     model: 'placeholder-value',
+     *     // The language to use to return localized, human readable names of supported
+     *     // languages.
+     *     target: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "languages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias language.languages.list
      * @memberOf! ()
      *
@@ -424,9 +602,18 @@ export namespace translate_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Languages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Languages$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LanguagesListResponse>;
+    list(
+      params: Params$Resource$Languages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Languages$List,
       options:
@@ -442,12 +629,20 @@ export namespace translate_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Languages$List
-        | BodyResponseCallback<Schema$LanguagesListResponse>,
+        | BodyResponseCallback<Schema$LanguagesListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LanguagesListResponse>,
-      callback?: BodyResponseCallback<Schema$LanguagesListResponse>
-    ): void | GaxiosPromise<Schema$LanguagesListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LanguagesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LanguagesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LanguagesListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Languages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -480,7 +675,10 @@ export namespace translate_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LanguagesListResponse>(parameters, callback);
+        createAPIRequest<Schema$LanguagesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LanguagesListResponse>(parameters);
       }
@@ -488,11 +686,6 @@ export namespace translate_v2 {
   }
 
   export interface Params$Resource$Languages$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The model type for which supported languages should be returned.
      */
@@ -512,6 +705,66 @@ export namespace translate_v2 {
     /**
      * language.translations.list
      * @desc Translates input text, returning translated text.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.translations.list({
+     *     // The customization id for translate
+     *     cid: 'placeholder-value',
+     *     // The format of the source text, in either HTML (default) or plain-text. A
+     *     // value of "html" indicates HTML and a value of "text" indicates plain-text.
+     *     format: 'placeholder-value',
+     *     // The `model` type requested for this translation. Valid values are
+     *     // listed in public documentation.
+     *     model: 'placeholder-value',
+     *     // The input text to translate. Repeat this parameter to perform translation
+     *     // operations on multiple text inputs.
+     *     q: 'placeholder-value',
+     *     // The language of the source text, set to one of the language codes listed in
+     *     // Language Support. If the source language is not specified, the API will
+     *     // attempt to identify the source language automatically and return it within
+     *     // the response.
+     *     source: 'placeholder-value',
+     *     // The language to use for translation of the input text, set to one of the
+     *     // language codes listed in Language Support.
+     *     target: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "translations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias language.translations.list
      * @memberOf! ()
      *
@@ -527,9 +780,18 @@ export namespace translate_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Translations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Translations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TranslationsListResponse>;
+    list(
+      params: Params$Resource$Translations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Translations$List,
       options:
@@ -545,12 +807,20 @@ export namespace translate_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Translations$List
-        | BodyResponseCallback<Schema$TranslationsListResponse>,
+        | BodyResponseCallback<Schema$TranslationsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TranslationsListResponse>,
-      callback?: BodyResponseCallback<Schema$TranslationsListResponse>
-    ): void | GaxiosPromise<Schema$TranslationsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TranslationsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TranslationsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TranslationsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Translations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -584,7 +854,10 @@ export namespace translate_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TranslationsListResponse>(parameters, callback);
+        createAPIRequest<Schema$TranslationsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TranslationsListResponse>(parameters);
       }
@@ -593,19 +866,80 @@ export namespace translate_v2 {
     /**
      * language.translations.translate
      * @desc Translates input text, returning translated text.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.translations.translate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "format": "my_format",
+     *       //   "model": "my_model",
+     *       //   "q": [],
+     *       //   "source": "my_source",
+     *       //   "target": "my_target"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "translations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias language.translations.translate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().TranslateTextRequest} params.resource Request body data
+     * @param {().TranslateTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     translate(
+      params: Params$Resource$Translations$Translate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    translate(
       params?: Params$Resource$Translations$Translate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TranslationsListResponse>;
+    translate(
+      params: Params$Resource$Translations$Translate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     translate(
       params: Params$Resource$Translations$Translate,
       options:
@@ -623,12 +957,20 @@ export namespace translate_v2 {
     translate(
       paramsOrCallback?:
         | Params$Resource$Translations$Translate
-        | BodyResponseCallback<Schema$TranslationsListResponse>,
+        | BodyResponseCallback<Schema$TranslationsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TranslationsListResponse>,
-      callback?: BodyResponseCallback<Schema$TranslationsListResponse>
-    ): void | GaxiosPromise<Schema$TranslationsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TranslationsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TranslationsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TranslationsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Translations$Translate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -662,7 +1004,10 @@ export namespace translate_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TranslationsListResponse>(parameters, callback);
+        createAPIRequest<Schema$TranslationsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TranslationsListResponse>(parameters);
       }
@@ -671,11 +1016,6 @@ export namespace translate_v2 {
 
   export interface Params$Resource$Translations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The customization id for translate
      */
@@ -703,11 +1043,6 @@ export namespace translate_v2 {
   }
   export interface Params$Resource$Translations$Translate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace webmasters_v3 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace webmasters_v3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -267,20 +277,88 @@ export namespace webmasters_v3 {
     /**
      * webmasters.searchanalytics.query
      * @desc Query your data with filters and parameters that you define. Returns zero or more rows grouped by the row keys that you define. You must define a date range of one or more days.  When date is one of the group by values, any days without data are omitted from the result list. If you need to know which days have data, issue a broad date range query grouped by date for any metric, and see which day rows are returned.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const webmasters = google.webmasters('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/webmasters',
+     *       'https://www.googleapis.com/auth/webmasters.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await webmasters.searchanalytics.query({
+     *     // The site's URL, including protocol. For example: http://www.example.com/
+     *     siteUrl: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "aggregationType": "my_aggregationType",
+     *       //   "dimensionFilterGroups": [],
+     *       //   "dimensions": [],
+     *       //   "endDate": "my_endDate",
+     *       //   "rowLimit": 0,
+     *       //   "searchType": "my_searchType",
+     *       //   "startDate": "my_startDate",
+     *       //   "startRow": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responseAggregationType": "my_responseAggregationType",
+     *   //   "rows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias webmasters.searchanalytics.query
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-     * @param {().SearchAnalyticsQueryRequest} params.resource Request body data
+     * @param {().SearchAnalyticsQueryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     query(
+      params: Params$Resource$Searchanalytics$Query,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    query(
       params?: Params$Resource$Searchanalytics$Query,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchAnalyticsQueryResponse>;
+    query(
+      params: Params$Resource$Searchanalytics$Query,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     query(
       params: Params$Resource$Searchanalytics$Query,
       options:
@@ -298,12 +376,20 @@ export namespace webmasters_v3 {
     query(
       paramsOrCallback?:
         | Params$Resource$Searchanalytics$Query
-        | BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
+        | BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
-      callback?: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>
-    ): void | GaxiosPromise<Schema$SearchAnalyticsQueryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchAnalyticsQueryResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Searchanalytics$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -338,7 +424,7 @@ export namespace webmasters_v3 {
       if (callback) {
         createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
@@ -350,11 +436,6 @@ export namespace webmasters_v3 {
 
   export interface Params$Resource$Searchanalytics$Query
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The site's URL, including protocol. For example: http://www.example.com/
      */
@@ -375,6 +456,43 @@ export namespace webmasters_v3 {
     /**
      * webmasters.sitemaps.delete
      * @desc Deletes a sitemap from this site.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const webmasters = google.webmasters('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/webmasters'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await webmasters.sitemaps.delete({
+     *     // The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
+     *     feedpath: 'placeholder-value',
+     *     // The site's URL, including protocol. For example: http://www.example.com/
+     *     siteUrl: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias webmasters.sitemaps.delete
      * @memberOf! ()
      *
@@ -386,9 +504,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Sitemaps$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Sitemaps$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Sitemaps$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Sitemaps$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -402,10 +529,15 @@ export namespace webmasters_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Sitemaps$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -437,7 +569,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -446,6 +581,59 @@ export namespace webmasters_v3 {
     /**
      * webmasters.sitemaps.get
      * @desc Retrieves information about a specific sitemap.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const webmasters = google.webmasters('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/webmasters',
+     *       'https://www.googleapis.com/auth/webmasters.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await webmasters.sitemaps.get({
+     *     // The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
+     *     feedpath: 'placeholder-value',
+     *     // The site's URL, including protocol. For example: http://www.example.com/
+     *     siteUrl: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contents": [],
+     *   //   "errors": "my_errors",
+     *   //   "isPending": false,
+     *   //   "isSitemapsIndex": false,
+     *   //   "lastDownloaded": "my_lastDownloaded",
+     *   //   "lastSubmitted": "my_lastSubmitted",
+     *   //   "path": "my_path",
+     *   //   "type": "my_type",
+     *   //   "warnings": "my_warnings"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias webmasters.sitemaps.get
      * @memberOf! ()
      *
@@ -457,9 +645,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Sitemaps$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Sitemaps$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WmxSitemap>;
+    get(
+      params: Params$Resource$Sitemaps$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Sitemaps$Get,
       options: MethodOptions | BodyResponseCallback<Schema$WmxSitemap>,
@@ -473,12 +670,17 @@ export namespace webmasters_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Sitemaps$Get
-        | BodyResponseCallback<Schema$WmxSitemap>,
+        | BodyResponseCallback<Schema$WmxSitemap>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WmxSitemap>,
-      callback?: BodyResponseCallback<Schema$WmxSitemap>
-    ): void | GaxiosPromise<Schema$WmxSitemap> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WmxSitemap>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WmxSitemap>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WmxSitemap> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -510,7 +712,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WmxSitemap>(parameters, callback);
+        createAPIRequest<Schema$WmxSitemap>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WmxSitemap>(parameters);
       }
@@ -519,6 +724,51 @@ export namespace webmasters_v3 {
     /**
      * webmasters.sitemaps.list
      * @desc Lists the sitemaps-entries submitted for this site, or included in the sitemap index file (if sitemapIndex is specified in the request).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const webmasters = google.webmasters('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/webmasters',
+     *       'https://www.googleapis.com/auth/webmasters.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await webmasters.sitemaps.list({
+     *     // A URL of a site's sitemap index. For example: http://www.example.com/sitemapindex.xml
+     *     sitemapIndex: 'placeholder-value',
+     *     // The site's URL, including protocol. For example: http://www.example.com/
+     *     siteUrl: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sitemap": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias webmasters.sitemaps.list
      * @memberOf! ()
      *
@@ -530,9 +780,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Sitemaps$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Sitemaps$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SitemapsListResponse>;
+    list(
+      params: Params$Resource$Sitemaps$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Sitemaps$List,
       options:
@@ -548,12 +807,20 @@ export namespace webmasters_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Sitemaps$List
-        | BodyResponseCallback<Schema$SitemapsListResponse>,
+        | BodyResponseCallback<Schema$SitemapsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SitemapsListResponse>,
-      callback?: BodyResponseCallback<Schema$SitemapsListResponse>
-    ): void | GaxiosPromise<Schema$SitemapsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SitemapsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SitemapsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SitemapsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -586,7 +853,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SitemapsListResponse>(parameters, callback);
+        createAPIRequest<Schema$SitemapsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SitemapsListResponse>(parameters);
       }
@@ -595,6 +865,43 @@ export namespace webmasters_v3 {
     /**
      * webmasters.sitemaps.submit
      * @desc Submits a sitemap for a site.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const webmasters = google.webmasters('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/webmasters'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await webmasters.sitemaps.submit({
+     *     // The URL of the sitemap to add. For example: http://www.example.com/sitemap.xml
+     *     feedpath: 'placeholder-value',
+     *     // The site's URL, including protocol. For example: http://www.example.com/
+     *     siteUrl: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias webmasters.sitemaps.submit
      * @memberOf! ()
      *
@@ -606,9 +913,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     submit(
+      params: Params$Resource$Sitemaps$Submit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    submit(
       params?: Params$Resource$Sitemaps$Submit,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    submit(
+      params: Params$Resource$Sitemaps$Submit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     submit(
       params: Params$Resource$Sitemaps$Submit,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -622,10 +938,15 @@ export namespace webmasters_v3 {
     submit(
       paramsOrCallback?:
         | Params$Resource$Sitemaps$Submit
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -657,7 +978,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -665,11 +989,6 @@ export namespace webmasters_v3 {
   }
 
   export interface Params$Resource$Sitemaps$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
      */
@@ -681,11 +1000,6 @@ export namespace webmasters_v3 {
   }
   export interface Params$Resource$Sitemaps$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
      */
     feedpath?: string;
@@ -696,11 +1010,6 @@ export namespace webmasters_v3 {
   }
   export interface Params$Resource$Sitemaps$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A URL of a site's sitemap index. For example: http://www.example.com/sitemapindex.xml
      */
     sitemapIndex?: string;
@@ -710,11 +1019,6 @@ export namespace webmasters_v3 {
     siteUrl?: string;
   }
   export interface Params$Resource$Sitemaps$Submit extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The URL of the sitemap to add. For example: http://www.example.com/sitemap.xml
      */
@@ -734,6 +1038,41 @@ export namespace webmasters_v3 {
     /**
      * webmasters.sites.add
      * @desc Adds a site to the set of the user's sites in Search Console.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const webmasters = google.webmasters('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/webmasters'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await webmasters.sites.add({
+     *     // The URL of the site to add.
+     *     siteUrl: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias webmasters.sites.add
      * @memberOf! ()
      *
@@ -744,9 +1083,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     add(
+      params: Params$Resource$Sites$Add,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    add(
       params?: Params$Resource$Sites$Add,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    add(
+      params: Params$Resource$Sites$Add,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     add(
       params: Params$Resource$Sites$Add,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -758,10 +1106,17 @@ export namespace webmasters_v3 {
     ): void;
     add(callback: BodyResponseCallback<void>): void;
     add(
-      paramsOrCallback?: Params$Resource$Sites$Add | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Sites$Add
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Add;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -794,7 +1149,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -803,6 +1161,41 @@ export namespace webmasters_v3 {
     /**
      * webmasters.sites.delete
      * @desc Removes a site from the set of the user's Search Console sites.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const webmasters = google.webmasters('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/webmasters'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await webmasters.sites.delete({
+     *     // The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/ Note: for property-sets, use the URI that starts with sc-set: which is used in Search Console URLs.
+     *     siteUrl: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias webmasters.sites.delete
      * @memberOf! ()
      *
@@ -813,9 +1206,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Sites$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Sites$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Sites$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Sites$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -829,10 +1231,15 @@ export namespace webmasters_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Sites$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -865,7 +1272,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -874,6 +1284,50 @@ export namespace webmasters_v3 {
     /**
      * webmasters.sites.get
      * @desc Retrieves information about specific site.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const webmasters = google.webmasters('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/webmasters',
+     *       'https://www.googleapis.com/auth/webmasters.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await webmasters.sites.get({
+     *     // The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/ Note: for property-sets, use the URI that starts with sc-set: which is used in Search Console URLs.
+     *     siteUrl: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissionLevel": "my_permissionLevel",
+     *   //   "siteUrl": "my_siteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias webmasters.sites.get
      * @memberOf! ()
      *
@@ -884,9 +1338,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Sites$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Sites$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WmxSite>;
+    get(
+      params: Params$Resource$Sites$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Sites$Get,
       options: MethodOptions | BodyResponseCallback<Schema$WmxSite>,
@@ -900,10 +1363,17 @@ export namespace webmasters_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Sites$Get
-        | BodyResponseCallback<Schema$WmxSite>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$WmxSite>,
-      callback?: BodyResponseCallback<Schema$WmxSite>
-    ): void | GaxiosPromise<Schema$WmxSite> {
+        | BodyResponseCallback<Schema$WmxSite>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WmxSite>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WmxSite>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WmxSite> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -936,7 +1406,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WmxSite>(parameters, callback);
+        createAPIRequest<Schema$WmxSite>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WmxSite>(parameters);
       }
@@ -945,6 +1418,46 @@ export namespace webmasters_v3 {
     /**
      * webmasters.sites.list
      * @desc Lists the user's Search Console sites.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const webmasters = google.webmasters('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/webmasters',
+     *       'https://www.googleapis.com/auth/webmasters.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await webmasters.sites.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "siteEntry": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias webmasters.sites.list
      * @memberOf! ()
      *
@@ -954,9 +1467,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Sites$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Sites$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SitesListResponse>;
+    list(
+      params: Params$Resource$Sites$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Sites$List,
       options: MethodOptions | BodyResponseCallback<Schema$SitesListResponse>,
@@ -970,12 +1492,20 @@ export namespace webmasters_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Sites$List
-        | BodyResponseCallback<Schema$SitesListResponse>,
+        | BodyResponseCallback<Schema$SitesListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SitesListResponse>,
-      callback?: BodyResponseCallback<Schema$SitesListResponse>
-    ): void | GaxiosPromise<Schema$SitesListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SitesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SitesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SitesListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1008,7 +1538,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SitesListResponse>(parameters, callback);
+        createAPIRequest<Schema$SitesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SitesListResponse>(parameters);
       }
@@ -1017,21 +1550,11 @@ export namespace webmasters_v3 {
 
   export interface Params$Resource$Sites$Add extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The URL of the site to add.
      */
     siteUrl?: string;
   }
   export interface Params$Resource$Sites$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/ Note: for property-sets, use the URI that starts with sc-set: which is used in Search Console URLs.
      */
@@ -1039,19 +1562,9 @@ export namespace webmasters_v3 {
   }
   export interface Params$Resource$Sites$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/ Note: for property-sets, use the URI that starts with sc-set: which is used in Search Console URLs.
      */
     siteUrl?: string;
   }
-  export interface Params$Resource$Sites$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Sites$List extends StandardParameters {}
 }

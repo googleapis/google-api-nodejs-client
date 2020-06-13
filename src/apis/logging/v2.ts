@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace logging_v2 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace logging_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -89,9 +99,9 @@ export namespace logging_v2 {
   }
 
   /**
-   * Stackdriver Logging API
+   * Cloud Logging API
    *
-   * Writes log entries and manages your Stackdriver Logging configuration. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the Stackdriver Logging documentation.
+   * Writes log entries and manages your Cloud Logging configuration. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the documentation at https://cloud.google.com/logging/docs.
    *
    * @example
    * const {google} = require('googleapis');
@@ -109,11 +119,13 @@ export namespace logging_v2 {
     entries: Resource$Entries;
     exclusions: Resource$Exclusions;
     folders: Resource$Folders;
+    locations: Resource$Locations;
     logs: Resource$Logs;
     monitoredResourceDescriptors: Resource$Monitoredresourcedescriptors;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
     sinks: Resource$Sinks;
+    v2: Resource$V2;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -125,6 +137,7 @@ export namespace logging_v2 {
       this.entries = new Resource$Entries(this.context);
       this.exclusions = new Resource$Exclusions(this.context);
       this.folders = new Resource$Folders(this.context);
+      this.locations = new Resource$Locations(this.context);
       this.logs = new Resource$Logs(this.context);
       this.monitoredResourceDescriptors = new Resource$Monitoredresourcedescriptors(
         this.context
@@ -132,6 +145,7 @@ export namespace logging_v2 {
       this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
       this.sinks = new Resource$Sinks(this.context);
+      this.v2 = new Resource$V2(this.context);
     }
   }
 
@@ -140,9 +154,13 @@ export namespace logging_v2 {
    */
   export interface Schema$BigQueryOptions {
     /**
-     * Optional. Whether to use BigQuery&#39;s partition tables. By default, Logging creates dated tables based on the log entries&#39; timestamps, e.g. syslog_20170523. With partitioned tables the date suffix is no longer present and special query syntax has to be used instead. In both cases, tables are sharded based on UTC timezone.
+     * Optional. Whether to use BigQuery&#39;s partition tables (https://cloud.google.com/bigquery/docs/partitioned-tables). By default, Logging creates dated tables based on the log entries&#39; timestamps, e.g. syslog_20170523. With partitioned tables the date suffix is no longer present and special query syntax (https://cloud.google.com/bigquery/docs/querying-partitioned-tables) has to be used instead. In both cases, tables are sharded based on UTC timezone.
      */
     usePartitionedTables?: boolean | null;
+    /**
+     * Output only. True if new timestamp column based partitioning is in use, false if legacy ingestion-time partitioning is in use. All new sinks will have this field set true and will use timestamp column based partitioning. If use_partitioned_tables is false, this value has no meaning and will be false. Legacy sinks using partitioned tables will have this field set to false.
+     */
+    usesTimestampColumnPartitioning?: boolean | null;
   }
   /**
    * BucketOptions describes the bucket boundaries used to create a histogram for the distribution. The buckets can be in a linear sequence, an exponential sequence, or each bucket can be specified explicitly. BucketOptions does not include the number of values in each bucket.A bucket has an inclusive lower bound and exclusive upper bound for the values that are counted for that bucket. The upper bound of a bucket must be strictly greater than the lower bound. The sequence of N buckets for a distribution consists of an underflow bucket (number 0), zero or more finite buckets (number 1 through N - 2) and an overflow bucket (number N - 1). The buckets are contiguous: the lower bound of bucket i (i &gt; 0) is the same as the upper bound of bucket i - 1. The buckets span the whole range of finite values: lower bound of the underflow bucket is -infinity and the upper bound of the overflow bucket is +infinity. The finite buckets are so-called because both bounds are finite.
@@ -160,6 +178,23 @@ export namespace logging_v2 {
      * The linear bucket.
      */
     linearBuckets?: Schema$Linear;
+  }
+  /**
+   * Describes the customer-managed encryption key (CMEK) settings associated with a project, folder, organization, billing account, or flexible resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+   */
+  export interface Schema$CmekSettings {
+    /**
+     * The resource name for the configured Cloud KMS key.KMS key name format:  &quot;projects/PROJECT_ID/locations/LOCATION/keyRings/KEYRING/cryptoKeys/KEY&quot;For example:  &quot;projects/my-project-id/locations/my-region/keyRings/key-ring-name/cryptoKeys/key-name&quot;To enable CMEK for the Logs Router, set this field to a valid kms_key_name for which the associated service account has the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key.The Cloud KMS key used by the Log Router can be updated by changing the kms_key_name to a new valid key name. Encryption operations that are in progress will be completed with the key that was in use when they started. Decryption operations will be completed using the key that was used at the time of encryption unless access to that key has been revoked.To disable CMEK for the Logs Router, set this field to an empty string.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Output only. The resource name of the CMEK settings.
+     */
+    name?: string | null;
+    /**
+     * Output only. The service account that will be used by the Logs Router to access your Cloud KMS key.Before enabling CMEK for Logs Router, you must first assign the role roles/cloudkms.cryptoKeyEncrypterDecrypter to the service account that the Logs Router will use to access your Cloud KMS key. Use GetCmekSettings to obtain the service account ID.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     */
+    serviceAccountId?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo {   rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
@@ -291,6 +326,19 @@ export namespace logging_v2 {
     width?: number | null;
   }
   /**
+   * The response from ListBuckets (Beta).
+   */
+  export interface Schema$ListBucketsResponse {
+    /**
+     * A list of buckets.
+     */
+    buckets?: Schema$LogBucket[];
+    /**
+     * If there might be more results than appear in this response, then nextPageToken is included. To get the next set of results, call the same method again using the value of nextPageToken as pageToken.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Result returned from ListExclusions.
    */
   export interface Schema$ListExclusionsResponse {
@@ -308,7 +356,7 @@ export namespace logging_v2 {
    */
   export interface Schema$ListLogEntriesRequest {
     /**
-     * Optional. A filter that chooses which log entries to return. See Advanced Logs Filters. Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of the filter is 20000 characters.
+     * Optional. A filter that chooses which log entries to return. See Advanced Logs Queries (https://cloud.google.com/logging/docs/view/advanced-queries). Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of the filter is 20000 characters.
      */
     filter?: string | null;
     /**
@@ -324,7 +372,7 @@ export namespace logging_v2 {
      */
     pageToken?: string | null;
     /**
-     * Deprecated. Use resource_names instead. One or more project identifiers or project numbers from which to retrieve log entries. Example: &quot;my-project-1A&quot;.
+     * Optional. Deprecated. Use resource_names instead. One or more project identifiers or project numbers from which to retrieve log entries. Example: &quot;my-project-1A&quot;.
      */
     projectIds?: string[] | null;
     /**
@@ -398,6 +446,35 @@ export namespace logging_v2 {
     sinks?: Schema$LogSink[];
   }
   /**
+   * Describes a repository of logs (Beta).
+   */
+  export interface Schema$LogBucket {
+    /**
+     * Output only. The creation timestamp of the bucket. This is not set for any of the default buckets.
+     */
+    createTime?: string | null;
+    /**
+     * Describes this bucket.
+     */
+    description?: string | null;
+    /**
+     * Output only. The bucket lifecycle state.
+     */
+    lifecycleState?: string | null;
+    /**
+     * The resource name of the bucket. For example: &quot;projects/my-project-id/locations/my-location/buckets/my-bucket-id The supported locations are:  &quot;global&quot;  &quot;us-central1&quot;For the location of global it is unspecified where logs are actually stored. Once a bucket has been created, the location can not be changed.
+     */
+    name?: string | null;
+    /**
+     * Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.
+     */
+    retentionDays?: number | null;
+    /**
+     * Output only. The last update timestamp of the bucket.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * An individual entry in a log.
    */
   export interface Schema$LogEntry {
@@ -406,7 +483,7 @@ export namespace logging_v2 {
      */
     httpRequest?: Schema$HttpRequest;
     /**
-     * Optional. A unique identifier for the log entry. If you provide a value, then Logging considers other log entries in the same project, with the same timestamp, and with the same insert_id to be duplicates which can be removed. If omitted in new log entries, then Logging assigns its own unique identifier. The insert_id is also used to order log entries that have the same timestamp value.
+     * Optional. A unique identifier for the log entry. If you provide a value, then Logging considers other log entries in the same project, with the same timestamp, and with the same insert_id to be duplicates which are removed in a single query result. However, there are no guarantees of de-duplication in the export of logs.If the insert_id is omitted when writing a log entry, the Logging API  assigns its own unique identifier in this field.In queries, the insert_id is also used to order log entries that have the same log_name and timestamp values.
      */
     insertId?: string | null;
     /**
@@ -418,11 +495,11 @@ export namespace logging_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The resource name of the log to which this log entry belongs: &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot; &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot; &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot; A project number may optionally be used in place of PROJECT_ID. The project number is translated to its corresponding PROJECT_ID internally and the log_name field will contain PROJECT_ID in queries and exports.[LOG_ID] must be URL-encoded within log_name. Example: &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;. [LOG_ID] must be less than 512 characters long and can only include the following characters: upper and lower case alphanumeric characters, forward-slash, underscore, hyphen, and period.For backward compatibility, if log_name begins with a forward-slash, such as /projects/..., then the log entry is ingested as usual but the forward-slash is removed. Listing the log entry will not show the leading slash and filtering for a log name with a leading slash will never return any results.
+     * Required. The resource name of the log to which this log entry belongs: &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot; &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot; &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot; A project number may be used in place of PROJECT_ID. The project number is translated to its corresponding PROJECT_ID internally and the log_name field will contain PROJECT_ID in queries and exports.[LOG_ID] must be URL-encoded within log_name. Example: &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;. [LOG_ID] must be less than 512 characters long and can only include the following characters: upper and lower case alphanumeric characters, forward-slash, underscore, hyphen, and period.For backward compatibility, if log_name begins with a forward-slash, such as /projects/..., then the log entry is ingested as usual but the forward-slash is removed. Listing the log entry will not show the leading slash and filtering for a log name with a leading slash will never return any results.
      */
     logName?: string | null;
     /**
-     * Deprecated. Output only. Additional metadata about the monitored resource.Only k8s_container, k8s_pod, and k8s_node MonitoredResources have this field populated for GKE versions older than 1.12.6. For GKE versions 1.12.6 and above, the metadata field has been deprecated. The Kubernetes pod labels that used to be in metadata.userLabels will now be present in the labels field with a key prefix of k8s-pod/. The Stackdriver system labels that were present in the metadata.systemLabels field will no longer be available in the LogEntry.
+     * Output only. Deprecated. Additional metadata about the monitored resource.Only k8s_container, k8s_pod, and k8s_node MonitoredResources have this field populated for GKE versions older than 1.12.6. For GKE versions 1.12.6 and above, the metadata field has been deprecated. The Kubernetes pod labels that used to be in metadata.userLabels will now be present in the labels field with a key prefix of k8s-pod/. The system labels that were present in the metadata.systemLabels field will no longer be available in the LogEntry.
      */
     metadata?: Schema$MonitoredResourceMetadata;
     /**
@@ -450,7 +527,7 @@ export namespace logging_v2 {
      */
     sourceLocation?: Schema$LogEntrySourceLocation;
     /**
-     * Optional. The span ID within the trace associated with the log entry.For Trace spans, this is the same format that the Trace API v2 uses: a 16-character hexadecimal encoding of an 8-byte array, such as &lt;code&gt;&quot;000000000000004a&quot;&lt;/code&gt;.
+     * Optional. The span ID within the trace associated with the log entry.For Trace spans, this is the same format that the Trace API v2 uses: a 16-character hexadecimal encoding of an 8-byte array, such as 000000000000004a.
      */
     spanId?: string | null;
     /**
@@ -458,7 +535,7 @@ export namespace logging_v2 {
      */
     textPayload?: string | null;
     /**
-     * Optional. The time the event described by the log entry occurred. This time is used to compute the log entry&#39;s age and to enforce the logs retention period. If this field is omitted in a new log entry, then Logging assigns it the current time. Timestamps have nanosecond accuracy, but trailing zeros in the fractional seconds might be omitted when the timestamp is displayed.Incoming log entries should have timestamps that are no more than the logs retention period in the past, and no more than 24 hours in the future. Log entries outside those time boundaries will not be available when calling entries.list, but those log entries can still be exported with LogSinks.
+     * Optional. The time the event described by the log entry occurred. This time is used to compute the log entry&#39;s age and to enforce the logs retention period. If this field is omitted in a new log entry, then Logging assigns it the current time. Timestamps have nanosecond accuracy, but trailing zeros in the fractional seconds might be omitted when the timestamp is displayed.Incoming log entries must have timestamps that don&#39;t exceed the logs retention period (https://cloud.google.com/logging/quotas#logs_retention_periods) in the past, and that don&#39;t exceed 24 hours in the future. Log entries outside those time boundaries aren&#39;t ingested by Logging.
      */
     timestamp?: string | null;
     /**
@@ -525,11 +602,11 @@ export namespace logging_v2 {
      */
     disabled?: boolean | null;
     /**
-     * Required. An advanced logs filter that matches the log entries to be excluded. By using the sample function, you can exclude less than 100% of the matching log entries. For example, the following query matches 99% of low-severity log entries from Google Cloud Storage buckets:&quot;resource.type=gcs_bucket severity&lt;ERROR sample(insertId, 0.99)&quot;
+     * Required. An advanced logs filter (https://cloud.google.com/logging/docs/view/advanced-queries) that matches the log entries to be excluded. By using the sample function (https://cloud.google.com/logging/docs/view/advanced-queries#sample), you can exclude less than 100% of the matching log entries. For example, the following query matches 99% of low-severity log entries from Google Cloud Storage buckets:&quot;resource.type=gcs_bucket severity&lt;ERROR sample(insertId, 0.99)&quot;
      */
     filter?: string | null;
     /**
-     * Required. A client-assigned identifier, such as &quot;load-balancer-exclusion&quot;. Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * Required. A client-assigned identifier, such as &quot;load-balancer-exclusion&quot;. Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
      */
     name?: string | null;
     /**
@@ -575,7 +652,7 @@ export namespace logging_v2 {
      */
     description?: string | null;
     /**
-     * Required. An advanced logs filter which is used to match log entries. Example: &quot;resource.type=gae_app AND severity&gt;=ERROR&quot; The maximum length of the filter is 20000 characters.
+     * Required. An advanced logs filter (https://cloud.google.com/logging/docs/view/advanced_filters) which is used to match log entries. Example: &quot;resource.type=gae_app AND severity&gt;=ERROR&quot; The maximum length of the filter is 20000 characters.
      */
     filter?: string | null;
     /**
@@ -616,11 +693,19 @@ export namespace logging_v2 {
      */
     createTime?: string | null;
     /**
-     * Required. The export destination: &quot;storage.googleapis.com/[GCS_BUCKET]&quot; &quot;bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]&quot; &quot;pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]&quot; The sink&#39;s writer_identity, set when the sink is created, must have permission to write to the destination or else the log entries are not exported. For more information, see Exporting Logs with Sinks.
+     * Optional. A description of this sink. The maximum length of the description is 8000 characters.
+     */
+    description?: string | null;
+    /**
+     * Required. The export destination: &quot;storage.googleapis.com/[GCS_BUCKET]&quot; &quot;bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]&quot; &quot;pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]&quot; The sink&#39;s writer_identity, set when the sink is created, must have permission to write to the destination or else the log entries are not exported. For more information, see Exporting Logs with Sinks (https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
      */
     destination?: string | null;
     /**
-     * Optional. An advanced logs filter. The only exported log entries are those that are in the resource owning the sink and that match the filter. For example: logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND severity&gt;=ERROR
+     * Optional. If set to True, then this sink is disabled and it does not export any log entries.
+     */
+    disabled?: boolean | null;
+    /**
+     * Optional. An advanced logs filter (https://cloud.google.com/logging/docs/view/advanced-queries). The only exported log entries are those that are in the resource owning the sink and that match the filter. For example: logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND severity&gt;=ERROR
      */
     filter?: string | null;
     /**
@@ -628,11 +713,11 @@ export namespace logging_v2 {
      */
     includeChildren?: boolean | null;
     /**
-     * Required. The client-assigned sink identifier, unique within the project. Example: &quot;my-syslog-errors-to-pubsub&quot;. Sink identifiers are limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods.
+     * Required. The client-assigned sink identifier, unique within the project. Example: &quot;my-syslog-errors-to-pubsub&quot;. Sink identifiers are limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods. First character has to be alphanumeric.
      */
     name?: string | null;
     /**
-     * Deprecated. The log entry format to use for this sink&#39;s exported log entries. The v2 format is used by default and cannot be changed.
+     * Deprecated. This field is unused.
      */
     outputVersionFormat?: string | null;
     /**
@@ -640,7 +725,7 @@ export namespace logging_v2 {
      */
     updateTime?: string | null;
     /**
-     * Output only. An IAM identity&amp;mdash;a service account or group&amp;mdash;under which Logging writes the exported log entries to the sink&#39;s destination. This field is set by sinks.create and sinks.update based on the value of unique_writer_identity in those methods.Until you grant this identity write-access to the destination, log entry exports from this sink will fail. For more information, see Granting Access for a Resource. Consult the destination service&#39;s documentation to determine the appropriate IAM roles to assign to the identity.
+     * Output only. An IAM identity&amp;mdash;a service account or group&amp;mdash;under which Logging writes the exported log entries to the sink&#39;s destination. This field is set by sinks.create and sinks.update based on the value of unique_writer_identity in those methods.Until you grant this identity write-access to the destination, log entry exports from this sink will fail. For more information, see Granting Access for a Resource (https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). Consult the destination service&#39;s documentation to determine the appropriate IAM roles to assign to the identity.
      */
     writerIdentity?: string | null;
   }
@@ -673,6 +758,10 @@ export namespace logging_v2 {
      */
     metricKind?: string | null;
     /**
+     * Read-only. If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that is associated with this metric type can only be associated with one of the monitored resource types listed here.
+     */
+    monitoredResourceTypes?: string[] | null;
+    /**
      * The resource name of the metric descriptor.
      */
     name?: string | null;
@@ -681,7 +770,7 @@ export namespace logging_v2 {
      */
     type?: string | null;
     /**
-     * The unit in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d dayPrefixes (PREFIX) k kilo (10**3) M mega (10**6) G giga (10**9) T tera (10**12) P peta (10**15) E exa (10**18) Z zetta (10**21) Y yotta (10**24) m milli (10**-3) u micro (10**-6) n nano (10**-9) p pico (10**-12) f femto (10**-15) a atto (10**-18) z zepto (10**-21) y yocto (10**-24) Ki kibi (2**10) Mi mebi (2**20) Gi gibi (2**30) Ti tebi (2**40)GrammarThe grammar also includes these connectors: / division (as an infix operator, e.g. 1/s). . multiplication (as an infix operator, e.g. GBy.d)The grammar for a unit is as follows: Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;  Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]           | Annotation           | &quot;1&quot;           ;  Annotation = &quot;{&quot; NAME &quot;}&quot; ; Notes: Annotation is just a comment if it follows a UNIT and is  equivalent to 1 if it is used alone. For examples,  {requests}/s == 1/s, By{transmitted}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not  containing &#39;{&#39; or &#39;}&#39;. 1 represents dimensionless value 1, such as in 1/s. % represents dimensionless value 1/100, and annotates values giving  a percentage.
+     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.Different systems may scale the values to be more easily displayed (so a value of 0.02KBy might be displayed as 20By, and a value of 3523KBy might be displayed as 3.5MBy). However, if the unit is KBy, then the value of the metric is always in thousands of bytes, no matter how it may be displayed..If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an INT64 CUMULATIVE metric whose unit is s{CPU} (or equivalently 1s{CPU} or just s). If the job uses 12,005 CPU-seconds, then the value is written as 12005.Alternatively, if you want a custom metric to record data in a more granular way, you can create a DOUBLE CUMULATIVE metric whose unit is ks{CPU}, and then write the value 12.005 (which is 12005/1000), or use Kis{CPU} and write 11.723 (which is 12005/1024).The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d dayPrefixes (PREFIX) k kilo (10^3) M mega (10^6) G giga (10^9) T tera (10^12) P peta (10^15) E exa (10^18) Z zetta (10^21) Y yotta (10^24) m milli (10^-3) u micro (10^-6) n nano (10^-9) p pico (10^-12) f femto (10^-15) a atto (10^-18) z zepto (10^-21) y yocto (10^-24) Ki kibi (2^10) Mi mebi (2^20) Gi gibi (2^30) Ti tebi (2^40) Pi pebi (2^50)GrammarThe grammar also includes these connectors: / division or ratio (as an infix operator). For examples,  kBy/{email} or MiBy/10ms (although you should almost never  have /s in a metric unit; rates should always be computed at  query time from the underlying cumulative or delta value). . multiplication or composition (as an infix operator). For  examples, GBy.d or k{watt}.h.The grammar for a unit is as follows: Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;  Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]           | Annotation           | &quot;1&quot;           ;  Annotation = &quot;{&quot; NAME &quot;}&quot; ; Notes: Annotation is just a comment if it follows a UNIT. If the annotation  is used alone, then the unit is equivalent to 1. For examples,  {request}/s == 1/s, By{transmitted}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not  containing { or }. 1 represents a unitary dimensionless  unit (https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such  as in 1/s. It is typically used when none of the basic units are  appropriate. For example, &quot;new users per day&quot; can be represented as  1/d or {new-users}/d (and a metric value 5 would mean &quot;5 new  users). Alternatively, &quot;thousands of page views per day&quot; would be  represented as 1000/d or k1/d or k{page_views}/d (and a metric  value of 5.3 would mean &quot;5300 page views per day&quot;). % represents dimensionless value of 1/100, and annotates values giving  a percentage (so the metric values are typically in the range of 0..100,  and a metric value 3 means &quot;3 percent&quot;). 10^2.% indicates a metric contains a ratio, typically in the range  0..1, that will be multiplied by 100 and displayed as a percentage  (so a metric value 0.03 means &quot;3 percent&quot;).
      */
     unit?: string | null;
     /**
@@ -698,7 +787,7 @@ export namespace logging_v2 {
      */
     ingestDelay?: string | null;
     /**
-     * Deprecated. Please use the MetricDescriptor.launch_stage instead. The launch stage of the metric definition.
+     * Deprecated. Must use the MetricDescriptor.launch_stage instead.
      */
     launchStage?: string | null;
     /**
@@ -937,7 +1026,7 @@ export namespace logging_v2 {
      */
     dryRun?: boolean | null;
     /**
-     * Required. The log entries to send to Logging. The order of log entries in this list does not matter. Values supplied in this method&#39;s log_name, resource, and labels fields are copied into those log entries in this list that do not include values for their corresponding fields. For more information, see the LogEntry type.If the timestamp or insert_id fields are missing in log entries, then this method supplies the current time or a unique identifier, respectively. The supplied values are chosen so that, among the log entries that did not supply their own values, the entries earlier in the list will sort before the entries later in the list. See the entries.list method.Log entries with timestamps that are more than the logs retention period in the past or more than 24 hours in the future will not be available when calling entries.list. However, those log entries can still be exported with LogSinks.To improve throughput and to avoid exceeding the quota limit for calls to entries.write, you should try to include several log entries in this list, rather than calling this method for each individual log entry.
+     * Required. The log entries to send to Logging. The order of log entries in this list does not matter. Values supplied in this method&#39;s log_name, resource, and labels fields are copied into those log entries in this list that do not include values for their corresponding fields. For more information, see the LogEntry type.If the timestamp or insert_id fields are missing in log entries, then this method supplies the current time or a unique identifier, respectively. The supplied values are chosen so that, among the log entries that did not supply their own values, the entries earlier in the list will sort before the entries later in the list. See the entries.list method.Log entries with timestamps that are more than the logs retention period (https://cloud.google.com/logging/quota-policy) in the past or more than 24 hours in the future will not be available when calling entries.list. However, those log entries can still be exported with LogSinks (https://cloud.google.com/logging/docs/api/tasks/exporting-logs).To improve throughput and to avoid exceeding the quota limit (https://cloud.google.com/logging/quota-policy) for calls to entries.write, you should try to include several log entries in this list, rather than calling this method for each individual log entry.
      */
     entries?: Schema$LogEntry[];
     /**
@@ -945,7 +1034,7 @@ export namespace logging_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. A default log resource name that is assigned to all log entries in entries that do not specify a value for log_name: &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot; &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot; &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot; [LOG_ID] must be URL-encoded. For example: &quot;projects/my-project-id/logs/syslog&quot; &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot; The permission &lt;code&gt;logging.logEntries.create&lt;/code&gt; is needed on each project, organization, billing account, or folder that is receiving new log entries, whether the resource is specified in &lt;code&gt;logName&lt;/code&gt; or in an individual log entry.
+     * Optional. A default log resource name that is assigned to all log entries in entries that do not specify a value for log_name: &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot; &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot; &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot; [LOG_ID] must be URL-encoded. For example: &quot;projects/my-project-id/logs/syslog&quot; &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot; The permission logging.logEntries.create is needed on each project, organization, billing account, or folder that is receiving new log entries, whether the resource is specified in logName or in an individual log entry.
      */
     logName?: string | null;
     /**
@@ -958,21 +1047,183 @@ export namespace logging_v2 {
     resource?: Schema$MonitoredResource;
   }
   /**
-   * Result returned from WriteLogEntries. empty
+   * Result returned from WriteLogEntries.
    */
   export interface Schema$WriteLogEntriesResponse {}
 
   export class Resource$Billingaccounts {
     context: APIRequestContext;
+    buckets: Resource$Billingaccounts$Buckets;
     exclusions: Resource$Billingaccounts$Exclusions;
+    locations: Resource$Billingaccounts$Locations;
     logs: Resource$Billingaccounts$Logs;
     sinks: Resource$Billingaccounts$Sinks;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.buckets = new Resource$Billingaccounts$Buckets(this.context);
       this.exclusions = new Resource$Billingaccounts$Exclusions(this.context);
+      this.locations = new Resource$Billingaccounts$Locations(this.context);
       this.logs = new Resource$Billingaccounts$Logs(this.context);
       this.sinks = new Resource$Billingaccounts$Sinks(this.context);
     }
+  }
+
+  export class Resource$Billingaccounts$Buckets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.billingAccounts.buckets.get
+     * @desc Gets a bucket (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.buckets.get({
+     *     // Required. The resource name of the bucket:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: 'billingAccounts/my-billingAccount/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.billingAccounts.buckets.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Billingaccounts$Buckets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Billingaccounts$Buckets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Billingaccounts$Buckets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Buckets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Buckets$Get,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Buckets$Get
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Buckets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Buckets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingaccounts$Buckets$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
   }
 
   export class Resource$Billingaccounts$Exclusions {
@@ -984,20 +1235,95 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.exclusions.create
      * @desc Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.exclusions.create({
+     *     // Required. The parent resource in which to create the exclusion:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'billingAccounts/my-billingAccount',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.exclusions.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {().LogExclusion} params.resource Request body data
+     * @param {().LogExclusion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Billingaccounts$Exclusions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Billingaccounts$Exclusions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    create(
+      params: Params$Resource$Billingaccounts$Exclusions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Billingaccounts$Exclusions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -1011,12 +1337,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Exclusions$Create
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1050,7 +1381,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -1059,6 +1393,52 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.exclusions.delete
      * @desc Deletes an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.exclusions.delete({
+     *     // Required. The resource name of an existing exclusion to delete:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'billingAccounts/my-billingAccount/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.exclusions.delete
      * @memberOf! ()
      *
@@ -1069,9 +1449,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Billingaccounts$Exclusions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Billingaccounts$Exclusions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Billingaccounts$Exclusions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Billingaccounts$Exclusions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1085,10 +1474,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Exclusions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1119,7 +1515,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1128,6 +1527,61 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.exclusions.get
      * @desc Gets the description of an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.exclusions.get({
+     *     // Required. The resource name of an existing exclusion:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'billingAccounts/my-billingAccount/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.exclusions.get
      * @memberOf! ()
      *
@@ -1138,9 +1592,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Billingaccounts$Exclusions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Billingaccounts$Exclusions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Billingaccounts$Exclusions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Billingaccounts$Exclusions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -1154,12 +1617,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Exclusions$Get
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1190,7 +1658,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -1199,6 +1670,61 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.exclusions.list
      * @desc Lists all the exclusions in a parent resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.exclusions.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose exclusions are to be listed.
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'billingAccounts/my-billingAccount',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exclusions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.exclusions.list
      * @memberOf! ()
      *
@@ -1211,9 +1737,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Billingaccounts$Exclusions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Billingaccounts$Exclusions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Exclusions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Billingaccounts$Exclusions$List,
       options:
@@ -1229,12 +1764,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Exclusions$List
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
-    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExclusionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1268,7 +1811,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListExclusionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
@@ -1277,21 +1823,98 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.exclusions.patch
      * @desc Changes one or more properties of an existing exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.exclusions.patch({
+     *     // Required. The resource name of the exclusion to update:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'billingAccounts/my-billingAccount/exclusions/my-exclusion',
+     *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.exclusions.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      * @param {string=} params.updateMask Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
-     * @param {().LogExclusion} params.resource Request body data
+     * @param {().LogExclusion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Billingaccounts$Exclusions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Billingaccounts$Exclusions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    patch(
+      params: Params$Resource$Billingaccounts$Exclusions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Billingaccounts$Exclusions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -1305,12 +1928,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Exclusions$Patch
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1341,7 +1969,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -1350,11 +1981,6 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Billingaccounts$Exclusions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      */
@@ -1368,11 +1994,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Exclusions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
@@ -1380,22 +2001,12 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Exclusions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
   }
   export interface Params$Resource$Billingaccounts$Exclusions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -1412,11 +2023,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Exclusions$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
@@ -1431,6 +2037,366 @@ export namespace logging_v2 {
     requestBody?: Schema$LogExclusion;
   }
 
+  export class Resource$Billingaccounts$Locations {
+    context: APIRequestContext;
+    buckets: Resource$Billingaccounts$Locations$Buckets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.buckets = new Resource$Billingaccounts$Locations$Buckets(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Billingaccounts$Locations$Buckets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.billingAccounts.locations.buckets.list
+     * @desc Lists buckets (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.locations.buckets.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose buckets are to be listed:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     parent: 'billingAccounts/my-billingAccount/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buckets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.billingAccounts.locations.buckets.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Billingaccounts$Locations$Buckets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$List,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBucketsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Buckets$List
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBucketsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Buckets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Buckets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBucketsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBucketsResponse>(parameters);
+      }
+    }
+
+    /**
+     * logging.billingAccounts.locations.buckets.patch
+     * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.locations.buckets.patch({
+     *     // Required. The full resource name of the bucket to update.
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     name:
+     *       'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.billingAccounts.locations.buckets.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     * @param {string=} params.updateMask Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Billingaccounts$Locations$Buckets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Patch,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Buckets$Patch
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Buckets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Buckets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Patch
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+
   export class Resource$Billingaccounts$Logs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -1439,7 +2405,53 @@ export namespace logging_v2 {
 
     /**
      * logging.billingAccounts.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.
+     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.logs.delete({
+     *     // Required. The resource name of the log to delete:
+     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     logName: 'billingAccounts/my-billingAccount/logs/my-log',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.logs.delete
      * @memberOf! ()
      *
@@ -1450,9 +2462,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Billingaccounts$Logs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Billingaccounts$Logs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Billingaccounts$Logs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Billingaccounts$Logs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1466,10 +2487,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Logs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1500,7 +2528,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1509,6 +2540,61 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.logs.list
      * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'billingAccounts/my-billingAccount',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.logs.list
      * @memberOf! ()
      *
@@ -1521,9 +2607,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Billingaccounts$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Billingaccounts$Logs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Billingaccounts$Logs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
@@ -1537,12 +2632,17 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Logs$List
-        | BodyResponseCallback<Schema$ListLogsResponse>,
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogsResponse>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1573,7 +2673,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
       }
@@ -1583,22 +2686,12 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Logs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
      */
     logName?: string;
   }
   export interface Params$Resource$Billingaccounts$Logs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -1622,21 +2715,108 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.create
      * @desc Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.sinks.create({
+     *     // Required. The resource in which to create the sink:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'billingAccounts/my-billingAccount',
+     *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.sinks.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Billingaccounts$Sinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Billingaccounts$Sinks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    create(
+      params: Params$Resource$Billingaccounts$Sinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Billingaccounts$Sinks$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -1650,10 +2830,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Sinks$Create
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1687,7 +2874,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -1696,6 +2886,52 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.delete
      * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.sinks.delete({
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.sinks.delete
      * @memberOf! ()
      *
@@ -1706,9 +2942,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Billingaccounts$Sinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Billingaccounts$Sinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Billingaccounts$Sinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Billingaccounts$Sinks$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1722,10 +2967,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Sinks$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1756,7 +3008,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1765,6 +3020,66 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.get
      * @desc Gets a sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.sinks.get({
+     *     // Required. The resource name of the sink:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.sinks.get
      * @memberOf! ()
      *
@@ -1775,9 +3090,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Billingaccounts$Sinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Billingaccounts$Sinks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Billingaccounts$Sinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Billingaccounts$Sinks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -1791,10 +3115,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Sinks$Get
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1825,7 +3156,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -1834,6 +3168,61 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.list
      * @desc Lists sinks.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.sinks.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose sinks are to be listed:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'billingAccounts/my-billingAccount',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.sinks.list
      * @memberOf! ()
      *
@@ -1846,9 +3235,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Billingaccounts$Sinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Billingaccounts$Sinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSinksResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Sinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Billingaccounts$Sinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
@@ -1862,12 +3260,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Sinks$List
-        | BodyResponseCallback<Schema$ListSinksResponse>,
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSinksResponse>,
-      callback?: BodyResponseCallback<Schema$ListSinksResponse>
-    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSinksResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1901,7 +3307,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
@@ -1910,6 +3319,89 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.patch
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.sinks.patch({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.sinks.patch
      * @memberOf! ()
      *
@@ -1917,15 +3409,24 @@ export namespace logging_v2 {
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Billingaccounts$Sinks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Billingaccounts$Sinks$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    patch(
+      params: Params$Resource$Billingaccounts$Sinks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Billingaccounts$Sinks$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -1939,10 +3440,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Sinks$Patch
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1973,7 +3481,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -1982,6 +3493,89 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.sinks.update({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.billingAccounts.sinks.update
      * @memberOf! ()
      *
@@ -1989,15 +3583,24 @@ export namespace logging_v2 {
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Billingaccounts$Sinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Billingaccounts$Sinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    update(
+      params: Params$Resource$Billingaccounts$Sinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Billingaccounts$Sinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -2011,10 +3614,17 @@ export namespace logging_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Sinks$Update
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2045,7 +3655,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -2054,11 +3667,6 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Billingaccounts$Sinks$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      */
@@ -2076,11 +3684,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Sinks$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
     sinkName?: string;
@@ -2088,22 +3691,12 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Sinks$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
     sinkName?: string;
   }
   export interface Params$Resource$Billingaccounts$Sinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -2119,11 +3712,6 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Billingaccounts$Sinks$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
@@ -2144,11 +3732,6 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Billingaccounts$Sinks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
@@ -2176,20 +3759,85 @@ export namespace logging_v2 {
 
     /**
      * logging.entries.list
-     * @desc Lists log entries. Use this method to retrieve log entries that originated from a project/folder/organization/billing account. For ways to export log entries, see Exporting Logs.
+     * @desc Lists log entries. Use this method to retrieve log entries that originated from a project/folder/organization/billing account. For ways to export log entries, see Exporting Logs (https://cloud.google.com/logging/docs/export).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.entries.list({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "orderBy": "my_orderBy",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "projectIds": [],
+     *       //   "resourceNames": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.entries.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ListLogEntriesRequest} params.resource Request body data
+     * @param {().ListLogEntriesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Entries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Entries$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogEntriesResponse>;
+    list(
+      params: Params$Resource$Entries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Entries$List,
       options:
@@ -2205,12 +3853,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Entries$List
-        | BodyResponseCallback<Schema$ListLogEntriesResponse>,
+        | BodyResponseCallback<Schema$ListLogEntriesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogEntriesResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogEntriesResponse>
-    ): void | GaxiosPromise<Schema$ListLogEntriesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogEntriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogEntriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLogEntriesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2240,7 +3896,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogEntriesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogEntriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogEntriesResponse>(parameters);
       }
@@ -2249,19 +3908,80 @@ export namespace logging_v2 {
     /**
      * logging.entries.write
      * @desc Writes log entries to Logging. This API method is the only way to send log entries to Logging. This method is used, directly or indirectly, by the Logging agent (fluentd) and all logging libraries configured to use Logging. A single request may contain log entries for a maximum of 1000 different resources (projects, organizations, billing accounts or folders)
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.entries.write({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dryRun": false,
+     *       //   "entries": [],
+     *       //   "labels": {},
+     *       //   "logName": "my_logName",
+     *       //   "partialSuccess": false,
+     *       //   "resource": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.entries.write
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().WriteLogEntriesRequest} params.resource Request body data
+     * @param {().WriteLogEntriesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     write(
+      params: Params$Resource$Entries$Write,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    write(
       params?: Params$Resource$Entries$Write,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WriteLogEntriesResponse>;
+    write(
+      params: Params$Resource$Entries$Write,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     write(
       params: Params$Resource$Entries$Write,
       options:
@@ -2277,12 +3997,20 @@ export namespace logging_v2 {
     write(
       paramsOrCallback?:
         | Params$Resource$Entries$Write
-        | BodyResponseCallback<Schema$WriteLogEntriesResponse>,
+        | BodyResponseCallback<Schema$WriteLogEntriesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WriteLogEntriesResponse>,
-      callback?: BodyResponseCallback<Schema$WriteLogEntriesResponse>
-    ): void | GaxiosPromise<Schema$WriteLogEntriesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WriteLogEntriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WriteLogEntriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$WriteLogEntriesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entries$Write;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2312,7 +4040,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WriteLogEntriesResponse>(parameters, callback);
+        createAPIRequest<Schema$WriteLogEntriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WriteLogEntriesResponse>(parameters);
       }
@@ -2321,21 +4052,11 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Entries$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$ListLogEntriesRequest;
   }
   export interface Params$Resource$Entries$Write extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -2351,20 +4072,95 @@ export namespace logging_v2 {
     /**
      * logging.exclusions.create
      * @desc Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.exclusions.create({
+     *     // Required. The parent resource in which to create the exclusion:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: '[^/]+/[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.exclusions.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {().LogExclusion} params.resource Request body data
+     * @param {().LogExclusion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Exclusions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Exclusions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    create(
+      params: Params$Resource$Exclusions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Exclusions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -2378,12 +4174,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Exclusions$Create
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2417,7 +4218,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -2426,6 +4230,52 @@ export namespace logging_v2 {
     /**
      * logging.exclusions.delete
      * @desc Deletes an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.exclusions.delete({
+     *     // Required. The resource name of an existing exclusion to delete:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: '[^/]+/[^/]+/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.exclusions.delete
      * @memberOf! ()
      *
@@ -2436,9 +4286,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Exclusions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Exclusions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Exclusions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Exclusions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2452,10 +4311,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Exclusions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2486,7 +4352,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2495,6 +4364,61 @@ export namespace logging_v2 {
     /**
      * logging.exclusions.get
      * @desc Gets the description of an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.exclusions.get({
+     *     // Required. The resource name of an existing exclusion:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: '[^/]+/[^/]+/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.exclusions.get
      * @memberOf! ()
      *
@@ -2505,9 +4429,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Exclusions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Exclusions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Exclusions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Exclusions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -2521,12 +4454,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Exclusions$Get
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2556,7 +4494,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -2565,6 +4506,61 @@ export namespace logging_v2 {
     /**
      * logging.exclusions.list
      * @desc Lists all the exclusions in a parent resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.exclusions.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose exclusions are to be listed.
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exclusions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.exclusions.list
      * @memberOf! ()
      *
@@ -2577,9 +4573,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Exclusions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Exclusions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+      params: Params$Resource$Exclusions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Exclusions$List,
       options:
@@ -2595,12 +4600,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Exclusions$List
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
-    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExclusionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2633,7 +4646,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListExclusionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
@@ -2642,21 +4658,98 @@ export namespace logging_v2 {
     /**
      * logging.exclusions.patch
      * @desc Changes one or more properties of an existing exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.exclusions.patch({
+     *     // Required. The resource name of the exclusion to update:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: '[^/]+/[^/]+/exclusions/my-exclusion',
+     *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.exclusions.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      * @param {string=} params.updateMask Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
-     * @param {().LogExclusion} params.resource Request body data
+     * @param {().LogExclusion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Exclusions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Exclusions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    patch(
+      params: Params$Resource$Exclusions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Exclusions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -2670,12 +4763,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Exclusions$Patch
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2705,7 +4803,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -2714,11 +4815,6 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Exclusions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      */
@@ -2732,32 +4828,17 @@ export namespace logging_v2 {
   export interface Params$Resource$Exclusions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
   }
   export interface Params$Resource$Exclusions$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
   }
   export interface Params$Resource$Exclusions$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -2772,11 +4853,6 @@ export namespace logging_v2 {
     parent?: string;
   }
   export interface Params$Resource$Exclusions$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
@@ -2795,11 +4871,13 @@ export namespace logging_v2 {
   export class Resource$Folders {
     context: APIRequestContext;
     exclusions: Resource$Folders$Exclusions;
+    locations: Resource$Folders$Locations;
     logs: Resource$Folders$Logs;
     sinks: Resource$Folders$Sinks;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.exclusions = new Resource$Folders$Exclusions(this.context);
+      this.locations = new Resource$Folders$Locations(this.context);
       this.logs = new Resource$Folders$Logs(this.context);
       this.sinks = new Resource$Folders$Sinks(this.context);
     }
@@ -2814,20 +4892,95 @@ export namespace logging_v2 {
     /**
      * logging.folders.exclusions.create
      * @desc Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.exclusions.create({
+     *     // Required. The parent resource in which to create the exclusion:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'folders/my-folder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.exclusions.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {().LogExclusion} params.resource Request body data
+     * @param {().LogExclusion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Folders$Exclusions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Folders$Exclusions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    create(
+      params: Params$Resource$Folders$Exclusions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Folders$Exclusions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -2841,12 +4994,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Folders$Exclusions$Create
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2880,7 +5038,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -2889,6 +5050,52 @@ export namespace logging_v2 {
     /**
      * logging.folders.exclusions.delete
      * @desc Deletes an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.exclusions.delete({
+     *     // Required. The resource name of an existing exclusion to delete:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'folders/my-folder/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.exclusions.delete
      * @memberOf! ()
      *
@@ -2899,9 +5106,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Folders$Exclusions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Folders$Exclusions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Folders$Exclusions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Folders$Exclusions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2915,10 +5131,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Folders$Exclusions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2949,7 +5172,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2958,6 +5184,61 @@ export namespace logging_v2 {
     /**
      * logging.folders.exclusions.get
      * @desc Gets the description of an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.exclusions.get({
+     *     // Required. The resource name of an existing exclusion:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'folders/my-folder/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.exclusions.get
      * @memberOf! ()
      *
@@ -2968,9 +5249,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Folders$Exclusions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Folders$Exclusions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Folders$Exclusions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Folders$Exclusions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -2984,12 +5274,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Folders$Exclusions$Get
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3020,7 +5315,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -3029,6 +5327,61 @@ export namespace logging_v2 {
     /**
      * logging.folders.exclusions.list
      * @desc Lists all the exclusions in a parent resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.exclusions.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose exclusions are to be listed.
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exclusions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.exclusions.list
      * @memberOf! ()
      *
@@ -3041,9 +5394,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Folders$Exclusions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Folders$Exclusions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+      params: Params$Resource$Folders$Exclusions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Folders$Exclusions$List,
       options:
@@ -3059,12 +5421,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Folders$Exclusions$List
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
-    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExclusionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3098,7 +5468,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListExclusionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
@@ -3107,21 +5480,98 @@ export namespace logging_v2 {
     /**
      * logging.folders.exclusions.patch
      * @desc Changes one or more properties of an existing exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.exclusions.patch({
+     *     // Required. The resource name of the exclusion to update:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'folders/my-folder/exclusions/my-exclusion',
+     *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.exclusions.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      * @param {string=} params.updateMask Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
-     * @param {().LogExclusion} params.resource Request body data
+     * @param {().LogExclusion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Folders$Exclusions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Folders$Exclusions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    patch(
+      params: Params$Resource$Folders$Exclusions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Folders$Exclusions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -3135,12 +5585,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Folders$Exclusions$Patch
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3171,7 +5626,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -3180,11 +5638,6 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Folders$Exclusions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      */
@@ -3198,11 +5651,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Exclusions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
@@ -3210,22 +5658,12 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Exclusions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Exclusions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -3242,11 +5680,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Exclusions$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
@@ -3261,6 +5694,513 @@ export namespace logging_v2 {
     requestBody?: Schema$LogExclusion;
   }
 
+  export class Resource$Folders$Locations {
+    context: APIRequestContext;
+    buckets: Resource$Folders$Locations$Buckets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.buckets = new Resource$Folders$Locations$Buckets(this.context);
+    }
+  }
+
+  export class Resource$Folders$Locations$Buckets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.folders.locations.buckets.get
+     * @desc Gets a bucket (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.locations.buckets.get({
+     *     // Required. The resource name of the bucket:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: 'folders/my-folder/locations/my-location/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.folders.locations.buckets.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Folders$Locations$Buckets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Folders$Locations$Buckets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Folders$Locations$Buckets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Buckets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Buckets$Get,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Buckets$Get
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Buckets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Buckets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * logging.folders.locations.buckets.list
+     * @desc Lists buckets (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.locations.buckets.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose buckets are to be listed:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     parent: 'folders/my-folder/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buckets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.folders.locations.buckets.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Folders$Locations$Buckets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$Locations$Buckets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Folders$Locations$Buckets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Buckets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Buckets$List,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBucketsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Buckets$List
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBucketsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Buckets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Buckets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBucketsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBucketsResponse>(parameters);
+      }
+    }
+
+    /**
+     * logging.folders.locations.buckets.patch
+     * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.locations.buckets.patch({
+     *     // Required. The full resource name of the bucket to update.
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     name: 'folders/my-folder/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.folders.locations.buckets.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     * @param {string=} params.updateMask Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Folders$Locations$Buckets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Folders$Locations$Buckets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Folders$Locations$Buckets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Locations$Buckets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Locations$Buckets$Patch,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Buckets$Patch
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Buckets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Buckets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Locations$Buckets$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Buckets$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Buckets$Patch
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+
   export class Resource$Folders$Logs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -3269,7 +6209,53 @@ export namespace logging_v2 {
 
     /**
      * logging.folders.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.
+     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.logs.delete({
+     *     // Required. The resource name of the log to delete:
+     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     logName: 'folders/my-folder/logs/my-log',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.logs.delete
      * @memberOf! ()
      *
@@ -3280,9 +6266,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Folders$Logs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Folders$Logs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Folders$Logs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Folders$Logs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3296,10 +6291,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Folders$Logs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3330,7 +6332,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3339,6 +6344,61 @@ export namespace logging_v2 {
     /**
      * logging.folders.logs.list
      * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.logs.list
      * @memberOf! ()
      *
@@ -3351,9 +6411,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Folders$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Folders$Logs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Folders$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Folders$Logs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
@@ -3367,12 +6436,17 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Folders$Logs$List
-        | BodyResponseCallback<Schema$ListLogsResponse>,
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogsResponse>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3403,7 +6477,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
       }
@@ -3413,22 +6490,12 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Logs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
      */
     logName?: string;
   }
   export interface Params$Resource$Folders$Logs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -3452,21 +6519,108 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.create
      * @desc Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.sinks.create({
+     *     // Required. The resource in which to create the sink:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'folders/my-folder',
+     *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.sinks.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Folders$Sinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Folders$Sinks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    create(
+      params: Params$Resource$Folders$Sinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Folders$Sinks$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -3480,10 +6634,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Folders$Sinks$Create
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3517,7 +6678,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -3526,6 +6690,52 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.delete
      * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.sinks.delete({
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'folders/my-folder/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.sinks.delete
      * @memberOf! ()
      *
@@ -3536,9 +6746,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Folders$Sinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Folders$Sinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Folders$Sinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Folders$Sinks$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3552,10 +6771,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Folders$Sinks$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3586,7 +6812,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3595,6 +6824,66 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.get
      * @desc Gets a sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.sinks.get({
+     *     // Required. The resource name of the sink:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'folders/my-folder/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.sinks.get
      * @memberOf! ()
      *
@@ -3605,9 +6894,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Folders$Sinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Folders$Sinks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Folders$Sinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Folders$Sinks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -3621,10 +6919,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Folders$Sinks$Get
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3655,7 +6960,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -3664,6 +6972,61 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.list
      * @desc Lists sinks.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.sinks.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose sinks are to be listed:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.sinks.list
      * @memberOf! ()
      *
@@ -3676,9 +7039,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Folders$Sinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Folders$Sinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSinksResponse>;
+    list(
+      params: Params$Resource$Folders$Sinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Folders$Sinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
@@ -3692,12 +7064,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Folders$Sinks$List
-        | BodyResponseCallback<Schema$ListSinksResponse>,
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSinksResponse>,
-      callback?: BodyResponseCallback<Schema$ListSinksResponse>
-    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSinksResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3731,7 +7111,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
@@ -3740,6 +7123,89 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.patch
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.sinks.patch({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'folders/my-folder/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.sinks.patch
      * @memberOf! ()
      *
@@ -3747,15 +7213,24 @@ export namespace logging_v2 {
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Folders$Sinks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Folders$Sinks$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    patch(
+      params: Params$Resource$Folders$Sinks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Folders$Sinks$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -3769,10 +7244,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Folders$Sinks$Patch
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3803,7 +7285,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -3812,6 +7297,89 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.sinks.update({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'folders/my-folder/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.folders.sinks.update
      * @memberOf! ()
      *
@@ -3819,15 +7387,24 @@ export namespace logging_v2 {
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Folders$Sinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Folders$Sinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    update(
+      params: Params$Resource$Folders$Sinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Folders$Sinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -3841,10 +7418,17 @@ export namespace logging_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Folders$Sinks$Update
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3875,7 +7459,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -3884,11 +7471,6 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Folders$Sinks$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      */
@@ -3906,11 +7488,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Sinks$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
     sinkName?: string;
@@ -3918,22 +7495,12 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Sinks$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
     sinkName?: string;
   }
   export interface Params$Resource$Folders$Sinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -3949,11 +7516,6 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Folders$Sinks$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
@@ -3975,11 +7537,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Sinks$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
     sinkName?: string;
@@ -3998,6 +7555,513 @@ export namespace logging_v2 {
     requestBody?: Schema$LogSink;
   }
 
+  export class Resource$Locations {
+    context: APIRequestContext;
+    buckets: Resource$Locations$Buckets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.buckets = new Resource$Locations$Buckets(this.context);
+    }
+  }
+
+  export class Resource$Locations$Buckets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.locations.buckets.get
+     * @desc Gets a bucket (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.locations.buckets.get({
+     *     // Required. The resource name of the bucket:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: '[^/]+/[^/]+/locations/my-location/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.locations.buckets.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Locations$Buckets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Locations$Buckets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Locations$Buckets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Buckets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Buckets$Get,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Buckets$Get
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Buckets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Buckets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * logging.locations.buckets.list
+     * @desc Lists buckets (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.locations.buckets.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose buckets are to be listed:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     parent: '[^/]+/[^/]+/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buckets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.locations.buckets.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Locations$Buckets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Locations$Buckets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Locations$Buckets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Locations$Buckets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Locations$Buckets$List,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBucketsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Buckets$List
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBucketsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Buckets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Buckets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBucketsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBucketsResponse>(parameters);
+      }
+    }
+
+    /**
+     * logging.locations.buckets.patch
+     * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.locations.buckets.patch({
+     *     // Required. The full resource name of the bucket to update.
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     name: '[^/]+/[^/]+/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.locations.buckets.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     * @param {string=} params.updateMask Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Locations$Buckets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Locations$Buckets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Locations$Buckets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Locations$Buckets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(
+      params: Params$Resource$Locations$Buckets$Patch,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Buckets$Patch
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Buckets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Buckets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Locations$Buckets$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Locations$Buckets$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Locations$Buckets$Patch
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+
   export class Resource$Logs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4006,7 +8070,53 @@ export namespace logging_v2 {
 
     /**
      * logging.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.
+     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.logs.delete({
+     *     // Required. The resource name of the log to delete:
+     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     logName: '[^/]+/[^/]+/logs/my-log',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.logs.delete
      * @memberOf! ()
      *
@@ -4017,9 +8127,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Logs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Logs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Logs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Logs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4033,10 +8152,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Logs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4066,7 +8192,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4075,6 +8204,61 @@ export namespace logging_v2 {
     /**
      * logging.logs.list
      * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.logs.list
      * @memberOf! ()
      *
@@ -4087,9 +8271,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Logs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Logs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
@@ -4103,12 +8296,17 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Logs$List
-        | BodyResponseCallback<Schema$ListLogsResponse>,
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogsResponse>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4138,7 +8336,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
       }
@@ -4147,21 +8348,11 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Logs$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
      */
     logName?: string;
   }
   export interface Params$Resource$Logs$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -4185,6 +8376,54 @@ export namespace logging_v2 {
     /**
      * logging.monitoredResourceDescriptors.list
      * @desc Lists the descriptors for monitored resource types used by Logging.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.monitoredResourceDescriptors.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resourceDescriptors": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.monitoredResourceDescriptors.list
      * @memberOf! ()
      *
@@ -4196,9 +8435,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Monitoredresourcedescriptors$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Monitoredresourcedescriptors$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
+    list(
+      params: Params$Resource$Monitoredresourcedescriptors$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Monitoredresourcedescriptors$List,
       options:
@@ -4222,14 +8470,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Monitoredresourcedescriptors$List
-        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$ListMonitoredResourceDescriptorsResponse
-      >
-    ): void | GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monitoredresourcedescriptors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4265,7 +8519,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -4277,11 +8531,6 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Monitoredresourcedescriptors$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -4295,14 +8544,340 @@ export namespace logging_v2 {
   export class Resource$Organizations {
     context: APIRequestContext;
     exclusions: Resource$Organizations$Exclusions;
+    locations: Resource$Organizations$Locations;
     logs: Resource$Organizations$Logs;
     sinks: Resource$Organizations$Sinks;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.exclusions = new Resource$Organizations$Exclusions(this.context);
+      this.locations = new Resource$Organizations$Locations(this.context);
       this.logs = new Resource$Organizations$Logs(this.context);
       this.sinks = new Resource$Organizations$Sinks(this.context);
     }
+
+    /**
+     * logging.organizations.getCmekSettings
+     * @desc Gets the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.getCmekSettings({
+     *     // Required. The resource for which to retrieve CMEK settings.
+     *     // "projects/[PROJECT_ID]/cmekSettings"
+     *     // "organizations/[ORGANIZATION_ID]/cmekSettings"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
+     *     // "folders/[FOLDER_ID]/cmekSettings"
+     *     // Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     name: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "name": "my_name",
+     *   //   "serviceAccountId": "my_serviceAccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.organizations.getCmekSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getCmekSettings(
+      params: Params$Resource$Organizations$Getcmeksettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getCmekSettings(
+      params?: Params$Resource$Organizations$Getcmeksettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CmekSettings>;
+    getCmekSettings(
+      params: Params$Resource$Organizations$Getcmeksettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getCmekSettings(
+      params: Params$Resource$Organizations$Getcmeksettings,
+      options: MethodOptions | BodyResponseCallback<Schema$CmekSettings>,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    getCmekSettings(
+      params: Params$Resource$Organizations$Getcmeksettings,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    getCmekSettings(callback: BodyResponseCallback<Schema$CmekSettings>): void;
+    getCmekSettings(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getcmeksettings
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getcmeksettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Getcmeksettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/cmekSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CmekSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$CmekSettings>(parameters);
+      }
+    }
+
+    /**
+     * logging.organizations.updateCmekSettings
+     * @desc Updates the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.UpdateCmekSettings will fail if 1) kms_key_name is invalid, or 2) the associated service account does not have the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key, or 3) access to the key is disabled.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.updateCmekSettings({
+     *     // Required. The resource name for the CMEK settings to update.
+     *     // "projects/[PROJECT_ID]/cmekSettings"
+     *     // "organizations/[ORGANIZATION_ID]/cmekSettings"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
+     *     // "folders/[FOLDER_ID]/cmekSettings"
+     *     // Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     name: 'organizations/my-organization',
+     *     // Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "name": "my_name",
+     *       //   "serviceAccountId": "my_serviceAccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "name": "my_name",
+     *   //   "serviceAccountId": "my_serviceAccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.organizations.updateCmekSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * @param {string=} params.updateMask Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
+     * @param {().CmekSettings} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateCmekSettings(
+      params: Params$Resource$Organizations$Updatecmeksettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateCmekSettings(
+      params?: Params$Resource$Organizations$Updatecmeksettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CmekSettings>;
+    updateCmekSettings(
+      params: Params$Resource$Organizations$Updatecmeksettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateCmekSettings(
+      params: Params$Resource$Organizations$Updatecmeksettings,
+      options: MethodOptions | BodyResponseCallback<Schema$CmekSettings>,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    updateCmekSettings(
+      params: Params$Resource$Organizations$Updatecmeksettings,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    updateCmekSettings(
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    updateCmekSettings(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Updatecmeksettings
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Updatecmeksettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Updatecmeksettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/cmekSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CmekSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$CmekSettings>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Getcmeksettings
+    extends StandardParameters {
+    /**
+     * Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Updatecmeksettings
+    extends StandardParameters {
+    /**
+     * Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     */
+    name?: string;
+    /**
+     * Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CmekSettings;
   }
 
   export class Resource$Organizations$Exclusions {
@@ -4314,20 +8889,95 @@ export namespace logging_v2 {
     /**
      * logging.organizations.exclusions.create
      * @desc Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.exclusions.create({
+     *     // Required. The parent resource in which to create the exclusion:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.exclusions.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {().LogExclusion} params.resource Request body data
+     * @param {().LogExclusion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Organizations$Exclusions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Organizations$Exclusions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    create(
+      params: Params$Resource$Organizations$Exclusions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Organizations$Exclusions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -4341,12 +8991,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Organizations$Exclusions$Create
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4380,7 +9035,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -4389,6 +9047,52 @@ export namespace logging_v2 {
     /**
      * logging.organizations.exclusions.delete
      * @desc Deletes an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.exclusions.delete({
+     *     // Required. The resource name of an existing exclusion to delete:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'organizations/my-organization/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.exclusions.delete
      * @memberOf! ()
      *
@@ -4399,9 +9103,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Organizations$Exclusions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Organizations$Exclusions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Exclusions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Organizations$Exclusions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4415,10 +9128,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Exclusions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4449,7 +9169,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4458,6 +9181,61 @@ export namespace logging_v2 {
     /**
      * logging.organizations.exclusions.get
      * @desc Gets the description of an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.exclusions.get({
+     *     // Required. The resource name of an existing exclusion:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'organizations/my-organization/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.exclusions.get
      * @memberOf! ()
      *
@@ -4468,9 +9246,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Exclusions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Exclusions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Organizations$Exclusions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Exclusions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -4484,12 +9271,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Exclusions$Get
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4520,7 +9312,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -4529,6 +9324,61 @@ export namespace logging_v2 {
     /**
      * logging.organizations.exclusions.list
      * @desc Lists all the exclusions in a parent resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.exclusions.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose exclusions are to be listed.
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exclusions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.exclusions.list
      * @memberOf! ()
      *
@@ -4541,9 +9391,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Exclusions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Exclusions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+      params: Params$Resource$Organizations$Exclusions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Exclusions$List,
       options:
@@ -4559,12 +9418,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Exclusions$List
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
-    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExclusionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4598,7 +9465,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListExclusionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
@@ -4607,21 +9477,98 @@ export namespace logging_v2 {
     /**
      * logging.organizations.exclusions.patch
      * @desc Changes one or more properties of an existing exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.exclusions.patch({
+     *     // Required. The resource name of the exclusion to update:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'organizations/my-organization/exclusions/my-exclusion',
+     *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.exclusions.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      * @param {string=} params.updateMask Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
-     * @param {().LogExclusion} params.resource Request body data
+     * @param {().LogExclusion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Organizations$Exclusions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Organizations$Exclusions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    patch(
+      params: Params$Resource$Organizations$Exclusions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Organizations$Exclusions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -4635,12 +9582,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Organizations$Exclusions$Patch
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4671,7 +9623,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -4680,11 +9635,6 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Organizations$Exclusions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      */
@@ -4698,11 +9648,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Exclusions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
@@ -4710,22 +9655,12 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Exclusions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Exclusions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -4742,11 +9677,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Exclusions$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
@@ -4761,6 +9691,515 @@ export namespace logging_v2 {
     requestBody?: Schema$LogExclusion;
   }
 
+  export class Resource$Organizations$Locations {
+    context: APIRequestContext;
+    buckets: Resource$Organizations$Locations$Buckets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.buckets = new Resource$Organizations$Locations$Buckets(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Locations$Buckets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.organizations.locations.buckets.get
+     * @desc Gets a bucket (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.locations.buckets.get({
+     *     // Required. The resource name of the bucket:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name:
+     *       'organizations/my-organization/locations/my-location/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.organizations.locations.buckets.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Buckets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Buckets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Organizations$Locations$Buckets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Buckets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Buckets$Get,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Buckets$Get
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Buckets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Buckets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * logging.organizations.locations.buckets.list
+     * @desc Lists buckets (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.locations.buckets.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose buckets are to be listed:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     parent: 'organizations/my-organization/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buckets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.organizations.locations.buckets.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Buckets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Buckets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Buckets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Buckets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Buckets$List,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBucketsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Buckets$List
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBucketsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Buckets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Buckets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBucketsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBucketsResponse>(parameters);
+      }
+    }
+
+    /**
+     * logging.organizations.locations.buckets.patch
+     * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.locations.buckets.patch({
+     *     // Required. The full resource name of the bucket to update.
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     name:
+     *       'organizations/my-organization/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.organizations.locations.buckets.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     * @param {string=} params.updateMask Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Organizations$Locations$Buckets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Locations$Buckets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Buckets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Buckets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Buckets$Patch,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Buckets$Patch
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Buckets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Buckets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Buckets$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Buckets$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Buckets$Patch
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+
   export class Resource$Organizations$Logs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4769,7 +10208,53 @@ export namespace logging_v2 {
 
     /**
      * logging.organizations.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.
+     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.logs.delete({
+     *     // Required. The resource name of the log to delete:
+     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     logName: 'organizations/my-organization/logs/my-log',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.logs.delete
      * @memberOf! ()
      *
@@ -4780,9 +10265,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Organizations$Logs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Organizations$Logs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Logs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Organizations$Logs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4796,10 +10290,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Logs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4830,7 +10331,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4839,6 +10343,61 @@ export namespace logging_v2 {
     /**
      * logging.organizations.logs.list
      * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.logs.list
      * @memberOf! ()
      *
@@ -4851,9 +10410,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Logs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Organizations$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Logs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
@@ -4867,12 +10435,17 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Logs$List
-        | BodyResponseCallback<Schema$ListLogsResponse>,
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogsResponse>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4903,7 +10476,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
       }
@@ -4913,22 +10489,12 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Logs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
      */
     logName?: string;
   }
   export interface Params$Resource$Organizations$Logs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -4952,21 +10518,108 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.create
      * @desc Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.sinks.create({
+     *     // Required. The resource in which to create the sink:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'organizations/my-organization',
+     *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.sinks.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Organizations$Sinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Organizations$Sinks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    create(
+      params: Params$Resource$Organizations$Sinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Organizations$Sinks$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -4980,10 +10633,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sinks$Create
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5017,7 +10677,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -5026,6 +10689,52 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.delete
      * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.sinks.delete({
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'organizations/my-organization/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.sinks.delete
      * @memberOf! ()
      *
@@ -5036,9 +10745,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Organizations$Sinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Organizations$Sinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Sinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Organizations$Sinks$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -5052,10 +10770,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sinks$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5086,7 +10811,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -5095,6 +10823,66 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.get
      * @desc Gets a sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.sinks.get({
+     *     // Required. The resource name of the sink:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'organizations/my-organization/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.sinks.get
      * @memberOf! ()
      *
@@ -5105,9 +10893,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Sinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Sinks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Organizations$Sinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Sinks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -5121,10 +10918,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sinks$Get
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5155,7 +10959,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -5164,6 +10971,61 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.list
      * @desc Lists sinks.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.sinks.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose sinks are to be listed:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.sinks.list
      * @memberOf! ()
      *
@@ -5176,9 +11038,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Sinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Sinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSinksResponse>;
+    list(
+      params: Params$Resource$Organizations$Sinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Sinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
@@ -5192,12 +11063,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sinks$List
-        | BodyResponseCallback<Schema$ListSinksResponse>,
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSinksResponse>,
-      callback?: BodyResponseCallback<Schema$ListSinksResponse>
-    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSinksResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5231,7 +11110,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
@@ -5240,6 +11122,89 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.patch
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.sinks.patch({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'organizations/my-organization/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.sinks.patch
      * @memberOf! ()
      *
@@ -5247,15 +11212,24 @@ export namespace logging_v2 {
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Organizations$Sinks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Organizations$Sinks$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    patch(
+      params: Params$Resource$Organizations$Sinks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Organizations$Sinks$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -5269,10 +11243,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sinks$Patch
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5303,7 +11284,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -5312,6 +11296,89 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.sinks.update({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'organizations/my-organization/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.organizations.sinks.update
      * @memberOf! ()
      *
@@ -5319,15 +11386,24 @@ export namespace logging_v2 {
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Organizations$Sinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Organizations$Sinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    update(
+      params: Params$Resource$Organizations$Sinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Organizations$Sinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -5341,10 +11417,17 @@ export namespace logging_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sinks$Update
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5375,7 +11458,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -5384,11 +11470,6 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Organizations$Sinks$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      */
@@ -5406,11 +11487,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Sinks$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
     sinkName?: string;
@@ -5418,22 +11494,12 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Sinks$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
     sinkName?: string;
   }
   export interface Params$Resource$Organizations$Sinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -5449,11 +11515,6 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Organizations$Sinks$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
@@ -5474,11 +11535,6 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Organizations$Sinks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
@@ -5501,12 +11557,14 @@ export namespace logging_v2 {
   export class Resource$Projects {
     context: APIRequestContext;
     exclusions: Resource$Projects$Exclusions;
+    locations: Resource$Projects$Locations;
     logs: Resource$Projects$Logs;
     metrics: Resource$Projects$Metrics;
     sinks: Resource$Projects$Sinks;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.exclusions = new Resource$Projects$Exclusions(this.context);
+      this.locations = new Resource$Projects$Locations(this.context);
       this.logs = new Resource$Projects$Logs(this.context);
       this.metrics = new Resource$Projects$Metrics(this.context);
       this.sinks = new Resource$Projects$Sinks(this.context);
@@ -5522,20 +11580,95 @@ export namespace logging_v2 {
     /**
      * logging.projects.exclusions.create
      * @desc Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.exclusions.create({
+     *     // Required. The parent resource in which to create the exclusion:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.exclusions.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {().LogExclusion} params.resource Request body data
+     * @param {().LogExclusion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Exclusions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Exclusions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    create(
+      params: Params$Resource$Projects$Exclusions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Exclusions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -5549,12 +11682,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Exclusions$Create
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5588,7 +11726,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -5597,6 +11738,52 @@ export namespace logging_v2 {
     /**
      * logging.projects.exclusions.delete
      * @desc Deletes an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.exclusions.delete({
+     *     // Required. The resource name of an existing exclusion to delete:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'projects/my-project/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.exclusions.delete
      * @memberOf! ()
      *
@@ -5607,9 +11794,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Exclusions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Exclusions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Exclusions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Exclusions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -5623,10 +11819,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Exclusions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5657,7 +11860,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -5666,6 +11872,61 @@ export namespace logging_v2 {
     /**
      * logging.projects.exclusions.get
      * @desc Gets the description of an exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.exclusions.get({
+     *     // Required. The resource name of an existing exclusion:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'projects/my-project/exclusions/my-exclusion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.exclusions.get
      * @memberOf! ()
      *
@@ -5676,9 +11937,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Exclusions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Exclusions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Projects$Exclusions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Exclusions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -5692,12 +11962,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Exclusions$Get
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5728,7 +12003,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -5737,6 +12015,61 @@ export namespace logging_v2 {
     /**
      * logging.projects.exclusions.list
      * @desc Lists all the exclusions in a parent resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.exclusions.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose exclusions are to be listed.
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exclusions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.exclusions.list
      * @memberOf! ()
      *
@@ -5749,9 +12082,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Exclusions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Exclusions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+      params: Params$Resource$Projects$Exclusions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Exclusions$List,
       options:
@@ -5767,12 +12109,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Exclusions$List
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
-    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExclusionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5806,7 +12156,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListExclusionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
@@ -5815,21 +12168,98 @@ export namespace logging_v2 {
     /**
      * logging.projects.exclusions.patch
      * @desc Changes one or more properties of an existing exclusion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.exclusions.patch({
+     *     // Required. The resource name of the exclusion to update:
+     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     name: 'projects/my-project/exclusions/my-exclusion',
+     *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.exclusions.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      * @param {string=} params.updateMask Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
-     * @param {().LogExclusion} params.resource Request body data
+     * @param {().LogExclusion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Exclusions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Exclusions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    patch(
+      params: Params$Resource$Projects$Exclusions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Exclusions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -5843,12 +12273,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Exclusions$Patch
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5879,7 +12314,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -5888,11 +12326,6 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Projects$Exclusions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      */
@@ -5906,11 +12339,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Exclusions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
@@ -5918,22 +12346,12 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Exclusions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Exclusions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -5950,11 +12368,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Exclusions$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      */
     name?: string;
@@ -5969,6 +12382,513 @@ export namespace logging_v2 {
     requestBody?: Schema$LogExclusion;
   }
 
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    buckets: Resource$Projects$Locations$Buckets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.buckets = new Resource$Projects$Locations$Buckets(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations$Buckets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.projects.locations.buckets.get
+     * @desc Gets a bucket (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.locations.buckets.get({
+     *     // Required. The resource name of the bucket:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: 'projects/my-project/locations/my-location/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.projects.locations.buckets.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Buckets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Buckets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Projects$Locations$Buckets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Buckets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Buckets$Get,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Buckets$Get
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Buckets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Buckets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * logging.projects.locations.buckets.list
+     * @desc Lists buckets (Beta).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.locations.buckets.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose buckets are to be listed:
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buckets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.projects.locations.buckets.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Buckets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Buckets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Buckets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Buckets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Buckets$List,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBucketsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Buckets$List
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBucketsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Buckets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Buckets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBucketsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBucketsResponse>(parameters);
+      }
+    }
+
+    /**
+     * logging.projects.locations.buckets.patch
+     * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.locations.buckets.patch({
+     *     // Required. The full resource name of the bucket to update.
+     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     name: 'projects/my-project/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.projects.locations.buckets.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     * @param {string=} params.updateMask Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Buckets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Buckets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Projects$Locations$Buckets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Buckets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Buckets$Patch,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Buckets$Patch
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Buckets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Buckets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Buckets$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Buckets$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Buckets$Patch
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+
   export class Resource$Projects$Logs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5977,7 +12897,53 @@ export namespace logging_v2 {
 
     /**
      * logging.projects.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.
+     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.logs.delete({
+     *     // Required. The resource name of the log to delete:
+     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     logName: 'projects/my-project/logs/my-log',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.logs.delete
      * @memberOf! ()
      *
@@ -5988,9 +12954,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Logs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Logs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Logs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Logs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -6004,10 +12979,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Logs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6038,7 +13020,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -6047,6 +13032,61 @@ export namespace logging_v2 {
     /**
      * logging.projects.logs.list
      * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.logs.list
      * @memberOf! ()
      *
@@ -6059,9 +13099,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Logs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Projects$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Logs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
@@ -6075,12 +13124,17 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Logs$List
-        | BodyResponseCallback<Schema$ListLogsResponse>,
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogsResponse>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6111,7 +13165,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
       }
@@ -6121,22 +13178,12 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Logs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
      */
     logName?: string;
   }
   export interface Params$Resource$Projects$Logs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -6160,20 +13207,101 @@ export namespace logging_v2 {
     /**
      * logging.projects.metrics.create
      * @desc Creates a logs-based metric.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.metrics.create({
+     *     // Required. The resource name of the project in which to create the metric:
+     *     // "projects/[PROJECT_ID]"
+     *     // The new metric must be provided in the request.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucketOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "filter": "my_filter",
+     *       //   "labelExtractors": {},
+     *       //   "metricDescriptor": {},
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "valueExtractor": "my_valueExtractor",
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucketOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "labelExtractors": {},
+     *   //   "metricDescriptor": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "valueExtractor": "my_valueExtractor",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.metrics.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The resource name of the project in which to create the metric: "projects/[PROJECT_ID]" The new metric must be provided in the request.
-     * @param {().LogMetric} params.resource Request body data
+     * @param {string} params.parent Required. The resource name of the project in which to create the metric: "projects/[PROJECT_ID]" The new metric must be provided in the request.
+     * @param {().LogMetric} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Metrics$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Metrics$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogMetric>;
+    create(
+      params: Params$Resource$Projects$Metrics$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Metrics$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogMetric>,
@@ -6187,12 +13315,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Metrics$Create
-        | BodyResponseCallback<Schema$LogMetric>,
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogMetric>,
-      callback?: BodyResponseCallback<Schema$LogMetric>
-    ): void | GaxiosPromise<Schema$LogMetric> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogMetric> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6226,7 +13359,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogMetric>(parameters, callback);
+        createAPIRequest<Schema$LogMetric>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogMetric>(parameters);
       }
@@ -6235,19 +13371,72 @@ export namespace logging_v2 {
     /**
      * logging.projects.metrics.delete
      * @desc Deletes a logs-based metric.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.metrics.delete({
+     *     // Required. The resource name of the metric to delete:
+     *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     *     //
+     *     metricName: 'projects/my-project/metrics/my-metric',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.metrics.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.metricName The resource name of the metric to delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * @param {string} params.metricName Required. The resource name of the metric to delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Metrics$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Metrics$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Metrics$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Metrics$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -6261,10 +13450,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Metrics$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6295,7 +13491,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -6304,19 +13503,84 @@ export namespace logging_v2 {
     /**
      * logging.projects.metrics.get
      * @desc Gets a logs-based metric.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.metrics.get({
+     *     // Required. The resource name of the desired metric:
+     *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     *     //
+     *     metricName: 'projects/my-project/metrics/my-metric',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucketOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "labelExtractors": {},
+     *   //   "metricDescriptor": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "valueExtractor": "my_valueExtractor",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.metrics.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.metricName The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * @param {string} params.metricName Required. The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Metrics$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Metrics$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogMetric>;
+    get(
+      params: Params$Resource$Projects$Metrics$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Metrics$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogMetric>,
@@ -6330,12 +13594,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Metrics$Get
-        | BodyResponseCallback<Schema$LogMetric>,
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogMetric>,
-      callback?: BodyResponseCallback<Schema$LogMetric>
-    ): void | GaxiosPromise<Schema$LogMetric> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogMetric> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6366,7 +13635,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogMetric>(parameters, callback);
+        createAPIRequest<Schema$LogMetric>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogMetric>(parameters);
       }
@@ -6375,6 +13647,58 @@ export namespace logging_v2 {
     /**
      * logging.projects.metrics.list
      * @desc Lists logs-based metrics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.metrics.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project containing the metrics:
+     *     // "projects/[PROJECT_ID]"
+     *     //
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metrics": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.metrics.list
      * @memberOf! ()
      *
@@ -6387,9 +13711,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Metrics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Metrics$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogMetricsResponse>;
+    list(
+      params: Params$Resource$Projects$Metrics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Metrics$List,
       options:
@@ -6405,12 +13738,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Metrics$List
-        | BodyResponseCallback<Schema$ListLogMetricsResponse>,
+        | BodyResponseCallback<Schema$ListLogMetricsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogMetricsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogMetricsResponse>
-    ): void | GaxiosPromise<Schema$ListLogMetricsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogMetricsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLogMetricsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6444,7 +13785,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogMetricsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogMetricsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogMetricsResponse>(parameters);
       }
@@ -6453,20 +13797,101 @@ export namespace logging_v2 {
     /**
      * logging.projects.metrics.update
      * @desc Creates or updates a logs-based metric.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.metrics.update({
+     *     // Required. The resource name of the metric to update:
+     *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     *     // The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
+     *     metricName: 'projects/my-project/metrics/my-metric',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucketOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "filter": "my_filter",
+     *       //   "labelExtractors": {},
+     *       //   "metricDescriptor": {},
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "valueExtractor": "my_valueExtractor",
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucketOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "labelExtractors": {},
+     *   //   "metricDescriptor": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "valueExtractor": "my_valueExtractor",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.metrics.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.metricName The resource name of the metric to update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
-     * @param {().LogMetric} params.resource Request body data
+     * @param {string} params.metricName Required. The resource name of the metric to update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
+     * @param {().LogMetric} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Metrics$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Metrics$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogMetric>;
+    update(
+      params: Params$Resource$Projects$Metrics$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Metrics$Update,
       options: MethodOptions | BodyResponseCallback<Schema$LogMetric>,
@@ -6480,12 +13905,17 @@ export namespace logging_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Metrics$Update
-        | BodyResponseCallback<Schema$LogMetric>,
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogMetric>,
-      callback?: BodyResponseCallback<Schema$LogMetric>
-    ): void | GaxiosPromise<Schema$LogMetric> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogMetric> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6516,7 +13946,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogMetric>(parameters, callback);
+        createAPIRequest<Schema$LogMetric>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogMetric>(parameters);
       }
@@ -6526,12 +13959,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Metrics$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the project in which to create the metric: "projects/[PROJECT_ID]" The new metric must be provided in the request.
+     * Required. The resource name of the project in which to create the metric: "projects/[PROJECT_ID]" The new metric must be provided in the request.
      */
     parent?: string;
 
@@ -6543,34 +13971,19 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Metrics$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the metric to delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * Required. The resource name of the metric to delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      */
     metricName?: string;
   }
   export interface Params$Resource$Projects$Metrics$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * Required. The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      */
     metricName?: string;
   }
   export interface Params$Resource$Projects$Metrics$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -6587,12 +14000,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Metrics$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the metric to update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
+     * Required. The resource name of the metric to update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
      */
     metricName?: string;
 
@@ -6611,21 +14019,108 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.create
      * @desc Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.sinks.create({
+     *     // Required. The resource in which to create the sink:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: 'projects/my-project',
+     *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.sinks.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Sinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Sinks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    create(
+      params: Params$Resource$Projects$Sinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Sinks$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -6639,10 +14134,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Sinks$Create
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6676,7 +14178,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -6685,6 +14190,52 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.delete
      * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.sinks.delete({
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'projects/my-project/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.sinks.delete
      * @memberOf! ()
      *
@@ -6695,9 +14246,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Sinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Sinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Sinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Sinks$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -6711,10 +14271,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Sinks$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6745,7 +14312,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -6754,6 +14324,66 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.get
      * @desc Gets a sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.sinks.get({
+     *     // Required. The resource name of the sink:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'projects/my-project/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.sinks.get
      * @memberOf! ()
      *
@@ -6764,9 +14394,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Sinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Sinks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Projects$Sinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Sinks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -6780,10 +14419,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Sinks$Get
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6814,7 +14460,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -6823,6 +14472,61 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.list
      * @desc Lists sinks.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.sinks.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose sinks are to be listed:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.sinks.list
      * @memberOf! ()
      *
@@ -6835,9 +14539,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Sinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Sinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSinksResponse>;
+    list(
+      params: Params$Resource$Projects$Sinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Sinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
@@ -6851,12 +14564,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Sinks$List
-        | BodyResponseCallback<Schema$ListSinksResponse>,
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSinksResponse>,
-      callback?: BodyResponseCallback<Schema$ListSinksResponse>
-    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSinksResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6890,7 +14611,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
@@ -6899,6 +14623,89 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.patch
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.sinks.patch({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'projects/my-project/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.sinks.patch
      * @memberOf! ()
      *
@@ -6906,15 +14713,24 @@ export namespace logging_v2 {
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Sinks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Sinks$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    patch(
+      params: Params$Resource$Projects$Sinks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Sinks$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -6928,10 +14744,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Sinks$Patch
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6962,7 +14785,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -6971,6 +14797,89 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.sinks.update({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: 'projects/my-project/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.projects.sinks.update
      * @memberOf! ()
      *
@@ -6978,15 +14887,24 @@ export namespace logging_v2 {
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Sinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Sinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    update(
+      params: Params$Resource$Projects$Sinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Sinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -7000,10 +14918,17 @@ export namespace logging_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Sinks$Update
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7034,7 +14959,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -7043,11 +14971,6 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Projects$Sinks$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      */
@@ -7065,11 +14988,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Sinks$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
     sinkName?: string;
@@ -7077,22 +14995,12 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Sinks$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
     sinkName?: string;
   }
   export interface Params$Resource$Projects$Sinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -7108,11 +15016,6 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Projects$Sinks$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
@@ -7133,11 +15036,6 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Projects$Sinks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
@@ -7166,21 +15064,108 @@ export namespace logging_v2 {
     /**
      * logging.sinks.create
      * @desc Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.sinks.create({
+     *     // Required. The resource in which to create the sink:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     parent: '[^/]+/[^/]+',
+     *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.sinks.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Sinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Sinks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    create(
+      params: Params$Resource$Sinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Sinks$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -7194,10 +15179,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Sinks$Create
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7230,7 +15222,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -7239,6 +15234,52 @@ export namespace logging_v2 {
     /**
      * logging.sinks.delete
      * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.sinks.delete({
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: '[^/]+/[^/]+/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.sinks.delete
      * @memberOf! ()
      *
@@ -7249,9 +15290,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Sinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Sinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Sinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Sinks$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -7265,10 +15315,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Sinks$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7298,7 +15355,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -7307,6 +15367,66 @@ export namespace logging_v2 {
     /**
      * logging.sinks.get
      * @desc Gets a sink.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.sinks.get({
+     *     // Required. The resource name of the sink:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: '[^/]+/[^/]+/sinks/my-sink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.sinks.get
      * @memberOf! ()
      *
@@ -7317,9 +15437,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Sinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Sinks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Sinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Sinks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -7333,10 +15462,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Sinks$Get
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7366,7 +15502,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -7375,6 +15514,61 @@ export namespace logging_v2 {
     /**
      * logging.sinks.list
      * @desc Lists sinks.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.sinks.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource whose sinks are to be listed:
+     *     // "projects/[PROJECT_ID]"
+     *     // "organizations/[ORGANIZATION_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     // "folders/[FOLDER_ID]"
+     *     //
+     *     parent: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.sinks.list
      * @memberOf! ()
      *
@@ -7387,9 +15581,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Sinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Sinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSinksResponse>;
+    list(
+      params: Params$Resource$Sinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Sinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
@@ -7403,12 +15606,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Sinks$List
-        | BodyResponseCallback<Schema$ListSinksResponse>,
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSinksResponse>,
-      callback?: BodyResponseCallback<Schema$ListSinksResponse>
-    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSinksResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7441,7 +15652,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
@@ -7450,6 +15664,89 @@ export namespace logging_v2 {
     /**
      * logging.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.sinks.update({
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
+     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     sinkName: '[^/]+/[^/]+/sinks/my-sink',
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
+     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
+     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
+     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     uniqueWriterIdentity: 'placeholder-value',
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigqueryOptions": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "destination": "my_destination",
+     *       //   "disabled": false,
+     *       //   "filter": "my_filter",
+     *       //   "includeChildren": false,
+     *       //   "name": "my_name",
+     *       //   "outputVersionFormat": "my_outputVersionFormat",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "writerIdentity": "my_writerIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryOptions": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": "my_destination",
+     *   //   "disabled": false,
+     *   //   "filter": "my_filter",
+     *   //   "includeChildren": false,
+     *   //   "name": "my_name",
+     *   //   "outputVersionFormat": "my_outputVersionFormat",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "writerIdentity": "my_writerIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias logging.sinks.update
      * @memberOf! ()
      *
@@ -7457,15 +15754,24 @@ export namespace logging_v2 {
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
-     * @param {().LogSink} params.resource Request body data
+     * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Sinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Sinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    update(
+      params: Params$Resource$Sinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Sinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -7479,10 +15785,17 @@ export namespace logging_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Sinks$Update
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7512,7 +15825,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -7520,11 +15836,6 @@ export namespace logging_v2 {
   }
 
   export interface Params$Resource$Sinks$Create extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      */
@@ -7541,32 +15852,17 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Sinks$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
     sinkName?: string;
   }
   export interface Params$Resource$Sinks$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
     sinkName?: string;
   }
   export interface Params$Resource$Sinks$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -7581,11 +15877,6 @@ export namespace logging_v2 {
     parent?: string;
   }
   export interface Params$Resource$Sinks$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      */
@@ -7603,5 +15894,336 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$LogSink;
+  }
+
+  export class Resource$V2 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.getCmekSettings
+     * @desc Gets the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.getCmekSettings({
+     *     // Required. The resource for which to retrieve CMEK settings.
+     *     // "projects/[PROJECT_ID]/cmekSettings"
+     *     // "organizations/[ORGANIZATION_ID]/cmekSettings"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
+     *     // "folders/[FOLDER_ID]/cmekSettings"
+     *     // Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     name: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "name": "my_name",
+     *   //   "serviceAccountId": "my_serviceAccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.getCmekSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getCmekSettings(
+      params: Params$Resource$V2$Getcmeksettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getCmekSettings(
+      params?: Params$Resource$V2$Getcmeksettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CmekSettings>;
+    getCmekSettings(
+      params: Params$Resource$V2$Getcmeksettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getCmekSettings(
+      params: Params$Resource$V2$Getcmeksettings,
+      options: MethodOptions | BodyResponseCallback<Schema$CmekSettings>,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    getCmekSettings(
+      params: Params$Resource$V2$Getcmeksettings,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    getCmekSettings(callback: BodyResponseCallback<Schema$CmekSettings>): void;
+    getCmekSettings(
+      paramsOrCallback?:
+        | Params$Resource$V2$Getcmeksettings
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V2$Getcmeksettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V2$Getcmeksettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/cmekSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CmekSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$CmekSettings>(parameters);
+      }
+    }
+
+    /**
+     * logging.updateCmekSettings
+     * @desc Updates the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.UpdateCmekSettings will fail if 1) kms_key_name is invalid, or 2) the associated service account does not have the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key, or 3) access to the key is disabled.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.updateCmekSettings({
+     *     // Required. The resource name for the CMEK settings to update.
+     *     // "projects/[PROJECT_ID]/cmekSettings"
+     *     // "organizations/[ORGANIZATION_ID]/cmekSettings"
+     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
+     *     // "folders/[FOLDER_ID]/cmekSettings"
+     *     // Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     name: '[^/]+/[^/]+',
+     *     // Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "name": "my_name",
+     *       //   "serviceAccountId": "my_serviceAccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "name": "my_name",
+     *   //   "serviceAccountId": "my_serviceAccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.updateCmekSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * @param {string=} params.updateMask Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
+     * @param {().CmekSettings} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateCmekSettings(
+      params: Params$Resource$V2$Updatecmeksettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateCmekSettings(
+      params?: Params$Resource$V2$Updatecmeksettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CmekSettings>;
+    updateCmekSettings(
+      params: Params$Resource$V2$Updatecmeksettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateCmekSettings(
+      params: Params$Resource$V2$Updatecmeksettings,
+      options: MethodOptions | BodyResponseCallback<Schema$CmekSettings>,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    updateCmekSettings(
+      params: Params$Resource$V2$Updatecmeksettings,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    updateCmekSettings(
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    updateCmekSettings(
+      paramsOrCallback?:
+        | Params$Resource$V2$Updatecmeksettings
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V2$Updatecmeksettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V2$Updatecmeksettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/cmekSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CmekSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$CmekSettings>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$V2$Getcmeksettings
+    extends StandardParameters {
+    /**
+     * Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$V2$Updatecmeksettings
+    extends StandardParameters {
+    /**
+     * Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     */
+    name?: string;
+    /**
+     * Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CmekSettings;
   }
 }

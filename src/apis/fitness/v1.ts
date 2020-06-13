@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace fitness_v1 {
   export interface Options extends GlobalOptions {
@@ -43,9 +42,32 @@ export namespace fitness_v1 {
 
   interface StandardParameters {
     /**
-     * Data format for the response.
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -63,19 +85,23 @@ export namespace fitness_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
-   * Fitness
+   * Fitness API
    *
-   * Stores and accesses user data in the fitness store from apps on any platform.
+   * The Fitness API for managing users&#39; fitness tracking data.
    *
    * @example
    * const {google} = require('googleapis');
@@ -132,11 +158,11 @@ export namespace fitness_v1 {
    */
   export interface Schema$AggregateBy {
     /**
-     * A data source ID to aggregate. Mutually exclusive of dataTypeName. Only data from the specified data source ID will be included in the aggregation. The dataset in the response will have the same data source ID.
+     * A data source ID to aggregate. Only data from the specified data source ID will be included in the aggregation. If specified, this data source must exist; the OAuth scopes in the supplied credentials must grant read access to this data type. The dataset in the response will have the same data source ID. Note: Data can be aggregated by either the dataTypeName or the dataSourceId, not both.
      */
     dataSourceId?: string | null;
     /**
-     * The data type to aggregate. All data sources providing this data type will contribute data to the aggregation. The response will contain a single dataset for this data type name. The dataset will have a data source ID of derived:com.google.:com.google.android.gms:aggregated
+     * The data type to aggregate. All data sources providing this data type will contribute data to the aggregation. The response will contain a single dataset for this data type name. The dataset will have a data source ID of derived:&lt;output data type name&gt;:com.google.android.gms:aggregated. If the user has no data for this data type, an empty data set will be returned. Note: Data can be aggregated by either the dataTypeName or the dataSourceId, not both.
      */
     dataTypeName?: string | null;
   }
@@ -153,7 +179,7 @@ export namespace fitness_v1 {
      */
     bucketByActivitySegment?: Schema$BucketByActivity;
     /**
-     * Specifies that data be aggregated by the type of activity being performed when the data was recorded. All data that was recorded during a certain activity type (for the given time range) will be aggregated into the same bucket. Data that was recorded while the user was not active will not be included in the response. Mutually exclusive of other bucketing specifications.
+     * Specifies that data be aggregated by the type of activity being performed when the data was recorded. All data that was recorded during a certain activity type (.for the given time range) will be aggregated into the same bucket. Data that was recorded while the user was not active will not be included in the response. Mutually exclusive of other bucketing specifications.
      */
     bucketByActivityType?: Schema$BucketByActivity;
     /**
@@ -233,7 +259,7 @@ export namespace fitness_v1 {
     value?: number | null;
   }
   /**
-   * Represents a single data point, generated by a particular data source. A data point holds a value for each field, an end timestamp and an optional start time. The exact semantics of each of these attributes are specified in the documentation for the particular data type.  A data point can represent an instantaneous measurement, reading or input observation, as well as averages or aggregates over a time interval. Check the data type documentation to determine which is the case for a particular data type.  Data points always contain one value for each field of the data type.
+   * Represents a single data point, generated by a particular data source.  A data point holds a value for each field, an end timestamp and an optional start time.  The exact semantics of each of these attributes are specified in the documentation for the particular data type.  A data point can represent an instantaneous measurement, reading or input observation, as well as averages or aggregates over a time interval.  Check the data type documentation to determine which is the case for a particular data type.  Data points always contain one value for each field of the data type.
    */
   export interface Schema$DataPoint {
     /**
@@ -295,7 +321,7 @@ export namespace fitness_v1 {
     point?: Schema$DataPoint[];
   }
   /**
-   * Definition of a unique source of sensor data. Data sources can expose raw data coming from hardware sensors on local or companion devices. They can also expose derived data, created by transforming or merging other data sources. Multiple data sources can exist for the same data type. Every data point inserted into or read from this service has an associated data source.  The data source contains enough information to uniquely identify its data, including the hardware device and the application that collected and/or transformed the data. It also holds useful metadata, such as the hardware and application versions, and the device type.  Each data source produces a unique stream of data, with a unique identifier. Not all changes to data source affect the stream identifier, so that data collected by updated versions of the same application/device can still be considered to belong to the same data stream.
+   * Definition of a unique source of sensor data.  Data sources can expose raw data coming from hardware sensors on local or companion devices. They can also expose derived data, created by transforming or merging other data sources. Multiple data sources can exist for the same data type. Every data point inserted into or read from this service has an associated data source.  The data source contains enough information to uniquely identify its data, including the hardware device and the application that collected and/or transformed the data. It also holds useful metadata, such as the hardware and application versions, and the device type.  Each data source produces a unique stream of data, with a unique identifier. Not all changes to data source affect the stream identifier, so that data collected by updated versions of the same application/device can still be considered to belong to the same data stream.
    */
   export interface Schema$DataSource {
     /**
@@ -307,7 +333,7 @@ export namespace fitness_v1 {
      */
     dataQualityStandard?: string[] | null;
     /**
-     * A unique identifier for the data stream produced by this data source. The identifier includes:    - The physical device&#39;s manufacturer, model, and serial number (UID).  - The application&#39;s package name or name. Package name is used when the data source was created by an Android application. The developer project number is used when the data source was created by a REST client.  - The data source&#39;s type.  - The data source&#39;s stream name.  Note that not all attributes of the data source are used as part of the stream identifier. In particular, the version of the hardware/the application isn&#39;t used. This allows us to preserve the same stream through version updates. This also means that two DataSource objects may represent the same data stream even if they&#39;re not equal.  The exact format of the data stream ID created by an Android application is: type:dataType.name:application.packageName:device.manufacturer:device.model:device.uid:dataStreamName   The exact format of the data stream ID created by a REST client is: type:dataType.name:developer project number:device.manufacturer:device.model:device.uid:dataStreamName   When any of the optional fields that make up the data stream ID are absent, they will be omitted from the data stream ID. The minimum viable data stream ID would be: type:dataType.name:developer project number  Finally, the developer project number is obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the developer project number in clear and normal form.
+     * A unique identifier for the data stream produced by this data source. The identifier includes:&lt;br/&gt;&lt;br/&gt; &lt;ul&gt; &lt;li&gt;The physical device&#39;s manufacturer, model, and serial number (UID).&lt;/li&gt; &lt;li&gt;The application&#39;s package name or name. Package name is used when the data source was created by an Android application. The developer project number is used when the data source was created by a REST client.&lt;/li&gt; &lt;li&gt;The data source&#39;s type.&lt;/li&gt; &lt;li&gt;The data source&#39;s stream name.&lt;/li&gt; &lt;/ul&gt; Note that not all attributes of the data source are used as part of the stream identifier. In particular, the version of the hardware/the application isn&#39;t used. This allows us to preserve the same stream through version updates. This also means that two DataSource objects may represent the same data stream even if they&#39;re not equal.  The exact format of the data stream ID created by an Android application is: &lt;var&gt;type:dataType.name&lt;wbr/&gt;:application.packageName&lt;wbr/&gt;:device.manufacturer&lt;wbr/&gt;:device.model&lt;wbr/&gt;:device.uid&lt;wbr/&gt;:dataStreamName&lt;/var&gt;  The exact format of the data stream ID created by a REST client is: &lt;var&gt;type:dataType.name&lt;wbr/&gt;:developer project number&lt;wbr/&gt;:device.manufacturer&lt;wbr/&gt;:device.model:device.uid&lt;wbr/&gt;:dataStreamName&lt;/var&gt;  When any of the optional fields that make up the data stream ID are absent, they will be omitted from the data stream ID. The minimum viable data stream ID would be: type:dataType.name:developer project number  Finally, the developer project number and device UID are obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the developer project number in clear and normal form. This means a client will see a different set of data_stream_ids than another client with different credentials.
      */
     dataStreamId?: string | null;
     /**
@@ -356,7 +382,7 @@ export namespace fitness_v1 {
     optional?: boolean | null;
   }
   /**
-   * Representation of an integrated device (such as a phone or a wearable) that can hold sensors. Each sensor is exposed as a data source.  The main purpose of the device information contained in this class is to identify the hardware of a particular data source. This can be useful in different ways, including:   - Distinguishing two similar sensors on different devices (the step counter on two nexus 5 phones, for instance) - Display the source of data to the user (by using the device make / model) - Treat data differently depending on sensor type (accelerometers on a watch may give different patterns than those on a phone) - Build different analysis models for each device/version.
+   * Representation of an integrated device (such as a phone or a wearable) that can hold sensors. Each sensor is exposed as a data source.  The main purpose of the device information contained in this class is to identify the hardware of a particular data source.  This can be useful in different ways, including: &lt;ul&gt;   &lt;li&gt;Distinguishing two similar sensors on different devices (the step       counter on two nexus 5 phones, for instance)   &lt;li&gt;Display the source of data to the user (by using the device make /       model)   &lt;li&gt;Treat data differently depending on sensor type (accelerometers on a       watch may give different patterns than those on a phone)   &lt;li&gt;Build different analysis models for each device/version. &lt;/ul&gt;
    */
   export interface Schema$Device {
     /**
@@ -372,7 +398,7 @@ export namespace fitness_v1 {
      */
     type?: string | null;
     /**
-     * The serial number or other unique ID for the hardware. This field is obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the uid field in clear and normal form.
+     * The serial number or other unique ID for the hardware. This field is obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the uid field in clear and normal form.  The obfuscation preserves equality; that is, given two IDs, if id1 == id2, obfuscated(id1) == obfuscated(id2).
      */
     uid?: string | null;
     /**
@@ -406,19 +432,19 @@ export namespace fitness_v1 {
   }
   export interface Schema$ListSessionsResponse {
     /**
-     * If includeDeleted is set to true in the request, this list will contain sessions deleted with original end times that are within the startTime and endTime frame.
+     * If &lt;code&gt;includeDeleted&lt;/code&gt; is set to true in the request, and &lt;var&gt;startTime&lt;/var&gt; and &lt;var&gt;endTime&lt;/var&gt; are omitted, this will include sessions which were deleted since the last sync.
      */
     deletedSession?: Schema$Session[];
     /**
-     * Flag to indicate server has more data to transfer
+     * Flag to indicate server has more data to transfer. DO NOT USE THIS FIELD. It is never populated in responses from the server.
      */
     hasMoreData?: boolean | null;
     /**
-     * The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+     * The sync token which is used to sync further changes. This will only be provided if both &lt;var&gt;startTime&lt;/var&gt; and &lt;var&gt;endTime&lt;/var&gt; are omitted from the request.
      */
     nextPageToken?: string | null;
     /**
-     * Sessions with an end time that is between startTime and endTime of the request.
+     * Sessions with an end time that is between &lt;var&gt;startTime&lt;/var&gt; and &lt;var&gt;endTime&lt;/var&gt; of the request.
      */
     session?: Schema$Session[];
   }
@@ -473,7 +499,7 @@ export namespace fitness_v1 {
     startTimeMillis?: string | null;
   }
   /**
-   * Holder object for the value of a single field in a data point.  A field value has a particular format and is only ever set to one of an integer or a floating point value. LINT.IfChange
+   * Holder object for the value of a single field in a data point.  A field value has a particular format and is only ever set to one of an integer or a floating point value.
    */
   export interface Schema$Value {
     /**
@@ -485,11 +511,11 @@ export namespace fitness_v1 {
      */
     intVal?: number | null;
     /**
-     * Map value. The valid key space and units for the corresponding value of each entry should be documented as part of the data type definition. Keys should be kept small whenever possible. Data streams with large keys and high data frequency may be down sampled.
+     * Map value.  The valid key space and units for the corresponding value of each entry should be documented as part of the data type definition. Keys should be kept small whenever possible. Data streams with large keys and high data frequency may be down sampled.
      */
     mapVal?: Schema$ValueMapValEntry[];
     /**
-     * String value. When this is set, other values must not be set. Strings should be kept small whenever possible. Data streams with large string values and high data frequency may be down sampled.
+     * String value.  When this is set, other values must not be set. Strings should be kept small whenever possible.  Data streams with large string values and high data frequency may be down sampled.
      */
     stringVal?: string | null;
   }
@@ -519,21 +545,105 @@ export namespace fitness_v1 {
 
     /**
      * fitness.users.dataset.aggregate
-     * @desc Aggregates data of a certain type or stream into buckets divided by a given type of boundary. Multiple data sets of multiple types and from multiple sources can be aggreated into exactly one bucket type per request.
+     * @desc Aggregates data of a certain type or stream into buckets divided by a given type of boundary. Multiple data sets of multiple types and from multiple sources can be aggregated into exactly one bucket type per request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fitness = google.fitness('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/fitness.activity.read',
+     *       'https://www.googleapis.com/auth/fitness.activity.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.read',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.read',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
+     *       'https://www.googleapis.com/auth/fitness.body.read',
+     *       'https://www.googleapis.com/auth/fitness.body.write',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.read',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.location.read',
+     *       'https://www.googleapis.com/auth/fitness.location.write',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.read',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.write',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.read',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.read',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fitness.users.dataset.aggregate({
+     *     // Aggregate data for the person identified. Use <code>me</code> to indicate
+     *     // the authenticated user. Only <code>me</code> is supported at this time.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "aggregateBy": [],
+     *       //   "bucketByActivitySegment": {},
+     *       //   "bucketByActivityType": {},
+     *       //   "bucketBySession": {},
+     *       //   "bucketByTime": {},
+     *       //   "endTimeMillis": "my_endTimeMillis",
+     *       //   "filteredDataQualityStandard": [],
+     *       //   "startTimeMillis": "my_startTimeMillis"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fitness.users.dataset.aggregate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId Aggregate data for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().AggregateRequest} params.resource Request body data
+     * @param {string} params.userId Aggregate data for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
+     * @param {().AggregateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     aggregate(
+      params: Params$Resource$Users$Dataset$Aggregate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    aggregate(
       params?: Params$Resource$Users$Dataset$Aggregate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AggregateResponse>;
+    aggregate(
+      params: Params$Resource$Users$Dataset$Aggregate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     aggregate(
       params: Params$Resource$Users$Dataset$Aggregate,
       options: MethodOptions | BodyResponseCallback<Schema$AggregateResponse>,
@@ -547,12 +657,20 @@ export namespace fitness_v1 {
     aggregate(
       paramsOrCallback?:
         | Params$Resource$Users$Dataset$Aggregate
-        | BodyResponseCallback<Schema$AggregateResponse>,
+        | BodyResponseCallback<Schema$AggregateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AggregateResponse>,
-      callback?: BodyResponseCallback<Schema$AggregateResponse>
-    ): void | GaxiosPromise<Schema$AggregateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AggregateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AggregateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AggregateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Dataset$Aggregate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -585,7 +703,10 @@ export namespace fitness_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AggregateResponse>(parameters, callback);
+        createAPIRequest<Schema$AggregateResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AggregateResponse>(parameters);
       }
@@ -595,12 +716,7 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Dataset$Aggregate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Aggregate data for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * Aggregate data for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
 
@@ -624,21 +740,104 @@ export namespace fitness_v1 {
 
     /**
      * fitness.users.dataSources.create
-     * @desc Creates a new data source that is unique across all data sources belonging to this user. The data stream ID field can be omitted and will be generated by the server with the correct format. The data stream ID is an ordered combination of some fields from the data source. In addition to the data source fields reflected into the data source ID, the developer project number that is authenticated when creating the data source is included. This developer project number is obfuscated when read by any other developer reading public data types.
+     * @desc Creates a new data source that is unique across all data sources belonging to this user.  A data source is a unique source of sensor data. Data sources can expose raw data coming from hardware sensors on local or companion devices. They can also expose derived data, created by transforming or merging other data sources. Multiple data sources can exist for the same data type. Every data point in every dataset inserted into or read from the Fitness API has an associated data source.  Each data source produces a unique stream of dataset updates, with a unique data source identifier. Not all changes to data source affect the data stream ID, so that data collected by updated versions of the same application/device can still be considered to belong to the same data source.  Data sources are identified using a string generated by the server, based on the contents of the source being created. The <code>dataStreamId</code> field should not be set when invoking this method. It will be automatically generated by the server with the correct format. If a <code>dataStreamId</code> is set, it must match the format that the server would generate. This format is a combination of some fields from the data source, and has a specific order. If it doesn't match, the request will fail with an error.  Specifying a DataType which is not a known type (beginning with "com.google.") will create a DataSource with a <em>custom data type</em>. Custom data types are only readable by the application that created them. Custom data types are <strong>deprecated</strong>; use standard data types instead.  In addition to the data source fields included in the data source ID, the developer project number that is authenticated when creating the data source is included. This developer project number is obfuscated when read by any other developer reading public data types.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fitness = google.fitness('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/fitness.activity.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
+     *       'https://www.googleapis.com/auth/fitness.body.write',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.location.write',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.write',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fitness.users.dataSources.create({
+     *     // Create the data source for the person identified. Use <code>me</code> to
+     *     // indicate the authenticated user. Only <code>me</code> is supported at this
+     *     // time.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "application": {},
+     *       //   "dataQualityStandard": [],
+     *       //   "dataStreamId": "my_dataStreamId",
+     *       //   "dataStreamName": "my_dataStreamName",
+     *       //   "dataType": {},
+     *       //   "device": {},
+     *       //   "name": "my_name",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "application": {},
+     *   //   "dataQualityStandard": [],
+     *   //   "dataStreamId": "my_dataStreamId",
+     *   //   "dataStreamName": "my_dataStreamName",
+     *   //   "dataType": {},
+     *   //   "device": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fitness.users.dataSources.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId Create the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().DataSource} params.resource Request body data
+     * @param {string} params.userId Create the data source for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
+     * @param {().DataSource} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Users$Datasources$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Users$Datasources$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DataSource>;
+    create(
+      params: Params$Resource$Users$Datasources$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Users$Datasources$Create,
       options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
@@ -652,12 +851,17 @@ export namespace fitness_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Users$Datasources$Create
-        | BodyResponseCallback<Schema$DataSource>,
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DataSource>,
-      callback?: BodyResponseCallback<Schema$DataSource>
-    ): void | GaxiosPromise<Schema$DataSource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DataSource> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -691,7 +895,10 @@ export namespace fitness_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DataSource>(parameters, callback);
+        createAPIRequest<Schema$DataSource>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
       }
@@ -700,20 +907,90 @@ export namespace fitness_v1 {
     /**
      * fitness.users.dataSources.delete
      * @desc Deletes the specified data source. The request will fail if the data source contains any data points.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fitness = google.fitness('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/fitness.activity.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
+     *       'https://www.googleapis.com/auth/fitness.body.write',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.location.write',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.write',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fitness.users.dataSources.delete({
+     *     // The data stream ID of the data source to delete.
+     *     dataSourceId: 'placeholder-value',
+     *     // Retrieve a data source for the person identified. Use <code>me</code> to
+     *     // indicate the authenticated user. Only <code>me</code> is supported at this
+     *     // time.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "application": {},
+     *   //   "dataQualityStandard": [],
+     *   //   "dataStreamId": "my_dataStreamId",
+     *   //   "dataStreamName": "my_dataStreamName",
+     *   //   "dataType": {},
+     *   //   "device": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fitness.users.dataSources.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.dataSourceId The data stream ID of the data source to delete.
-     * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {string} params.userId Retrieve a data source for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Datasources$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Datasources$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DataSource>;
+    delete(
+      params: Params$Resource$Users$Datasources$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Datasources$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
@@ -727,12 +1004,17 @@ export namespace fitness_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Datasources$Delete
-        | BodyResponseCallback<Schema$DataSource>,
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DataSource>,
-      callback?: BodyResponseCallback<Schema$DataSource>
-    ): void | GaxiosPromise<Schema$DataSource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DataSource> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -765,7 +1047,10 @@ export namespace fitness_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DataSource>(parameters, callback);
+        createAPIRequest<Schema$DataSource>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
       }
@@ -774,20 +1059,99 @@ export namespace fitness_v1 {
     /**
      * fitness.users.dataSources.get
      * @desc Returns the specified data source.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fitness = google.fitness('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/fitness.activity.read',
+     *       'https://www.googleapis.com/auth/fitness.activity.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.read',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.read',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
+     *       'https://www.googleapis.com/auth/fitness.body.read',
+     *       'https://www.googleapis.com/auth/fitness.body.write',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.read',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.location.read',
+     *       'https://www.googleapis.com/auth/fitness.location.write',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.read',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.write',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.read',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.read',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fitness.users.dataSources.get({
+     *     // The data stream ID of the data source to retrieve.
+     *     dataSourceId: 'placeholder-value',
+     *     // Retrieve a data source for the person identified. Use <code>me</code> to
+     *     // indicate the authenticated user. Only <code>me</code> is supported at this
+     *     // time.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "application": {},
+     *   //   "dataQualityStandard": [],
+     *   //   "dataStreamId": "my_dataStreamId",
+     *   //   "dataStreamName": "my_dataStreamName",
+     *   //   "dataType": {},
+     *   //   "device": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fitness.users.dataSources.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.dataSourceId The data stream ID of the data source to retrieve.
-     * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {string} params.userId Retrieve a data source for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Datasources$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Datasources$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DataSource>;
+    get(
+      params: Params$Resource$Users$Datasources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Datasources$Get,
       options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
@@ -801,12 +1165,17 @@ export namespace fitness_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Datasources$Get
-        | BodyResponseCallback<Schema$DataSource>,
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DataSource>,
-      callback?: BodyResponseCallback<Schema$DataSource>
-    ): void | GaxiosPromise<Schema$DataSource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DataSource> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -839,7 +1208,10 @@ export namespace fitness_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DataSource>(parameters, callback);
+        createAPIRequest<Schema$DataSource>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
       }
@@ -848,20 +1220,93 @@ export namespace fitness_v1 {
     /**
      * fitness.users.dataSources.list
      * @desc Lists all data sources that are visible to the developer, using the OAuth scopes provided. The list is not exhaustive; the user may have private data sources that are only visible to other developers, or calls using other scopes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fitness = google.fitness('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/fitness.activity.read',
+     *       'https://www.googleapis.com/auth/fitness.activity.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.read',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.read',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
+     *       'https://www.googleapis.com/auth/fitness.body.read',
+     *       'https://www.googleapis.com/auth/fitness.body.write',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.read',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.location.read',
+     *       'https://www.googleapis.com/auth/fitness.location.write',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.read',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.write',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.read',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.read',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fitness.users.dataSources.list({
+     *     // The names of data types to include in the list. If not specified, all
+     *     // data sources will be returned.
+     *     dataTypeName: 'placeholder-value',
+     *     // List data sources for the person identified. Use <code>me</code> to
+     *     // indicate the authenticated user. Only <code>me</code> is supported at this
+     *     // time.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSource": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fitness.users.dataSources.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.dataTypeName The names of data types to include in the list. If not specified, all data sources will be returned.
-     * @param {string} params.userId List data sources for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {string} params.userId List data sources for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Datasources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Datasources$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDataSourcesResponse>;
+    list(
+      params: Params$Resource$Users$Datasources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Datasources$List,
       options:
@@ -877,12 +1322,20 @@ export namespace fitness_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Datasources$List
-        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
-      callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>
-    ): void | GaxiosPromise<Schema$ListDataSourcesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDataSourcesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -916,7 +1369,10 @@ export namespace fitness_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDataSourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDataSourcesResponse>(parameters);
       }
@@ -924,22 +1380,107 @@ export namespace fitness_v1 {
 
     /**
      * fitness.users.dataSources.update
-     * @desc Updates the specified data source. The dataStreamId, dataType, type, dataStreamName, and device properties with the exception of version, cannot be modified.  Data sources are identified by their dataStreamId.
+     * @desc Updates the specified data source. The <code>dataStreamId</code>, <code>dataType</code>, <code>type</code>, <code>dataStreamName</code>, and <code>device</code> properties with the exception of <code>version</code>, cannot be modified.  Data sources are identified by their <code>dataStreamId</code>.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fitness = google.fitness('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/fitness.activity.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
+     *       'https://www.googleapis.com/auth/fitness.body.write',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.location.write',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.write',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fitness.users.dataSources.update({
+     *     // The data stream ID of the data source to update.
+     *     dataSourceId: 'placeholder-value',
+     *     // Update the data source for the person identified. Use <code>me</code> to
+     *     // indicate the authenticated user. Only <code>me</code> is supported at this
+     *     // time.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "application": {},
+     *       //   "dataQualityStandard": [],
+     *       //   "dataStreamId": "my_dataStreamId",
+     *       //   "dataStreamName": "my_dataStreamName",
+     *       //   "dataType": {},
+     *       //   "device": {},
+     *       //   "name": "my_name",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "application": {},
+     *   //   "dataQualityStandard": [],
+     *   //   "dataStreamId": "my_dataStreamId",
+     *   //   "dataStreamName": "my_dataStreamName",
+     *   //   "dataType": {},
+     *   //   "device": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fitness.users.dataSources.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.dataSourceId The data stream ID of the data source to update.
-     * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().DataSource} params.resource Request body data
+     * @param {string} params.userId Update the data source for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
+     * @param {().DataSource} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Users$Datasources$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Users$Datasources$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DataSource>;
+    update(
+      params: Params$Resource$Users$Datasources$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Users$Datasources$Update,
       options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
@@ -953,12 +1494,17 @@ export namespace fitness_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Users$Datasources$Update
-        | BodyResponseCallback<Schema$DataSource>,
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DataSource>,
-      callback?: BodyResponseCallback<Schema$DataSource>
-    ): void | GaxiosPromise<Schema$DataSource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DataSource> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -991,7 +1537,10 @@ export namespace fitness_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DataSource>(parameters, callback);
+        createAPIRequest<Schema$DataSource>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
       }
@@ -1001,12 +1550,7 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Datasources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Create the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * Create the data source for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
 
@@ -1018,64 +1562,44 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Datasources$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The data stream ID of the data source to delete.
      */
     dataSourceId?: string;
     /**
-     * Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * Retrieve a data source for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Datasources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The data stream ID of the data source to retrieve.
      */
     dataSourceId?: string;
     /**
-     * Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * Retrieve a data source for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Datasources$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The names of data types to include in the list. If not specified, all data sources will be returned.
      */
     dataTypeName?: string[];
     /**
-     * List data sources for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * List data sources for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Datasources$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The data stream ID of the data source to update.
      */
     dataSourceId?: string;
     /**
-     * Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * Update the data source for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
 
@@ -1094,22 +1618,103 @@ export namespace fitness_v1 {
     /**
      * fitness.users.dataSources.dataPointChanges.list
      * @desc Queries for user's data point changes for a particular data source.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fitness = google.fitness('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/fitness.activity.read',
+     *       'https://www.googleapis.com/auth/fitness.activity.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.read',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.read',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
+     *       'https://www.googleapis.com/auth/fitness.body.read',
+     *       'https://www.googleapis.com/auth/fitness.body.write',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.read',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.location.read',
+     *       'https://www.googleapis.com/auth/fitness.location.write',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.read',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.write',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.read',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.read',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fitness.users.dataSources.dataPointChanges.list({
+     *     // The data stream ID of the data source that created the dataset.
+     *     dataSourceId: 'placeholder-value',
+     *     // If specified, no more than this many data point changes will be included
+     *     // in the response.
+     *     limit: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets.
+     *     // To get the next page of results, set this parameter to the value of
+     *     // <code>nextPageToken</code> from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // List data points for the person identified. Use <code>me</code> to indicate
+     *     // the authenticated user. Only <code>me</code> is supported at this time.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "deletedDataPoint": [],
+     *   //   "insertedDataPoint": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fitness.users.dataSources.dataPointChanges.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
      * @param {integer=} params.limit If specified, no more than this many data point changes will be included in the response.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-     * @param {string} params.userId List data points for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of <code>nextPageToken</code> from the previous response.
+     * @param {string} params.userId List data points for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Datasources$Datapointchanges$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Datasources$Datapointchanges$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDataPointChangesResponse>;
+    list(
+      params: Params$Resource$Users$Datasources$Datapointchanges$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Datasources$Datapointchanges$List,
       options:
@@ -1127,12 +1732,20 @@ export namespace fitness_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Datasources$Datapointchanges$List
-        | BodyResponseCallback<Schema$ListDataPointChangesResponse>,
+        | BodyResponseCallback<Schema$ListDataPointChangesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDataPointChangesResponse>,
-      callback?: BodyResponseCallback<Schema$ListDataPointChangesResponse>
-    ): void | GaxiosPromise<Schema$ListDataPointChangesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDataPointChangesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDataPointChangesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDataPointChangesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Datapointchanges$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1168,7 +1781,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDataPointChangesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListDataPointChangesResponse>(
@@ -1181,11 +1794,6 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Datasources$Datapointchanges$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The data stream ID of the data source that created the dataset.
      */
     dataSourceId?: string;
@@ -1194,11 +1802,11 @@ export namespace fitness_v1 {
      */
     limit?: number;
     /**
-     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of <code>nextPageToken</code> from the previous response.
      */
     pageToken?: string;
     /**
-     * List data points for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * List data points for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
   }
@@ -1211,24 +1819,90 @@ export namespace fitness_v1 {
 
     /**
      * fitness.users.dataSources.datasets.delete
-     * @desc Performs an inclusive delete of all data points whose start and end times have any overlap with the time range specified by the dataset ID. For most data types, the entire data point will be deleted. For data types where the time span represents a consistent value (such as com.google.activity.segment), and a data point straddles either end point of the dataset, only the overlapping portion of the data point will be deleted.
+     * @desc Performs an inclusive delete of all data points whose start and end times have any overlap with the time range specified by the dataset ID. For most data types, the entire data point will be deleted. For data types where the time span represents a consistent value (such as <code>com.google.activity.segment</code>), and a data point straddles either end point of the dataset, only the overlapping portion of the data point will be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fitness = google.fitness('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/fitness.activity.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
+     *       'https://www.googleapis.com/auth/fitness.body.write',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.location.write',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.write',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fitness.users.dataSources.datasets.delete({
+     *     // The client's current time in milliseconds since epoch.
+     *     currentTimeMillis: 'placeholder-value',
+     *     // Dataset identifier that is a composite of the minimum data point start time
+     *     // and maximum data point end time represented as nanoseconds from the epoch.
+     *     // The ID is formatted like: "<var>startTime</var>-<var>endTime</var>"
+     *     // where <var>startTime</var> and <var>endTime</var> are 64 bit integers.
+     *     datasetId: 'placeholder-value',
+     *     // The data stream ID of the data source that created the dataset.
+     *     dataSourceId: 'placeholder-value',
+     *     // When the operation was performed on the client.
+     *     modifiedTimeMillis: 'placeholder-value',
+     *     // Delete a dataset for the person identified. Use <code>me</code> to indicate
+     *     // the authenticated user. Only <code>me</code> is supported at this time.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fitness.users.dataSources.datasets.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
-     * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+     * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "<var>startTime</var>-<var>endTime</var>" where <var>startTime</var> and <var>endTime</var> are 64 bit integers.
      * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
      * @param {string=} params.modifiedTimeMillis When the operation was performed on the client.
-     * @param {string} params.userId Delete a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {string} params.userId Delete a dataset for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Datasources$Datasets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Datasources$Datasets$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Users$Datasources$Datasets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Datasources$Datasets$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1242,10 +1916,15 @@ export namespace fitness_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Datasources$Datasets$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Datasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1279,7 +1958,10 @@ export namespace fitness_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1288,23 +1970,114 @@ export namespace fitness_v1 {
     /**
      * fitness.users.dataSources.datasets.get
      * @desc Returns a dataset containing all data points whose start and end times overlap with the specified range of the dataset minimum start time and maximum end time. Specifically, any data point whose start time is less than or equal to the dataset end time and whose end time is greater than or equal to the dataset start time.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fitness = google.fitness('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/fitness.activity.read',
+     *       'https://www.googleapis.com/auth/fitness.activity.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.read',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.read',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
+     *       'https://www.googleapis.com/auth/fitness.body.read',
+     *       'https://www.googleapis.com/auth/fitness.body.write',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.read',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.location.read',
+     *       'https://www.googleapis.com/auth/fitness.location.write',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.read',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.write',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.read',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.read',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fitness.users.dataSources.datasets.get({
+     *     // Dataset identifier that is a composite of the minimum data point start time
+     *     // and maximum data point end time represented as nanoseconds from the epoch.
+     *     // The ID is formatted like: "<var>startTime</var>-<var>endTime</var>"
+     *     // where <var>startTime</var> and <var>endTime</var> are 64 bit integers.
+     *     datasetId: 'placeholder-value',
+     *     // The data stream ID of the data source that created the dataset.
+     *     dataSourceId: 'placeholder-value',
+     *     // If specified, no more than this many data points will be included in the
+     *     // dataset. If there are more data points in the dataset, nextPageToken
+     *     // will be set in the dataset response.
+     *     limit: 'placeholder-value',
+     *     // The continuation token, which is used to page through large datasets.
+     *     // To get the next page of a dataset, set this parameter to the value of
+     *     // <code>nextPageToken</code> from the previous response. Each subsequent
+     *     // call will yield a partial dataset with data point end timestamps that are
+     *     // strictly smaller than those in the previous partial response.
+     *     pageToken: 'placeholder-value',
+     *     // Retrieve a dataset for the person identified. Use <code>me</code> to
+     *     // indicate the authenticated user. Only <code>me</code> is supported at this
+     *     // time.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "maxEndTimeNs": "my_maxEndTimeNs",
+     *   //   "minStartTimeNs": "my_minStartTimeNs",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "point": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fitness.users.dataSources.datasets.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+     * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "<var>startTime</var>-<var>endTime</var>" where <var>startTime</var> and <var>endTime</var> are 64 bit integers.
      * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
      * @param {integer=} params.limit If specified, no more than this many data points will be included in the dataset. If there are more data points in the dataset, nextPageToken will be set in the dataset response.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of nextPageToken from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.
-     * @param {string} params.userId Retrieve a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of <code>nextPageToken</code> from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.
+     * @param {string} params.userId Retrieve a dataset for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Datasources$Datasets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Datasources$Datasets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Dataset>;
+    get(
+      params: Params$Resource$Users$Datasources$Datasets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Datasources$Datasets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Dataset>,
@@ -1318,10 +2091,17 @@ export namespace fitness_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Datasources$Datasets$Get
-        | BodyResponseCallback<Schema$Dataset>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Dataset>,
-      callback?: BodyResponseCallback<Schema$Dataset>
-    ): void | GaxiosPromise<Schema$Dataset> {
+        | BodyResponseCallback<Schema$Dataset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Dataset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Dataset>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Datasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1355,7 +2135,10 @@ export namespace fitness_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Dataset>(parameters, callback);
+        createAPIRequest<Schema$Dataset>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
       }
@@ -1364,23 +2147,110 @@ export namespace fitness_v1 {
     /**
      * fitness.users.dataSources.datasets.patch
      * @desc Adds data points to a dataset. The dataset need not be previously created. All points within the given dataset will be returned with subsquent calls to retrieve this dataset. Data points can belong to more than one dataset. This method does not use patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fitness = google.fitness('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/fitness.activity.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
+     *       'https://www.googleapis.com/auth/fitness.body.write',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.location.write',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.write',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fitness.users.dataSources.datasets.patch({
+     *     // The client's current time in milliseconds since epoch. Note that the
+     *     // <code>minStartTimeNs</code> and <code>maxEndTimeNs</code> properties in
+     *     // the request body are in nanoseconds instead of milliseconds.
+     *     currentTimeMillis: 'placeholder-value',
+     *     // Dataset identifier that is a composite of the minimum data point start time
+     *     // and maximum data point end time represented as nanoseconds from the epoch.
+     *     // The ID is formatted like: "<var>startTime</var>-<var>endTime</var>"
+     *     // where <var>startTime</var> and <var>endTime</var> are 64 bit integers.
+     *     datasetId: 'placeholder-value',
+     *     // The data stream ID of the data source that created the dataset.
+     *     dataSourceId: 'placeholder-value',
+     *     // Patch a dataset for the person identified. Use <code>me</code> to indicate
+     *     // the authenticated user. Only <code>me</code> is supported at this time.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSourceId": "my_dataSourceId",
+     *       //   "maxEndTimeNs": "my_maxEndTimeNs",
+     *       //   "minStartTimeNs": "my_minStartTimeNs",
+     *       //   "nextPageToken": "my_nextPageToken",
+     *       //   "point": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "maxEndTimeNs": "my_maxEndTimeNs",
+     *   //   "minStartTimeNs": "my_minStartTimeNs",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "point": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fitness.users.dataSources.datasets.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch. Note that the minStartTimeNs and maxEndTimeNs properties in the request body are in nanoseconds instead of milliseconds.
-     * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+     * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch. Note that the <code>minStartTimeNs</code> and <code>maxEndTimeNs</code> properties in the request body are in nanoseconds instead of milliseconds.
+     * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "<var>startTime</var>-<var>endTime</var>" where <var>startTime</var> and <var>endTime</var> are 64 bit integers.
      * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
-     * @param {string} params.userId Patch a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().Dataset} params.resource Request body data
+     * @param {string} params.userId Patch a dataset for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
+     * @param {().Dataset} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Users$Datasources$Datasets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Users$Datasources$Datasets$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Dataset>;
+    patch(
+      params: Params$Resource$Users$Datasources$Datasets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Users$Datasources$Datasets$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Dataset>,
@@ -1394,10 +2264,17 @@ export namespace fitness_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Users$Datasources$Datasets$Patch
-        | BodyResponseCallback<Schema$Dataset>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Dataset>,
-      callback?: BodyResponseCallback<Schema$Dataset>
-    ): void | GaxiosPromise<Schema$Dataset> {
+        | BodyResponseCallback<Schema$Dataset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Dataset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Dataset>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Datasources$Datasets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1431,7 +2308,10 @@ export namespace fitness_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Dataset>(parameters, callback);
+        createAPIRequest<Schema$Dataset>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
       }
@@ -1441,16 +2321,11 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Datasources$Datasets$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The client's current time in milliseconds since epoch.
      */
     currentTimeMillis?: string;
     /**
-     * Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+     * Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "<var>startTime</var>-<var>endTime</var>" where <var>startTime</var> and <var>endTime</var> are 64 bit integers.
      */
     datasetId?: string;
     /**
@@ -1462,19 +2337,14 @@ export namespace fitness_v1 {
      */
     modifiedTimeMillis?: string;
     /**
-     * Delete a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * Delete a dataset for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Datasources$Datasets$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+     * Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "<var>startTime</var>-<var>endTime</var>" where <var>startTime</var> and <var>endTime</var> are 64 bit integers.
      */
     datasetId?: string;
     /**
@@ -1486,27 +2356,22 @@ export namespace fitness_v1 {
      */
     limit?: number;
     /**
-     * The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of nextPageToken from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.
+     * The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of <code>nextPageToken</code> from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.
      */
     pageToken?: string;
     /**
-     * Retrieve a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * Retrieve a dataset for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Datasources$Datasets$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The client's current time in milliseconds since epoch. Note that the minStartTimeNs and maxEndTimeNs properties in the request body are in nanoseconds instead of milliseconds.
+     * The client's current time in milliseconds since epoch. Note that the <code>minStartTimeNs</code> and <code>maxEndTimeNs</code> properties in the request body are in nanoseconds instead of milliseconds.
      */
     currentTimeMillis?: string;
     /**
-     * Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+     * Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "<var>startTime</var>-<var>endTime</var>" where <var>startTime</var> and <var>endTime</var> are 64 bit integers.
      */
     datasetId?: string;
     /**
@@ -1514,7 +2379,7 @@ export namespace fitness_v1 {
      */
     dataSourceId?: string;
     /**
-     * Patch a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * Patch a dataset for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
 
@@ -1533,21 +2398,70 @@ export namespace fitness_v1 {
     /**
      * fitness.users.sessions.delete
      * @desc Deletes a session specified by the given session ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fitness = google.fitness('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/fitness.activity.write'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fitness.users.sessions.delete({
+     *     // The client's current time in milliseconds since epoch.
+     *     currentTimeMillis: 'placeholder-value',
+     *     // The ID of the session to be deleted.
+     *     sessionId: 'placeholder-value',
+     *     // Delete a session for the person identified. Use <code>me</code> to indicate
+     *     // the authenticated user. Only <code>me</code> is supported at this time.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fitness.users.sessions.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
      * @param {string} params.sessionId The ID of the session to be deleted.
-     * @param {string} params.userId Delete a session for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {string} params.userId Delete a session for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Sessions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Sessions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Users$Sessions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Sessions$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1561,10 +2475,15 @@ export namespace fitness_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Sessions$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sessions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1597,7 +2516,10 @@ export namespace fitness_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1606,23 +2528,120 @@ export namespace fitness_v1 {
     /**
      * fitness.users.sessions.list
      * @desc Lists sessions previously created.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fitness = google.fitness('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/fitness.activity.read',
+     *       'https://www.googleapis.com/auth/fitness.activity.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.read',
+     *       'https://www.googleapis.com/auth/fitness.blood_glucose.write',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.read',
+     *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
+     *       'https://www.googleapis.com/auth/fitness.body.read',
+     *       'https://www.googleapis.com/auth/fitness.body.write',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.read',
+     *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.location.read',
+     *       'https://www.googleapis.com/auth/fitness.location.write',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.read',
+     *       'https://www.googleapis.com/auth/fitness.nutrition.write',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.read',
+     *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.read',
+     *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fitness.users.sessions.list({
+     *     // If non-empty, only sessions with these activity types should be returned.
+     *     activityType: 'placeholder-value',
+     *     // An <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC3339</a> timestamp.
+     *     // Only sessions ending between the start and end times will be included in
+     *     // the response. If this time is omitted but <var>startTime</var> is
+     *     // specified, all sessions from <var>startTime</var> to the end of time will
+     *     // be returned.
+     *     endTime: 'placeholder-value',
+     *     // If true, and if both <var>startTime</var> and <var>endTime</var> are
+     *     // omitted, session deletions will be returned.
+     *     includeDeleted: 'placeholder-value',
+     *     // The continuation token, which is used for incremental syncing.
+     *     // To get the next batch of changes, set this parameter to the value of
+     *     // <code>nextPageToken</code> from the previous response. The page token is
+     *     // ignored if either start or end time is specified. If none of start time,
+     *     // end time, and the page token is specified, sessions modified in the last
+     *     // 30 days are returned.
+     *     pageToken: 'placeholder-value',
+     *     // An <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC3339</a> timestamp.
+     *     // Only sessions ending between the start and end times will be included in
+     *     // the response. If this time is omitted but <var>endTime</var> is specified,
+     *     // all sessions from the start of time up to <var>endTime</var> will be
+     *     // returned.
+     *     startTime: 'placeholder-value',
+     *     // List sessions for the person identified. Use <code>me</code> to indicate
+     *     // the authenticated user. Only <code>me</code> is supported at this time.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deletedSession": [],
+     *   //   "hasMoreData": false,
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "session": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fitness.users.sessions.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.endTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
-     * @param {boolean=} params.includeDeleted If true, deleted sessions will be returned. When set to true, sessions returned in this response will only have an ID and will not have any other fields.
-     * @param {string=} params.pageToken The continuation token, which is used for incremental syncing. To get the next batch of changes, set this parameter to the value of nextPageToken from the previous response. This token is treated as a timestamp (in millis since epoch). If specified, the API returns sessions modified since this time. The page token is ignored if either start or end time is specified. If none of start time, end time, and the page token is specified, sessions modified in the last 30 days are returned.
-     * @param {string=} params.startTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
-     * @param {string} params.userId List sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {integer=} params.activityType If non-empty, only sessions with these activity types should be returned.
+     * @param {string=} params.endTime An <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC3339</a> timestamp. Only sessions ending between the start and end times will be included in the response. If this time is omitted but <var>startTime</var> is specified, all sessions from <var>startTime</var> to the end of time will be returned.
+     * @param {boolean=} params.includeDeleted If true, and if both <var>startTime</var> and <var>endTime</var> are omitted, session deletions will be returned.
+     * @param {string=} params.pageToken The continuation token, which is used for incremental syncing. To get the next batch of changes, set this parameter to the value of <code>nextPageToken</code> from the previous response. The page token is ignored if either start or end time is specified. If none of start time, end time, and the page token is specified, sessions modified in the last 30 days are returned.
+     * @param {string=} params.startTime An <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC3339</a> timestamp. Only sessions ending between the start and end times will be included in the response. If this time is omitted but <var>endTime</var> is specified, all sessions from the start of time up to <var>endTime</var> will be returned.
+     * @param {string} params.userId List sessions for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Sessions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Sessions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSessionsResponse>;
+    list(
+      params: Params$Resource$Users$Sessions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Sessions$List,
       options:
@@ -1638,12 +2657,20 @@ export namespace fitness_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Sessions$List
-        | BodyResponseCallback<Schema$ListSessionsResponse>,
+        | BodyResponseCallback<Schema$ListSessionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSessionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListSessionsResponse>
-    ): void | GaxiosPromise<Schema$ListSessionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSessionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSessionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSessionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sessions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1677,7 +2704,10 @@ export namespace fitness_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSessionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSessionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSessionsResponse>(parameters);
       }
@@ -1686,22 +2716,100 @@ export namespace fitness_v1 {
     /**
      * fitness.users.sessions.update
      * @desc Updates or insert a given session.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const fitness = google.fitness('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/fitness.activity.write'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fitness.users.sessions.update({
+     *     // The client's current time in milliseconds since epoch.
+     *     currentTimeMillis: 'placeholder-value',
+     *     // The ID of the session to be created.
+     *     sessionId: 'placeholder-value',
+     *     // Create sessions for the person identified. Use <code>me</code> to indicate
+     *     // the authenticated user. Only <code>me</code> is supported at this time.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeTimeMillis": "my_activeTimeMillis",
+     *       //   "activityType": 0,
+     *       //   "application": {},
+     *       //   "description": "my_description",
+     *       //   "endTimeMillis": "my_endTimeMillis",
+     *       //   "id": "my_id",
+     *       //   "modifiedTimeMillis": "my_modifiedTimeMillis",
+     *       //   "name": "my_name",
+     *       //   "startTimeMillis": "my_startTimeMillis"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeTimeMillis": "my_activeTimeMillis",
+     *   //   "activityType": 0,
+     *   //   "application": {},
+     *   //   "description": "my_description",
+     *   //   "endTimeMillis": "my_endTimeMillis",
+     *   //   "id": "my_id",
+     *   //   "modifiedTimeMillis": "my_modifiedTimeMillis",
+     *   //   "name": "my_name",
+     *   //   "startTimeMillis": "my_startTimeMillis"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias fitness.users.sessions.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
      * @param {string} params.sessionId The ID of the session to be created.
-     * @param {string} params.userId Create sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().Session} params.resource Request body data
+     * @param {string} params.userId Create sessions for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
+     * @param {().Session} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Users$Sessions$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Users$Sessions$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Session>;
+    update(
+      params: Params$Resource$Users$Sessions$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Users$Sessions$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Session>,
@@ -1715,10 +2823,17 @@ export namespace fitness_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Users$Sessions$Update
-        | BodyResponseCallback<Schema$Session>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Session>,
-      callback?: BodyResponseCallback<Schema$Session>
-    ): void | GaxiosPromise<Schema$Session> {
+        | BodyResponseCallback<Schema$Session>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Session>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Session>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Session> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sessions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1751,7 +2866,10 @@ export namespace fitness_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Session>(parameters, callback);
+        createAPIRequest<Schema$Session>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Session>(parameters);
       }
@@ -1761,11 +2879,6 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Sessions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The client's current time in milliseconds since epoch.
      */
     currentTimeMillis?: string;
@@ -1774,45 +2887,39 @@ export namespace fitness_v1 {
      */
     sessionId?: string;
     /**
-     * Delete a session for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * Delete a session for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Sessions$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
+     * If non-empty, only sessions with these activity types should be returned.
      */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
+    activityType?: number[];
     /**
-     * An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
+     * An <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC3339</a> timestamp. Only sessions ending between the start and end times will be included in the response. If this time is omitted but <var>startTime</var> is specified, all sessions from <var>startTime</var> to the end of time will be returned.
      */
     endTime?: string;
     /**
-     * If true, deleted sessions will be returned. When set to true, sessions returned in this response will only have an ID and will not have any other fields.
+     * If true, and if both <var>startTime</var> and <var>endTime</var> are omitted, session deletions will be returned.
      */
     includeDeleted?: boolean;
     /**
-     * The continuation token, which is used for incremental syncing. To get the next batch of changes, set this parameter to the value of nextPageToken from the previous response. This token is treated as a timestamp (in millis since epoch). If specified, the API returns sessions modified since this time. The page token is ignored if either start or end time is specified. If none of start time, end time, and the page token is specified, sessions modified in the last 30 days are returned.
+     * The continuation token, which is used for incremental syncing. To get the next batch of changes, set this parameter to the value of <code>nextPageToken</code> from the previous response. The page token is ignored if either start or end time is specified. If none of start time, end time, and the page token is specified, sessions modified in the last 30 days are returned.
      */
     pageToken?: string;
     /**
-     * An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
+     * An <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC3339</a> timestamp. Only sessions ending between the start and end times will be included in the response. If this time is omitted but <var>endTime</var> is specified, all sessions from the start of time up to <var>endTime</var> will be returned.
      */
     startTime?: string;
     /**
-     * List sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * List sessions for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Sessions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The client's current time in milliseconds since epoch.
      */
@@ -1822,7 +2929,7 @@ export namespace fitness_v1 {
      */
     sessionId?: string;
     /**
-     * Create sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * Create sessions for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
 

@@ -1,4 +1,4 @@
-// Copyright 2014-2016, Google, Inc.
+// Copyright 2014 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -12,24 +12,30 @@
 // limitations under the License.
 
 import * as assert from 'assert';
+import {describe, it, afterEach, before} from 'mocha';
 import * as nock from 'nock';
 import {URL} from 'url';
 import {GoogleApis} from '../src';
 import {Utils} from './utils';
+import {GoogleAuth} from 'google-auth-library';
+import * as sinon from 'sinon';
+import {GaxiosResponse} from 'gaxios';
 
 function createNock(path?: string) {
-  const p = path ? path : '/drive/v2/files/woot';
-  nock(Utils.baseUrl)
-    .get(p)
-    .reply(200);
+  const p = path || '/drive/v2/files/woot';
+  return nock(Utils.baseUrl).get(p).reply(200);
 }
 
 describe('Options', () => {
-  let authClient;
-
-  beforeEach(() => {
-    nock.cleanAll();
+  const sandbox = sinon.createSandbox();
+  before(() => {
     nock.disableNetConnect();
+  });
+
+  afterEach(() => {
+    nock.disableNetConnect();
+    nock.cleanAll();
+    sandbox.restore();
   });
 
   it('should be a function', () => {
@@ -62,9 +68,7 @@ describe('Options', () => {
     const google = new GoogleApis();
     google.options({params: {myParam: '123'}});
     const drive = google.drive('v2');
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/123?myParam=123')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files/123?myParam=123').reply(200);
     const res = await drive.files.get({fileId: '123'});
     // If the default param handling is broken, query might be undefined, thus
     // concealing the assertion message with some generic "cannot call
@@ -75,16 +79,9 @@ describe('Options', () => {
       -1,
       'Default param not found in query'
     );
-    // I can't explain why, but the `nock.enableNetConnect()` call below simply
-    // won't work unless I call `nock.cleanAll()` first.
-    nock.cleanAll();
-    nock.enableNetConnect();
     const d = await Utils.loadApi(google, 'drive', 'v2');
-    nock.disableNetConnect();
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/123?myParam=123')
-      .reply(200);
-    // tslint:disable-next-line no-any
+    nock(Utils.baseUrl).get('/drive/v2/files/123?myParam=123').reply(200);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const res3 = await (d as any).files.get({fileId: '123'});
     // If the default param handling is broken, query might be undefined,
     // thus concealing the assertion message with some generic "cannot
@@ -104,6 +101,21 @@ describe('Options', () => {
     createNock('/drive/v2/files/woot?key=apikey3');
     const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
     assert.strictEqual(Utils.getQs(res), 'key=apikey3');
+  });
+
+  it('should use the same per-API setting twice', async () => {
+    const google = new GoogleApis();
+    google.options({auth: 'apikey1'});
+    const drive = google.drive({version: 'v2', auth: 'apikey2'});
+    const scope = nock(Utils.baseUrl)
+      .get('/drive/v2/files/woot?key=apikey3')
+      .twice()
+      .reply(200);
+    for (let i = 0; i < 2; i++) {
+      const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
+      assert.strictEqual(Utils.getQs(res), 'key=apikey3');
+    }
+    scope.done();
   });
 
   it('should apply google options to request object like timeout', async () => {
@@ -132,9 +144,7 @@ describe('Options', () => {
     const google = new GoogleApis();
     const drive = google.drive('v3');
     const host = 'https://myproxy.com';
-    nock(host)
-      .get('/drive/v3/files/woot')
-      .reply(200);
+    nock(host).get('/drive/v3/files/woot').reply(200);
     const res = await drive.files.get(
       {fileId: 'woot'},
       {url: 'https://myproxy.com/drive/v3/files/{fileId}', timeout: 12345}
@@ -157,7 +167,7 @@ describe('Options', () => {
   it('should apply endpoint options like timeout to oauth transporter', async () => {
     const google = new GoogleApis();
     const OAuth2 = google.auth.OAuth2;
-    authClient = new OAuth2('CLIENTID', 'CLIENTSECRET', 'REDIRECTURI');
+    const authClient = new OAuth2('CLIENTID', 'CLIENTSECRET', 'REDIRECTURI');
     authClient.credentials = {access_token: 'abc'};
     const drive = google.drive({
       version: 'v2',
@@ -175,9 +185,7 @@ describe('Options', () => {
     const drive = google.drive('v3');
     const fileId = 'woot';
     const rootUrl = 'https://myrooturl.com';
-    nock(rootUrl)
-      .get('/drive/v3/files/woot')
-      .reply(200);
+    nock(rootUrl).get('/drive/v3/files/woot').reply(200);
     const res = await drive.files.get({fileId}, {rootUrl});
     assert.strictEqual(
       res.config.url,
@@ -185,10 +193,8 @@ describe('Options', () => {
       'Request used overridden rootUrl with trailing slash.'
     );
 
-    nock(rootUrl)
-      .get('/drive/v3/files/woot')
-      .reply(200);
-    const res2 = await drive.files.get({fileId}, {rootUrl});
+    nock(rootUrl).get('/drive/v3/files/woot').reply(200);
+    await drive.files.get({fileId}, {rootUrl});
     assert.strictEqual(
       res.config.url,
       'https://myrooturl.com/drive/v3/files/woot',
@@ -197,9 +203,7 @@ describe('Options', () => {
   });
 
   it('should allow overriding validateStatus', async () => {
-    const scope = nock(Utils.baseUrl)
-      .get('/drive/v2/files')
-      .reply(500);
+    const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(500);
     const google = new GoogleApis();
     const drive = google.drive('v2');
     const res = await drive.files.list({}, {validateStatus: () => true});
@@ -207,8 +211,53 @@ describe('Options', () => {
     scope.done();
   });
 
-  after(() => {
-    nock.cleanAll();
-    nock.enableNetConnect();
+  it('should provide properly typed responses', async () => {
+    const scope = nock(Utils.baseUrl)
+      .get('/drive/v2/files')
+      .times(5)
+      .reply(200, {etag: '12345'});
+    const google = new GoogleApis();
+    const drive = google.drive('v2');
+
+    // typed response for json
+    const res1 = await drive.files.list({});
+    assert.ok(res1.data.etag);
+
+    // readable stream
+    const res2 = await drive.files.list({}, {responseType: 'stream'});
+    assert.ok(res2.data.resume);
+
+    // It is ok to use callbacks here, and recognize the results won't be
+    // tested before the test completes.
+    // This is here purely to test TypeScript types.
+
+    // callback for json
+    drive.files.list({}, (err, res) => {
+      assert.ok(res?.data.etag);
+    });
+
+    // callback with no params
+    drive.files.list((err, res) => {
+      assert.ok(res?.data.etag);
+    });
+
+    drive.files.list({}, {responseType: 'stream'}, (err, res) => {
+      assert.ok(res?.data.resume);
+    });
+
+    scope.done();
+  });
+
+  it('should allow using a GoogleAuth object for auth', async () => {
+    const google = new GoogleApis();
+    const auth = new GoogleAuth();
+    const stub = sandbox.stub(auth, 'request').resolves({} as GaxiosResponse);
+    // global options
+    google.options({auth});
+    // per-API options
+    const drive = google.drive({version: 'v3', auth});
+    // per-call options
+    await drive.files.list({auth});
+    assert(stub.calledOnce);
   });
 });

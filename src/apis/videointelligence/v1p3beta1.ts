@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace videointelligence_v1p3beta1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace videointelligence_v1p3beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -136,11 +146,45 @@ export namespace videointelligence_v1p3beta1 {
     annotationResults?: Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults[];
   }
   /**
+   * A generic detected attribute represented by name in string format.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_DetectedAttribute {
+    /**
+     * Detected attribute confidence. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of the attribute, for example, glasses, dark_glasses, mouth_open. A full list of supported type names will be provided in the document.
+     */
+    name?: string | null;
+    /**
+     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     */
+    value?: string | null;
+  }
+  /**
+   * A generic detected landmark represented by name in string format and a 2D location.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_DetectedLandmark {
+    /**
+     * The confidence score of the detected landmark. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of this landmark, for example, left_hand, right_shoulder.
+     */
+    name?: string | null;
+    /**
+     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     */
+    point?: Schema$GoogleCloudVideointelligenceV1beta2_NormalizedVertex;
+  }
+  /**
    * Detected entity from video analysis.
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_Entity {
     /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
+     * Textual description, e.g., `Fixed-gear bicycle`.
      */
     description?: string | null;
     /**
@@ -160,6 +204,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video frames where explicit content was detected.
      */
     frames?: Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for explicit content.
@@ -179,7 +227,7 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation {
     /**
-     * Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
+     * Common categories for the detected entity. For example, when the label is `Terrier`, the category is likely `dog`. And in some cases there might be more than one categories e.g., `Terrier` could also be a `pet`.
      */
     categoryEntities?: Schema$GoogleCloudVideointelligenceV1beta2_Entity[];
     /**
@@ -194,6 +242,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video segments where a label was detected.
      */
     segments?: Schema$GoogleCloudVideointelligenceV1beta2_LabelSegment[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for label detection.
@@ -220,6 +272,23 @@ export namespace videointelligence_v1p3beta1 {
      * Video segment where a label was detected.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
+  }
+  /**
+   * Annotation corresponding to one detected, tracked and recognized logo class.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_LogoRecognitionAnnotation {
+    /**
+     * Entity category information to specify the logo class that all the logo tracks within this LogoRecognitionAnnotation are recognized as.
+     */
+    entity?: Schema$GoogleCloudVideointelligenceV1beta2_Entity;
+    /**
+     * All video segments where the recognized logo appears. There might be multiple instances of the same logo class appearing in one VideoSegment.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment[];
+    /**
+     * All logo tracks where the recognized logo appears. Each track corresponds to one logo instance appearing in consecutive frames.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1beta2_Track[];
   }
   /**
    * Normalized bounding box. The normalized vertex coordinates are relative to the original image. Range: [0, 1].
@@ -288,6 +357,10 @@ export namespace videointelligence_v1p3beta1 {
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
     trackId?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
@@ -315,7 +388,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     transcript?: string | null;
     /**
-     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is set to true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1beta2_WordInfo[];
   }
@@ -344,6 +417,10 @@ export namespace videointelligence_v1p3beta1 {
      * The detected text.
      */
     text?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -376,15 +453,57 @@ export namespace videointelligence_v1p3beta1 {
     segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
   }
   /**
+   * For tracking related features. An object at time_offset with attributes, and located with normalized_bounding_box.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_TimestampedObject {
+    /**
+     * Optional. The attributes of the object in the bounding box.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1beta2_DetectedAttribute[];
+    /**
+     * Optional. The detected landmarks.
+     */
+    landmarks?: Schema$GoogleCloudVideointelligenceV1beta2_DetectedLandmark[];
+    /**
+     * Normalized Bounding box in a frame, where the object is located.
+     */
+    normalizedBoundingBox?: Schema$GoogleCloudVideointelligenceV1beta2_NormalizedBoundingBox;
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this object.
+     */
+    timeOffset?: string | null;
+  }
+  /**
+   * A track of an object instance.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_Track {
+    /**
+     * Optional. Attributes in the track level.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1beta2_DetectedAttribute[];
+    /**
+     * Optional. The confidence score of the tracked object.
+     */
+    confidence?: number | null;
+    /**
+     * Video segment of a track.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
+    /**
+     * The object with timestamp and attributes per frame in the track.
+     */
+    timestampedObjects?: Schema$GoogleCloudVideointelligenceV1beta2_TimestampedObject[];
+  }
+  /**
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress {
     /**
-     * Specifies which feature is being tracked if the request contains more than one features.
+     * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -392,7 +511,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     progressPercent?: number | null;
     /**
-     * Specifies which segment is being tracked if the request contains more than one segments.
+     * Specifies which segment is being tracked if the request contains more than one segment.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
     /**
@@ -421,9 +540,13 @@ export namespace videointelligence_v1p3beta1 {
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
+    /**
+     * Annotations for list of logos detected, tracked and recognized in video.
+     */
+    logoRecognitionAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LogoRecognitionAnnotation[];
     /**
      * Annotations for list of objects detected and tracked in video.
      */
@@ -433,11 +556,11 @@ export namespace videointelligence_v1p3beta1 {
      */
     segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
     /**
-     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user-specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
@@ -449,7 +572,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
-     * Presence label annotations on shot level. There is exactly one element for each unique label.
+     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
@@ -518,11 +641,45 @@ export namespace videointelligence_v1p3beta1 {
     annotationResults?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults[];
   }
   /**
+   * A generic detected attribute represented by name in string format.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_DetectedAttribute {
+    /**
+     * Detected attribute confidence. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of the attribute, for example, glasses, dark_glasses, mouth_open. A full list of supported type names will be provided in the document.
+     */
+    name?: string | null;
+    /**
+     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     */
+    value?: string | null;
+  }
+  /**
+   * A generic detected landmark represented by name in string format and a 2D location.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_DetectedLandmark {
+    /**
+     * The confidence score of the detected landmark. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of this landmark, for example, left_hand, right_shoulder.
+     */
+    name?: string | null;
+    /**
+     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     */
+    point?: Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedVertex;
+  }
+  /**
    * Detected entity from video analysis.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_Entity {
     /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
+     * Textual description, e.g., `Fixed-gear bicycle`.
      */
     description?: string | null;
     /**
@@ -542,6 +699,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video frames where explicit content was detected.
      */
     frames?: Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for explicit content.
@@ -561,7 +722,7 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation {
     /**
-     * Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
+     * Common categories for the detected entity. For example, when the label is `Terrier`, the category is likely `dog`. And in some cases there might be more than one categories e.g., `Terrier` could also be a `pet`.
      */
     categoryEntities?: Schema$GoogleCloudVideointelligenceV1p1beta1_Entity[];
     /**
@@ -576,6 +737,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video segments where a label was detected.
      */
     segments?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelSegment[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for label detection.
@@ -602,6 +767,23 @@ export namespace videointelligence_v1p3beta1 {
      * Video segment where a label was detected.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
+  }
+  /**
+   * Annotation corresponding to one detected, tracked and recognized logo class.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_LogoRecognitionAnnotation {
+    /**
+     * Entity category information to specify the logo class that all the logo tracks within this LogoRecognitionAnnotation are recognized as.
+     */
+    entity?: Schema$GoogleCloudVideointelligenceV1p1beta1_Entity;
+    /**
+     * All video segments where the recognized logo appears. There might be multiple instances of the same logo class appearing in one VideoSegment.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment[];
+    /**
+     * All logo tracks where the recognized logo appears. Each track corresponds to one logo instance appearing in consecutive frames.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p1beta1_Track[];
   }
   /**
    * Normalized bounding box. The normalized vertex coordinates are relative to the original image. Range: [0, 1].
@@ -670,6 +852,10 @@ export namespace videointelligence_v1p3beta1 {
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
     trackId?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
@@ -697,7 +883,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     transcript?: string | null;
     /**
-     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is set to true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1p1beta1_WordInfo[];
   }
@@ -726,6 +912,10 @@ export namespace videointelligence_v1p3beta1 {
      * The detected text.
      */
     text?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -758,15 +948,57 @@ export namespace videointelligence_v1p3beta1 {
     segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
   }
   /**
+   * For tracking related features. An object at time_offset with attributes, and located with normalized_bounding_box.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_TimestampedObject {
+    /**
+     * Optional. The attributes of the object in the bounding box.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1p1beta1_DetectedAttribute[];
+    /**
+     * Optional. The detected landmarks.
+     */
+    landmarks?: Schema$GoogleCloudVideointelligenceV1p1beta1_DetectedLandmark[];
+    /**
+     * Normalized Bounding box in a frame, where the object is located.
+     */
+    normalizedBoundingBox?: Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox;
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this object.
+     */
+    timeOffset?: string | null;
+  }
+  /**
+   * A track of an object instance.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_Track {
+    /**
+     * Optional. Attributes in the track level.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1p1beta1_DetectedAttribute[];
+    /**
+     * Optional. The confidence score of the tracked object.
+     */
+    confidence?: number | null;
+    /**
+     * Video segment of a track.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
+    /**
+     * The object with timestamp and attributes per frame in the track.
+     */
+    timestampedObjects?: Schema$GoogleCloudVideointelligenceV1p1beta1_TimestampedObject[];
+  }
+  /**
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress {
     /**
-     * Specifies which feature is being tracked if the request contains more than one features.
+     * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -774,7 +1006,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     progressPercent?: number | null;
     /**
-     * Specifies which segment is being tracked if the request contains more than one segments.
+     * Specifies which segment is being tracked if the request contains more than one segment.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
     /**
@@ -803,9 +1035,13 @@ export namespace videointelligence_v1p3beta1 {
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
+    /**
+     * Annotations for list of logos detected, tracked and recognized in video.
+     */
+    logoRecognitionAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LogoRecognitionAnnotation[];
     /**
      * Annotations for list of objects detected and tracked in video.
      */
@@ -815,11 +1051,11 @@ export namespace videointelligence_v1p3beta1 {
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
     /**
-     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user-specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
@@ -831,7 +1067,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on shot level. There is exactly one element for each unique label.
+     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
@@ -900,11 +1136,45 @@ export namespace videointelligence_v1p3beta1 {
     annotationResults?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationResults[];
   }
   /**
+   * A generic detected attribute represented by name in string format.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_DetectedAttribute {
+    /**
+     * Detected attribute confidence. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of the attribute, for example, glasses, dark_glasses, mouth_open. A full list of supported type names will be provided in the document.
+     */
+    name?: string | null;
+    /**
+     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     */
+    value?: string | null;
+  }
+  /**
+   * A generic detected landmark represented by name in string format and a 2D location.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_DetectedLandmark {
+    /**
+     * The confidence score of the detected landmark. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of this landmark, for example, left_hand, right_shoulder.
+     */
+    name?: string | null;
+    /**
+     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     */
+    point?: Schema$GoogleCloudVideointelligenceV1p2beta1_NormalizedVertex;
+  }
+  /**
    * Detected entity from video analysis.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_Entity {
     /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
+     * Textual description, e.g., `Fixed-gear bicycle`.
      */
     description?: string | null;
     /**
@@ -924,6 +1194,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video frames where explicit content was detected.
      */
     frames?: Schema$GoogleCloudVideointelligenceV1p2beta1_ExplicitContentFrame[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for explicit content.
@@ -943,7 +1217,7 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation {
     /**
-     * Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
+     * Common categories for the detected entity. For example, when the label is `Terrier`, the category is likely `dog`. And in some cases there might be more than one categories e.g., `Terrier` could also be a `pet`.
      */
     categoryEntities?: Schema$GoogleCloudVideointelligenceV1p2beta1_Entity[];
     /**
@@ -958,6 +1232,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video segments where a label was detected.
      */
     segments?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelSegment[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for label detection.
@@ -984,6 +1262,23 @@ export namespace videointelligence_v1p3beta1 {
      * Video segment where a label was detected.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
+  }
+  /**
+   * Annotation corresponding to one detected, tracked and recognized logo class.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_LogoRecognitionAnnotation {
+    /**
+     * Entity category information to specify the logo class that all the logo tracks within this LogoRecognitionAnnotation are recognized as.
+     */
+    entity?: Schema$GoogleCloudVideointelligenceV1p2beta1_Entity;
+    /**
+     * All video segments where the recognized logo appears. There might be multiple instances of the same logo class appearing in one VideoSegment.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment[];
+    /**
+     * All logo tracks where the recognized logo appears. Each track corresponds to one logo instance appearing in consecutive frames.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p2beta1_Track[];
   }
   /**
    * Normalized bounding box. The normalized vertex coordinates are relative to the original image. Range: [0, 1].
@@ -1052,6 +1347,10 @@ export namespace videointelligence_v1p3beta1 {
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
     trackId?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
@@ -1079,7 +1378,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     transcript?: string | null;
     /**
-     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is set to true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1p2beta1_WordInfo[];
   }
@@ -1108,6 +1407,10 @@ export namespace videointelligence_v1p3beta1 {
      * The detected text.
      */
     text?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -1140,15 +1443,57 @@ export namespace videointelligence_v1p3beta1 {
     segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
   }
   /**
+   * For tracking related features. An object at time_offset with attributes, and located with normalized_bounding_box.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_TimestampedObject {
+    /**
+     * Optional. The attributes of the object in the bounding box.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1p2beta1_DetectedAttribute[];
+    /**
+     * Optional. The detected landmarks.
+     */
+    landmarks?: Schema$GoogleCloudVideointelligenceV1p2beta1_DetectedLandmark[];
+    /**
+     * Normalized Bounding box in a frame, where the object is located.
+     */
+    normalizedBoundingBox?: Schema$GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingBox;
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this object.
+     */
+    timeOffset?: string | null;
+  }
+  /**
+   * A track of an object instance.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_Track {
+    /**
+     * Optional. Attributes in the track level.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1p2beta1_DetectedAttribute[];
+    /**
+     * Optional. The confidence score of the tracked object.
+     */
+    confidence?: number | null;
+    /**
+     * Video segment of a track.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
+    /**
+     * The object with timestamp and attributes per frame in the track.
+     */
+    timestampedObjects?: Schema$GoogleCloudVideointelligenceV1p2beta1_TimestampedObject[];
+  }
+  /**
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationProgress {
     /**
-     * Specifies which feature is being tracked if the request contains more than one features.
+     * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -1156,7 +1501,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     progressPercent?: number | null;
     /**
-     * Specifies which segment is being tracked if the request contains more than one segments.
+     * Specifies which segment is being tracked if the request contains more than one segment.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
     /**
@@ -1185,9 +1530,13 @@ export namespace videointelligence_v1p3beta1 {
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
+    /**
+     * Annotations for list of logos detected, tracked and recognized in video.
+     */
+    logoRecognitionAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LogoRecognitionAnnotation[];
     /**
      * Annotations for list of objects detected and tracked in video.
      */
@@ -1197,11 +1546,11 @@ export namespace videointelligence_v1p3beta1 {
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
     /**
-     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user-specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
@@ -1213,7 +1562,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on shot level. There is exactly one element for each unique label.
+     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
@@ -1277,23 +1626,23 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_AnnotateVideoRequest {
     /**
-     * Requested video annotation features.
+     * Required. Requested video annotation features.
      */
     features?: string[] | null;
     /**
-     * The video data bytes. If unset, the input video(s) should be specified via `input_uri`. If set, `input_uri` should be unset.
+     * The video data bytes. If unset, the input video(s) should be specified via the `input_uri`. If set, `input_uri` must be unset.
      */
     inputContent?: string | null;
     /**
-     * Input video location. Currently, only [Google Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](/storage/docs/reference-uris). A video URI may include wildcards in `object-id`, and thus identify multiple videos. Supported wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match 1 character. If unset, the input video should be embedded in the request as `input_content`. If set, `input_content` should be unset.
+     * Input video location. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported. URIs must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](https://cloud.google.com/storage/docs/request-endpoints). To identify multiple videos, a video URI may include wildcards in the `object-id`. Supported wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match 1 character. If unset, the input video should be embedded in the request as `input_content`. If set, `input_content` must be unset.
      */
     inputUri?: string | null;
     /**
-     * Optional cloud region where annotation should take place. Supported cloud regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region is specified, a region will be determined based on video file location.
+     * Optional. Cloud region where annotation should take place. Supported cloud regions are: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region is specified, the region will be determined based on video file location.
      */
     locationId?: string | null;
     /**
-     * Optional location where the output (in JSON format) should be stored. Currently, only [Google Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](/storage/docs/reference-uris).
+     * Optional. Location where the output (in JSON format) should be stored. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported. These must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](https://cloud.google.com/storage/docs/request-endpoints).
      */
     outputUri?: string | null;
     /**
@@ -1311,6 +1660,49 @@ export namespace videointelligence_v1p3beta1 {
     annotationResults?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationResults[];
   }
   /**
+   * Celebrity definition.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_Celebrity {
+    /**
+     * Textual description of additional information about the celebrity, if applicable.
+     */
+    description?: string | null;
+    /**
+     * The celebrity name.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the celebrity. Have the format `video-intelligence/kg-mid` indicates a celebrity from preloaded gallery. kg-mid is the id in Google knowledge graph, which is unique for the celebrity.
+     */
+    name?: string | null;
+  }
+  /**
+   * Celebrity recognition annotation per video.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_CelebrityRecognitionAnnotation {
+    /**
+     * The tracks detected from the input video, including recognized celebrities and other detected faces in the video.
+     */
+    celebrityTracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_CelebrityTrack[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
+   * The annotation result of a celebrity face track. RecognizedCelebrity field could be empty if the face track does not have any matched celebrities.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_CelebrityTrack {
+    /**
+     * Top N match of the celebrities for the face in this track.
+     */
+    celebrities?: Schema$GoogleCloudVideointelligenceV1p3beta1_RecognizedCelebrity[];
+    /**
+     * A track of a person&#39;s face.
+     */
+    faceTrack?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track;
+  }
+  /**
    * A generic detected attribute represented by name in string format.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute {
@@ -1319,7 +1711,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     confidence?: number | null;
     /**
-     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc. A full list of supported type names will be provided in the document.
+     * The name of the attribute, for example, glasses, dark_glasses, mouth_open. A full list of supported type names will be provided in the document.
      */
     name?: string | null;
     /**
@@ -1328,11 +1720,28 @@ export namespace videointelligence_v1p3beta1 {
     value?: string | null;
   }
   /**
+   * A generic detected landmark represented by name in string format and a 2D location.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedLandmark {
+    /**
+     * The confidence score of the detected landmark. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of this landmark, for example, left_hand, right_shoulder.
+     */
+    name?: string | null;
+    /**
+     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     */
+    point?: Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedVertex;
+  }
+  /**
    * Detected entity from video analysis.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_Entity {
     /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
+     * Textual description, e.g., `Fixed-gear bicycle`.
      */
     description?: string | null;
     /**
@@ -1352,6 +1761,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video frames where explicit content was detected.
      */
     frames?: Schema$GoogleCloudVideointelligenceV1p3beta1_ExplicitContentFrame[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Config for EXPLICIT_CONTENT_DETECTION.
@@ -1376,11 +1789,45 @@ export namespace videointelligence_v1p3beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Face detection annotation.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation {
+    /**
+     * The thumbnail of a person&#39;s face.
+     */
+    thumbnail?: string | null;
+    /**
+     * The face tracks with attributes.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
+   * Config for FACE_DETECTION.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionConfig {
+    /**
+     * Whether to enable face attributes detection, such as glasses, dark_glasses, mouth_open etc. Ignored if &#39;include_bounding_boxes&#39; is set to false.
+     */
+    includeAttributes?: boolean | null;
+    /**
+     * Whether bounding boxes are included in the face annotation output.
+     */
+    includeBoundingBoxes?: boolean | null;
+    /**
+     * Model to use for face detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     */
+    model?: string | null;
+  }
+  /**
    * Label annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation {
     /**
-     * Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
+     * Common categories for the detected entity. For example, when the label is `Terrier`, the category is likely `dog`. And in some cases there might be more than one categories e.g., `Terrier` could also be a `pet`.
      */
     categoryEntities?: Schema$GoogleCloudVideointelligenceV1p3beta1_Entity[];
     /**
@@ -1395,13 +1842,17 @@ export namespace videointelligence_v1p3beta1 {
      * All video segments where a label was detected.
      */
     segments?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelSegment[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Config for LABEL_DETECTION.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_LabelDetectionConfig {
     /**
-     * The confidence threshold we perform filtering on the labels from frame-level detection. If not set, it is set to 0.4 by default. The valid range for this threshold is [0.1, 0.9]. Any value set outside of this range will be clipped. Note: for best results please follow the default threshold. We will update the default threshold everytime when we release a new model.
+     * The confidence threshold we perform filtering on the labels from frame-level detection. If not set, it is set to 0.4 by default. The valid range for this threshold is [0.1, 0.9]. Any value set outside of this range will be clipped. Note: For best results, follow the default threshold. We will update the default threshold everytime when we release a new model.
      */
     frameConfidenceThreshold?: number | null;
     /**
@@ -1413,11 +1864,11 @@ export namespace videointelligence_v1p3beta1 {
      */
     model?: string | null;
     /**
-     * Whether the video has been shot from a stationary (i.e. non-moving) camera. When set to true, might improve detection accuracy for moving objects. Should be used with `SHOT_AND_FRAME_MODE` enabled.
+     * Whether the video has been shot from a stationary (i.e., non-moving) camera. When set to true, might improve detection accuracy for moving objects. Should be used with `SHOT_AND_FRAME_MODE` enabled.
      */
     stationaryCamera?: boolean | null;
     /**
-     * The confidence threshold we perform filtering on the labels from video-level and shot-level detections. If not set, it is set to 0.3 by default. The valid range for this threshold is [0.1, 0.9]. Any value set outside of this range will be clipped. Note: for best results please follow the default threshold. We will update the default threshold everytime when we release a new model.
+     * The confidence threshold we perform filtering on the labels from video-level and shot-level detections. If not set, it&#39;s set to 0.3 by default. The valid range for this threshold is [0.1, 0.9]. Any value set outside of this range will be clipped. Note: For best results, follow the default threshold. We will update the default threshold everytime when we release a new model.
      */
     videoConfidenceThreshold?: number | null;
   }
@@ -1531,6 +1982,10 @@ export namespace videointelligence_v1p3beta1 {
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
     trackId?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Config for OBJECT_TRACKING.
@@ -1555,6 +2010,49 @@ export namespace videointelligence_v1p3beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Person detection annotation per video.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_PersonDetectionAnnotation {
+    /**
+     * The detected tracks of a person.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
+  }
+  /**
+   * Config for PERSON_DETECTION.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_PersonDetectionConfig {
+    /**
+     * Whether to enable person attributes detection, such as cloth color (black, blue, etc), type (coat, dress, etc), pattern (plain, floral, etc), hair, etc. Ignored if &#39;include_bounding_boxes&#39; is set to false.
+     */
+    includeAttributes?: boolean | null;
+    /**
+     * Whether bounding boxes are included in the person detection annotation output.
+     */
+    includeBoundingBoxes?: boolean | null;
+    /**
+     * Whether to enable pose landmarks detection. Ignored if &#39;include_bounding_boxes&#39; is set to false.
+     */
+    includePoseLandmarks?: boolean | null;
+  }
+  /**
+   * The recognized celebrity with confidence score.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_RecognizedCelebrity {
+    /**
+     * The recognized celebrity.
+     */
+    celebrity?: Schema$GoogleCloudVideointelligenceV1p3beta1_Celebrity;
+    /**
+     * Recognition confidence. Range [0, 1].
+     */
+    confidence?: number | null;
+  }
+  /**
    * Config for SHOT_CHANGE_DETECTION.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_ShotChangeDetectionConfig {
@@ -1568,7 +2066,7 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechContext {
     /**
-     * *Optional* A list of strings containing words and phrases &quot;hints&quot; so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech/limits#content).
+     * Optional. A list of strings containing words and phrases &quot;hints&quot; so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech/limits#content).
      */
     phrases?: string[] | null;
   }
@@ -1585,7 +2083,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     transcript?: string | null;
     /**
-     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is set to true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1p3beta1_WordInfo[];
   }
@@ -1607,39 +2105,39 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechTranscriptionConfig {
     /**
-     * *Optional* For file formats, such as MXF or MKV, supporting multiple audio tracks, specify up to two tracks. Default: track 0.
+     * Optional. For file formats, such as MXF or MKV, supporting multiple audio tracks, specify up to two tracks. Default: track 0.
      */
     audioTracks?: number[] | null;
     /**
-     * *Optional* If set, specifies the estimated number of speakers in the conversation. If not set, defaults to &#39;2&#39;. Ignored unless enable_speaker_diarization is set to true.
+     * Optional. If set, specifies the estimated number of speakers in the conversation. If not set, defaults to &#39;2&#39;. Ignored unless enable_speaker_diarization is set to true.
      */
     diarizationSpeakerCount?: number | null;
     /**
-     * *Optional* If &#39;true&#39;, adds punctuation to recognition result hypotheses. This feature is only available in select languages. Setting this for requests in other languages has no effect at all. The default &#39;false&#39; value does not add punctuation to result hypotheses. NOTE: &quot;This is currently offered as an experimental service, complimentary to all users. In the future this may be exclusively available as a premium feature.&quot;
+     * Optional. If &#39;true&#39;, adds punctuation to recognition result hypotheses. This feature is only available in select languages. Setting this for requests in other languages has no effect at all. The default &#39;false&#39; value does not add punctuation to result hypotheses. NOTE: &quot;This is currently offered as an experimental service, complimentary to all users. In the future this may be exclusively available as a premium feature.&quot;
      */
     enableAutomaticPunctuation?: boolean | null;
     /**
-     * *Optional* If &#39;true&#39;, enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo. Note: When this is true, we send all the words from the beginning of the audio for the top alternative in every consecutive responses. This is done in order to improve our speaker tags as our models learn to identify the speakers in the conversation over time.
+     * Optional. If &#39;true&#39;, enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo. Note: When this is true, we send all the words from the beginning of the audio for the top alternative in every consecutive response. This is done in order to improve our speaker tags as our models learn to identify the speakers in the conversation over time.
      */
     enableSpeakerDiarization?: boolean | null;
     /**
-     * *Optional* If `true`, the top result includes a list of words and the confidence for those words. If `false`, no word-level confidence information is returned. The default is `false`.
+     * Optional. If `true`, the top result includes a list of words and the confidence for those words. If `false`, no word-level confidence information is returned. The default is `false`.
      */
     enableWordConfidence?: boolean | null;
     /**
-     * *Optional* If set to `true`, the server will attempt to filter out profanities, replacing all but the initial character in each filtered word with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities won&#39;t be filtered out.
+     * Optional. If set to `true`, the server will attempt to filter out profanities, replacing all but the initial character in each filtered word with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities won&#39;t be filtered out.
      */
     filterProfanity?: boolean | null;
     /**
-     * *Required* The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: &quot;en-US&quot;. See [Language Support](https://cloud.google.com/speech/docs/languages) for a list of the currently supported language codes.
+     * Required. *Required* The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: &quot;en-US&quot;. See [Language Support](https://cloud.google.com/speech/docs/languages) for a list of the currently supported language codes.
      */
     languageCode?: string | null;
     /**
-     * *Optional* Maximum number of recognition hypotheses to be returned. Specifically, the maximum number of `SpeechRecognitionAlternative` messages within each `SpeechTranscription`. The server may return fewer than `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of one. If omitted, will return a maximum of one.
+     * Optional. Maximum number of recognition hypotheses to be returned. Specifically, the maximum number of `SpeechRecognitionAlternative` messages within each `SpeechTranscription`. The server may return fewer than `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of one. If omitted, will return a maximum of one.
      */
     maxAlternatives?: number | null;
     /**
-     * *Optional* A means to provide context to assist the speech recognition.
+     * Optional. A means to provide context to assist the speech recognition.
      */
     speechContexts?: Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechContext[];
   }
@@ -1652,7 +2150,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     annotationResults?: Schema$GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults;
     /**
-     * GCS URI that stores annotation results of one streaming session. It is a directory that can hold multiple files in JSON format. Example uri format: gs://bucket_id/object_id/cloud_project_name-session_id
+     * Google Cloud Storage URI that stores annotation results of one streaming session in JSON format. It is the annotation_result_storage_directory from the request followed by &#39;/cloud_project_number-session_id&#39;.
      */
     annotationResultsUri?: string | null;
     /**
@@ -1693,6 +2191,10 @@ export namespace videointelligence_v1p3beta1 {
      * The detected text.
      */
     text?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Config for TEXT_DETECTION.
@@ -1738,13 +2240,17 @@ export namespace videointelligence_v1p3beta1 {
     segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
   }
   /**
-   * For tracking related features, such as LOGO_RECOGNITION, FACE_DETECTION, CELEBRITY_RECOGNITION, PERSON_DETECTION. An object at time_offset with attributes, and located with normalized_bounding_box.
+   * For tracking related features. An object at time_offset with attributes, and located with normalized_bounding_box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_TimestampedObject {
     /**
      * Optional. The attributes of the object in the bounding box.
      */
     attributes?: Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute[];
+    /**
+     * Optional. The detected landmarks.
+     */
+    landmarks?: Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedLandmark[];
     /**
      * Normalized Bounding box in a frame, where the object is located.
      */
@@ -1780,11 +2286,11 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress {
     /**
-     * Specifies which feature is being tracked if the request contains more than one features.
+     * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -1792,7 +2298,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     progressPercent?: number | null;
     /**
-     * Specifies which segment is being tracked if the request contains more than one segments.
+     * Specifies which segment is being tracked if the request contains more than one segment.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
     /**
@@ -1809,6 +2315,10 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationResults {
     /**
+     * Celebrity recognition annotations.
+     */
+    celebrityRecognitionAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_CelebrityRecognitionAnnotation;
+    /**
      * If set, indicates an error. Note that for a single `AnnotateVideoRequest` some videos may succeed and some may fail.
      */
     error?: Schema$GoogleRpc_Status;
@@ -1817,11 +2327,15 @@ export namespace videointelligence_v1p3beta1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1p3beta1_ExplicitContentAnnotation;
     /**
+     * Face detection annotations.
+     */
+    faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation[];
+    /**
      * Label annotations on frame level. There is exactly one element for each unique label.
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -1833,15 +2347,19 @@ export namespace videointelligence_v1p3beta1 {
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingAnnotation[];
     /**
+     * Person detection annotations.
+     */
+    personDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_PersonDetectionAnnotation[];
+    /**
      * Video segment on which the annotation is run.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
     /**
-     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user-specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
@@ -1853,7 +2371,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on shot level. There is exactly one element for each unique label.
+     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
@@ -1874,6 +2392,10 @@ export namespace videointelligence_v1p3beta1 {
      */
     explicitContentDetectionConfig?: Schema$GoogleCloudVideointelligenceV1p3beta1_ExplicitContentDetectionConfig;
     /**
+     * Config for FACE_DETECTION.
+     */
+    faceDetectionConfig?: Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionConfig;
+    /**
      * Config for LABEL_DETECTION.
      */
     labelDetectionConfig?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelDetectionConfig;
@@ -1881,6 +2403,10 @@ export namespace videointelligence_v1p3beta1 {
      * Config for OBJECT_TRACKING.
      */
     objectTrackingConfig?: Schema$GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingConfig;
+    /**
+     * Config for PERSON_DETECTION.
+     */
+    personDetectionConfig?: Schema$GoogleCloudVideointelligenceV1p3beta1_PersonDetectionConfig;
     /**
      * Video segments to annotate. The segments may overlap and are not required to be contiguous or span the whole video. If unspecified, each video is treated as a single segment.
      */
@@ -1955,11 +2481,45 @@ export namespace videointelligence_v1p3beta1 {
     annotationResults?: Schema$GoogleCloudVideointelligenceV1_VideoAnnotationResults[];
   }
   /**
+   * A generic detected attribute represented by name in string format.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_DetectedAttribute {
+    /**
+     * Detected attribute confidence. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of the attribute, for example, glasses, dark_glasses, mouth_open. A full list of supported type names will be provided in the document.
+     */
+    name?: string | null;
+    /**
+     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     */
+    value?: string | null;
+  }
+  /**
+   * A generic detected landmark represented by name in string format and a 2D location.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_DetectedLandmark {
+    /**
+     * The confidence score of the detected landmark. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of this landmark, for example, left_hand, right_shoulder.
+     */
+    name?: string | null;
+    /**
+     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     */
+    point?: Schema$GoogleCloudVideointelligenceV1_NormalizedVertex;
+  }
+  /**
    * Detected entity from video analysis.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_Entity {
     /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
+     * Textual description, e.g., `Fixed-gear bicycle`.
      */
     description?: string | null;
     /**
@@ -1979,6 +2539,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video frames where explicit content was detected.
      */
     frames?: Schema$GoogleCloudVideointelligenceV1_ExplicitContentFrame[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for explicit content.
@@ -1998,7 +2562,7 @@ export namespace videointelligence_v1p3beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_LabelAnnotation {
     /**
-     * Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
+     * Common categories for the detected entity. For example, when the label is `Terrier`, the category is likely `dog`. And in some cases there might be more than one categories e.g., `Terrier` could also be a `pet`.
      */
     categoryEntities?: Schema$GoogleCloudVideointelligenceV1_Entity[];
     /**
@@ -2013,6 +2577,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video segments where a label was detected.
      */
     segments?: Schema$GoogleCloudVideointelligenceV1_LabelSegment[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for label detection.
@@ -2039,6 +2607,23 @@ export namespace videointelligence_v1p3beta1 {
      * Video segment where a label was detected.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
+  }
+  /**
+   * Annotation corresponding to one detected, tracked and recognized logo class.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_LogoRecognitionAnnotation {
+    /**
+     * Entity category information to specify the logo class that all the logo tracks within this LogoRecognitionAnnotation are recognized as.
+     */
+    entity?: Schema$GoogleCloudVideointelligenceV1_Entity;
+    /**
+     * All video segments where the recognized logo appears. There might be multiple instances of the same logo class appearing in one VideoSegment.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1_VideoSegment[];
+    /**
+     * All logo tracks where the recognized logo appears. Each track corresponds to one logo instance appearing in consecutive frames.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1_Track[];
   }
   /**
    * Normalized bounding box. The normalized vertex coordinates are relative to the original image. Range: [0, 1].
@@ -2107,6 +2692,10 @@ export namespace videointelligence_v1p3beta1 {
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
     trackId?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
@@ -2134,7 +2723,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     transcript?: string | null;
     /**
-     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is set to true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1_WordInfo[];
   }
@@ -2163,6 +2752,10 @@ export namespace videointelligence_v1p3beta1 {
      * The detected text.
      */
     text?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -2195,15 +2788,57 @@ export namespace videointelligence_v1p3beta1 {
     segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
   }
   /**
+   * For tracking related features. An object at time_offset with attributes, and located with normalized_bounding_box.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_TimestampedObject {
+    /**
+     * Optional. The attributes of the object in the bounding box.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1_DetectedAttribute[];
+    /**
+     * Optional. The detected landmarks.
+     */
+    landmarks?: Schema$GoogleCloudVideointelligenceV1_DetectedLandmark[];
+    /**
+     * Normalized Bounding box in a frame, where the object is located.
+     */
+    normalizedBoundingBox?: Schema$GoogleCloudVideointelligenceV1_NormalizedBoundingBox;
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this object.
+     */
+    timeOffset?: string | null;
+  }
+  /**
+   * A track of an object instance.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_Track {
+    /**
+     * Optional. Attributes in the track level.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1_DetectedAttribute[];
+    /**
+     * Optional. The confidence score of the tracked object.
+     */
+    confidence?: number | null;
+    /**
+     * Video segment of a track.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
+    /**
+     * The object with timestamp and attributes per frame in the track.
+     */
+    timestampedObjects?: Schema$GoogleCloudVideointelligenceV1_TimestampedObject[];
+  }
+  /**
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_VideoAnnotationProgress {
     /**
-     * Specifies which feature is being tracked if the request contains more than one features.
+     * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -2211,7 +2846,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     progressPercent?: number | null;
     /**
-     * Specifies which segment is being tracked if the request contains more than one segments.
+     * Specifies which segment is being tracked if the request contains more than one segment.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
     /**
@@ -2240,9 +2875,13 @@ export namespace videointelligence_v1p3beta1 {
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
+    /**
+     * Annotations for list of logos detected, tracked and recognized in video.
+     */
+    logoRecognitionAnnotations?: Schema$GoogleCloudVideointelligenceV1_LogoRecognitionAnnotation[];
     /**
      * Annotations for list of objects detected and tracked in video.
      */
@@ -2252,11 +2891,11 @@ export namespace videointelligence_v1p3beta1 {
      */
     segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
     /**
-     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user-specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
@@ -2268,7 +2907,7 @@ export namespace videointelligence_v1p3beta1 {
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
-     * Presence label annotations on shot level. There is exactly one element for each unique label.
+     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
@@ -2370,19 +3009,82 @@ export namespace videointelligence_v1p3beta1 {
     /**
      * videointelligence.videos.annotate
      * @desc Performs asynchronous video annotation. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `AnnotateVideoProgress` (progress). `Operation.response` contains `AnnotateVideoResponse` (results).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/videointelligence.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const videointelligence = google.videointelligence('v1p3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await videointelligence.videos.annotate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "features": [],
+     *       //   "inputContent": "my_inputContent",
+     *       //   "inputUri": "my_inputUri",
+     *       //   "locationId": "my_locationId",
+     *       //   "outputUri": "my_outputUri",
+     *       //   "videoContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias videointelligence.videos.annotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleCloudVideointelligenceV1p3beta1_AnnotateVideoRequest} params.resource Request body data
+     * @param {().GoogleCloudVideointelligenceV1p3beta1_AnnotateVideoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     annotate(
+      params: Params$Resource$Videos$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    annotate(
       params?: Params$Resource$Videos$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning_Operation>;
+    annotate(
+      params: Params$Resource$Videos$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Videos$Annotate,
       options:
@@ -2400,12 +3102,20 @@ export namespace videointelligence_v1p3beta1 {
     annotate(
       paramsOrCallback?:
         | Params$Resource$Videos$Annotate
-        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning_Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning_Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2441,7 +3151,7 @@ export namespace videointelligence_v1p3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);
@@ -2450,11 +3160,6 @@ export namespace videointelligence_v1p3beta1 {
   }
 
   export interface Params$Resource$Videos$Annotate extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

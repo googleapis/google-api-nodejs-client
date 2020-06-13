@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace adexchangebuyer_v1_4 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace adexchangebuyer_v1_4 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -535,7 +545,7 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Schema$DealTerms {
     /**
-     * Visibilty of the URL in bid requests.
+     * Visibility of the URL in bid requests.
      */
     brandingType?: string | null;
     /**
@@ -1085,6 +1095,10 @@ export namespace adexchangebuyer_v1_4 {
      */
     languages?: string[] | null;
     /**
+     * The maximum QPS allocated to this pretargeting configuration, used for pretargeting-level QPS limits. By default, this is not set, which indicates that there is no QPS limit at the configuration level (a global or account-level limit may still be imposed).
+     */
+    maximumQps?: string | null;
+    /**
      * Requests where the predicted viewability is below the specified decile will not match. E.g. if the buyer sets this value to 5, requests from slots where the predicted viewability is below 50% will not match. If the predicted viewability is unknown this field will be ignored.
      */
     minimumViewabilityDecile?: number | null;
@@ -1632,6 +1646,54 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.accounts.get
      * @desc Gets one account by ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.accounts.get({
+     *     // The account id
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applyPretargetingToNonGuaranteedDeals": false,
+     *   //   "bidderLocation": [],
+     *   //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *   //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *   //   "id": 0,
+     *   //   "kind": "my_kind",
+     *   //   "maximumActiveCreatives": 0,
+     *   //   "maximumTotalQps": 0,
+     *   //   "numberActiveCreatives": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.accounts.get
      * @memberOf! ()
      *
@@ -1642,9 +1704,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Account>;
+    get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Account>,
@@ -1658,10 +1729,17 @@ export namespace adexchangebuyer_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Get
-        | BodyResponseCallback<Schema$Account>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback?: BodyResponseCallback<Schema$Account>
-    ): void | GaxiosPromise<Schema$Account> {
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1694,7 +1772,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Account>(parameters, callback);
+        createAPIRequest<Schema$Account>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
       }
@@ -1703,6 +1784,44 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.accounts.list
      * @desc Retrieves the authenticated user's list of accounts.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.accounts.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.accounts.list
      * @memberOf! ()
      *
@@ -1712,9 +1831,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccountsList>;
+    list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$List,
       options: MethodOptions | BodyResponseCallback<Schema$AccountsList>,
@@ -1728,12 +1856,17 @@ export namespace adexchangebuyer_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$List
-        | BodyResponseCallback<Schema$AccountsList>,
+        | BodyResponseCallback<Schema$AccountsList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccountsList>,
-      callback?: BodyResponseCallback<Schema$AccountsList>
-    ): void | GaxiosPromise<Schema$AccountsList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountsList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountsList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AccountsList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1766,7 +1899,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccountsList>(parameters, callback);
+        createAPIRequest<Schema$AccountsList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccountsList>(parameters);
       }
@@ -1775,21 +1911,96 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.accounts.patch
      * @desc Updates an existing account. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.accounts.patch({
+     *     // Confirmation for erasing bidder and cookie matching urls.
+     *     confirmUnsafeAccountChange: 'placeholder-value',
+     *     // The account id
+     *     id: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "applyPretargetingToNonGuaranteedDeals": false,
+     *       //   "bidderLocation": [],
+     *       //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *       //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *       //   "id": 0,
+     *       //   "kind": "my_kind",
+     *       //   "maximumActiveCreatives": 0,
+     *       //   "maximumTotalQps": 0,
+     *       //   "numberActiveCreatives": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applyPretargetingToNonGuaranteedDeals": false,
+     *   //   "bidderLocation": [],
+     *   //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *   //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *   //   "id": 0,
+     *   //   "kind": "my_kind",
+     *   //   "maximumActiveCreatives": 0,
+     *   //   "maximumTotalQps": 0,
+     *   //   "numberActiveCreatives": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.accounts.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.confirmUnsafeAccountChange Confirmation for erasing bidder and cookie matching urls.
      * @param {integer} params.id The account id
-     * @param {().Account} params.resource Request body data
+     * @param {().Account} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Accounts$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Accounts$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Account>;
+    patch(
+      params: Params$Resource$Accounts$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Accounts$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Account>,
@@ -1803,10 +2014,17 @@ export namespace adexchangebuyer_v1_4 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Accounts$Patch
-        | BodyResponseCallback<Schema$Account>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback?: BodyResponseCallback<Schema$Account>
-    ): void | GaxiosPromise<Schema$Account> {
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1839,7 +2057,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Account>(parameters, callback);
+        createAPIRequest<Schema$Account>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
       }
@@ -1848,21 +2069,96 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.accounts.update
      * @desc Updates an existing account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.accounts.update({
+     *     // Confirmation for erasing bidder and cookie matching urls.
+     *     confirmUnsafeAccountChange: 'placeholder-value',
+     *     // The account id
+     *     id: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "applyPretargetingToNonGuaranteedDeals": false,
+     *       //   "bidderLocation": [],
+     *       //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *       //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *       //   "id": 0,
+     *       //   "kind": "my_kind",
+     *       //   "maximumActiveCreatives": 0,
+     *       //   "maximumTotalQps": 0,
+     *       //   "numberActiveCreatives": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applyPretargetingToNonGuaranteedDeals": false,
+     *   //   "bidderLocation": [],
+     *   //   "cookieMatchingNid": "my_cookieMatchingNid",
+     *   //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *   //   "id": 0,
+     *   //   "kind": "my_kind",
+     *   //   "maximumActiveCreatives": 0,
+     *   //   "maximumTotalQps": 0,
+     *   //   "numberActiveCreatives": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.accounts.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.confirmUnsafeAccountChange Confirmation for erasing bidder and cookie matching urls.
      * @param {integer} params.id The account id
-     * @param {().Account} params.resource Request body data
+     * @param {().Account} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Account>;
+    update(
+      params: Params$Resource$Accounts$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Account>,
@@ -1876,10 +2172,17 @@ export namespace adexchangebuyer_v1_4 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Update
-        | BodyResponseCallback<Schema$Account>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback?: BodyResponseCallback<Schema$Account>
-    ): void | GaxiosPromise<Schema$Account> {
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1912,7 +2215,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Account>(parameters, callback);
+        createAPIRequest<Schema$Account>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
       }
@@ -1921,27 +2227,12 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account id
      */
     id?: number;
   }
-  export interface Params$Resource$Accounts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Accounts$List extends StandardParameters {}
   export interface Params$Resource$Accounts$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Confirmation for erasing bidder and cookie matching urls.
      */
@@ -1957,11 +2248,6 @@ export namespace adexchangebuyer_v1_4 {
     requestBody?: Schema$Account;
   }
   export interface Params$Resource$Accounts$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Confirmation for erasing bidder and cookie matching urls.
      */
@@ -1986,6 +2272,49 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.billingInfo.get
      * @desc Returns the billing information for one account specified by account ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.billingInfo.get({
+     *     // The account id.
+     *     accountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": 0,
+     *   //   "accountName": "my_accountName",
+     *   //   "billingId": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.billingInfo.get
      * @memberOf! ()
      *
@@ -1996,9 +2325,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Billinginfo$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Billinginfo$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BillingInfo>;
+    get(
+      params: Params$Resource$Billinginfo$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Billinginfo$Get,
       options: MethodOptions | BodyResponseCallback<Schema$BillingInfo>,
@@ -2012,12 +2350,17 @@ export namespace adexchangebuyer_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Billinginfo$Get
-        | BodyResponseCallback<Schema$BillingInfo>,
+        | BodyResponseCallback<Schema$BillingInfo>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BillingInfo>,
-      callback?: BodyResponseCallback<Schema$BillingInfo>
-    ): void | GaxiosPromise<Schema$BillingInfo> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingInfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BillingInfo> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Billinginfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2049,7 +2392,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BillingInfo>(parameters, callback);
+        createAPIRequest<Schema$BillingInfo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BillingInfo>(parameters);
       }
@@ -2058,6 +2404,44 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.billingInfo.list
      * @desc Retrieves a list of billing information for all accounts of the authenticated user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.billingInfo.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.billingInfo.list
      * @memberOf! ()
      *
@@ -2067,9 +2451,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Billinginfo$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Billinginfo$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BillingInfoList>;
+    list(
+      params: Params$Resource$Billinginfo$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Billinginfo$List,
       options: MethodOptions | BodyResponseCallback<Schema$BillingInfoList>,
@@ -2083,12 +2476,17 @@ export namespace adexchangebuyer_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Billinginfo$List
-        | BodyResponseCallback<Schema$BillingInfoList>,
+        | BodyResponseCallback<Schema$BillingInfoList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BillingInfoList>,
-      callback?: BodyResponseCallback<Schema$BillingInfoList>
-    ): void | GaxiosPromise<Schema$BillingInfoList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingInfoList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingInfoList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BillingInfoList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Billinginfo$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2121,7 +2519,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BillingInfoList>(parameters, callback);
+        createAPIRequest<Schema$BillingInfoList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BillingInfoList>(parameters);
       }
@@ -2130,21 +2531,12 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Billinginfo$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account id.
      */
     accountId?: number;
   }
-  export interface Params$Resource$Billinginfo$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Billinginfo$List
+    extends StandardParameters {}
 
   export class Resource$Budget {
     context: APIRequestContext;
@@ -2155,6 +2547,53 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.budget.get
      * @desc Returns the budget information for the adgroup specified by the accountId and billingId.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.budget.get({
+     *     // The account id to get the budget information for.
+     *     accountId: 'placeholder-value',
+     *     // The billing id to get the budget information for.
+     *     billingId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "billingId": "my_billingId",
+     *   //   "budgetAmount": "my_budgetAmount",
+     *   //   "currencyCode": "my_currencyCode",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.budget.get
      * @memberOf! ()
      *
@@ -2166,9 +2605,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Budget$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Budget$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Budget>;
+    get(
+      params: Params$Resource$Budget$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Budget$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Budget>,
@@ -2182,10 +2630,17 @@ export namespace adexchangebuyer_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Budget$Get
-        | BodyResponseCallback<Schema$Budget>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Budget>,
-      callback?: BodyResponseCallback<Schema$Budget>
-    ): void | GaxiosPromise<Schema$Budget> {
+        | BodyResponseCallback<Schema$Budget>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Budget>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Budget>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Budget> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Budget$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2218,7 +2673,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Budget>(parameters, callback);
+        createAPIRequest<Schema$Budget>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Budget>(parameters);
       }
@@ -2227,21 +2685,90 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.budget.patch
      * @desc Updates the budget amount for the budget of the adgroup specified by the accountId and billingId, with the budget amount in the request. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.budget.patch({
+     *     // The account id associated with the budget being updated.
+     *     accountId: 'placeholder-value',
+     *     // The billing id associated with the budget being updated.
+     *     billingId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "billingId": "my_billingId",
+     *       //   "budgetAmount": "my_budgetAmount",
+     *       //   "currencyCode": "my_currencyCode",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "billingId": "my_billingId",
+     *   //   "budgetAmount": "my_budgetAmount",
+     *   //   "currencyCode": "my_currencyCode",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.budget.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id associated with the budget being updated.
      * @param {string} params.billingId The billing id associated with the budget being updated.
-     * @param {().Budget} params.resource Request body data
+     * @param {().Budget} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Budget$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Budget$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Budget>;
+    patch(
+      params: Params$Resource$Budget$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Budget$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Budget>,
@@ -2255,10 +2782,17 @@ export namespace adexchangebuyer_v1_4 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Budget$Patch
-        | BodyResponseCallback<Schema$Budget>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Budget>,
-      callback?: BodyResponseCallback<Schema$Budget>
-    ): void | GaxiosPromise<Schema$Budget> {
+        | BodyResponseCallback<Schema$Budget>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Budget>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Budget>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Budget> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Budget$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2291,7 +2825,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Budget>(parameters, callback);
+        createAPIRequest<Schema$Budget>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Budget>(parameters);
       }
@@ -2300,21 +2837,90 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.budget.update
      * @desc Updates the budget amount for the budget of the adgroup specified by the accountId and billingId, with the budget amount in the request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.budget.update({
+     *     // The account id associated with the budget being updated.
+     *     accountId: 'placeholder-value',
+     *     // The billing id associated with the budget being updated.
+     *     billingId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "billingId": "my_billingId",
+     *       //   "budgetAmount": "my_budgetAmount",
+     *       //   "currencyCode": "my_currencyCode",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "billingId": "my_billingId",
+     *   //   "budgetAmount": "my_budgetAmount",
+     *   //   "currencyCode": "my_currencyCode",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.budget.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id associated with the budget being updated.
      * @param {string} params.billingId The billing id associated with the budget being updated.
-     * @param {().Budget} params.resource Request body data
+     * @param {().Budget} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Budget$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Budget$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Budget>;
+    update(
+      params: Params$Resource$Budget$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Budget$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Budget>,
@@ -2328,10 +2934,17 @@ export namespace adexchangebuyer_v1_4 {
     update(
       paramsOrCallback?:
         | Params$Resource$Budget$Update
-        | BodyResponseCallback<Schema$Budget>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Budget>,
-      callback?: BodyResponseCallback<Schema$Budget>
-    ): void | GaxiosPromise<Schema$Budget> {
+        | BodyResponseCallback<Schema$Budget>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Budget>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Budget>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Budget> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Budget$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2364,7 +2977,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Budget>(parameters, callback);
+        createAPIRequest<Schema$Budget>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Budget>(parameters);
       }
@@ -2372,11 +2988,6 @@ export namespace adexchangebuyer_v1_4 {
   }
 
   export interface Params$Resource$Budget$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account id to get the budget information for.
      */
@@ -2387,11 +2998,6 @@ export namespace adexchangebuyer_v1_4 {
     billingId?: string;
   }
   export interface Params$Resource$Budget$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account id associated with the budget being updated.
      */
@@ -2407,11 +3013,6 @@ export namespace adexchangebuyer_v1_4 {
     requestBody?: Schema$Budget;
   }
   export interface Params$Resource$Budget$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account id associated with the budget being updated.
      */
@@ -2436,6 +3037,45 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.creatives.addDeal
      * @desc Add a deal id association for the creative.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.addDeal({
+     *     // The id for the account that will serve this creative.
+     *     accountId: 'placeholder-value',
+     *     // The buyer-specific id for this creative.
+     *     buyerCreativeId: 'placeholder-value',
+     *     // The id of the deal id to associate with this creative.
+     *     dealId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.addDeal
      * @memberOf! ()
      *
@@ -2448,9 +3088,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     addDeal(
+      params: Params$Resource$Creatives$Adddeal,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addDeal(
       params?: Params$Resource$Creatives$Adddeal,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    addDeal(
+      params: Params$Resource$Creatives$Adddeal,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addDeal(
       params: Params$Resource$Creatives$Adddeal,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2464,10 +3113,15 @@ export namespace adexchangebuyer_v1_4 {
     addDeal(
       paramsOrCallback?:
         | Params$Resource$Creatives$Adddeal
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creatives$Adddeal;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2501,7 +3155,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2510,6 +3167,78 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.creatives.get
      * @desc Gets the status for a single creative. A creative will be available 30-40 minutes after submission.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.get({
+     *     // The id for the account that will serve this creative.
+     *     accountId: 'placeholder-value',
+     *     // The buyer-specific id for this creative.
+     *     buyerCreativeId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "HTMLSnippet": "my_HTMLSnippet",
+     *   //   "accountId": 0,
+     *   //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
+     *   //   "adTechnologyProviders": {},
+     *   //   "advertiserId": [],
+     *   //   "advertiserName": "my_advertiserName",
+     *   //   "agencyId": "my_agencyId",
+     *   //   "apiUploadTimestamp": "my_apiUploadTimestamp",
+     *   //   "attribute": [],
+     *   //   "buyerCreativeId": "my_buyerCreativeId",
+     *   //   "clickThroughUrl": [],
+     *   //   "corrections": [],
+     *   //   "creativeStatusIdentityType": "my_creativeStatusIdentityType",
+     *   //   "dealsStatus": "my_dealsStatus",
+     *   //   "detectedDomains": [],
+     *   //   "filteringReasons": {},
+     *   //   "height": 0,
+     *   //   "impressionTrackingUrl": [],
+     *   //   "kind": "my_kind",
+     *   //   "languages": [],
+     *   //   "nativeAd": {},
+     *   //   "openAuctionStatus": "my_openAuctionStatus",
+     *   //   "productCategories": [],
+     *   //   "restrictedCategories": [],
+     *   //   "sensitiveCategories": [],
+     *   //   "servingRestrictions": [],
+     *   //   "vendorType": [],
+     *   //   "version": 0,
+     *   //   "videoURL": "my_videoURL",
+     *   //   "videoVastXML": "my_videoVastXML",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.get
      * @memberOf! ()
      *
@@ -2521,9 +3250,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Creatives$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Creatives$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Creative>;
+    get(
+      params: Params$Resource$Creatives$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Creatives$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Creative>,
@@ -2537,10 +3275,17 @@ export namespace adexchangebuyer_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Creatives$Get
-        | BodyResponseCallback<Schema$Creative>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
-      callback?: BodyResponseCallback<Schema$Creative>
-    ): void | GaxiosPromise<Schema$Creative> {
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2573,7 +3318,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Creative>(parameters, callback);
+        createAPIRequest<Schema$Creative>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
       }
@@ -2582,19 +3330,133 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.creatives.insert
      * @desc Submit a new creative.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "HTMLSnippet": "my_HTMLSnippet",
+     *       //   "accountId": 0,
+     *       //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
+     *       //   "adTechnologyProviders": {},
+     *       //   "advertiserId": [],
+     *       //   "advertiserName": "my_advertiserName",
+     *       //   "agencyId": "my_agencyId",
+     *       //   "apiUploadTimestamp": "my_apiUploadTimestamp",
+     *       //   "attribute": [],
+     *       //   "buyerCreativeId": "my_buyerCreativeId",
+     *       //   "clickThroughUrl": [],
+     *       //   "corrections": [],
+     *       //   "creativeStatusIdentityType": "my_creativeStatusIdentityType",
+     *       //   "dealsStatus": "my_dealsStatus",
+     *       //   "detectedDomains": [],
+     *       //   "filteringReasons": {},
+     *       //   "height": 0,
+     *       //   "impressionTrackingUrl": [],
+     *       //   "kind": "my_kind",
+     *       //   "languages": [],
+     *       //   "nativeAd": {},
+     *       //   "openAuctionStatus": "my_openAuctionStatus",
+     *       //   "productCategories": [],
+     *       //   "restrictedCategories": [],
+     *       //   "sensitiveCategories": [],
+     *       //   "servingRestrictions": [],
+     *       //   "vendorType": [],
+     *       //   "version": 0,
+     *       //   "videoURL": "my_videoURL",
+     *       //   "videoVastXML": "my_videoVastXML",
+     *       //   "width": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "HTMLSnippet": "my_HTMLSnippet",
+     *   //   "accountId": 0,
+     *   //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
+     *   //   "adTechnologyProviders": {},
+     *   //   "advertiserId": [],
+     *   //   "advertiserName": "my_advertiserName",
+     *   //   "agencyId": "my_agencyId",
+     *   //   "apiUploadTimestamp": "my_apiUploadTimestamp",
+     *   //   "attribute": [],
+     *   //   "buyerCreativeId": "my_buyerCreativeId",
+     *   //   "clickThroughUrl": [],
+     *   //   "corrections": [],
+     *   //   "creativeStatusIdentityType": "my_creativeStatusIdentityType",
+     *   //   "dealsStatus": "my_dealsStatus",
+     *   //   "detectedDomains": [],
+     *   //   "filteringReasons": {},
+     *   //   "height": 0,
+     *   //   "impressionTrackingUrl": [],
+     *   //   "kind": "my_kind",
+     *   //   "languages": [],
+     *   //   "nativeAd": {},
+     *   //   "openAuctionStatus": "my_openAuctionStatus",
+     *   //   "productCategories": [],
+     *   //   "restrictedCategories": [],
+     *   //   "sensitiveCategories": [],
+     *   //   "servingRestrictions": [],
+     *   //   "vendorType": [],
+     *   //   "version": 0,
+     *   //   "videoURL": "my_videoURL",
+     *   //   "videoVastXML": "my_videoVastXML",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Creative} params.resource Request body data
+     * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Creatives$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Creatives$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Creative>;
+    insert(
+      params: Params$Resource$Creatives$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Creatives$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Creative>,
@@ -2608,10 +3470,17 @@ export namespace adexchangebuyer_v1_4 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Creatives$Insert
-        | BodyResponseCallback<Schema$Creative>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
-      callback?: BodyResponseCallback<Schema$Creative>
-    ): void | GaxiosPromise<Schema$Creative> {
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2644,7 +3513,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Creative>(parameters, callback);
+        createAPIRequest<Schema$Creative>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
       }
@@ -2653,6 +3525,58 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.creatives.list
      * @desc Retrieves a list of the authenticated user's active creatives. A creative will be available 30-40 minutes after submission.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.list({
+     *     // When specified, only creatives for the given account ids are returned.
+     *     accountId: 'placeholder-value',
+     *     // When specified, only creatives for the given buyer creative ids are returned.
+     *     buyerCreativeId: 'placeholder-value',
+     *     // When specified, only creatives having the given deals status are returned.
+     *     dealsStatusFilter: 'placeholder-value',
+     *     // Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // When specified, only creatives having the given open auction status are returned.
+     *     openAuctionStatusFilter: 'placeholder-value',
+     *     // A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.list
      * @memberOf! ()
      *
@@ -2668,9 +3592,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Creatives$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Creatives$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CreativesList>;
+    list(
+      params: Params$Resource$Creatives$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Creatives$List,
       options: MethodOptions | BodyResponseCallback<Schema$CreativesList>,
@@ -2684,12 +3617,17 @@ export namespace adexchangebuyer_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Creatives$List
-        | BodyResponseCallback<Schema$CreativesList>,
+        | BodyResponseCallback<Schema$CreativesList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CreativesList>,
-      callback?: BodyResponseCallback<Schema$CreativesList>
-    ): void | GaxiosPromise<Schema$CreativesList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreativesList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreativesList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CreativesList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2722,7 +3660,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CreativesList>(parameters, callback);
+        createAPIRequest<Schema$CreativesList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CreativesList>(parameters);
       }
@@ -2731,6 +3672,49 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.creatives.listDeals
      * @desc Lists the external deal ids associated with the creative.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.listDeals({
+     *     // The id for the account that will serve this creative.
+     *     accountId: 'placeholder-value',
+     *     // The buyer-specific id for this creative.
+     *     buyerCreativeId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dealStatuses": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.listDeals
      * @memberOf! ()
      *
@@ -2742,9 +3726,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     listDeals(
+      params: Params$Resource$Creatives$Listdeals,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listDeals(
       params?: Params$Resource$Creatives$Listdeals,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CreativeDealIds>;
+    listDeals(
+      params: Params$Resource$Creatives$Listdeals,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listDeals(
       params: Params$Resource$Creatives$Listdeals,
       options: MethodOptions | BodyResponseCallback<Schema$CreativeDealIds>,
@@ -2758,12 +3751,17 @@ export namespace adexchangebuyer_v1_4 {
     listDeals(
       paramsOrCallback?:
         | Params$Resource$Creatives$Listdeals
-        | BodyResponseCallback<Schema$CreativeDealIds>,
+        | BodyResponseCallback<Schema$CreativeDealIds>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CreativeDealIds>,
-      callback?: BodyResponseCallback<Schema$CreativeDealIds>
-    ): void | GaxiosPromise<Schema$CreativeDealIds> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreativeDealIds>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreativeDealIds>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CreativeDealIds> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creatives$Listdeals;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2797,7 +3795,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CreativeDealIds>(parameters, callback);
+        createAPIRequest<Schema$CreativeDealIds>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CreativeDealIds>(parameters);
       }
@@ -2806,6 +3807,45 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.creatives.removeDeal
      * @desc Remove a deal id associated with the creative.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.creatives.removeDeal({
+     *     // The id for the account that will serve this creative.
+     *     accountId: 'placeholder-value',
+     *     // The buyer-specific id for this creative.
+     *     buyerCreativeId: 'placeholder-value',
+     *     // The id of the deal id to disassociate with this creative.
+     *     dealId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.creatives.removeDeal
      * @memberOf! ()
      *
@@ -2818,9 +3858,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     removeDeal(
+      params: Params$Resource$Creatives$Removedeal,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeDeal(
       params?: Params$Resource$Creatives$Removedeal,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    removeDeal(
+      params: Params$Resource$Creatives$Removedeal,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     removeDeal(
       params: Params$Resource$Creatives$Removedeal,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2834,10 +3883,15 @@ export namespace adexchangebuyer_v1_4 {
     removeDeal(
       paramsOrCallback?:
         | Params$Resource$Creatives$Removedeal
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creatives$Removedeal;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2871,7 +3925,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2880,11 +3937,6 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Creatives$Adddeal
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The id for the account that will serve this creative.
      */
@@ -2900,11 +3952,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Creatives$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The id for the account that will serve this creative.
      */
     accountId?: number;
@@ -2915,21 +3962,11 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Creatives$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Creative;
   }
   export interface Params$Resource$Creatives$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When specified, only creatives for the given account ids are returned.
      */
@@ -2958,11 +3995,6 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Creatives$Listdeals
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The id for the account that will serve this creative.
      */
     accountId?: number;
@@ -2973,11 +4005,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Creatives$Removedeal
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The id for the account that will serve this creative.
      */
@@ -3001,20 +4028,80 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplacedeals.delete
      * @desc Delete the specified deals from the proposal
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplacedeals.delete({
+     *     // The proposalId to delete deals from.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dealIds": [],
+     *       //   "proposalRevisionNumber": "my_proposalRevisionNumber",
+     *       //   "updateAction": "my_updateAction"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deals": [],
+     *   //   "proposalRevisionNumber": "my_proposalRevisionNumber"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplacedeals.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.proposalId The proposalId to delete deals from.
-     * @param {().DeleteOrderDealsRequest} params.resource Request body data
+     * @param {().DeleteOrderDealsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Marketplacedeals$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Marketplacedeals$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DeleteOrderDealsResponse>;
+    delete(
+      params: Params$Resource$Marketplacedeals$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Marketplacedeals$Delete,
       options:
@@ -3032,12 +4119,20 @@ export namespace adexchangebuyer_v1_4 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Marketplacedeals$Delete
-        | BodyResponseCallback<Schema$DeleteOrderDealsResponse>,
+        | BodyResponseCallback<Schema$DeleteOrderDealsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DeleteOrderDealsResponse>,
-      callback?: BodyResponseCallback<Schema$DeleteOrderDealsResponse>
-    ): void | GaxiosPromise<Schema$DeleteOrderDealsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeleteOrderDealsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeleteOrderDealsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DeleteOrderDealsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Marketplacedeals$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3071,7 +4166,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DeleteOrderDealsResponse>(parameters, callback);
+        createAPIRequest<Schema$DeleteOrderDealsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DeleteOrderDealsResponse>(parameters);
       }
@@ -3080,20 +4178,80 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplacedeals.insert
      * @desc Add new deals for the specified proposal
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplacedeals.insert({
+     *     // proposalId for which deals need to be added.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deals": [],
+     *       //   "proposalRevisionNumber": "my_proposalRevisionNumber",
+     *       //   "updateAction": "my_updateAction"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deals": [],
+     *   //   "proposalRevisionNumber": "my_proposalRevisionNumber"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplacedeals.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.proposalId proposalId for which deals need to be added.
-     * @param {().AddOrderDealsRequest} params.resource Request body data
+     * @param {().AddOrderDealsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Marketplacedeals$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Marketplacedeals$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AddOrderDealsResponse>;
+    insert(
+      params: Params$Resource$Marketplacedeals$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Marketplacedeals$Insert,
       options:
@@ -3109,12 +4267,20 @@ export namespace adexchangebuyer_v1_4 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Marketplacedeals$Insert
-        | BodyResponseCallback<Schema$AddOrderDealsResponse>,
+        | BodyResponseCallback<Schema$AddOrderDealsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AddOrderDealsResponse>,
-      callback?: BodyResponseCallback<Schema$AddOrderDealsResponse>
-    ): void | GaxiosPromise<Schema$AddOrderDealsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOrderDealsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOrderDealsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AddOrderDealsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Marketplacedeals$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3148,7 +4314,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AddOrderDealsResponse>(parameters, callback);
+        createAPIRequest<Schema$AddOrderDealsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AddOrderDealsResponse>(parameters);
       }
@@ -3157,6 +4326,48 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplacedeals.list
      * @desc List all the deals for a given proposal
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplacedeals.list({
+     *     // Query string to retrieve specific deals.
+     *     pqlQuery: 'placeholder-value',
+     *     // The proposalId to get deals for. To search across all proposals specify order_id = '-' as part of the URL.
+     *     proposalId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deals": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplacedeals.list
      * @memberOf! ()
      *
@@ -3168,9 +4379,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Marketplacedeals$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Marketplacedeals$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetOrderDealsResponse>;
+    list(
+      params: Params$Resource$Marketplacedeals$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Marketplacedeals$List,
       options:
@@ -3186,12 +4406,20 @@ export namespace adexchangebuyer_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Marketplacedeals$List
-        | BodyResponseCallback<Schema$GetOrderDealsResponse>,
+        | BodyResponseCallback<Schema$GetOrderDealsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetOrderDealsResponse>,
-      callback?: BodyResponseCallback<Schema$GetOrderDealsResponse>
-    ): void | GaxiosPromise<Schema$GetOrderDealsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetOrderDealsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetOrderDealsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetOrderDealsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Marketplacedeals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3224,7 +4452,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetOrderDealsResponse>(parameters, callback);
+        createAPIRequest<Schema$GetOrderDealsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetOrderDealsResponse>(parameters);
       }
@@ -3233,20 +4464,81 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplacedeals.update
      * @desc Replaces all the deals in the proposal with the passed in deals
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplacedeals.update({
+     *     // The proposalId to edit deals on.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deals": [],
+     *       //   "proposal": {},
+     *       //   "proposalRevisionNumber": "my_proposalRevisionNumber",
+     *       //   "updateAction": "my_updateAction"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deals": [],
+     *   //   "orderRevisionNumber": "my_orderRevisionNumber"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplacedeals.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.proposalId The proposalId to edit deals on.
-     * @param {().EditAllOrderDealsRequest} params.resource Request body data
+     * @param {().EditAllOrderDealsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Marketplacedeals$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Marketplacedeals$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EditAllOrderDealsResponse>;
+    update(
+      params: Params$Resource$Marketplacedeals$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Marketplacedeals$Update,
       options:
@@ -3264,12 +4556,20 @@ export namespace adexchangebuyer_v1_4 {
     update(
       paramsOrCallback?:
         | Params$Resource$Marketplacedeals$Update
-        | BodyResponseCallback<Schema$EditAllOrderDealsResponse>,
+        | BodyResponseCallback<Schema$EditAllOrderDealsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EditAllOrderDealsResponse>,
-      callback?: BodyResponseCallback<Schema$EditAllOrderDealsResponse>
-    ): void | GaxiosPromise<Schema$EditAllOrderDealsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EditAllOrderDealsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EditAllOrderDealsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EditAllOrderDealsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Marketplacedeals$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3305,7 +4605,7 @@ export namespace adexchangebuyer_v1_4 {
       if (callback) {
         createAPIRequest<Schema$EditAllOrderDealsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$EditAllOrderDealsResponse>(parameters);
@@ -3315,11 +4615,6 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Marketplacedeals$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The proposalId to delete deals from.
      */
@@ -3333,11 +4628,6 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Marketplacedeals$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * proposalId for which deals need to be added.
      */
     proposalId?: string;
@@ -3350,11 +4640,6 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Marketplacedeals$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Query string to retrieve specific deals.
      */
     pqlQuery?: string;
@@ -3365,11 +4650,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Marketplacedeals$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The proposalId to edit deals on.
      */
@@ -3390,20 +4670,77 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplacenotes.insert
      * @desc Add notes to the proposal
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplacenotes.insert({
+     *     // The proposalId to add notes for.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "notes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "notes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplacenotes.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.proposalId The proposalId to add notes for.
-     * @param {().AddOrderNotesRequest} params.resource Request body data
+     * @param {().AddOrderNotesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Marketplacenotes$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Marketplacenotes$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AddOrderNotesResponse>;
+    insert(
+      params: Params$Resource$Marketplacenotes$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Marketplacenotes$Insert,
       options:
@@ -3419,12 +4756,20 @@ export namespace adexchangebuyer_v1_4 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Marketplacenotes$Insert
-        | BodyResponseCallback<Schema$AddOrderNotesResponse>,
+        | BodyResponseCallback<Schema$AddOrderNotesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AddOrderNotesResponse>,
-      callback?: BodyResponseCallback<Schema$AddOrderNotesResponse>
-    ): void | GaxiosPromise<Schema$AddOrderNotesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOrderNotesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOrderNotesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AddOrderNotesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Marketplacenotes$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3458,7 +4803,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AddOrderNotesResponse>(parameters, callback);
+        createAPIRequest<Schema$AddOrderNotesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AddOrderNotesResponse>(parameters);
       }
@@ -3467,6 +4815,48 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplacenotes.list
      * @desc Get all the notes associated with a proposal
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplacenotes.list({
+     *     // Query string to retrieve specific notes. To search the text contents of notes, please use syntax like "WHERE note.note = "foo" or "WHERE note.note LIKE "%bar%"
+     *     pqlQuery: 'placeholder-value',
+     *     // The proposalId to get notes for. To search across all proposals specify order_id = '-' as part of the URL.
+     *     proposalId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "notes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplacenotes.list
      * @memberOf! ()
      *
@@ -3478,9 +4868,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Marketplacenotes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Marketplacenotes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetOrderNotesResponse>;
+    list(
+      params: Params$Resource$Marketplacenotes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Marketplacenotes$List,
       options:
@@ -3496,12 +4895,20 @@ export namespace adexchangebuyer_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Marketplacenotes$List
-        | BodyResponseCallback<Schema$GetOrderNotesResponse>,
+        | BodyResponseCallback<Schema$GetOrderNotesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetOrderNotesResponse>,
-      callback?: BodyResponseCallback<Schema$GetOrderNotesResponse>
-    ): void | GaxiosPromise<Schema$GetOrderNotesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetOrderNotesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetOrderNotesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetOrderNotesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Marketplacenotes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3534,7 +4941,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetOrderNotesResponse>(parameters, callback);
+        createAPIRequest<Schema$GetOrderNotesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetOrderNotesResponse>(parameters);
       }
@@ -3543,11 +4953,6 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Marketplacenotes$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The proposalId to add notes for.
      */
@@ -3560,11 +4965,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Marketplacenotes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Query string to retrieve specific notes. To search the text contents of notes, please use syntax like "WHERE note.note = "foo" or "WHERE note.note LIKE "%bar%"
      */
@@ -3584,20 +4984,75 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.marketplaceprivateauction.updateproposal
      * @desc Update a given private auction proposal
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.marketplaceprivateauction.updateproposal({
+     *     // The private auction id to be updated.
+     *     privateAuctionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "externalDealId": "my_externalDealId",
+     *       //   "note": {},
+     *       //   "proposalRevisionNumber": "my_proposalRevisionNumber",
+     *       //   "updateAction": "my_updateAction"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.marketplaceprivateauction.updateproposal
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.privateAuctionId The private auction id to be updated.
-     * @param {().UpdatePrivateAuctionProposalRequest} params.resource Request body data
+     * @param {().UpdatePrivateAuctionProposalRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     updateproposal(
+      params: Params$Resource$Marketplaceprivateauction$Updateproposal,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateproposal(
       params?: Params$Resource$Marketplaceprivateauction$Updateproposal,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    updateproposal(
+      params: Params$Resource$Marketplaceprivateauction$Updateproposal,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateproposal(
       params: Params$Resource$Marketplaceprivateauction$Updateproposal,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3611,10 +5066,15 @@ export namespace adexchangebuyer_v1_4 {
     updateproposal(
       paramsOrCallback?:
         | Params$Resource$Marketplaceprivateauction$Updateproposal
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Marketplaceprivateauction$Updateproposal;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3648,7 +5108,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3657,11 +5120,6 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Marketplaceprivateauction$Updateproposal
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The private auction id to be updated.
      */
@@ -3682,6 +5140,55 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.performanceReport.list
      * @desc Retrieves the authenticated user's list of performance metrics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.performanceReport.list({
+     *     // The account id to get the reports.
+     *     accountId: 'placeholder-value',
+     *     // The end time of the report in ISO 8601 timestamp format using UTC.
+     *     endDateTime: 'placeholder-value',
+     *     // Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through performance reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // The start time of the report in ISO 8601 timestamp format using UTC.
+     *     startDateTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "performanceReport": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.performanceReport.list
      * @memberOf! ()
      *
@@ -3696,9 +5203,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Performancereport$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Performancereport$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PerformanceReportList>;
+    list(
+      params: Params$Resource$Performancereport$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Performancereport$List,
       options:
@@ -3714,12 +5230,20 @@ export namespace adexchangebuyer_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Performancereport$List
-        | BodyResponseCallback<Schema$PerformanceReportList>,
+        | BodyResponseCallback<Schema$PerformanceReportList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PerformanceReportList>,
-      callback?: BodyResponseCallback<Schema$PerformanceReportList>
-    ): void | GaxiosPromise<Schema$PerformanceReportList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PerformanceReportList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PerformanceReportList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PerformanceReportList>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Performancereport$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3753,7 +5277,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PerformanceReportList>(parameters, callback);
+        createAPIRequest<Schema$PerformanceReportList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PerformanceReportList>(parameters);
       }
@@ -3762,11 +5289,6 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Performancereport$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account id to get the reports.
      */
@@ -3798,6 +5320,43 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pretargetingConfig.delete
      * @desc Deletes an existing pretargeting config.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pretargetingConfig.delete({
+     *     // The account id to delete the pretargeting config for.
+     *     accountId: 'placeholder-value',
+     *     // The specific id of the configuration to delete.
+     *     configId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pretargetingConfig.delete
      * @memberOf! ()
      *
@@ -3809,9 +5368,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Pretargetingconfig$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Pretargetingconfig$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Pretargetingconfig$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Pretargetingconfig$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3825,10 +5393,15 @@ export namespace adexchangebuyer_v1_4 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Pretargetingconfig$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pretargetingconfig$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3862,7 +5435,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3871,6 +5447,74 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pretargetingConfig.get
      * @desc Gets a specific pretargeting configuration
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pretargetingConfig.get({
+     *     // The account id to get the pretargeting config for.
+     *     accountId: 'placeholder-value',
+     *     // The specific id of the configuration to retrieve.
+     *     configId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingId": "my_billingId",
+     *   //   "configId": "my_configId",
+     *   //   "configName": "my_configName",
+     *   //   "creativeType": [],
+     *   //   "dimensions": [],
+     *   //   "excludedContentLabels": [],
+     *   //   "excludedGeoCriteriaIds": [],
+     *   //   "excludedPlacements": [],
+     *   //   "excludedUserLists": [],
+     *   //   "excludedVerticals": [],
+     *   //   "geoCriteriaIds": [],
+     *   //   "isActive": false,
+     *   //   "kind": "my_kind",
+     *   //   "languages": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "mobileCarriers": [],
+     *   //   "mobileDevices": [],
+     *   //   "mobileOperatingSystemVersions": [],
+     *   //   "placements": [],
+     *   //   "platforms": [],
+     *   //   "supportedCreativeAttributes": [],
+     *   //   "userIdentifierDataRequired": [],
+     *   //   "userLists": [],
+     *   //   "vendorTypes": [],
+     *   //   "verticals": [],
+     *   //   "videoPlayerSizes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pretargetingConfig.get
      * @memberOf! ()
      *
@@ -3882,9 +5526,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Pretargetingconfig$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Pretargetingconfig$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PretargetingConfig>;
+    get(
+      params: Params$Resource$Pretargetingconfig$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Pretargetingconfig$Get,
       options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
@@ -3898,12 +5551,20 @@ export namespace adexchangebuyer_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Pretargetingconfig$Get
-        | BodyResponseCallback<Schema$PretargetingConfig>,
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PretargetingConfig>,
-      callback?: BodyResponseCallback<Schema$PretargetingConfig>
-    ): void | GaxiosPromise<Schema$PretargetingConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pretargetingconfig$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3937,7 +5598,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PretargetingConfig>(parameters, callback);
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PretargetingConfig>(parameters);
       }
@@ -3946,20 +5610,129 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pretargetingConfig.insert
      * @desc Inserts a new pretargeting configuration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pretargetingConfig.insert({
+     *     // The account id to insert the pretargeting config for.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billingId": "my_billingId",
+     *       //   "configId": "my_configId",
+     *       //   "configName": "my_configName",
+     *       //   "creativeType": [],
+     *       //   "dimensions": [],
+     *       //   "excludedContentLabels": [],
+     *       //   "excludedGeoCriteriaIds": [],
+     *       //   "excludedPlacements": [],
+     *       //   "excludedUserLists": [],
+     *       //   "excludedVerticals": [],
+     *       //   "geoCriteriaIds": [],
+     *       //   "isActive": false,
+     *       //   "kind": "my_kind",
+     *       //   "languages": [],
+     *       //   "maximumQps": "my_maximumQps",
+     *       //   "minimumViewabilityDecile": 0,
+     *       //   "mobileCarriers": [],
+     *       //   "mobileDevices": [],
+     *       //   "mobileOperatingSystemVersions": [],
+     *       //   "placements": [],
+     *       //   "platforms": [],
+     *       //   "supportedCreativeAttributes": [],
+     *       //   "userIdentifierDataRequired": [],
+     *       //   "userLists": [],
+     *       //   "vendorTypes": [],
+     *       //   "verticals": [],
+     *       //   "videoPlayerSizes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingId": "my_billingId",
+     *   //   "configId": "my_configId",
+     *   //   "configName": "my_configName",
+     *   //   "creativeType": [],
+     *   //   "dimensions": [],
+     *   //   "excludedContentLabels": [],
+     *   //   "excludedGeoCriteriaIds": [],
+     *   //   "excludedPlacements": [],
+     *   //   "excludedUserLists": [],
+     *   //   "excludedVerticals": [],
+     *   //   "geoCriteriaIds": [],
+     *   //   "isActive": false,
+     *   //   "kind": "my_kind",
+     *   //   "languages": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "mobileCarriers": [],
+     *   //   "mobileDevices": [],
+     *   //   "mobileOperatingSystemVersions": [],
+     *   //   "placements": [],
+     *   //   "platforms": [],
+     *   //   "supportedCreativeAttributes": [],
+     *   //   "userIdentifierDataRequired": [],
+     *   //   "userLists": [],
+     *   //   "vendorTypes": [],
+     *   //   "verticals": [],
+     *   //   "videoPlayerSizes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pretargetingConfig.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to insert the pretargeting config for.
-     * @param {().PretargetingConfig} params.resource Request body data
+     * @param {().PretargetingConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Pretargetingconfig$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Pretargetingconfig$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PretargetingConfig>;
+    insert(
+      params: Params$Resource$Pretargetingconfig$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Pretargetingconfig$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
@@ -3973,12 +5746,20 @@ export namespace adexchangebuyer_v1_4 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Pretargetingconfig$Insert
-        | BodyResponseCallback<Schema$PretargetingConfig>,
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PretargetingConfig>,
-      callback?: BodyResponseCallback<Schema$PretargetingConfig>
-    ): void | GaxiosPromise<Schema$PretargetingConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pretargetingconfig$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4011,7 +5792,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PretargetingConfig>(parameters, callback);
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PretargetingConfig>(parameters);
       }
@@ -4020,6 +5804,47 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pretargetingConfig.list
      * @desc Retrieves a list of the authenticated user's pretargeting configurations.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pretargetingConfig.list({
+     *     // The account id to get the pretargeting configs for.
+     *     accountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pretargetingConfig.list
      * @memberOf! ()
      *
@@ -4030,9 +5855,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Pretargetingconfig$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Pretargetingconfig$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PretargetingConfigList>;
+    list(
+      params: Params$Resource$Pretargetingconfig$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Pretargetingconfig$List,
       options:
@@ -4048,12 +5882,20 @@ export namespace adexchangebuyer_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Pretargetingconfig$List
-        | BodyResponseCallback<Schema$PretargetingConfigList>,
+        | BodyResponseCallback<Schema$PretargetingConfigList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PretargetingConfigList>,
-      callback?: BodyResponseCallback<Schema$PretargetingConfigList>
-    ): void | GaxiosPromise<Schema$PretargetingConfigList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfigList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfigList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfigList>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pretargetingconfig$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4086,7 +5928,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PretargetingConfigList>(parameters, callback);
+        createAPIRequest<Schema$PretargetingConfigList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PretargetingConfigList>(parameters);
       }
@@ -4095,21 +5940,132 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pretargetingConfig.patch
      * @desc Updates an existing pretargeting config. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pretargetingConfig.patch({
+     *     // The account id to update the pretargeting config for.
+     *     accountId: 'placeholder-value',
+     *     // The specific id of the configuration to update.
+     *     configId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billingId": "my_billingId",
+     *       //   "configId": "my_configId",
+     *       //   "configName": "my_configName",
+     *       //   "creativeType": [],
+     *       //   "dimensions": [],
+     *       //   "excludedContentLabels": [],
+     *       //   "excludedGeoCriteriaIds": [],
+     *       //   "excludedPlacements": [],
+     *       //   "excludedUserLists": [],
+     *       //   "excludedVerticals": [],
+     *       //   "geoCriteriaIds": [],
+     *       //   "isActive": false,
+     *       //   "kind": "my_kind",
+     *       //   "languages": [],
+     *       //   "maximumQps": "my_maximumQps",
+     *       //   "minimumViewabilityDecile": 0,
+     *       //   "mobileCarriers": [],
+     *       //   "mobileDevices": [],
+     *       //   "mobileOperatingSystemVersions": [],
+     *       //   "placements": [],
+     *       //   "platforms": [],
+     *       //   "supportedCreativeAttributes": [],
+     *       //   "userIdentifierDataRequired": [],
+     *       //   "userLists": [],
+     *       //   "vendorTypes": [],
+     *       //   "verticals": [],
+     *       //   "videoPlayerSizes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingId": "my_billingId",
+     *   //   "configId": "my_configId",
+     *   //   "configName": "my_configName",
+     *   //   "creativeType": [],
+     *   //   "dimensions": [],
+     *   //   "excludedContentLabels": [],
+     *   //   "excludedGeoCriteriaIds": [],
+     *   //   "excludedPlacements": [],
+     *   //   "excludedUserLists": [],
+     *   //   "excludedVerticals": [],
+     *   //   "geoCriteriaIds": [],
+     *   //   "isActive": false,
+     *   //   "kind": "my_kind",
+     *   //   "languages": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "mobileCarriers": [],
+     *   //   "mobileDevices": [],
+     *   //   "mobileOperatingSystemVersions": [],
+     *   //   "placements": [],
+     *   //   "platforms": [],
+     *   //   "supportedCreativeAttributes": [],
+     *   //   "userIdentifierDataRequired": [],
+     *   //   "userLists": [],
+     *   //   "vendorTypes": [],
+     *   //   "verticals": [],
+     *   //   "videoPlayerSizes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pretargetingConfig.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to update the pretargeting config for.
      * @param {string} params.configId The specific id of the configuration to update.
-     * @param {().PretargetingConfig} params.resource Request body data
+     * @param {().PretargetingConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Pretargetingconfig$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Pretargetingconfig$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PretargetingConfig>;
+    patch(
+      params: Params$Resource$Pretargetingconfig$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Pretargetingconfig$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
@@ -4123,12 +6079,20 @@ export namespace adexchangebuyer_v1_4 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Pretargetingconfig$Patch
-        | BodyResponseCallback<Schema$PretargetingConfig>,
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PretargetingConfig>,
-      callback?: BodyResponseCallback<Schema$PretargetingConfig>
-    ): void | GaxiosPromise<Schema$PretargetingConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pretargetingconfig$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4162,7 +6126,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PretargetingConfig>(parameters, callback);
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PretargetingConfig>(parameters);
       }
@@ -4171,21 +6138,132 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pretargetingConfig.update
      * @desc Updates an existing pretargeting config.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pretargetingConfig.update({
+     *     // The account id to update the pretargeting config for.
+     *     accountId: 'placeholder-value',
+     *     // The specific id of the configuration to update.
+     *     configId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billingId": "my_billingId",
+     *       //   "configId": "my_configId",
+     *       //   "configName": "my_configName",
+     *       //   "creativeType": [],
+     *       //   "dimensions": [],
+     *       //   "excludedContentLabels": [],
+     *       //   "excludedGeoCriteriaIds": [],
+     *       //   "excludedPlacements": [],
+     *       //   "excludedUserLists": [],
+     *       //   "excludedVerticals": [],
+     *       //   "geoCriteriaIds": [],
+     *       //   "isActive": false,
+     *       //   "kind": "my_kind",
+     *       //   "languages": [],
+     *       //   "maximumQps": "my_maximumQps",
+     *       //   "minimumViewabilityDecile": 0,
+     *       //   "mobileCarriers": [],
+     *       //   "mobileDevices": [],
+     *       //   "mobileOperatingSystemVersions": [],
+     *       //   "placements": [],
+     *       //   "platforms": [],
+     *       //   "supportedCreativeAttributes": [],
+     *       //   "userIdentifierDataRequired": [],
+     *       //   "userLists": [],
+     *       //   "vendorTypes": [],
+     *       //   "verticals": [],
+     *       //   "videoPlayerSizes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingId": "my_billingId",
+     *   //   "configId": "my_configId",
+     *   //   "configName": "my_configName",
+     *   //   "creativeType": [],
+     *   //   "dimensions": [],
+     *   //   "excludedContentLabels": [],
+     *   //   "excludedGeoCriteriaIds": [],
+     *   //   "excludedPlacements": [],
+     *   //   "excludedUserLists": [],
+     *   //   "excludedVerticals": [],
+     *   //   "geoCriteriaIds": [],
+     *   //   "isActive": false,
+     *   //   "kind": "my_kind",
+     *   //   "languages": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "mobileCarriers": [],
+     *   //   "mobileDevices": [],
+     *   //   "mobileOperatingSystemVersions": [],
+     *   //   "placements": [],
+     *   //   "platforms": [],
+     *   //   "supportedCreativeAttributes": [],
+     *   //   "userIdentifierDataRequired": [],
+     *   //   "userLists": [],
+     *   //   "vendorTypes": [],
+     *   //   "verticals": [],
+     *   //   "videoPlayerSizes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pretargetingConfig.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to update the pretargeting config for.
      * @param {string} params.configId The specific id of the configuration to update.
-     * @param {().PretargetingConfig} params.resource Request body data
+     * @param {().PretargetingConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Pretargetingconfig$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Pretargetingconfig$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PretargetingConfig>;
+    update(
+      params: Params$Resource$Pretargetingconfig$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Pretargetingconfig$Update,
       options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
@@ -4199,12 +6277,20 @@ export namespace adexchangebuyer_v1_4 {
     update(
       paramsOrCallback?:
         | Params$Resource$Pretargetingconfig$Update
-        | BodyResponseCallback<Schema$PretargetingConfig>,
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PretargetingConfig>,
-      callback?: BodyResponseCallback<Schema$PretargetingConfig>
-    ): void | GaxiosPromise<Schema$PretargetingConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pretargetingconfig$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4238,7 +6324,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PretargetingConfig>(parameters, callback);
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PretargetingConfig>(parameters);
       }
@@ -4247,11 +6336,6 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Pretargetingconfig$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account id to delete the pretargeting config for.
      */
@@ -4264,11 +6348,6 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Pretargetingconfig$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account id to get the pretargeting config for.
      */
     accountId?: string;
@@ -4279,11 +6358,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Pretargetingconfig$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account id to insert the pretargeting config for.
      */
@@ -4297,22 +6371,12 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Pretargetingconfig$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account id to get the pretargeting configs for.
      */
     accountId?: string;
   }
   export interface Params$Resource$Pretargetingconfig$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account id to update the pretargeting config for.
      */
@@ -4329,11 +6393,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Pretargetingconfig$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account id to update the pretargeting config for.
      */
@@ -4358,6 +6417,72 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.products.get
      * @desc Gets the requested product by id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.products.get({
+     *     // The id for the product to get the head revision for.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "creationTimeMs": "my_creationTimeMs",
+     *   //   "creatorContacts": [],
+     *   //   "creatorRole": "my_creatorRole",
+     *   //   "deliveryControl": {},
+     *   //   "flightEndTimeMs": "my_flightEndTimeMs",
+     *   //   "flightStartTimeMs": "my_flightStartTimeMs",
+     *   //   "hasCreatorSignedOff": false,
+     *   //   "inventorySource": "my_inventorySource",
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "lastUpdateTimeMs": "my_lastUpdateTimeMs",
+     *   //   "legacyOfferId": "my_legacyOfferId",
+     *   //   "marketplacePublisherProfileId": "my_marketplacePublisherProfileId",
+     *   //   "name": "my_name",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "productId": "my_productId",
+     *   //   "publisherProfileId": "my_publisherProfileId",
+     *   //   "publisherProvidedForecast": {},
+     *   //   "revisionNumber": "my_revisionNumber",
+     *   //   "seller": {},
+     *   //   "sharedTargetings": [],
+     *   //   "state": "my_state",
+     *   //   "syndicationProduct": "my_syndicationProduct",
+     *   //   "terms": {},
+     *   //   "webPropertyCode": "my_webPropertyCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.products.get
      * @memberOf! ()
      *
@@ -4368,9 +6493,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Products$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Products$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Product>;
+    get(
+      params: Params$Resource$Products$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Products$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Product>,
@@ -4384,10 +6518,17 @@ export namespace adexchangebuyer_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Products$Get
-        | BodyResponseCallback<Schema$Product>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
-      callback?: BodyResponseCallback<Schema$Product>
-    ): void | GaxiosPromise<Schema$Product> {
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4419,7 +6560,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Product>(parameters, callback);
+        createAPIRequest<Schema$Product>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
       }
@@ -4428,6 +6572,46 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.products.search
      * @desc Gets the requested product.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.products.search({
+     *     // The pql query used to query for products.
+     *     pqlQuery: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "products": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.products.search
      * @memberOf! ()
      *
@@ -4438,9 +6622,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Products$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Products$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetOffersResponse>;
+    search(
+      params: Params$Resource$Products$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Products$Search,
       options: MethodOptions | BodyResponseCallback<Schema$GetOffersResponse>,
@@ -4454,12 +6647,20 @@ export namespace adexchangebuyer_v1_4 {
     search(
       paramsOrCallback?:
         | Params$Resource$Products$Search
-        | BodyResponseCallback<Schema$GetOffersResponse>,
+        | BodyResponseCallback<Schema$GetOffersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetOffersResponse>,
-      callback?: BodyResponseCallback<Schema$GetOffersResponse>
-    ): void | GaxiosPromise<Schema$GetOffersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetOffersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetOffersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetOffersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4492,7 +6693,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetOffersResponse>(parameters, callback);
+        createAPIRequest<Schema$GetOffersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetOffersResponse>(parameters);
       }
@@ -4501,21 +6705,11 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Products$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The id for the product to get the head revision for.
      */
     productId?: string;
   }
   export interface Params$Resource$Products$Search extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The pql query used to query for products.
      */
@@ -4531,6 +6725,68 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.proposals.get
      * @desc Get a proposal given its id
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.proposals.get({
+     *     // Id of the proposal to retrieve.
+     *     proposalId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "dbmAdvertiserIds": [],
+     *   //   "hasBuyerSignedOff": false,
+     *   //   "hasSellerSignedOff": false,
+     *   //   "inventorySource": "my_inventorySource",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "name": "my_name",
+     *   //   "negotiationId": "my_negotiationId",
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "revisionNumber": "my_revisionNumber",
+     *   //   "revisionTimeMs": "my_revisionTimeMs",
+     *   //   "seller": {},
+     *   //   "sellerContacts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.proposals.get
      * @memberOf! ()
      *
@@ -4541,9 +6797,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Proposals$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Proposals$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Proposal>;
+    get(
+      params: Params$Resource$Proposals$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Proposals$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Proposal>,
@@ -4557,10 +6822,17 @@ export namespace adexchangebuyer_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Proposals$Get
-        | BodyResponseCallback<Schema$Proposal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Proposal>,
-      callback?: BodyResponseCallback<Schema$Proposal>
-    ): void | GaxiosPromise<Schema$Proposal> {
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Proposals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4592,7 +6864,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Proposal>(parameters, callback);
+        createAPIRequest<Schema$Proposal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
       }
@@ -4601,19 +6876,74 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.proposals.insert
      * @desc Create the given list of proposals
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.proposals.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "proposals": [],
+     *       //   "webPropertyCode": "my_webPropertyCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "proposals": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.proposals.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().CreateOrdersRequest} params.resource Request body data
+     * @param {().CreateOrdersRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Proposals$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Proposals$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CreateOrdersResponse>;
+    insert(
+      params: Params$Resource$Proposals$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Proposals$Insert,
       options:
@@ -4629,12 +6959,20 @@ export namespace adexchangebuyer_v1_4 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Proposals$Insert
-        | BodyResponseCallback<Schema$CreateOrdersResponse>,
+        | BodyResponseCallback<Schema$CreateOrdersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CreateOrdersResponse>,
-      callback?: BodyResponseCallback<Schema$CreateOrdersResponse>
-    ): void | GaxiosPromise<Schema$CreateOrdersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreateOrdersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreateOrdersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CreateOrdersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Proposals$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4667,7 +7005,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CreateOrdersResponse>(parameters, callback);
+        createAPIRequest<Schema$CreateOrdersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CreateOrdersResponse>(parameters);
       }
@@ -4676,6 +7017,102 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.proposals.patch
      * @desc Update the given proposal. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.proposals.patch({
+     *     // The proposal id to update.
+     *     proposalId: 'placeholder-value',
+     *     // The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
+     *     revisionNumber: 'placeholder-value',
+     *     // The proposed action to take on the proposal. This field is required and it must be set when updating a proposal.
+     *     updateAction: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billedBuyer": {},
+     *       //   "buyer": {},
+     *       //   "buyerContacts": [],
+     *       //   "buyerPrivateData": {},
+     *       //   "dbmAdvertiserIds": [],
+     *       //   "hasBuyerSignedOff": false,
+     *       //   "hasSellerSignedOff": false,
+     *       //   "inventorySource": "my_inventorySource",
+     *       //   "isRenegotiating": false,
+     *       //   "isSetupComplete": false,
+     *       //   "kind": "my_kind",
+     *       //   "labels": [],
+     *       //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *       //   "name": "my_name",
+     *       //   "negotiationId": "my_negotiationId",
+     *       //   "originatorRole": "my_originatorRole",
+     *       //   "privateAuctionId": "my_privateAuctionId",
+     *       //   "proposalId": "my_proposalId",
+     *       //   "proposalState": "my_proposalState",
+     *       //   "revisionNumber": "my_revisionNumber",
+     *       //   "revisionTimeMs": "my_revisionTimeMs",
+     *       //   "seller": {},
+     *       //   "sellerContacts": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "dbmAdvertiserIds": [],
+     *   //   "hasBuyerSignedOff": false,
+     *   //   "hasSellerSignedOff": false,
+     *   //   "inventorySource": "my_inventorySource",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "name": "my_name",
+     *   //   "negotiationId": "my_negotiationId",
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "revisionNumber": "my_revisionNumber",
+     *   //   "revisionTimeMs": "my_revisionTimeMs",
+     *   //   "seller": {},
+     *   //   "sellerContacts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.proposals.patch
      * @memberOf! ()
      *
@@ -4683,15 +7120,24 @@ export namespace adexchangebuyer_v1_4 {
      * @param {string} params.proposalId The proposal id to update.
      * @param {string} params.revisionNumber The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
      * @param {string} params.updateAction The proposed action to take on the proposal. This field is required and it must be set when updating a proposal.
-     * @param {().Proposal} params.resource Request body data
+     * @param {().Proposal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Proposals$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Proposals$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Proposal>;
+    patch(
+      params: Params$Resource$Proposals$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Proposals$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Proposal>,
@@ -4705,10 +7151,17 @@ export namespace adexchangebuyer_v1_4 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Proposals$Patch
-        | BodyResponseCallback<Schema$Proposal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Proposal>,
-      callback?: BodyResponseCallback<Schema$Proposal>
-    ): void | GaxiosPromise<Schema$Proposal> {
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Proposals$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4741,7 +7194,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Proposal>(parameters, callback);
+        createAPIRequest<Schema$Proposal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
       }
@@ -4750,6 +7206,46 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.proposals.search
      * @desc Search for proposals using pql query
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.proposals.search({
+     *     // Query string to retrieve specific proposals.
+     *     pqlQuery: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "proposals": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.proposals.search
      * @memberOf! ()
      *
@@ -4760,9 +7256,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Proposals$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Proposals$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetOrdersResponse>;
+    search(
+      params: Params$Resource$Proposals$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Proposals$Search,
       options: MethodOptions | BodyResponseCallback<Schema$GetOrdersResponse>,
@@ -4776,12 +7281,20 @@ export namespace adexchangebuyer_v1_4 {
     search(
       paramsOrCallback?:
         | Params$Resource$Proposals$Search
-        | BodyResponseCallback<Schema$GetOrdersResponse>,
+        | BodyResponseCallback<Schema$GetOrdersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetOrdersResponse>,
-      callback?: BodyResponseCallback<Schema$GetOrdersResponse>
-    ): void | GaxiosPromise<Schema$GetOrdersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetOrdersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetOrdersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetOrdersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Proposals$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4814,7 +7327,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetOrdersResponse>(parameters, callback);
+        createAPIRequest<Schema$GetOrdersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetOrdersResponse>(parameters);
       }
@@ -4823,6 +7339,41 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.proposals.setupcomplete
      * @desc Update the given proposal to indicate that setup has been completed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.proposals.setupcomplete({
+     *     // The proposal id for which the setup is complete
+     *     proposalId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.proposals.setupcomplete
      * @memberOf! ()
      *
@@ -4833,9 +7384,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     setupcomplete(
+      params: Params$Resource$Proposals$Setupcomplete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setupcomplete(
       params?: Params$Resource$Proposals$Setupcomplete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    setupcomplete(
+      params: Params$Resource$Proposals$Setupcomplete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setupcomplete(
       params: Params$Resource$Proposals$Setupcomplete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4849,10 +7409,15 @@ export namespace adexchangebuyer_v1_4 {
     setupcomplete(
       paramsOrCallback?:
         | Params$Resource$Proposals$Setupcomplete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Proposals$Setupcomplete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4886,7 +7451,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4895,6 +7463,102 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.proposals.update
      * @desc Update the given proposal
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.proposals.update({
+     *     // The proposal id to update.
+     *     proposalId: 'placeholder-value',
+     *     // The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
+     *     revisionNumber: 'placeholder-value',
+     *     // The proposed action to take on the proposal. This field is required and it must be set when updating a proposal.
+     *     updateAction: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billedBuyer": {},
+     *       //   "buyer": {},
+     *       //   "buyerContacts": [],
+     *       //   "buyerPrivateData": {},
+     *       //   "dbmAdvertiserIds": [],
+     *       //   "hasBuyerSignedOff": false,
+     *       //   "hasSellerSignedOff": false,
+     *       //   "inventorySource": "my_inventorySource",
+     *       //   "isRenegotiating": false,
+     *       //   "isSetupComplete": false,
+     *       //   "kind": "my_kind",
+     *       //   "labels": [],
+     *       //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *       //   "name": "my_name",
+     *       //   "negotiationId": "my_negotiationId",
+     *       //   "originatorRole": "my_originatorRole",
+     *       //   "privateAuctionId": "my_privateAuctionId",
+     *       //   "proposalId": "my_proposalId",
+     *       //   "proposalState": "my_proposalState",
+     *       //   "revisionNumber": "my_revisionNumber",
+     *       //   "revisionTimeMs": "my_revisionTimeMs",
+     *       //   "seller": {},
+     *       //   "sellerContacts": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "dbmAdvertiserIds": [],
+     *   //   "hasBuyerSignedOff": false,
+     *   //   "hasSellerSignedOff": false,
+     *   //   "inventorySource": "my_inventorySource",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "name": "my_name",
+     *   //   "negotiationId": "my_negotiationId",
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "revisionNumber": "my_revisionNumber",
+     *   //   "revisionTimeMs": "my_revisionTimeMs",
+     *   //   "seller": {},
+     *   //   "sellerContacts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.proposals.update
      * @memberOf! ()
      *
@@ -4902,15 +7566,24 @@ export namespace adexchangebuyer_v1_4 {
      * @param {string} params.proposalId The proposal id to update.
      * @param {string} params.revisionNumber The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
      * @param {string} params.updateAction The proposed action to take on the proposal. This field is required and it must be set when updating a proposal.
-     * @param {().Proposal} params.resource Request body data
+     * @param {().Proposal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Proposals$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Proposals$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Proposal>;
+    update(
+      params: Params$Resource$Proposals$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Proposals$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Proposal>,
@@ -4924,10 +7597,17 @@ export namespace adexchangebuyer_v1_4 {
     update(
       paramsOrCallback?:
         | Params$Resource$Proposals$Update
-        | BodyResponseCallback<Schema$Proposal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Proposal>,
-      callback?: BodyResponseCallback<Schema$Proposal>
-    ): void | GaxiosPromise<Schema$Proposal> {
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Proposals$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4960,7 +7640,10 @@ export namespace adexchangebuyer_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Proposal>(parameters, callback);
+        createAPIRequest<Schema$Proposal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
       }
@@ -4969,32 +7652,17 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Proposals$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Id of the proposal to retrieve.
      */
     proposalId?: string;
   }
   export interface Params$Resource$Proposals$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$CreateOrdersRequest;
   }
   export interface Params$Resource$Proposals$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The proposal id to update.
      */
@@ -5015,11 +7683,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Proposals$Search extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Query string to retrieve specific proposals.
      */
     pqlQuery?: string;
@@ -5027,21 +7690,11 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Proposals$Setupcomplete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The proposal id for which the setup is complete
      */
     proposalId?: string;
   }
   export interface Params$Resource$Proposals$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The proposal id to update.
      */
@@ -5070,6 +7723,46 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * adexchangebuyer.pubprofiles.list
      * @desc Gets the requested publisher profile(s) by publisher accountId.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer = google.adexchangebuyer('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer.pubprofiles.list({
+     *     // The accountId of the publisher to get profiles for.
+     *     accountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "profiles": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer.pubprofiles.list
      * @memberOf! ()
      *
@@ -5080,9 +7773,18 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Pubprofiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Pubprofiles$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetPublisherProfilesByAccountIdResponse>;
+    list(
+      params: Params$Resource$Pubprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Pubprofiles$List,
       options:
@@ -5106,14 +7808,20 @@ export namespace adexchangebuyer_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Pubprofiles$List
-        | BodyResponseCallback<Schema$GetPublisherProfilesByAccountIdResponse>,
+        | BodyResponseCallback<Schema$GetPublisherProfilesByAccountIdResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetPublisherProfilesByAccountIdResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GetPublisherProfilesByAccountIdResponse
-      >
-    ): void | GaxiosPromise<Schema$GetPublisherProfilesByAccountIdResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetPublisherProfilesByAccountIdResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetPublisherProfilesByAccountIdResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetPublisherProfilesByAccountIdResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pubprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5147,7 +7855,7 @@ export namespace adexchangebuyer_v1_4 {
       if (callback) {
         createAPIRequest<Schema$GetPublisherProfilesByAccountIdResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GetPublisherProfilesByAccountIdResponse>(
@@ -5158,11 +7866,6 @@ export namespace adexchangebuyer_v1_4 {
   }
 
   export interface Params$Resource$Pubprofiles$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The accountId of the publisher to get profiles for.
      */

@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace datastore_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace datastore_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -122,7 +132,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$AllocateIdsRequest {
     /**
-     * A list of keys with incomplete key paths for which to allocate IDs. No key may be reserved/read-only.
+     * Required. A list of keys with incomplete key paths for which to allocate IDs. No key may be reserved/read-only.
      */
     keys?: Schema$Key[];
   }
@@ -438,7 +448,7 @@ export namespace datastore_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Location for the export metadata and data files.  The full resource URL of the external storage location. Currently, only Google Cloud Storage is supported. So output_url_prefix should be of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Cloud Storage bucket and `NAMESPACE_PATH` is an optional Cloud Storage namespace path (this is not a Cloud Datastore namespace). For more information about Cloud Storage namespace paths, see [Object name considerations](https://cloud.google.com/storage/docs/naming#object-considerations).  The resulting files will be nested deeper than the specified URL prefix. The final output URL will be provided in the google.datastore.admin.v1.ExportEntitiesResponse.output_url field. That value should be used for subsequent ImportEntities operations.  By nesting the data files deeper, the same Cloud Storage bucket can be used in multiple ExportEntities operations without conflict.
+     * Required. Location for the export metadata and data files.  The full resource URL of the external storage location. Currently, only Google Cloud Storage is supported. So output_url_prefix should be of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Cloud Storage bucket and `NAMESPACE_PATH` is an optional Cloud Storage namespace path (this is not a Cloud Datastore namespace). For more information about Cloud Storage namespace paths, see [Object name considerations](https://cloud.google.com/storage/docs/naming#object-considerations).  The resulting files will be nested deeper than the specified URL prefix. The final output URL will be provided in the google.datastore.admin.v1.ExportEntitiesResponse.output_url field. That value should be used for subsequent ImportEntities operations.  By nesting the data files deeper, the same Cloud Storage bucket can be used in multiple ExportEntities operations without conflict.
      */
     outputUrlPrefix?: string | null;
   }
@@ -485,7 +495,7 @@ export namespace datastore_v1 {
      */
     entityFilter?: Schema$GoogleDatastoreAdminV1EntityFilter;
     /**
-     * The full resource URL of the external storage location. Currently, only Google Cloud Storage is supported. So input_url should be of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is an optional Cloud Storage namespace path (this is not a Cloud Datastore namespace), and `OVERALL_EXPORT_METADATA_FILE` is the metadata file written by the ExportEntities operation. For more information about Cloud Storage namespace paths, see [Object name considerations](https://cloud.google.com/storage/docs/naming#object-considerations).  For more information, see google.datastore.admin.v1.ExportEntitiesResponse.output_url.
+     * Required. The full resource URL of the external storage location. Currently, only Google Cloud Storage is supported. So input_url should be of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is an optional Cloud Storage namespace path (this is not a Cloud Datastore namespace), and `OVERALL_EXPORT_METADATA_FILE` is the metadata file written by the ExportEntities operation. For more information about Cloud Storage namespace paths, see [Object name considerations](https://cloud.google.com/storage/docs/naming#object-considerations).  For more information, see google.datastore.admin.v1.ExportEntitiesResponse.output_url.
      */
     inputUrl?: string | null;
     /**
@@ -498,27 +508,27 @@ export namespace datastore_v1 {
    */
   export interface Schema$GoogleDatastoreAdminV1Index {
     /**
-     * The index&#39;s ancestor mode.  Must not be ANCESTOR_MODE_UNSPECIFIED. Required.
+     * Required. The index&#39;s ancestor mode.  Must not be ANCESTOR_MODE_UNSPECIFIED.
      */
     ancestor?: string | null;
     /**
-     * The resource ID of the index. Output only.
+     * Output only. The resource ID of the index.
      */
     indexId?: string | null;
     /**
-     * The entity kind to which this index applies. Required.
+     * Required. The entity kind to which this index applies.
      */
     kind?: string | null;
     /**
-     * Project ID. Output only.
+     * Output only. Project ID.
      */
     projectId?: string | null;
     /**
-     * An ordered sequence of property names and their index attributes. Required.
+     * Required. An ordered sequence of property names and their index attributes.
      */
     properties?: Schema$GoogleDatastoreAdminV1IndexedProperty[];
     /**
-     * The state of the index. Output only.
+     * Output only. The state of the index.
      */
     state?: string | null;
   }
@@ -527,11 +537,11 @@ export namespace datastore_v1 {
    */
   export interface Schema$GoogleDatastoreAdminV1IndexedProperty {
     /**
-     * The indexed property&#39;s direction.  Must not be DIRECTION_UNSPECIFIED. Required.
+     * Required. The indexed property&#39;s direction.  Must not be DIRECTION_UNSPECIFIED.
      */
     direction?: string | null;
     /**
-     * The property name to index. Required.
+     * Required. The property name to index.
      */
     name?: string | null;
   }
@@ -690,7 +700,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$LookupRequest {
     /**
-     * Keys of entities to look up.
+     * Required. Keys of entities to look up.
      */
     keys?: Schema$Key[];
     /**
@@ -944,7 +954,7 @@ export namespace datastore_v1 {
      */
     databaseId?: string | null;
     /**
-     * A list of keys with complete key paths whose numeric IDs should not be auto-allocated.
+     * Required. A list of keys with complete key paths whose numeric IDs should not be auto-allocated.
      */
     keys?: Schema$Key[];
   }
@@ -957,7 +967,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$RollbackRequest {
     /**
-     * The transaction identifier, returned by a call to Datastore.BeginTransaction.
+     * Required. The transaction identifier, returned by a call to Datastore.BeginTransaction.
      */
     transaction?: string | null;
   }
@@ -1078,7 +1088,7 @@ export namespace datastore_v1 {
      */
     nullValue?: string | null;
     /**
-     * A UTF-8 encoded string value. When `exclude_from_indexes` is false (it is indexed) , may have at most 1500 bytes. Otherwise, may be set to at least 1,000,000 bytes.
+     * A UTF-8 encoded string value. When `exclude_from_indexes` is false (it is indexed) , may have at most 1500 bytes. Otherwise, may be set to at most 1,000,000 bytes.
      */
     stringValue?: string | null;
     /**
@@ -1100,20 +1110,80 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.allocateIds
      * @desc Allocates IDs for the given keys, which is useful for referencing an entity before it is inserted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.allocateIds({
+     *     // Required. The ID of the project against which to make the request.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "keys": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keys": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.allocateIds
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
-     * @param {().AllocateIdsRequest} params.resource Request body data
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
+     * @param {().AllocateIdsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     allocateIds(
+      params: Params$Resource$Projects$Allocateids,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    allocateIds(
       params?: Params$Resource$Projects$Allocateids,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AllocateIdsResponse>;
+    allocateIds(
+      params: Params$Resource$Projects$Allocateids,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     allocateIds(
       params: Params$Resource$Projects$Allocateids,
       options: MethodOptions | BodyResponseCallback<Schema$AllocateIdsResponse>,
@@ -1129,12 +1199,20 @@ export namespace datastore_v1 {
     allocateIds(
       paramsOrCallback?:
         | Params$Resource$Projects$Allocateids
-        | BodyResponseCallback<Schema$AllocateIdsResponse>,
+        | BodyResponseCallback<Schema$AllocateIdsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AllocateIdsResponse>,
-      callback?: BodyResponseCallback<Schema$AllocateIdsResponse>
-    ): void | GaxiosPromise<Schema$AllocateIdsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AllocateIdsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AllocateIdsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AllocateIdsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Allocateids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1168,7 +1246,10 @@ export namespace datastore_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AllocateIdsResponse>(parameters, callback);
+        createAPIRequest<Schema$AllocateIdsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AllocateIdsResponse>(parameters);
       }
@@ -1177,20 +1258,80 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.beginTransaction
      * @desc Begins a new transaction.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.beginTransaction({
+     *     // Required. The ID of the project against which to make the request.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "transactionOptions": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "transaction": "my_transaction"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.beginTransaction
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
-     * @param {().BeginTransactionRequest} params.resource Request body data
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
+     * @param {().BeginTransactionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     beginTransaction(
+      params: Params$Resource$Projects$Begintransaction,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    beginTransaction(
       params?: Params$Resource$Projects$Begintransaction,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BeginTransactionResponse>;
+    beginTransaction(
+      params: Params$Resource$Projects$Begintransaction,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     beginTransaction(
       params: Params$Resource$Projects$Begintransaction,
       options:
@@ -1208,12 +1349,20 @@ export namespace datastore_v1 {
     beginTransaction(
       paramsOrCallback?:
         | Params$Resource$Projects$Begintransaction
-        | BodyResponseCallback<Schema$BeginTransactionResponse>,
+        | BodyResponseCallback<Schema$BeginTransactionResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BeginTransactionResponse>,
-      callback?: BodyResponseCallback<Schema$BeginTransactionResponse>
-    ): void | GaxiosPromise<Schema$BeginTransactionResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BeginTransactionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BeginTransactionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BeginTransactionResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Begintransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1246,7 +1395,10 @@ export namespace datastore_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BeginTransactionResponse>(parameters, callback);
+        createAPIRequest<Schema$BeginTransactionResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BeginTransactionResponse>(parameters);
       }
@@ -1255,20 +1407,83 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.commit
      * @desc Commits a transaction, optionally creating, deleting or modifying some entities.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.commit({
+     *     // Required. The ID of the project against which to make the request.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "mode": "my_mode",
+     *       //   "mutations": [],
+     *       //   "transaction": "my_transaction"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "indexUpdates": 0,
+     *   //   "mutationResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.commit
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
-     * @param {().CommitRequest} params.resource Request body data
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
+     * @param {().CommitRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     commit(
+      params: Params$Resource$Projects$Commit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    commit(
       params?: Params$Resource$Projects$Commit,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CommitResponse>;
+    commit(
+      params: Params$Resource$Projects$Commit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     commit(
       params: Params$Resource$Projects$Commit,
       options: MethodOptions | BodyResponseCallback<Schema$CommitResponse>,
@@ -1282,12 +1497,17 @@ export namespace datastore_v1 {
     commit(
       paramsOrCallback?:
         | Params$Resource$Projects$Commit
-        | BodyResponseCallback<Schema$CommitResponse>,
+        | BodyResponseCallback<Schema$CommitResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CommitResponse>,
-      callback?: BodyResponseCallback<Schema$CommitResponse>
-    ): void | GaxiosPromise<Schema$CommitResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommitResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommitResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CommitResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1320,7 +1540,10 @@ export namespace datastore_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CommitResponse>(parameters, callback);
+        createAPIRequest<Schema$CommitResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CommitResponse>(parameters);
       }
@@ -1329,20 +1552,86 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.export
      * @desc Exports a copy of all or a subset of entities from Google Cloud Datastore to another storage system, such as Google Cloud Storage. Recent updates to entities may not be reflected in the export. The export occurs in the background and its progress can be monitored and managed via the Operation resource that is created. The output of an export may only be used once the associated operation is done. If an export operation is cancelled before completion it may leave partial data behind in Google Cloud Storage.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.export({
+     *     // Required. Project ID against which to make the request.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entityFilter": {},
+     *       //   "labels": {},
+     *       //   "outputUrlPrefix": "my_outputUrlPrefix"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.export
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID against which to make the request.
-     * @param {().GoogleDatastoreAdminV1ExportEntitiesRequest} params.resource Request body data
+     * @param {string} params.projectId Required. Project ID against which to make the request.
+     * @param {().GoogleDatastoreAdminV1ExportEntitiesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     export(
+      params: Params$Resource$Projects$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
       params?: Params$Resource$Projects$Export,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    export(
+      params: Params$Resource$Projects$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     export(
       params: Params$Resource$Projects$Export,
       options:
@@ -1360,12 +1649,20 @@ export namespace datastore_v1 {
     export(
       paramsOrCallback?:
         | Params$Resource$Projects$Export
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1400,7 +1697,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1410,20 +1707,86 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.import
      * @desc Imports entities into Google Cloud Datastore. Existing entities with the same key are overwritten. The import occurs in the background and its progress can be monitored and managed via the Operation resource that is created. If an ImportEntities operation is cancelled, it is possible that a subset of the data has already been imported to Cloud Datastore.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.import({
+     *     // Required. Project ID against which to make the request.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entityFilter": {},
+     *       //   "inputUrl": "my_inputUrl",
+     *       //   "labels": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.import
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID against which to make the request.
-     * @param {().GoogleDatastoreAdminV1ImportEntitiesRequest} params.resource Request body data
+     * @param {string} params.projectId Required. Project ID against which to make the request.
+     * @param {().GoogleDatastoreAdminV1ImportEntitiesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     import(
+      params: Params$Resource$Projects$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
       params?: Params$Resource$Projects$Import,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     import(
       params: Params$Resource$Projects$Import,
       options:
@@ -1441,12 +1804,20 @@ export namespace datastore_v1 {
     import(
       paramsOrCallback?:
         | Params$Resource$Projects$Import
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1481,7 +1852,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1491,20 +1862,83 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.lookup
      * @desc Looks up entities by key.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.lookup({
+     *     // Required. The ID of the project against which to make the request.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "keys": [],
+     *       //   "readOptions": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deferred": [],
+     *   //   "found": [],
+     *   //   "missing": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.lookup
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
-     * @param {().LookupRequest} params.resource Request body data
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
+     * @param {().LookupRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     lookup(
+      params: Params$Resource$Projects$Lookup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lookup(
       params?: Params$Resource$Projects$Lookup,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LookupResponse>;
+    lookup(
+      params: Params$Resource$Projects$Lookup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     lookup(
       params: Params$Resource$Projects$Lookup,
       options: MethodOptions | BodyResponseCallback<Schema$LookupResponse>,
@@ -1518,12 +1952,17 @@ export namespace datastore_v1 {
     lookup(
       paramsOrCallback?:
         | Params$Resource$Projects$Lookup
-        | BodyResponseCallback<Schema$LookupResponse>,
+        | BodyResponseCallback<Schema$LookupResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LookupResponse>,
-      callback?: BodyResponseCallback<Schema$LookupResponse>
-    ): void | GaxiosPromise<Schema$LookupResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LookupResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LookupResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LookupResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1556,7 +1995,10 @@ export namespace datastore_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LookupResponse>(parameters, callback);
+        createAPIRequest<Schema$LookupResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LookupResponse>(parameters);
       }
@@ -1565,20 +2007,79 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.reserveIds
      * @desc Prevents the supplied keys' IDs from being auto-allocated by Cloud Datastore.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.reserveIds({
+     *     // Required. The ID of the project against which to make the request.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "databaseId": "my_databaseId",
+     *       //   "keys": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.reserveIds
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
-     * @param {().ReserveIdsRequest} params.resource Request body data
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
+     * @param {().ReserveIdsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     reserveIds(
+      params: Params$Resource$Projects$Reserveids,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reserveIds(
       params?: Params$Resource$Projects$Reserveids,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReserveIdsResponse>;
+    reserveIds(
+      params: Params$Resource$Projects$Reserveids,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reserveIds(
       params: Params$Resource$Projects$Reserveids,
       options: MethodOptions | BodyResponseCallback<Schema$ReserveIdsResponse>,
@@ -1592,12 +2093,20 @@ export namespace datastore_v1 {
     reserveIds(
       paramsOrCallback?:
         | Params$Resource$Projects$Reserveids
-        | BodyResponseCallback<Schema$ReserveIdsResponse>,
+        | BodyResponseCallback<Schema$ReserveIdsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReserveIdsResponse>,
-      callback?: BodyResponseCallback<Schema$ReserveIdsResponse>
-    ): void | GaxiosPromise<Schema$ReserveIdsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReserveIdsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReserveIdsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReserveIdsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Reserveids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1631,7 +2140,10 @@ export namespace datastore_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ReserveIdsResponse>(parameters, callback);
+        createAPIRequest<Schema$ReserveIdsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ReserveIdsResponse>(parameters);
       }
@@ -1640,20 +2152,78 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.rollback
      * @desc Rolls back a transaction.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.rollback({
+     *     // Required. The ID of the project against which to make the request.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "transaction": "my_transaction"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.rollback
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
-     * @param {().RollbackRequest} params.resource Request body data
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
+     * @param {().RollbackRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     rollback(
+      params: Params$Resource$Projects$Rollback,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rollback(
       params?: Params$Resource$Projects$Rollback,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RollbackResponse>;
+    rollback(
+      params: Params$Resource$Projects$Rollback,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     rollback(
       params: Params$Resource$Projects$Rollback,
       options: MethodOptions | BodyResponseCallback<Schema$RollbackResponse>,
@@ -1667,12 +2237,17 @@ export namespace datastore_v1 {
     rollback(
       paramsOrCallback?:
         | Params$Resource$Projects$Rollback
-        | BodyResponseCallback<Schema$RollbackResponse>,
+        | BodyResponseCallback<Schema$RollbackResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RollbackResponse>,
-      callback?: BodyResponseCallback<Schema$RollbackResponse>
-    ): void | GaxiosPromise<Schema$RollbackResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RollbackResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RollbackResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RollbackResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1706,7 +2281,10 @@ export namespace datastore_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RollbackResponse>(parameters, callback);
+        createAPIRequest<Schema$RollbackResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RollbackResponse>(parameters);
       }
@@ -1715,20 +2293,84 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.runQuery
      * @desc Queries for entities.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.runQuery({
+     *     // Required. The ID of the project against which to make the request.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "gqlQuery": {},
+     *       //   "partitionId": {},
+     *       //   "query": {},
+     *       //   "readOptions": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "batch": {},
+     *   //   "query": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.runQuery
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
-     * @param {().RunQueryRequest} params.resource Request body data
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
+     * @param {().RunQueryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     runQuery(
+      params: Params$Resource$Projects$Runquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runQuery(
       params?: Params$Resource$Projects$Runquery,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RunQueryResponse>;
+    runQuery(
+      params: Params$Resource$Projects$Runquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     runQuery(
       params: Params$Resource$Projects$Runquery,
       options: MethodOptions | BodyResponseCallback<Schema$RunQueryResponse>,
@@ -1742,12 +2384,17 @@ export namespace datastore_v1 {
     runQuery(
       paramsOrCallback?:
         | Params$Resource$Projects$Runquery
-        | BodyResponseCallback<Schema$RunQueryResponse>,
+        | BodyResponseCallback<Schema$RunQueryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RunQueryResponse>,
-      callback?: BodyResponseCallback<Schema$RunQueryResponse>
-    ): void | GaxiosPromise<Schema$RunQueryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RunQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RunQueryResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RunQueryResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1781,7 +2428,10 @@ export namespace datastore_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RunQueryResponse>(parameters, callback);
+        createAPIRequest<Schema$RunQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RunQueryResponse>(parameters);
       }
@@ -1791,12 +2441,7 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Allocateids
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 
@@ -1808,12 +2453,7 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Begintransaction
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 
@@ -1824,12 +2464,7 @@ export namespace datastore_v1 {
   }
   export interface Params$Resource$Projects$Commit extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 
@@ -1840,12 +2475,7 @@ export namespace datastore_v1 {
   }
   export interface Params$Resource$Projects$Export extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Project ID against which to make the request.
+     * Required. Project ID against which to make the request.
      */
     projectId?: string;
 
@@ -1856,12 +2486,7 @@ export namespace datastore_v1 {
   }
   export interface Params$Resource$Projects$Import extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Project ID against which to make the request.
+     * Required. Project ID against which to make the request.
      */
     projectId?: string;
 
@@ -1872,12 +2497,7 @@ export namespace datastore_v1 {
   }
   export interface Params$Resource$Projects$Lookup extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 
@@ -1889,12 +2509,7 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Reserveids
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 
@@ -1906,12 +2521,7 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Rollback
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 
@@ -1923,12 +2533,7 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Runquery
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 
@@ -1945,8 +2550,364 @@ export namespace datastore_v1 {
     }
 
     /**
+     * datastore.projects.indexes.create
+     * @desc Creates the specified index. A newly created index's initial state is `CREATING`. On completion of the returned google.longrunning.Operation, the state will be `READY`. If the index already exists, the call will return an `ALREADY_EXISTS` status.  During index creation, the process could result in an error, in which case the index will move to the `ERROR` state. The process can be recovered by fixing the data that caused the error, removing the index with delete, then re-creating the index with create.  Indexes with a single property cannot be created.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.indexes.create({
+     *     // Project ID against which to make the request.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ancestor": "my_ancestor",
+     *       //   "indexId": "my_indexId",
+     *       //   "kind": "my_kind",
+     *       //   "projectId": "my_projectId",
+     *       //   "properties": [],
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias datastore.projects.indexes.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId Project ID against which to make the request.
+     * @param {().GoogleDatastoreAdminV1Index} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Indexes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Indexes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Indexes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Indexes$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Indexes$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Indexes$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Indexes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Indexes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/indexes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * datastore.projects.indexes.delete
+     * @desc Deletes an existing index. An index can only be deleted if it is in a `READY` or `ERROR` state. On successful execution of the request, the index will be in a `DELETING` state. And on completion of the returned google.longrunning.Operation, the index will be removed.  During index deletion, the process could result in an error, in which case the index will move to the `ERROR` state. The process can be recovered by fixing the data that caused the error, followed by calling delete again.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.indexes.delete({
+     *     // The resource ID of the index to delete.
+     *     indexId: 'placeholder-value',
+     *     // Project ID against which to make the request.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias datastore.projects.indexes.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.indexId The resource ID of the index to delete.
+     * @param {string} params.projectId Project ID against which to make the request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Projects$Indexes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Indexes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Indexes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Indexes$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Indexes$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Indexes$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Indexes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Indexes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/projects/{projectId}/indexes/{indexId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'indexId'],
+        pathParams: ['indexId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * datastore.projects.indexes.get
      * @desc Gets an index.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.indexes.get({
+     *     // The resource ID of the index to get.
+     *     indexId: 'placeholder-value',
+     *     // Project ID against which to make the request.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ancestor": "my_ancestor",
+     *   //   "indexId": "my_indexId",
+     *   //   "kind": "my_kind",
+     *   //   "projectId": "my_projectId",
+     *   //   "properties": [],
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.indexes.get
      * @memberOf! ()
      *
@@ -1958,9 +2919,18 @@ export namespace datastore_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Indexes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Indexes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleDatastoreAdminV1Index>;
+    get(
+      params: Params$Resource$Projects$Indexes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Indexes$Get,
       options:
@@ -1978,12 +2948,20 @@ export namespace datastore_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Indexes$Get
-        | BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>,
+        | BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>,
-      callback?: BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>
-    ): void | GaxiosPromise<Schema$GoogleDatastoreAdminV1Index> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleDatastoreAdminV1Index>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Indexes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2018,7 +2996,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleDatastoreAdminV1Index>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleDatastoreAdminV1Index>(parameters);
@@ -2028,6 +3006,56 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.indexes.list
      * @desc Lists the indexes that match the specified filters.  Datastore uses an eventually consistent query to fetch the list of indexes and may occasionally return stale results.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.indexes.list({
+     *     filter: 'placeholder-value',
+     *     // The maximum number of items to return.  If zero, then all results will be
+     *     // returned.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID against which to make the request.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "indexes": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.indexes.list
      * @memberOf! ()
      *
@@ -2041,9 +3069,18 @@ export namespace datastore_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Indexes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Indexes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleDatastoreAdminV1ListIndexesResponse>;
+    list(
+      params: Params$Resource$Projects$Indexes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Indexes$List,
       options:
@@ -2069,18 +3106,20 @@ export namespace datastore_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Indexes$List
-        | BodyResponseCallback<
-            Schema$GoogleDatastoreAdminV1ListIndexesResponse
-          >,
+        | BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleDatastoreAdminV1ListIndexesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleDatastoreAdminV1ListIndexesResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleDatastoreAdminV1ListIndexesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleDatastoreAdminV1ListIndexesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Indexes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2116,7 +3155,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleDatastoreAdminV1ListIndexesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -2126,13 +3165,31 @@ export namespace datastore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Indexes$Get
+  export interface Params$Resource$Projects$Indexes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
+     * Project ID against which to make the request.
      */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+    projectId?: string;
 
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleDatastoreAdminV1Index;
+  }
+  export interface Params$Resource$Projects$Indexes$Delete
+    extends StandardParameters {
+    /**
+     * The resource ID of the index to delete.
+     */
+    indexId?: string;
+    /**
+     * Project ID against which to make the request.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Indexes$Get
+    extends StandardParameters {
     /**
      * The resource ID of the index to get.
      */
@@ -2144,11 +3201,6 @@ export namespace datastore_v1 {
   }
   export interface Params$Resource$Projects$Indexes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -2176,6 +3228,47 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.operations.cancel
      * @memberOf! ()
      *
@@ -2186,9 +3279,18 @@ export namespace datastore_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2202,10 +3304,17 @@ export namespace datastore_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2236,7 +3345,10 @@ export namespace datastore_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2245,6 +3357,47 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.operations.delete
      * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'projects/my-project/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.operations.delete
      * @memberOf! ()
      *
@@ -2255,9 +3408,18 @@ export namespace datastore_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2271,10 +3433,17 @@ export namespace datastore_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2305,7 +3474,10 @@ export namespace datastore_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2314,6 +3486,53 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.operations.get
      * @memberOf! ()
      *
@@ -2324,9 +3543,18 @@ export namespace datastore_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options:
@@ -2344,12 +3572,20 @@ export namespace datastore_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2382,7 +3618,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2392,6 +3628,56 @@ export namespace datastore_v1 {
     /**
      * datastore.projects.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias datastore.projects.operations.list
      * @memberOf! ()
      *
@@ -2405,9 +3691,18 @@ export namespace datastore_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Operations$List,
       options:
@@ -2431,14 +3726,20 @@ export namespace datastore_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$List
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2474,7 +3775,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
@@ -2487,22 +3788,12 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Operations$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be deleted.
      */
@@ -2511,22 +3802,12 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */

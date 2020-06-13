@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace cloudasset_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace cloudasset_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -105,6 +115,7 @@ export namespace cloudasset_v1 {
    */
   export class Cloudasset {
     context: APIRequestContext;
+    feeds: Resource$Feeds;
     operations: Resource$Operations;
     v1: Resource$V1;
 
@@ -114,35 +125,40 @@ export namespace cloudasset_v1 {
         google,
       };
 
+      this.feeds = new Resource$Feeds(this.context);
       this.operations = new Resource$Operations(this.context);
       this.v1 = new Resource$V1(this.context);
     }
   }
 
   /**
-   * Cloud asset. This includes all Google Cloud Platform resources, Cloud IAM policies, and other non-GCP assets.
+   * An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a Cloud IAM policy.
    */
   export interface Schema$Asset {
     accessLevel?: Schema$GoogleIdentityAccesscontextmanagerV1AccessLevel;
     accessPolicy?: Schema$GoogleIdentityAccesscontextmanagerV1AccessPolicy;
     /**
-     * Type of the asset. Example: &quot;compute.googleapis.com/Disk&quot;.
+     * The ancestry path of an asset in Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), represented as a list of relative resource names. An ancestry path starts with the closest ancestor in the hierarchy and ends at root. If the asset is a project, folder, or organization, the ancestry path starts from the asset itself.  Example: `[&quot;projects/123456789&quot;, &quot;folders/5432&quot;, &quot;organizations/1234&quot;]`
+     */
+    ancestors?: string[] | null;
+    /**
+     * The type of the asset. Example: &quot;compute.googleapis.com/Disk&quot;  See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
      */
     assetType?: string | null;
     /**
-     * Representation of the actual Cloud IAM policy set on a cloud resource. For each resource, there must be at most one Cloud IAM policy set on it.
+     * A representation of the Cloud IAM policy set on a Google Cloud resource. There can be a maximum of one Cloud IAM policy set on any given resource. In addition, Cloud IAM policies inherit their granted access scope from any policies set on parent resources in the resource hierarchy. Therefore, the effectively policy is the union of both the policy set on this resource and each policy set on all of the resource&#39;s ancestry resource levels in the hierarchy. See [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for more information.
      */
     iamPolicy?: Schema$Policy;
     /**
-     * The full name of the asset. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.
+     * The full name of the asset. Example: &quot;//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1&quot;  See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.
      */
     name?: string | null;
     /**
-     * Representation of the Cloud Organization Policy set on an asset. For each asset, there could be multiple Organization policies with different constraints.
+     * A representation of an [organization policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy). There can be more than one organization policy with different constraints set on a given resource.
      */
     orgPolicy?: Schema$GoogleCloudOrgpolicyV1Policy[];
     /**
-     * Representation of the resource.
+     * A representation of the resource.
      */
     resource?: Schema$Resource;
     servicePerimeter?: Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeter;
@@ -187,11 +203,11 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$BigQueryDestination {
     /**
-     * Required. The BigQuery dataset in format &quot;projects/projectId/datasets/datasetId&quot;, to which the snapshot result should be exported. If this dataset does not exist, the export call returns an error.
+     * Required. The BigQuery dataset in format &quot;projects/projectId/datasets/datasetId&quot;, to which the snapshot result should be exported. If this dataset does not exist, the export call returns an INVALID_ARGUMENT error.
      */
     dataset?: string | null;
     /**
-     * If the destination table already exists and this flag is `TRUE`, the table will be overwritten by the contents of assets snapshot. If the flag is not set and the destination table already exists, the export call returns an error.
+     * If the destination table already exists and this flag is `TRUE`, the table will be overwritten by the contents of assets snapshot. If the flag is `FALSE` or unset and the destination table already exists, the export call returns an INVALID_ARGUMEMT error.
      */
     force?: boolean | null;
     /**
@@ -204,11 +220,11 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -217,11 +233,37 @@ export namespace cloudasset_v1 {
     role?: string | null;
   }
   /**
+   * Create asset feed request.
+   */
+  export interface Schema$CreateFeedRequest {
+    /**
+     * Required. The feed details. The field `name` must be empty and it will be generated in the format of: projects/project_number/feeds/feed_id folders/folder_number/feeds/feed_id organizations/organization_number/feeds/feed_id
+     */
+    feed?: Schema$Feed;
+    /**
+     * Required. This is the client-assigned asset feed identifier and it needs to be unique under a specific parent project/folder/organization.
+     */
+    feedId?: string | null;
+  }
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   */
+  export interface Schema$Empty {}
+  /**
+   * Explanation about the IAM policy search result.
+   */
+  export interface Schema$Explanation {
+    /**
+     * The map from roles to their included permissions that match the permission query (i.e., a query containing `policy.role.permissions:`). Example: if query `policy.role.permissions : &quot;compute.disk.get&quot;` matches a policy binding that contains owner role, the matched_permissions will be {&quot;roles/owner&quot;: [&quot;compute.disk.get&quot;]}. The roles can also be found in the returned `policy` bindings. Note that the map is populated only for requests with permission queries.
+     */
+    matchedPermissions?: {[key: string]: Schema$Permissions} | null;
+  }
+  /**
    * Export asset request.
    */
   export interface Schema$ExportAssetsRequest {
     /**
-     * A list of asset types of which to take a snapshot for. For example: &quot;compute.googleapis.com/Disk&quot;. If specified, only matching assets will be returned. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview) for all supported asset types.
+     * A list of asset types of which to take a snapshot for. Example: &quot;compute.googleapis.com/Disk&quot;. If specified, only matching assets will be returned. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types.
      */
     assetTypes?: string[] | null;
     /**
@@ -233,41 +275,75 @@ export namespace cloudasset_v1 {
      */
     outputConfig?: Schema$OutputConfig;
     /**
-     * Timestamp to take an asset snapshot. This can only be set to a timestamp between 2018-10-02 UTC (inclusive) and the current time. If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
+     * Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
      */
     readTime?: string | null;
   }
   /**
-   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * An asset feed used to export asset updates to a destinations. An asset feed filter controls what updates are exported. The asset feed must be created within a project, organization, or folder. Supported destinations are: Pub/Sub topics.
+   */
+  export interface Schema$Feed {
+    /**
+     * A list of the full names of the assets to receive updates. You must specify either or both of asset_names and asset_types. Only asset updates matching specified asset_names or asset_types are exported to the feed. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more info.
+     */
+    assetNames?: string[] | null;
+    /**
+     * A list of types of the assets to receive updates. You must specify either or both of asset_names and asset_types. Only asset updates matching specified asset_names or asset_types are exported to the feed. Example: `&quot;compute.googleapis.com/Disk&quot;`  See [this topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for a list of all supported asset types.
+     */
+    assetTypes?: string[] | null;
+    /**
+     * Asset content type. If not specified, no content but the asset name and type will be returned.
+     */
+    contentType?: string | null;
+    /**
+     * Required. Feed output configuration defining where the asset updates are published to.
+     */
+    feedOutputConfig?: Schema$FeedOutputConfig;
+    /**
+     * Required. The format will be projects/{project_number}/feeds/{client-assigned_feed_identifier} or folders/{folder_number}/feeds/{client-assigned_feed_identifier} or organizations/{organization_number}/feeds/{client-assigned_feed_identifier}  The client-assigned feed identifier must be unique within the parent project/folder/organization.
+     */
+    name?: string | null;
+  }
+  /**
+   * Output configuration for asset feed destination.
+   */
+  export interface Schema$FeedOutputConfig {
+    /**
+     * Destination on Pub/Sub.
+     */
+    pubsubDestination?: Schema$PubsubDestination;
   }
   /**
    * A Cloud Storage location.
    */
   export interface Schema$GcsDestination {
     /**
-     * The uri of the Cloud Storage object. It&#39;s the same uri that is used by gsutil. For example: &quot;gs://bucket_name/object_name&quot;. See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information.
+     * The uri of the Cloud Storage object. It&#39;s the same uri that is used by gsutil. Example: &quot;gs://bucket_name/object_name&quot;. See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information.
      */
     uri?: string | null;
     /**
-     * The uri prefix of all generated Cloud Storage objects. For example: &quot;gs://bucket_name/object_name_prefix&quot;. Each object uri is in format: &quot;gs://bucket_name/object_name_prefix/&lt;asset type&gt;/&lt;shard number&gt; and only contains assets for that type. &lt;shard number&gt; starts from 0. For example: &quot;gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0&quot; is the first shard of output objects containing all compute.googleapis.com/Disk assets. An INVALID_ARGUMENT error will be returned if file with the same name &quot;gs://bucket_name/object_name_prefix&quot; already exists.
+     * The uri prefix of all generated Cloud Storage objects. Example: &quot;gs://bucket_name/object_name_prefix&quot;. Each object uri is in format: &quot;gs://bucket_name/object_name_prefix/&lt;asset type&gt;/&lt;shard number&gt; and only contains assets for that type. &lt;shard number&gt; starts from 0. Example: &quot;gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0&quot; is the first shard of output objects containing all compute.googleapis.com/Disk assets. An INVALID_ARGUMENT error will be returned if file with the same name &quot;gs://bucket_name/object_name_prefix&quot; already exists.
      */
     uriPrefix?: string | null;
   }
@@ -281,7 +357,7 @@ export namespace cloudasset_v1 {
     enforced?: boolean | null;
   }
   /**
-   * Used in `policy_type` to specify how `list_policy` behaves at this resource.  `ListPolicy` can define specific values and subtrees of Cloud Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied by setting the `allowed_values` and `denied_values` fields. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a &quot;:&quot;. Values prefixed with &quot;is:&quot; are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats:     - “projects/&lt;project-id&gt;”, e.g. “projects/tokyo-rain-123”     - “folders/&lt;folder-id&gt;”, e.g. “folders/1234”     - “organizations/&lt;organization-id&gt;”, e.g. “organizations/1234” The `supports_under` field of the associated `Constraint`  defines whether ancestry prefixes can be used. You can set `allowed_values` and `denied_values` in the same `Policy` if `all_values` is `ALL_VALUES_UNSPECIFIED`. `ALLOW` or `DENY` are used to allow or deny all values. If `all_values` is set to either `ALLOW` or `DENY`, `allowed_values` and `denied_values` must be unset.
+   * Used in `policy_type` to specify how `list_policy` behaves at this resource.  `ListPolicy` can define specific values and subtrees of Cloud Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied by setting the `allowed_values` and `denied_values` fields. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a &quot;:&quot;. Values prefixed with &quot;is:&quot; are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats:     - &quot;projects/&lt;project-id&gt;&quot;, e.g. &quot;projects/tokyo-rain-123&quot;     - &quot;folders/&lt;folder-id&gt;&quot;, e.g. &quot;folders/1234&quot;     - &quot;organizations/&lt;organization-id&gt;&quot;, e.g. &quot;organizations/1234&quot; The `supports_under` field of the associated `Constraint`  defines whether ancestry prefixes can be used. You can set `allowed_values` and `denied_values` in the same `Policy` if `all_values` is `ALL_VALUES_UNSPECIFIED`. `ALLOW` or `DENY` are used to allow or deny all values. If `all_values` is set to either `ALLOW` or `DENY`, `allowed_values` and `denied_values` must be unset.
    */
   export interface Schema$GoogleCloudOrgpolicyV1ListPolicy {
     /**
@@ -297,7 +373,7 @@ export namespace cloudasset_v1 {
      */
     deniedValues?: string[] | null;
     /**
-     * Determines the inheritance behavior for this `Policy`.  By default, a `ListPolicy` set at a resource supercedes any `Policy` set anywhere up the resource hierarchy. However, if `inherit_from_parent` is set to `true`, then the values from the effective `Policy` of the parent resource are inherited, meaning the values set in this `Policy` are added to the values inherited up the hierarchy.  Setting `Policy` hierarchies that inherit both allowed values and denied values isn&#39;t recommended in most circumstances to keep the configuration simple and understandable. However, it is possible to set a `Policy` with `allowed_values` set that inherits a `Policy` with `denied_values` set. In this case, the values that are allowed must be in `allowed_values` and not present in `denied_values`.  For example, suppose you have a `Constraint` `constraints/serviceuser.services`, which has a `constraint_type` of `list_constraint`, and with `constraint_default` set to `ALLOW`. Suppose that at the Organization level, a `Policy` is applied that restricts the allowed API activations to {`E1`, `E2`}. Then, if a `Policy` is applied to a project below the Organization that has `inherit_from_parent` set to `false` and field all_values set to DENY, then an attempt to activate any API will be denied.  The following examples demonstrate different possible layerings for `projects/bar` parented by `organizations/foo`:  Example 1 (no inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has `inherit_from_parent` `false` and values:     {allowed_values: &quot;E3&quot; allowed_values: &quot;E4&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E3`, and `E4`.  Example 2 (inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has a `Policy` with values:     {value: “E3” value: ”E4” inherit_from_parent: true} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E1`, `E2`, `E3`, and `E4`.  Example 3 (inheriting both allowed and denied values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {denied_values: &quot;E1&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The value accepted at `projects/bar` is `E2`.  Example 4 (RestoreDefault):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has a `Policy` with values:     {RestoreDefault: {}} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 5 (no policy inherits parent policy):   `organizations/foo` has no `Policy` set.   `projects/bar` has no `Policy` set. The accepted values at both levels are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 6 (ListConstraint allowing all):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values: ”E2”}   `projects/bar` has a `Policy` with:     {all: ALLOW} The accepted values at `organizations/foo` are `E1`, E2`. Any value is accepted at `projects/bar`.  Example 7 (ListConstraint allowing none):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values: ”E2”}   `projects/bar` has a `Policy` with:     {all: DENY} The accepted values at `organizations/foo` are `E1`, E2`. No value is accepted at `projects/bar`.  Example 10 (allowed and denied subtrees of Resource Manager hierarchy): Given the following resource hierarchy   O1-&gt;{F1, F2}; F1-&gt;{P1}; F2-&gt;{P2, P3},   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;under:organizations/O1&quot;}   `projects/bar` has a `Policy` with:     {allowed_values: &quot;under:projects/P3&quot;}     {denied_values: &quot;under:folders/F2&quot;} The accepted values at `organizations/foo` are `organizations/O1`,   `folders/F1`, `folders/F2`, `projects/P1`, `projects/P2`,   `projects/P3`. The accepted values at `projects/bar` are `organizations/O1`,   `folders/F1`, `projects/P1`.
+     * Determines the inheritance behavior for this `Policy`.  By default, a `ListPolicy` set at a resource supercedes any `Policy` set anywhere up the resource hierarchy. However, if `inherit_from_parent` is set to `true`, then the values from the effective `Policy` of the parent resource are inherited, meaning the values set in this `Policy` are added to the values inherited up the hierarchy.  Setting `Policy` hierarchies that inherit both allowed values and denied values isn&#39;t recommended in most circumstances to keep the configuration simple and understandable. However, it is possible to set a `Policy` with `allowed_values` set that inherits a `Policy` with `denied_values` set. In this case, the values that are allowed must be in `allowed_values` and not present in `denied_values`.  For example, suppose you have a `Constraint` `constraints/serviceuser.services`, which has a `constraint_type` of `list_constraint`, and with `constraint_default` set to `ALLOW`. Suppose that at the Organization level, a `Policy` is applied that restricts the allowed API activations to {`E1`, `E2`}. Then, if a `Policy` is applied to a project below the Organization that has `inherit_from_parent` set to `false` and field all_values set to DENY, then an attempt to activate any API will be denied.  The following examples demonstrate different possible layerings for `projects/bar` parented by `organizations/foo`:  Example 1 (no inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;}   `projects/bar` has `inherit_from_parent` `false` and values:     {allowed_values: &quot;E3&quot; allowed_values: &quot;E4&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E3`, and `E4`.  Example 2 (inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;}   `projects/bar` has a `Policy` with values:     {value: &quot;E3&quot; value: &quot;E4&quot; inherit_from_parent: true} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E1`, `E2`, `E3`, and `E4`.  Example 3 (inheriting both allowed and denied values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {denied_values: &quot;E1&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The value accepted at `projects/bar` is `E2`.  Example 4 (RestoreDefault):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;}   `projects/bar` has a `Policy` with values:     {RestoreDefault: {}} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 5 (no policy inherits parent policy):   `organizations/foo` has no `Policy` set.   `projects/bar` has no `Policy` set. The accepted values at both levels are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 6 (ListConstraint allowing all):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {all: ALLOW} The accepted values at `organizations/foo` are `E1`, E2`. Any value is accepted at `projects/bar`.  Example 7 (ListConstraint allowing none):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {all: DENY} The accepted values at `organizations/foo` are `E1`, E2`. No value is accepted at `projects/bar`.  Example 10 (allowed and denied subtrees of Resource Manager hierarchy): Given the following resource hierarchy   O1-&gt;{F1, F2}; F1-&gt;{P1}; F2-&gt;{P2, P3},   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;under:organizations/O1&quot;}   `projects/bar` has a `Policy` with:     {allowed_values: &quot;under:projects/P3&quot;}     {denied_values: &quot;under:folders/F2&quot;} The accepted values at `organizations/foo` are `organizations/O1`,   `folders/F1`, `folders/F2`, `projects/P1`, `projects/P2`,   `projects/P3`. The accepted values at `projects/bar` are `organizations/O1`,   `folders/F1`, `projects/P1`.
      */
     inheritFromParent?: boolean | null;
     /**
@@ -343,7 +419,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleCloudOrgpolicyV1RestoreDefault {}
   /**
-   * An `AccessLevel` is a label that can be applied to requests to GCP services, along with a list of requirements necessary for the label to be applied.
+   * An `AccessLevel` is a label that can be applied to requests to Google Cloud services, along with a list of requirements necessary for the label to be applied.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1AccessLevel {
     /**
@@ -351,34 +427,30 @@ export namespace cloudasset_v1 {
      */
     basic?: Schema$GoogleIdentityAccesscontextmanagerV1BasicLevel;
     /**
-     * Output only. Time the `AccessLevel` was created in UTC.
+     * A `CustomLevel` written in the Common Expression Language.
      */
-    createTime?: string | null;
+    custom?: Schema$GoogleIdentityAccesscontextmanagerV1CustomLevel;
     /**
      * Description of the `AccessLevel` and its use. Does not affect behavior.
      */
     description?: string | null;
     /**
-     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`
+     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length of the `short_name` component is 50 characters.
      */
     name?: string | null;
     /**
      * Human readable title. Must be unique within the Policy.
      */
     title?: string | null;
-    /**
-     * Output only. Time the `AccessLevel` was updated in UTC.
-     */
-    updateTime?: string | null;
   }
   /**
-   * `AccessPolicy` is a container for `AccessLevels` (which define the necessary attributes to use GCP services) and `ServicePerimeters` (which define regions of services able to freely pass data within a perimeter). An access policy is globally visible within an organization, and the restrictions it specifies apply to all projects within an organization.
+   * `AccessPolicy` is a container for `AccessLevels` (which define the necessary attributes to use Google Cloud services) and `ServicePerimeters` (which define regions of services able to freely pass data within a perimeter). An access policy is globally visible within an organization, and the restrictions it specifies apply to all projects within an organization.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1AccessPolicy {
     /**
-     * Output only. Time the `AccessPolicy` was created in UTC.
+     * Output only. An opaque identifier for the current version of the `AccessPolicy`. This will always be a strongly validated etag, meaning that two Access Polices will be identical if and only if their etags are identical. Clients should not expect this to be in any specific format.
      */
-    createTime?: string | null;
+    etag?: string | null;
     /**
      * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id}`
      */
@@ -391,10 +463,6 @@ export namespace cloudasset_v1 {
      * Required. Human readable title. Does not affect behavior.
      */
     title?: string | null;
-    /**
-     * Output only. Time the `AccessPolicy` was updated in UTC.
-     */
-    updateTime?: string | null;
   }
   /**
    * `BasicLevel` is an `AccessLevel` using a set of recommended features.
@@ -439,6 +507,15 @@ export namespace cloudasset_v1 {
     requiredAccessLevels?: string[] | null;
   }
   /**
+   * `CustomLevel` is an `AccessLevel` using the Cloud Common Expression Language to represent the necessary conditions for the level to apply to a request. See CEL spec at: https://github.com/google/cel-spec
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1CustomLevel {
+    /**
+     * Required. A Cloud CEL expression evaluating to a boolean.
+     */
+    expr?: Schema$Expr;
+  }
+  /**
    * `DevicePolicy` specifies device specific restrictions necessary to acquire a given access level. A `DevicePolicy` specifies requirements for requests from devices to be granted access levels, it does not do any enforcement on the device. `DevicePolicy` acts as an AND over all specified fields, and each repeated field is an OR over its elements. Any unset fields are ignored. For example, if the proto is { os_type : DESKTOP_WINDOWS, os_type : DESKTOP_LINUX, encryption_status: ENCRYPTED}, then the DevicePolicy will be true for requests originating from encrypted Linux desktops and encrypted Windows desktops.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1DevicePolicy {
@@ -480,18 +557,14 @@ export namespace cloudasset_v1 {
      */
     osType?: string | null;
     /**
-     * Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to Dasher domain policies, and the caller has permission to call the API targeted by the request.
+     * Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to domain policies, and the caller has permission to call the API targeted by the request.
      */
     requireVerifiedChromeOs?: boolean | null;
   }
   /**
-   * `ServicePerimeter` describes a set of GCP resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single GCP project can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only GCP projects as members, a single GCP project may belong to multiple Service Perimeter Bridges.
+   * `ServicePerimeter` describes a set of Google Cloud resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single Google Cloud project can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only Google Cloud projects as members, a single Google Cloud project may belong to multiple Service Perimeter Bridges.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeter {
-    /**
-     * Output only. Time the `ServicePerimeter` was created in UTC.
-     */
-    createTime?: string | null;
     /**
      * Description of the `ServicePerimeter` and its use. Does not affect behavior.
      */
@@ -505,6 +578,10 @@ export namespace cloudasset_v1 {
      */
     perimeterType?: string | null;
     /**
+     * Proposed (or dry run) ServicePerimeter configuration. This configuration allows to specify and test ServicePerimeter configuration without enforcing actual access restrictions. Only allowed to be set when the &quot;use_explicit_dry_run_spec&quot; flag is set.
+     */
+    spec?: Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeterConfig;
+    /**
      * Current ServicePerimeter configuration. Specifies sets of resources, restricted services and access levels that determine perimeter content and boundaries.
      */
     status?: Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeterConfig;
@@ -513,26 +590,70 @@ export namespace cloudasset_v1 {
      */
     title?: string | null;
     /**
-     * Output only. Time the `ServicePerimeter` was updated in UTC.
+     * Use explicit dry run spec flag. Ordinarily, a dry-run spec implicitly exists  for all Service Perimeters, and that spec is identical to the status for those Service Perimeters. When this flag is set, it inhibits the generation of the implicit spec, thereby allowing the user to explicitly provide a configuration (&quot;spec&quot;) to use in a dry-run version of the Service Perimeter. This allows the user to test changes to the enforced config (&quot;status&quot;) without actually enforcing them. This testing is done through analyzing the differences between currently enforced and suggested restrictions. use_explicit_dry_run_spec must bet set to True if any of the fields in the spec are set to non-default values.
      */
-    updateTime?: string | null;
+    useExplicitDryRunSpec?: boolean | null;
   }
   /**
-   * `ServicePerimeterConfig` specifies a set of GCP resources that describe specific Service Perimeter configuration.
+   * `ServicePerimeterConfig` specifies a set of Google Cloud resources that describe specific Service Perimeter configuration.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeterConfig {
     /**
-     * A list of `AccessLevel` resource names that allow resources within the `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed must be in the same policy as this `ServicePerimeter`. Referencing a nonexistent `AccessLevel` is a syntax error. If no `AccessLevel` names are listed, resources within the perimeter can only be accessed via GCP calls with request origins within the perimeter. Example: `&quot;accessPolicies/MY_POLICY/accessLevels/MY_LEVEL&quot;`. For Service Perimeter Bridge, must be empty.
+     * A list of `AccessLevel` resource names that allow resources within the `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed must be in the same policy as this `ServicePerimeter`. Referencing a nonexistent `AccessLevel` is a syntax error. If no `AccessLevel` names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `&quot;accessPolicies/MY_POLICY/accessLevels/MY_LEVEL&quot;`. For Service Perimeter Bridge, must be empty.
      */
     accessLevels?: string[] | null;
     /**
-     * A list of GCP resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`
+     * A list of Google Cloud resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`
      */
     resources?: string[] | null;
     /**
-     * GCP services that are subject to the Service Perimeter restrictions. For example, if `storage.googleapis.com` is specified, access to the storage buckets inside the perimeter must meet the perimeter&#39;s access restrictions.
+     * Google Cloud services that are subject to the Service Perimeter restrictions. For example, if `storage.googleapis.com` is specified, access to the storage buckets inside the perimeter must meet the perimeter&#39;s access restrictions.
      */
     restrictedServices?: string[] | null;
+    /**
+     * Configuration for APIs allowed within Perimeter.
+     */
+    vpcAccessibleServices?: Schema$GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices;
+  }
+  /**
+   * Specifies how APIs are allowed to communicate within the Service Perimeter.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices {
+    /**
+     * The list of APIs usable within the Service Perimeter. Must be empty unless &#39;enable_restriction&#39; is True.
+     */
+    allowedServices?: string[] | null;
+    /**
+     * Whether to restrict API calls within the Service Perimeter to the list of APIs specified in &#39;allowed_services&#39;.
+     */
+    enableRestriction?: boolean | null;
+  }
+  /**
+   * A result of IAM Policy search, containing information of an IAM policy.
+   */
+  export interface Schema$IamPolicySearchResult {
+    /**
+     * Explanation about the IAM policy search result. It contains additional information to explain why the search result matches the query.
+     */
+    explanation?: Schema$Explanation;
+    /**
+     * The IAM policy directly set on the given resource. Note that the original IAM policy can contain multiple bindings. This only contains the bindings that match the given query. For queries that don&#39;t contain a constrain on policies (e.g., an empty query), this contains all the bindings.  To search against the `policy` bindings:  * use a field query, as following:     - query by the policy contained members. Example:       `policy : &quot;amy@gmail.com&quot;`     - query by the policy contained roles. Example:       `policy : &quot;roles/compute.admin&quot;`     - query by the policy contained roles&#39; implied permissions. Example:       `policy.role.permissions : &quot;compute.instances.create&quot;`
+     */
+    policy?: Schema$Policy;
+    /**
+     * The project that the associated GCP resource belongs to, in the form of projects/{PROJECT_NUMBER}. If an IAM policy is set on a resource (like VM instance, Cloud Storage bucket), the project field will indicate the project that contains the resource. If an IAM policy is set on a folder or orgnization, the project field will be empty.  To search against the `project`:  * specify the `scope` field as this project in your search request.
+     */
+    project?: string | null;
+    /**
+     * The full resource name of the resource associated with this IAM policy. Example: &quot;//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1&quot;. See [Cloud Asset Inventory Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more information.  To search against the `resource`:  * use a field query. Example: `resource : &quot;organizations/123&quot;`
+     */
+    resource?: string | null;
+  }
+  export interface Schema$ListFeedsResponse {
+    /**
+     * A list of feeds.
+     */
+    feeds?: Schema$Feed[];
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -573,7 +694,16 @@ export namespace cloudasset_v1 {
     gcsDestination?: Schema$GcsDestination;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * IAM permissions
+   */
+  export interface Schema$Permissions {
+    /**
+     * A list of permissions. A sample permission string: &quot;compute.disk.get&quot;.
+     */
+    permissions?: string[] | null;
+  }
+  /**
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -581,46 +711,126 @@ export namespace cloudasset_v1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
   /**
-   * Representation of a cloud resource.
+   * A Pub/Sub destination.
+   */
+  export interface Schema$PubsubDestination {
+    /**
+     * The name of the Pub/Sub topic to publish to. Example: `projects/PROJECT_ID/topics/TOPIC_ID`.
+     */
+    topic?: string | null;
+  }
+  /**
+   * A representation of a Google Cloud resource.
    */
   export interface Schema$Resource {
     /**
-     * The content of the resource, in which some sensitive fields are scrubbed away and may not be present.
+     * The content of the resource, in which some sensitive fields are removed and may not be present.
      */
     data?: {[key: string]: any} | null;
     /**
-     * The URL of the discovery document containing the resource&#39;s JSON schema. For example: `&quot;https://www.googleapis.com/discovery/v1/apis/compute/v1/rest&quot;`. It will be left unspecified for resources without a discovery-based API, such as Cloud Bigtable.
+     * The URL of the discovery document containing the resource&#39;s JSON schema. Example: &quot;https://www.googleapis.com/discovery/v1/apis/compute/v1/rest&quot;  This value is unspecified for resources that do not have an API based on a discovery document, such as Cloud Bigtable.
      */
     discoveryDocumentUri?: string | null;
     /**
-     * The JSON schema name listed in the discovery document. Example: &quot;Project&quot;. It will be left unspecified for resources (such as Cloud Bigtable) without a discovery-based API.
+     * The JSON schema name listed in the discovery document. Example: &quot;Project&quot;  This value is unspecified for resources that do not have an API based on a discovery document, such as Cloud Bigtable.
      */
     discoveryName?: string | null;
     /**
-     * The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.  For GCP assets, it is the parent resource defined in the [Cloud IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). For example: `&quot;//cloudresourcemanager.googleapis.com/projects/my_project_123&quot;`.  For third-party assets, it is up to the users to define.
+     * The location of the resource in Google Cloud, such as its zone and region. For more information, see https://cloud.google.com/about/locations/.
+     */
+    location?: string | null;
+    /**
+     * The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.  For Google Cloud assets, this value is the parent resource defined in the [Cloud IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). Example: &quot;//cloudresourcemanager.googleapis.com/projects/my_project_123&quot;  For third-party assets, this field may be set differently.
      */
     parent?: string | null;
     /**
-     * The REST URL for accessing the resource. An HTTP GET operation using this URL returns the resource itself. Example: `https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123`. It will be left unspecified for resources without a REST API.
+     * The REST URL for accessing the resource. An HTTP `GET` request using this URL returns the resource itself. Example: &quot;https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123&quot;  This value is unspecified for resources without a REST API.
      */
     resourceUrl?: string | null;
     /**
-     * The API version. Example: &quot;v1&quot;.
+     * The API version. Example: &quot;v1&quot;
      */
     version?: string | null;
+  }
+  /**
+   * A result of Resource Search, containing information of a cloud resoure.
+   */
+  export interface Schema$ResourceSearchResult {
+    /**
+     * The additional attributes of this resource. The attributes may vary from one resource type to another. Examples: &quot;projectId&quot; for Project, &quot;dnsName&quot; for DNS ManagedZone.  To search against the `additional_attributes`:  * use a free text query to match the attributes values. Example: to search   additional_attributes = { dnsName: &quot;foobar&quot; }, you can issue a query   `&quot;foobar&quot;`.
+     */
+    additionalAttributes?: {[key: string]: any} | null;
+    /**
+     * The type of this resource. Example: &quot;compute.googleapis.com/Disk&quot;.  To search against the `asset_type`:  * specify the `asset_type` field in your search request.
+     */
+    assetType?: string | null;
+    /**
+     * One or more paragraphs of text description of this resource. Maximum length could be up to 1M bytes.  To search against the `description`:  * use a field query. Example: `description : &quot;*important instance*&quot;` * use a free text query. Example: `&quot;*important instance*&quot;`
+     */
+    description?: string | null;
+    /**
+     * The display name of this resource.  To search against the `display_name`:  * use a field query. Example: `displayName : &quot;My Instance&quot;` * use a free text query. Example: `&quot;My Instance&quot;`
+     */
+    displayName?: string | null;
+    /**
+     * Labels associated with this resource. See [Labelling and grouping GCP resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources) for more information.  To search against the `labels`:  * use a field query, as following:     - query on any label&#39;s key or value. Example: `labels : &quot;prod&quot;`     - query by a given label. Example: `labels.env : &quot;prod&quot;`     - query by a given label&#39;sexistence. Example: `labels.env : *` * use a free text query. Example: `&quot;prod&quot;`
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Location can be &quot;global&quot;, regional like &quot;us-east1&quot;, or zonal like &quot;us-west1-b&quot;.  To search against the `location`:  * use a field query. Example: `location : &quot;us-west*&quot;` * use a free text query. Example: `&quot;us-west*&quot;`
+     */
+    location?: string | null;
+    /**
+     * The full resource name of this resource. Example: &quot;//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1&quot;. See [Cloud Asset Inventory Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more information.  To search against the `name`:  * use a field query. Example: `name : &quot;instance1&quot;` * use a free text query. Example: `&quot;instance1&quot;`
+     */
+    name?: string | null;
+    /**
+     * Network tags associated with this resource. Like labels, network tags are a type of annotations used to group GCP resources. See [Labelling GCP resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources) for more information.  To search against the `network_tags`:  * use a field query. Example: `networkTags : &quot;internal&quot;` * use a free text query. Example: `&quot;internal&quot;`
+     */
+    networkTags?: string[] | null;
+    /**
+     * The project that this resource belongs to, in the form of projects/{PROJECT_NUMBER}.  To search against the `project`:  * specify the `scope` field as this project in your search request.
+     */
+    project?: string | null;
+  }
+  /**
+   * Search all IAM policies response.
+   */
+  export interface Schema$SearchAllIamPoliciesResponse {
+    /**
+     * Set if there are more results than those appearing in this response; to get the next set of results, call this method again, using this value as the `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of IamPolicy that match the search query. Related information such as the associated resource is returned along with the policy.
+     */
+    results?: Schema$IamPolicySearchResult[];
+  }
+  /**
+   * Search all resources response.
+   */
+  export interface Schema$SearchAllResourcesResponse {
+    /**
+     * If there are more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of Resources that match the search query. It contains the resource standard metadata information.
+     */
+    results?: Schema$ResourceSearchResult[];
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -640,15 +850,15 @@ export namespace cloudasset_v1 {
     message?: string | null;
   }
   /**
-   * Temporal asset. In addition to the asset, the temporal asset includes the status of the asset and valid from and to time of it.
+   * An asset in Google Cloud and its temporal metadata, including the time window when it was observed and its status during that window.
    */
   export interface Schema$TemporalAsset {
     /**
-     * Asset.
+     * An asset in Google Cloud.
      */
     asset?: Schema$Asset;
     /**
-     * If the asset is deleted or not.
+     * Whether the asset has been deleted or not.
      */
     deleted?: boolean | null;
     /**
@@ -657,17 +867,770 @@ export namespace cloudasset_v1 {
     window?: Schema$TimeWindow;
   }
   /**
-   * A time window of (start_time, end_time].
+   * A time window specified by its &quot;start_time&quot; and &quot;end_time&quot;.
    */
   export interface Schema$TimeWindow {
     /**
-     * End time of the time window (inclusive). Current timestamp if not specified.
+     * End time of the time window (inclusive). If not specified, the current timestamp is used instead.
      */
     endTime?: string | null;
     /**
      * Start time of the time window (exclusive).
      */
     startTime?: string | null;
+  }
+  /**
+   * Update asset feed request.
+   */
+  export interface Schema$UpdateFeedRequest {
+    /**
+     * Required. The new values of feed details. It must match an existing feed and the field `name` must be in the format of: projects/project_number/feeds/feed_id or folders/folder_number/feeds/feed_id or organizations/organization_number/feeds/feed_id.
+     */
+    feed?: Schema$Feed;
+    /**
+     * Required. Only updates the `feed` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server.
+     */
+    updateMask?: string | null;
+  }
+
+  export class Resource$Feeds {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * cloudasset.feeds.create
+     * @desc Creates a feed in a parent project/folder/organization to listen to its asset updates.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.feeds.create({
+     *     // Required. The name of the project/folder/organization where this feed
+     *     // should be created in. It can only be an organization number (such as
+     *     // "organizations/123"), a folder number (such as "folders/123"), a project ID
+     *     // (such as "projects/my-project-id")", or a project number (such as
+     *     // "projects/12345").
+     *     parent: '[^/]+/[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "feed": {},
+     *       //   "feedId": "my_feedId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assetNames": [],
+     *   //   "assetTypes": [],
+     *   //   "contentType": "my_contentType",
+     *   //   "feedOutputConfig": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudasset.feeds.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the project/folder/organization where this feed should be created in. It can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id")", or a project number (such as "projects/12345").
+     * @param {().CreateFeedRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Feeds$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Feeds$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Feed>;
+    create(
+      params: Params$Resource$Feeds$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Feeds$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Feed>,
+      callback: BodyResponseCallback<Schema$Feed>
+    ): void;
+    create(
+      params: Params$Resource$Feeds$Create,
+      callback: BodyResponseCallback<Schema$Feed>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Feed>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Feeds$Create
+        | BodyResponseCallback<Schema$Feed>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Feed>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Feed>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Feed> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Feeds$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Feeds$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/feeds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Feed>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Feed>(parameters);
+      }
+    }
+
+    /**
+     * cloudasset.feeds.delete
+     * @desc Deletes an asset feed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.feeds.delete({
+     *     // Required. The name of the feed and it must be in the format of:
+     *     // projects/project_number/feeds/feed_id
+     *     // folders/folder_number/feeds/feed_id
+     *     // organizations/organization_number/feeds/feed_id
+     *     name: '[^/]+/[^/]+/feeds/my-feed',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudasset.feeds.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the feed and it must be in the format of: projects/project_number/feeds/feed_id folders/folder_number/feeds/feed_id organizations/organization_number/feeds/feed_id
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Feeds$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Feeds$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Feeds$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Feeds$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Feeds$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Feeds$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Feeds$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Feeds$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * cloudasset.feeds.get
+     * @desc Gets details about an asset feed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.feeds.get({
+     *     // Required. The name of the Feed and it must be in the format of:
+     *     // projects/project_number/feeds/feed_id
+     *     // folders/folder_number/feeds/feed_id
+     *     // organizations/organization_number/feeds/feed_id
+     *     name: '[^/]+/[^/]+/feeds/my-feed',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assetNames": [],
+     *   //   "assetTypes": [],
+     *   //   "contentType": "my_contentType",
+     *   //   "feedOutputConfig": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudasset.feeds.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the Feed and it must be in the format of: projects/project_number/feeds/feed_id folders/folder_number/feeds/feed_id organizations/organization_number/feeds/feed_id
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Feeds$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Feeds$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Feed>;
+    get(
+      params: Params$Resource$Feeds$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Feeds$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Feed>,
+      callback: BodyResponseCallback<Schema$Feed>
+    ): void;
+    get(
+      params: Params$Resource$Feeds$Get,
+      callback: BodyResponseCallback<Schema$Feed>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Feed>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Feeds$Get
+        | BodyResponseCallback<Schema$Feed>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Feed>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Feed>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Feed> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Feeds$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Feeds$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Feed>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Feed>(parameters);
+      }
+    }
+
+    /**
+     * cloudasset.feeds.list
+     * @desc Lists all asset feeds in a parent project/folder/organization.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.feeds.list({
+     *     // Required. The parent project/folder/organization whose feeds are to be
+     *     // listed. It can only be using project/folder/organization number (such as
+     *     // "folders/12345")", or a project ID (such as "projects/my-project-id").
+     *     parent: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "feeds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudasset.feeds.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The parent project/folder/organization whose feeds are to be listed. It can only be using project/folder/organization number (such as "folders/12345")", or a project ID (such as "projects/my-project-id").
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Feeds$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Feeds$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFeedsResponse>;
+    list(
+      params: Params$Resource$Feeds$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Feeds$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListFeedsResponse>,
+      callback: BodyResponseCallback<Schema$ListFeedsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Feeds$List,
+      callback: BodyResponseCallback<Schema$ListFeedsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListFeedsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Feeds$List
+        | BodyResponseCallback<Schema$ListFeedsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFeedsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFeedsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFeedsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Feeds$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Feeds$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/feeds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListFeedsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListFeedsResponse>(parameters);
+      }
+    }
+
+    /**
+     * cloudasset.feeds.patch
+     * @desc Updates an asset feed configuration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.feeds.patch({
+     *     // Required. The format will be
+     *     // projects/{project_number}/feeds/{client-assigned_feed_identifier} or
+     *     // folders/{folder_number}/feeds/{client-assigned_feed_identifier} or
+     *     // organizations/{organization_number}/feeds/{client-assigned_feed_identifier}
+     *     //
+     *     // The client-assigned feed identifier must be unique within the parent
+     *     // project/folder/organization.
+     *     name: '[^/]+/[^/]+/feeds/my-feed',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "feed": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assetNames": [],
+     *   //   "assetTypes": [],
+     *   //   "contentType": "my_contentType",
+     *   //   "feedOutputConfig": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudasset.feeds.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The format will be projects/{project_number}/feeds/{client-assigned_feed_identifier} or folders/{folder_number}/feeds/{client-assigned_feed_identifier} or organizations/{organization_number}/feeds/{client-assigned_feed_identifier}  The client-assigned feed identifier must be unique within the parent project/folder/organization.
+     * @param {().UpdateFeedRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Feeds$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Feeds$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Feed>;
+    patch(
+      params: Params$Resource$Feeds$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Feeds$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Feed>,
+      callback: BodyResponseCallback<Schema$Feed>
+    ): void;
+    patch(
+      params: Params$Resource$Feeds$Patch,
+      callback: BodyResponseCallback<Schema$Feed>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Feed>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Feeds$Patch
+        | BodyResponseCallback<Schema$Feed>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Feed>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Feed>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Feed> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Feeds$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Feeds$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Feed>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Feed>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Feeds$Create extends StandardParameters {
+    /**
+     * Required. The name of the project/folder/organization where this feed should be created in. It can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id")", or a project number (such as "projects/12345").
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreateFeedRequest;
+  }
+  export interface Params$Resource$Feeds$Delete extends StandardParameters {
+    /**
+     * Required. The name of the feed and it must be in the format of: projects/project_number/feeds/feed_id folders/folder_number/feeds/feed_id organizations/organization_number/feeds/feed_id
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Feeds$Get extends StandardParameters {
+    /**
+     * Required. The name of the Feed and it must be in the format of: projects/project_number/feeds/feed_id folders/folder_number/feeds/feed_id organizations/organization_number/feeds/feed_id
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Feeds$List extends StandardParameters {
+    /**
+     * Required. The parent project/folder/organization whose feeds are to be listed. It can only be using project/folder/organization number (such as "folders/12345")", or a project ID (such as "projects/my-project-id").
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Feeds$Patch extends StandardParameters {
+    /**
+     * Required. The format will be projects/{project_number}/feeds/{client-assigned_feed_identifier} or folders/{folder_number}/feeds/{client-assigned_feed_identifier} or organizations/{organization_number}/feeds/{client-assigned_feed_identifier}  The client-assigned feed identifier must be unique within the parent project/folder/organization.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpdateFeedRequest;
   }
 
   export class Resource$Operations {
@@ -679,6 +1642,50 @@ export namespace cloudasset_v1 {
     /**
      * cloudasset.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.operations.get({
+     *     // The name of the operation resource.
+     *     name: '[^/]+/[^/]+/operations/my-operation/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudasset.operations.get
      * @memberOf! ()
      *
@@ -689,9 +1696,18 @@ export namespace cloudasset_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -705,12 +1721,17 @@ export namespace cloudasset_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -740,7 +1761,10 @@ export namespace cloudasset_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -748,11 +1772,6 @@ export namespace cloudasset_v1 {
   }
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */
@@ -768,23 +1787,90 @@ export namespace cloudasset_v1 {
     /**
      * cloudasset.batchGetAssetsHistory
      * @desc Batch gets the update history of assets that overlap a time window. For RESOURCE content, this API outputs history with asset in both non-delete or deleted status. For IAM_POLICY content, this API outputs history when the asset and its attached IAM POLICY both exist. This can create gaps in the output history. If a specified asset does not exist, this API returns an INVALID_ARGUMENT error.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.batchGetAssetsHistory({
+     *     // A list of the full names of the assets.
+     *     // See: https://cloud.google.com/asset-inventory/docs/resource-name-format
+     *     // Example:
+     *     //
+     *     // `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
+     *     //
+     *     // The request becomes a no-op if the asset name list is empty, and the max
+     *     // size of the asset name list is 100 in one request.
+     *     assetNames: 'placeholder-value',
+     *     // Optional. The content type.
+     *     contentType: 'placeholder-value',
+     *     // Required. The relative name of the root asset. It can only be an
+     *     // organization number (such as "organizations/123"), a project ID (such as
+     *     // "projects/my-project-id")", or a project number (such as "projects/12345").
+     *     parent: '[^/]+/[^/]+',
+     *     // End time of the time window (inclusive). If not specified, the current
+     *     // timestamp is used instead.
+     *     'readTimeWindow.endTime': 'placeholder-value',
+     *     // Start time of the time window (exclusive).
+     *     'readTimeWindow.startTime': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudasset.batchGetAssetsHistory
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.assetNames A list of the full names of the assets. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) and [Resource Name Format](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/resource-name-format) for more info.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
-     * @param {string=} params.contentType Required. The content type.
+     * @param {string=} params.assetNames A list of the full names of the assets. See: https://cloud.google.com/asset-inventory/docs/resource-name-format Example:  `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
+     * @param {string=} params.contentType Optional. The content type.
      * @param {string} params.parent Required. The relative name of the root asset. It can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id")", or a project number (such as "projects/12345").
-     * @param {string=} params.readTimeWindow.endTime End time of the time window (inclusive). Current timestamp if not specified.
+     * @param {string=} params.readTimeWindow.endTime End time of the time window (inclusive). If not specified, the current timestamp is used instead.
      * @param {string=} params.readTimeWindow.startTime Start time of the time window (exclusive).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchGetAssetsHistory(
+      params: Params$Resource$V1$Batchgetassetshistory,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGetAssetsHistory(
       params?: Params$Resource$V1$Batchgetassetshistory,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>;
+    batchGetAssetsHistory(
+      params: Params$Resource$V1$Batchgetassetshistory,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchGetAssetsHistory(
       params: Params$Resource$V1$Batchgetassetshistory,
       options:
@@ -802,12 +1888,20 @@ export namespace cloudasset_v1 {
     batchGetAssetsHistory(
       paramsOrCallback?:
         | Params$Resource$V1$Batchgetassetshistory
-        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
+        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
-      callback?: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
-    ): void | GaxiosPromise<Schema$BatchGetAssetsHistoryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Batchgetassetshistory;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -843,7 +1937,7 @@ export namespace cloudasset_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
@@ -854,21 +1948,88 @@ export namespace cloudasset_v1 {
 
     /**
      * cloudasset.exportAssets
-     * @desc Exports assets with time and resource types to a given Cloud Storage location. The output format is newline-delimited JSON. This API implements the google.longrunning.Operation API allowing you to keep track of the export.
+     * @desc Exports assets with time and resource types to a given Cloud Storage location. The output format is newline-delimited JSON. Each line represents a google.cloud.asset.v1.Asset in the JSON format. This API implements the google.longrunning.Operation API allowing you to keep track of the export. We recommend intervals of at least 2 seconds with exponential retry to poll the export operation result. For regular-size resource parent, the export operation usually finishes within 5 minutes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.exportAssets({
+     *     // Required. The relative name of the root asset. This can only be an
+     *     // organization number (such as "organizations/123"), a project ID (such as
+     *     // "projects/my-project-id"), or a project number (such as "projects/12345"),
+     *     // or a folder number (such as "folders/123").
+     *     parent: '[^/]+/[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assetTypes": [],
+     *       //   "contentType": "my_contentType",
+     *       //   "outputConfig": {},
+     *       //   "readTime": "my_readTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudasset.exportAssets
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"), or a folder number (such as "folders/123").
-     * @param {().ExportAssetsRequest} params.resource Request body data
+     * @param {().ExportAssetsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     exportAssets(
+      params: Params$Resource$V1$Exportassets,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportAssets(
       params?: Params$Resource$V1$Exportassets,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    exportAssets(
+      params: Params$Resource$V1$Exportassets,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     exportAssets(
       params: Params$Resource$V1$Exportassets,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -882,12 +2043,17 @@ export namespace cloudasset_v1 {
     exportAssets(
       paramsOrCallback?:
         | Params$Resource$V1$Exportassets
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Exportassets;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -920,9 +2086,402 @@ export namespace cloudasset_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * cloudasset.searchAllIamPolicies
+     * @desc Searches all the IAM policies within the given accessible scope (e.g., a project, a folder or an organization). Callers should have cloud.assets.SearchAllIamPolicies permission upon the requested scope, otherwise the request will be rejected.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.searchAllIamPolicies({
+     *     // Optional. The page size for search result pagination. Page size is capped at 500 even
+     *     // if a larger value is given. If set to zero, server will pick an appropriate
+     *     // default. Returned results may be fewer than requested. When this happens,
+     *     // there could be more results as long as `next_page_token` is returned.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, retrieve the next batch of results from the preceding call to
+     *     // this method. `page_token` must be the value of `next_page_token` from the
+     *     // previous response. The values of all other method parameters must be
+     *     // identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Optional. The query statement. An empty query can be specified to search all the IAM
+     *     // policies within the given `scope`.
+     *     //
+     *     // Examples:
+     *     //
+     *     // * `policy : "amy@gmail.com"` to find Cloud IAM policy bindings that
+     *     //   specify user "amy@gmail.com".
+     *     // * `policy : "roles/compute.admin"` to find Cloud IAM policy bindings that
+     *     //   specify the Compute Admin role.
+     *     // * `policy.role.permissions : "storage.buckets.update"` to find Cloud IAM
+     *     //   policy bindings that specify a role containing "storage.buckets.update"
+     *     //   permission.
+     *     // * `resource : "organizations/123"` to find Cloud IAM policy bindings that
+     *     //   are set on "organizations/123".
+     *     // * `(resource : ("organizations/123" OR "folders/1234") AND policy : "amy")`
+     *     //   to find Cloud IAM policy bindings that are set on "organizations/123" or
+     *     //   "folders/1234", and also specify user "amy".
+     *     //
+     *     // See [how to construct a
+     *     // query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)
+     *     // for more details.
+     *     query: 'placeholder-value',
+     *     // Required. A scope can be a project, a folder or an organization. The search is
+     *     // limited to the IAM policies within the `scope`.
+     *     //
+     *     // The allowed values are:
+     *     //
+     *     // * projects/{PROJECT_ID}
+     *     // * projects/{PROJECT_NUMBER}
+     *     // * folders/{FOLDER_NUMBER}
+     *     // * organizations/{ORGANIZATION_NUMBER}
+     *     scope: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudasset.searchAllIamPolicies
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.
+     * @param {string=} params.pageToken Optional. If present, retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters must be identical to those in the previous call.
+     * @param {string=} params.query Optional. The query statement. An empty query can be specified to search all the IAM policies within the given `scope`.  Examples:  * `policy : "amy@gmail.com"` to find Cloud IAM policy bindings that   specify user "amy@gmail.com". * `policy : "roles/compute.admin"` to find Cloud IAM policy bindings that   specify the Compute Admin role. * `policy.role.permissions : "storage.buckets.update"` to find Cloud IAM   policy bindings that specify a role containing "storage.buckets.update"   permission. * `resource : "organizations/123"` to find Cloud IAM policy bindings that   are set on "organizations/123". * `(resource : ("organizations/123" OR "folders/1234") AND policy : "amy")`   to find Cloud IAM policy bindings that are set on "organizations/123" or   "folders/1234", and also specify user "amy".  See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query) for more details.
+     * @param {string} params.scope Required. A scope can be a project, a folder or an organization. The search is limited to the IAM policies within the `scope`.  The allowed values are:  * projects/{PROJECT_ID} * projects/{PROJECT_NUMBER} * folders/{FOLDER_NUMBER} * organizations/{ORGANIZATION_NUMBER}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    searchAllIamPolicies(
+      params: Params$Resource$V1$Searchalliampolicies,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchAllIamPolicies(
+      params?: Params$Resource$V1$Searchalliampolicies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchAllIamPoliciesResponse>;
+    searchAllIamPolicies(
+      params: Params$Resource$V1$Searchalliampolicies,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchAllIamPolicies(
+      params: Params$Resource$V1$Searchalliampolicies,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+    ): void;
+    searchAllIamPolicies(
+      params: Params$Resource$V1$Searchalliampolicies,
+      callback: BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+    ): void;
+    searchAllIamPolicies(
+      callback: BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+    ): void;
+    searchAllIamPolicies(
+      paramsOrCallback?:
+        | Params$Resource$V1$Searchalliampolicies
+        | BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchAllIamPoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Searchalliampolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Searchalliampolicies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+scope}:searchAllIamPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['scope'],
+        pathParams: ['scope'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchAllIamPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchAllIamPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * cloudasset.searchAllResources
+     * @desc Searches all the resources within the given accessible scope (e.g., a project, a folder or an organization). Callers should have cloud.assets.SearchAllResources permission upon the requested scope, otherwise the request will be rejected.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.searchAllResources({
+     *     // Optional. A list of asset types that this request searches for. If empty, it will
+     *     // search all the [searchable asset
+     *     // types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     *     assetTypes: 'placeholder-value',
+     *     // Optional. A comma separated list of fields specifying the sorting order of the
+     *     // results. The default order is ascending. Add " DESC" after the field name
+     *     // to indicate descending order. Redundant space characters are ignored.
+     *     // Example: "location DESC, name". See [supported resource metadata
+     *     // fields](https://cloud.google.com/asset-inventory/docs/searching-resources#query_on_resource_metadata_fields)
+     *     // for more details.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The page size for search result pagination. Page size is capped at 500 even
+     *     // if a larger value is given. If set to zero, server will pick an appropriate
+     *     // default. Returned results may be fewer than requested. When this happens,
+     *     // there could be more results as long as `next_page_token` is returned.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call
+     *     // to this method. `page_token` must be the value of `next_page_token` from
+     *     // the previous response. The values of all other method parameters, must be
+     *     // identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Optional. The query statement. An empty query can be specified to search all the
+     *     // resources of certain `asset_types` within the given `scope`.
+     *     //
+     *     // Examples:
+     *     //
+     *     // * `name : "Important"` to find Cloud resources whose name contains
+     *     //   "Important" as a word.
+     *     // * `displayName : "Impor*"` to find Cloud resources whose display name
+     *     //   contains "Impor" as a word prefix.
+     *     // * `description : "*por*"` to find Cloud resources whose description
+     *     //   contains "por" as a substring.
+     *     // * `location : "us-west*"` to find Cloud resources whose location is
+     *     //   prefixed with "us-west".
+     *     // * `labels : "prod"` to find Cloud resources whose labels contain "prod" as
+     *     //   a key or value.
+     *     // * `labels.env : "prod"` to find Cloud resources which have a label "env"
+     *     //   and its value is "prod".
+     *     // * `labels.env : *` to find Cloud resources which have a label "env".
+     *     // * `"Important"` to find Cloud resources which contain "Important" as a word
+     *     //   in any of the searchable fields.
+     *     // * `"Impor*"` to find Cloud resources which contain "Impor" as a word prefix
+     *     //   in any of the searchable fields.
+     *     // * `"*por*"` to find Cloud resources which contain "por" as a substring in
+     *     //   any of the searchable fields.
+     *     // * `("Important" AND location : ("us-west1" OR "global"))` to find Cloud
+     *     //   resources which contain "Important" as a word in any of the searchable
+     *     //   fields and are also located in the "us-west1" region or the "global"
+     *     //   location.
+     *     //
+     *     // See [how to construct a
+     *     // query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query)
+     *     // for more details.
+     *     query: 'placeholder-value',
+     *     // Required. A scope can be a project, a folder or an organization. The search is
+     *     // limited to the resources within the `scope`.
+     *     //
+     *     // The allowed values are:
+     *     //
+     *     // * projects/{PROJECT_ID}
+     *     // * projects/{PROJECT_NUMBER}
+     *     // * folders/{FOLDER_NUMBER}
+     *     // * organizations/{ORGANIZATION_NUMBER}
+     *     scope: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudasset.searchAllResources
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.assetTypes Optional. A list of asset types that this request searches for. If empty, it will search all the [searchable asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     * @param {string=} params.orderBy Optional. A comma separated list of fields specifying the sorting order of the results. The default order is ascending. Add " DESC" after the field name to indicate descending order. Redundant space characters are ignored. Example: "location DESC, name". See [supported resource metadata fields](https://cloud.google.com/asset-inventory/docs/searching-resources#query_on_resource_metadata_fields) for more details.
+     * @param {integer=} params.pageSize Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters, must be identical to those in the previous call.
+     * @param {string=} params.query Optional. The query statement. An empty query can be specified to search all the resources of certain `asset_types` within the given `scope`.  Examples:  * `name : "Important"` to find Cloud resources whose name contains   "Important" as a word. * `displayName : "Impor*"` to find Cloud resources whose display name   contains "Impor" as a word prefix. * `description : "*por*"` to find Cloud resources whose description   contains "por" as a substring. * `location : "us-west*"` to find Cloud resources whose location is   prefixed with "us-west". * `labels : "prod"` to find Cloud resources whose labels contain "prod" as   a key or value. * `labels.env : "prod"` to find Cloud resources which have a label "env"   and its value is "prod". * `labels.env : *` to find Cloud resources which have a label "env". * `"Important"` to find Cloud resources which contain "Important" as a word   in any of the searchable fields. * `"Impor*"` to find Cloud resources which contain "Impor" as a word prefix   in any of the searchable fields. * `"*por*"` to find Cloud resources which contain "por" as a substring in   any of the searchable fields. * `("Important" AND location : ("us-west1" OR "global"))` to find Cloud   resources which contain "Important" as a word in any of the searchable   fields and are also located in the "us-west1" region or the "global"   location.  See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more details.
+     * @param {string} params.scope Required. A scope can be a project, a folder or an organization. The search is limited to the resources within the `scope`.  The allowed values are:  * projects/{PROJECT_ID} * projects/{PROJECT_NUMBER} * folders/{FOLDER_NUMBER} * organizations/{ORGANIZATION_NUMBER}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    searchAllResources(
+      params: Params$Resource$V1$Searchallresources,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchAllResources(
+      params?: Params$Resource$V1$Searchallresources,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchAllResourcesResponse>;
+    searchAllResources(
+      params: Params$Resource$V1$Searchallresources,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchAllResources(
+      params: Params$Resource$V1$Searchallresources,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchAllResourcesResponse>,
+      callback: BodyResponseCallback<Schema$SearchAllResourcesResponse>
+    ): void;
+    searchAllResources(
+      params: Params$Resource$V1$Searchallresources,
+      callback: BodyResponseCallback<Schema$SearchAllResourcesResponse>
+    ): void;
+    searchAllResources(
+      callback: BodyResponseCallback<Schema$SearchAllResourcesResponse>
+    ): void;
+    searchAllResources(
+      paramsOrCallback?:
+        | Params$Resource$V1$Searchallresources
+        | BodyResponseCallback<Schema$SearchAllResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchAllResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchAllResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchAllResourcesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Searchallresources;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Searchallresources;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+scope}:searchAllResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['scope'],
+        pathParams: ['scope'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchAllResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchAllResourcesResponse>(parameters);
       }
     }
   }
@@ -930,16 +2489,11 @@ export namespace cloudasset_v1 {
   export interface Params$Resource$V1$Batchgetassetshistory
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * A list of the full names of the assets. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) and [Resource Name Format](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/resource-name-format) for more info.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
+     * A list of the full names of the assets. See: https://cloud.google.com/asset-inventory/docs/resource-name-format Example:  `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
      */
     assetNames?: string[];
     /**
-     * Required. The content type.
+     * Optional. The content type.
      */
     contentType?: string;
     /**
@@ -947,7 +2501,7 @@ export namespace cloudasset_v1 {
      */
     parent?: string;
     /**
-     * End time of the time window (inclusive). Current timestamp if not specified.
+     * End time of the time window (inclusive). If not specified, the current timestamp is used instead.
      */
     'readTimeWindow.endTime'?: string;
     /**
@@ -957,11 +2511,6 @@ export namespace cloudasset_v1 {
   }
   export interface Params$Resource$V1$Exportassets extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"), or a folder number (such as "folders/123").
      */
     parent?: string;
@@ -970,5 +2519,51 @@ export namespace cloudasset_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ExportAssetsRequest;
+  }
+  export interface Params$Resource$V1$Searchalliampolicies
+    extends StandardParameters {
+    /**
+     * Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters must be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Optional. The query statement. An empty query can be specified to search all the IAM policies within the given `scope`.  Examples:  * `policy : "amy@gmail.com"` to find Cloud IAM policy bindings that   specify user "amy@gmail.com". * `policy : "roles/compute.admin"` to find Cloud IAM policy bindings that   specify the Compute Admin role. * `policy.role.permissions : "storage.buckets.update"` to find Cloud IAM   policy bindings that specify a role containing "storage.buckets.update"   permission. * `resource : "organizations/123"` to find Cloud IAM policy bindings that   are set on "organizations/123". * `(resource : ("organizations/123" OR "folders/1234") AND policy : "amy")`   to find Cloud IAM policy bindings that are set on "organizations/123" or   "folders/1234", and also specify user "amy".  See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query) for more details.
+     */
+    query?: string;
+    /**
+     * Required. A scope can be a project, a folder or an organization. The search is limited to the IAM policies within the `scope`.  The allowed values are:  * projects/{PROJECT_ID} * projects/{PROJECT_NUMBER} * folders/{FOLDER_NUMBER} * organizations/{ORGANIZATION_NUMBER}
+     */
+    scope?: string;
+  }
+  export interface Params$Resource$V1$Searchallresources
+    extends StandardParameters {
+    /**
+     * Optional. A list of asset types that this request searches for. If empty, it will search all the [searchable asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     */
+    assetTypes?: string[];
+    /**
+     * Optional. A comma separated list of fields specifying the sorting order of the results. The default order is ascending. Add " DESC" after the field name to indicate descending order. Redundant space characters are ignored. Example: "location DESC, name". See [supported resource metadata fields](https://cloud.google.com/asset-inventory/docs/searching-resources#query_on_resource_metadata_fields) for more details.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters, must be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Optional. The query statement. An empty query can be specified to search all the resources of certain `asset_types` within the given `scope`.  Examples:  * `name : "Important"` to find Cloud resources whose name contains   "Important" as a word. * `displayName : "Impor*"` to find Cloud resources whose display name   contains "Impor" as a word prefix. * `description : "*por*"` to find Cloud resources whose description   contains "por" as a substring. * `location : "us-west*"` to find Cloud resources whose location is   prefixed with "us-west". * `labels : "prod"` to find Cloud resources whose labels contain "prod" as   a key or value. * `labels.env : "prod"` to find Cloud resources which have a label "env"   and its value is "prod". * `labels.env : *` to find Cloud resources which have a label "env". * `"Important"` to find Cloud resources which contain "Important" as a word   in any of the searchable fields. * `"Impor*"` to find Cloud resources which contain "Impor" as a word prefix   in any of the searchable fields. * `"*por*"` to find Cloud resources which contain "por" as a substring in   any of the searchable fields. * `("Important" AND location : ("us-west1" OR "global"))` to find Cloud   resources which contain "Important" as a word in any of the searchable   fields and are also located in the "us-west1" region or the "global"   location.  See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more details.
+     */
+    query?: string;
+    /**
+     * Required. A scope can be a project, a folder or an organization. The search is limited to the resources within the `scope`.  The allowed values are:  * projects/{PROJECT_ID} * projects/{PROJECT_NUMBER} * folders/{FOLDER_NUMBER} * organizations/{ORGANIZATION_NUMBER}
+     */
+    scope?: string;
   }
 }

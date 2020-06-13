@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace texttospeech_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace texttospeech_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -136,7 +146,7 @@ export namespace texttospeech_v1 {
      */
     pitch?: number | null;
     /**
-     * The synthesis sample rate (in hertz) for this audio. Optional. When this is specified in SynthesizeSpeechRequest, if this is different from the voice&#39;s natural sample rate, then the synthesizer will honor this request by converting to the desired sample rate (which might result in worse audio quality), unless the specified sample rate is not supported for the encoding chosen, in which case it will fail the request and return google.rpc.Code.INVALID_ARGUMENT.
+     * Optional. The synthesis sample rate (in hertz) for this audio. When this is specified in SynthesizeSpeechRequest, if this is different from the voice&#39;s natural sample rate, then the synthesizer will honor this request by converting to the desired sample rate (which might result in worse audio quality), unless the specified sample rate is not supported for the encoding chosen, in which case it will fail the request and return google.rpc.Code.INVALID_ARGUMENT.
      */
     sampleRateHertz?: number | null;
     /**
@@ -222,15 +232,15 @@ export namespace texttospeech_v1 {
    */
   export interface Schema$VoiceSelectionParams {
     /**
-     * The language (and optionally also the region) of the voice expressed as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g. &quot;en-US&quot;. Required. This should not include a script tag (e.g. use &quot;cmn-cn&quot; rather than &quot;cmn-Hant-cn&quot;), because the script will be inferred from the input provided in the SynthesisInput.  The TTS service will use this parameter to help choose an appropriate voice.  Note that the TTS service may choose a voice with a slightly different language code than the one selected; it may substitute a different region (e.g. using en-US rather than en-CA if there isn&#39;t a Canadian voice available), or even a different language, e.g. using &quot;nb&quot; (Norwegian Bokmal) instead of &quot;no&quot; (Norwegian)&quot;.
+     * Required. The language (and potentially also the region) of the voice expressed as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g. &quot;en-US&quot;. This should not include a script tag (e.g. use &quot;cmn-cn&quot; rather than &quot;cmn-Hant-cn&quot;), because the script will be inferred from the input provided in the SynthesisInput.  The TTS service will use this parameter to help choose an appropriate voice.  Note that the TTS service may choose a voice with a slightly different language code than the one selected; it may substitute a different region (e.g. using en-US rather than en-CA if there isn&#39;t a Canadian voice available), or even a different language, e.g. using &quot;nb&quot; (Norwegian Bokmal) instead of &quot;no&quot; (Norwegian)&quot;.
      */
     languageCode?: string | null;
     /**
-     * The name of the voice. Optional; if not set, the service will choose a voice based on the other parameters such as language_code and gender.
+     * The name of the voice. If not set, the service will choose a voice based on the other parameters such as language_code and gender.
      */
     name?: string | null;
     /**
-     * The preferred gender of the voice. Optional; if not set, the service will choose a voice based on the other parameters such as language_code and name. Note that this is only a preference, not requirement; if a voice of the appropriate gender is not available, the synthesizer should substitute a voice with a different gender rather than failing the request.
+     * The preferred gender of the voice. If not set, the service will choose a voice based on the other parameters such as language_code and name. Note that this is only a preference, not requirement; if a voice of the appropriate gender is not available, the synthesizer should substitute a voice with a different gender rather than failing the request.
      */
     ssmlGender?: string | null;
   }
@@ -244,19 +254,75 @@ export namespace texttospeech_v1 {
     /**
      * texttospeech.text.synthesize
      * @desc Synthesizes speech synchronously: receive results after all text input has been processed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/texttospeech.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const texttospeech = google.texttospeech('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await texttospeech.text.synthesize({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "audioConfig": {},
+     *       //   "input": {},
+     *       //   "voice": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audioContent": "my_audioContent"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias texttospeech.text.synthesize
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SynthesizeSpeechRequest} params.resource Request body data
+     * @param {().SynthesizeSpeechRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     synthesize(
+      params: Params$Resource$Text$Synthesize,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    synthesize(
       params?: Params$Resource$Text$Synthesize,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SynthesizeSpeechResponse>;
+    synthesize(
+      params: Params$Resource$Text$Synthesize,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     synthesize(
       params: Params$Resource$Text$Synthesize,
       options:
@@ -274,12 +340,20 @@ export namespace texttospeech_v1 {
     synthesize(
       paramsOrCallback?:
         | Params$Resource$Text$Synthesize
-        | BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
+        | BodyResponseCallback<Schema$SynthesizeSpeechResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
-      callback?: BodyResponseCallback<Schema$SynthesizeSpeechResponse>
-    ): void | GaxiosPromise<Schema$SynthesizeSpeechResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SynthesizeSpeechResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SynthesizeSpeechResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SynthesizeSpeechResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Text$Synthesize;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -312,7 +386,10 @@ export namespace texttospeech_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SynthesizeSpeechResponse>(parameters, callback);
+        createAPIRequest<Schema$SynthesizeSpeechResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SynthesizeSpeechResponse>(parameters);
       }
@@ -320,11 +397,6 @@ export namespace texttospeech_v1 {
   }
 
   export interface Params$Resource$Text$Synthesize extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -340,19 +412,75 @@ export namespace texttospeech_v1 {
     /**
      * texttospeech.voices.list
      * @desc Returns a list of Voice supported for synthesis.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/texttospeech.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const texttospeech = google.texttospeech('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await texttospeech.voices.list({
+     *     // Optional. Recommended.
+     *     // [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If
+     *     // specified, the ListVoices call will only return voices that can be used to
+     *     // synthesize this language_code. E.g. when specifying "en-NZ", you will get
+     *     // supported "en-*" voices; when specifying "no", you will get supported
+     *     // "no-*" (Norwegian) and "nb-*" (Norwegian Bokmal) voices; specifying "zh"
+     *     // will also get supported "cmn-*" voices; specifying "zh-hk" will also get
+     *     // supported "yue-*" voices.
+     *     languageCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "voices": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias texttospeech.voices.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional (but recommended) [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-*" voices; when specifying "no", you will get supported "no-*" (Norwegian) and "nb-*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-*" voices; specifying "zh-hk" will also get supported "yue-*" voices.
+     * @param {string=} params.languageCode Optional. Recommended. [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-*" voices; when specifying "no", you will get supported "no-*" (Norwegian) and "nb-*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-*" voices; specifying "zh-hk" will also get supported "yue-*" voices.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Voices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Voices$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListVoicesResponse>;
+    list(
+      params: Params$Resource$Voices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Voices$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListVoicesResponse>,
@@ -366,12 +494,20 @@ export namespace texttospeech_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Voices$List
-        | BodyResponseCallback<Schema$ListVoicesResponse>,
+        | BodyResponseCallback<Schema$ListVoicesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListVoicesResponse>,
-      callback?: BodyResponseCallback<Schema$ListVoicesResponse>
-    ): void | GaxiosPromise<Schema$ListVoicesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVoicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVoicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListVoicesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Voices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -401,7 +537,10 @@ export namespace texttospeech_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListVoicesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListVoicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListVoicesResponse>(parameters);
       }
@@ -410,12 +549,7 @@ export namespace texttospeech_v1 {
 
   export interface Params$Resource$Voices$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Optional (but recommended) [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-*" voices; when specifying "no", you will get supported "no-*" (Norwegian) and "nb-*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-*" voices; specifying "zh-hk" will also get supported "yue-*" voices.
+     * Optional. Recommended. [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-*" voices; when specifying "no", you will get supported "no-*" (Norwegian) and "nb-*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-*" voices; specifying "zh-hk" will also get supported "yue-*" voices.
      */
     languageCode?: string;
   }

@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace tasks_v1 {
   export interface Options extends GlobalOptions {
@@ -43,9 +42,32 @@ export namespace tasks_v1 {
 
   interface StandardParameters {
     /**
-     * Data format for the response.
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -63,19 +85,23 @@ export namespace tasks_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
    * Tasks API
    *
-   * Manages your tasks and task lists.
+   * The Google Tasks API lets you manage your tasks and task lists.
    *
    * @example
    * const {google} = require('googleapis');
@@ -109,7 +135,7 @@ export namespace tasks_v1 {
      */
     completed?: string | null;
     /**
-     * Flag indicating whether the task has been deleted. The default if False.
+     * Flag indicating whether the task has been deleted. The default is False.
      */
     deleted?: boolean | null;
     /**
@@ -237,6 +263,41 @@ export namespace tasks_v1 {
     /**
      * tasks.tasklists.delete
      * @desc Deletes the authenticated user's specified task list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasklists.delete({
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasklists.delete
      * @memberOf! ()
      *
@@ -247,9 +308,18 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Tasklists$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Tasklists$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Tasklists$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Tasklists$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -263,10 +333,15 @@ export namespace tasks_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Tasklists$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -299,7 +374,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -308,6 +386,54 @@ export namespace tasks_v1 {
     /**
      * tasks.tasklists.get
      * @desc Returns the authenticated user's specified task list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tasks',
+     *       'https://www.googleapis.com/auth/tasks.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasklists.get({
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasklists.get
      * @memberOf! ()
      *
@@ -318,9 +444,18 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Tasklists$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Tasklists$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TaskList>;
+    get(
+      params: Params$Resource$Tasklists$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Tasklists$Get,
       options: MethodOptions | BodyResponseCallback<Schema$TaskList>,
@@ -334,10 +469,17 @@ export namespace tasks_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Tasklists$Get
-        | BodyResponseCallback<Schema$TaskList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$TaskList>,
-      callback?: BodyResponseCallback<Schema$TaskList>
-    ): void | GaxiosPromise<Schema$TaskList> {
+        | BodyResponseCallback<Schema$TaskList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TaskList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TaskList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TaskList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -370,7 +512,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TaskList>(parameters, callback);
+        createAPIRequest<Schema$TaskList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TaskList>(parameters);
       }
@@ -379,19 +524,83 @@ export namespace tasks_v1 {
     /**
      * tasks.tasklists.insert
      * @desc Creates a new task list and adds it to the authenticated user's task lists.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasklists.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasklists.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().TaskList} params.resource Request body data
+     * @param {().TaskList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Tasklists$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Tasklists$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TaskList>;
+    insert(
+      params: Params$Resource$Tasklists$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Tasklists$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$TaskList>,
@@ -405,10 +614,17 @@ export namespace tasks_v1 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Tasklists$Insert
-        | BodyResponseCallback<Schema$TaskList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$TaskList>,
-      callback?: BodyResponseCallback<Schema$TaskList>
-    ): void | GaxiosPromise<Schema$TaskList> {
+        | BodyResponseCallback<Schema$TaskList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TaskList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TaskList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TaskList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -441,7 +657,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TaskList>(parameters, callback);
+        createAPIRequest<Schema$TaskList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TaskList>(parameters);
       }
@@ -450,20 +669,78 @@ export namespace tasks_v1 {
     /**
      * tasks.tasklists.list
      * @desc Returns all the authenticated user's task lists.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tasks',
+     *       'https://www.googleapis.com/auth/tasks.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasklists.list({
+     *     // Maximum number of task lists returned on one page. Optional. The default is
+     *     // 20 (max allowed: 100).
+     *     maxResults: 'placeholder-value',
+     *     // Token specifying the result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasklists.list
      * @memberOf! ()
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      * @param {string=} params.pageToken Token specifying the result page to return. Optional.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Tasklists$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Tasklists$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TaskLists>;
+    list(
+      params: Params$Resource$Tasklists$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Tasklists$List,
       options: MethodOptions | BodyResponseCallback<Schema$TaskLists>,
@@ -477,12 +754,17 @@ export namespace tasks_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Tasklists$List
-        | BodyResponseCallback<Schema$TaskLists>,
+        | BodyResponseCallback<Schema$TaskLists>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TaskLists>,
-      callback?: BodyResponseCallback<Schema$TaskLists>
-    ): void | GaxiosPromise<Schema$TaskLists> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TaskLists>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TaskLists>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TaskLists> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -515,7 +797,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TaskLists>(parameters, callback);
+        createAPIRequest<Schema$TaskLists>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TaskLists>(parameters);
       }
@@ -524,20 +809,87 @@ export namespace tasks_v1 {
     /**
      * tasks.tasklists.patch
      * @desc Updates the authenticated user's specified task list. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasklists.patch({
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasklists.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
-     * @param {().TaskList} params.resource Request body data
+     * @param {().TaskList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Tasklists$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Tasklists$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TaskList>;
+    patch(
+      params: Params$Resource$Tasklists$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Tasklists$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$TaskList>,
@@ -551,10 +903,17 @@ export namespace tasks_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Tasklists$Patch
-        | BodyResponseCallback<Schema$TaskList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$TaskList>,
-      callback?: BodyResponseCallback<Schema$TaskList>
-    ): void | GaxiosPromise<Schema$TaskList> {
+        | BodyResponseCallback<Schema$TaskList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TaskList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TaskList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TaskList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -587,7 +946,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TaskList>(parameters, callback);
+        createAPIRequest<Schema$TaskList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TaskList>(parameters);
       }
@@ -596,20 +958,87 @@ export namespace tasks_v1 {
     /**
      * tasks.tasklists.update
      * @desc Updates the authenticated user's specified task list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasklists.update({
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasklists.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
-     * @param {().TaskList} params.resource Request body data
+     * @param {().TaskList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Tasklists$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Tasklists$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TaskList>;
+    update(
+      params: Params$Resource$Tasklists$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Tasklists$Update,
       options: MethodOptions | BodyResponseCallback<Schema$TaskList>,
@@ -623,10 +1052,17 @@ export namespace tasks_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Tasklists$Update
-        | BodyResponseCallback<Schema$TaskList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$TaskList>,
-      callback?: BodyResponseCallback<Schema$TaskList>
-    ): void | GaxiosPromise<Schema$TaskList> {
+        | BodyResponseCallback<Schema$TaskList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TaskList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TaskList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TaskList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -659,7 +1095,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TaskList>(parameters, callback);
+        createAPIRequest<Schema$TaskList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TaskList>(parameters);
       }
@@ -668,21 +1107,11 @@ export namespace tasks_v1 {
 
   export interface Params$Resource$Tasklists$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Task list identifier.
      */
     tasklist?: string;
   }
   export interface Params$Resource$Tasklists$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Task list identifier.
      */
@@ -690,36 +1119,21 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasklists$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$TaskList;
   }
   export interface Params$Resource$Tasklists$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      */
-    maxResults?: string;
+    maxResults?: number;
     /**
      * Token specifying the result page to return. Optional.
      */
     pageToken?: string;
   }
   export interface Params$Resource$Tasklists$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Task list identifier.
      */
@@ -731,11 +1145,6 @@ export namespace tasks_v1 {
     requestBody?: Schema$TaskList;
   }
   export interface Params$Resource$Tasklists$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Task list identifier.
      */
@@ -756,6 +1165,41 @@ export namespace tasks_v1 {
     /**
      * tasks.tasks.clear
      * @desc Clears all completed tasks from the specified task list. The affected tasks will be marked as 'hidden' and no longer be returned by default when retrieving all tasks for a task list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.clear({
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasks.clear
      * @memberOf! ()
      *
@@ -766,9 +1210,18 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     clear(
+      params: Params$Resource$Tasks$Clear,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    clear(
       params?: Params$Resource$Tasks$Clear,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    clear(
+      params: Params$Resource$Tasks$Clear,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     clear(
       params: Params$Resource$Tasks$Clear,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -782,10 +1235,15 @@ export namespace tasks_v1 {
     clear(
       paramsOrCallback?:
         | Params$Resource$Tasks$Clear
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Clear;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -818,7 +1276,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -827,6 +1288,43 @@ export namespace tasks_v1 {
     /**
      * tasks.tasks.delete
      * @desc Deletes the specified task from the task list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.delete({
+     *     // Task identifier.
+     *     task: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasks.delete
      * @memberOf! ()
      *
@@ -838,9 +1336,18 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Tasks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Tasks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Tasks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Tasks$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -854,10 +1361,15 @@ export namespace tasks_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Tasks$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -890,7 +1402,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -899,6 +1414,65 @@ export namespace tasks_v1 {
     /**
      * tasks.tasks.get
      * @desc Returns the specified task.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tasks',
+     *       'https://www.googleapis.com/auth/tasks.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.get({
+     *     // Task identifier.
+     *     task: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completed": "my_completed",
+     *   //   "deleted": false,
+     *   //   "due": "my_due",
+     *   //   "etag": "my_etag",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "links": [],
+     *   //   "notes": "my_notes",
+     *   //   "parent": "my_parent",
+     *   //   "position": "my_position",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasks.get
      * @memberOf! ()
      *
@@ -910,9 +1484,18 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Tasks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Tasks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Task>;
+    get(
+      params: Params$Resource$Tasks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Tasks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Task>,
@@ -926,10 +1509,17 @@ export namespace tasks_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Tasks$Get
-        | BodyResponseCallback<Schema$Task>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
-      callback?: BodyResponseCallback<Schema$Task>
-    ): void | GaxiosPromise<Schema$Task> {
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -962,7 +1552,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Task>(parameters, callback);
+        createAPIRequest<Schema$Task>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
       }
@@ -971,6 +1564,88 @@ export namespace tasks_v1 {
     /**
      * tasks.tasks.insert
      * @desc Creates a new task on the specified task list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.insert({
+     *     // Parent task identifier. If the task is created at the top level, this
+     *     // parameter is omitted. Optional.
+     *     parent: 'placeholder-value',
+     *     // Previous sibling task identifier. If the task is created at the first
+     *     // position among its siblings, this parameter is omitted. Optional.
+     *     previous: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "completed": "my_completed",
+     *       //   "deleted": false,
+     *       //   "due": "my_due",
+     *       //   "etag": "my_etag",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "links": [],
+     *       //   "notes": "my_notes",
+     *       //   "parent": "my_parent",
+     *       //   "position": "my_position",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completed": "my_completed",
+     *   //   "deleted": false,
+     *   //   "due": "my_due",
+     *   //   "etag": "my_etag",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "links": [],
+     *   //   "notes": "my_notes",
+     *   //   "parent": "my_parent",
+     *   //   "position": "my_position",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasks.insert
      * @memberOf! ()
      *
@@ -978,15 +1653,24 @@ export namespace tasks_v1 {
      * @param {string=} params.parent Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
      * @param {string=} params.previous Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
      * @param {string} params.tasklist Task list identifier.
-     * @param {().Task} params.resource Request body data
+     * @param {().Task} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Tasks$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Tasks$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Task>;
+    insert(
+      params: Params$Resource$Tasks$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Tasks$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Task>,
@@ -1000,10 +1684,17 @@ export namespace tasks_v1 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Tasks$Insert
-        | BodyResponseCallback<Schema$Task>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
-      callback?: BodyResponseCallback<Schema$Task>
-    ): void | GaxiosPromise<Schema$Task> {
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1036,7 +1727,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Task>(parameters, callback);
+        createAPIRequest<Schema$Task>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
       }
@@ -1045,6 +1739,82 @@ export namespace tasks_v1 {
     /**
      * tasks.tasks.list
      * @desc Returns all tasks in the specified task list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tasks',
+     *       'https://www.googleapis.com/auth/tasks.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.list({
+     *     // Upper bound for a task's completion date (as a RFC 3339 timestamp) to
+     *     // filter by. Optional. The default is not to filter by completion date.
+     *     completedMax: 'placeholder-value',
+     *     // Lower bound for a task's completion date (as a RFC 3339 timestamp) to
+     *     // filter by. Optional. The default is not to filter by completion date.
+     *     completedMin: 'placeholder-value',
+     *     // Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by.
+     *     // Optional. The default is not to filter by due date.
+     *     dueMax: 'placeholder-value',
+     *     // Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by.
+     *     // Optional. The default is not to filter by due date.
+     *     dueMin: 'placeholder-value',
+     *     // Maximum number of task lists returned on one page. Optional. The default is
+     *     // 20 (max allowed: 100).
+     *     maxResults: 'placeholder-value',
+     *     // Token specifying the result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Flag indicating whether completed tasks are returned in the result.
+     *     // Optional. The default is True.
+     *     showCompleted: 'placeholder-value',
+     *     // Flag indicating whether deleted tasks are returned in the result. Optional.
+     *     // The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Flag indicating whether hidden tasks are returned in the result. Optional.
+     *     // The default is False.
+     *     showHidden: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *     // Lower bound for a task's last modification time (as a RFC 3339 timestamp)
+     *     // to filter by. Optional. The default is not to filter by last modification
+     *     // time.
+     *     updatedMin: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasks.list
      * @memberOf! ()
      *
@@ -1053,7 +1823,7 @@ export namespace tasks_v1 {
      * @param {string=} params.completedMin Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
      * @param {string=} params.dueMax Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
      * @param {string=} params.dueMin Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
-     * @param {string=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
+     * @param {integer=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      * @param {string=} params.pageToken Token specifying the result page to return. Optional.
      * @param {boolean=} params.showCompleted Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
      * @param {boolean=} params.showDeleted Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
@@ -1065,9 +1835,18 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Tasks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Tasks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Tasks>;
+    list(
+      params: Params$Resource$Tasks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Tasks$List,
       options: MethodOptions | BodyResponseCallback<Schema$Tasks>,
@@ -1081,10 +1860,17 @@ export namespace tasks_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Tasks$List
-        | BodyResponseCallback<Schema$Tasks>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Tasks>,
-      callback?: BodyResponseCallback<Schema$Tasks>
-    ): void | GaxiosPromise<Schema$Tasks> {
+        | BodyResponseCallback<Schema$Tasks>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Tasks>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Tasks>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Tasks> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1117,7 +1903,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Tasks>(parameters, callback);
+        createAPIRequest<Schema$Tasks>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Tasks>(parameters);
       }
@@ -1126,6 +1915,68 @@ export namespace tasks_v1 {
     /**
      * tasks.tasks.move
      * @desc Moves the specified task to another position in the task list. This can include putting it as a child task under a new parent and/or move it to a different position among its sibling tasks.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.move({
+     *     // New parent task identifier. If the task is moved to the top level, this
+     *     // parameter is omitted. Optional.
+     *     parent: 'placeholder-value',
+     *     // New previous sibling task identifier. If the task is moved to the first
+     *     // position among its siblings, this parameter is omitted. Optional.
+     *     previous: 'placeholder-value',
+     *     // Task identifier.
+     *     task: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completed": "my_completed",
+     *   //   "deleted": false,
+     *   //   "due": "my_due",
+     *   //   "etag": "my_etag",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "links": [],
+     *   //   "notes": "my_notes",
+     *   //   "parent": "my_parent",
+     *   //   "position": "my_position",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasks.move
      * @memberOf! ()
      *
@@ -1139,9 +1990,18 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     move(
+      params: Params$Resource$Tasks$Move,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    move(
       params?: Params$Resource$Tasks$Move,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Task>;
+    move(
+      params: Params$Resource$Tasks$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     move(
       params: Params$Resource$Tasks$Move,
       options: MethodOptions | BodyResponseCallback<Schema$Task>,
@@ -1155,10 +2015,17 @@ export namespace tasks_v1 {
     move(
       paramsOrCallback?:
         | Params$Resource$Tasks$Move
-        | BodyResponseCallback<Schema$Task>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
-      callback?: BodyResponseCallback<Schema$Task>
-    ): void | GaxiosPromise<Schema$Task> {
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1190,7 +2057,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Task>(parameters, callback);
+        createAPIRequest<Schema$Task>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
       }
@@ -1199,21 +2069,108 @@ export namespace tasks_v1 {
     /**
      * tasks.tasks.patch
      * @desc Updates the specified task. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.patch({
+     *     // Task identifier.
+     *     task: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "completed": "my_completed",
+     *       //   "deleted": false,
+     *       //   "due": "my_due",
+     *       //   "etag": "my_etag",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "links": [],
+     *       //   "notes": "my_notes",
+     *       //   "parent": "my_parent",
+     *       //   "position": "my_position",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completed": "my_completed",
+     *   //   "deleted": false,
+     *   //   "due": "my_due",
+     *   //   "etag": "my_etag",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "links": [],
+     *   //   "notes": "my_notes",
+     *   //   "parent": "my_parent",
+     *   //   "position": "my_position",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasks.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
-     * @param {().Task} params.resource Request body data
+     * @param {().Task} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Tasks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Tasks$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Task>;
+    patch(
+      params: Params$Resource$Tasks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Tasks$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Task>,
@@ -1227,10 +2184,17 @@ export namespace tasks_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Tasks$Patch
-        | BodyResponseCallback<Schema$Task>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
-      callback?: BodyResponseCallback<Schema$Task>
-    ): void | GaxiosPromise<Schema$Task> {
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1263,7 +2227,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Task>(parameters, callback);
+        createAPIRequest<Schema$Task>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
       }
@@ -1272,21 +2239,108 @@ export namespace tasks_v1 {
     /**
      * tasks.tasks.update
      * @desc Updates the specified task.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.update({
+     *     // Task identifier.
+     *     task: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "completed": "my_completed",
+     *       //   "deleted": false,
+     *       //   "due": "my_due",
+     *       //   "etag": "my_etag",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "links": [],
+     *       //   "notes": "my_notes",
+     *       //   "parent": "my_parent",
+     *       //   "position": "my_position",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completed": "my_completed",
+     *   //   "deleted": false,
+     *   //   "due": "my_due",
+     *   //   "etag": "my_etag",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "links": [],
+     *   //   "notes": "my_notes",
+     *   //   "parent": "my_parent",
+     *   //   "position": "my_position",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tasks.tasks.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
-     * @param {().Task} params.resource Request body data
+     * @param {().Task} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Tasks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Tasks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Task>;
+    update(
+      params: Params$Resource$Tasks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Tasks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Task>,
@@ -1300,10 +2354,17 @@ export namespace tasks_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Tasks$Update
-        | BodyResponseCallback<Schema$Task>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
-      callback?: BodyResponseCallback<Schema$Task>
-    ): void | GaxiosPromise<Schema$Task> {
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Task>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1336,7 +2397,10 @@ export namespace tasks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Task>(parameters, callback);
+        createAPIRequest<Schema$Task>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
       }
@@ -1345,21 +2409,11 @@ export namespace tasks_v1 {
 
   export interface Params$Resource$Tasks$Clear extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Task list identifier.
      */
     tasklist?: string;
   }
   export interface Params$Resource$Tasks$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Task identifier.
      */
@@ -1371,11 +2425,6 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasks$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Task identifier.
      */
     task?: string;
@@ -1385,11 +2434,6 @@ export namespace tasks_v1 {
     tasklist?: string;
   }
   export interface Params$Resource$Tasks$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
      */
@@ -1410,11 +2454,6 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasks$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
      */
     completedMax?: string;
@@ -1433,7 +2472,7 @@ export namespace tasks_v1 {
     /**
      * Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      */
-    maxResults?: string;
+    maxResults?: number;
     /**
      * Token specifying the result page to return. Optional.
      */
@@ -1461,11 +2500,6 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasks$Move extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * New parent task identifier. If the task is moved to the top level, this parameter is omitted. Optional.
      */
     parent?: string;
@@ -1484,11 +2518,6 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasks$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Task identifier.
      */
     task?: string;
@@ -1503,11 +2532,6 @@ export namespace tasks_v1 {
     requestBody?: Schema$Task;
   }
   export interface Params$Resource$Tasks$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Task identifier.
      */

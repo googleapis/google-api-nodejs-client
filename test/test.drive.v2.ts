@@ -1,4 +1,4 @@
-// Copyright 2014-2016, Google, Inc.
+// Copyright 2014 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -12,6 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
+import {describe, it, before, beforeEach, afterEach} from 'mocha';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 import {drive_v2, GoogleApis} from '../src';
@@ -23,18 +24,18 @@ describe('drive:v2', () => {
   let localDrive: drive_v2.Drive, remoteDrive: APIEndpoint;
 
   before(async () => {
-    nock.cleanAll();
     const google = new GoogleApis();
-    nock.enableNetConnect();
     remoteDrive = await Utils.loadApi(google, 'drive', 'v2');
-    nock.disableNetConnect();
   });
 
   beforeEach(() => {
-    nock.cleanAll();
     nock.disableNetConnect();
     const google = new GoogleApis();
     localDrive = google.drive('v2');
+  });
+
+  afterEach(() => {
+    nock.cleanAll();
   });
 
   it('should exist', done => {
@@ -116,17 +117,9 @@ describe('drive:v2', () => {
 
   describe('.files.list()', () => {
     it('should not return missing param error', async () => {
-      nock(Utils.baseUrl)
-        .get('/drive/v2/files?q=hello')
-        .times(2)
-        .reply(200);
+      nock(Utils.baseUrl).get('/drive/v2/files?q=hello').times(2).reply(200);
       await localDrive.files.list({q: 'hello'});
       await remoteDrive.files.list({q: 'hello'});
     });
-  });
-
-  after(() => {
-    nock.cleanAll();
-    nock.enableNetConnect();
   });
 });

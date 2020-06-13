@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace cloudfunctions_v1beta2 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace cloudfunctions_v1beta2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -124,7 +134,7 @@ export namespace cloudfunctions_v1beta2 {
    */
   export interface Schema$CallFunctionRequest {
     /**
-     * Input to be passed to the function.
+     * Required. Input to be passed to the function.
      */
     data?: string | null;
   }
@@ -316,6 +326,10 @@ export namespace cloudfunctions_v1beta2 {
      * If not empty, indicates that there may be more functions that match the request; this value should be passed in a new google.cloud.functions.v1beta2.ListFunctionsRequest to get more functions.
      */
     nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached. The response does not include any functions from these locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -503,6 +517,50 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * cloudfunctions.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudfunctions.operations.get
      * @memberOf! ()
      *
@@ -513,9 +571,18 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -529,12 +596,17 @@ export namespace cloudfunctions_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -565,7 +637,10 @@ export namespace cloudfunctions_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -574,22 +649,78 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * cloudfunctions.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.operations.list({
+     *     // Required. A filter for matching the requested operations.<br><br> The supported formats of <b>filter</b> are:<br> To query for a specific function: <code>project:*,location:*,function:*</code><br> To query for all of the latest operations for a project: <code>project:*,latest:true</code>
+     *     filter: 'placeholder-value',
+     *     // Must not be set.
+     *     name: 'placeholder-value',
+     *     // The maximum number of records that should be returned.<br> Requested page size cannot exceed 100. If not set, the default page size is 100.<br><br> Pagination is only supported when querying for a specific function.
+     *     pageSize: 'placeholder-value',
+     *     // Token identifying which result to start with, which is returned by a previous list call.<br><br> Pagination is only supported when querying for a specific function.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudfunctions.operations.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Required. A filter for matching the requested operations.<br><br> The supported formats of <b>filter</b> are:<br> To query for specific function: <code>project:*,location:*,function:*</code><br> To query for all of the latest operations for a project: <code>project:*,latest:true</code>
+     * @param {string=} params.filter Required. A filter for matching the requested operations.<br><br> The supported formats of <b>filter</b> are:<br> To query for a specific function: <code>project:*,location:*,function:*</code><br> To query for all of the latest operations for a project: <code>project:*,latest:true</code>
      * @param {string=} params.name Must not be set.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
+     * @param {integer=} params.pageSize The maximum number of records that should be returned.<br> Requested page size cannot exceed 100. If not set, the default page size is 100.<br><br> Pagination is only supported when querying for a specific function.
+     * @param {string=} params.pageToken Token identifying which result to start with, which is returned by a previous list call.<br><br> Pagination is only supported when querying for a specific function.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Operations$List,
       options:
@@ -605,12 +736,20 @@ export namespace cloudfunctions_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -644,7 +783,10 @@ export namespace cloudfunctions_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
@@ -653,23 +795,13 @@ export namespace cloudfunctions_v1beta2 {
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. A filter for matching the requested operations.<br><br> The supported formats of <b>filter</b> are:<br> To query for specific function: <code>project:*,location:*,function:*</code><br> To query for all of the latest operations for a project: <code>project:*,latest:true</code>
+     * Required. A filter for matching the requested operations.<br><br> The supported formats of <b>filter</b> are:<br> To query for a specific function: <code>project:*,location:*,function:*</code><br> To query for all of the latest operations for a project: <code>project:*,latest:true</code>
      */
     filter?: string;
     /**
@@ -677,11 +809,11 @@ export namespace cloudfunctions_v1beta2 {
      */
     name?: string;
     /**
-     * The standard list page size.
+     * The maximum number of records that should be returned.<br> Requested page size cannot exceed 100. If not set, the default page size is 100.<br><br> Pagination is only supported when querying for a specific function.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * Token identifying which result to start with, which is returned by a previous list call.<br><br> Pagination is only supported when querying for a specific function.
      */
     pageToken?: string;
   }
@@ -706,6 +838,53 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * cloudfunctions.projects.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudfunctions.projects.locations.list
      * @memberOf! ()
      *
@@ -719,9 +898,18 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLocationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
@@ -737,12 +925,20 @@ export namespace cloudfunctions_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$List
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLocationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -777,7 +973,10 @@ export namespace cloudfunctions_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
@@ -786,11 +985,6 @@ export namespace cloudfunctions_v1beta2 {
 
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -818,20 +1012,79 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * cloudfunctions.projects.locations.functions.call
      * @desc Synchronously invokes a deployed Cloud Function. To be used for testing purposes as very limited traffic is allowed. For more information on the actual limits refer to [API Calls]( https://cloud.google.com/functions/quotas#rate_limits).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.call({
+     *     // Required. The name of the function to be called.
+     *     name: 'projects/my-project/locations/my-location/functions/my-function',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "data": "my_data"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "error": "my_error",
+     *   //   "executionId": "my_executionId",
+     *   //   "result": "my_result"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudfunctions.projects.locations.functions.call
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the function to be called.
-     * @param {().CallFunctionRequest} params.resource Request body data
+     * @param {string} params.name Required. The name of the function to be called.
+     * @param {().CallFunctionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     call(
+      params: Params$Resource$Projects$Locations$Functions$Call,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    call(
       params?: Params$Resource$Projects$Locations$Functions$Call,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CallFunctionResponse>;
+    call(
+      params: Params$Resource$Projects$Locations$Functions$Call,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     call(
       params: Params$Resource$Projects$Locations$Functions$Call,
       options:
@@ -847,12 +1100,20 @@ export namespace cloudfunctions_v1beta2 {
     call(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Functions$Call
-        | BodyResponseCallback<Schema$CallFunctionResponse>,
+        | BodyResponseCallback<Schema$CallFunctionResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CallFunctionResponse>,
-      callback?: BodyResponseCallback<Schema$CallFunctionResponse>
-    ): void | GaxiosPromise<Schema$CallFunctionResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CallFunctionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CallFunctionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CallFunctionResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Call;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -887,7 +1148,10 @@ export namespace cloudfunctions_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CallFunctionResponse>(parameters, callback);
+        createAPIRequest<Schema$CallFunctionResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CallFunctionResponse>(parameters);
       }
@@ -896,20 +1160,102 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * cloudfunctions.projects.locations.functions.create
      * @desc Creates a new function. If a function with the given name already exists in the specified project, the long running operation will return `ALREADY_EXISTS` error.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.create({
+     *     // Required. The project and location in which the function should be created, specified
+     *     // in the format `projects/x/locations/x`
+     *     location: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "availableMemoryMb": 0,
+     *       //   "entryPoint": "my_entryPoint",
+     *       //   "environmentVariables": {},
+     *       //   "eventTrigger": {},
+     *       //   "httpsTrigger": {},
+     *       //   "labels": {},
+     *       //   "latestOperation": "my_latestOperation",
+     *       //   "maxInstances": 0,
+     *       //   "name": "my_name",
+     *       //   "network": "my_network",
+     *       //   "runtime": "my_runtime",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "sourceArchiveUrl": "my_sourceArchiveUrl",
+     *       //   "sourceRepository": {},
+     *       //   "sourceRepositoryUrl": "my_sourceRepositoryUrl",
+     *       //   "sourceUploadUrl": "my_sourceUploadUrl",
+     *       //   "status": "my_status",
+     *       //   "timeout": "my_timeout",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "versionId": "my_versionId",
+     *       //   "vpcConnector": "my_vpcConnector"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudfunctions.projects.locations.functions.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.location The project and location in which the function should be created, specified in the format `projects/x/locations/x`
-     * @param {().CloudFunction} params.resource Request body data
+     * @param {string} params.location Required. The project and location in which the function should be created, specified in the format `projects/x/locations/x`
+     * @param {().CloudFunction} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Functions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Functions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Functions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Functions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -923,12 +1269,17 @@ export namespace cloudfunctions_v1beta2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Functions$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -963,7 +1314,10 @@ export namespace cloudfunctions_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -972,19 +1326,72 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * cloudfunctions.projects.locations.functions.delete
      * @desc Deletes a function with the given name from the specified project. If the given function is used by some trigger, the trigger will be updated to remove this function.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.delete({
+     *     // Required. The name of the function which should be deleted.
+     *     name: 'projects/my-project/locations/my-location/functions/my-function',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudfunctions.projects.locations.functions.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the function which should be deleted.
+     * @param {string} params.name Required. The name of the function which should be deleted.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Functions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Functions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Functions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Functions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -998,12 +1405,17 @@ export namespace cloudfunctions_v1beta2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Functions$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1035,7 +1447,10 @@ export namespace cloudfunctions_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1044,20 +1459,80 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * cloudfunctions.projects.locations.functions.generateDownloadUrl
      * @desc Returns a signed URL for downloading deployed function source code. The URL is only valid for a limited period and should be used within minutes after generation. For more information about the signed URL usage see: https://cloud.google.com/storage/docs/access-control/signed-urls
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.generateDownloadUrl(
+     *     {
+     *       // The name of function for which source code Google Cloud Storage signed
+     *       // URL should be generated.
+     *       name: 'projects/my-project/locations/my-location/functions/my-function',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "versionId": "my_versionId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "downloadUrl": "my_downloadUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudfunctions.projects.locations.functions.generateDownloadUrl
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of function for which source code Google Cloud Storage signed URL should be generated.
-     * @param {().GenerateDownloadUrlRequest} params.resource Request body data
+     * @param {().GenerateDownloadUrlRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     generateDownloadUrl(
+      params: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateDownloadUrl(
       params?: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GenerateDownloadUrlResponse>;
+    generateDownloadUrl(
+      params: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generateDownloadUrl(
       params: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
       options:
@@ -1075,12 +1550,20 @@ export namespace cloudfunctions_v1beta2 {
     generateDownloadUrl(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Functions$Generatedownloadurl
-        | BodyResponseCallback<Schema$GenerateDownloadUrlResponse>,
+        | BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GenerateDownloadUrlResponse>,
-      callback?: BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
-    ): void | GaxiosPromise<Schema$GenerateDownloadUrlResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateDownloadUrlResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Generatedownloadurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1117,7 +1600,7 @@ export namespace cloudfunctions_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GenerateDownloadUrlResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GenerateDownloadUrlResponse>(parameters);
@@ -1127,20 +1610,78 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * cloudfunctions.projects.locations.functions.generateUploadUrl
      * @desc Returns a signed URL for uploading a function source code. For more information about the signed URL usage see: https://cloud.google.com/storage/docs/access-control/signed-urls Once the function source code upload is complete, the used signed URL should be provided in CreateFunction or UpdateFunction request as a reference to the function source code.  When uploading source code to the generated signed URL, please follow these restrictions:  * Source file type should be a zip file. * Source file size should not exceed 100MB limit. * No credentials should be attached - the signed URLs provide access to the   target bucket using internal service identity; if credentials were   attached, the identity from the credentials would be used, but that   identity does not have permissions to upload files to the URL.  When making a HTTP PUT request, these two headers need to be specified:  * `content-type: application/zip` * `x-goog-content-length-range: 0,104857600`  And this header SHOULD NOT be specified:  * `Authorization: Bearer YOUR_TOKEN`
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.generateUploadUrl(
+     *     {
+     *       // The project and location in which the Google Cloud Storage signed URL
+     *       // should be generated, specified in the format `projects/x/locations/x`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "uploadUrl": "my_uploadUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudfunctions.projects.locations.functions.generateUploadUrl
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The project and location in which the Google Cloud Storage signed URL should be generated, specified in the format `projects/x/locations/x`.
-     * @param {().GenerateUploadUrlRequest} params.resource Request body data
+     * @param {().GenerateUploadUrlRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     generateUploadUrl(
+      params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateUploadUrl(
       params?: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GenerateUploadUrlResponse>;
+    generateUploadUrl(
+      params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generateUploadUrl(
       params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
       options:
@@ -1158,12 +1699,20 @@ export namespace cloudfunctions_v1beta2 {
     generateUploadUrl(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Functions$Generateuploadurl
-        | BodyResponseCallback<Schema$GenerateUploadUrlResponse>,
+        | BodyResponseCallback<Schema$GenerateUploadUrlResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GenerateUploadUrlResponse>,
-      callback?: BodyResponseCallback<Schema$GenerateUploadUrlResponse>
-    ): void | GaxiosPromise<Schema$GenerateUploadUrlResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateUploadUrlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateUploadUrlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateUploadUrlResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Generateuploadurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1199,7 +1748,7 @@ export namespace cloudfunctions_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GenerateUploadUrlResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GenerateUploadUrlResponse>(parameters);
@@ -1209,19 +1758,88 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * cloudfunctions.projects.locations.functions.get
      * @desc Returns a function with the given name from the requested project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.get({
+     *     // Required. The name of the function which details should be obtained.
+     *     name: 'projects/my-project/locations/my-location/functions/my-function',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "availableMemoryMb": 0,
+     *   //   "entryPoint": "my_entryPoint",
+     *   //   "environmentVariables": {},
+     *   //   "eventTrigger": {},
+     *   //   "httpsTrigger": {},
+     *   //   "labels": {},
+     *   //   "latestOperation": "my_latestOperation",
+     *   //   "maxInstances": 0,
+     *   //   "name": "my_name",
+     *   //   "network": "my_network",
+     *   //   "runtime": "my_runtime",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "sourceArchiveUrl": "my_sourceArchiveUrl",
+     *   //   "sourceRepository": {},
+     *   //   "sourceRepositoryUrl": "my_sourceRepositoryUrl",
+     *   //   "sourceUploadUrl": "my_sourceUploadUrl",
+     *   //   "status": "my_status",
+     *   //   "timeout": "my_timeout",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "versionId": "my_versionId",
+     *   //   "vpcConnector": "my_vpcConnector"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudfunctions.projects.locations.functions.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the function which details should be obtained.
+     * @param {string} params.name Required. The name of the function which details should be obtained.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Functions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Functions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CloudFunction>;
+    get(
+      params: Params$Resource$Projects$Locations$Functions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Functions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CloudFunction>,
@@ -1235,12 +1853,17 @@ export namespace cloudfunctions_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Functions$Get
-        | BodyResponseCallback<Schema$CloudFunction>,
+        | BodyResponseCallback<Schema$CloudFunction>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CloudFunction>,
-      callback?: BodyResponseCallback<Schema$CloudFunction>
-    ): void | GaxiosPromise<Schema$CloudFunction> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CloudFunction>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CloudFunction>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CloudFunction> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1272,7 +1895,10 @@ export namespace cloudfunctions_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CloudFunction>(parameters, callback);
+        createAPIRequest<Schema$CloudFunction>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CloudFunction>(parameters);
       }
@@ -1281,11 +1907,65 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * cloudfunctions.projects.locations.functions.list
      * @desc Returns a list of functions that belong to the requested project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.list({
+     *     // Required. The project and location from which the function should be listed,
+     *     // specified in the format `projects/x/locations/x`
+     *     // If you want to list functions in all locations, use "-" in place of a
+     *     // location. When listing functions in all locations, if one or more
+     *     // location(s) are unreachable, the response will contain functions from all
+     *     // reachable locations along with the names of any unreachable locations.
+     *     location: 'projects/my-project/locations/my-location',
+     *     // Maximum number of functions to return per call.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last
+     *     // `ListFunctionsResponse`; indicates that
+     *     // this is a continuation of a prior `ListFunctions` call, and that the
+     *     // system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "functions": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudfunctions.projects.locations.functions.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.location The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location.
+     * @param {string} params.location Required. The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location. When listing functions in all locations, if one or more location(s) are unreachable, the response will contain functions from all reachable locations along with the names of any unreachable locations.
      * @param {integer=} params.pageSize Maximum number of functions to return per call.
      * @param {string=} params.pageToken The value returned by the last `ListFunctionsResponse`; indicates that this is a continuation of a prior `ListFunctions` call, and that the system should return the next page of data.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1293,9 +1973,18 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Functions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Functions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListFunctionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Functions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Functions$List,
       options:
@@ -1311,12 +2000,20 @@ export namespace cloudfunctions_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Functions$List
-        | BodyResponseCallback<Schema$ListFunctionsResponse>,
+        | BodyResponseCallback<Schema$ListFunctionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListFunctionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListFunctionsResponse>
-    ): void | GaxiosPromise<Schema$ListFunctionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFunctionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFunctionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFunctionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1351,7 +2048,10 @@ export namespace cloudfunctions_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListFunctionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListFunctionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListFunctionsResponse>(parameters);
       }
@@ -1360,20 +2060,101 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * cloudfunctions.projects.locations.functions.update
      * @desc Updates existing function.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.update({
+     *     // Required. The name of the function to be updated.
+     *     name: 'projects/my-project/locations/my-location/functions/my-function',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "availableMemoryMb": 0,
+     *       //   "entryPoint": "my_entryPoint",
+     *       //   "environmentVariables": {},
+     *       //   "eventTrigger": {},
+     *       //   "httpsTrigger": {},
+     *       //   "labels": {},
+     *       //   "latestOperation": "my_latestOperation",
+     *       //   "maxInstances": 0,
+     *       //   "name": "my_name",
+     *       //   "network": "my_network",
+     *       //   "runtime": "my_runtime",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "sourceArchiveUrl": "my_sourceArchiveUrl",
+     *       //   "sourceRepository": {},
+     *       //   "sourceRepositoryUrl": "my_sourceRepositoryUrl",
+     *       //   "sourceUploadUrl": "my_sourceUploadUrl",
+     *       //   "status": "my_status",
+     *       //   "timeout": "my_timeout",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "versionId": "my_versionId",
+     *       //   "vpcConnector": "my_vpcConnector"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudfunctions.projects.locations.functions.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the function to be updated.
-     * @param {().CloudFunction} params.resource Request body data
+     * @param {string} params.name Required. The name of the function to be updated.
+     * @param {().CloudFunction} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Locations$Functions$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Locations$Functions$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    update(
+      params: Params$Resource$Projects$Locations$Functions$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Locations$Functions$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1387,12 +2168,17 @@ export namespace cloudfunctions_v1beta2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Functions$Update
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1424,7 +2210,10 @@ export namespace cloudfunctions_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1434,12 +2223,7 @@ export namespace cloudfunctions_v1beta2 {
   export interface Params$Resource$Projects$Locations$Functions$Call
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the function to be called.
+     * Required. The name of the function to be called.
      */
     name?: string;
 
@@ -1451,12 +2235,7 @@ export namespace cloudfunctions_v1beta2 {
   export interface Params$Resource$Projects$Locations$Functions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The project and location in which the function should be created, specified in the format `projects/x/locations/x`
+     * Required. The project and location in which the function should be created, specified in the format `projects/x/locations/x`
      */
     location?: string;
 
@@ -1468,22 +2247,12 @@ export namespace cloudfunctions_v1beta2 {
   export interface Params$Resource$Projects$Locations$Functions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the function which should be deleted.
+     * Required. The name of the function which should be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of function for which source code Google Cloud Storage signed URL should be generated.
      */
@@ -1497,11 +2266,6 @@ export namespace cloudfunctions_v1beta2 {
   export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project and location in which the Google Cloud Storage signed URL should be generated, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
@@ -1514,24 +2278,14 @@ export namespace cloudfunctions_v1beta2 {
   export interface Params$Resource$Projects$Locations$Functions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the function which details should be obtained.
+     * Required. The name of the function which details should be obtained.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Functions$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location.
+     * Required. The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location. When listing functions in all locations, if one or more location(s) are unreachable, the response will contain functions from all reachable locations along with the names of any unreachable locations.
      */
     location?: string;
     /**
@@ -1546,12 +2300,7 @@ export namespace cloudfunctions_v1beta2 {
   export interface Params$Resource$Projects$Locations$Functions$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the function to be updated.
+     * Required. The name of the function to be updated.
      */
     name?: string;
 

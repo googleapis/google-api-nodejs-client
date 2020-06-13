@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace games_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace games_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -97,8 +107,6 @@ export namespace games_v1 {
     metagame: Resource$Metagame;
     players: Resource$Players;
     pushtokens: Resource$Pushtokens;
-    questMilestones: Resource$Questmilestones;
-    quests: Resource$Quests;
     revisions: Resource$Revisions;
     rooms: Resource$Rooms;
     scores: Resource$Scores;
@@ -121,8 +129,6 @@ export namespace games_v1 {
       this.metagame = new Resource$Metagame(this.context);
       this.players = new Resource$Players(this.context);
       this.pushtokens = new Resource$Pushtokens(this.context);
-      this.questMilestones = new Resource$Questmilestones(this.context);
-      this.quests = new Resource$Quests(this.context);
       this.revisions = new Resource$Revisions(this.context);
       this.rooms = new Resource$Rooms(this.context);
       this.scores = new Resource$Scores(this.context);
@@ -283,7 +289,7 @@ export namespace games_v1 {
    */
   export interface Schema$AchievementUpdateMultipleResponse {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateMultipleResponse.
      */
     kind?: string | null;
     /**
@@ -1189,6 +1195,10 @@ export namespace games_v1 {
      */
     experienceInfo?: Schema$PlayerExperienceInfo;
     /**
+     * The friend status of the given player, relative to the requester. This is unset if the player is not sharing their friends list with the game.
+     */
+    friendStatus?: string | null;
+    /**
      * Uniquely identifies the type of this resource. Value is always the fixed string games#player.
      */
     kind?: string | null;
@@ -1519,6 +1529,10 @@ export namespace games_v1 {
    */
   export interface Schema$ProfileSettings {
     /**
+     * Whether the player&#39;s friends list is visible to the game.
+     */
+    friendsListVisibility?: string | null;
+    /**
      * Uniquely identifies the type of this resource. Value is always the fixed string games#profileSettings.
      */
     kind?: string | null;
@@ -1557,159 +1571,6 @@ export namespace games_v1 {
      * Uniquely identifies the type of this resource. Value is always the fixed string games#pushTokenId.
      */
     kind?: string | null;
-  }
-  /**
-   * This is a JSON template for a Quest resource.
-   */
-  export interface Schema$Quest {
-    /**
-     * The timestamp at which the user accepted the quest in milliseconds since the epoch in UTC. Only present if the player has accepted the quest.
-     */
-    acceptedTimestampMillis?: string | null;
-    /**
-     * The ID of the application this quest is part of.
-     */
-    applicationId?: string | null;
-    /**
-     * The banner image URL for the quest.
-     */
-    bannerUrl?: string | null;
-    /**
-     * The description of the quest.
-     */
-    description?: string | null;
-    /**
-     * The timestamp at which the quest ceases to be active in milliseconds since the epoch in UTC.
-     */
-    endTimestampMillis?: string | null;
-    /**
-     * The icon image URL for the quest.
-     */
-    iconUrl?: string | null;
-    /**
-     * The ID of the quest.
-     */
-    id?: string | null;
-    /**
-     * Indicates whether the banner image being returned is a default image, or is game-provided.
-     */
-    isDefaultBannerUrl?: boolean | null;
-    /**
-     * Indicates whether the icon image being returned is a default image, or is game-provided.
-     */
-    isDefaultIconUrl?: boolean | null;
-    /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string games#quest.
-     */
-    kind?: string | null;
-    /**
-     * The timestamp at which the quest was last updated by the user in milliseconds since the epoch in UTC. Only present if the player has accepted the quest.
-     */
-    lastUpdatedTimestampMillis?: string | null;
-    /**
-     * The quest milestones.
-     */
-    milestones?: Schema$QuestMilestone[];
-    /**
-     * The name of the quest.
-     */
-    name?: string | null;
-    /**
-     * The timestamp at which the user should be notified that the quest will end soon in milliseconds since the epoch in UTC.
-     */
-    notifyTimestampMillis?: string | null;
-    /**
-     * The timestamp at which the quest becomes active in milliseconds since the epoch in UTC.
-     */
-    startTimestampMillis?: string | null;
-    /**
-     * The state of the quest. Possible values are:   - &quot;UPCOMING&quot;: The quest is upcoming. The user can see the quest, but cannot accept it until it is open.  - &quot;OPEN&quot;: The quest is currently open and may be accepted at this time.  - &quot;ACCEPTED&quot;: The user is currently participating in this quest.  - &quot;COMPLETED&quot;: The user has completed the quest.  - &quot;FAILED&quot;: The quest was attempted but was not completed before the deadline expired.  - &quot;EXPIRED&quot;: The quest has expired and was not accepted.  - &quot;DELETED&quot;: The quest should be deleted from the local database.
-     */
-    state?: string | null;
-  }
-  /**
-   * This is a JSON template for a Quest Criterion Contribution resource.
-   */
-  export interface Schema$QuestContribution {
-    /**
-     * The formatted value of the contribution as a string. Format depends on the configuration for the associated event definition in the Play Games Developer Console.
-     */
-    formattedValue?: string | null;
-    /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string games#questContribution.
-     */
-    kind?: string | null;
-    /**
-     * The value of the contribution.
-     */
-    value?: string | null;
-  }
-  /**
-   * This is a JSON template for a Quest Criterion resource.
-   */
-  export interface Schema$QuestCriterion {
-    /**
-     * The total number of times the associated event must be incremented for the player to complete this quest.
-     */
-    completionContribution?: Schema$QuestContribution;
-    /**
-     * The number of increments the player has made toward the completion count event increments required to complete the quest. This value will not exceed the completion contribution. There will be no currentContribution until the player has accepted the quest.
-     */
-    currentContribution?: Schema$QuestContribution;
-    /**
-     * The ID of the event the criterion corresponds to.
-     */
-    eventId?: string | null;
-    /**
-     * The value of the event associated with this quest at the time that the quest was accepted. This value may change if event increments that took place before the start of quest are uploaded after the quest starts. There will be no initialPlayerProgress until the player has accepted the quest.
-     */
-    initialPlayerProgress?: Schema$QuestContribution;
-    /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string games#questCriterion.
-     */
-    kind?: string | null;
-  }
-  /**
-   * This is a JSON template for a list of quest objects.
-   */
-  export interface Schema$QuestListResponse {
-    /**
-     * The quests.
-     */
-    items?: Schema$Quest[];
-    /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string games#questListResponse.
-     */
-    kind?: string | null;
-    /**
-     * Token corresponding to the next page of results.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
-   * This is a JSON template for a Quest Milestone resource.
-   */
-  export interface Schema$QuestMilestone {
-    /**
-     * The completion reward data of the milestone, represented as a Base64-encoded string. This is a developer-specified binary blob with size between 0 and 2 KB before encoding.
-     */
-    completionRewardData?: string | null;
-    /**
-     * The criteria of the milestone.
-     */
-    criteria?: Schema$QuestCriterion[];
-    /**
-     * The milestone ID.
-     */
-    id?: string | null;
-    /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string games#questMilestone.
-     */
-    kind?: string | null;
-    /**
-     * The current state of the milestone. Possible values are:   - &quot;COMPLETED_NOT_CLAIMED&quot; - The milestone is complete, but has not yet been claimed.  - &quot;CLAIMED&quot; - The milestone is complete and has been claimed.  - &quot;NOT_COMPLETED&quot; - The milestone has not yet been completed.  - &quot;NOT_STARTED&quot; - The milestone is for a quest that has not yet been accepted.
-     */
-    state?: string | null;
   }
   /**
    * This is a JSON template for the result of checking a revision.
@@ -2532,6 +2393,52 @@ export namespace games_v1 {
     /**
      * games.achievementDefinitions.list
      * @desc Lists all the achievement definitions for your application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievementDefinitions.list({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.achievementDefinitions.list
      * @memberOf! ()
      *
@@ -2544,9 +2451,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Achievementdefinitions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Achievementdefinitions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementDefinitionsListResponse>;
+    list(
+      params: Params$Resource$Achievementdefinitions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Achievementdefinitions$List,
       options:
@@ -2564,12 +2480,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Achievementdefinitions$List
-        | BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
+        | BodyResponseCallback<Schema$AchievementDefinitionsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementDefinitionsListResponse>
-    ): void | GaxiosPromise<Schema$AchievementDefinitionsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementDefinitionsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementDefinitionsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementDefinitionsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementdefinitions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2605,7 +2529,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementDefinitionsListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementDefinitionsListResponse>(
@@ -2617,11 +2541,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Achievementdefinitions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -2645,6 +2564,52 @@ export namespace games_v1 {
     /**
      * games.achievements.increment
      * @desc Increments the steps of the achievement with the given ID for the currently authenticated player.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievements.increment({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *     // A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.
+     *     requestId: 'placeholder-value',
+     *     // The number of steps to increment.
+     *     stepsToIncrement: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "currentSteps": 0,
+     *   //   "kind": "my_kind",
+     *   //   "newlyUnlocked": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.achievements.increment
      * @memberOf! ()
      *
@@ -2657,9 +2622,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     increment(
+      params: Params$Resource$Achievements$Increment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    increment(
       params?: Params$Resource$Achievements$Increment,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementIncrementResponse>;
+    increment(
+      params: Params$Resource$Achievements$Increment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     increment(
       params: Params$Resource$Achievements$Increment,
       options:
@@ -2677,12 +2651,20 @@ export namespace games_v1 {
     increment(
       paramsOrCallback?:
         | Params$Resource$Achievements$Increment
-        | BodyResponseCallback<Schema$AchievementIncrementResponse>,
+        | BodyResponseCallback<Schema$AchievementIncrementResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementIncrementResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementIncrementResponse>
-    ): void | GaxiosPromise<Schema$AchievementIncrementResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementIncrementResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementIncrementResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementIncrementResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Increment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2717,7 +2699,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementIncrementResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementIncrementResponse>(
@@ -2729,6 +2711,56 @@ export namespace games_v1 {
     /**
      * games.achievements.list
      * @desc Lists the progress for all your application's achievements for the currently authenticated player.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievements.list({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // A player ID. A value of me may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *     // Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.
+     *     state: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.achievements.list
      * @memberOf! ()
      *
@@ -2743,9 +2775,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Achievements$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Achievements$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerAchievementListResponse>;
+    list(
+      params: Params$Resource$Achievements$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Achievements$List,
       options:
@@ -2763,12 +2804,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Achievements$List
-        | BodyResponseCallback<Schema$PlayerAchievementListResponse>,
+        | BodyResponseCallback<Schema$PlayerAchievementListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerAchievementListResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerAchievementListResponse>
-    ): void | GaxiosPromise<Schema$PlayerAchievementListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerAchievementListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerAchievementListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerAchievementListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2803,7 +2852,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$PlayerAchievementListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PlayerAchievementListResponse>(
@@ -2815,6 +2864,47 @@ export namespace games_v1 {
     /**
      * games.achievements.reveal
      * @desc Sets the state of the achievement with the given ID to REVEALED for the currently authenticated player.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievements.reveal({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "currentState": "my_currentState",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.achievements.reveal
      * @memberOf! ()
      *
@@ -2825,9 +2915,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     reveal(
+      params: Params$Resource$Achievements$Reveal,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reveal(
       params?: Params$Resource$Achievements$Reveal,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementRevealResponse>;
+    reveal(
+      params: Params$Resource$Achievements$Reveal,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reveal(
       params: Params$Resource$Achievements$Reveal,
       options:
@@ -2845,12 +2944,20 @@ export namespace games_v1 {
     reveal(
       paramsOrCallback?:
         | Params$Resource$Achievements$Reveal
-        | BodyResponseCallback<Schema$AchievementRevealResponse>,
+        | BodyResponseCallback<Schema$AchievementRevealResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementRevealResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementRevealResponse>
-    ): void | GaxiosPromise<Schema$AchievementRevealResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementRevealResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementRevealResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementRevealResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Reveal;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2885,7 +2992,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementRevealResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementRevealResponse>(parameters);
@@ -2895,6 +3002,50 @@ export namespace games_v1 {
     /**
      * games.achievements.setStepsAtLeast
      * @desc Sets the steps for the currently authenticated player towards unlocking an achievement. If the steps parameter is less than the current number of steps that the player already gained for the achievement, the achievement is not modified.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievements.setStepsAtLeast({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *     // The minimum value to set the steps to.
+     *     steps: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "currentSteps": 0,
+     *   //   "kind": "my_kind",
+     *   //   "newlyUnlocked": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.achievements.setStepsAtLeast
      * @memberOf! ()
      *
@@ -2906,9 +3057,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     setStepsAtLeast(
+      params: Params$Resource$Achievements$Setstepsatleast,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setStepsAtLeast(
       params?: Params$Resource$Achievements$Setstepsatleast,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse>;
+    setStepsAtLeast(
+      params: Params$Resource$Achievements$Setstepsatleast,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setStepsAtLeast(
       params: Params$Resource$Achievements$Setstepsatleast,
       options:
@@ -2926,12 +3086,20 @@ export namespace games_v1 {
     setStepsAtLeast(
       paramsOrCallback?:
         | Params$Resource$Achievements$Setstepsatleast
-        | BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
+        | BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>
-    ): void | GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Setstepsatleast;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2966,7 +3134,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementSetStepsAtLeastResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementSetStepsAtLeastResponse>(
@@ -2978,20 +3146,69 @@ export namespace games_v1 {
     /**
      * games.achievements.unlock
      * @desc Unlocks this achievement for the currently authenticated player.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievements.unlock({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "newlyUnlocked": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.achievements.unlock
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {string=} params.builtinGameId Override used only by built-in games in Play Games application.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     unlock(
+      params: Params$Resource$Achievements$Unlock,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unlock(
       params?: Params$Resource$Achievements$Unlock,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementUnlockResponse>;
+    unlock(
+      params: Params$Resource$Achievements$Unlock,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     unlock(
       params: Params$Resource$Achievements$Unlock,
       options:
@@ -3009,12 +3226,20 @@ export namespace games_v1 {
     unlock(
       paramsOrCallback?:
         | Params$Resource$Achievements$Unlock
-        | BodyResponseCallback<Schema$AchievementUnlockResponse>,
+        | BodyResponseCallback<Schema$AchievementUnlockResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementUnlockResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementUnlockResponse>
-    ): void | GaxiosPromise<Schema$AchievementUnlockResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementUnlockResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementUnlockResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementUnlockResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Unlock;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3049,7 +3274,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementUnlockResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementUnlockResponse>(parameters);
@@ -3059,20 +3284,75 @@ export namespace games_v1 {
     /**
      * games.achievements.updateMultiple
      * @desc Updates multiple achievements for the currently authenticated player.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievements.updateMultiple({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "updates": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "updatedAchievements": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.achievements.updateMultiple
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.builtinGameId Override used only by built-in games in Play Games application.
-     * @param {().AchievementUpdateMultipleRequest} params.resource Request body data
+     * @param {().AchievementUpdateMultipleRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     updateMultiple(
+      params: Params$Resource$Achievements$Updatemultiple,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateMultiple(
       params?: Params$Resource$Achievements$Updatemultiple,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementUpdateMultipleResponse>;
+    updateMultiple(
+      params: Params$Resource$Achievements$Updatemultiple,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateMultiple(
       params: Params$Resource$Achievements$Updatemultiple,
       options:
@@ -3090,12 +3370,20 @@ export namespace games_v1 {
     updateMultiple(
       paramsOrCallback?:
         | Params$Resource$Achievements$Updatemultiple
-        | BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
+        | BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>
-    ): void | GaxiosPromise<Schema$AchievementUpdateMultipleResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementUpdateMultipleResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Updatemultiple;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3131,7 +3419,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementUpdateMultipleResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementUpdateMultipleResponse>(
@@ -3143,11 +3431,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Achievements$Increment
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the achievement used by this method.
      */
@@ -3163,11 +3446,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Achievements$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -3192,22 +3470,12 @@ export namespace games_v1 {
   export interface Params$Resource$Achievements$Reveal
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
   export interface Params$Resource$Achievements$Setstepsatleast
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the achievement used by this method.
      */
@@ -3220,31 +3488,12 @@ export namespace games_v1 {
   export interface Params$Resource$Achievements$Unlock
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
-    /**
-     * Override used only by built-in games in Play Games application.
-     */
-    builtinGameId?: string;
   }
   export interface Params$Resource$Achievements$Updatemultiple
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Override used only by built-in games in Play Games application.
-     */
-    builtinGameId?: string;
-
     /**
      * Request body metadata
      */
@@ -3260,6 +3509,62 @@ export namespace games_v1 {
     /**
      * games.applications.get
      * @desc Retrieves the metadata of the application with the given ID. If the requested application is not available for the specified platformType, the returned response will not include any instance data.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.applications.get({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // Restrict application details returned to the specific platform.
+     *     platformType: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "achievement_count": 0,
+     *   //   "assets": [],
+     *   //   "author": "my_author",
+     *   //   "category": {},
+     *   //   "description": "my_description",
+     *   //   "enabledFeatures": [],
+     *   //   "id": "my_id",
+     *   //   "instances": [],
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdatedTimestamp": "my_lastUpdatedTimestamp",
+     *   //   "leaderboard_count": 0,
+     *   //   "name": "my_name",
+     *   //   "themeColor": "my_themeColor"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.applications.get
      * @memberOf! ()
      *
@@ -3272,9 +3577,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Applications$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Applications$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Application>;
+    get(
+      params: Params$Resource$Applications$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Applications$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Application>,
@@ -3288,12 +3602,17 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Applications$Get
-        | BodyResponseCallback<Schema$Application>,
+        | BodyResponseCallback<Schema$Application>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Application>,
-      callback?: BodyResponseCallback<Schema$Application>
-    ): void | GaxiosPromise<Schema$Application> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Application>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Application>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Application> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Applications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3326,7 +3645,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Application>(parameters, callback);
+        createAPIRequest<Schema$Application>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Application>(parameters);
       }
@@ -3335,19 +3657,59 @@ export namespace games_v1 {
     /**
      * games.applications.played
      * @desc Indicate that the the currently authenticated user is playing your application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.applications.played({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.applications.played
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.builtinGameId Override used only by built-in games in Play Games application.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     played(
+      params: Params$Resource$Applications$Played,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    played(
       params?: Params$Resource$Applications$Played,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    played(
+      params: Params$Resource$Applications$Played,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     played(
       params: Params$Resource$Applications$Played,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3361,10 +3723,15 @@ export namespace games_v1 {
     played(
       paramsOrCallback?:
         | Params$Resource$Applications$Played
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Played;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3398,7 +3765,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3407,6 +3777,48 @@ export namespace games_v1 {
     /**
      * games.applications.verify
      * @desc Verifies the auth token provided with this request is for the application with the specified ID, and returns the ID of the player it was granted for.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.applications.verify({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate_player_id": "my_alternate_player_id",
+     *   //   "kind": "my_kind",
+     *   //   "player_id": "my_player_id"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.applications.verify
      * @memberOf! ()
      *
@@ -3417,9 +3829,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     verify(
+      params: Params$Resource$Applications$Verify,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    verify(
       params?: Params$Resource$Applications$Verify,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApplicationVerifyResponse>;
+    verify(
+      params: Params$Resource$Applications$Verify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     verify(
       params: Params$Resource$Applications$Verify,
       options:
@@ -3437,12 +3858,20 @@ export namespace games_v1 {
     verify(
       paramsOrCallback?:
         | Params$Resource$Applications$Verify
-        | BodyResponseCallback<Schema$ApplicationVerifyResponse>,
+        | BodyResponseCallback<Schema$ApplicationVerifyResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApplicationVerifyResponse>,
-      callback?: BodyResponseCallback<Schema$ApplicationVerifyResponse>
-    ): void | GaxiosPromise<Schema$ApplicationVerifyResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApplicationVerifyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApplicationVerifyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ApplicationVerifyResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3477,7 +3906,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$ApplicationVerifyResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ApplicationVerifyResponse>(parameters);
@@ -3486,11 +3915,6 @@ export namespace games_v1 {
   }
 
   export interface Params$Resource$Applications$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The application ID from the Google Play developer console.
      */
@@ -3505,24 +3929,9 @@ export namespace games_v1 {
     platformType?: string;
   }
   export interface Params$Resource$Applications$Played
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Override used only by built-in games in Play Games application.
-     */
-    builtinGameId?: string;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Applications$Verify
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The application ID from the Google Play developer console.
      */
@@ -3538,6 +3947,52 @@ export namespace games_v1 {
     /**
      * games.events.listByPlayer
      * @desc Returns a list showing the current progress on events in this application for the currently authenticated user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.events.listByPlayer({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of events to return in the response, used for paging. For any response, the actual number of events to return may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.events.listByPlayer
      * @memberOf! ()
      *
@@ -3550,9 +4005,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     listByPlayer(
+      params: Params$Resource$Events$Listbyplayer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listByPlayer(
       params?: Params$Resource$Events$Listbyplayer,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerEventListResponse>;
+    listByPlayer(
+      params: Params$Resource$Events$Listbyplayer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listByPlayer(
       params: Params$Resource$Events$Listbyplayer,
       options:
@@ -3570,12 +4034,20 @@ export namespace games_v1 {
     listByPlayer(
       paramsOrCallback?:
         | Params$Resource$Events$Listbyplayer
-        | BodyResponseCallback<Schema$PlayerEventListResponse>,
+        | BodyResponseCallback<Schema$PlayerEventListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerEventListResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerEventListResponse>
-    ): void | GaxiosPromise<Schema$PlayerEventListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerEventListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerEventListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerEventListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Listbyplayer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3606,7 +4078,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PlayerEventListResponse>(parameters, callback);
+        createAPIRequest<Schema$PlayerEventListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PlayerEventListResponse>(parameters);
       }
@@ -3615,6 +4090,52 @@ export namespace games_v1 {
     /**
      * games.events.listDefinitions
      * @desc Returns a list of the event definitions in this application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.events.listDefinitions({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of event definitions to return in the response, used for paging. For any response, the actual number of event definitions to return may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.events.listDefinitions
      * @memberOf! ()
      *
@@ -3627,9 +4148,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     listDefinitions(
+      params: Params$Resource$Events$Listdefinitions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listDefinitions(
       params?: Params$Resource$Events$Listdefinitions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EventDefinitionListResponse>;
+    listDefinitions(
+      params: Params$Resource$Events$Listdefinitions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listDefinitions(
       params: Params$Resource$Events$Listdefinitions,
       options:
@@ -3647,12 +4177,20 @@ export namespace games_v1 {
     listDefinitions(
       paramsOrCallback?:
         | Params$Resource$Events$Listdefinitions
-        | BodyResponseCallback<Schema$EventDefinitionListResponse>,
+        | BodyResponseCallback<Schema$EventDefinitionListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EventDefinitionListResponse>,
-      callback?: BodyResponseCallback<Schema$EventDefinitionListResponse>
-    ): void | GaxiosPromise<Schema$EventDefinitionListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventDefinitionListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventDefinitionListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventDefinitionListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Listdefinitions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3688,7 +4226,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$EventDefinitionListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$EventDefinitionListResponse>(parameters);
@@ -3698,20 +4236,83 @@ export namespace games_v1 {
     /**
      * games.events.record
      * @desc Records a batch of changes to the number of times events have occurred for the currently authenticated user of this application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.events.record({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "currentTimeMillis": "my_currentTimeMillis",
+     *       //   "kind": "my_kind",
+     *       //   "requestId": "my_requestId",
+     *       //   "timePeriods": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "batchFailures": [],
+     *   //   "eventFailures": [],
+     *   //   "kind": "my_kind",
+     *   //   "playerEvents": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.events.record
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {().EventRecordRequest} params.resource Request body data
+     * @param {().EventRecordRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     record(
+      params: Params$Resource$Events$Record,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    record(
       params?: Params$Resource$Events$Record,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EventUpdateResponse>;
+    record(
+      params: Params$Resource$Events$Record,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     record(
       params: Params$Resource$Events$Record,
       options: MethodOptions | BodyResponseCallback<Schema$EventUpdateResponse>,
@@ -3725,12 +4326,20 @@ export namespace games_v1 {
     record(
       paramsOrCallback?:
         | Params$Resource$Events$Record
-        | BodyResponseCallback<Schema$EventUpdateResponse>,
+        | BodyResponseCallback<Schema$EventUpdateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EventUpdateResponse>,
-      callback?: BodyResponseCallback<Schema$EventUpdateResponse>
-    ): void | GaxiosPromise<Schema$EventUpdateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventUpdateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventUpdateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventUpdateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Record;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3760,7 +4369,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EventUpdateResponse>(parameters, callback);
+        createAPIRequest<Schema$EventUpdateResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EventUpdateResponse>(parameters);
       }
@@ -3769,11 +4381,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Events$Listbyplayer
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -3790,11 +4397,6 @@ export namespace games_v1 {
   export interface Params$Resource$Events$Listdefinitions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -3808,11 +4410,6 @@ export namespace games_v1 {
     pageToken?: string;
   }
   export interface Params$Resource$Events$Record extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -3833,6 +4430,53 @@ export namespace games_v1 {
     /**
      * games.leaderboards.get
      * @desc Retrieves the metadata of the leaderboard with the given ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.leaderboards.get({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "iconUrl": "my_iconUrl",
+     *   //   "id": "my_id",
+     *   //   "isIconUrlDefault": false,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "order": "my_order"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.leaderboards.get
      * @memberOf! ()
      *
@@ -3844,9 +4488,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Leaderboards$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Leaderboards$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Leaderboard>;
+    get(
+      params: Params$Resource$Leaderboards$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Leaderboards$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Leaderboard>,
@@ -3860,12 +4513,17 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Leaderboards$Get
-        | BodyResponseCallback<Schema$Leaderboard>,
+        | BodyResponseCallback<Schema$Leaderboard>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Leaderboard>,
-      callback?: BodyResponseCallback<Schema$Leaderboard>
-    ): void | GaxiosPromise<Schema$Leaderboard> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Leaderboard>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Leaderboard>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Leaderboard> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Leaderboards$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3898,7 +4556,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Leaderboard>(parameters, callback);
+        createAPIRequest<Schema$Leaderboard>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Leaderboard>(parameters);
       }
@@ -3907,6 +4568,52 @@ export namespace games_v1 {
     /**
      * games.leaderboards.list
      * @desc Lists all the leaderboard metadata for your application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.leaderboards.list({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of leaderboards to return in the response. For any response, the actual number of leaderboards returned may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.leaderboards.list
      * @memberOf! ()
      *
@@ -3919,9 +4626,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Leaderboards$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Leaderboards$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LeaderboardListResponse>;
+    list(
+      params: Params$Resource$Leaderboards$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Leaderboards$List,
       options:
@@ -3937,12 +4653,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Leaderboards$List
-        | BodyResponseCallback<Schema$LeaderboardListResponse>,
+        | BodyResponseCallback<Schema$LeaderboardListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardListResponse>,
-      callback?: BodyResponseCallback<Schema$LeaderboardListResponse>
-    ): void | GaxiosPromise<Schema$LeaderboardListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LeaderboardListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LeaderboardListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LeaderboardListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboards$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3976,7 +4700,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LeaderboardListResponse>(parameters, callback);
+        createAPIRequest<Schema$LeaderboardListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LeaderboardListResponse>(parameters);
       }
@@ -3984,11 +4711,6 @@ export namespace games_v1 {
   }
 
   export interface Params$Resource$Leaderboards$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -4000,11 +4722,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Leaderboards$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -4028,6 +4745,45 @@ export namespace games_v1 {
     /**
      * games.metagame.getMetagameConfig
      * @desc Return the metagame configuration data for the calling application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.metagame.getMetagameConfig({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "currentVersion": 0,
+     *   //   "kind": "my_kind",
+     *   //   "playerLevels": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.metagame.getMetagameConfig
      * @memberOf! ()
      *
@@ -4037,9 +4793,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     getMetagameConfig(
+      params: Params$Resource$Metagame$Getmetagameconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getMetagameConfig(
       params?: Params$Resource$Metagame$Getmetagameconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$MetagameConfig>;
+    getMetagameConfig(
+      params: Params$Resource$Metagame$Getmetagameconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getMetagameConfig(
       params: Params$Resource$Metagame$Getmetagameconfig,
       options: MethodOptions | BodyResponseCallback<Schema$MetagameConfig>,
@@ -4055,12 +4820,17 @@ export namespace games_v1 {
     getMetagameConfig(
       paramsOrCallback?:
         | Params$Resource$Metagame$Getmetagameconfig
-        | BodyResponseCallback<Schema$MetagameConfig>,
+        | BodyResponseCallback<Schema$MetagameConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$MetagameConfig>,
-      callback?: BodyResponseCallback<Schema$MetagameConfig>
-    ): void | GaxiosPromise<Schema$MetagameConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MetagameConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MetagameConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$MetagameConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Metagame$Getmetagameconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4094,7 +4864,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$MetagameConfig>(parameters, callback);
+        createAPIRequest<Schema$MetagameConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$MetagameConfig>(parameters);
       }
@@ -4103,6 +4876,56 @@ export namespace games_v1 {
     /**
      * games.metagame.listCategoriesByPlayer
      * @desc List play data aggregated per category for the player corresponding to playerId.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.metagame.listCategoriesByPlayer({
+     *     // The collection of categories for which data will be returned.
+     *     collection: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of category resources to return in the response, used for paging. For any response, the actual number of category resources returned may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // A player ID. A value of me may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.metagame.listCategoriesByPlayer
      * @memberOf! ()
      *
@@ -4117,9 +4940,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     listCategoriesByPlayer(
+      params: Params$Resource$Metagame$Listcategoriesbyplayer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listCategoriesByPlayer(
       params?: Params$Resource$Metagame$Listcategoriesbyplayer,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CategoryListResponse>;
+    listCategoriesByPlayer(
+      params: Params$Resource$Metagame$Listcategoriesbyplayer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listCategoriesByPlayer(
       params: Params$Resource$Metagame$Listcategoriesbyplayer,
       options:
@@ -4137,12 +4969,20 @@ export namespace games_v1 {
     listCategoriesByPlayer(
       paramsOrCallback?:
         | Params$Resource$Metagame$Listcategoriesbyplayer
-        | BodyResponseCallback<Schema$CategoryListResponse>,
+        | BodyResponseCallback<Schema$CategoryListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CategoryListResponse>,
-      callback?: BodyResponseCallback<Schema$CategoryListResponse>
-    ): void | GaxiosPromise<Schema$CategoryListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CategoryListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CategoryListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CategoryListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Metagame$Listcategoriesbyplayer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4175,7 +5015,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CategoryListResponse>(parameters, callback);
+        createAPIRequest<Schema$CategoryListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CategoryListResponse>(parameters);
       }
@@ -4183,19 +5026,9 @@ export namespace games_v1 {
   }
 
   export interface Params$Resource$Metagame$Getmetagameconfig
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Metagame$Listcategoriesbyplayer
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The collection of categories for which data will be returned.
      */
@@ -4227,6 +5060,60 @@ export namespace games_v1 {
     /**
      * games.players.get
      * @desc Retrieves the Player resource with the given ID. To retrieve the player for the currently authenticated user, set playerId to me.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.players.get({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // A player ID. A value of me may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "avatarImageUrl": "my_avatarImageUrl",
+     *   //   "bannerUrlLandscape": "my_bannerUrlLandscape",
+     *   //   "bannerUrlPortrait": "my_bannerUrlPortrait",
+     *   //   "displayName": "my_displayName",
+     *   //   "experienceInfo": {},
+     *   //   "friendStatus": "my_friendStatus",
+     *   //   "kind": "my_kind",
+     *   //   "lastPlayedWith": {},
+     *   //   "name": {},
+     *   //   "originalPlayerId": "my_originalPlayerId",
+     *   //   "playerId": "my_playerId",
+     *   //   "profileSettings": {},
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.players.get
      * @memberOf! ()
      *
@@ -4238,9 +5125,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Players$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Players$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Player>;
+    get(
+      params: Params$Resource$Players$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Players$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Player>,
@@ -4254,10 +5150,17 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Players$Get
-        | BodyResponseCallback<Schema$Player>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Player>,
-      callback?: BodyResponseCallback<Schema$Player>
-    ): void | GaxiosPromise<Schema$Player> {
+        | BodyResponseCallback<Schema$Player>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Player>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Player>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Player> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4290,7 +5193,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Player>(parameters, callback);
+        createAPIRequest<Schema$Player>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Player>(parameters);
       }
@@ -4299,6 +5205,54 @@ export namespace games_v1 {
     /**
      * games.players.list
      * @desc Get the collection of players for the currently authenticated user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.players.list({
+     *     // Collection of players being retrieved
+     *     collection: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.players.list
      * @memberOf! ()
      *
@@ -4312,9 +5266,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Players$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Players$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerListResponse>;
+    list(
+      params: Params$Resource$Players$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Players$List,
       options: MethodOptions | BodyResponseCallback<Schema$PlayerListResponse>,
@@ -4328,12 +5291,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Players$List
-        | BodyResponseCallback<Schema$PlayerListResponse>,
+        | BodyResponseCallback<Schema$PlayerListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerListResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerListResponse>
-    ): void | GaxiosPromise<Schema$PlayerListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4365,7 +5336,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PlayerListResponse>(parameters, callback);
+        createAPIRequest<Schema$PlayerListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PlayerListResponse>(parameters);
       }
@@ -4373,11 +5347,6 @@ export namespace games_v1 {
   }
 
   export interface Params$Resource$Players$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -4388,11 +5357,6 @@ export namespace games_v1 {
     playerId?: string;
   }
   export interface Params$Resource$Players$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Collection of players being retrieved
      */
@@ -4420,19 +5384,69 @@ export namespace games_v1 {
     /**
      * games.pushtokens.remove
      * @desc Removes a push token for the current user and application. Removing a non-existent push token will report success.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.pushtokens.remove({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ios": {},
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.pushtokens.remove
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().PushTokenId} params.resource Request body data
+     * @param {().PushTokenId} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     remove(
+      params: Params$Resource$Pushtokens$Remove,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    remove(
       params?: Params$Resource$Pushtokens$Remove,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    remove(
+      params: Params$Resource$Pushtokens$Remove,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     remove(
       params: Params$Resource$Pushtokens$Remove,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4446,10 +5460,15 @@ export namespace games_v1 {
     remove(
       paramsOrCallback?:
         | Params$Resource$Pushtokens$Remove
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pushtokens$Remove;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4483,7 +5502,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4492,19 +5514,71 @@ export namespace games_v1 {
     /**
      * games.pushtokens.update
      * @desc Registers a push token for the current user and application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.pushtokens.update({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientRevision": "my_clientRevision",
+     *       //   "id": {},
+     *       //   "kind": "my_kind",
+     *       //   "language": "my_language"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.pushtokens.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().PushToken} params.resource Request body data
+     * @param {().PushToken} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Pushtokens$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Pushtokens$Update,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    update(
+      params: Params$Resource$Pushtokens$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Pushtokens$Update,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4518,10 +5592,15 @@ export namespace games_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Pushtokens$Update
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pushtokens$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4555,7 +5634,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4565,11 +5647,6 @@ export namespace games_v1 {
   export interface Params$Resource$Pushtokens$Remove
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$PushTokenId;
@@ -4577,310 +5654,9 @@ export namespace games_v1 {
   export interface Params$Resource$Pushtokens$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$PushToken;
-  }
-
-  export class Resource$Questmilestones {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * games.questMilestones.claim
-     * @desc Report that a reward for the milestone corresponding to milestoneId for the quest corresponding to questId has been claimed by the currently authorized user.
-     * @alias games.questMilestones.claim
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.milestoneId The ID of the milestone.
-     * @param {string} params.questId The ID of the quest.
-     * @param {string} params.requestId A numeric ID to ensure that the request is handled correctly across retries. Your client application must generate this ID randomly.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    claim(
-      params?: Params$Resource$Questmilestones$Claim,
-      options?: MethodOptions
-    ): GaxiosPromise<void>;
-    claim(
-      params: Params$Resource$Questmilestones$Claim,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
-    ): void;
-    claim(
-      params: Params$Resource$Questmilestones$Claim,
-      callback: BodyResponseCallback<void>
-    ): void;
-    claim(callback: BodyResponseCallback<void>): void;
-    claim(
-      paramsOrCallback?:
-        | Params$Resource$Questmilestones$Claim
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Questmilestones$Claim;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Questmilestones$Claim;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/games/v1/quests/{questId}/milestones/{milestoneId}/claim'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PUT',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['questId', 'milestoneId', 'requestId'],
-        pathParams: ['milestoneId', 'questId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<void>(parameters, callback);
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Questmilestones$Claim
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the milestone.
-     */
-    milestoneId?: string;
-    /**
-     * The ID of the quest.
-     */
-    questId?: string;
-    /**
-     * A numeric ID to ensure that the request is handled correctly across retries. Your client application must generate this ID randomly.
-     */
-    requestId?: string;
-  }
-
-  export class Resource$Quests {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * games.quests.accept
-     * @desc Indicates that the currently authorized user will participate in the quest.
-     * @alias games.quests.accept
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {string} params.questId The ID of the quest.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    accept(
-      params?: Params$Resource$Quests$Accept,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Quest>;
-    accept(
-      params: Params$Resource$Quests$Accept,
-      options: MethodOptions | BodyResponseCallback<Schema$Quest>,
-      callback: BodyResponseCallback<Schema$Quest>
-    ): void;
-    accept(
-      params: Params$Resource$Quests$Accept,
-      callback: BodyResponseCallback<Schema$Quest>
-    ): void;
-    accept(callback: BodyResponseCallback<Schema$Quest>): void;
-    accept(
-      paramsOrCallback?:
-        | Params$Resource$Quests$Accept
-        | BodyResponseCallback<Schema$Quest>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Quest>,
-      callback?: BodyResponseCallback<Schema$Quest>
-    ): void | GaxiosPromise<Schema$Quest> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Quests$Accept;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Quests$Accept;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/games/v1/quests/{questId}/accept').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['questId'],
-        pathParams: ['questId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Quest>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Quest>(parameters);
-      }
-    }
-
-    /**
-     * games.quests.list
-     * @desc Get a list of quests for your application and the currently authenticated player.
-     * @alias games.quests.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {integer=} params.maxResults The maximum number of quest resources to return in the response, used for paging. For any response, the actual number of quest resources returned may be less than the specified maxResults. Acceptable values are 1 to 50, inclusive. (Default: 50).
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params?: Params$Resource$Quests$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$QuestListResponse>;
-    list(
-      params: Params$Resource$Quests$List,
-      options: MethodOptions | BodyResponseCallback<Schema$QuestListResponse>,
-      callback: BodyResponseCallback<Schema$QuestListResponse>
-    ): void;
-    list(
-      params: Params$Resource$Quests$List,
-      callback: BodyResponseCallback<Schema$QuestListResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$QuestListResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Quests$List
-        | BodyResponseCallback<Schema$QuestListResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$QuestListResponse>,
-      callback?: BodyResponseCallback<Schema$QuestListResponse>
-    ): void | GaxiosPromise<Schema$QuestListResponse> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Quests$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Quests$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/games/v1/players/{playerId}/quests').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['playerId'],
-        pathParams: ['playerId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$QuestListResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$QuestListResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Quests$Accept extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The preferred language to use for strings returned by this method.
-     */
-    language?: string;
-    /**
-     * The ID of the quest.
-     */
-    questId?: string;
-  }
-  export interface Params$Resource$Quests$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The preferred language to use for strings returned by this method.
-     */
-    language?: string;
-    /**
-     * The maximum number of quest resources to return in the response, used for paging. For any response, the actual number of quest resources returned may be less than the specified maxResults. Acceptable values are 1 to 50, inclusive. (Default: 50).
-     */
-    maxResults?: number;
-    /**
-     * The token returned by the previous request.
-     */
-    pageToken?: string;
-    /**
-     * A player ID. A value of me may be used in place of the authenticated player's ID.
-     */
-    playerId?: string;
   }
 
   export class Resource$Revisions {
@@ -4892,6 +5668,53 @@ export namespace games_v1 {
     /**
      * games.revisions.check
      * @desc Checks whether the games client is out of date.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.revisions.check({
+     *     // The revision of the client SDK used by your application. Format:
+     *     // [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible values of PLATFORM_TYPE are:
+     *     //
+     *     // - "ANDROID" - Client is running the Android SDK.
+     *     // - "IOS" - Client is running the iOS SDK.
+     *     // - "WEB_APP" - Client is running as a Web App.
+     *     clientRevision: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "revisionStatus": "my_revisionStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.revisions.check
      * @memberOf! ()
      *
@@ -4902,9 +5725,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     check(
+      params: Params$Resource$Revisions$Check,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    check(
       params?: Params$Resource$Revisions$Check,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RevisionCheckResponse>;
+    check(
+      params: Params$Resource$Revisions$Check,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     check(
       params: Params$Resource$Revisions$Check,
       options:
@@ -4920,12 +5752,20 @@ export namespace games_v1 {
     check(
       paramsOrCallback?:
         | Params$Resource$Revisions$Check
-        | BodyResponseCallback<Schema$RevisionCheckResponse>,
+        | BodyResponseCallback<Schema$RevisionCheckResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RevisionCheckResponse>,
-      callback?: BodyResponseCallback<Schema$RevisionCheckResponse>
-    ): void | GaxiosPromise<Schema$RevisionCheckResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RevisionCheckResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RevisionCheckResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RevisionCheckResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4958,7 +5798,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RevisionCheckResponse>(parameters, callback);
+        createAPIRequest<Schema$RevisionCheckResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RevisionCheckResponse>(parameters);
       }
@@ -4966,11 +5809,6 @@ export namespace games_v1 {
   }
 
   export interface Params$Resource$Revisions$Check extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The revision of the client SDK used by your application. Format: [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible values of PLATFORM_TYPE are:   - "ANDROID" - Client is running the Android SDK.  - "IOS" - Client is running the iOS SDK.  - "WEB_APP" - Client is running as a Web App.
      */
@@ -4986,20 +5824,96 @@ export namespace games_v1 {
     /**
      * games.rooms.create
      * @desc Create a room. For internal use by the Games SDK only. Calling this method directly is unsupported.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.rooms.create({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoMatchingCriteria": {},
+     *       //   "capabilities": [],
+     *       //   "clientAddress": {},
+     *       //   "invitedPlayerIds": [],
+     *       //   "kind": "my_kind",
+     *       //   "networkDiagnostics": {},
+     *       //   "requestId": "my_requestId",
+     *       //   "variant": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationId": "my_applicationId",
+     *   //   "autoMatchingCriteria": {},
+     *   //   "autoMatchingStatus": {},
+     *   //   "creationDetails": {},
+     *   //   "description": "my_description",
+     *   //   "inviterId": "my_inviterId",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDetails": {},
+     *   //   "participants": [],
+     *   //   "roomId": "my_roomId",
+     *   //   "roomStatusVersion": 0,
+     *   //   "status": "my_status",
+     *   //   "variant": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.rooms.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {().RoomCreateRequest} params.resource Request body data
+     * @param {().RoomCreateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Rooms$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Rooms$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Room>;
+    create(
+      params: Params$Resource$Rooms$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Rooms$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Room>,
@@ -5013,10 +5927,17 @@ export namespace games_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Rooms$Create
-        | BodyResponseCallback<Schema$Room>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
-      callback?: BodyResponseCallback<Schema$Room>
-    ): void | GaxiosPromise<Schema$Room> {
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Room> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5049,7 +5970,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Room>(parameters, callback);
+        createAPIRequest<Schema$Room>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Room>(parameters);
       }
@@ -5058,6 +5982,60 @@ export namespace games_v1 {
     /**
      * games.rooms.decline
      * @desc Decline an invitation to join a room. For internal use by the Games SDK only. Calling this method directly is unsupported.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.rooms.decline({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the room.
+     *     roomId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationId": "my_applicationId",
+     *   //   "autoMatchingCriteria": {},
+     *   //   "autoMatchingStatus": {},
+     *   //   "creationDetails": {},
+     *   //   "description": "my_description",
+     *   //   "inviterId": "my_inviterId",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDetails": {},
+     *   //   "participants": [],
+     *   //   "roomId": "my_roomId",
+     *   //   "roomStatusVersion": 0,
+     *   //   "status": "my_status",
+     *   //   "variant": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.rooms.decline
      * @memberOf! ()
      *
@@ -5069,9 +6047,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     decline(
+      params: Params$Resource$Rooms$Decline,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    decline(
       params?: Params$Resource$Rooms$Decline,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Room>;
+    decline(
+      params: Params$Resource$Rooms$Decline,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     decline(
       params: Params$Resource$Rooms$Decline,
       options: MethodOptions | BodyResponseCallback<Schema$Room>,
@@ -5085,10 +6072,17 @@ export namespace games_v1 {
     decline(
       paramsOrCallback?:
         | Params$Resource$Rooms$Decline
-        | BodyResponseCallback<Schema$Room>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
-      callback?: BodyResponseCallback<Schema$Room>
-    ): void | GaxiosPromise<Schema$Room> {
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Room> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Decline;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5121,7 +6115,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Room>(parameters, callback);
+        createAPIRequest<Schema$Room>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Room>(parameters);
       }
@@ -5130,6 +6127,41 @@ export namespace games_v1 {
     /**
      * games.rooms.dismiss
      * @desc Dismiss an invitation to join a room. For internal use by the Games SDK only. Calling this method directly is unsupported.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.rooms.dismiss({
+     *     // The ID of the room.
+     *     roomId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.rooms.dismiss
      * @memberOf! ()
      *
@@ -5140,9 +6172,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     dismiss(
+      params: Params$Resource$Rooms$Dismiss,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dismiss(
       params?: Params$Resource$Rooms$Dismiss,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    dismiss(
+      params: Params$Resource$Rooms$Dismiss,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     dismiss(
       params: Params$Resource$Rooms$Dismiss,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -5156,10 +6197,15 @@ export namespace games_v1 {
     dismiss(
       paramsOrCallback?:
         | Params$Resource$Rooms$Dismiss
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5192,7 +6238,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -5201,6 +6250,60 @@ export namespace games_v1 {
     /**
      * games.rooms.get
      * @desc Get the data for a room.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.rooms.get({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the room.
+     *     roomId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationId": "my_applicationId",
+     *   //   "autoMatchingCriteria": {},
+     *   //   "autoMatchingStatus": {},
+     *   //   "creationDetails": {},
+     *   //   "description": "my_description",
+     *   //   "inviterId": "my_inviterId",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDetails": {},
+     *   //   "participants": [],
+     *   //   "roomId": "my_roomId",
+     *   //   "roomStatusVersion": 0,
+     *   //   "status": "my_status",
+     *   //   "variant": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.rooms.get
      * @memberOf! ()
      *
@@ -5212,9 +6315,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Rooms$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Rooms$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Room>;
+    get(
+      params: Params$Resource$Rooms$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Rooms$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Room>,
@@ -5228,10 +6340,17 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Rooms$Get
-        | BodyResponseCallback<Schema$Room>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
-      callback?: BodyResponseCallback<Schema$Room>
-    ): void | GaxiosPromise<Schema$Room> {
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Room> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5264,7 +6383,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Room>(parameters, callback);
+        createAPIRequest<Schema$Room>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Room>(parameters);
       }
@@ -5273,21 +6395,95 @@ export namespace games_v1 {
     /**
      * games.rooms.join
      * @desc Join a room. For internal use by the Games SDK only. Calling this method directly is unsupported.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.rooms.join({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the room.
+     *     roomId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "capabilities": [],
+     *       //   "clientAddress": {},
+     *       //   "kind": "my_kind",
+     *       //   "networkDiagnostics": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationId": "my_applicationId",
+     *   //   "autoMatchingCriteria": {},
+     *   //   "autoMatchingStatus": {},
+     *   //   "creationDetails": {},
+     *   //   "description": "my_description",
+     *   //   "inviterId": "my_inviterId",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDetails": {},
+     *   //   "participants": [],
+     *   //   "roomId": "my_roomId",
+     *   //   "roomStatusVersion": 0,
+     *   //   "status": "my_status",
+     *   //   "variant": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.rooms.join
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.roomId The ID of the room.
-     * @param {().RoomJoinRequest} params.resource Request body data
+     * @param {().RoomJoinRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     join(
+      params: Params$Resource$Rooms$Join,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    join(
       params?: Params$Resource$Rooms$Join,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Room>;
+    join(
+      params: Params$Resource$Rooms$Join,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     join(
       params: Params$Resource$Rooms$Join,
       options: MethodOptions | BodyResponseCallback<Schema$Room>,
@@ -5301,10 +6497,17 @@ export namespace games_v1 {
     join(
       paramsOrCallback?:
         | Params$Resource$Rooms$Join
-        | BodyResponseCallback<Schema$Room>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
-      callback?: BodyResponseCallback<Schema$Room>
-    ): void | GaxiosPromise<Schema$Room> {
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Room> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Join;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5337,7 +6540,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Room>(parameters, callback);
+        createAPIRequest<Schema$Room>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Room>(parameters);
       }
@@ -5346,21 +6552,94 @@ export namespace games_v1 {
     /**
      * games.rooms.leave
      * @desc Leave a room. For internal use by the Games SDK only. Calling this method directly is unsupported.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.rooms.leave({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the room.
+     *     roomId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "leaveDiagnostics": {},
+     *       //   "reason": "my_reason"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationId": "my_applicationId",
+     *   //   "autoMatchingCriteria": {},
+     *   //   "autoMatchingStatus": {},
+     *   //   "creationDetails": {},
+     *   //   "description": "my_description",
+     *   //   "inviterId": "my_inviterId",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDetails": {},
+     *   //   "participants": [],
+     *   //   "roomId": "my_roomId",
+     *   //   "roomStatusVersion": 0,
+     *   //   "status": "my_status",
+     *   //   "variant": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.rooms.leave
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.roomId The ID of the room.
-     * @param {().RoomLeaveRequest} params.resource Request body data
+     * @param {().RoomLeaveRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     leave(
+      params: Params$Resource$Rooms$Leave,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    leave(
       params?: Params$Resource$Rooms$Leave,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Room>;
+    leave(
+      params: Params$Resource$Rooms$Leave,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     leave(
       params: Params$Resource$Rooms$Leave,
       options: MethodOptions | BodyResponseCallback<Schema$Room>,
@@ -5374,10 +6653,17 @@ export namespace games_v1 {
     leave(
       paramsOrCallback?:
         | Params$Resource$Rooms$Leave
-        | BodyResponseCallback<Schema$Room>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
-      callback?: BodyResponseCallback<Schema$Room>
-    ): void | GaxiosPromise<Schema$Room> {
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Room> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Leave;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5410,7 +6696,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Room>(parameters, callback);
+        createAPIRequest<Schema$Room>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Room>(parameters);
       }
@@ -5419,6 +6708,52 @@ export namespace games_v1 {
     /**
      * games.rooms.list
      * @desc Returns invitations to join rooms.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.rooms.list({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of rooms to return in the response, used for paging. For any response, the actual number of rooms to return may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.rooms.list
      * @memberOf! ()
      *
@@ -5431,9 +6766,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Rooms$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Rooms$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RoomList>;
+    list(
+      params: Params$Resource$Rooms$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Rooms$List,
       options: MethodOptions | BodyResponseCallback<Schema$RoomList>,
@@ -5447,10 +6791,17 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Rooms$List
-        | BodyResponseCallback<Schema$RoomList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$RoomList>,
-      callback?: BodyResponseCallback<Schema$RoomList>
-    ): void | GaxiosPromise<Schema$RoomList> {
+        | BodyResponseCallback<Schema$RoomList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RoomList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RoomList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RoomList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5480,7 +6831,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RoomList>(parameters, callback);
+        createAPIRequest<Schema$RoomList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RoomList>(parameters);
       }
@@ -5489,21 +6843,86 @@ export namespace games_v1 {
     /**
      * games.rooms.reportStatus
      * @desc Updates sent by a client reporting the status of peers in a room. For internal use by the Games SDK only. Calling this method directly is unsupported.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.rooms.reportStatus({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the room.
+     *     roomId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "updates": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoMatchingStatus": {},
+     *   //   "kind": "my_kind",
+     *   //   "participants": [],
+     *   //   "roomId": "my_roomId",
+     *   //   "status": "my_status",
+     *   //   "statusVersion": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.rooms.reportStatus
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.roomId The ID of the room.
-     * @param {().RoomP2PStatuses} params.resource Request body data
+     * @param {().RoomP2PStatuses} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     reportStatus(
+      params: Params$Resource$Rooms$Reportstatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reportStatus(
       params?: Params$Resource$Rooms$Reportstatus,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RoomStatus>;
+    reportStatus(
+      params: Params$Resource$Rooms$Reportstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reportStatus(
       params: Params$Resource$Rooms$Reportstatus,
       options: MethodOptions | BodyResponseCallback<Schema$RoomStatus>,
@@ -5517,12 +6936,17 @@ export namespace games_v1 {
     reportStatus(
       paramsOrCallback?:
         | Params$Resource$Rooms$Reportstatus
-        | BodyResponseCallback<Schema$RoomStatus>,
+        | BodyResponseCallback<Schema$RoomStatus>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RoomStatus>,
-      callback?: BodyResponseCallback<Schema$RoomStatus>
-    ): void | GaxiosPromise<Schema$RoomStatus> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RoomStatus>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RoomStatus>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RoomStatus> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rooms$Reportstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5556,7 +6980,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RoomStatus>(parameters, callback);
+        createAPIRequest<Schema$RoomStatus>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RoomStatus>(parameters);
       }
@@ -5564,11 +6991,6 @@ export namespace games_v1 {
   }
 
   export interface Params$Resource$Rooms$Create extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -5581,11 +7003,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$Decline extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -5596,21 +7013,11 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$Dismiss extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the room.
      */
     roomId?: string;
   }
   export interface Params$Resource$Rooms$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -5621,11 +7028,6 @@ export namespace games_v1 {
     roomId?: string;
   }
   export interface Params$Resource$Rooms$Join extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -5642,11 +7044,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$Leave extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -5662,11 +7059,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -5681,11 +7073,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$Reportstatus
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -5710,6 +7097,61 @@ export namespace games_v1 {
     /**
      * games.scores.get
      * @desc Get high scores, and optionally ranks, in leaderboards for the currently authenticated player. For a specific time span, leaderboardId can be set to ALL to retrieve data for all leaderboards in a given time span. NOTE: You cannot ask for 'ALL' leaderboards and 'ALL' timeSpans in the same request; only one parameter may be set to 'ALL'.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.scores.get({
+     *     // The types of ranks to return. If the parameter is omitted, no ranks will be returned.
+     *     includeRankType: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the leaderboard. Can be set to 'ALL' to retrieve data for all leaderboards for this application.
+     *     leaderboardId: 'placeholder-value',
+     *     // The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // A player ID. A value of me may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *     // The time span for the scores and ranks you're requesting.
+     *     timeSpan: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "player": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.scores.get
      * @memberOf! ()
      *
@@ -5726,9 +7168,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Scores$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Scores$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse>;
+    get(
+      params: Params$Resource$Scores$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Scores$Get,
       options:
@@ -5746,12 +7197,20 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Scores$Get
-        | BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
+        | BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>
-    ): void | GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5786,7 +7245,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$PlayerLeaderboardScoreListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PlayerLeaderboardScoreListResponse>(
@@ -5798,6 +7257,61 @@ export namespace games_v1 {
     /**
      * games.scores.list
      * @desc Lists the scores in a leaderboard, starting from the top.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.scores.list({
+     *     // The collection of scores you're requesting.
+     *     collection: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *     // The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // The time span for the scores and ranks you're requesting.
+     *     timeSpan: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "numScores": "my_numScores",
+     *   //   "playerScore": {},
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.scores.list
      * @memberOf! ()
      *
@@ -5813,9 +7327,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Scores$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Scores$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LeaderboardScores>;
+    list(
+      params: Params$Resource$Scores$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Scores$List,
       options: MethodOptions | BodyResponseCallback<Schema$LeaderboardScores>,
@@ -5829,12 +7352,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Scores$List
-        | BodyResponseCallback<Schema$LeaderboardScores>,
+        | BodyResponseCallback<Schema$LeaderboardScores>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardScores>,
-      callback?: BodyResponseCallback<Schema$LeaderboardScores>
-    ): void | GaxiosPromise<Schema$LeaderboardScores> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LeaderboardScores>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LeaderboardScores>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LeaderboardScores>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5867,7 +7398,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LeaderboardScores>(parameters, callback);
+        createAPIRequest<Schema$LeaderboardScores>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LeaderboardScores>(parameters);
       }
@@ -5876,6 +7410,65 @@ export namespace games_v1 {
     /**
      * games.scores.listWindow
      * @desc Lists the scores in a leaderboard around (and including) a player's score.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.scores.listWindow({
+     *     // The collection of scores you're requesting.
+     *     collection: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *     // The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // The preferred number of scores to return above the player's score. More scores may be returned if the player is at the bottom of the leaderboard; fewer may be returned if the player is at the top. Must be less than or equal to maxResults.
+     *     resultsAbove: 'placeholder-value',
+     *     // True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.
+     *     returnTopIfAbsent: 'placeholder-value',
+     *     // The time span for the scores and ranks you're requesting.
+     *     timeSpan: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "numScores": "my_numScores",
+     *   //   "playerScore": {},
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.scores.listWindow
      * @memberOf! ()
      *
@@ -5893,9 +7486,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     listWindow(
+      params: Params$Resource$Scores$Listwindow,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listWindow(
       params?: Params$Resource$Scores$Listwindow,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LeaderboardScores>;
+    listWindow(
+      params: Params$Resource$Scores$Listwindow,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listWindow(
       params: Params$Resource$Scores$Listwindow,
       options: MethodOptions | BodyResponseCallback<Schema$LeaderboardScores>,
@@ -5909,12 +7511,20 @@ export namespace games_v1 {
     listWindow(
       paramsOrCallback?:
         | Params$Resource$Scores$Listwindow
-        | BodyResponseCallback<Schema$LeaderboardScores>,
+        | BodyResponseCallback<Schema$LeaderboardScores>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardScores>,
-      callback?: BodyResponseCallback<Schema$LeaderboardScores>
-    ): void | GaxiosPromise<Schema$LeaderboardScores> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LeaderboardScores>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LeaderboardScores>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LeaderboardScores>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Listwindow;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5948,7 +7558,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LeaderboardScores>(parameters, callback);
+        createAPIRequest<Schema$LeaderboardScores>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LeaderboardScores>(parameters);
       }
@@ -5957,6 +7570,57 @@ export namespace games_v1 {
     /**
      * games.scores.submit
      * @desc Submits a score to the specified leaderboard.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.scores.submit({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *     // The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.
+     *     score: 'placeholder-value',
+     *     // Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     *     scoreTag: '[a-zA-Z0-9-._~]{0,64}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "beatenScoreTimeSpans": [],
+     *   //   "formattedScore": "my_formattedScore",
+     *   //   "kind": "my_kind",
+     *   //   "leaderboardId": "my_leaderboardId",
+     *   //   "scoreTag": "my_scoreTag",
+     *   //   "unbeatenScores": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.scores.submit
      * @memberOf! ()
      *
@@ -5970,9 +7634,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     submit(
+      params: Params$Resource$Scores$Submit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    submit(
       params?: Params$Resource$Scores$Submit,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerScoreResponse>;
+    submit(
+      params: Params$Resource$Scores$Submit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     submit(
       params: Params$Resource$Scores$Submit,
       options: MethodOptions | BodyResponseCallback<Schema$PlayerScoreResponse>,
@@ -5986,12 +7659,20 @@ export namespace games_v1 {
     submit(
       paramsOrCallback?:
         | Params$Resource$Scores$Submit
-        | BodyResponseCallback<Schema$PlayerScoreResponse>,
+        | BodyResponseCallback<Schema$PlayerScoreResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerScoreResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerScoreResponse>
-    ): void | GaxiosPromise<Schema$PlayerScoreResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerScoreResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerScoreResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerScoreResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6023,7 +7704,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PlayerScoreResponse>(parameters, callback);
+        createAPIRequest<Schema$PlayerScoreResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PlayerScoreResponse>(parameters);
       }
@@ -6032,20 +7716,79 @@ export namespace games_v1 {
     /**
      * games.scores.submitMultiple
      * @desc Submits multiple scores to leaderboards.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.scores.submitMultiple({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "scores": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "submittedScores": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.scores.submitMultiple
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {().PlayerScoreSubmissionList} params.resource Request body data
+     * @param {().PlayerScoreSubmissionList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     submitMultiple(
+      params: Params$Resource$Scores$Submitmultiple,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    submitMultiple(
       params?: Params$Resource$Scores$Submitmultiple,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerScoreListResponse>;
+    submitMultiple(
+      params: Params$Resource$Scores$Submitmultiple,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     submitMultiple(
       params: Params$Resource$Scores$Submitmultiple,
       options:
@@ -6063,12 +7806,20 @@ export namespace games_v1 {
     submitMultiple(
       paramsOrCallback?:
         | Params$Resource$Scores$Submitmultiple
-        | BodyResponseCallback<Schema$PlayerScoreListResponse>,
+        | BodyResponseCallback<Schema$PlayerScoreListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerScoreListResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerScoreListResponse>
-    ): void | GaxiosPromise<Schema$PlayerScoreListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerScoreListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerScoreListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerScoreListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Submitmultiple;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6102,7 +7853,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PlayerScoreListResponse>(parameters, callback);
+        createAPIRequest<Schema$PlayerScoreListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PlayerScoreListResponse>(parameters);
       }
@@ -6110,11 +7864,6 @@ export namespace games_v1 {
   }
 
   export interface Params$Resource$Scores$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The types of ranks to return. If the parameter is omitted, no ranks will be returned.
      */
@@ -6146,11 +7895,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Scores$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The collection of scores you're requesting.
      */
     collection?: string;
@@ -6177,11 +7921,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Scores$Listwindow
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The collection of scores you're requesting.
      */
@@ -6217,11 +7956,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Scores$Submit extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -6240,11 +7974,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Scores$Submitmultiple
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -6265,6 +7994,61 @@ export namespace games_v1 {
     /**
      * games.snapshots.get
      * @desc Retrieves the metadata for a given snapshot ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/games',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.snapshots.get({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the snapshot.
+     *     snapshotId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "coverImage": {},
+     *   //   "description": "my_description",
+     *   //   "driveId": "my_driveId",
+     *   //   "durationMillis": "my_durationMillis",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedMillis": "my_lastModifiedMillis",
+     *   //   "progressValue": "my_progressValue",
+     *   //   "title": "my_title",
+     *   //   "type": "my_type",
+     *   //   "uniqueName": "my_uniqueName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.snapshots.get
      * @memberOf! ()
      *
@@ -6276,9 +8060,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Snapshots$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Snapshots$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Snapshot>;
+    get(
+      params: Params$Resource$Snapshots$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Snapshots$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
@@ -6292,10 +8085,17 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Snapshots$Get
-        | BodyResponseCallback<Schema$Snapshot>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
-      callback?: BodyResponseCallback<Schema$Snapshot>
-    ): void | GaxiosPromise<Schema$Snapshot> {
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Snapshot> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6328,7 +8128,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Snapshot>(parameters, callback);
+        createAPIRequest<Schema$Snapshot>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
       }
@@ -6337,6 +8140,57 @@ export namespace games_v1 {
     /**
      * games.snapshots.list
      * @desc Retrieves a list of snapshots created by your application for the player corresponding to the player ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/games',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.snapshots.list({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of snapshot resources to return in the response, used for paging. For any response, the actual number of snapshot resources returned may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // A player ID. A value of me may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.snapshots.list
      * @memberOf! ()
      *
@@ -6350,9 +8204,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Snapshots$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Snapshots$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SnapshotListResponse>;
+    list(
+      params: Params$Resource$Snapshots$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Snapshots$List,
       options:
@@ -6368,12 +8231,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Snapshots$List
-        | BodyResponseCallback<Schema$SnapshotListResponse>,
+        | BodyResponseCallback<Schema$SnapshotListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SnapshotListResponse>,
-      callback?: BodyResponseCallback<Schema$SnapshotListResponse>
-    ): void | GaxiosPromise<Schema$SnapshotListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SnapshotListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SnapshotListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SnapshotListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6406,7 +8277,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SnapshotListResponse>(parameters, callback);
+        createAPIRequest<Schema$SnapshotListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SnapshotListResponse>(parameters);
       }
@@ -6414,11 +8288,6 @@ export namespace games_v1 {
   }
 
   export interface Params$Resource$Snapshots$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -6429,11 +8298,6 @@ export namespace games_v1 {
     snapshotId?: string;
   }
   export interface Params$Resource$Snapshots$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -6461,6 +8325,41 @@ export namespace games_v1 {
     /**
      * games.turnBasedMatches.cancel
      * @desc Cancel a turn-based match.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.turnBasedMatches.cancel({
+     *     // The ID of the match.
+     *     matchId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.turnBasedMatches.cancel
      * @memberOf! ()
      *
@@ -6471,9 +8370,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Turnbasedmatches$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Turnbasedmatches$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    cancel(
+      params: Params$Resource$Turnbasedmatches$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Turnbasedmatches$Cancel,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -6487,10 +8395,15 @@ export namespace games_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Cancel
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6523,7 +8436,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -6532,20 +8448,100 @@ export namespace games_v1 {
     /**
      * games.turnBasedMatches.create
      * @desc Create a turn-based match.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.turnBasedMatches.create({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoMatchingCriteria": {},
+     *       //   "invitedPlayerIds": [],
+     *       //   "kind": "my_kind",
+     *       //   "requestId": "my_requestId",
+     *       //   "variant": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationId": "my_applicationId",
+     *   //   "autoMatchingCriteria": {},
+     *   //   "creationDetails": {},
+     *   //   "data": {},
+     *   //   "description": "my_description",
+     *   //   "inviterId": "my_inviterId",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDetails": {},
+     *   //   "matchId": "my_matchId",
+     *   //   "matchNumber": 0,
+     *   //   "matchVersion": 0,
+     *   //   "participants": [],
+     *   //   "pendingParticipantId": "my_pendingParticipantId",
+     *   //   "previousMatchData": {},
+     *   //   "rematchId": "my_rematchId",
+     *   //   "results": [],
+     *   //   "status": "my_status",
+     *   //   "userMatchStatus": "my_userMatchStatus",
+     *   //   "variant": 0,
+     *   //   "withParticipantId": "my_withParticipantId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.turnBasedMatches.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {().TurnBasedMatchCreateRequest} params.resource Request body data
+     * @param {().TurnBasedMatchCreateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Turnbasedmatches$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Turnbasedmatches$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    create(
+      params: Params$Resource$Turnbasedmatches$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Turnbasedmatches$Create,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -6559,12 +8555,17 @@ export namespace games_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Create
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6598,7 +8599,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -6607,6 +8611,67 @@ export namespace games_v1 {
     /**
      * games.turnBasedMatches.decline
      * @desc Decline an invitation to play a turn-based match.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.turnBasedMatches.decline({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the match.
+     *     matchId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationId": "my_applicationId",
+     *   //   "autoMatchingCriteria": {},
+     *   //   "creationDetails": {},
+     *   //   "data": {},
+     *   //   "description": "my_description",
+     *   //   "inviterId": "my_inviterId",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDetails": {},
+     *   //   "matchId": "my_matchId",
+     *   //   "matchNumber": 0,
+     *   //   "matchVersion": 0,
+     *   //   "participants": [],
+     *   //   "pendingParticipantId": "my_pendingParticipantId",
+     *   //   "previousMatchData": {},
+     *   //   "rematchId": "my_rematchId",
+     *   //   "results": [],
+     *   //   "status": "my_status",
+     *   //   "userMatchStatus": "my_userMatchStatus",
+     *   //   "variant": 0,
+     *   //   "withParticipantId": "my_withParticipantId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.turnBasedMatches.decline
      * @memberOf! ()
      *
@@ -6618,9 +8683,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     decline(
+      params: Params$Resource$Turnbasedmatches$Decline,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    decline(
       params?: Params$Resource$Turnbasedmatches$Decline,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    decline(
+      params: Params$Resource$Turnbasedmatches$Decline,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     decline(
       params: Params$Resource$Turnbasedmatches$Decline,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -6634,12 +8708,17 @@ export namespace games_v1 {
     decline(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Decline
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Decline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6672,7 +8751,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -6681,6 +8763,41 @@ export namespace games_v1 {
     /**
      * games.turnBasedMatches.dismiss
      * @desc Dismiss a turn-based match from the match list. The match will no longer show up in the list and will not generate notifications.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.turnBasedMatches.dismiss({
+     *     // The ID of the match.
+     *     matchId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.turnBasedMatches.dismiss
      * @memberOf! ()
      *
@@ -6691,9 +8808,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     dismiss(
+      params: Params$Resource$Turnbasedmatches$Dismiss,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dismiss(
       params?: Params$Resource$Turnbasedmatches$Dismiss,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    dismiss(
+      params: Params$Resource$Turnbasedmatches$Dismiss,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     dismiss(
       params: Params$Resource$Turnbasedmatches$Dismiss,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -6707,10 +8833,15 @@ export namespace games_v1 {
     dismiss(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Dismiss
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6743,7 +8874,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -6752,21 +8886,102 @@ export namespace games_v1 {
     /**
      * games.turnBasedMatches.finish
      * @desc Finish a turn-based match. Each player should make this call once, after all results are in. Only the player whose turn it is may make the first call to Finish, and can pass in the final match state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.turnBasedMatches.finish({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the match.
+     *     matchId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "data": {},
+     *       //   "kind": "my_kind",
+     *       //   "matchVersion": 0,
+     *       //   "results": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationId": "my_applicationId",
+     *   //   "autoMatchingCriteria": {},
+     *   //   "creationDetails": {},
+     *   //   "data": {},
+     *   //   "description": "my_description",
+     *   //   "inviterId": "my_inviterId",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDetails": {},
+     *   //   "matchId": "my_matchId",
+     *   //   "matchNumber": 0,
+     *   //   "matchVersion": 0,
+     *   //   "participants": [],
+     *   //   "pendingParticipantId": "my_pendingParticipantId",
+     *   //   "previousMatchData": {},
+     *   //   "rematchId": "my_rematchId",
+     *   //   "results": [],
+     *   //   "status": "my_status",
+     *   //   "userMatchStatus": "my_userMatchStatus",
+     *   //   "variant": 0,
+     *   //   "withParticipantId": "my_withParticipantId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.turnBasedMatches.finish
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.matchId The ID of the match.
-     * @param {().TurnBasedMatchResults} params.resource Request body data
+     * @param {().TurnBasedMatchResults} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     finish(
+      params: Params$Resource$Turnbasedmatches$Finish,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    finish(
       params?: Params$Resource$Turnbasedmatches$Finish,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    finish(
+      params: Params$Resource$Turnbasedmatches$Finish,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     finish(
       params: Params$Resource$Turnbasedmatches$Finish,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -6780,12 +8995,17 @@ export namespace games_v1 {
     finish(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Finish
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Finish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6818,7 +9038,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -6827,6 +9050,69 @@ export namespace games_v1 {
     /**
      * games.turnBasedMatches.get
      * @desc Get the data for a turn-based match.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.turnBasedMatches.get({
+     *     // Get match data along with metadata.
+     *     includeMatchData: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the match.
+     *     matchId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationId": "my_applicationId",
+     *   //   "autoMatchingCriteria": {},
+     *   //   "creationDetails": {},
+     *   //   "data": {},
+     *   //   "description": "my_description",
+     *   //   "inviterId": "my_inviterId",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDetails": {},
+     *   //   "matchId": "my_matchId",
+     *   //   "matchNumber": 0,
+     *   //   "matchVersion": 0,
+     *   //   "participants": [],
+     *   //   "pendingParticipantId": "my_pendingParticipantId",
+     *   //   "previousMatchData": {},
+     *   //   "rematchId": "my_rematchId",
+     *   //   "results": [],
+     *   //   "status": "my_status",
+     *   //   "userMatchStatus": "my_userMatchStatus",
+     *   //   "variant": 0,
+     *   //   "withParticipantId": "my_withParticipantId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.turnBasedMatches.get
      * @memberOf! ()
      *
@@ -6839,9 +9125,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Turnbasedmatches$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Turnbasedmatches$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    get(
+      params: Params$Resource$Turnbasedmatches$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Turnbasedmatches$Get,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -6855,12 +9150,17 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Get
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6894,7 +9194,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -6903,6 +9206,67 @@ export namespace games_v1 {
     /**
      * games.turnBasedMatches.join
      * @desc Join a turn-based match.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.turnBasedMatches.join({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the match.
+     *     matchId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationId": "my_applicationId",
+     *   //   "autoMatchingCriteria": {},
+     *   //   "creationDetails": {},
+     *   //   "data": {},
+     *   //   "description": "my_description",
+     *   //   "inviterId": "my_inviterId",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDetails": {},
+     *   //   "matchId": "my_matchId",
+     *   //   "matchNumber": 0,
+     *   //   "matchVersion": 0,
+     *   //   "participants": [],
+     *   //   "pendingParticipantId": "my_pendingParticipantId",
+     *   //   "previousMatchData": {},
+     *   //   "rematchId": "my_rematchId",
+     *   //   "results": [],
+     *   //   "status": "my_status",
+     *   //   "userMatchStatus": "my_userMatchStatus",
+     *   //   "variant": 0,
+     *   //   "withParticipantId": "my_withParticipantId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.turnBasedMatches.join
      * @memberOf! ()
      *
@@ -6914,9 +9278,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     join(
+      params: Params$Resource$Turnbasedmatches$Join,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    join(
       params?: Params$Resource$Turnbasedmatches$Join,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    join(
+      params: Params$Resource$Turnbasedmatches$Join,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     join(
       params: Params$Resource$Turnbasedmatches$Join,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -6930,12 +9303,17 @@ export namespace games_v1 {
     join(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Join
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Join;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6968,7 +9346,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -6977,6 +9358,67 @@ export namespace games_v1 {
     /**
      * games.turnBasedMatches.leave
      * @desc Leave a turn-based match when it is not the current player's turn, without canceling the match.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.turnBasedMatches.leave({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the match.
+     *     matchId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationId": "my_applicationId",
+     *   //   "autoMatchingCriteria": {},
+     *   //   "creationDetails": {},
+     *   //   "data": {},
+     *   //   "description": "my_description",
+     *   //   "inviterId": "my_inviterId",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDetails": {},
+     *   //   "matchId": "my_matchId",
+     *   //   "matchNumber": 0,
+     *   //   "matchVersion": 0,
+     *   //   "participants": [],
+     *   //   "pendingParticipantId": "my_pendingParticipantId",
+     *   //   "previousMatchData": {},
+     *   //   "rematchId": "my_rematchId",
+     *   //   "results": [],
+     *   //   "status": "my_status",
+     *   //   "userMatchStatus": "my_userMatchStatus",
+     *   //   "variant": 0,
+     *   //   "withParticipantId": "my_withParticipantId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.turnBasedMatches.leave
      * @memberOf! ()
      *
@@ -6988,9 +9430,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     leave(
+      params: Params$Resource$Turnbasedmatches$Leave,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    leave(
       params?: Params$Resource$Turnbasedmatches$Leave,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    leave(
+      params: Params$Resource$Turnbasedmatches$Leave,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     leave(
       params: Params$Resource$Turnbasedmatches$Leave,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -7004,12 +9455,17 @@ export namespace games_v1 {
     leave(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Leave
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Leave;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7042,7 +9498,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -7051,6 +9510,71 @@ export namespace games_v1 {
     /**
      * games.turnBasedMatches.leaveTurn
      * @desc Leave a turn-based match during the current player's turn, without canceling the match.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.turnBasedMatches.leaveTurn({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the match.
+     *     matchId: 'placeholder-value',
+     *     // The version of the match being updated.
+     *     matchVersion: 'placeholder-value',
+     *     // The ID of another participant who should take their turn next. If not set, the match will wait for other player(s) to join via automatching; this is only valid if automatch criteria is set on the match with remaining slots for automatched players.
+     *     pendingParticipantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationId": "my_applicationId",
+     *   //   "autoMatchingCriteria": {},
+     *   //   "creationDetails": {},
+     *   //   "data": {},
+     *   //   "description": "my_description",
+     *   //   "inviterId": "my_inviterId",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDetails": {},
+     *   //   "matchId": "my_matchId",
+     *   //   "matchNumber": 0,
+     *   //   "matchVersion": 0,
+     *   //   "participants": [],
+     *   //   "pendingParticipantId": "my_pendingParticipantId",
+     *   //   "previousMatchData": {},
+     *   //   "rematchId": "my_rematchId",
+     *   //   "results": [],
+     *   //   "status": "my_status",
+     *   //   "userMatchStatus": "my_userMatchStatus",
+     *   //   "variant": 0,
+     *   //   "withParticipantId": "my_withParticipantId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.turnBasedMatches.leaveTurn
      * @memberOf! ()
      *
@@ -7064,9 +9588,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     leaveTurn(
+      params: Params$Resource$Turnbasedmatches$Leaveturn,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    leaveTurn(
       params?: Params$Resource$Turnbasedmatches$Leaveturn,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    leaveTurn(
+      params: Params$Resource$Turnbasedmatches$Leaveturn,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     leaveTurn(
       params: Params$Resource$Turnbasedmatches$Leaveturn,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -7080,12 +9613,17 @@ export namespace games_v1 {
     leaveTurn(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Leaveturn
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Leaveturn;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7118,7 +9656,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -7127,6 +9668,56 @@ export namespace games_v1 {
     /**
      * games.turnBasedMatches.list
      * @desc Returns turn-based matches the player is or was involved in.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.turnBasedMatches.list({
+     *     // True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
+     *     includeMatchData: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of completed or canceled matches to return in the response. If not set, all matches returned could be completed or canceled.
+     *     maxCompletedMatches: 'placeholder-value',
+     *     // The maximum number of matches to return in the response, used for paging. For any response, the actual number of matches to return may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.turnBasedMatches.list
      * @memberOf! ()
      *
@@ -7141,9 +9732,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Turnbasedmatches$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Turnbasedmatches$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatchList>;
+    list(
+      params: Params$Resource$Turnbasedmatches$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Turnbasedmatches$List,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatchList>,
@@ -7157,12 +9757,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$List
-        | BodyResponseCallback<Schema$TurnBasedMatchList>,
+        | BodyResponseCallback<Schema$TurnBasedMatchList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatchList>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatchList>
-    ): void | GaxiosPromise<Schema$TurnBasedMatchList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatchList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatchList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TurnBasedMatchList>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7196,7 +9804,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatchList>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatchList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatchList>(parameters);
       }
@@ -7205,6 +9816,52 @@ export namespace games_v1 {
     /**
      * games.turnBasedMatches.rematch
      * @desc Create a rematch of a match that was previously completed, with the same participants. This can be called by only one player on a match still in their list; the player must have called Finish first. Returns the newly created match; it will be the caller's turn.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.turnBasedMatches.rematch({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the match.
+     *     matchId: 'placeholder-value',
+     *     // A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "previousMatch": {},
+     *   //   "rematch": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.turnBasedMatches.rematch
      * @memberOf! ()
      *
@@ -7217,9 +9874,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     rematch(
+      params: Params$Resource$Turnbasedmatches$Rematch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rematch(
       params?: Params$Resource$Turnbasedmatches$Rematch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatchRematch>;
+    rematch(
+      params: Params$Resource$Turnbasedmatches$Rematch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     rematch(
       params: Params$Resource$Turnbasedmatches$Rematch,
       options:
@@ -7235,12 +9901,20 @@ export namespace games_v1 {
     rematch(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Rematch
-        | BodyResponseCallback<Schema$TurnBasedMatchRematch>,
+        | BodyResponseCallback<Schema$TurnBasedMatchRematch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatchRematch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatchRematch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatchRematch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatchRematch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatchRematch>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TurnBasedMatchRematch>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Rematch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7273,7 +9947,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatchRematch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatchRematch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatchRematch>(parameters);
       }
@@ -7282,6 +9959,57 @@ export namespace games_v1 {
     /**
      * games.turnBasedMatches.sync
      * @desc Returns turn-based matches the player is or was involved in that changed since the last sync call, with the least recent changes coming first. Matches that should be removed from the local cache will have a status of MATCH_DELETED.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.turnBasedMatches.sync({
+     *     // True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
+     *     includeMatchData: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of completed or canceled matches to return in the response. If not set, all matches returned could be completed or canceled.
+     *     maxCompletedMatches: 'placeholder-value',
+     *     // The maximum number of matches to return in the response, used for paging. For any response, the actual number of matches to return may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "moreAvailable": false,
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.turnBasedMatches.sync
      * @memberOf! ()
      *
@@ -7296,9 +10024,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     sync(
+      params: Params$Resource$Turnbasedmatches$Sync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    sync(
       params?: Params$Resource$Turnbasedmatches$Sync,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatchSync>;
+    sync(
+      params: Params$Resource$Turnbasedmatches$Sync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     sync(
       params: Params$Resource$Turnbasedmatches$Sync,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatchSync>,
@@ -7312,12 +10049,20 @@ export namespace games_v1 {
     sync(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Sync
-        | BodyResponseCallback<Schema$TurnBasedMatchSync>,
+        | BodyResponseCallback<Schema$TurnBasedMatchSync>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatchSync>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatchSync>
-    ): void | GaxiosPromise<Schema$TurnBasedMatchSync> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatchSync>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatchSync>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TurnBasedMatchSync>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Sync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7351,7 +10096,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatchSync>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatchSync>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatchSync>(parameters);
       }
@@ -7360,21 +10108,103 @@ export namespace games_v1 {
     /**
      * games.turnBasedMatches.takeTurn
      * @desc Commit the results of a player turn.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.turnBasedMatches.takeTurn({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the match.
+     *     matchId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "data": {},
+     *       //   "kind": "my_kind",
+     *       //   "matchVersion": 0,
+     *       //   "pendingParticipantId": "my_pendingParticipantId",
+     *       //   "results": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationId": "my_applicationId",
+     *   //   "autoMatchingCriteria": {},
+     *   //   "creationDetails": {},
+     *   //   "data": {},
+     *   //   "description": "my_description",
+     *   //   "inviterId": "my_inviterId",
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDetails": {},
+     *   //   "matchId": "my_matchId",
+     *   //   "matchNumber": 0,
+     *   //   "matchVersion": 0,
+     *   //   "participants": [],
+     *   //   "pendingParticipantId": "my_pendingParticipantId",
+     *   //   "previousMatchData": {},
+     *   //   "rematchId": "my_rematchId",
+     *   //   "results": [],
+     *   //   "status": "my_status",
+     *   //   "userMatchStatus": "my_userMatchStatus",
+     *   //   "variant": 0,
+     *   //   "withParticipantId": "my_withParticipantId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias games.turnBasedMatches.takeTurn
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.matchId The ID of the match.
-     * @param {().TurnBasedMatchTurn} params.resource Request body data
+     * @param {().TurnBasedMatchTurn} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     takeTurn(
+      params: Params$Resource$Turnbasedmatches$Taketurn,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    takeTurn(
       params?: Params$Resource$Turnbasedmatches$Taketurn,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    takeTurn(
+      params: Params$Resource$Turnbasedmatches$Taketurn,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     takeTurn(
       params: Params$Resource$Turnbasedmatches$Taketurn,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -7388,12 +10218,17 @@ export namespace games_v1 {
     takeTurn(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Taketurn
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Taketurn;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7426,7 +10261,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -7436,22 +10274,12 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the match.
      */
     matchId?: string;
   }
   export interface Params$Resource$Turnbasedmatches$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -7465,11 +10293,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Decline
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -7481,22 +10304,12 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Dismiss
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the match.
      */
     matchId?: string;
   }
   export interface Params$Resource$Turnbasedmatches$Finish
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -7514,11 +10327,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Get match data along with metadata.
      */
     includeMatchData?: boolean;
@@ -7534,11 +10342,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Join
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -7550,11 +10353,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Leave
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -7565,11 +10363,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Turnbasedmatches$Leaveturn
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -7589,11 +10382,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Turnbasedmatches$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
      */
@@ -7618,11 +10406,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Rematch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -7637,11 +10420,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Turnbasedmatches$Sync
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
      */
@@ -7665,11 +10443,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Turnbasedmatches$Taketurn
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */

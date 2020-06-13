@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2018 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,13 +13,11 @@
 
 'use strict';
 
+const path = require('path');
 const {google} = require('googleapis');
-const sampleClient = require('../sampleclient');
+const {authenticate} = require('@google-cloud/local-auth');
 
-const gmail = google.gmail({
-  version: 'v1',
-  auth: sampleClient.oAuth2Client,
-});
+const gmail = google.gmail('v1');
 
 /**
  * NOTE: Before using this API, you need to do a few things.
@@ -31,32 +29,30 @@ const gmail = google.gmail({
  *    https://console.cloud.google.com/cloudpubsub/topicList?project=${PROJECT_NAME}
  */
 async function runSample() {
+  // Obtain user credentials to use for the request
+  const auth = await authenticate({
+    keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
+    scopes: [
+      'https://mail.google.com/',
+      'https://www.googleapis.com/auth/gmail.metadata',
+      'https://www.googleapis.com/auth/gmail.modify',
+      'https://www.googleapis.com/auth/gmail.readonly',
+    ],
+  });
+  google.options({auth});
+
   const res = await gmail.users.watch({
     userId: 'me',
     requestBody: {
       // Replace with `projects/${PROJECT_ID}/topics/${TOPIC_NAME}`
-      topicName: `projects/el-gato/topics/gmail`,
+      topicName: 'projects/el-gato/topics/gmail',
     },
   });
   console.log(res.data);
   return res.data;
 }
 
-const scopes = [
-  'https://mail.google.com/',
-  'https://www.googleapis.com/auth/gmail.metadata',
-  'https://www.googleapis.com/auth/gmail.modify',
-  'https://www.googleapis.com/auth/gmail.readonly',
-];
-
 if (module === require.main) {
-  sampleClient
-    .authenticate(scopes)
-    .then(runSample)
-    .catch(console.error);
+  runSample().catch(console.error);
 }
-
-module.exports = {
-  runSample,
-  client: sampleClient.oAuth2Client,
-};
+module.exports = runSample;

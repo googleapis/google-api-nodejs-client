@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace vault_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace vault_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -106,6 +116,7 @@ export namespace vault_v1 {
   export class Vault {
     context: APIRequestContext;
     matters: Resource$Matters;
+    operations: Resource$Operations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -114,6 +125,7 @@ export namespace vault_v1 {
       };
 
       this.matters = new Resource$Matters(this.context);
+      this.operations = new Resource$Operations(this.context);
     }
   }
 
@@ -144,7 +156,7 @@ export namespace vault_v1 {
    */
   export interface Schema$AddHeldAccountsRequest {
     /**
-     * Account ids to identify which accounts to add. Only account_ids or only emails should be specified, but not both.
+     * Account IDs to identify which accounts to add. Only account_ids or only emails should be specified, but not both.
      */
     accountIds?: string[] | null;
     /**
@@ -196,7 +208,7 @@ export namespace vault_v1 {
    */
   export interface Schema$CloudStorageFile {
     /**
-     * The cloud storage bucket name of this export file. Can be used in cloud storage JSON/XML API.
+     * The cloud storage bucket name of this export file. Can be used in cloud storage JSON/XML API, but not to list the bucket contents. Instead, you can &lt;a href=&quot;https://cloud.google.com/storage/docs/json_api/v1/objects/get&quot;&gt; get individual export files&lt;/a&gt; by object name.
      */
     bucketName?: string | null;
     /**
@@ -635,7 +647,7 @@ export namespace vault_v1 {
    */
   export interface Schema$MatterPermission {
     /**
-     * The account id, as provided by &lt;a href=&quot;https://developers.google.com/admin-sdk/&quot;&gt;Admin SDK&lt;/a&gt;.
+     * The account ID, as provided by &lt;a href=&quot;https://developers.google.com/admin-sdk/&quot;&gt;Admin SDK&lt;/a&gt;.
      */
     accountId?: string | null;
     /**
@@ -726,7 +738,7 @@ export namespace vault_v1 {
    */
   export interface Schema$RemoveHeldAccountsRequest {
     /**
-     * Account ids to identify HeldAccounts to remove.
+     * Account IDs to identify HeldAccounts to remove.
      */
     accountIds?: string[] | null;
   }
@@ -774,7 +786,7 @@ export namespace vault_v1 {
      */
     displayName?: string | null;
     /**
-     * Output only. The matter id of the associated matter. The server does not look at this field during create and always uses matter id in the URL.
+     * Output only. The matter ID of the associated matter. The server does not look at this field during create and always uses matter id in the URL.
      */
     matterId?: string | null;
     /**
@@ -791,7 +803,7 @@ export namespace vault_v1 {
    */
   export interface Schema$SharedDriveInfo {
     /**
-     * List of Shared drive ids, as provided by &lt;a href=&quot;https://developers.google.com/drive&quot;&gt;Drive API&lt;/a&gt;.
+     * List of Shared drive IDs, as provided by &lt;a href=&quot;https://developers.google.com/drive&quot;&gt;Drive API&lt;/a&gt;.
      */
     sharedDriveIds?: string[] | null;
   }
@@ -817,7 +829,7 @@ export namespace vault_v1 {
    */
   export interface Schema$TeamDriveInfo {
     /**
-     * List of Team Drive ids, as provided by &lt;a href=&quot;https://developers.google.com/drive&quot;&gt;Drive API&lt;/a&gt;.
+     * List of Team Drive IDs, as provided by &lt;a href=&quot;https://developers.google.com/drive&quot;&gt;Drive API&lt;/a&gt;.
      */
     teamDriveIds?: string[] | null;
   }
@@ -854,20 +866,80 @@ export namespace vault_v1 {
     /**
      * vault.matters.addPermissions
      * @desc Adds an account as a matter collaborator.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.addPermissions({
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ccMe": false,
+     *       //   "matterPermission": {},
+     *       //   "sendEmails": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "role": "my_role"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.addPermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().AddMatterPermissionsRequest} params.resource Request body data
+     * @param {().AddMatterPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     addPermissions(
+      params: Params$Resource$Matters$Addpermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addPermissions(
       params?: Params$Resource$Matters$Addpermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$MatterPermission>;
+    addPermissions(
+      params: Params$Resource$Matters$Addpermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addPermissions(
       params: Params$Resource$Matters$Addpermissions,
       options: MethodOptions | BodyResponseCallback<Schema$MatterPermission>,
@@ -883,12 +955,17 @@ export namespace vault_v1 {
     addPermissions(
       paramsOrCallback?:
         | Params$Resource$Matters$Addpermissions
-        | BodyResponseCallback<Schema$MatterPermission>,
+        | BodyResponseCallback<Schema$MatterPermission>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$MatterPermission>,
-      callback?: BodyResponseCallback<Schema$MatterPermission>
-    ): void | GaxiosPromise<Schema$MatterPermission> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MatterPermission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MatterPermission>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$MatterPermission> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Addpermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -922,7 +999,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$MatterPermission>(parameters, callback);
+        createAPIRequest<Schema$MatterPermission>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$MatterPermission>(parameters);
       }
@@ -931,20 +1011,75 @@ export namespace vault_v1 {
     /**
      * vault.matters.close
      * @desc Closes the specified matter. Returns matter with updated state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.close({
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "matter": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.close
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().CloseMatterRequest} params.resource Request body data
+     * @param {().CloseMatterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     close(
+      params: Params$Resource$Matters$Close,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    close(
       params?: Params$Resource$Matters$Close,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CloseMatterResponse>;
+    close(
+      params: Params$Resource$Matters$Close,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     close(
       params: Params$Resource$Matters$Close,
       options: MethodOptions | BodyResponseCallback<Schema$CloseMatterResponse>,
@@ -958,12 +1093,20 @@ export namespace vault_v1 {
     close(
       paramsOrCallback?:
         | Params$Resource$Matters$Close
-        | BodyResponseCallback<Schema$CloseMatterResponse>,
+        | BodyResponseCallback<Schema$CloseMatterResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CloseMatterResponse>,
-      callback?: BodyResponseCallback<Schema$CloseMatterResponse>
-    ): void | GaxiosPromise<Schema$CloseMatterResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CloseMatterResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CloseMatterResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CloseMatterResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Close;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -996,7 +1139,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CloseMatterResponse>(parameters, callback);
+        createAPIRequest<Schema$CloseMatterResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CloseMatterResponse>(parameters);
       }
@@ -1005,19 +1151,81 @@ export namespace vault_v1 {
     /**
      * vault.matters.create
      * @desc Creates a new matter with the given name and description. The initial state is open, and the owner is the method caller. Returns the created matter with default view.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "matterId": "my_matterId",
+     *       //   "matterPermissions": [],
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "matterId": "my_matterId",
+     *   //   "matterPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Matter} params.resource Request body data
+     * @param {().Matter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Matters$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Matters$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Matter>;
+    create(
+      params: Params$Resource$Matters$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Matters$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Matter>,
@@ -1031,10 +1239,17 @@ export namespace vault_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Matters$Create
-        | BodyResponseCallback<Schema$Matter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
-      callback?: BodyResponseCallback<Schema$Matter>
-    ): void | GaxiosPromise<Schema$Matter> {
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Matter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1064,7 +1279,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Matter>(parameters, callback);
+        createAPIRequest<Schema$Matter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
       }
@@ -1073,6 +1291,50 @@ export namespace vault_v1 {
     /**
      * vault.matters.delete
      * @desc Deletes the specified matter. Returns matter with updated state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.delete({
+     *     // The matter ID
+     *     matterId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "matterId": "my_matterId",
+     *   //   "matterPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.delete
      * @memberOf! ()
      *
@@ -1083,9 +1345,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Matters$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Matters$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Matter>;
+    delete(
+      params: Params$Resource$Matters$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Matters$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Matter>,
@@ -1099,10 +1370,17 @@ export namespace vault_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Matters$Delete
-        | BodyResponseCallback<Schema$Matter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
-      callback?: BodyResponseCallback<Schema$Matter>
-    ): void | GaxiosPromise<Schema$Matter> {
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Matter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1135,7 +1413,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Matter>(parameters, callback);
+        createAPIRequest<Schema$Matter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
       }
@@ -1144,6 +1425,55 @@ export namespace vault_v1 {
     /**
      * vault.matters.get
      * @desc Gets the specified matter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ediscovery',
+     *       'https://www.googleapis.com/auth/ediscovery.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.get({
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *     // Specifies which parts of the Matter to return in the response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "matterId": "my_matterId",
+     *   //   "matterPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.get
      * @memberOf! ()
      *
@@ -1155,9 +1485,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Matters$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Matters$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Matter>;
+    get(
+      params: Params$Resource$Matters$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Matters$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Matter>,
@@ -1171,10 +1510,17 @@ export namespace vault_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Matters$Get
-        | BodyResponseCallback<Schema$Matter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
-      callback?: BodyResponseCallback<Schema$Matter>
-    ): void | GaxiosPromise<Schema$Matter> {
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Matter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1207,7 +1553,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Matter>(parameters, callback);
+        createAPIRequest<Schema$Matter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
       }
@@ -1216,6 +1565,58 @@ export namespace vault_v1 {
     /**
      * vault.matters.list
      * @desc Lists matters the user has access to.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ediscovery',
+     *       'https://www.googleapis.com/auth/ediscovery.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.list({
+     *     // The number of matters to return in the response.
+     *     // Default and maximum are 100.
+     *     pageSize: 'placeholder-value',
+     *     // The pagination token as returned in the response.
+     *     pageToken: 'placeholder-value',
+     *     // If set, list only matters with that specific state. The default is listing
+     *     // matters of all states.
+     *     state: 'placeholder-value',
+     *     // Specifies which parts of the matter to return in response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "matters": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.list
      * @memberOf! ()
      *
@@ -1229,9 +1630,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Matters$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Matters$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListMattersResponse>;
+    list(
+      params: Params$Resource$Matters$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Matters$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListMattersResponse>,
@@ -1245,12 +1655,20 @@ export namespace vault_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Matters$List
-        | BodyResponseCallback<Schema$ListMattersResponse>,
+        | BodyResponseCallback<Schema$ListMattersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListMattersResponse>,
-      callback?: BodyResponseCallback<Schema$ListMattersResponse>
-    ): void | GaxiosPromise<Schema$ListMattersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMattersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMattersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMattersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1280,7 +1698,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListMattersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListMattersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListMattersResponse>(parameters);
       }
@@ -1289,20 +1710,75 @@ export namespace vault_v1 {
     /**
      * vault.matters.removePermissions
      * @desc Removes an account as a matter collaborator.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.removePermissions({
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.removePermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().RemoveMatterPermissionsRequest} params.resource Request body data
+     * @param {().RemoveMatterPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     removePermissions(
+      params: Params$Resource$Matters$Removepermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removePermissions(
       params?: Params$Resource$Matters$Removepermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    removePermissions(
+      params: Params$Resource$Matters$Removepermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     removePermissions(
       params: Params$Resource$Matters$Removepermissions,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1316,10 +1792,17 @@ export namespace vault_v1 {
     removePermissions(
       paramsOrCallback?:
         | Params$Resource$Matters$Removepermissions
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Removepermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1353,7 +1836,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1362,20 +1848,75 @@ export namespace vault_v1 {
     /**
      * vault.matters.reopen
      * @desc Reopens the specified matter. Returns matter with updated state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.reopen({
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "matter": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.reopen
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().ReopenMatterRequest} params.resource Request body data
+     * @param {().ReopenMatterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     reopen(
+      params: Params$Resource$Matters$Reopen,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reopen(
       params?: Params$Resource$Matters$Reopen,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReopenMatterResponse>;
+    reopen(
+      params: Params$Resource$Matters$Reopen,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reopen(
       params: Params$Resource$Matters$Reopen,
       options:
@@ -1391,12 +1932,20 @@ export namespace vault_v1 {
     reopen(
       paramsOrCallback?:
         | Params$Resource$Matters$Reopen
-        | BodyResponseCallback<Schema$ReopenMatterResponse>,
+        | BodyResponseCallback<Schema$ReopenMatterResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReopenMatterResponse>,
-      callback?: BodyResponseCallback<Schema$ReopenMatterResponse>
-    ): void | GaxiosPromise<Schema$ReopenMatterResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReopenMatterResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReopenMatterResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReopenMatterResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Reopen;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1429,7 +1978,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ReopenMatterResponse>(parameters, callback);
+        createAPIRequest<Schema$ReopenMatterResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ReopenMatterResponse>(parameters);
       }
@@ -1438,20 +1990,79 @@ export namespace vault_v1 {
     /**
      * vault.matters.undelete
      * @desc Undeletes the specified matter. Returns matter with updated state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.undelete({
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "matterId": "my_matterId",
+     *   //   "matterPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.undelete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().UndeleteMatterRequest} params.resource Request body data
+     * @param {().UndeleteMatterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     undelete(
+      params: Params$Resource$Matters$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
       params?: Params$Resource$Matters$Undelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Matter>;
+    undelete(
+      params: Params$Resource$Matters$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     undelete(
       params: Params$Resource$Matters$Undelete,
       options: MethodOptions | BodyResponseCallback<Schema$Matter>,
@@ -1465,10 +2076,17 @@ export namespace vault_v1 {
     undelete(
       paramsOrCallback?:
         | Params$Resource$Matters$Undelete
-        | BodyResponseCallback<Schema$Matter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
-      callback?: BodyResponseCallback<Schema$Matter>
-    ): void | GaxiosPromise<Schema$Matter> {
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Matter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1501,7 +2119,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Matter>(parameters, callback);
+        createAPIRequest<Schema$Matter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
       }
@@ -1509,21 +2130,86 @@ export namespace vault_v1 {
 
     /**
      * vault.matters.update
-     * @desc Updates the specified matter. This updates only the name and description of the matter, identified by matter id. Changes to any other fields are ignored. Returns the default view of the matter.
+     * @desc Updates the specified matter. This updates only the name and description of the matter, identified by matter ID. Changes to any other fields are ignored. Returns the default view of the matter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.update({
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "matterId": "my_matterId",
+     *       //   "matterPermissions": [],
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "matterId": "my_matterId",
+     *   //   "matterPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().Matter} params.resource Request body data
+     * @param {().Matter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Matters$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Matters$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Matter>;
+    update(
+      params: Params$Resource$Matters$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Matters$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Matter>,
@@ -1537,10 +2223,17 @@ export namespace vault_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Matters$Update
-        | BodyResponseCallback<Schema$Matter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
-      callback?: BodyResponseCallback<Schema$Matter>
-    ): void | GaxiosPromise<Schema$Matter> {
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Matter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1573,7 +2266,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Matter>(parameters, callback);
+        createAPIRequest<Schema$Matter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
       }
@@ -1582,11 +2278,6 @@ export namespace vault_v1 {
 
   export interface Params$Resource$Matters$Addpermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID.
      */
@@ -1599,11 +2290,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Close extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID.
      */
     matterId?: string;
@@ -1615,32 +2301,17 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Matter;
   }
   export interface Params$Resource$Matters$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID
      */
     matterId?: string;
   }
   export interface Params$Resource$Matters$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID.
      */
@@ -1651,11 +2322,6 @@ export namespace vault_v1 {
     view?: string;
   }
   export interface Params$Resource$Matters$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The number of matters to return in the response. Default and maximum are 100.
      */
@@ -1676,11 +2342,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Removepermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID.
      */
     matterId?: string;
@@ -1691,11 +2352,6 @@ export namespace vault_v1 {
     requestBody?: Schema$RemoveMatterPermissionsRequest;
   }
   export interface Params$Resource$Matters$Reopen extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID.
      */
@@ -1708,11 +2364,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Undelete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID.
      */
     matterId?: string;
@@ -1723,11 +2374,6 @@ export namespace vault_v1 {
     requestBody?: Schema$UndeleteMatterRequest;
   }
   export interface Params$Resource$Matters$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID.
      */
@@ -1748,20 +2394,95 @@ export namespace vault_v1 {
     /**
      * vault.matters.exports.create
      * @desc Creates an Export.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.exports.create({
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cloudStorageSink": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "exportOptions": {},
+     *       //   "id": "my_id",
+     *       //   "matterId": "my_matterId",
+     *       //   "name": "my_name",
+     *       //   "query": {},
+     *       //   "requester": {},
+     *       //   "stats": {},
+     *       //   "status": "my_status"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudStorageSink": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "exportOptions": {},
+     *   //   "id": "my_id",
+     *   //   "matterId": "my_matterId",
+     *   //   "name": "my_name",
+     *   //   "query": {},
+     *   //   "requester": {},
+     *   //   "stats": {},
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.exports.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().Export} params.resource Request body data
+     * @param {().Export} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Matters$Exports$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Matters$Exports$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Export>;
+    create(
+      params: Params$Resource$Matters$Exports$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Matters$Exports$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Export>,
@@ -1775,10 +2496,17 @@ export namespace vault_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Matters$Exports$Create
-        | BodyResponseCallback<Schema$Export>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Export>,
-      callback?: BodyResponseCallback<Schema$Export>
-    ): void | GaxiosPromise<Schema$Export> {
+        | BodyResponseCallback<Schema$Export>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Export>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Export>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Export> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Exports$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1812,7 +2540,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Export>(parameters, callback);
+        createAPIRequest<Schema$Export>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Export>(parameters);
       }
@@ -1821,6 +2552,46 @@ export namespace vault_v1 {
     /**
      * vault.matters.exports.delete
      * @desc Deletes an Export.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.exports.delete({
+     *     // The export ID.
+     *     exportId: 'placeholder-value',
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.exports.delete
      * @memberOf! ()
      *
@@ -1832,9 +2603,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Matters$Exports$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Matters$Exports$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Matters$Exports$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Matters$Exports$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1848,10 +2628,17 @@ export namespace vault_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Matters$Exports$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Exports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1884,7 +2671,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1893,6 +2683,60 @@ export namespace vault_v1 {
     /**
      * vault.matters.exports.get
      * @desc Gets an Export.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ediscovery',
+     *       'https://www.googleapis.com/auth/ediscovery.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.exports.get({
+     *     // The export ID.
+     *     exportId: 'placeholder-value',
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudStorageSink": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "exportOptions": {},
+     *   //   "id": "my_id",
+     *   //   "matterId": "my_matterId",
+     *   //   "name": "my_name",
+     *   //   "query": {},
+     *   //   "requester": {},
+     *   //   "stats": {},
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.exports.get
      * @memberOf! ()
      *
@@ -1904,9 +2748,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Matters$Exports$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Matters$Exports$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Export>;
+    get(
+      params: Params$Resource$Matters$Exports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Matters$Exports$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Export>,
@@ -1920,10 +2773,17 @@ export namespace vault_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Matters$Exports$Get
-        | BodyResponseCallback<Schema$Export>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Export>,
-      callback?: BodyResponseCallback<Schema$Export>
-    ): void | GaxiosPromise<Schema$Export> {
+        | BodyResponseCallback<Schema$Export>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Export>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Export>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Export> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Exports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1956,7 +2816,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Export>(parameters, callback);
+        createAPIRequest<Schema$Export>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Export>(parameters);
       }
@@ -1965,6 +2828,54 @@ export namespace vault_v1 {
     /**
      * vault.matters.exports.list
      * @desc Lists Exports.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ediscovery',
+     *       'https://www.googleapis.com/auth/ediscovery.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.exports.list({
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *     // The number of exports to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // The pagination token as returned in the response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exports": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.exports.list
      * @memberOf! ()
      *
@@ -1977,9 +2888,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Matters$Exports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Matters$Exports$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListExportsResponse>;
+    list(
+      params: Params$Resource$Matters$Exports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Matters$Exports$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListExportsResponse>,
@@ -1993,12 +2913,20 @@ export namespace vault_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Matters$Exports$List
-        | BodyResponseCallback<Schema$ListExportsResponse>,
+        | BodyResponseCallback<Schema$ListExportsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListExportsResponse>,
-      callback?: BodyResponseCallback<Schema$ListExportsResponse>
-    ): void | GaxiosPromise<Schema$ListExportsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExportsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Exports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2032,7 +2960,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListExportsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListExportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListExportsResponse>(parameters);
       }
@@ -2041,11 +2972,6 @@ export namespace vault_v1 {
 
   export interface Params$Resource$Matters$Exports$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID.
      */
@@ -2059,11 +2985,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Exports$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The export ID.
      */
     exportId?: string;
@@ -2075,11 +2996,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Exports$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The export ID.
      */
     exportId?: string;
@@ -2090,11 +3006,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Exports$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID.
      */
@@ -2120,21 +3031,81 @@ export namespace vault_v1 {
     /**
      * vault.matters.holds.addHeldAccounts
      * @desc Adds HeldAccounts to a hold. Returns a list of accounts that have been successfully added. Accounts can only be added to an existing account-based hold.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.holds.addHeldAccounts({
+     *     // The hold ID.
+     *     holdId: 'placeholder-value',
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountIds": [],
+     *       //   "emails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.holds.addHeldAccounts
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
-     * @param {().AddHeldAccountsRequest} params.resource Request body data
+     * @param {().AddHeldAccountsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     addHeldAccounts(
+      params: Params$Resource$Matters$Holds$Addheldaccounts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addHeldAccounts(
       params?: Params$Resource$Matters$Holds$Addheldaccounts,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AddHeldAccountsResponse>;
+    addHeldAccounts(
+      params: Params$Resource$Matters$Holds$Addheldaccounts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addHeldAccounts(
       params: Params$Resource$Matters$Holds$Addheldaccounts,
       options:
@@ -2152,12 +3123,20 @@ export namespace vault_v1 {
     addHeldAccounts(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Addheldaccounts
-        | BodyResponseCallback<Schema$AddHeldAccountsResponse>,
+        | BodyResponseCallback<Schema$AddHeldAccountsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AddHeldAccountsResponse>,
-      callback?: BodyResponseCallback<Schema$AddHeldAccountsResponse>
-    ): void | GaxiosPromise<Schema$AddHeldAccountsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddHeldAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddHeldAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AddHeldAccountsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Addheldaccounts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2190,7 +3169,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AddHeldAccountsResponse>(parameters, callback);
+        createAPIRequest<Schema$AddHeldAccountsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AddHeldAccountsResponse>(parameters);
       }
@@ -2199,20 +3181,89 @@ export namespace vault_v1 {
     /**
      * vault.matters.holds.create
      * @desc Creates a hold in the given matter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.holds.create({
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accounts": [],
+     *       //   "corpus": "my_corpus",
+     *       //   "holdId": "my_holdId",
+     *       //   "name": "my_name",
+     *       //   "orgUnit": {},
+     *       //   "query": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accounts": [],
+     *   //   "corpus": "my_corpus",
+     *   //   "holdId": "my_holdId",
+     *   //   "name": "my_name",
+     *   //   "orgUnit": {},
+     *   //   "query": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.holds.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().Hold} params.resource Request body data
+     * @param {().Hold} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Matters$Holds$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Matters$Holds$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Hold>;
+    create(
+      params: Params$Resource$Matters$Holds$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Matters$Holds$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Hold>,
@@ -2226,10 +3277,17 @@ export namespace vault_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Create
-        | BodyResponseCallback<Schema$Hold>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Hold>,
-      callback?: BodyResponseCallback<Schema$Hold>
-    ): void | GaxiosPromise<Schema$Hold> {
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Hold> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2263,7 +3321,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Hold>(parameters, callback);
+        createAPIRequest<Schema$Hold>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Hold>(parameters);
       }
@@ -2272,6 +3333,46 @@ export namespace vault_v1 {
     /**
      * vault.matters.holds.delete
      * @desc Removes a hold by ID. This will release any HeldAccounts on this Hold.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.holds.delete({
+     *     // The hold ID.
+     *     holdId: 'placeholder-value',
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.holds.delete
      * @memberOf! ()
      *
@@ -2283,9 +3384,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Matters$Holds$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Matters$Holds$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Matters$Holds$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Matters$Holds$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2299,10 +3409,17 @@ export namespace vault_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2336,7 +3453,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2345,6 +3465,59 @@ export namespace vault_v1 {
     /**
      * vault.matters.holds.get
      * @desc Gets a hold by ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ediscovery',
+     *       'https://www.googleapis.com/auth/ediscovery.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.holds.get({
+     *     // The hold ID.
+     *     holdId: 'placeholder-value',
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *     // Specifies which parts of the Hold to return.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accounts": [],
+     *   //   "corpus": "my_corpus",
+     *   //   "holdId": "my_holdId",
+     *   //   "name": "my_name",
+     *   //   "orgUnit": {},
+     *   //   "query": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.holds.get
      * @memberOf! ()
      *
@@ -2357,9 +3530,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Matters$Holds$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Matters$Holds$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Hold>;
+    get(
+      params: Params$Resource$Matters$Holds$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Matters$Holds$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Hold>,
@@ -2373,10 +3555,17 @@ export namespace vault_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Get
-        | BodyResponseCallback<Schema$Hold>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Hold>,
-      callback?: BodyResponseCallback<Schema$Hold>
-    ): void | GaxiosPromise<Schema$Hold> {
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Hold> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2410,7 +3599,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Hold>(parameters, callback);
+        createAPIRequest<Schema$Hold>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Hold>(parameters);
       }
@@ -2419,6 +3611,58 @@ export namespace vault_v1 {
     /**
      * vault.matters.holds.list
      * @desc Lists holds within a matter. An empty page token in ListHoldsResponse denotes no more holds to list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ediscovery',
+     *       'https://www.googleapis.com/auth/ediscovery.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.holds.list({
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *     // The number of holds to return in the response, between 0 and 100 inclusive.
+     *     // Leaving this empty, or as 0, is the same as page_size = 100.
+     *     pageSize: 'placeholder-value',
+     *     // The pagination token as returned in the response.
+     *     // An empty token means start from the beginning.
+     *     pageToken: 'placeholder-value',
+     *     // Specifies which parts of the Hold to return.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "holds": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.holds.list
      * @memberOf! ()
      *
@@ -2432,9 +3676,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Matters$Holds$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Matters$Holds$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListHoldsResponse>;
+    list(
+      params: Params$Resource$Matters$Holds$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Matters$Holds$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListHoldsResponse>,
@@ -2448,12 +3701,20 @@ export namespace vault_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$List
-        | BodyResponseCallback<Schema$ListHoldsResponse>,
+        | BodyResponseCallback<Schema$ListHoldsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListHoldsResponse>,
-      callback?: BodyResponseCallback<Schema$ListHoldsResponse>
-    ): void | GaxiosPromise<Schema$ListHoldsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListHoldsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListHoldsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListHoldsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2487,7 +3748,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListHoldsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListHoldsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListHoldsResponse>(parameters);
       }
@@ -2496,21 +3760,80 @@ export namespace vault_v1 {
     /**
      * vault.matters.holds.removeHeldAccounts
      * @desc Removes HeldAccounts from a hold. Returns a list of statuses in the same order as the request. If this request leaves the hold with no held accounts, the hold will not apply to any accounts.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.holds.removeHeldAccounts({
+     *     // The hold ID.
+     *     holdId: 'placeholder-value',
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "statuses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.holds.removeHeldAccounts
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
-     * @param {().RemoveHeldAccountsRequest} params.resource Request body data
+     * @param {().RemoveHeldAccountsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     removeHeldAccounts(
+      params: Params$Resource$Matters$Holds$Removeheldaccounts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeHeldAccounts(
       params?: Params$Resource$Matters$Holds$Removeheldaccounts,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RemoveHeldAccountsResponse>;
+    removeHeldAccounts(
+      params: Params$Resource$Matters$Holds$Removeheldaccounts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     removeHeldAccounts(
       params: Params$Resource$Matters$Holds$Removeheldaccounts,
       options:
@@ -2528,12 +3851,20 @@ export namespace vault_v1 {
     removeHeldAccounts(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Removeheldaccounts
-        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
+        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
-      callback?: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>
-    ): void | GaxiosPromise<Schema$RemoveHeldAccountsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RemoveHeldAccountsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Removeheldaccounts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2569,7 +3900,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$RemoveHeldAccountsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$RemoveHeldAccountsResponse>(parameters);
@@ -2579,21 +3910,92 @@ export namespace vault_v1 {
     /**
      * vault.matters.holds.update
      * @desc Updates the OU and/or query parameters of a hold. You cannot add accounts to a hold that covers an OU, nor can you add OUs to a hold that covers individual accounts. Accounts listed in the hold will be ignored.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.holds.update({
+     *     // The ID of the hold.
+     *     holdId: 'placeholder-value',
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accounts": [],
+     *       //   "corpus": "my_corpus",
+     *       //   "holdId": "my_holdId",
+     *       //   "name": "my_name",
+     *       //   "orgUnit": {},
+     *       //   "query": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accounts": [],
+     *   //   "corpus": "my_corpus",
+     *   //   "holdId": "my_holdId",
+     *   //   "name": "my_name",
+     *   //   "orgUnit": {},
+     *   //   "query": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.holds.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.holdId The ID of the hold.
      * @param {string} params.matterId The matter ID.
-     * @param {().Hold} params.resource Request body data
+     * @param {().Hold} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Matters$Holds$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Matters$Holds$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Hold>;
+    update(
+      params: Params$Resource$Matters$Holds$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Matters$Holds$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Hold>,
@@ -2607,10 +4009,17 @@ export namespace vault_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Update
-        | BodyResponseCallback<Schema$Hold>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Hold>,
-      callback?: BodyResponseCallback<Schema$Hold>
-    ): void | GaxiosPromise<Schema$Hold> {
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Hold> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2644,7 +4053,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Hold>(parameters, callback);
+        createAPIRequest<Schema$Hold>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Hold>(parameters);
       }
@@ -2653,11 +4065,6 @@ export namespace vault_v1 {
 
   export interface Params$Resource$Matters$Holds$Addheldaccounts
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The hold ID.
      */
@@ -2675,11 +4082,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Holds$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID.
      */
     matterId?: string;
@@ -2692,11 +4094,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Holds$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The hold ID.
      */
     holdId?: string;
@@ -2707,11 +4104,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Holds$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The hold ID.
      */
@@ -2727,11 +4119,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Holds$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID.
      */
@@ -2752,11 +4139,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Holds$Removeheldaccounts
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The hold ID.
      */
     holdId?: string;
@@ -2772,11 +4154,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Holds$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the hold.
      */
@@ -2801,21 +4178,88 @@ export namespace vault_v1 {
     /**
      * vault.matters.holds.accounts.create
      * @desc Adds a HeldAccount to a hold. Accounts can only be added to a hold that has no held_org_unit set. Attempting to add an account to an OU-based hold will result in an error.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.holds.accounts.create({
+     *     // The hold ID.
+     *     holdId: 'placeholder-value',
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "email": "my_email",
+     *       //   "firstName": "my_firstName",
+     *       //   "holdTime": "my_holdTime",
+     *       //   "lastName": "my_lastName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "email": "my_email",
+     *   //   "firstName": "my_firstName",
+     *   //   "holdTime": "my_holdTime",
+     *   //   "lastName": "my_lastName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.holds.accounts.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
-     * @param {().HeldAccount} params.resource Request body data
+     * @param {().HeldAccount} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Matters$Holds$Accounts$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Matters$Holds$Accounts$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HeldAccount>;
+    create(
+      params: Params$Resource$Matters$Holds$Accounts$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Matters$Holds$Accounts$Create,
       options: MethodOptions | BodyResponseCallback<Schema$HeldAccount>,
@@ -2829,12 +4273,17 @@ export namespace vault_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Accounts$Create
-        | BodyResponseCallback<Schema$HeldAccount>,
+        | BodyResponseCallback<Schema$HeldAccount>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$HeldAccount>,
-      callback?: BodyResponseCallback<Schema$HeldAccount>
-    ): void | GaxiosPromise<Schema$HeldAccount> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HeldAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HeldAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HeldAccount> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Accounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2867,7 +4316,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$HeldAccount>(parameters, callback);
+        createAPIRequest<Schema$HeldAccount>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$HeldAccount>(parameters);
       }
@@ -2876,6 +4328,48 @@ export namespace vault_v1 {
     /**
      * vault.matters.holds.accounts.delete
      * @desc Removes a HeldAccount from a hold. If this request leaves the hold with no held accounts, the hold will not apply to any accounts.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.holds.accounts.delete({
+     *     // The ID of the account to remove from the hold.
+     *     accountId: 'placeholder-value',
+     *     // The hold ID.
+     *     holdId: 'placeholder-value',
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.holds.accounts.delete
      * @memberOf! ()
      *
@@ -2888,9 +4382,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Matters$Holds$Accounts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Matters$Holds$Accounts$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Matters$Holds$Accounts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Matters$Holds$Accounts$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2904,10 +4407,17 @@ export namespace vault_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Accounts$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Accounts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2941,7 +4451,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2950,6 +4463,51 @@ export namespace vault_v1 {
     /**
      * vault.matters.holds.accounts.list
      * @desc Lists HeldAccounts for a hold. This will only list individually specified held accounts. If the hold is on an OU, then use <a href="https://developers.google.com/admin-sdk/">Admin SDK</a> to enumerate its members.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ediscovery',
+     *       'https://www.googleapis.com/auth/ediscovery.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.holds.accounts.list({
+     *     // The hold ID.
+     *     holdId: 'placeholder-value',
+     *     // The matter ID.
+     *     matterId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accounts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.holds.accounts.list
      * @memberOf! ()
      *
@@ -2961,9 +4519,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Matters$Holds$Accounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Matters$Holds$Accounts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListHeldAccountsResponse>;
+    list(
+      params: Params$Resource$Matters$Holds$Accounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Matters$Holds$Accounts$List,
       options:
@@ -2979,12 +4546,20 @@ export namespace vault_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Accounts$List
-        | BodyResponseCallback<Schema$ListHeldAccountsResponse>,
+        | BodyResponseCallback<Schema$ListHeldAccountsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListHeldAccountsResponse>,
-      callback?: BodyResponseCallback<Schema$ListHeldAccountsResponse>
-    ): void | GaxiosPromise<Schema$ListHeldAccountsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListHeldAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListHeldAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListHeldAccountsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3017,7 +4592,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListHeldAccountsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListHeldAccountsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListHeldAccountsResponse>(parameters);
       }
@@ -3026,11 +4604,6 @@ export namespace vault_v1 {
 
   export interface Params$Resource$Matters$Holds$Accounts$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The hold ID.
      */
@@ -3048,11 +4621,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Holds$Accounts$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account to remove from the hold.
      */
     accountId?: string;
@@ -3067,11 +4635,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Holds$Accounts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The hold ID.
      */
@@ -3091,20 +4654,86 @@ export namespace vault_v1 {
     /**
      * vault.matters.savedQueries.create
      * @desc Creates a saved query.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.savedQueries.create({
+     *     // The matter ID of the parent matter for which the saved query is to be
+     *     // created.
+     *     matterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "matterId": "my_matterId",
+     *       //   "query": {},
+     *       //   "savedQueryId": "my_savedQueryId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "matterId": "my_matterId",
+     *   //   "query": {},
+     *   //   "savedQueryId": "my_savedQueryId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.savedQueries.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter id of the parent matter for which the saved query is to be created.
-     * @param {().SavedQuery} params.resource Request body data
+     * @param {string} params.matterId The matter ID of the parent matter for which the saved query is to be created.
+     * @param {().SavedQuery} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Matters$Savedqueries$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Matters$Savedqueries$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedQuery>;
+    create(
+      params: Params$Resource$Matters$Savedqueries$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Matters$Savedqueries$Create,
       options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
@@ -3118,12 +4747,17 @@ export namespace vault_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Matters$Savedqueries$Create
-        | BodyResponseCallback<Schema$SavedQuery>,
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedQuery>,
-      callback?: BodyResponseCallback<Schema$SavedQuery>
-    ): void | GaxiosPromise<Schema$SavedQuery> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Savedqueries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3157,7 +4791,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedQuery>(parameters, callback);
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedQuery>(parameters);
       }
@@ -3166,20 +4803,70 @@ export namespace vault_v1 {
     /**
      * vault.matters.savedQueries.delete
      * @desc Deletes a saved query by Id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ediscovery'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.savedQueries.delete({
+     *     // The matter ID of the parent matter for which the saved query is to be
+     *     // deleted.
+     *     matterId: 'placeholder-value',
+     *     // ID of the saved query to be deleted.
+     *     savedQueryId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.savedQueries.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter id of the parent matter for which the saved query is to be deleted.
-     * @param {string} params.savedQueryId Id of the saved query to be deleted.
+     * @param {string} params.matterId The matter ID of the parent matter for which the saved query is to be deleted.
+     * @param {string} params.savedQueryId ID of the saved query to be deleted.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Matters$Savedqueries$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Matters$Savedqueries$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Matters$Savedqueries$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Matters$Savedqueries$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3193,10 +4880,17 @@ export namespace vault_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Matters$Savedqueries$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Savedqueries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3229,7 +4923,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3238,20 +4935,79 @@ export namespace vault_v1 {
     /**
      * vault.matters.savedQueries.get
      * @desc Retrieves a saved query by Id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ediscovery',
+     *       'https://www.googleapis.com/auth/ediscovery.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.savedQueries.get({
+     *     // The matter ID of the parent matter for which the saved query is to be
+     *     // retrieved.
+     *     matterId: 'placeholder-value',
+     *     // ID of the saved query to be retrieved.
+     *     savedQueryId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "matterId": "my_matterId",
+     *   //   "query": {},
+     *   //   "savedQueryId": "my_savedQueryId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.savedQueries.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter id of the parent matter for which the saved query is to be retrieved.
-     * @param {string} params.savedQueryId Id of the saved query to be retrieved.
+     * @param {string} params.matterId The matter ID of the parent matter for which the saved query is to be retrieved.
+     * @param {string} params.savedQueryId ID of the saved query to be retrieved.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Matters$Savedqueries$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Matters$Savedqueries$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedQuery>;
+    get(
+      params: Params$Resource$Matters$Savedqueries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Matters$Savedqueries$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
@@ -3265,12 +5021,17 @@ export namespace vault_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Matters$Savedqueries$Get
-        | BodyResponseCallback<Schema$SavedQuery>,
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedQuery>,
-      callback?: BodyResponseCallback<Schema$SavedQuery>
-    ): void | GaxiosPromise<Schema$SavedQuery> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Savedqueries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3303,7 +5064,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedQuery>(parameters, callback);
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedQuery>(parameters);
       }
@@ -3312,11 +5076,61 @@ export namespace vault_v1 {
     /**
      * vault.matters.savedQueries.list
      * @desc Lists saved queries within a matter. An empty page token in ListSavedQueriesResponse denotes no more saved queries to list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ediscovery',
+     *       'https://www.googleapis.com/auth/ediscovery.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.matters.savedQueries.list({
+     *     // The matter ID of the parent matter for which the saved queries are to be
+     *     // retrieved.
+     *     matterId: 'placeholder-value',
+     *     // The maximum number of saved queries to return.
+     *     pageSize: 'placeholder-value',
+     *     // The pagination token as returned in the previous response.
+     *     // An empty token means start from the beginning.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "savedQueries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vault.matters.savedQueries.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter id of the parent matter for which the saved queries are to be retrieved.
+     * @param {string} params.matterId The matter ID of the parent matter for which the saved queries are to be retrieved.
      * @param {integer=} params.pageSize The maximum number of saved queries to return.
      * @param {string=} params.pageToken The pagination token as returned in the previous response. An empty token means start from the beginning.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3324,9 +5138,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Matters$Savedqueries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Matters$Savedqueries$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSavedQueriesResponse>;
+    list(
+      params: Params$Resource$Matters$Savedqueries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Matters$Savedqueries$List,
       options:
@@ -3342,12 +5165,20 @@ export namespace vault_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Matters$Savedqueries$List
-        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
-      callback?: BodyResponseCallback<Schema$ListSavedQueriesResponse>
-    ): void | GaxiosPromise<Schema$ListSavedQueriesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSavedQueriesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Savedqueries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3381,7 +5212,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSavedQueriesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSavedQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSavedQueriesResponse>(parameters);
       }
@@ -3391,12 +5225,7 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Savedqueries$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The matter id of the parent matter for which the saved query is to be created.
+     * The matter ID of the parent matter for which the saved query is to be created.
      */
     matterId?: string;
 
@@ -3408,44 +5237,29 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Savedqueries$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The matter id of the parent matter for which the saved query is to be deleted.
+     * The matter ID of the parent matter for which the saved query is to be deleted.
      */
     matterId?: string;
     /**
-     * Id of the saved query to be deleted.
+     * ID of the saved query to be deleted.
      */
     savedQueryId?: string;
   }
   export interface Params$Resource$Matters$Savedqueries$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The matter id of the parent matter for which the saved query is to be retrieved.
+     * The matter ID of the parent matter for which the saved query is to be retrieved.
      */
     matterId?: string;
     /**
-     * Id of the saved query to be retrieved.
+     * ID of the saved query to be retrieved.
      */
     savedQueryId?: string;
   }
   export interface Params$Resource$Matters$Savedqueries$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The matter id of the parent matter for which the saved queries are to be retrieved.
+     * The matter ID of the parent matter for which the saved queries are to be retrieved.
      */
     matterId?: string;
     /**
@@ -3456,5 +5270,146 @@ export namespace vault_v1 {
      * The pagination token as returned in the previous response. An empty token means start from the beginning.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * vault.operations.delete
+     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vault.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vault = google.vault('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vault.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias vault.operations.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Operations$Delete
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
   }
 }

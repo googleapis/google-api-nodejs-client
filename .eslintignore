@@ -1,5 +1,7 @@
 **/node_modules
-src/**/doc/*
+**/coverage
+test/fixtures
 build/
 docs/
 protos/
+src/apis

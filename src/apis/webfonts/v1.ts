@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace webfonts_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace webfonts_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -155,6 +165,47 @@ export namespace webfonts_v1 {
     /**
      * webfonts.webfonts.list
      * @desc Retrieves the list of fonts currently served by the Google Fonts Developer API
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/webfonts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const webfonts = google.webfonts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await webfonts.webfonts.list({
+     *     // Enables sorting of the list
+     *     sort: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias webfonts.webfonts.list
      * @memberOf! ()
      *
@@ -165,9 +216,18 @@ export namespace webfonts_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Webfonts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Webfonts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WebfontList>;
+    list(
+      params: Params$Resource$Webfonts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Webfonts$List,
       options: MethodOptions | BodyResponseCallback<Schema$WebfontList>,
@@ -181,12 +241,17 @@ export namespace webfonts_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Webfonts$List
-        | BodyResponseCallback<Schema$WebfontList>,
+        | BodyResponseCallback<Schema$WebfontList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WebfontList>,
-      callback?: BodyResponseCallback<Schema$WebfontList>
-    ): void | GaxiosPromise<Schema$WebfontList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WebfontList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WebfontList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WebfontList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webfonts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -219,7 +284,10 @@ export namespace webfonts_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WebfontList>(parameters, callback);
+        createAPIRequest<Schema$WebfontList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WebfontList>(parameters);
       }
@@ -227,11 +295,6 @@ export namespace webfonts_v1 {
   }
 
   export interface Params$Resource$Webfonts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Enables sorting of the list
      */

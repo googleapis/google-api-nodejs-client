@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace acceleratedmobilepageurl_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace acceleratedmobilepageurl_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -187,19 +197,75 @@ export namespace acceleratedmobilepageurl_v1 {
     /**
      * acceleratedmobilepageurl.ampUrls.batchGet
      * @desc Returns AMP URL(s) and equivalent [AMP Cache URL(s)](/amp/cache/overview#amp-cache-url-format).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/acceleratedmobilepageurl.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const acceleratedmobilepageurl = google.acceleratedmobilepageurl('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await acceleratedmobilepageurl.ampUrls.batchGet({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lookupStrategy": "my_lookupStrategy",
+     *       //   "urls": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ampUrls": [],
+     *   //   "urlErrors": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias acceleratedmobilepageurl.ampUrls.batchGet
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().BatchGetAmpUrlsRequest} params.resource Request body data
+     * @param {().BatchGetAmpUrlsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchGet(
+      params: Params$Resource$Ampurls$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
       params?: Params$Resource$Ampurls$Batchget,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchGetAmpUrlsResponse>;
+    batchGet(
+      params: Params$Resource$Ampurls$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchGet(
       params: Params$Resource$Ampurls$Batchget,
       options:
@@ -217,12 +283,20 @@ export namespace acceleratedmobilepageurl_v1 {
     batchGet(
       paramsOrCallback?:
         | Params$Resource$Ampurls$Batchget
-        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
+        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
-      callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>
-    ): void | GaxiosPromise<Schema$BatchGetAmpUrlsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetAmpUrlsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ampurls$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -256,7 +330,10 @@ export namespace acceleratedmobilepageurl_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters, callback);
+        createAPIRequest<Schema$BatchGetAmpUrlsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters);
       }
@@ -264,11 +341,6 @@ export namespace acceleratedmobilepageurl_v1 {
   }
 
   export interface Params$Resource$Ampurls$Batchget extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

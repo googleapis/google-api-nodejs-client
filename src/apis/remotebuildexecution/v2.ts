@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace remotebuildexecution_v2 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace remotebuildexecution_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -142,6 +152,10 @@ export namespace remotebuildexecution_v2 {
      */
     inputRootDigest?: Schema$BuildBazelRemoteExecutionV2Digest;
     /**
+     * List of required supported NodeProperty keys. In order to ensure that equivalent `Action`s always hash to the same value, the supported node properties MUST be lexicographically sorted by name. Sorting of strings is done by code point, equivalently, by the UTF-8 bytes.  The interpretation of these properties is server-dependent. If a property is not recognized by the server, the server will return an `INVALID_ARGUMENT` error.
+     */
+    outputNodeProperties?: string[] | null;
+    /**
      * A timeout after which the execution should be killed. If the timeout is absent, then the client is specifying that the execution should continue as long as the server will let it. The server SHOULD impose a timeout if the client does not specify one, however, if the client does specify a timeout that is longer than the server&#39;s maximum timeout, the server MUST reject the request.  The timeout is a part of the Action message, and therefore two `Actions` with different timeouts are different, even if they are otherwise identical. This is because, if they were not, running an `Action` with a lower timeout than is required might result in a cache hit from an execution run with a longer timeout, hiding the fact that the timeout is too short. By encoding it directly in the `Action`, a lower timeout will result in a cache miss and the execution timeout will fail immediately, rather than whenever the cache entry gets evicted.
      */
     timeout?: string | null;
@@ -165,21 +179,25 @@ export namespace remotebuildexecution_v2 {
      */
     exitCode?: number | null;
     /**
-     * The output directories of the action. For each output directory requested in the `output_directories` field of the Action, if the corresponding directory existed after the action completed, a single entry will be present in the output list, which will contain the digest of a Tree message containing the directory tree, and the path equal exactly to the corresponding Action output_directories member.  As an example, suppose the Action had an output directory `a/b/dir` and the execution produced the following contents in `a/b/dir`: a file named `bar` and a directory named `foo` with an executable file named `baz`. Then, output_directory will contain (hashes shortened for readability):  ```json // OutputDirectory proto: {   path: &quot;a/b/dir&quot;   tree_digest: {     hash: &quot;4a73bc9d03...&quot;,     size: 55   } } // Tree proto with hash &quot;4a73bc9d03...&quot; and size 55: {   root: {     files: [       {         name: &quot;bar&quot;,         digest: {           hash: &quot;4a73bc9d03...&quot;,           size: 65534         }       }     ],     directories: [       {         name: &quot;foo&quot;,         digest: {           hash: &quot;4cf2eda940...&quot;,           size: 43         }       }     ]   }   children : {     // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43)     files: [       {         name: &quot;baz&quot;,         digest: {           hash: &quot;b2c941073e...&quot;,           size: 1294,         },         is_executable: true       }     ]   } } ``` If an output of the same name was found, but was not a directory, the server will return a FAILED_PRECONDITION.
+     * The output directories of the action. For each output directory requested in the `output_directories` or `output_paths` field of the Action, if the corresponding directory existed after the action completed, a single entry will be present in the output list, which will contain the digest of a Tree message containing the directory tree, and the path equal exactly to the corresponding Action output_directories member.  As an example, suppose the Action had an output directory `a/b/dir` and the execution produced the following contents in `a/b/dir`: a file named `bar` and a directory named `foo` with an executable file named `baz`. Then, output_directory will contain (hashes shortened for readability):  ```json // OutputDirectory proto: {   path: &quot;a/b/dir&quot;   tree_digest: {     hash: &quot;4a73bc9d03...&quot;,     size: 55   } } // Tree proto with hash &quot;4a73bc9d03...&quot; and size 55: {   root: {     files: [       {         name: &quot;bar&quot;,         digest: {           hash: &quot;4a73bc9d03...&quot;,           size: 65534         }       }     ],     directories: [       {         name: &quot;foo&quot;,         digest: {           hash: &quot;4cf2eda940...&quot;,           size: 43         }       }     ]   }   children : {     // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43)     files: [       {         name: &quot;baz&quot;,         digest: {           hash: &quot;b2c941073e...&quot;,           size: 1294,         },         is_executable: true       }     ]   } } ``` If an output of the same name as listed in `output_files` of the Command was found in `output_directories`, but was not a directory, the server will return a FAILED_PRECONDITION.
      */
     outputDirectories?: Schema$BuildBazelRemoteExecutionV2OutputDirectory[];
     /**
-     * The output directories of the action that are symbolic links to other directories. Those may be links to other output directories, or input directories, or even absolute paths outside of the working directory, if the server supports SymlinkAbsolutePathStrategy.ALLOWED. For each output directory requested in the `output_directories` field of the Action, if the directory existed after the action completed, a single entry will be present either in this field, or in the `output_directories` field, if the directory was not a symbolic link.  If an output of the same name was found, but was a symbolic link to a file instead of a directory, the server will return a FAILED_PRECONDITION. If the action does not produce the requested output, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.
+     * The output directories of the action that are symbolic links to other directories. Those may be links to other output directories, or input directories, or even absolute paths outside of the working directory, if the server supports SymlinkAbsolutePathStrategy.ALLOWED. For each output directory requested in the `output_directories` field of the Action, if the directory existed after the action completed, a single entry will be present either in this field, or in the `output_directories` field, if the directory was not a symbolic link.  If an output of the same name was found, but was a symbolic link to a file instead of a directory, the server will return a FAILED_PRECONDITION. If the action does not produce the requested output, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.  DEPRECATED as of v2.1. Servers that wish to be compatible with v2.0 API should still populate this field in addition to `output_symlinks`.
      */
     outputDirectorySymlinks?: Schema$BuildBazelRemoteExecutionV2OutputSymlink[];
     /**
-     * The output files of the action. For each output file requested in the `output_files` field of the Action, if the corresponding file existed after the action completed, a single entry will be present either in this field, or the `output_file_symlinks` field if the file was a symbolic link to another file.  If an output of the same name was found, but was a directory rather than a regular file, the server will return a FAILED_PRECONDITION. If the action does not produce the requested output, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.
+     * The output files of the action. For each output file requested in the `output_files` or `output_paths` field of the Action, if the corresponding file existed after the action completed, a single entry will be present either in this field, or the `output_file_symlinks` field if the file was a symbolic link to another file (`output_symlinks` field after v2.1).  If an output listed in `output_files` was found, but was a directory rather than a regular file, the server will return a FAILED_PRECONDITION. If the action does not produce the requested output, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.
      */
     outputFiles?: Schema$BuildBazelRemoteExecutionV2OutputFile[];
     /**
-     * The output files of the action that are symbolic links to other files. Those may be links to other output files, or input files, or even absolute paths outside of the working directory, if the server supports SymlinkAbsolutePathStrategy.ALLOWED. For each output file requested in the `output_files` field of the Action, if the corresponding file existed after the action completed, a single entry will be present either in this field, or in the `output_files` field, if the file was not a symbolic link.  If an output symbolic link of the same name was found, but its target type was not a regular file, the server will return a FAILED_PRECONDITION. If the action does not produce the requested output, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.
+     * The output files of the action that are symbolic links to other files. Those may be links to other output files, or input files, or even absolute paths outside of the working directory, if the server supports SymlinkAbsolutePathStrategy.ALLOWED. For each output file requested in the `output_files` or `output_paths` field of the Action, if the corresponding file existed after the action completed, a single entry will be present either in this field, or in the `output_files` field, if the file was not a symbolic link.  If an output symbolic link of the same name as listed in `output_files` of the Command was found, but its target type was not a regular file, the server will return a FAILED_PRECONDITION. If the action does not produce the requested output, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.  DEPRECATED as of v2.1. Servers that wish to be compatible with v2.0 API should still populate this field in addition to `output_symlinks`.
      */
     outputFileSymlinks?: Schema$BuildBazelRemoteExecutionV2OutputSymlink[];
+    /**
+     * New in v2.1: this field will only be populated if the command `output_paths` field was used, and not the pre v2.1 `output_files` or `output_directories` fields. The output paths of the action that are symbolic links to other paths. Those may be links to other outputs, or inputs, or even absolute paths outside of the working directory, if the server supports SymlinkAbsolutePathStrategy.ALLOWED. A single entry for each output requested in `output_paths` field of the Action, if the corresponding path existed after the action completed and was a symbolic link.  If the action does not produce a requested output, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.
+     */
+    outputSymlinks?: Schema$BuildBazelRemoteExecutionV2OutputSymlink[];
     /**
      * The digest for a blob containing the standard error of the action, which can be retrieved from the ContentAddressableStorage.
      */
@@ -314,13 +332,17 @@ export namespace remotebuildexecution_v2 {
      */
     environmentVariables?: Schema$BuildBazelRemoteExecutionV2CommandEnvironmentVariable[];
     /**
-     * A list of the output directories that the client expects to retrieve from the action. Only the listed directories will be returned (an entire directory structure will be returned as a Tree message digest, see OutputDirectory), as well as files listed in `output_files`. Other files or directories that may be created during command execution are discarded.  The paths are relative to the working directory of the action execution. The paths are specified using a single forward slash (`/`) as a path separator, even if the execution platform natively uses a different separator. The path MUST NOT include a trailing slash, nor a leading slash, being a relative path. The special value of empty string is allowed, although not recommended, and can be used to capture the entire working directory tree, including inputs.  In order to ensure consistent hashing of the same Action, the output paths MUST be sorted lexicographically by code point (or, equivalently, by UTF-8 bytes).  An output directory cannot be duplicated or have the same path as any of the listed output files. An output directory is allowed to be a parent of another output directory.  Directories leading up to the output directories (but not the output directories themselves) are created by the worker prior to execution, even if they are not explicitly part of the input root.
+     * A list of the output directories that the client expects to retrieve from the action. Only the listed directories will be returned (an entire directory structure will be returned as a Tree message digest, see OutputDirectory), as well as files listed in `output_files`. Other files or directories that may be created during command execution are discarded.  The paths are relative to the working directory of the action execution. The paths are specified using a single forward slash (`/`) as a path separator, even if the execution platform natively uses a different separator. The path MUST NOT include a trailing slash, nor a leading slash, being a relative path. The special value of empty string is allowed, although not recommended, and can be used to capture the entire working directory tree, including inputs.  In order to ensure consistent hashing of the same Action, the output paths MUST be sorted lexicographically by code point (or, equivalently, by UTF-8 bytes).  An output directory cannot be duplicated or have the same path as any of the listed output files. An output directory is allowed to be a parent of another output directory.  Directories leading up to the output directories (but not the output directories themselves) are created by the worker prior to execution, even if they are not explicitly part of the input root.  DEPRECATED since 2.1: Use `output_paths` instead.
      */
     outputDirectories?: string[] | null;
     /**
-     * A list of the output files that the client expects to retrieve from the action. Only the listed files, as well as directories listed in `output_directories`, will be returned to the client as output. Other files or directories that may be created during command execution are discarded.  The paths are relative to the working directory of the action execution. The paths are specified using a single forward slash (`/`) as a path separator, even if the execution platform natively uses a different separator. The path MUST NOT include a trailing slash, nor a leading slash, being a relative path.  In order to ensure consistent hashing of the same Action, the output paths MUST be sorted lexicographically by code point (or, equivalently, by UTF-8 bytes).  An output file cannot be duplicated, be a parent of another output file, or have the same path as any of the listed output directories.  Directories leading up to the output files are created by the worker prior to execution, even if they are not explicitly part of the input root.
+     * A list of the output files that the client expects to retrieve from the action. Only the listed files, as well as directories listed in `output_directories`, will be returned to the client as output. Other files or directories that may be created during command execution are discarded.  The paths are relative to the working directory of the action execution. The paths are specified using a single forward slash (`/`) as a path separator, even if the execution platform natively uses a different separator. The path MUST NOT include a trailing slash, nor a leading slash, being a relative path.  In order to ensure consistent hashing of the same Action, the output paths MUST be sorted lexicographically by code point (or, equivalently, by UTF-8 bytes).  An output file cannot be duplicated, be a parent of another output file, or have the same path as any of the listed output directories.  Directories leading up to the output files are created by the worker prior to execution, even if they are not explicitly part of the input root.  DEPRECATED since v2.1: Use `output_paths` instead.
      */
     outputFiles?: string[] | null;
+    /**
+     * A list of the output paths that the client expects to retrieve from the action. Only the listed paths will be returned to the client as output. The type of the output (file or directory) is not specified, and will be determined by the server after action execution. If the resulting path is a file, it will be returned in an OutputFile) typed field. If the path is a directory, the entire directory structure will be returned as a Tree message digest, see OutputDirectory) Other files or directories that may be created during command execution are discarded.  The paths are relative to the working directory of the action execution. The paths are specified using a single forward slash (`/`) as a path separator, even if the execution platform natively uses a different separator. The path MUST NOT include a trailing slash, nor a leading slash, being a relative path.  In order to ensure consistent hashing of the same Action, the output paths MUST be deduplicated and sorted lexicographically by code point (or, equivalently, by UTF-8 bytes).  Directories leading up to the output paths are created by the worker prior to execution, even if they are not explicitly part of the input root.  New in v2.1: this field supersedes the DEPRECATED `output_files` and `output_directories` fields. If `output_paths` is used, `output_files` and `output_directories` will be ignored!
+     */
+    outputPaths?: string[] | null;
     /**
      * The platform requirements for the execution environment. The server MAY choose to execute the action on any worker satisfying the requirements, so the client SHOULD ensure that running the action on any such worker will have the same result. A detailed lexicon for this can be found in the accompanying platform.md.
      */
@@ -344,7 +366,7 @@ export namespace remotebuildexecution_v2 {
     value?: string | null;
   }
   /**
-   * A content digest. A digest for a given blob consists of the size of the blob and its hash. The hash algorithm to use is defined by the server, but servers SHOULD use SHA-256.  The size is considered to be an integral part of the digest and cannot be separated. That is, even if the `hash` field is correctly specified but `size_bytes` is not, the server MUST reject the request.  The reason for including the size in the digest is as follows: in a great many cases, the server needs to know the size of the blob it is about to work with prior to starting an operation with it, such as flattening Merkle tree structures or streaming it to a worker. Technically, the server could implement a separate metadata store, but this results in a significantly more complicated implementation as opposed to having the client specify the size up-front (or storing the size along with the digest in every message where digests are embedded). This does mean that the API leaks some implementation details of (what we consider to be) a reasonable server implementation, but we consider this to be a worthwhile tradeoff.  When a `Digest` is used to refer to a proto message, it always refers to the message in binary encoded form. To ensure consistent hashing, clients and servers MUST ensure that they serialize messages according to the following rules, even if there are alternate valid encodings for the same message:  * Fields are serialized in tag order. * There are no unknown fields. * There are no duplicate fields. * Fields are serialized according to the default semantics for their type.  Most protocol buffer implementations will always follow these rules when serializing, but care should be taken to avoid shortcuts. For instance, concatenating two messages to merge them may produce duplicate fields.
+   * A content digest. A digest for a given blob consists of the size of the blob and its hash. The hash algorithm to use is defined by the server.  The size is considered to be an integral part of the digest and cannot be separated. That is, even if the `hash` field is correctly specified but `size_bytes` is not, the server MUST reject the request.  The reason for including the size in the digest is as follows: in a great many cases, the server needs to know the size of the blob it is about to work with prior to starting an operation with it, such as flattening Merkle tree structures or streaming it to a worker. Technically, the server could implement a separate metadata store, but this results in a significantly more complicated implementation as opposed to having the client specify the size up-front (or storing the size along with the digest in every message where digests are embedded). This does mean that the API leaks some implementation details of (what we consider to be) a reasonable server implementation, but we consider this to be a worthwhile tradeoff.  When a `Digest` is used to refer to a proto message, it always refers to the message in binary encoded form. To ensure consistent hashing, clients and servers MUST ensure that they serialize messages according to the following rules, even if there are alternate valid encodings for the same message:  * Fields are serialized in tag order. * There are no unknown fields. * There are no duplicate fields. * Fields are serialized according to the default semantics for their type.  Most protocol buffer implementations will always follow these rules when serializing, but care should be taken to avoid shortcuts. For instance, concatenating two messages to merge them may produce duplicate fields.
    */
   export interface Schema$BuildBazelRemoteExecutionV2Digest {
     /**
@@ -357,7 +379,7 @@ export namespace remotebuildexecution_v2 {
     sizeBytes?: string | null;
   }
   /**
-   * A `Directory` represents a directory node in a file tree, containing zero or more children FileNodes, DirectoryNodes and SymlinkNodes. Each `Node` contains its name in the directory, either the digest of its content (either a file blob or a `Directory` proto) or a symlink target, as well as possibly some metadata about the file or directory.  In order to ensure that two equivalent directory trees hash to the same value, the following restrictions MUST be obeyed when constructing a a `Directory`:  * Every child in the directory must have a path of exactly one segment.   Multiple levels of directory hierarchy may not be collapsed. * Each child in the directory must have a unique path segment (file name).   Note that while the API itself is case-sensitive, the environment where   the Action is executed may or may not be case-sensitive. That is, it is   legal to call the API with a Directory that has both &quot;Foo&quot; and &quot;foo&quot; as   children, but the Action may be rejected by the remote system upon   execution. * The files, directories and symlinks in the directory must each be sorted   in lexicographical order by path. The path strings must be sorted by code   point, equivalently, by UTF-8 bytes.  A `Directory` that obeys the restrictions is said to be in canonical form.  As an example, the following could be used for a file named `bar` and a directory named `foo` with an executable file named `baz` (hashes shortened for readability):  ```json // (Directory proto) {   files: [     {       name: &quot;bar&quot;,       digest: {         hash: &quot;4a73bc9d03...&quot;,         size: 65534       }     }   ],   directories: [     {       name: &quot;foo&quot;,       digest: {         hash: &quot;4cf2eda940...&quot;,         size: 43       }     }   ] }  // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43) {   files: [     {       name: &quot;baz&quot;,       digest: {         hash: &quot;b2c941073e...&quot;,         size: 1294,       },       is_executable: true     }   ] } ```
+   * A `Directory` represents a directory node in a file tree, containing zero or more children FileNodes, DirectoryNodes and SymlinkNodes. Each `Node` contains its name in the directory, either the digest of its content (either a file blob or a `Directory` proto) or a symlink target, as well as possibly some metadata about the file or directory.  In order to ensure that two equivalent directory trees hash to the same value, the following restrictions MUST be obeyed when constructing a a `Directory`:  * Every child in the directory must have a path of exactly one segment.   Multiple levels of directory hierarchy may not be collapsed. * Each child in the directory must have a unique path segment (file name).   Note that while the API itself is case-sensitive, the environment where   the Action is executed may or may not be case-sensitive. That is, it is   legal to call the API with a Directory that has both &quot;Foo&quot; and &quot;foo&quot; as   children, but the Action may be rejected by the remote system upon   execution. * The files, directories and symlinks in the directory must each be sorted   in lexicographical order by path. The path strings must be sorted by code   point, equivalently, by UTF-8 bytes. * The NodeProperties of files,   directories, and symlinks must be sorted in lexicographical order by   property name.  A `Directory` that obeys the restrictions is said to be in canonical form.  As an example, the following could be used for a file named `bar` and a directory named `foo` with an executable file named `baz` (hashes shortened for readability):  ```json // (Directory proto) {   files: [     {       name: &quot;bar&quot;,       digest: {         hash: &quot;4a73bc9d03...&quot;,         size: 65534       },       node_properties: [         {           &quot;name&quot;: &quot;MTime&quot;,           &quot;value&quot;: &quot;2017-01-15T01:30:15.01Z&quot;         }       ]     }   ],   directories: [     {       name: &quot;foo&quot;,       digest: {         hash: &quot;4cf2eda940...&quot;,         size: 43       }     }   ] }  // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43) {   files: [     {       name: &quot;baz&quot;,       digest: {         hash: &quot;b2c941073e...&quot;,         size: 1294,       },       is_executable: true     }   ] } ```
    */
   export interface Schema$BuildBazelRemoteExecutionV2Directory {
     /**
@@ -368,6 +390,10 @@ export namespace remotebuildexecution_v2 {
      * The files in the directory.
      */
     files?: Schema$BuildBazelRemoteExecutionV2FileNode[];
+    /**
+     * The node properties of the Directory.
+     */
+    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperty[];
     /**
      * The symlinks in the directory.
      */
@@ -516,6 +542,10 @@ export namespace remotebuildexecution_v2 {
      * Supported execution priority range.
      */
     executionPriorityCapabilities?: Schema$BuildBazelRemoteExecutionV2PriorityCapabilities;
+    /**
+     * Supported node properties.
+     */
+    supportedNodeProperties?: string[] | null;
   }
   /**
    * An `ExecutionPolicy` can be used to control the scheduling of the action.
@@ -542,6 +572,10 @@ export namespace remotebuildexecution_v2 {
      * The name of the file.
      */
     name?: string | null;
+    /**
+     * The node properties of the FileNode.
+     */
+    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperty[];
   }
   /**
    * A request message for ContentAddressableStorage.FindMissingBlobs.
@@ -588,6 +622,19 @@ export namespace remotebuildexecution_v2 {
     humanReadable?: boolean | null;
   }
   /**
+   * A single property for FileNodes, DirectoryNodes, and SymlinkNodes. The server is responsible for specifying the property `name`s that it accepts. If permitted by the server, the same `name` may occur multiple times.
+   */
+  export interface Schema$BuildBazelRemoteExecutionV2NodeProperty {
+    /**
+     * The property name.
+     */
+    name?: string | null;
+    /**
+     * The property value.
+     */
+    value?: string | null;
+  }
+  /**
    * An `OutputDirectory` is the output in an `ActionResult` corresponding to a directory&#39;s full contents rather than a single file.
    */
   export interface Schema$BuildBazelRemoteExecutionV2OutputDirectory {
@@ -617,6 +664,10 @@ export namespace remotebuildexecution_v2 {
      */
     isExecutable?: boolean | null;
     /**
+     * The supported node properties of the OutputFile, if requested by the Action.
+     */
+    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperty[];
+    /**
      * The full path of the file relative to the working directory, including the filename. The path separator is a forward slash `/`. Since this is a relative path, it MUST NOT begin with a leading forward slash.
      */
     path?: string | null;
@@ -625,6 +676,10 @@ export namespace remotebuildexecution_v2 {
    * An `OutputSymlink` is similar to a Symlink, but it is used as an output in an `ActionResult`.  `OutputSymlink` is binary-compatible with `SymlinkNode`.
    */
   export interface Schema$BuildBazelRemoteExecutionV2OutputSymlink {
+    /**
+     * The supported node properties of the OutputSymlink, if requested by the Action.
+     */
+    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperty[];
     /**
      * The full path of the symlink relative to the working directory, including the filename. The path separator is a forward slash `/`. Since this is a relative path, it MUST NOT begin with a leading forward slash.
      */
@@ -733,6 +788,10 @@ export namespace remotebuildexecution_v2 {
      */
     name?: string | null;
     /**
+     * The node properties of the SymlinkNode.
+     */
+    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperty[];
+    /**
      * The target path of the symlink. The path separator is a forward slash `/`. The target path can be relative to the parent directory of the symlink or it can be an absolute path starting with `/`. Support for absolute paths can be checked using the Capabilities API. The canonical form forbids the substrings `/./` and `//` in the target path. `..` components are allowed anywhere in the target path.
      */
     target?: string | null;
@@ -797,9 +856,21 @@ export namespace remotebuildexecution_v2 {
      */
     dockerPrep?: string | null;
     /**
+     * The timestamp when docker preparation begins.
+     */
+    dockerPrepStartTime?: string | null;
+    /**
      * The time spent downloading the input files and constructing the working directory.
      */
     download?: string | null;
+    /**
+     * The timestamp when downloading the input files begins.
+     */
+    downloadStartTime?: string | null;
+    /**
+     * The timestamp when execution begins.
+     */
+    execStartTime?: string | null;
     /**
      * The time spent executing the command (i.e., doing useful work).
      */
@@ -820,6 +891,10 @@ export namespace remotebuildexecution_v2 {
      * The time spent uploading the output files.
      */
     upload?: string | null;
+    /**
+     * The timestamp when uploading the output files begins.
+     */
+    uploadStartTime?: string | null;
   }
   /**
    * CommandEvents contains counters for the number of warnings and errors that occurred during the execution of a command.
@@ -856,17 +931,42 @@ export namespace remotebuildexecution_v2 {
     message?: string | null;
   }
   /**
+   * ResourceUsage is the system resource usage of the host machine.
+   */
+  export interface Schema$GoogleDevtoolsRemotebuildbotResourceUsage {
+    cpuUsedPercent?: number | null;
+    diskUsage?: Schema$GoogleDevtoolsRemotebuildbotResourceUsageStat;
+    memoryUsage?: Schema$GoogleDevtoolsRemotebuildbotResourceUsageStat;
+  }
+  export interface Schema$GoogleDevtoolsRemotebuildbotResourceUsageStat {
+    total?: string | null;
+    used?: string | null;
+  }
+  /**
    * AcceleratorConfig defines the accelerator cards to attach to the VM.
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaAcceleratorConfig {
     /**
-     * The number of the guest accelerator cards exposed to this VM.
+     * The number of guest accelerator cards exposed to each VM.
      */
     acceleratorCount?: string | null;
     /**
-     * The type of accelerator to attach to this VM, e.g. &quot;nvidia-tesla-k80&quot; for nVidia Tesla K80.
+     * The type of accelerator to attach to each VM, e.g. &quot;nvidia-tesla-k80&quot; for nVidia Tesla K80.
      */
     acceleratorType?: string | null;
+  }
+  /**
+   * Autoscale defines the autoscaling policy of a worker pool.
+   */
+  export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaAutoscale {
+    /**
+     * The maximal number of workers. Must be equal to or greater than min_size.
+     */
+    maxSize?: string | null;
+    /**
+     * The minimal number of workers. Must be greater than 0.
+     */
+    minSize?: string | null;
   }
   /**
    * The request used for `CreateInstance`.
@@ -988,6 +1088,27 @@ export namespace remotebuildexecution_v2 {
     workerPools?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool[];
   }
   /**
+   * The request used for `UpdateInstance`.
+   */
+  export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateInstanceRequest {
+    /**
+     * Specifies the instance to update.
+     */
+    instance?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance;
+    /**
+     * Deprecated, use instance.logging_enabled instead. Whether to enable Stackdriver logging for this instance.
+     */
+    loggingEnabled?: boolean | null;
+    /**
+     * Deprecated, use instance.Name instead. Name of the instance to update. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
+     */
+    name?: string | null;
+    /**
+     * The update mask applies to instance. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If an empty update_mask is provided, only the non-default valued field in the worker pool field will be updated. Note that in order to update a field to the default value (zero, false, empty string) an explicit update_mask must be provided.
+     */
+    updateMask?: string | null;
+  }
+  /**
    * The request used for UpdateWorkerPool.
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateWorkerPoolRequest {
@@ -1013,7 +1134,7 @@ export namespace remotebuildexecution_v2 {
      */
     diskSizeGb?: string | null;
     /**
-     * Required. Disk Type to use for the worker. See [Storage options](https://cloud.google.com/compute/docs/disks/#introduction). Currently only `pd-standard` is supported.
+     * Required. Disk Type to use for the worker. See [Storage options](https://cloud.google.com/compute/docs/disks/#introduction). Currently only `pd-standard` and `pd-ssd` are supported.
      */
     diskType?: string | null;
     /**
@@ -1025,18 +1146,38 @@ export namespace remotebuildexecution_v2 {
      */
     machineType?: string | null;
     /**
+     * The maximum number of actions a worker can execute concurrently.
+     */
+    maxConcurrentActions?: string | null;
+    /**
      * Minimum CPU platform to use when creating the worker. See [CPU Platforms](https://cloud.google.com/compute/docs/cpu-platforms).
      */
     minCpuPlatform?: string | null;
     /**
+     * Determines the type of network access granted to workers. Possible values:  - &quot;public&quot;: Workers can connect to the public internet. - &quot;private&quot;: Workers can only connect to Google APIs and services. - &quot;restricted-private&quot;: Workers can only connect to Google APIs that are   reachable through `restricted.googleapis.com` (`199.36.153.4/30`).
+     */
+    networkAccess?: string | null;
+    /**
      * Determines whether the worker is reserved (equivalent to a Compute Engine on-demand VM and therefore won&#39;t be preempted). See [Preemptible VMs](https://cloud.google.com/preemptible-vms/) for more details.
      */
     reserved?: boolean | null;
+    /**
+     * Output only. The name of the image used by each VM.
+     */
+    vmImage?: string | null;
   }
   /**
    * A worker pool resource in the Remote Build Execution API.
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool {
+    /**
+     * The autoscale policy to apply on a pool.
+     */
+    autoscale?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaAutoscale;
+    /**
+     * Channel specifies the release channel of the pool.
+     */
+    channel?: string | null;
     /**
      * WorkerPool resource name formatted as: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]/workerpools/[POOL_ID]`. name should not be populated when creating a worker pool since it is provided in the `poolId` field.
      */
@@ -1050,263 +1191,9 @@ export namespace remotebuildexecution_v2 {
      */
     workerConfig?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig;
     /**
-     * The desired number of workers in the worker pool. Must be a value between 0 and 1000.
+     * The desired number of workers in the worker pool. Must be a value between 0 and 15000.
      */
     workerCount?: string | null;
-  }
-  /**
-   * An ActionResult represents the result of an Action being run.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testActionResult {
-    /**
-     * The exit code of the command.
-     */
-    exitCode?: number | null;
-    /**
-     * The output directories of the action. For each output directory requested in the `output_directories` field of the Action, if the corresponding directory existed after the action completed, a single entry will be present in the output list, which will contain the digest of a Tree message containing the directory tree, and the path equal exactly to the corresponding Action output_directories member. As an example, suppose the Action had an output directory `a/b/dir` and the execution produced the following contents in `a/b/dir`: a file named `bar` and a directory named `foo` with an executable file named `baz`. Then, output_directory will contain (hashes shortened for readability):  ```json // OutputDirectory proto: {   path: &quot;a/b/dir&quot;   tree_digest: {     hash: &quot;4a73bc9d03...&quot;,     size: 55   } } // Tree proto with hash &quot;4a73bc9d03...&quot; and size 55: {   root: {     files: [       {         name: &quot;bar&quot;,         digest: {           hash: &quot;4a73bc9d03...&quot;,           size: 65534         }       }     ],     directories: [       {         name: &quot;foo&quot;,         digest: {           hash: &quot;4cf2eda940...&quot;,           size: 43         }       }     ]   }   children : {     // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43)     files: [       {         name: &quot;baz&quot;,         digest: {           hash: &quot;b2c941073e...&quot;,           size: 1294,         },         is_executable: true       }     ]   } } ```
-     */
-    outputDirectories?: Schema$GoogleDevtoolsRemoteexecutionV1testOutputDirectory[];
-    /**
-     * The output files of the action. For each output file requested in the `output_files` field of the Action, if the corresponding file existed after the action completed, a single entry will be present in the output list.  If the action does not produce the requested output, or produces a directory where a regular file is expected or vice versa, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.
-     */
-    outputFiles?: Schema$GoogleDevtoolsRemoteexecutionV1testOutputFile[];
-    /**
-     * The digest for a blob containing the standard error of the action, which can be retrieved from the ContentAddressableStorage. See `stderr_raw` for when this will be set.
-     */
-    stderrDigest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * The standard error buffer of the action. The server will determine, based on the size of the buffer, whether to return it in raw form or to return a digest in `stderr_digest` that points to the buffer. If neither is set, then the buffer is empty. The client SHOULD NOT assume it will get one of the raw buffer or a digest on any given request and should be prepared to handle either.
-     */
-    stderrRaw?: string | null;
-    /**
-     * The digest for a blob containing the standard output of the action, which can be retrieved from the ContentAddressableStorage. See `stdout_raw` for when this will be set.
-     */
-    stdoutDigest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * The standard output buffer of the action. The server will determine, based on the size of the buffer, whether to return it in raw form or to return a digest in `stdout_digest` that points to the buffer. If neither is set, then the buffer is empty. The client SHOULD NOT assume it will get one of the raw buffer or a digest on any given request and should be prepared to handle either.
-     */
-    stdoutRaw?: string | null;
-  }
-  /**
-   * A `Command` is the actual command executed by a worker running an Action.  Except as otherwise required, the environment (such as which system libraries or binaries are available, and what filesystems are mounted where) is defined by and specific to the implementation of the remote execution API.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testCommand {
-    /**
-     * The arguments to the command. The first argument must be the path to the executable, which must be either a relative path, in which case it is evaluated with respect to the input root, or an absolute path.  The working directory will always be the input root.
-     */
-    arguments?: string[] | null;
-    /**
-     * The environment variables to set when running the program. The worker may provide its own default environment variables; these defaults can be overridden using this field. Additional variables can also be specified.  In order to ensure that equivalent `Command`s always hash to the same value, the environment variables MUST be lexicographically sorted by name. Sorting of strings is done by code point, equivalently, by the UTF-8 bytes.
-     */
-    environmentVariables?: Schema$GoogleDevtoolsRemoteexecutionV1testCommandEnvironmentVariable[];
-  }
-  /**
-   * An `EnvironmentVariable` is one variable to set in the running program&#39;s environment.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testCommandEnvironmentVariable {
-    /**
-     * The variable name.
-     */
-    name?: string | null;
-    /**
-     * The variable value.
-     */
-    value?: string | null;
-  }
-  /**
-   * A content digest. A digest for a given blob consists of the size of the blob and its hash. The hash algorithm to use is defined by the server, but servers SHOULD use SHA-256.  The size is considered to be an integral part of the digest and cannot be separated. That is, even if the `hash` field is correctly specified but `size_bytes` is not, the server MUST reject the request.  The reason for including the size in the digest is as follows: in a great many cases, the server needs to know the size of the blob it is about to work with prior to starting an operation with it, such as flattening Merkle tree structures or streaming it to a worker. Technically, the server could implement a separate metadata store, but this results in a significantly more complicated implementation as opposed to having the client specify the size up-front (or storing the size along with the digest in every message where digests are embedded). This does mean that the API leaks some implementation details of (what we consider to be) a reasonable server implementation, but we consider this to be a worthwhile tradeoff.  When a `Digest` is used to refer to a proto message, it always refers to the message in binary encoded form. To ensure consistent hashing, clients and servers MUST ensure that they serialize messages according to the following rules, even if there are alternate valid encodings for the same message. - Fields are serialized in tag order. - There are no unknown fields. - There are no duplicate fields. - Fields are serialized according to the default semantics for their type.  Most protocol buffer implementations will always follow these rules when serializing, but care should be taken to avoid shortcuts. For instance, concatenating two messages to merge them may produce duplicate fields.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testDigest {
-    /**
-     * The hash. In the case of SHA-256, it will always be a lowercase hex string exactly 64 characters long.
-     */
-    hash?: string | null;
-    /**
-     * The size of the blob, in bytes.
-     */
-    sizeBytes?: string | null;
-  }
-  /**
-   * A `Directory` represents a directory node in a file tree, containing zero or more children FileNodes and DirectoryNodes. Each `Node` contains its name in the directory, the digest of its content (either a file blob or a `Directory` proto), as well as possibly some metadata about the file or directory.  In order to ensure that two equivalent directory trees hash to the same value, the following restrictions MUST be obeyed when constructing a a `Directory`:   - Every child in the directory must have a path of exactly one segment.     Multiple levels of directory hierarchy may not be collapsed.   - Each child in the directory must have a unique path segment (file name).   - The files and directories in the directory must each be sorted in     lexicographical order by path. The path strings must be sorted by code     point, equivalently, by UTF-8 bytes.  A `Directory` that obeys the restrictions is said to be in canonical form.  As an example, the following could be used for a file named `bar` and a directory named `foo` with an executable file named `baz` (hashes shortened for readability):  ```json // (Directory proto) {   files: [     {       name: &quot;bar&quot;,       digest: {         hash: &quot;4a73bc9d03...&quot;,         size: 65534       }     }   ],   directories: [     {       name: &quot;foo&quot;,       digest: {         hash: &quot;4cf2eda940...&quot;,         size: 43       }     }   ] }  // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43) {   files: [     {       name: &quot;baz&quot;,       digest: {         hash: &quot;b2c941073e...&quot;,         size: 1294,       },       is_executable: true     }   ] } ```
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testDirectory {
-    /**
-     * The subdirectories in the directory.
-     */
-    directories?: Schema$GoogleDevtoolsRemoteexecutionV1testDirectoryNode[];
-    /**
-     * The files in the directory.
-     */
-    files?: Schema$GoogleDevtoolsRemoteexecutionV1testFileNode[];
-  }
-  /**
-   * A `DirectoryNode` represents a child of a Directory which is itself a `Directory` and its associated metadata.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testDirectoryNode {
-    /**
-     * The digest of the Directory object represented. See Digest for information about how to take the digest of a proto message.
-     */
-    digest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * The name of the directory.
-     */
-    name?: string | null;
-  }
-  /**
-   * Metadata about an ongoing execution, which will be contained in the metadata field of the Operation.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testExecuteOperationMetadata {
-    /**
-     * The digest of the Action being executed.
-     */
-    actionDigest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    stage?: string | null;
-    /**
-     * If set, the client can use this name with ByteStream.Read to stream the standard error.
-     */
-    stderrStreamName?: string | null;
-    /**
-     * If set, the client can use this name with ByteStream.Read to stream the standard output.
-     */
-    stdoutStreamName?: string | null;
-  }
-  /**
-   * The response message for Execution.Execute, which will be contained in the response field of the Operation.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testExecuteResponse {
-    /**
-     * True if the result was served from cache, false if it was executed.
-     */
-    cachedResult?: boolean | null;
-    /**
-     * The result of the action.
-     */
-    result?: Schema$GoogleDevtoolsRemoteexecutionV1testActionResult;
-    /**
-     * An optional list of additional log outputs the server wishes to provide. A server can use this to return execution-specific logs however it wishes. This is intended primarily to make it easier for users to debug issues that may be outside of the actual job execution, such as by identifying the worker executing the action or by providing logs from the worker&#39;s setup phase. The keys SHOULD be human readable so that a client can display them to a user.
-     */
-    serverLogs?: {
-      [key: string]: Schema$GoogleDevtoolsRemoteexecutionV1testLogFile;
-    } | null;
-    /**
-     * If the status has a code other than `OK`, it indicates that the action did not finish execution. For example, if the operation times out during execution, the status will have a `DEADLINE_EXCEEDED` code. Servers MUST use this field for errors in execution, rather than the error field on the `Operation` object.  If the status code is other than `OK`, then the result MUST NOT be cached. For an error status, the `result` field is optional; the server may populate the output-, stdout-, and stderr-related fields if it has any information available, such as the stdout and stderr of a timed-out action.
-     */
-    status?: Schema$GoogleRpcStatus;
-  }
-  /**
-   * A `FileNode` represents a single file and associated metadata.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testFileNode {
-    /**
-     * The digest of the file&#39;s content.
-     */
-    digest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * True if file is executable, false otherwise.
-     */
-    isExecutable?: boolean | null;
-    /**
-     * The name of the file.
-     */
-    name?: string | null;
-  }
-  /**
-   * A `LogFile` is a log stored in the CAS.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testLogFile {
-    /**
-     * The digest of the log contents.
-     */
-    digest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * This is a hint as to the purpose of the log, and is set to true if the log is human-readable text that can be usefully displayed to a user, and false otherwise. For instance, if a command-line client wishes to print the server logs to the terminal for a failed action, this allows it to avoid displaying a binary file.
-     */
-    humanReadable?: boolean | null;
-  }
-  /**
-   * An `OutputDirectory` is the output in an `ActionResult` corresponding to a directory&#39;s full contents rather than a single file.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testOutputDirectory {
-    /**
-     * DEPRECATED: This field is deprecated and should no longer be used.
-     */
-    digest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * The full path of the directory relative to the working directory. The path separator is a forward slash `/`. Since this is a relative path, it MUST NOT begin with a leading forward slash. The empty string value is allowed, and it denotes the entire working directory.
-     */
-    path?: string | null;
-    /**
-     * The digest of the encoded Tree proto containing the directory&#39;s contents.
-     */
-    treeDigest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-  }
-  /**
-   * An `OutputFile` is similar to a FileNode, but it is tailored for output as part of an `ActionResult`. It allows a full file path rather than only a name, and allows the server to include content inline.  `OutputFile` is binary-compatible with `FileNode`.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testOutputFile {
-    /**
-     * The raw content of the file.  This field may be used by the server to provide the content of a file inline in an ActionResult and avoid requiring that the client make a separate call to [ContentAddressableStorage.GetBlob] to retrieve it.  The client SHOULD NOT assume that it will get raw content with any request, and always be prepared to retrieve it via `digest`.
-     */
-    content?: string | null;
-    /**
-     * The digest of the file&#39;s content.
-     */
-    digest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * True if file is executable, false otherwise.
-     */
-    isExecutable?: boolean | null;
-    /**
-     * The full path of the file relative to the input root, including the filename. The path separator is a forward slash `/`. Since this is a relative path, it MUST NOT begin with a leading forward slash.
-     */
-    path?: string | null;
-  }
-  /**
-   * An optional Metadata to attach to any RPC request to tell the server about an external context of the request. The server may use this for logging or other purposes. To use it, the client attaches the header to the call using the canonical proto serialization: name: google.devtools.remoteexecution.v1test.requestmetadata-bin contents: the base64 encoded binary RequestMetadata message.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testRequestMetadata {
-    /**
-     * An identifier that ties multiple requests to the same action. For example, multiple requests to the CAS, Action Cache, and Execution API are used in order to compile foo.cc.
-     */
-    actionId?: string | null;
-    /**
-     * An identifier to tie multiple tool invocations together. For example, runs of foo_test, bar_test and baz_test on a post-submit of a given patch.
-     */
-    correlatedInvocationsId?: string | null;
-    /**
-     * The details for the tool invoking the requests.
-     */
-    toolDetails?: Schema$GoogleDevtoolsRemoteexecutionV1testToolDetails;
-    /**
-     * An identifier that ties multiple actions together to a final result. For example, multiple actions are required to build and run foo_test.
-     */
-    toolInvocationId?: string | null;
-  }
-  /**
-   * Details for the tool used to call the API.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testToolDetails {
-    /**
-     * Name of the tool, e.g. bazel.
-     */
-    toolName?: string | null;
-    /**
-     * Version of the tool used for the request, e.g. 5.0.3.
-     */
-    toolVersion?: string | null;
-  }
-  /**
-   * A `Tree` contains all the Directory protos in a single directory Merkle tree, compressed into one message.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testTree {
-    /**
-     * All the child directories: the directories referred to by the root and, recursively, all its children. In order to reconstruct the directory tree, the client must take the digests of each of the child directories and then build up a tree starting from the `root`.
-     */
-    children?: Schema$GoogleDevtoolsRemoteexecutionV1testDirectory[];
-    /**
-     * The root directory in the tree.
-     */
-    root?: Schema$GoogleDevtoolsRemoteexecutionV1testDirectory;
   }
   /**
    * AdminTemp is a prelimiary set of administration tasks. It&#39;s called &quot;Temp&quot; because we do not yet know the best way to represent admin tasks; it&#39;s possible that this will be entirely replaced in later versions of this API. If this message proves to be sufficient, it will be renamed in the alpha or beta release of this API.  This message (suitably marshalled into a protobuf.Any) can be used as the inline_assignment field in a lease; the lease assignment field should simply be `&quot;admin&quot;` in these cases.  This message is heavily based on Swarming administration tasks from the LUCI project (http://github.com/luci/luci-py/appengine/swarming).
@@ -1594,6 +1481,75 @@ export namespace remotebuildexecution_v2 {
     /**
      * remotebuildexecution.actionResults.get
      * @desc Retrieve a cached execution result.  Implementations SHOULD ensure that any blobs referenced from the ContentAddressableStorage are available at the time of returning the ActionResult and will be for some period of time afterwards. The TTLs of the referenced blobs SHOULD be increased if necessary and applicable.  Errors:  * `NOT_FOUND`: The requested `ActionResult` is not in the cache.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.actionResults.get({
+     *     // The hash. In the case of SHA-256, it will always be a lowercase hex string
+     *     // exactly 64 characters long.
+     *     hash: 'placeholder-value',
+     *     // A hint to the server to inline the contents of the listed output files.
+     *     // Each path needs to exactly match one path in `output_files` in the
+     *     // Command message.
+     *     inlineOutputFiles: 'placeholder-value',
+     *     // A hint to the server to request inlining stderr in the
+     *     // ActionResult message.
+     *     inlineStderr: 'placeholder-value',
+     *     // A hint to the server to request inlining stdout in the
+     *     // ActionResult message.
+     *     inlineStdout: 'placeholder-value',
+     *     // The instance of the execution system to operate against. A server may
+     *     // support multiple instances of the execution system (with their own workers,
+     *     // storage, caches, etc.). The server MAY require use of this field to select
+     *     // between them in an implementation-defined fashion, otherwise it can be
+     *     // omitted.
+     *     instanceName: '.*',
+     *     // The size of the blob, in bytes.
+     *     sizeBytes: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionMetadata": {},
+     *   //   "exitCode": 0,
+     *   //   "outputDirectories": [],
+     *   //   "outputDirectorySymlinks": [],
+     *   //   "outputFileSymlinks": [],
+     *   //   "outputFiles": [],
+     *   //   "outputSymlinks": [],
+     *   //   "stderrDigest": {},
+     *   //   "stderrRaw": "my_stderrRaw",
+     *   //   "stdoutDigest": {},
+     *   //   "stdoutRaw": "my_stdoutRaw"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.actionResults.get
      * @memberOf! ()
      *
@@ -1609,9 +1565,18 @@ export namespace remotebuildexecution_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Actionresults$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Actionresults$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult>;
+    get(
+      params: Params$Resource$Actionresults$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Actionresults$Get,
       options:
@@ -1635,14 +1600,20 @@ export namespace remotebuildexecution_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Actionresults$Get
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
+        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
-      callback?: BodyResponseCallback<
-        Schema$BuildBazelRemoteExecutionV2ActionResult
-      >
-    ): void | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Actionresults$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1678,7 +1649,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
@@ -1690,6 +1661,92 @@ export namespace remotebuildexecution_v2 {
     /**
      * remotebuildexecution.actionResults.update
      * @desc Upload a new execution result.  In order to allow the server to perform access control based on the type of action, and to assist with client debugging, the client MUST first upload the Action that produced the result, along with its Command, into the `ContentAddressableStorage`.  Errors:  * `INVALID_ARGUMENT`: One or more arguments are invalid. * `FAILED_PRECONDITION`: One or more errors occurred in updating the   action result, such as a missing command or action. * `RESOURCE_EXHAUSTED`: There is insufficient storage space to add the   entry to the cache.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.actionResults.update({
+     *     // The hash. In the case of SHA-256, it will always be a lowercase hex string
+     *     // exactly 64 characters long.
+     *     hash: 'placeholder-value',
+     *     // The instance of the execution system to operate against. A server may
+     *     // support multiple instances of the execution system (with their own workers,
+     *     // storage, caches, etc.). The server MAY require use of this field to select
+     *     // between them in an implementation-defined fashion, otherwise it can be
+     *     // omitted.
+     *     instanceName: '.*',
+     *     // The priority (relative importance) of this content in the overall cache.
+     *     // Generally, a lower value means a longer retention time or other advantage,
+     *     // but the interpretation of a given value is server-dependent. A priority of
+     *     // 0 means a *default* value, decided by the server.
+     *     //
+     *     // The particular semantics of this field is up to the server. In particular,
+     *     // every server will have their own supported range of priorities, and will
+     *     // decide how these map into retention/eviction policy.
+     *     'resultsCachePolicy.priority': 'placeholder-value',
+     *     // The size of the blob, in bytes.
+     *     sizeBytes: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "executionMetadata": {},
+     *       //   "exitCode": 0,
+     *       //   "outputDirectories": [],
+     *       //   "outputDirectorySymlinks": [],
+     *       //   "outputFileSymlinks": [],
+     *       //   "outputFiles": [],
+     *       //   "outputSymlinks": [],
+     *       //   "stderrDigest": {},
+     *       //   "stderrRaw": "my_stderrRaw",
+     *       //   "stdoutDigest": {},
+     *       //   "stdoutRaw": "my_stdoutRaw"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionMetadata": {},
+     *   //   "exitCode": 0,
+     *   //   "outputDirectories": [],
+     *   //   "outputDirectorySymlinks": [],
+     *   //   "outputFileSymlinks": [],
+     *   //   "outputFiles": [],
+     *   //   "outputSymlinks": [],
+     *   //   "stderrDigest": {},
+     *   //   "stderrRaw": "my_stderrRaw",
+     *   //   "stdoutDigest": {},
+     *   //   "stdoutRaw": "my_stdoutRaw"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.actionResults.update
      * @memberOf! ()
      *
@@ -1698,15 +1755,24 @@ export namespace remotebuildexecution_v2 {
      * @param {string} params.instanceName The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      * @param {integer=} params.resultsCachePolicy.priority The priority (relative importance) of this content in the overall cache. Generally, a lower value means a longer retention time or other advantage, but the interpretation of a given value is server-dependent. A priority of 0 means a *default* value, decided by the server.  The particular semantics of this field is up to the server. In particular, every server will have their own supported range of priorities, and will decide how these map into retention/eviction policy.
      * @param {string} params.sizeBytes The size of the blob, in bytes.
-     * @param {().BuildBazelRemoteExecutionV2ActionResult} params.resource Request body data
+     * @param {().BuildBazelRemoteExecutionV2ActionResult} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Actionresults$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Actionresults$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult>;
+    update(
+      params: Params$Resource$Actionresults$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Actionresults$Update,
       options:
@@ -1730,14 +1796,20 @@ export namespace remotebuildexecution_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Actionresults$Update
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
+        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
-      callback?: BodyResponseCallback<
-        Schema$BuildBazelRemoteExecutionV2ActionResult
-      >
-    ): void | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Actionresults$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1773,7 +1845,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
@@ -1785,11 +1857,6 @@ export namespace remotebuildexecution_v2 {
 
   export interface Params$Resource$Actionresults$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The hash. In the case of SHA-256, it will always be a lowercase hex string exactly 64 characters long.
      */
@@ -1817,11 +1884,6 @@ export namespace remotebuildexecution_v2 {
   }
   export interface Params$Resource$Actionresults$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The hash. In the case of SHA-256, it will always be a lowercase hex string exactly 64 characters long.
      */
@@ -1854,20 +1916,88 @@ export namespace remotebuildexecution_v2 {
     /**
      * remotebuildexecution.actions.execute
      * @desc Execute an action remotely.  In order to execute an action, the client must first upload all of the inputs, the Command to run, and the Action into the ContentAddressableStorage. It then calls `Execute` with an `action_digest` referring to them. The server will run the action and eventually return the result.  The input `Action`'s fields MUST meet the various canonicalization requirements specified in the documentation for their types so that it has the same digest as other logically equivalent `Action`s. The server MAY enforce the requirements and return errors if a non-canonical input is received. It MAY also proceed without verifying some or all of the requirements, such as for performance reasons. If the server does not verify the requirement, then it will treat the `Action` as distinct from another logically equivalent action if they hash differently.  Returns a stream of google.longrunning.Operation messages describing the resulting execution, with eventual `response` ExecuteResponse. The `metadata` on the operation is of type ExecuteOperationMetadata.  If the client remains connected after the first response is returned after the server, then updates are streamed as if the client had called WaitExecution until the execution completes or the request reaches an error. The operation can also be queried using Operations API.  The server NEED NOT implement other methods or functionality of the Operations API.  Errors discovered during creation of the `Operation` will be reported as gRPC Status errors, while errors that occurred while running the action will be reported in the `status` field of the `ExecuteResponse`. The server MUST NOT set the `error` field of the `Operation` proto. The possible errors include:  * `INVALID_ARGUMENT`: One or more arguments are invalid. * `FAILED_PRECONDITION`: One or more errors occurred in setting up the   action requested, such as a missing input or command or no worker being   available. The client may be able to fix the errors and retry. * `RESOURCE_EXHAUSTED`: There is insufficient quota of some resource to run   the action. * `UNAVAILABLE`: Due to a transient condition, such as all workers being   occupied (and the server does not support a queue), the action could not   be started. The client should retry. * `INTERNAL`: An internal error occurred in the execution engine or the   worker. * `DEADLINE_EXCEEDED`: The execution timed out. * `CANCELLED`: The operation was cancelled by the client. This status is   only possible if the server implements the Operations API CancelOperation   method, and it was called for the current execution.  In the case of a missing input or command, the server SHOULD additionally send a PreconditionFailure error detail where, for each requested blob not present in the CAS, there is a `Violation` with a `type` of `MISSING` and a `subject` of `"blobs/{hash}/{size}"` indicating the digest of the missing blob.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.actions.execute({
+     *     // The instance of the execution system to operate against. A server may
+     *     // support multiple instances of the execution system (with their own workers,
+     *     // storage, caches, etc.). The server MAY require use of this field to select
+     *     // between them in an implementation-defined fashion, otherwise it can be
+     *     // omitted.
+     *     instanceName: '.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actionDigest": {},
+     *       //   "executionPolicy": {},
+     *       //   "resultsCachePolicy": {},
+     *       //   "skipCacheLookup": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.actions.execute
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.instanceName The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
-     * @param {().BuildBazelRemoteExecutionV2ExecuteRequest} params.resource Request body data
+     * @param {().BuildBazelRemoteExecutionV2ExecuteRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     execute(
+      params: Params$Resource$Actions$Execute,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    execute(
       params?: Params$Resource$Actions$Execute,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    execute(
+      params: Params$Resource$Actions$Execute,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     execute(
       params: Params$Resource$Actions$Execute,
       options:
@@ -1885,12 +2015,20 @@ export namespace remotebuildexecution_v2 {
     execute(
       paramsOrCallback?:
         | Params$Resource$Actions$Execute
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Actions$Execute;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1926,7 +2064,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1935,11 +2073,6 @@ export namespace remotebuildexecution_v2 {
   }
 
   export interface Params$Resource$Actions$Execute extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      */
@@ -1960,20 +2093,81 @@ export namespace remotebuildexecution_v2 {
     /**
      * remotebuildexecution.blobs.batchRead
      * @desc Download many blobs at once.  The server may enforce a limit of the combined total size of blobs to be downloaded using this API. This limit may be obtained using the Capabilities API. Requests exceeding the limit should either be split into smaller chunks or downloaded using the ByteStream API, as appropriate.  This request is equivalent to calling a Bytestream `Read` request on each individual blob, in parallel. The requests may succeed or fail independently.  Errors:  * `INVALID_ARGUMENT`: The client attempted to read more than the   server supported limit.  Every error on individual read will be returned in the corresponding digest status.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.blobs.batchRead({
+     *     // The instance of the execution system to operate against. A server may
+     *     // support multiple instances of the execution system (with their own workers,
+     *     // storage, caches, etc.). The server MAY require use of this field to select
+     *     // between them in an implementation-defined fashion, otherwise it can be
+     *     // omitted.
+     *     instanceName: '.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "digests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.blobs.batchRead
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.instanceName The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
-     * @param {().BuildBazelRemoteExecutionV2BatchReadBlobsRequest} params.resource Request body data
+     * @param {().BuildBazelRemoteExecutionV2BatchReadBlobsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchRead(
+      params: Params$Resource$Blobs$Batchread,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchRead(
       params?: Params$Resource$Blobs$Batchread,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>;
+    batchRead(
+      params: Params$Resource$Blobs$Batchread,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchRead(
       params: Params$Resource$Blobs$Batchread,
       options:
@@ -2001,18 +2195,24 @@ export namespace remotebuildexecution_v2 {
         | Params$Resource$Blobs$Batchread
         | BodyResponseCallback<
             Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blobs$Batchread;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2048,7 +2248,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<
           Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
@@ -2059,22 +2259,83 @@ export namespace remotebuildexecution_v2 {
     /**
      * remotebuildexecution.blobs.batchUpdate
      * @desc Upload many blobs at once.  The server may enforce a limit of the combined total size of blobs to be uploaded using this API. This limit may be obtained using the Capabilities API. Requests exceeding the limit should either be split into smaller chunks or uploaded using the ByteStream API, as appropriate.  This request is equivalent to calling a Bytestream `Write` request on each individual blob, in parallel. The requests may succeed or fail independently.  Errors:  * `INVALID_ARGUMENT`: The client attempted to upload more than the   server supported limit.  Individual requests may return the following errors, additionally:  * `RESOURCE_EXHAUSTED`: There is insufficient disk quota to store the blob. * `INVALID_ARGUMENT`: The Digest does not match the provided data.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.blobs.batchUpdate({
+     *     // The instance of the execution system to operate against. A server may
+     *     // support multiple instances of the execution system (with their own workers,
+     *     // storage, caches, etc.). The server MAY require use of this field to select
+     *     // between them in an implementation-defined fashion, otherwise it can be
+     *     // omitted.
+     *     instanceName: '.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.blobs.batchUpdate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.instanceName The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
-     * @param {().BuildBazelRemoteExecutionV2BatchUpdateBlobsRequest} params.resource Request body data
+     * @param {().BuildBazelRemoteExecutionV2BatchUpdateBlobsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    batchUpdate(
+      params: Params$Resource$Blobs$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
     batchUpdate(
       params?: Params$Resource$Blobs$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
     >;
+    batchUpdate(
+      params: Params$Resource$Blobs$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Blobs$Batchupdate,
       options:
@@ -2102,18 +2363,26 @@ export namespace remotebuildexecution_v2 {
         | Params$Resource$Blobs$Batchupdate
         | BodyResponseCallback<
             Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Blobs$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2150,7 +2419,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<
           Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
@@ -2160,23 +2429,84 @@ export namespace remotebuildexecution_v2 {
 
     /**
      * remotebuildexecution.blobs.findMissing
-     * @desc Determine if blobs are present in the CAS.  Clients can use this API before uploading blobs to determine which ones are already present in the CAS and do not need to be uploaded again.  There are no method-specific errors.
+     * @desc Determine if blobs are present in the CAS.  Clients can use this API before uploading blobs to determine which ones are already present in the CAS and do not need to be uploaded again.  Servers SHOULD increase the TTLs of the referenced blobs if necessary and applicable.  There are no method-specific errors.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.blobs.findMissing({
+     *     // The instance of the execution system to operate against. A server may
+     *     // support multiple instances of the execution system (with their own workers,
+     *     // storage, caches, etc.). The server MAY require use of this field to select
+     *     // between them in an implementation-defined fashion, otherwise it can be
+     *     // omitted.
+     *     instanceName: '.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "blobDigests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "missingBlobDigests": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.blobs.findMissing
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.instanceName The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
-     * @param {().BuildBazelRemoteExecutionV2FindMissingBlobsRequest} params.resource Request body data
+     * @param {().BuildBazelRemoteExecutionV2FindMissingBlobsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    findMissing(
+      params: Params$Resource$Blobs$Findmissing,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
     findMissing(
       params?: Params$Resource$Blobs$Findmissing,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
     >;
+    findMissing(
+      params: Params$Resource$Blobs$Findmissing,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     findMissing(
       params: Params$Resource$Blobs$Findmissing,
       options:
@@ -2204,18 +2534,26 @@ export namespace remotebuildexecution_v2 {
         | Params$Resource$Blobs$Findmissing
         | BodyResponseCallback<
             Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Blobs$Findmissing;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2252,7 +2590,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<
           Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
@@ -2262,7 +2600,67 @@ export namespace remotebuildexecution_v2 {
 
     /**
      * remotebuildexecution.blobs.getTree
-     * @desc Fetch the entire directory tree rooted at a node.  This request must be targeted at a Directory stored in the ContentAddressableStorage (CAS). The server will enumerate the `Directory` tree recursively and return every node descended from the root.  The GetTreeRequest.page_token parameter can be used to skip ahead in the stream (e.g. when retrying a partially completed and aborted request), by setting it to a value taken from GetTreeResponse.next_page_token of the last successfully processed GetTreeResponse).  The exact traversal order is unspecified and, unless retrieving subsequent pages from an earlier request, is not guaranteed to be stable across multiple invocations of `GetTree`.  If part of the tree is missing from the CAS, the server will return the portion present and omit the rest.  * `NOT_FOUND`: The requested tree root is not present in the CAS.
+     * @desc Fetch the entire directory tree rooted at a node.  This request must be targeted at a Directory stored in the ContentAddressableStorage (CAS). The server will enumerate the `Directory` tree recursively and return every node descended from the root.  The GetTreeRequest.page_token parameter can be used to skip ahead in the stream (e.g. when retrying a partially completed and aborted request), by setting it to a value taken from GetTreeResponse.next_page_token of the last successfully processed GetTreeResponse).  The exact traversal order is unspecified and, unless retrieving subsequent pages from an earlier request, is not guaranteed to be stable across multiple invocations of `GetTree`.  If part of the tree is missing from the CAS, the server will return the portion present and omit the rest.  Errors:  * `NOT_FOUND`: The requested tree root is not present in the CAS.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.blobs.getTree({
+     *     // The hash. In the case of SHA-256, it will always be a lowercase hex string
+     *     // exactly 64 characters long.
+     *     hash: 'placeholder-value',
+     *     // The instance of the execution system to operate against. A server may
+     *     // support multiple instances of the execution system (with their own workers,
+     *     // storage, caches, etc.). The server MAY require use of this field to select
+     *     // between them in an implementation-defined fashion, otherwise it can be
+     *     // omitted.
+     *     instanceName: '.*',
+     *     // A maximum page size to request. If present, the server will request no more
+     *     // than this many items. Regardless of whether a page size is specified, the
+     *     // server may place its own limit on the number of items to be returned and
+     *     // require the client to retrieve more items using a subsequent request.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, which must be a value received in a previous
+     *     // GetTreeResponse.
+     *     // If present, the server will use that token as an offset, returning only
+     *     // that page and the ones that succeed it.
+     *     pageToken: 'placeholder-value',
+     *     // The size of the blob, in bytes.
+     *     sizeBytes: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "directories": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.blobs.getTree
      * @memberOf! ()
      *
@@ -2270,16 +2668,25 @@ export namespace remotebuildexecution_v2 {
      * @param {string} params.hash The hash. In the case of SHA-256, it will always be a lowercase hex string exactly 64 characters long.
      * @param {string} params.instanceName The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      * @param {integer=} params.pageSize A maximum page size to request. If present, the server will request no more than this many items. Regardless of whether a page size is specified, the server may place its own limit on the number of items to be returned and require the client to retrieve more items using a subsequent request.
-     * @param {string=} params.pageToken A page token, which must be a value received in a previous GetTreeResponse. If present, the server will use it to return the following page of results.
+     * @param {string=} params.pageToken A page token, which must be a value received in a previous GetTreeResponse. If present, the server will use that token as an offset, returning only that page and the ones that succeed it.
      * @param {string} params.sizeBytes The size of the blob, in bytes.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getTree(
+      params: Params$Resource$Blobs$Gettree,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getTree(
       params?: Params$Resource$Blobs$Gettree,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>;
+    getTree(
+      params: Params$Resource$Blobs$Gettree,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getTree(
       params: Params$Resource$Blobs$Gettree,
       options:
@@ -2307,16 +2714,24 @@ export namespace remotebuildexecution_v2 {
         | Params$Resource$Blobs$Gettree
         | BodyResponseCallback<
             Schema$BuildBazelRemoteExecutionV2GetTreeResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$BuildBazelRemoteExecutionV2GetTreeResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$BuildBazelRemoteExecutionV2GetTreeResponse
-      >
-    ): void | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2GetTreeResponse> {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blobs$Gettree;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2351,7 +2766,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -2362,11 +2777,6 @@ export namespace remotebuildexecution_v2 {
   }
 
   export interface Params$Resource$Blobs$Batchread extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      */
@@ -2380,11 +2790,6 @@ export namespace remotebuildexecution_v2 {
   export interface Params$Resource$Blobs$Batchupdate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      */
     instanceName?: string;
@@ -2397,11 +2802,6 @@ export namespace remotebuildexecution_v2 {
   export interface Params$Resource$Blobs$Findmissing
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      */
     instanceName?: string;
@@ -2412,11 +2812,6 @@ export namespace remotebuildexecution_v2 {
     requestBody?: Schema$BuildBazelRemoteExecutionV2FindMissingBlobsRequest;
   }
   export interface Params$Resource$Blobs$Gettree extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The hash. In the case of SHA-256, it will always be a lowercase hex string exactly 64 characters long.
      */
@@ -2430,7 +2825,7 @@ export namespace remotebuildexecution_v2 {
      */
     pageSize?: number;
     /**
-     * A page token, which must be a value received in a previous GetTreeResponse. If present, the server will use it to return the following page of results.
+     * A page token, which must be a value received in a previous GetTreeResponse. If present, the server will use that token as an offset, returning only that page and the ones that succeed it.
      */
     pageToken?: string;
     /**
@@ -2448,20 +2843,80 @@ export namespace remotebuildexecution_v2 {
     /**
      * remotebuildexecution.operations.waitExecution
      * @desc Wait for an execution operation to complete. When the client initially makes the request, the server immediately responds with the current status of the execution. The server will leave the request stream open until the operation completes, and then respond with the completed operation. The server MAY choose to stream additional updates as execution progresses, such as to provide an update as to the state of the execution.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.operations.waitExecution({
+     *     // The name of the Operation
+     *     // returned by Execute.
+     *     name: 'operations/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.operations.waitExecution
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the Operation returned by Execute.
-     * @param {().BuildBazelRemoteExecutionV2WaitExecutionRequest} params.resource Request body data
+     * @param {().BuildBazelRemoteExecutionV2WaitExecutionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     waitExecution(
+      params: Params$Resource$Operations$Waitexecution,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    waitExecution(
       params?: Params$Resource$Operations$Waitexecution,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    waitExecution(
+      params: Params$Resource$Operations$Waitexecution,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     waitExecution(
       params: Params$Resource$Operations$Waitexecution,
       options:
@@ -2479,12 +2934,20 @@ export namespace remotebuildexecution_v2 {
     waitExecution(
       paramsOrCallback?:
         | Params$Resource$Operations$Waitexecution
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Waitexecution;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2521,7 +2984,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2531,11 +2994,6 @@ export namespace remotebuildexecution_v2 {
 
   export interface Params$Resource$Operations$Waitexecution
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the Operation returned by Execute.
      */
@@ -2556,6 +3014,54 @@ export namespace remotebuildexecution_v2 {
     /**
      * remotebuildexecution.getCapabilities
      * @desc GetCapabilities returns the server capabilities configuration of the remote endpoint. Only the capabilities of the services supported by the endpoint will be returned: * Execution + CAS + Action Cache endpoints should return both   CacheCapabilities and ExecutionCapabilities. * Execution only endpoints should return ExecutionCapabilities. * CAS + Action Cache only endpoints should return CacheCapabilities.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/remotebuildexecution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const remotebuildexecution = google.remotebuildexecution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await remotebuildexecution.getCapabilities({
+     *     // The instance of the execution system to operate against. A server may
+     *     // support multiple instances of the execution system (with their own workers,
+     *     // storage, caches, etc.). The server MAY require use of this field to select
+     *     // between them in an implementation-defined fashion, otherwise it can be
+     *     // omitted.
+     *     instanceName: '.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cacheCapabilities": {},
+     *   //   "deprecatedApiVersion": {},
+     *   //   "executionCapabilities": {},
+     *   //   "highApiVersion": {},
+     *   //   "lowApiVersion": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias remotebuildexecution.getCapabilities
      * @memberOf! ()
      *
@@ -2566,9 +3072,18 @@ export namespace remotebuildexecution_v2 {
      * @return {object} Request object
      */
     getCapabilities(
+      params: Params$Resource$V2$Getcapabilities,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getCapabilities(
       params?: Params$Resource$V2$Getcapabilities,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>;
+    getCapabilities(
+      params: Params$Resource$V2$Getcapabilities,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getCapabilities(
       params: Params$Resource$V2$Getcapabilities,
       options:
@@ -2596,18 +3111,24 @@ export namespace remotebuildexecution_v2 {
         | Params$Resource$V2$Getcapabilities
         | BodyResponseCallback<
             Schema$BuildBazelRemoteExecutionV2ServerCapabilities
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$BuildBazelRemoteExecutionV2ServerCapabilities
-          >,
-      callback?: BodyResponseCallback<
-        Schema$BuildBazelRemoteExecutionV2ServerCapabilities
-      >
-    ): void | GaxiosPromise<
-      Schema$BuildBazelRemoteExecutionV2ServerCapabilities
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V2$Getcapabilities;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2644,7 +3165,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -2656,11 +3177,6 @@ export namespace remotebuildexecution_v2 {
 
   export interface Params$Resource$V2$Getcapabilities
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      */

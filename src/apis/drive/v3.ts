@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace drive_v3 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace drive_v3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -313,7 +323,7 @@ export namespace drive_v3 {
      */
     anchor?: string | null;
     /**
-     * The user who created the comment.
+     * The author of the comment. The author&#39;s email address and permission ID will not be populated.
      */
     author?: Schema$User;
     /**
@@ -482,6 +492,7 @@ export namespace drive_v3 {
      */
     capabilities?: {
       canAddChildren?: boolean;
+      canAddMyDriveParent?: boolean;
       canChangeCopyRequiresWriterPermission?: boolean;
       canChangeViewersCanCopyContent?: boolean;
       canComment?: boolean;
@@ -506,6 +517,7 @@ export namespace drive_v3 {
       canReadRevisions?: boolean;
       canReadTeamDrive?: boolean;
       canRemoveChildren?: boolean;
+      canRemoveMyDriveParent?: boolean;
       canRename?: boolean;
       canShare?: boolean;
       canTrash?: boolean;
@@ -556,7 +568,7 @@ export namespace drive_v3 {
      */
     fullFileExtension?: string | null;
     /**
-     * Whether any users are granted file access directly on this file. This field is only populated for shared drive files.
+     * Whether there are permissions directly on this file. This field is only populated for items in shared drives.
      */
     hasAugmentedPermissions?: boolean | null;
     /**
@@ -682,6 +694,10 @@ export namespace drive_v3 {
      */
     sharingUser?: Schema$User;
     /**
+     * Shortcut file details. Only populated for shortcut files, which have the mimeType field set to application/vnd.google-apps.shortcut.
+     */
+    shortcutDetails?: {targetId?: string; targetMimeType?: string} | null;
+    /**
      * The size of the file&#39;s content in bytes. This is only applicable to files with binary content in Google Drive.
      */
     size?: string | null;
@@ -805,7 +821,7 @@ export namespace drive_v3 {
      */
     deleted?: boolean | null;
     /**
-     * A displayable name for users, groups or domains.
+     * The &quot;pretty&quot; name of the value of the permission. The following is a list of examples for each type of permission:   - user - User&#39;s full name, as defined for their Google account, such as &quot;Joe Smith.&quot;  - group - Name of the Google Group, such as &quot;The Company Administrators.&quot;  - domain - String domain name, such as &quot;thecompany.com.&quot;  - anyone - No displayName is present.
      */
     displayName?: string | null;
     /**
@@ -821,7 +837,7 @@ export namespace drive_v3 {
      */
     expirationTime?: string | null;
     /**
-     * The ID of this permission. This is a unique identifier for the grantee, and is published in User resources as permissionId.
+     * The ID of this permission. This is a unique identifier for the grantee, and is published in User resources as permissionId. IDs should be treated as opaque values.
      */
     id?: string | null;
     /**
@@ -855,7 +871,7 @@ export namespace drive_v3 {
       teamDrivePermissionType?: string;
     }> | null;
     /**
-     * The type of the grantee. Valid values are:   - user  - group  - domain  - anyone
+     * The type of the grantee. Valid values are:   - user  - group  - domain  - anyone  When creating a permission, if type is user or group, you must provide an emailAddress for the user or group. When type is domain, you must provide a domain. There isn&#39;t extra information required for a anyone type.
      */
     type?: string | null;
   }
@@ -885,7 +901,7 @@ export namespace drive_v3 {
      */
     action?: string | null;
     /**
-     * The user who created the reply.
+     * The author of the reply. The author&#39;s email address and permission ID will not be populated.
      */
     author?: Schema$User;
     /**
@@ -1149,6 +1165,63 @@ export namespace drive_v3 {
     /**
      * drive.about.get
      * @desc Gets information about the user, the user's Drive, and system capabilities.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.about.get({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appInstalled": false,
+     *   //   "canCreateDrives": false,
+     *   //   "canCreateTeamDrives": false,
+     *   //   "driveThemes": [],
+     *   //   "exportFormats": {},
+     *   //   "folderColorPalette": [],
+     *   //   "importFormats": {},
+     *   //   "kind": "my_kind",
+     *   //   "maxImportSizes": {},
+     *   //   "maxUploadSize": "my_maxUploadSize",
+     *   //   "storageQuota": {},
+     *   //   "teamDriveThemes": [],
+     *   //   "user": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.about.get
      * @memberOf! ()
      *
@@ -1158,9 +1231,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$About$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$About$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$About>;
+    get(
+      params: Params$Resource$About$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$About$Get,
       options: MethodOptions | BodyResponseCallback<Schema$About>,
@@ -1174,10 +1256,17 @@ export namespace drive_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$About$Get
-        | BodyResponseCallback<Schema$About>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$About>,
-      callback?: BodyResponseCallback<Schema$About>
-    ): void | GaxiosPromise<Schema$About> {
+        | BodyResponseCallback<Schema$About>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$About>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$About>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$About> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$About$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1207,19 +1296,17 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$About>(parameters, callback);
+        createAPIRequest<Schema$About>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$About>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$About$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$About$Get extends StandardParameters {}
 
   export class Resource$Changes {
     context: APIRequestContext;
@@ -1230,11 +1317,66 @@ export namespace drive_v3 {
     /**
      * drive.changes.getStartPageToken
      * @desc Gets the starting pageToken for listing future changes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.changes.getStartPageToken({
+     *     // The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive is returned.
+     *     driveId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated use driveId instead.
+     *     teamDriveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "startPageToken": "my_startPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.changes.getStartPageToken
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.driveId The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive will be returned.
+     * @param {string=} params.driveId The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive is returned.
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.teamDriveId Deprecated use driveId instead.
@@ -1243,9 +1385,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     getStartPageToken(
+      params: Params$Resource$Changes$Getstartpagetoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getStartPageToken(
       params?: Params$Resource$Changes$Getstartpagetoken,
       options?: MethodOptions
     ): GaxiosPromise<Schema$StartPageToken>;
+    getStartPageToken(
+      params: Params$Resource$Changes$Getstartpagetoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getStartPageToken(
       params: Params$Resource$Changes$Getstartpagetoken,
       options: MethodOptions | BodyResponseCallback<Schema$StartPageToken>,
@@ -1261,12 +1412,17 @@ export namespace drive_v3 {
     getStartPageToken(
       paramsOrCallback?:
         | Params$Resource$Changes$Getstartpagetoken
-        | BodyResponseCallback<Schema$StartPageToken>,
+        | BodyResponseCallback<Schema$StartPageToken>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$StartPageToken>,
-      callback?: BodyResponseCallback<Schema$StartPageToken>
-    ): void | GaxiosPromise<Schema$StartPageToken> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StartPageToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StartPageToken>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$StartPageToken> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Changes$Getstartpagetoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1300,7 +1456,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$StartPageToken>(parameters, callback);
+        createAPIRequest<Schema$StartPageToken>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$StartPageToken>(parameters);
       }
@@ -1309,13 +1468,86 @@ export namespace drive_v3 {
     /**
      * drive.changes.list
      * @desc Lists the changes for a user or shared drive.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.changes.list({
+     *     // The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
+     *     driveId: 'placeholder-value',
+     *     // Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
+     *     includeCorpusRemovals: 'placeholder-value',
+     *     // Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
+     *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
+     *     includeRemoved: 'placeholder-value',
+     *     // Deprecated use includeItemsFromAllDrives instead.
+     *     includeTeamDriveItems: 'placeholder-value',
+     *     // The maximum number of changes to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.
+     *     restrictToMyDrive: 'placeholder-value',
+     *     // A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     *     spaces: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated use driveId instead.
+     *     teamDriveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "changes": [],
+     *   //   "kind": "my_kind",
+     *   //   "newStartPageToken": "my_newStartPageToken",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.changes.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.driveId The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
+     * @param {string=} params.driveId The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
-     * @param {boolean=} params.includeItemsFromAllDrives Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
+     * @param {boolean=} params.includeItemsFromAllDrives Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
      * @param {boolean=} params.includeRemoved Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.pageSize The maximum number of changes to return per page.
@@ -1330,9 +1562,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Changes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Changes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ChangeList>;
+    list(
+      params: Params$Resource$Changes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Changes$List,
       options: MethodOptions | BodyResponseCallback<Schema$ChangeList>,
@@ -1346,12 +1587,17 @@ export namespace drive_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Changes$List
-        | BodyResponseCallback<Schema$ChangeList>,
+        | BodyResponseCallback<Schema$ChangeList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ChangeList>,
-      callback?: BodyResponseCallback<Schema$ChangeList>
-    ): void | GaxiosPromise<Schema$ChangeList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ChangeList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ChangeList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ChangeList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1381,7 +1627,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ChangeList>(parameters, callback);
+        createAPIRequest<Schema$ChangeList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ChangeList>(parameters);
       }
@@ -1390,13 +1639,109 @@ export namespace drive_v3 {
     /**
      * drive.changes.watch
      * @desc Subscribes to changes for a user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.changes.watch({
+     *     // The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
+     *     driveId: 'placeholder-value',
+     *     // Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
+     *     includeCorpusRemovals: 'placeholder-value',
+     *     // Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
+     *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
+     *     includeRemoved: 'placeholder-value',
+     *     // Deprecated use includeItemsFromAllDrives instead.
+     *     includeTeamDriveItems: 'placeholder-value',
+     *     // The maximum number of changes to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.
+     *     restrictToMyDrive: 'placeholder-value',
+     *     // A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     *     spaces: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated use driveId instead.
+     *     teamDriveId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.changes.watch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.driveId The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
+     * @param {string=} params.driveId The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
-     * @param {boolean=} params.includeItemsFromAllDrives Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
+     * @param {boolean=} params.includeItemsFromAllDrives Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
      * @param {boolean=} params.includeRemoved Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.pageSize The maximum number of changes to return per page.
@@ -1406,15 +1751,24 @@ export namespace drive_v3 {
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.teamDriveId Deprecated use driveId instead.
-     * @param {().Channel} params.resource Request body data
+     * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     watch(
+      params: Params$Resource$Changes$Watch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    watch(
       params?: Params$Resource$Changes$Watch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Channel>;
+    watch(
+      params: Params$Resource$Changes$Watch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     watch(
       params: Params$Resource$Changes$Watch,
       options: MethodOptions | BodyResponseCallback<Schema$Channel>,
@@ -1428,10 +1782,17 @@ export namespace drive_v3 {
     watch(
       paramsOrCallback?:
         | Params$Resource$Changes$Watch
-        | BodyResponseCallback<Schema$Channel>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
-      callback?: BodyResponseCallback<Schema$Channel>
-    ): void | GaxiosPromise<Schema$Channel> {
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1464,7 +1825,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Channel>(parameters, callback);
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
       }
@@ -1474,12 +1838,7 @@ export namespace drive_v3 {
   export interface Params$Resource$Changes$Getstartpagetoken
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive will be returned.
+     * The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive is returned.
      */
     driveId?: string;
     /**
@@ -1497,12 +1856,7 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Changes$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
+     * The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      */
     driveId?: string;
     /**
@@ -1510,7 +1864,7 @@ export namespace drive_v3 {
      */
     includeCorpusRemovals?: boolean;
     /**
-     * Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
+     * Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
      */
     includeItemsFromAllDrives?: boolean;
     /**
@@ -1552,12 +1906,7 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Changes$Watch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
+     * The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      */
     driveId?: string;
     /**
@@ -1565,7 +1914,7 @@ export namespace drive_v3 {
      */
     includeCorpusRemovals?: boolean;
     /**
-     * Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
+     * Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
      */
     includeItemsFromAllDrives?: boolean;
     /**
@@ -1620,19 +1969,85 @@ export namespace drive_v3 {
     /**
      * drive.channels.stop
      * @desc Stop watching resources through this channel
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.channels.stop({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.channels.stop
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Channel} params.resource Request body data
+     * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     stop(
+      params: Params$Resource$Channels$Stop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stop(
       params?: Params$Resource$Channels$Stop,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    stop(
+      params: Params$Resource$Channels$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     stop(
       params: Params$Resource$Channels$Stop,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1646,10 +2061,15 @@ export namespace drive_v3 {
     stop(
       paramsOrCallback?:
         | Params$Resource$Channels$Stop
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1682,7 +2102,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1690,11 +2113,6 @@ export namespace drive_v3 {
   }
 
   export interface Params$Resource$Channels$Stop extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1710,20 +2128,102 @@ export namespace drive_v3 {
     /**
      * drive.comments.create
      * @desc Creates a new comment on a file.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.create({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anchor": "my_anchor",
+     *       //   "author": {},
+     *       //   "content": "my_content",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "deleted": false,
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedTime": "my_modifiedTime",
+     *       //   "quotedFileContent": {},
+     *       //   "replies": [],
+     *       //   "resolved": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anchor": "my_anchor",
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "quotedFileContent": {},
+     *   //   "replies": [],
+     *   //   "resolved": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.comments.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
-     * @param {().Comment} params.resource Request body data
+     * @param {().Comment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Comments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Comments$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Comment>;
+    create(
+      params: Params$Resource$Comments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Comments$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Comment>,
@@ -1737,10 +2237,17 @@ export namespace drive_v3 {
     create(
       paramsOrCallback?:
         | Params$Resource$Comments$Create
-        | BodyResponseCallback<Schema$Comment>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
-      callback?: BodyResponseCallback<Schema$Comment>
-    ): void | GaxiosPromise<Schema$Comment> {
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1773,7 +2280,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Comment>(parameters, callback);
+        createAPIRequest<Schema$Comment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
       }
@@ -1782,6 +2292,46 @@ export namespace drive_v3 {
     /**
      * drive.comments.delete
      * @desc Deletes a comment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.delete({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.comments.delete
      * @memberOf! ()
      *
@@ -1793,9 +2343,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Comments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Comments$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Comments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Comments$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1809,10 +2368,15 @@ export namespace drive_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Comments$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1844,7 +2408,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1853,6 +2420,65 @@ export namespace drive_v3 {
     /**
      * drive.comments.get
      * @desc Gets a comment by ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.get({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Whether to return deleted comments. Deleted comments will not include their original content.
+     *     includeDeleted: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anchor": "my_anchor",
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "quotedFileContent": {},
+     *   //   "replies": [],
+     *   //   "resolved": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.comments.get
      * @memberOf! ()
      *
@@ -1865,9 +2491,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Comments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Comments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Comment>;
+    get(
+      params: Params$Resource$Comments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Comments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Comment>,
@@ -1881,10 +2516,17 @@ export namespace drive_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Comments$Get
-        | BodyResponseCallback<Schema$Comment>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
-      callback?: BodyResponseCallback<Schema$Comment>
-    ): void | GaxiosPromise<Schema$Comment> {
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1916,7 +2558,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Comment>(parameters, callback);
+        createAPIRequest<Schema$Comment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
       }
@@ -1925,6 +2570,60 @@ export namespace drive_v3 {
     /**
      * drive.comments.list
      * @desc Lists a file's comments.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.list({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Whether to include deleted comments. Deleted comments will not include their original content.
+     *     includeDeleted: 'placeholder-value',
+     *     // The maximum number of comments to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // The minimum value of 'modifiedTime' for the result comments (RFC 3339 date-time).
+     *     startModifiedTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "comments": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.comments.list
      * @memberOf! ()
      *
@@ -1939,9 +2638,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Comments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Comments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CommentList>;
+    list(
+      params: Params$Resource$Comments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Comments$List,
       options: MethodOptions | BodyResponseCallback<Schema$CommentList>,
@@ -1955,12 +2663,17 @@ export namespace drive_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Comments$List
-        | BodyResponseCallback<Schema$CommentList>,
+        | BodyResponseCallback<Schema$CommentList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CommentList>,
-      callback?: BodyResponseCallback<Schema$CommentList>
-    ): void | GaxiosPromise<Schema$CommentList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommentList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommentList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CommentList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1993,7 +2706,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CommentList>(parameters, callback);
+        createAPIRequest<Schema$CommentList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CommentList>(parameters);
       }
@@ -2002,21 +2718,105 @@ export namespace drive_v3 {
     /**
      * drive.comments.update
      * @desc Updates a comment with patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.update({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anchor": "my_anchor",
+     *       //   "author": {},
+     *       //   "content": "my_content",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "deleted": false,
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedTime": "my_modifiedTime",
+     *       //   "quotedFileContent": {},
+     *       //   "replies": [],
+     *       //   "resolved": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anchor": "my_anchor",
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "quotedFileContent": {},
+     *   //   "replies": [],
+     *   //   "resolved": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.comments.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {().Comment} params.resource Request body data
+     * @param {().Comment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Comments$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Comments$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Comment>;
+    update(
+      params: Params$Resource$Comments$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Comments$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Comment>,
@@ -2030,10 +2830,17 @@ export namespace drive_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Comments$Update
-        | BodyResponseCallback<Schema$Comment>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
-      callback?: BodyResponseCallback<Schema$Comment>
-    ): void | GaxiosPromise<Schema$Comment> {
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2065,7 +2872,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Comment>(parameters, callback);
+        createAPIRequest<Schema$Comment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
       }
@@ -2073,11 +2883,6 @@ export namespace drive_v3 {
   }
 
   export interface Params$Resource$Comments$Create extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the file.
      */
@@ -2090,11 +2895,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Comments$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the comment.
      */
     commentId?: string;
@@ -2104,11 +2904,6 @@ export namespace drive_v3 {
     fileId?: string;
   }
   export interface Params$Resource$Comments$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the comment.
      */
@@ -2123,11 +2918,6 @@ export namespace drive_v3 {
     includeDeleted?: boolean;
   }
   export interface Params$Resource$Comments$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the file.
      */
@@ -2150,11 +2940,6 @@ export namespace drive_v3 {
     startModifiedTime?: string;
   }
   export interface Params$Resource$Comments$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the comment.
      */
@@ -2179,20 +2964,97 @@ export namespace drive_v3 {
     /**
      * drive.drives.create
      * @desc Creates a new shared drive.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.create({
+     *     // An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backgroundImageFile": {},
+     *       //   "backgroundImageLink": "my_backgroundImageLink",
+     *       //   "capabilities": {},
+     *       //   "colorRgb": "my_colorRgb",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "restrictions": {},
+     *       //   "themeId": "my_themeId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.requestId An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned.
-     * @param {().Drive} params.resource Request body data
+     * @param {().Drive} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Drives$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Drives$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Drive>;
+    create(
+      params: Params$Resource$Drives$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Drives$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Drive>,
@@ -2206,10 +3068,17 @@ export namespace drive_v3 {
     create(
       paramsOrCallback?:
         | Params$Resource$Drives$Create
-        | BodyResponseCallback<Schema$Drive>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
-      callback?: BodyResponseCallback<Schema$Drive>
-    ): void | GaxiosPromise<Schema$Drive> {
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2239,7 +3108,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Drive>(parameters, callback);
+        createAPIRequest<Schema$Drive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
       }
@@ -2248,6 +3120,41 @@ export namespace drive_v3 {
     /**
      * drive.drives.delete
      * @desc Permanently deletes a shared drive for which the user is an organizer. The shared drive cannot contain any untrashed items.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.delete({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.delete
      * @memberOf! ()
      *
@@ -2258,9 +3165,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Drives$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Drives$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Drives$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Drives$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2274,10 +3190,15 @@ export namespace drive_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Drives$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2310,7 +3231,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2319,6 +3243,61 @@ export namespace drive_v3 {
     /**
      * drive.drives.get
      * @desc Gets a shared drive's metadata by ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.get({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.get
      * @memberOf! ()
      *
@@ -2330,9 +3309,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Drives$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Drives$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Drive>;
+    get(
+      params: Params$Resource$Drives$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Drives$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Drive>,
@@ -2346,10 +3334,17 @@ export namespace drive_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Drives$Get
-        | BodyResponseCallback<Schema$Drive>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
-      callback?: BodyResponseCallback<Schema$Drive>
-    ): void | GaxiosPromise<Schema$Drive> {
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2382,7 +3377,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Drive>(parameters, callback);
+        createAPIRequest<Schema$Drive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
       }
@@ -2391,6 +3389,56 @@ export namespace drive_v3 {
     /**
      * drive.drives.hide
      * @desc Hides a shared drive from the default view.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.hide({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.hide
      * @memberOf! ()
      *
@@ -2401,9 +3449,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     hide(
+      params: Params$Resource$Drives$Hide,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    hide(
       params?: Params$Resource$Drives$Hide,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Drive>;
+    hide(
+      params: Params$Resource$Drives$Hide,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     hide(
       params: Params$Resource$Drives$Hide,
       options: MethodOptions | BodyResponseCallback<Schema$Drive>,
@@ -2417,10 +3474,17 @@ export namespace drive_v3 {
     hide(
       paramsOrCallback?:
         | Params$Resource$Drives$Hide
-        | BodyResponseCallback<Schema$Drive>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
-      callback?: BodyResponseCallback<Schema$Drive>
-    ): void | GaxiosPromise<Schema$Drive> {
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Hide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2453,7 +3517,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Drive>(parameters, callback);
+        createAPIRequest<Schema$Drive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
       }
@@ -2462,6 +3529,57 @@ export namespace drive_v3 {
     /**
      * drive.drives.list
      * @desc Lists the user's shared drives.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.list({
+     *     // Maximum number of shared drives to return.
+     *     pageSize: 'placeholder-value',
+     *     // Page token for shared drives.
+     *     pageToken: 'placeholder-value',
+     *     // Query string for searching shared drives.
+     *     q: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then all shared drives of the domain in which the requester is an administrator are returned.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "drives": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.list
      * @memberOf! ()
      *
@@ -2475,9 +3593,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Drives$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Drives$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DriveList>;
+    list(
+      params: Params$Resource$Drives$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Drives$List,
       options: MethodOptions | BodyResponseCallback<Schema$DriveList>,
@@ -2491,12 +3618,17 @@ export namespace drive_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Drives$List
-        | BodyResponseCallback<Schema$DriveList>,
+        | BodyResponseCallback<Schema$DriveList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DriveList>,
-      callback?: BodyResponseCallback<Schema$DriveList>
-    ): void | GaxiosPromise<Schema$DriveList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DriveList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DriveList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DriveList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2526,7 +3658,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DriveList>(parameters, callback);
+        createAPIRequest<Schema$DriveList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DriveList>(parameters);
       }
@@ -2535,6 +3670,56 @@ export namespace drive_v3 {
     /**
      * drive.drives.unhide
      * @desc Restores a shared drive to the default view.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.unhide({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.unhide
      * @memberOf! ()
      *
@@ -2545,9 +3730,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     unhide(
+      params: Params$Resource$Drives$Unhide,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unhide(
       params?: Params$Resource$Drives$Unhide,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Drive>;
+    unhide(
+      params: Params$Resource$Drives$Unhide,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     unhide(
       params: Params$Resource$Drives$Unhide,
       options: MethodOptions | BodyResponseCallback<Schema$Drive>,
@@ -2561,10 +3755,17 @@ export namespace drive_v3 {
     unhide(
       paramsOrCallback?:
         | Params$Resource$Drives$Unhide
-        | BodyResponseCallback<Schema$Drive>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
-      callback?: BodyResponseCallback<Schema$Drive>
-    ): void | GaxiosPromise<Schema$Drive> {
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Unhide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2597,7 +3798,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Drive>(parameters, callback);
+        createAPIRequest<Schema$Drive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
       }
@@ -2606,21 +3810,100 @@ export namespace drive_v3 {
     /**
      * drive.drives.update
      * @desc Updates the metadate for a shared drive.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.update({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backgroundImageFile": {},
+     *       //   "backgroundImageLink": "my_backgroundImageLink",
+     *       //   "capabilities": {},
+     *       //   "colorRgb": "my_colorRgb",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "restrictions": {},
+     *       //   "themeId": "my_themeId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.drives.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.driveId The ID of the shared drive.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
-     * @param {().Drive} params.resource Request body data
+     * @param {().Drive} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Drives$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Drives$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Drive>;
+    update(
+      params: Params$Resource$Drives$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Drives$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Drive>,
@@ -2634,10 +3917,17 @@ export namespace drive_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Drives$Update
-        | BodyResponseCallback<Schema$Drive>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
-      callback?: BodyResponseCallback<Schema$Drive>
-    ): void | GaxiosPromise<Schema$Drive> {
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2670,7 +3960,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Drive>(parameters, callback);
+        createAPIRequest<Schema$Drive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
       }
@@ -2678,11 +3971,6 @@ export namespace drive_v3 {
   }
 
   export interface Params$Resource$Drives$Create extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned.
      */
@@ -2695,21 +3983,11 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Drives$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the shared drive.
      */
     driveId?: string;
   }
   export interface Params$Resource$Drives$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the shared drive.
      */
@@ -2721,21 +3999,11 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Drives$Hide extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the shared drive.
      */
     driveId?: string;
   }
   export interface Params$Resource$Drives$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of shared drives to return.
      */
@@ -2755,21 +4023,11 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Drives$Unhide extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the shared drive.
      */
     driveId?: string;
   }
   export interface Params$Resource$Drives$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the shared drive.
      */
@@ -2794,25 +4052,210 @@ export namespace drive_v3 {
     /**
      * drive.files.copy
      * @desc Creates a copy of a file and applies any requested updates with patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.copy({
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
+     *     ignoreDefaultVisibility: 'placeholder-value',
+     *     // Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
+     *     keepRevisionForever: 'placeholder-value',
+     *     // A language hint for OCR processing during image import (ISO 639-1 code).
+     *     ocrLanguage: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appProperties": {},
+     *       //   "capabilities": {},
+     *       //   "contentHints": {},
+     *       //   "copyRequiresWriterPermission": false,
+     *       //   "createdTime": "my_createdTime",
+     *       //   "description": "my_description",
+     *       //   "driveId": "my_driveId",
+     *       //   "explicitlyTrashed": false,
+     *       //   "exportLinks": {},
+     *       //   "fileExtension": "my_fileExtension",
+     *       //   "folderColorRgb": "my_folderColorRgb",
+     *       //   "fullFileExtension": "my_fullFileExtension",
+     *       //   "hasAugmentedPermissions": false,
+     *       //   "hasThumbnail": false,
+     *       //   "headRevisionId": "my_headRevisionId",
+     *       //   "iconLink": "my_iconLink",
+     *       //   "id": "my_id",
+     *       //   "imageMediaMetadata": {},
+     *       //   "isAppAuthorized": false,
+     *       //   "kind": "my_kind",
+     *       //   "lastModifyingUser": {},
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedByMe": false,
+     *       //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *       //   "modifiedTime": "my_modifiedTime",
+     *       //   "name": "my_name",
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "ownedByMe": false,
+     *       //   "owners": [],
+     *       //   "parents": [],
+     *       //   "permissionIds": [],
+     *       //   "permissions": [],
+     *       //   "properties": {},
+     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *       //   "shared": false,
+     *       //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *       //   "sharingUser": {},
+     *       //   "shortcutDetails": {},
+     *       //   "size": "my_size",
+     *       //   "spaces": [],
+     *       //   "starred": false,
+     *       //   "teamDriveId": "my_teamDriveId",
+     *       //   "thumbnailLink": "my_thumbnailLink",
+     *       //   "thumbnailVersion": "my_thumbnailVersion",
+     *       //   "trashed": false,
+     *       //   "trashedTime": "my_trashedTime",
+     *       //   "trashingUser": {},
+     *       //   "version": "my_version",
+     *       //   "videoMediaMetadata": {},
+     *       //   "viewedByMe": false,
+     *       //   "viewedByMeTime": "my_viewedByMeTime",
+     *       //   "viewersCanCopyContent": false,
+     *       //   "webContentLink": "my_webContentLink",
+     *       //   "webViewLink": "my_webViewLink",
+     *       //   "writersCanShare": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appProperties": {},
+     *   //   "capabilities": {},
+     *   //   "contentHints": {},
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "createdTime": "my_createdTime",
+     *   //   "description": "my_description",
+     *   //   "driveId": "my_driveId",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "lastModifyingUser": {},
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMe": false,
+     *   //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "name": "my_name",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": {},
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "shared": false,
+     *   //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "size": "my_size",
+     *   //   "spaces": [],
+     *   //   "starred": false,
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "trashed": false,
+     *   //   "trashedTime": "my_trashedTime",
+     *   //   "trashingUser": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "viewedByMe": false,
+     *   //   "viewedByMeTime": "my_viewedByMeTime",
+     *   //   "viewersCanCopyContent": false,
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.copy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.ignoreDefaultVisibility Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
-     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
+     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {().File} params.resource Request body data
+     * @param {().File} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     copy(
+      params: Params$Resource$Files$Copy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    copy(
       params?: Params$Resource$Files$Copy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$File>;
+    copy(
+      params: Params$Resource$Files$Copy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     copy(
       params: Params$Resource$Files$Copy,
       options: MethodOptions | BodyResponseCallback<Schema$File>,
@@ -2826,10 +4269,17 @@ export namespace drive_v3 {
     copy(
       paramsOrCallback?:
         | Params$Resource$Files$Copy
-        | BodyResponseCallback<Schema$File>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
-      callback?: BodyResponseCallback<Schema$File>
-    ): void | GaxiosPromise<Schema$File> {
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2862,7 +4312,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$File>(parameters, callback);
+        createAPIRequest<Schema$File>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$File>(parameters);
       }
@@ -2871,17 +4324,196 @@ export namespace drive_v3 {
     /**
      * drive.files.create
      * @desc Creates a new file.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.create({
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
+     *     ignoreDefaultVisibility: 'placeholder-value',
+     *     // Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
+     *     keepRevisionForever: 'placeholder-value',
+     *     // A language hint for OCR processing during image import (ISO 639-1 code).
+     *     ocrLanguage: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Whether to use the uploaded content as indexable text.
+     *     useContentAsIndexableText: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appProperties": {},
+     *       //   "capabilities": {},
+     *       //   "contentHints": {},
+     *       //   "copyRequiresWriterPermission": false,
+     *       //   "createdTime": "my_createdTime",
+     *       //   "description": "my_description",
+     *       //   "driveId": "my_driveId",
+     *       //   "explicitlyTrashed": false,
+     *       //   "exportLinks": {},
+     *       //   "fileExtension": "my_fileExtension",
+     *       //   "folderColorRgb": "my_folderColorRgb",
+     *       //   "fullFileExtension": "my_fullFileExtension",
+     *       //   "hasAugmentedPermissions": false,
+     *       //   "hasThumbnail": false,
+     *       //   "headRevisionId": "my_headRevisionId",
+     *       //   "iconLink": "my_iconLink",
+     *       //   "id": "my_id",
+     *       //   "imageMediaMetadata": {},
+     *       //   "isAppAuthorized": false,
+     *       //   "kind": "my_kind",
+     *       //   "lastModifyingUser": {},
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedByMe": false,
+     *       //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *       //   "modifiedTime": "my_modifiedTime",
+     *       //   "name": "my_name",
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "ownedByMe": false,
+     *       //   "owners": [],
+     *       //   "parents": [],
+     *       //   "permissionIds": [],
+     *       //   "permissions": [],
+     *       //   "properties": {},
+     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *       //   "shared": false,
+     *       //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *       //   "sharingUser": {},
+     *       //   "shortcutDetails": {},
+     *       //   "size": "my_size",
+     *       //   "spaces": [],
+     *       //   "starred": false,
+     *       //   "teamDriveId": "my_teamDriveId",
+     *       //   "thumbnailLink": "my_thumbnailLink",
+     *       //   "thumbnailVersion": "my_thumbnailVersion",
+     *       //   "trashed": false,
+     *       //   "trashedTime": "my_trashedTime",
+     *       //   "trashingUser": {},
+     *       //   "version": "my_version",
+     *       //   "videoMediaMetadata": {},
+     *       //   "viewedByMe": false,
+     *       //   "viewedByMeTime": "my_viewedByMeTime",
+     *       //   "viewersCanCopyContent": false,
+     *       //   "webContentLink": "my_webContentLink",
+     *       //   "webViewLink": "my_webViewLink",
+     *       //   "writersCanShare": false
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appProperties": {},
+     *   //   "capabilities": {},
+     *   //   "contentHints": {},
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "createdTime": "my_createdTime",
+     *   //   "description": "my_description",
+     *   //   "driveId": "my_driveId",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "lastModifyingUser": {},
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMe": false,
+     *   //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "name": "my_name",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": {},
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "shared": false,
+     *   //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "size": "my_size",
+     *   //   "spaces": [],
+     *   //   "starred": false,
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "trashed": false,
+     *   //   "trashedTime": "my_trashedTime",
+     *   //   "trashingUser": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "viewedByMe": false,
+     *   //   "viewedByMeTime": "my_viewedByMeTime",
+     *   //   "viewersCanCopyContent": false,
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
      * @param {boolean=} params.ignoreDefaultVisibility Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
-     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
+     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useContentAsIndexableText Whether to use the uploaded content as indexable text.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -2890,9 +4522,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Files$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Files$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$File>;
+    create(
+      params: Params$Resource$Files$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Files$Create,
       options: MethodOptions | BodyResponseCallback<Schema$File>,
@@ -2906,10 +4547,17 @@ export namespace drive_v3 {
     create(
       paramsOrCallback?:
         | Params$Resource$Files$Create
-        | BodyResponseCallback<Schema$File>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
-      callback?: BodyResponseCallback<Schema$File>
-    ): void | GaxiosPromise<Schema$File> {
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2943,7 +4591,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$File>(parameters, callback);
+        createAPIRequest<Schema$File>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$File>(parameters);
       }
@@ -2952,6 +4603,49 @@ export namespace drive_v3 {
     /**
      * drive.files.delete
      * @desc Permanently deletes a file owned by the user without moving it to the trash. If the file belongs to a shared drive the user must be an organizer on the parent. If the target is a folder, all descendants owned by the user are also deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.delete({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.delete
      * @memberOf! ()
      *
@@ -2964,9 +4658,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Files$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Files$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Files$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Files$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2980,10 +4683,15 @@ export namespace drive_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Files$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3016,7 +4724,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3025,6 +4736,38 @@ export namespace drive_v3 {
     /**
      * drive.files.emptyTrash
      * @desc Permanently deletes all of the user's trashed files.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.emptyTrash({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.emptyTrash
      * @memberOf! ()
      *
@@ -3034,9 +4777,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     emptyTrash(
+      params: Params$Resource$Files$Emptytrash,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    emptyTrash(
       params?: Params$Resource$Files$Emptytrash,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    emptyTrash(
+      params: Params$Resource$Files$Emptytrash,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     emptyTrash(
       params: Params$Resource$Files$Emptytrash,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3050,10 +4802,15 @@ export namespace drive_v3 {
     emptyTrash(
       paramsOrCallback?:
         | Params$Resource$Files$Emptytrash
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Emptytrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3086,7 +4843,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3095,6 +4855,47 @@ export namespace drive_v3 {
     /**
      * drive.files.export
      * @desc Exports a Google Doc to the requested MIME type and returns the exported content. Please note that the exported content is limited to 10MB.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.export({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The MIME type of the format requested for this export.
+     *     mimeType: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.export
      * @memberOf! ()
      *
@@ -3106,9 +4907,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     export(
+      params: Params$Resource$Files$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
       params?: Params$Resource$Files$Export,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    export(
+      params: Params$Resource$Files$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     export(
       params: Params$Resource$Files$Export,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3122,10 +4932,15 @@ export namespace drive_v3 {
     export(
       paramsOrCallback?:
         | Params$Resource$Files$Export
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3158,7 +4973,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3167,6 +4985,54 @@ export namespace drive_v3 {
     /**
      * drive.files.generateIds
      * @desc Generates a set of file IDs which can be provided in create or copy requests.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.generateIds({
+     *     // The number of IDs to return.
+     *     count: 'placeholder-value',
+     *     // The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
+     *     space: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ids": [],
+     *   //   "kind": "my_kind",
+     *   //   "space": "my_space"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.generateIds
      * @memberOf! ()
      *
@@ -3178,9 +5044,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     generateIds(
+      params: Params$Resource$Files$Generateids,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateIds(
       params?: Params$Resource$Files$Generateids,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GeneratedIds>;
+    generateIds(
+      params: Params$Resource$Files$Generateids,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generateIds(
       params: Params$Resource$Files$Generateids,
       options: MethodOptions | BodyResponseCallback<Schema$GeneratedIds>,
@@ -3194,12 +5069,17 @@ export namespace drive_v3 {
     generateIds(
       paramsOrCallback?:
         | Params$Resource$Files$Generateids
-        | BodyResponseCallback<Schema$GeneratedIds>,
+        | BodyResponseCallback<Schema$GeneratedIds>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GeneratedIds>,
-      callback?: BodyResponseCallback<Schema$GeneratedIds>
-    ): void | GaxiosPromise<Schema$GeneratedIds> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GeneratedIds>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GeneratedIds>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$GeneratedIds> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Files$Generateids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3233,7 +5113,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GeneratedIds>(parameters, callback);
+        createAPIRequest<Schema$GeneratedIds>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GeneratedIds>(parameters);
       }
@@ -3242,6 +5125,115 @@ export namespace drive_v3 {
     /**
      * drive.files.get
      * @desc Gets a file's metadata or content by ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.get({
+     *     // Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
+     *     acknowledgeAbuse: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appProperties": {},
+     *   //   "capabilities": {},
+     *   //   "contentHints": {},
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "createdTime": "my_createdTime",
+     *   //   "description": "my_description",
+     *   //   "driveId": "my_driveId",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "lastModifyingUser": {},
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMe": false,
+     *   //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "name": "my_name",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": {},
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "shared": false,
+     *   //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "size": "my_size",
+     *   //   "spaces": [],
+     *   //   "starred": false,
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "trashed": false,
+     *   //   "trashedTime": "my_trashedTime",
+     *   //   "trashingUser": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "viewedByMe": false,
+     *   //   "viewedByMeTime": "my_viewedByMeTime",
+     *   //   "viewersCanCopyContent": false,
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.get
      * @memberOf! ()
      *
@@ -3255,9 +5247,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Files$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Files$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$File>;
+    get(
+      params: Params$Resource$Files$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Files$Get,
       options: MethodOptions | BodyResponseCallback<Schema$File>,
@@ -3271,10 +5272,17 @@ export namespace drive_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Files$Get
-        | BodyResponseCallback<Schema$File>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
-      callback?: BodyResponseCallback<Schema$File>
-    ): void | GaxiosPromise<Schema$File> {
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3307,7 +5315,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$File>(parameters, callback);
+        createAPIRequest<Schema$File>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$File>(parameters);
       }
@@ -3316,6 +5327,81 @@ export namespace drive_v3 {
     /**
      * drive.files.list
      * @desc Lists or searches files.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.list({
+     *     // Bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'drive' and 'allDrives'. Prefer 'user' or 'drive' to 'allDrives' for efficiency.
+     *     corpora: 'placeholder-value',
+     *     // The source of files to list. Deprecated: use 'corpora' instead.
+     *     corpus: 'placeholder-value',
+     *     // ID of the shared drive to search.
+     *     driveId: 'placeholder-value',
+     *     // Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
+     *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // Deprecated use includeItemsFromAllDrives instead.
+     *     includeTeamDriveItems: 'placeholder-value',
+     *     // A comma-separated list of sort keys. Valid keys are 'createdTime', 'folder', 'modifiedByMeTime', 'modifiedTime', 'name', 'name_natural', 'quotaBytesUsed', 'recency', 'sharedWithMeTime', 'starred', and 'viewedByMeTime'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedTime desc,name. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // A query for filtering the file results. See the "Search for Files" guide for supported syntax.
+     *     q: 'placeholder-value',
+     *     // A comma-separated list of spaces to query within the corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     *     spaces: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated use driveId instead.
+     *     teamDriveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "incompleteSearch": false,
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.list
      * @memberOf! ()
      *
@@ -3323,7 +5409,7 @@ export namespace drive_v3 {
      * @param {string=} params.corpora Bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'drive' and 'allDrives'. Prefer 'user' or 'drive' to 'allDrives' for efficiency.
      * @param {string=} params.corpus The source of files to list. Deprecated: use 'corpora' instead.
      * @param {string=} params.driveId ID of the shared drive to search.
-     * @param {boolean=} params.includeItemsFromAllDrives Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
+     * @param {boolean=} params.includeItemsFromAllDrives Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdTime', 'folder', 'modifiedByMeTime', 'modifiedTime', 'name', 'name_natural', 'quotaBytesUsed', 'recency', 'sharedWithMeTime', 'starred', and 'viewedByMeTime'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedTime desc,name. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      * @param {integer=} params.pageSize The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
@@ -3338,9 +5424,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Files$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Files$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FileList>;
+    list(
+      params: Params$Resource$Files$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Files$List,
       options: MethodOptions | BodyResponseCallback<Schema$FileList>,
@@ -3354,10 +5449,17 @@ export namespace drive_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Files$List
-        | BodyResponseCallback<Schema$FileList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$FileList>,
-      callback?: BodyResponseCallback<Schema$FileList>
-    ): void | GaxiosPromise<Schema$FileList> {
+        | BodyResponseCallback<Schema$FileList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FileList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FileList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FileList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3387,7 +5489,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FileList>(parameters, callback);
+        createAPIRequest<Schema$FileList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FileList>(parameters);
       }
@@ -3396,19 +5501,204 @@ export namespace drive_v3 {
     /**
      * drive.files.update
      * @desc Updates a file's metadata and/or content with patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.scripts',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.update({
+     *     // A comma-separated list of parent IDs to add.
+     *     addParents: 'placeholder-value',
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
+     *     keepRevisionForever: 'placeholder-value',
+     *     // A language hint for OCR processing during image import (ISO 639-1 code).
+     *     ocrLanguage: 'placeholder-value',
+     *     // A comma-separated list of parent IDs to remove.
+     *     removeParents: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Whether to use the uploaded content as indexable text.
+     *     useContentAsIndexableText: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appProperties": {},
+     *       //   "capabilities": {},
+     *       //   "contentHints": {},
+     *       //   "copyRequiresWriterPermission": false,
+     *       //   "createdTime": "my_createdTime",
+     *       //   "description": "my_description",
+     *       //   "driveId": "my_driveId",
+     *       //   "explicitlyTrashed": false,
+     *       //   "exportLinks": {},
+     *       //   "fileExtension": "my_fileExtension",
+     *       //   "folderColorRgb": "my_folderColorRgb",
+     *       //   "fullFileExtension": "my_fullFileExtension",
+     *       //   "hasAugmentedPermissions": false,
+     *       //   "hasThumbnail": false,
+     *       //   "headRevisionId": "my_headRevisionId",
+     *       //   "iconLink": "my_iconLink",
+     *       //   "id": "my_id",
+     *       //   "imageMediaMetadata": {},
+     *       //   "isAppAuthorized": false,
+     *       //   "kind": "my_kind",
+     *       //   "lastModifyingUser": {},
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedByMe": false,
+     *       //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *       //   "modifiedTime": "my_modifiedTime",
+     *       //   "name": "my_name",
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "ownedByMe": false,
+     *       //   "owners": [],
+     *       //   "parents": [],
+     *       //   "permissionIds": [],
+     *       //   "permissions": [],
+     *       //   "properties": {},
+     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *       //   "shared": false,
+     *       //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *       //   "sharingUser": {},
+     *       //   "shortcutDetails": {},
+     *       //   "size": "my_size",
+     *       //   "spaces": [],
+     *       //   "starred": false,
+     *       //   "teamDriveId": "my_teamDriveId",
+     *       //   "thumbnailLink": "my_thumbnailLink",
+     *       //   "thumbnailVersion": "my_thumbnailVersion",
+     *       //   "trashed": false,
+     *       //   "trashedTime": "my_trashedTime",
+     *       //   "trashingUser": {},
+     *       //   "version": "my_version",
+     *       //   "videoMediaMetadata": {},
+     *       //   "viewedByMe": false,
+     *       //   "viewedByMeTime": "my_viewedByMeTime",
+     *       //   "viewersCanCopyContent": false,
+     *       //   "webContentLink": "my_webContentLink",
+     *       //   "webViewLink": "my_webViewLink",
+     *       //   "writersCanShare": false
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appProperties": {},
+     *   //   "capabilities": {},
+     *   //   "contentHints": {},
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "createdTime": "my_createdTime",
+     *   //   "description": "my_description",
+     *   //   "driveId": "my_driveId",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "lastModifyingUser": {},
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMe": false,
+     *   //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "name": "my_name",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": {},
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "shared": false,
+     *   //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "size": "my_size",
+     *   //   "spaces": [],
+     *   //   "starred": false,
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "trashed": false,
+     *   //   "trashedTime": "my_trashedTime",
+     *   //   "trashingUser": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "viewedByMe": false,
+     *   //   "viewedByMeTime": "my_viewedByMeTime",
+     *   //   "viewersCanCopyContent": false,
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.addParents A comma-separated list of parent IDs to add.
+     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
+     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
      * @param {string=} params.removeParents A comma-separated list of parent IDs to remove.
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useContentAsIndexableText Whether to use the uploaded content as indexable text.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -3417,9 +5707,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Files$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Files$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$File>;
+    update(
+      params: Params$Resource$Files$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Files$Update,
       options: MethodOptions | BodyResponseCallback<Schema$File>,
@@ -3433,10 +5732,17 @@ export namespace drive_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Files$Update
-        | BodyResponseCallback<Schema$File>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
-      callback?: BodyResponseCallback<Schema$File>
-    ): void | GaxiosPromise<Schema$File> {
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3473,7 +5779,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$File>(parameters, callback);
+        createAPIRequest<Schema$File>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$File>(parameters);
       }
@@ -3482,6 +5791,86 @@ export namespace drive_v3 {
     /**
      * drive.files.watch
      * @desc Subscribes to changes to a file
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.watch({
+     *     // Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
+     *     acknowledgeAbuse: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.files.watch
      * @memberOf! ()
      *
@@ -3490,15 +5879,24 @@ export namespace drive_v3 {
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {().Channel} params.resource Request body data
+     * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     watch(
+      params: Params$Resource$Files$Watch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    watch(
       params?: Params$Resource$Files$Watch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Channel>;
+    watch(
+      params: Params$Resource$Files$Watch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     watch(
       params: Params$Resource$Files$Watch,
       options: MethodOptions | BodyResponseCallback<Schema$Channel>,
@@ -3512,10 +5910,17 @@ export namespace drive_v3 {
     watch(
       paramsOrCallback?:
         | Params$Resource$Files$Watch
-        | BodyResponseCallback<Schema$Channel>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
-      callback?: BodyResponseCallback<Schema$Channel>
-    ): void | GaxiosPromise<Schema$Channel> {
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3548,7 +5953,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Channel>(parameters, callback);
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
       }
@@ -3557,10 +5965,9 @@ export namespace drive_v3 {
 
   export interface Params$Resource$Files$Copy extends StandardParameters {
     /**
-     * Auth client or API Key for the request
+     * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
      */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
+    enforceSingleParent?: boolean;
     /**
      * The ID of the file.
      */
@@ -3570,7 +5977,7 @@ export namespace drive_v3 {
      */
     ignoreDefaultVisibility?: boolean;
     /**
-     * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
+     * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      */
     keepRevisionForever?: boolean;
     /**
@@ -3593,16 +6000,15 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
+     * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
      */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
+    enforceSingleParent?: boolean;
     /**
      * Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
      */
     ignoreDefaultVisibility?: boolean;
     /**
-     * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
+     * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      */
     keepRevisionForever?: boolean;
     /**
@@ -3644,11 +6050,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the file.
      */
     fileId?: string;
@@ -3661,18 +6062,9 @@ export namespace drive_v3 {
      */
     supportsTeamDrives?: boolean;
   }
-  export interface Params$Resource$Files$Emptytrash extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Files$Emptytrash
+    extends StandardParameters {}
   export interface Params$Resource$Files$Export extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the file.
      */
@@ -3685,11 +6077,6 @@ export namespace drive_v3 {
   export interface Params$Resource$Files$Generateids
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The number of IDs to return.
      */
     count?: number;
@@ -3699,11 +6086,6 @@ export namespace drive_v3 {
     space?: string;
   }
   export interface Params$Resource$Files$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
      */
@@ -3723,11 +6105,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'drive' and 'allDrives'. Prefer 'user' or 'drive' to 'allDrives' for efficiency.
      */
     corpora?: string;
@@ -3740,7 +6117,7 @@ export namespace drive_v3 {
      */
     driveId?: string;
     /**
-     * Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
+     * Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
      */
     includeItemsFromAllDrives?: boolean;
     /**
@@ -3782,20 +6159,19 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$Update extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A comma-separated list of parent IDs to add.
      */
     addParents?: string;
+    /**
+     * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
+     */
+    enforceSingleParent?: boolean;
     /**
      * The ID of the file.
      */
     fileId?: string;
     /**
-     * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
+     * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      */
     keepRevisionForever?: boolean;
     /**
@@ -3841,11 +6217,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$Watch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
      */
     acknowledgeAbuse?: boolean;
@@ -3877,26 +6248,128 @@ export namespace drive_v3 {
     /**
      * drive.permissions.create
      * @desc Creates a permission for a file or shared drive.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.create({
+     *     // A plain text custom message to include in the notification email.
+     *     emailMessage: 'placeholder-value',
+     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. See moveToNewOwnersRoot for details.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // This parameter only takes effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. When set to true, the item is moved to the new owner's My Drive root folder and all prior parents removed. If set to false, when enforceSingleParent=true, parents are not changed. If set to false, when enforceSingleParent=false, existing parents are not changed; however, the file will be added to the new owner's My Drive root folder, unless it is already in the new owner's My Drive.
+     *     moveToNewOwnersRoot: 'placeholder-value',
+     *     // Whether to send a notification email when sharing to users or groups. This defaults to true for users and groups, and is not allowed for other requests. It must not be disabled for ownership transfers.
+     *     sendNotificationEmail: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
+     *     transferOwnership: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowFileDiscovery": false,
+     *       //   "deleted": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "domain": "my_domain",
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissionDetails": [],
+     *       //   "photoLink": "my_photoLink",
+     *       //   "role": "my_role",
+     *       //   "teamDrivePermissionDetails": [],
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowFileDiscovery": false,
+     *   //   "deleted": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "domain": "my_domain",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissionDetails": [],
+     *   //   "photoLink": "my_photoLink",
+     *   //   "role": "my_role",
+     *   //   "teamDrivePermissionDetails": [],
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.permissions.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.emailMessage A plain text custom message to include in the notification email.
+     * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. See moveToNewOwnersRoot for details.
      * @param {string} params.fileId The ID of the file or shared drive.
+     * @param {boolean=} params.moveToNewOwnersRoot This parameter only takes effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. When set to true, the item is moved to the new owner's My Drive root folder and all prior parents removed. If set to false, when enforceSingleParent=true, parents are not changed. If set to false, when enforceSingleParent=false, existing parents are not changed; however, the file will be added to the new owner's My Drive root folder, unless it is already in the new owner's My Drive.
      * @param {boolean=} params.sendNotificationEmail Whether to send a notification email when sharing to users or groups. This defaults to true for users and groups, and is not allowed for other requests. It must not be disabled for ownership transfers.
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.transferOwnership Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     * @param {().Permission} params.resource Request body data
+     * @param {().Permission} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Permissions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Permissions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Permission>;
+    create(
+      params: Params$Resource$Permissions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Permissions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Permission>,
@@ -3910,12 +6383,17 @@ export namespace drive_v3 {
     create(
       paramsOrCallback?:
         | Params$Resource$Permissions$Create
-        | BodyResponseCallback<Schema$Permission>,
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Permission>,
-      callback?: BodyResponseCallback<Schema$Permission>
-    ): void | GaxiosPromise<Schema$Permission> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Permission> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3949,7 +6427,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Permission>(parameters, callback);
+        createAPIRequest<Schema$Permission>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Permission>(parameters);
       }
@@ -3958,6 +6439,52 @@ export namespace drive_v3 {
     /**
      * drive.permissions.delete
      * @desc Deletes a permission.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.delete({
+     *     // The ID of the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the permission.
+     *     permissionId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.permissions.delete
      * @memberOf! ()
      *
@@ -3972,9 +6499,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Permissions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Permissions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Permissions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Permissions$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3988,10 +6524,15 @@ export namespace drive_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Permissions$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4024,7 +6565,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4033,6 +6577,73 @@ export namespace drive_v3 {
     /**
      * drive.permissions.get
      * @desc Gets a permission by ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.get({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the permission.
+     *     permissionId: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowFileDiscovery": false,
+     *   //   "deleted": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "domain": "my_domain",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissionDetails": [],
+     *   //   "photoLink": "my_photoLink",
+     *   //   "role": "my_role",
+     *   //   "teamDrivePermissionDetails": [],
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.permissions.get
      * @memberOf! ()
      *
@@ -4047,9 +6658,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Permissions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Permissions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Permission>;
+    get(
+      params: Params$Resource$Permissions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Permissions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Permission>,
@@ -4063,12 +6683,17 @@ export namespace drive_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Permissions$Get
-        | BodyResponseCallback<Schema$Permission>,
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Permission>,
-      callback?: BodyResponseCallback<Schema$Permission>
-    ): void | GaxiosPromise<Schema$Permission> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Permission> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4100,7 +6725,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Permission>(parameters, callback);
+        createAPIRequest<Schema$Permission>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Permission>(parameters);
       }
@@ -4109,6 +6737,65 @@ export namespace drive_v3 {
     /**
      * drive.permissions.list
      * @desc Lists a file's or shared drive's permissions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.list({
+     *     // The ID of the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.permissions.list
      * @memberOf! ()
      *
@@ -4124,9 +6811,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Permissions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Permissions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PermissionList>;
+    list(
+      params: Params$Resource$Permissions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Permissions$List,
       options: MethodOptions | BodyResponseCallback<Schema$PermissionList>,
@@ -4140,12 +6836,17 @@ export namespace drive_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Permissions$List
-        | BodyResponseCallback<Schema$PermissionList>,
+        | BodyResponseCallback<Schema$PermissionList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PermissionList>,
-      callback?: BodyResponseCallback<Schema$PermissionList>
-    ): void | GaxiosPromise<Schema$PermissionList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PermissionList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PermissionList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PermissionList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4178,7 +6879,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PermissionList>(parameters, callback);
+        createAPIRequest<Schema$PermissionList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PermissionList>(parameters);
       }
@@ -4187,6 +6891,93 @@ export namespace drive_v3 {
     /**
      * drive.permissions.update
      * @desc Updates a permission with patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.update({
+     *     // The ID of the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the permission.
+     *     permissionId: 'placeholder-value',
+     *     // Whether to remove the expiration date.
+     *     removeExpiration: 'placeholder-value',
+     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated use supportsAllDrives instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
+     *     transferOwnership: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowFileDiscovery": false,
+     *       //   "deleted": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "domain": "my_domain",
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissionDetails": [],
+     *       //   "photoLink": "my_photoLink",
+     *       //   "role": "my_role",
+     *       //   "teamDrivePermissionDetails": [],
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowFileDiscovery": false,
+     *   //   "deleted": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "domain": "my_domain",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissionDetails": [],
+     *   //   "photoLink": "my_photoLink",
+     *   //   "role": "my_role",
+     *   //   "teamDrivePermissionDetails": [],
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.permissions.update
      * @memberOf! ()
      *
@@ -4198,15 +6989,24 @@ export namespace drive_v3 {
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.transferOwnership Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     * @param {().Permission} params.resource Request body data
+     * @param {().Permission} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Permissions$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Permissions$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Permission>;
+    update(
+      params: Params$Resource$Permissions$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Permissions$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Permission>,
@@ -4220,12 +7020,17 @@ export namespace drive_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Permissions$Update
-        | BodyResponseCallback<Schema$Permission>,
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Permission>,
-      callback?: BodyResponseCallback<Schema$Permission>
-    ): void | GaxiosPromise<Schema$Permission> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Permission> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4258,7 +7063,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Permission>(parameters, callback);
+        createAPIRequest<Schema$Permission>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Permission>(parameters);
       }
@@ -4268,18 +7076,21 @@ export namespace drive_v3 {
   export interface Params$Resource$Permissions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A plain text custom message to include in the notification email.
      */
     emailMessage?: string;
     /**
+     * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. See moveToNewOwnersRoot for details.
+     */
+    enforceSingleParent?: boolean;
+    /**
      * The ID of the file or shared drive.
      */
     fileId?: string;
+    /**
+     * This parameter only takes effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. When set to true, the item is moved to the new owner's My Drive root folder and all prior parents removed. If set to false, when enforceSingleParent=true, parents are not changed. If set to false, when enforceSingleParent=false, existing parents are not changed; however, the file will be added to the new owner's My Drive root folder, unless it is already in the new owner's My Drive.
+     */
+    moveToNewOwnersRoot?: boolean;
     /**
      * Whether to send a notification email when sharing to users or groups. This defaults to true for users and groups, and is not allowed for other requests. It must not be disabled for ownership transfers.
      */
@@ -4309,11 +7120,6 @@ export namespace drive_v3 {
   export interface Params$Resource$Permissions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the file or shared drive.
      */
     fileId?: string;
@@ -4336,11 +7142,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Permissions$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the file.
      */
     fileId?: string;
@@ -4362,11 +7163,6 @@ export namespace drive_v3 {
     useDomainAdminAccess?: boolean;
   }
   export interface Params$Resource$Permissions$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the file or shared drive.
      */
@@ -4394,11 +7190,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Permissions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the file or shared drive.
      */
@@ -4443,21 +7234,99 @@ export namespace drive_v3 {
     /**
      * drive.replies.create
      * @desc Creates a new reply to a comment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.create({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "author": {},
+     *       //   "content": "my_content",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "deleted": false,
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedTime": "my_modifiedTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedTime": "my_modifiedTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.replies.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {().Reply} params.resource Request body data
+     * @param {().Reply} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Replies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Replies$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Reply>;
+    create(
+      params: Params$Resource$Replies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Replies$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Reply>,
@@ -4471,10 +7340,17 @@ export namespace drive_v3 {
     create(
       paramsOrCallback?:
         | Params$Resource$Replies$Create
-        | BodyResponseCallback<Schema$Reply>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Reply>,
-      callback?: BodyResponseCallback<Schema$Reply>
-    ): void | GaxiosPromise<Schema$Reply> {
+        | BodyResponseCallback<Schema$Reply>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Reply>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Reply>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Reply> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4506,7 +7382,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Reply>(parameters, callback);
+        createAPIRequest<Schema$Reply>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Reply>(parameters);
       }
@@ -4515,6 +7394,48 @@ export namespace drive_v3 {
     /**
      * drive.replies.delete
      * @desc Deletes a reply.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.delete({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the reply.
+     *     replyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.replies.delete
      * @memberOf! ()
      *
@@ -4527,9 +7448,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Replies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Replies$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Replies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Replies$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4543,10 +7473,15 @@ export namespace drive_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Replies$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4579,7 +7514,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4588,6 +7526,64 @@ export namespace drive_v3 {
     /**
      * drive.replies.get
      * @desc Gets a reply by ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.get({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Whether to return deleted replies. Deleted replies will not include their original content.
+     *     includeDeleted: 'placeholder-value',
+     *     // The ID of the reply.
+     *     replyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedTime": "my_modifiedTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.replies.get
      * @memberOf! ()
      *
@@ -4601,9 +7597,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Replies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Replies$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Reply>;
+    get(
+      params: Params$Resource$Replies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Replies$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Reply>,
@@ -4617,10 +7622,17 @@ export namespace drive_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Replies$Get
-        | BodyResponseCallback<Schema$Reply>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Reply>,
-      callback?: BodyResponseCallback<Schema$Reply>
-    ): void | GaxiosPromise<Schema$Reply> {
+        | BodyResponseCallback<Schema$Reply>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Reply>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Reply>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Reply> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4653,7 +7665,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Reply>(parameters, callback);
+        createAPIRequest<Schema$Reply>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Reply>(parameters);
       }
@@ -4662,6 +7677,60 @@ export namespace drive_v3 {
     /**
      * drive.replies.list
      * @desc Lists a comment's replies.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.list({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Whether to include deleted replies. Deleted replies will not include their original content.
+     *     includeDeleted: 'placeholder-value',
+     *     // The maximum number of replies to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "replies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.replies.list
      * @memberOf! ()
      *
@@ -4676,9 +7745,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Replies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Replies$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReplyList>;
+    list(
+      params: Params$Resource$Replies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Replies$List,
       options: MethodOptions | BodyResponseCallback<Schema$ReplyList>,
@@ -4692,12 +7770,17 @@ export namespace drive_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Replies$List
-        | BodyResponseCallback<Schema$ReplyList>,
+        | BodyResponseCallback<Schema$ReplyList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReplyList>,
-      callback?: BodyResponseCallback<Schema$ReplyList>
-    ): void | GaxiosPromise<Schema$ReplyList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReplyList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReplyList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ReplyList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4729,7 +7812,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ReplyList>(parameters, callback);
+        createAPIRequest<Schema$ReplyList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ReplyList>(parameters);
       }
@@ -4738,6 +7824,77 @@ export namespace drive_v3 {
     /**
      * drive.replies.update
      * @desc Updates a reply with patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.update({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the reply.
+     *     replyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "author": {},
+     *       //   "content": "my_content",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "deleted": false,
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedTime": "my_modifiedTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedTime": "my_modifiedTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.replies.update
      * @memberOf! ()
      *
@@ -4745,15 +7902,24 @@ export namespace drive_v3 {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
-     * @param {().Reply} params.resource Request body data
+     * @param {().Reply} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Replies$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Replies$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Reply>;
+    update(
+      params: Params$Resource$Replies$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Replies$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Reply>,
@@ -4767,10 +7933,17 @@ export namespace drive_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Replies$Update
-        | BodyResponseCallback<Schema$Reply>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Reply>,
-      callback?: BodyResponseCallback<Schema$Reply>
-    ): void | GaxiosPromise<Schema$Reply> {
+        | BodyResponseCallback<Schema$Reply>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Reply>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Reply>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Reply> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4803,7 +7976,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Reply>(parameters, callback);
+        createAPIRequest<Schema$Reply>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Reply>(parameters);
       }
@@ -4811,11 +7987,6 @@ export namespace drive_v3 {
   }
 
   export interface Params$Resource$Replies$Create extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the comment.
      */
@@ -4832,11 +8003,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Replies$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the comment.
      */
     commentId?: string;
@@ -4850,11 +8016,6 @@ export namespace drive_v3 {
     replyId?: string;
   }
   export interface Params$Resource$Replies$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the comment.
      */
@@ -4873,11 +8034,6 @@ export namespace drive_v3 {
     replyId?: string;
   }
   export interface Params$Resource$Replies$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the comment.
      */
@@ -4900,11 +8056,6 @@ export namespace drive_v3 {
     pageToken?: string;
   }
   export interface Params$Resource$Replies$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the comment.
      */
@@ -4933,6 +8084,47 @@ export namespace drive_v3 {
     /**
      * drive.revisions.delete
      * @desc Permanently deletes a file version. You can only delete revisions for files with binary content in Google Drive, like images or videos. Revisions for other files, like Google Docs or Sheets, and the last remaining file version can't be deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.revisions.delete({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the revision.
+     *     revisionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.revisions.delete
      * @memberOf! ()
      *
@@ -4944,9 +8136,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Revisions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Revisions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Revisions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Revisions$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4960,10 +8161,15 @@ export namespace drive_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Revisions$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4995,7 +8201,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -5004,6 +8213,70 @@ export namespace drive_v3 {
     /**
      * drive.revisions.get
      * @desc Gets a revision's metadata or content by ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.revisions.get({
+     *     // Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
+     *     acknowledgeAbuse: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the revision.
+     *     revisionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exportLinks": {},
+     *   //   "id": "my_id",
+     *   //   "keepForever": false,
+     *   //   "kind": "my_kind",
+     *   //   "lastModifyingUser": {},
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "publishAuto": false,
+     *   //   "published": false,
+     *   //   "publishedOutsideDomain": false,
+     *   //   "size": "my_size"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.revisions.get
      * @memberOf! ()
      *
@@ -5016,9 +8289,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Revisions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Revisions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Revision>;
+    get(
+      params: Params$Resource$Revisions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Revisions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Revision>,
@@ -5032,10 +8314,17 @@ export namespace drive_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Revisions$Get
-        | BodyResponseCallback<Schema$Revision>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Revision>,
-      callback?: BodyResponseCallback<Schema$Revision>
-    ): void | GaxiosPromise<Schema$Revision> {
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Revision> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5067,7 +8356,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Revision>(parameters, callback);
+        createAPIRequest<Schema$Revision>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
       }
@@ -5076,6 +8368,60 @@ export namespace drive_v3 {
     /**
      * drive.revisions.list
      * @desc Lists a file's revisions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.revisions.list({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The maximum number of revisions to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "revisions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.revisions.list
      * @memberOf! ()
      *
@@ -5088,9 +8434,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Revisions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Revisions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RevisionList>;
+    list(
+      params: Params$Resource$Revisions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Revisions$List,
       options: MethodOptions | BodyResponseCallback<Schema$RevisionList>,
@@ -5104,12 +8459,17 @@ export namespace drive_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Revisions$List
-        | BodyResponseCallback<Schema$RevisionList>,
+        | BodyResponseCallback<Schema$RevisionList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RevisionList>,
-      callback?: BodyResponseCallback<Schema$RevisionList>
-    ): void | GaxiosPromise<Schema$RevisionList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RevisionList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RevisionList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RevisionList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5142,7 +8502,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RevisionList>(parameters, callback);
+        createAPIRequest<Schema$RevisionList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RevisionList>(parameters);
       }
@@ -5151,21 +8514,108 @@ export namespace drive_v3 {
     /**
      * drive.revisions.update
      * @desc Updates a revision with patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.revisions.update({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the revision.
+     *     revisionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "exportLinks": {},
+     *       //   "id": "my_id",
+     *       //   "keepForever": false,
+     *       //   "kind": "my_kind",
+     *       //   "lastModifyingUser": {},
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedTime": "my_modifiedTime",
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "publishAuto": false,
+     *       //   "published": false,
+     *       //   "publishedOutsideDomain": false,
+     *       //   "size": "my_size"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exportLinks": {},
+     *   //   "id": "my_id",
+     *   //   "keepForever": false,
+     *   //   "kind": "my_kind",
+     *   //   "lastModifyingUser": {},
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "publishAuto": false,
+     *   //   "published": false,
+     *   //   "publishedOutsideDomain": false,
+     *   //   "size": "my_size"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.revisions.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.revisionId The ID of the revision.
-     * @param {().Revision} params.resource Request body data
+     * @param {().Revision} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Revisions$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Revisions$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Revision>;
+    update(
+      params: Params$Resource$Revisions$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Revisions$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Revision>,
@@ -5179,10 +8629,17 @@ export namespace drive_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Revisions$Update
-        | BodyResponseCallback<Schema$Revision>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Revision>,
-      callback?: BodyResponseCallback<Schema$Revision>
-    ): void | GaxiosPromise<Schema$Revision> {
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Revision> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5214,7 +8671,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Revision>(parameters, callback);
+        createAPIRequest<Schema$Revision>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
       }
@@ -5222,11 +8682,6 @@ export namespace drive_v3 {
   }
 
   export interface Params$Resource$Revisions$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the file.
      */
@@ -5237,11 +8692,6 @@ export namespace drive_v3 {
     revisionId?: string;
   }
   export interface Params$Resource$Revisions$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
      */
@@ -5257,11 +8707,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Revisions$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the file.
      */
     fileId?: string;
@@ -5275,11 +8720,6 @@ export namespace drive_v3 {
     pageToken?: string;
   }
   export interface Params$Resource$Revisions$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the file.
      */
@@ -5304,20 +8744,95 @@ export namespace drive_v3 {
     /**
      * drive.teamdrives.create
      * @desc Deprecated use drives.create instead.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.create({
+     *     // An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backgroundImageFile": {},
+     *       //   "backgroundImageLink": "my_backgroundImageLink",
+     *       //   "capabilities": {},
+     *       //   "colorRgb": "my_colorRgb",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "restrictions": {},
+     *       //   "themeId": "my_themeId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.teamdrives.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.requestId An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
-     * @param {().TeamDrive} params.resource Request body data
+     * @param {().TeamDrive} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Teamdrives$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Teamdrives$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TeamDrive>;
+    create(
+      params: Params$Resource$Teamdrives$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Teamdrives$Create,
       options: MethodOptions | BodyResponseCallback<Schema$TeamDrive>,
@@ -5331,12 +8846,17 @@ export namespace drive_v3 {
     create(
       paramsOrCallback?:
         | Params$Resource$Teamdrives$Create
-        | BodyResponseCallback<Schema$TeamDrive>,
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TeamDrive>,
-      callback?: BodyResponseCallback<Schema$TeamDrive>
-    ): void | GaxiosPromise<Schema$TeamDrive> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TeamDrive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Teamdrives$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5370,7 +8890,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TeamDrive>(parameters, callback);
+        createAPIRequest<Schema$TeamDrive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TeamDrive>(parameters);
       }
@@ -5379,6 +8902,41 @@ export namespace drive_v3 {
     /**
      * drive.teamdrives.delete
      * @desc Deprecated use drives.delete instead.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.delete({
+     *     // The ID of the Team Drive
+     *     teamDriveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.teamdrives.delete
      * @memberOf! ()
      *
@@ -5389,9 +8947,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Teamdrives$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Teamdrives$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Teamdrives$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Teamdrives$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -5405,10 +8972,15 @@ export namespace drive_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Teamdrives$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Teamdrives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5442,7 +9014,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -5451,6 +9026,60 @@ export namespace drive_v3 {
     /**
      * drive.teamdrives.get
      * @desc Deprecated use drives.get instead.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.get({
+     *     // The ID of the Team Drive
+     *     teamDriveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.teamdrives.get
      * @memberOf! ()
      *
@@ -5462,9 +9091,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Teamdrives$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Teamdrives$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TeamDrive>;
+    get(
+      params: Params$Resource$Teamdrives$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Teamdrives$Get,
       options: MethodOptions | BodyResponseCallback<Schema$TeamDrive>,
@@ -5478,12 +9116,17 @@ export namespace drive_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Teamdrives$Get
-        | BodyResponseCallback<Schema$TeamDrive>,
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TeamDrive>,
-      callback?: BodyResponseCallback<Schema$TeamDrive>
-    ): void | GaxiosPromise<Schema$TeamDrive> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TeamDrive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5516,7 +9159,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TeamDrive>(parameters, callback);
+        createAPIRequest<Schema$TeamDrive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TeamDrive>(parameters);
       }
@@ -5525,6 +9171,57 @@ export namespace drive_v3 {
     /**
      * drive.teamdrives.list
      * @desc Deprecated use drives.list instead.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.list({
+     *     // Maximum number of Team Drives to return.
+     *     pageSize: 'placeholder-value',
+     *     // Page token for Team Drives.
+     *     pageToken: 'placeholder-value',
+     *     // Query string for searching Team Drives.
+     *     q: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then all Team Drives of the domain in which the requester is an administrator are returned.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "teamDrives": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.teamdrives.list
      * @memberOf! ()
      *
@@ -5538,9 +9235,18 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Teamdrives$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Teamdrives$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TeamDriveList>;
+    list(
+      params: Params$Resource$Teamdrives$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Teamdrives$List,
       options: MethodOptions | BodyResponseCallback<Schema$TeamDriveList>,
@@ -5554,12 +9260,17 @@ export namespace drive_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Teamdrives$List
-        | BodyResponseCallback<Schema$TeamDriveList>,
+        | BodyResponseCallback<Schema$TeamDriveList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TeamDriveList>,
-      callback?: BodyResponseCallback<Schema$TeamDriveList>
-    ): void | GaxiosPromise<Schema$TeamDriveList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TeamDriveList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TeamDriveList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TeamDriveList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5592,7 +9303,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TeamDriveList>(parameters, callback);
+        createAPIRequest<Schema$TeamDriveList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TeamDriveList>(parameters);
       }
@@ -5601,21 +9315,98 @@ export namespace drive_v3 {
     /**
      * drive.teamdrives.update
      * @desc Deprecated use drives.update instead
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.update({
+     *     // The ID of the Team Drive
+     *     teamDriveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backgroundImageFile": {},
+     *       //   "backgroundImageLink": "my_backgroundImageLink",
+     *       //   "capabilities": {},
+     *       //   "colorRgb": "my_colorRgb",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "restrictions": {},
+     *       //   "themeId": "my_themeId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias drive.teamdrives.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.teamDriveId The ID of the Team Drive
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
-     * @param {().TeamDrive} params.resource Request body data
+     * @param {().TeamDrive} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Teamdrives$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Teamdrives$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TeamDrive>;
+    update(
+      params: Params$Resource$Teamdrives$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Teamdrives$Update,
       options: MethodOptions | BodyResponseCallback<Schema$TeamDrive>,
@@ -5629,12 +9420,17 @@ export namespace drive_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Teamdrives$Update
-        | BodyResponseCallback<Schema$TeamDrive>,
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TeamDrive>,
-      callback?: BodyResponseCallback<Schema$TeamDrive>
-    ): void | GaxiosPromise<Schema$TeamDrive> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TeamDrive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Teamdrives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5668,7 +9464,10 @@ export namespace drive_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TeamDrive>(parameters, callback);
+        createAPIRequest<Schema$TeamDrive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TeamDrive>(parameters);
       }
@@ -5677,11 +9476,6 @@ export namespace drive_v3 {
 
   export interface Params$Resource$Teamdrives$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
      */
@@ -5695,21 +9489,11 @@ export namespace drive_v3 {
   export interface Params$Resource$Teamdrives$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the Team Drive
      */
     teamDriveId?: string;
   }
   export interface Params$Resource$Teamdrives$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the Team Drive
      */
@@ -5720,11 +9504,6 @@ export namespace drive_v3 {
     useDomainAdminAccess?: boolean;
   }
   export interface Params$Resource$Teamdrives$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of Team Drives to return.
      */
@@ -5744,11 +9523,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Teamdrives$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the Team Drive
      */

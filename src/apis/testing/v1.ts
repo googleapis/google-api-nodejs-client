@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace testing_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace testing_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -202,6 +212,10 @@ export namespace testing_v1 {
      */
     orchestratorOption?: string | null;
     /**
+     * The option to run tests in multiple shards in parallel.
+     */
+    shardingOption?: Schema$ShardingOption;
+    /**
      * Required. The APK containing the test code to be executed.
      */
     testApk?: Schema$FileReference;
@@ -299,6 +313,10 @@ export namespace testing_v1 {
      * Tags for this dimension. Examples: &quot;default&quot;, &quot;preview&quot;, &quot;deprecated&quot;.
      */
     tags?: string[] | null;
+    /**
+     * URL of a thumbnail image (photo) of the device. e.g. https://lh3.googleusercontent.com/90WcauuJiCYABEl8U0lcZeuS5STUbf2yW...
+     */
+    thumbnailUrl?: string | null;
   }
   /**
    * A test of an android application that explores the application on a virtual or physical Android Device, finding culprits and crashes as it goes.
@@ -592,7 +610,7 @@ export namespace testing_v1 {
    */
   export interface Schema$FileReference {
     /**
-     * A path to a file in Google Cloud Storage. Example: gs://build-app-1414623860166/app-debug-unaligned.apk
+     * A path to a file in Google Cloud Storage. Example: gs://build-app-1414623860166/app%40debug-unaligned.apk These paths are expected to be url encoded (percent encoding)
      */
     gcsPath?: string | null;
   }
@@ -687,7 +705,7 @@ export namespace testing_v1 {
     iosDevices?: Schema$IosDevice[];
   }
   /**
-   * A description of an iOS device tests may be run on. Next tag: 10
+   * A description of an iOS device tests may be run on. Next tag: 13
    */
   export interface Schema$IosModel {
     /**
@@ -741,6 +759,23 @@ export namespace testing_v1 {
     orientations?: Schema$Orientation[];
   }
   /**
+   * A test of an iOS application that implements one or more game loop scenarios. This test type accepts an archived application (.ipa file) and a list of integer scenarios that will be executed on the app sequentially.
+   */
+  export interface Schema$IosTestLoop {
+    /**
+     * Output only. The bundle id for the application under test.
+     */
+    appBundleId?: string | null;
+    /**
+     * Required. The .ipa of the application to test.
+     */
+    appIpa?: Schema$FileReference;
+    /**
+     * The list of scenarios that should be run during the test. Defaults to the single scenario 0 if unspecified.
+     */
+    scenarios?: number[] | null;
+  }
+  /**
    * A description of how to set up an iOS device prior to running the test.
    */
   export interface Schema$IosTestSetup {
@@ -783,6 +818,10 @@ export namespace testing_v1 {
      */
     appBundleId?: string | null;
     /**
+     * The option to test special app entitlements. Setting this would re-sign the app having special entitlements with an explicit application-identifier. Currently supports testing aps-environment entitlement.
+     */
+    testSpecialEntitlements?: boolean | null;
+    /**
      * Required. The .zip containing the .xctestrun file and the contents of the DerivedData/Build/Products directory. The .xctestrun file in this zip is ignored if the xctestrun field is specified.
      */
     testsZip?: Schema$FileReference;
@@ -819,6 +858,15 @@ export namespace testing_v1 {
      * Tags for this dimension. Example: &quot;default&quot;.
      */
     tags?: string[] | null;
+  }
+  /**
+   * Shards test cases into the specified groups of packages, classes, and/or methods.  With manual sharding enabled, specifying test targets via environment_variables or in InstrumentationTest is invalid.
+   */
+  export interface Schema$ManualSharding {
+    /**
+     * Required. Group of packages, classes, and/or test methods to be run for each shard. The number of shard_test_targets must be &gt;= 1 and &lt;= 50.
+     */
+    testTargetsForShard?: Schema$TestTargetsForShard[];
   }
   export interface Schema$NetworkConfiguration {
     /**
@@ -945,6 +993,36 @@ export namespace testing_v1 {
     timeout?: string | null;
   }
   /**
+   * Output only. Details about the shard.
+   */
+  export interface Schema$Shard {
+    /**
+     * Output only. The total number of shards.
+     */
+    numShards?: number | null;
+    /**
+     * Output only. The index of the shard among all the shards.
+     */
+    shardIndex?: number | null;
+    /**
+     * Output only. Test targets for each shard.
+     */
+    testTargetsForShard?: Schema$TestTargetsForShard;
+  }
+  /**
+   * Options for enabling sharding.
+   */
+  export interface Schema$ShardingOption {
+    /**
+     * Shards test cases into the specified groups of packages, classes, and/or methods.
+     */
+    manualSharding?: Schema$ManualSharding;
+    /**
+     * Uniformly shards test cases given a total number of shards.
+     */
+    uniformSharding?: Schema$UniformSharding;
+  }
+  /**
    * A starting intent specified by an action, uri, and categories.
    */
   export interface Schema$StartActivityIntent {
@@ -960,6 +1038,12 @@ export namespace testing_v1 {
      * URI for the action.
      */
     uri?: string | null;
+  }
+  export interface Schema$SystraceSetup {
+    /**
+     * Systrace duration in seconds. Should be between 1 and 30 seconds. 0 disables systrace.
+     */
+    durationSeconds?: number | null;
   }
   /**
    * Additional details about the progress of the running test.
@@ -1015,6 +1099,10 @@ export namespace testing_v1 {
      * Output only. The cloud project that owns the test execution.
      */
     projectId?: string | null;
+    /**
+     * Output only. Details about the shard.
+     */
+    shard?: Schema$Shard;
     /**
      * Output only. Indicates the current progress of the test execution (e.g., FINISHED).
      */
@@ -1117,6 +1205,10 @@ export namespace testing_v1 {
      * The network traffic profile used for running the test. Available network profiles can be queried by using the NETWORK_CONFIGURATION environment type when calling TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog.
      */
     networkProfile?: string | null;
+    /**
+     * Systrace configuration for the run. If set a systrace will be taken, starting on test start and lasting for the configured duration. The systrace file thus obtained is put in the results bucket together with the other artifacts from the run.
+     */
+    systrace?: Schema$SystraceSetup;
   }
   /**
    * A description of how to run the test.
@@ -1143,6 +1235,10 @@ export namespace testing_v1 {
      */
     disableVideoRecording?: boolean | null;
     /**
+     * An iOS application with a test loop.
+     */
+    iosTestLoop?: Schema$IosTestLoop;
+    /**
      * Test setup requirements for iOS.
      */
     iosTestSetup?: Schema$IosTestSetup;
@@ -1158,6 +1254,15 @@ export namespace testing_v1 {
      * Max time a test execution is allowed to run before it is automatically cancelled. The default value is 5 min.
      */
     testTimeout?: string | null;
+  }
+  /**
+   * Test targets for a shard.
+   */
+  export interface Schema$TestTargetsForShard {
+    /**
+     * Group of packages, classes, and/or test methods to be run for each shard. The targets need to be specified in AndroidJUnitRunner argument format. For example, “package com.my.packages” “class com.my.package.MyClass”.  The number of shard_test_targets must be greater than 0.
+     */
+    testTargets?: string[] | null;
   }
   /**
    * Represents a tool results execution resource.  This has the results of a TestMatrix.
@@ -1236,6 +1341,15 @@ export namespace testing_v1 {
     packetLossRatio?: number | null;
   }
   /**
+   * Uniformly shards test cases given a total number of shards.  For Instrumentation test, it will be translated to “-e numShard” “-e shardIndex” AndroidJUnitRunner arguments. With uniform sharding enabled, specifying these sharding arguments via environment_variables is invalid.
+   */
+  export interface Schema$UniformSharding {
+    /**
+     * Required. Total number of shards. The number must be &gt;= 1 and &lt;= 50.
+     */
+    numShards?: number | null;
+  }
+  /**
    * An Xcode version that an iOS version is compatible with.
    */
   export interface Schema$XcodeVersion {
@@ -1258,19 +1372,73 @@ export namespace testing_v1 {
     /**
      * testing.applicationDetailService.getApkDetails
      * @desc Gets the details of an Android application APK.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/testing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const testing = google.testing('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await testing.applicationDetailService.getApkDetails({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "gcsPath": "my_gcsPath"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apkDetail": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias testing.applicationDetailService.getApkDetails
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().FileReference} params.resource Request body data
+     * @param {().FileReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getApkDetails(
+      params: Params$Resource$Applicationdetailservice$Getapkdetails,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getApkDetails(
       params?: Params$Resource$Applicationdetailservice$Getapkdetails,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetApkDetailsResponse>;
+    getApkDetails(
+      params: Params$Resource$Applicationdetailservice$Getapkdetails,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getApkDetails(
       params: Params$Resource$Applicationdetailservice$Getapkdetails,
       options:
@@ -1288,12 +1456,20 @@ export namespace testing_v1 {
     getApkDetails(
       paramsOrCallback?:
         | Params$Resource$Applicationdetailservice$Getapkdetails
-        | BodyResponseCallback<Schema$GetApkDetailsResponse>,
+        | BodyResponseCallback<Schema$GetApkDetailsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetApkDetailsResponse>,
-      callback?: BodyResponseCallback<Schema$GetApkDetailsResponse>
-    ): void | GaxiosPromise<Schema$GetApkDetailsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetApkDetailsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetApkDetailsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetApkDetailsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applicationdetailservice$Getapkdetails;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1326,7 +1502,10 @@ export namespace testing_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetApkDetailsResponse>(parameters, callback);
+        createAPIRequest<Schema$GetApkDetailsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetApkDetailsResponse>(parameters);
       }
@@ -1335,11 +1514,6 @@ export namespace testing_v1 {
 
   export interface Params$Resource$Applicationdetailservice$Getapkdetails
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1364,6 +1538,48 @@ export namespace testing_v1 {
     /**
      * testing.projects.testMatrices.cancel
      * @desc Cancels unfinished test executions in a test matrix. This call returns immediately and cancellation proceeds asychronously. If the matrix is already final, this operation will have no effect.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/testing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const testing = google.testing('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await testing.projects.testMatrices.cancel({
+     *     // Cloud project that owns the test.
+     *     projectId: 'placeholder-value',
+     *     // Test matrix that will be canceled.
+     *     testMatrixId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "testState": "my_testState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias testing.projects.testMatrices.cancel
      * @memberOf! ()
      *
@@ -1375,9 +1591,18 @@ export namespace testing_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Testmatrices$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Testmatrices$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CancelTestMatrixResponse>;
+    cancel(
+      params: Params$Resource$Projects$Testmatrices$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Testmatrices$Cancel,
       options:
@@ -1395,12 +1620,20 @@ export namespace testing_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Testmatrices$Cancel
-        | BodyResponseCallback<Schema$CancelTestMatrixResponse>,
+        | BodyResponseCallback<Schema$CancelTestMatrixResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CancelTestMatrixResponse>,
-      callback?: BodyResponseCallback<Schema$CancelTestMatrixResponse>
-    ): void | GaxiosPromise<Schema$CancelTestMatrixResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CancelTestMatrixResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CancelTestMatrixResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CancelTestMatrixResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testmatrices$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1434,7 +1667,10 @@ export namespace testing_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CancelTestMatrixResponse>(parameters, callback);
+        createAPIRequest<Schema$CancelTestMatrixResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CancelTestMatrixResponse>(parameters);
       }
@@ -1443,21 +1679,107 @@ export namespace testing_v1 {
     /**
      * testing.projects.testMatrices.create
      * @desc Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. Matrices are limited to at most 200 supported executions.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix expands                      to more than 200 supported executions
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/testing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const testing = google.testing('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await testing.projects.testMatrices.create({
+     *     // The GCE project under which this job will run.
+     *     projectId: 'placeholder-value',
+     *     // A string id used to detect duplicated requests.
+     *     // Ids are automatically scoped to a project, so
+     *     // users should ensure the ID is unique per-project.
+     *     // A UUID is recommended.
+     *     //
+     *     // Optional, but strongly recommended.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientInfo": {},
+     *       //   "environmentMatrix": {},
+     *       //   "flakyTestAttempts": 0,
+     *       //   "invalidMatrixDetails": "my_invalidMatrixDetails",
+     *       //   "outcomeSummary": "my_outcomeSummary",
+     *       //   "projectId": "my_projectId",
+     *       //   "resultStorage": {},
+     *       //   "state": "my_state",
+     *       //   "testExecutions": [],
+     *       //   "testMatrixId": "my_testMatrixId",
+     *       //   "testSpecification": {},
+     *       //   "timestamp": "my_timestamp"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientInfo": {},
+     *   //   "environmentMatrix": {},
+     *   //   "flakyTestAttempts": 0,
+     *   //   "invalidMatrixDetails": "my_invalidMatrixDetails",
+     *   //   "outcomeSummary": "my_outcomeSummary",
+     *   //   "projectId": "my_projectId",
+     *   //   "resultStorage": {},
+     *   //   "state": "my_state",
+     *   //   "testExecutions": [],
+     *   //   "testMatrixId": "my_testMatrixId",
+     *   //   "testSpecification": {},
+     *   //   "timestamp": "my_timestamp"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias testing.projects.testMatrices.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId The GCE project under which this job will run.
      * @param {string=} params.requestId A string id used to detect duplicated requests. Ids are automatically scoped to a project, so users should ensure the ID is unique per-project. A UUID is recommended.  Optional, but strongly recommended.
-     * @param {().TestMatrix} params.resource Request body data
+     * @param {().TestMatrix} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Testmatrices$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Testmatrices$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestMatrix>;
+    create(
+      params: Params$Resource$Projects$Testmatrices$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Testmatrices$Create,
       options: MethodOptions | BodyResponseCallback<Schema$TestMatrix>,
@@ -1471,12 +1793,17 @@ export namespace testing_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Testmatrices$Create
-        | BodyResponseCallback<Schema$TestMatrix>,
+        | BodyResponseCallback<Schema$TestMatrix>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestMatrix>,
-      callback?: BodyResponseCallback<Schema$TestMatrix>
-    ): void | GaxiosPromise<Schema$TestMatrix> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestMatrix>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestMatrix>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TestMatrix> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testmatrices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1510,7 +1837,10 @@ export namespace testing_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TestMatrix>(parameters, callback);
+        createAPIRequest<Schema$TestMatrix>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TestMatrix>(parameters);
       }
@@ -1519,6 +1849,62 @@ export namespace testing_v1 {
     /**
      * testing.projects.testMatrices.get
      * @desc Checks the status of a test matrix.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/testing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const testing = google.testing('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await testing.projects.testMatrices.get({
+     *     // Cloud project that owns the test matrix.
+     *     projectId: 'placeholder-value',
+     *     // Unique test matrix id which was assigned by the service.
+     *     testMatrixId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientInfo": {},
+     *   //   "environmentMatrix": {},
+     *   //   "flakyTestAttempts": 0,
+     *   //   "invalidMatrixDetails": "my_invalidMatrixDetails",
+     *   //   "outcomeSummary": "my_outcomeSummary",
+     *   //   "projectId": "my_projectId",
+     *   //   "resultStorage": {},
+     *   //   "state": "my_state",
+     *   //   "testExecutions": [],
+     *   //   "testMatrixId": "my_testMatrixId",
+     *   //   "testSpecification": {},
+     *   //   "timestamp": "my_timestamp"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias testing.projects.testMatrices.get
      * @memberOf! ()
      *
@@ -1530,9 +1916,18 @@ export namespace testing_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Testmatrices$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Testmatrices$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestMatrix>;
+    get(
+      params: Params$Resource$Projects$Testmatrices$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Testmatrices$Get,
       options: MethodOptions | BodyResponseCallback<Schema$TestMatrix>,
@@ -1546,12 +1941,17 @@ export namespace testing_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Testmatrices$Get
-        | BodyResponseCallback<Schema$TestMatrix>,
+        | BodyResponseCallback<Schema$TestMatrix>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestMatrix>,
-      callback?: BodyResponseCallback<Schema$TestMatrix>
-    ): void | GaxiosPromise<Schema$TestMatrix> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestMatrix>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestMatrix>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TestMatrix> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testmatrices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1584,7 +1984,10 @@ export namespace testing_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TestMatrix>(parameters, callback);
+        createAPIRequest<Schema$TestMatrix>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TestMatrix>(parameters);
       }
@@ -1593,11 +1996,6 @@ export namespace testing_v1 {
 
   export interface Params$Resource$Projects$Testmatrices$Cancel
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud project that owns the test.
      */
@@ -1609,11 +2007,6 @@ export namespace testing_v1 {
   }
   export interface Params$Resource$Projects$Testmatrices$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GCE project under which this job will run.
      */
@@ -1630,11 +2023,6 @@ export namespace testing_v1 {
   }
   export interface Params$Resource$Projects$Testmatrices$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud project that owns the test matrix.
      */
@@ -1654,6 +2042,54 @@ export namespace testing_v1 {
     /**
      * testing.testEnvironmentCatalog.get
      * @desc Gets the catalog of supported test environments.  May return any of the following canonical error codes:  - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the environment type does not exist - INTERNAL - if an internal error occurred
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/testing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const testing = google.testing('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await testing.testEnvironmentCatalog.get({
+     *     // Required. The type of environment that should be listed.
+     *     environmentType: 'placeholder-value',
+     *     // For authorization, the cloud project requesting the TestEnvironmentCatalog.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidDeviceCatalog": {},
+     *   //   "iosDeviceCatalog": {},
+     *   //   "networkConfigurationCatalog": {},
+     *   //   "softwareCatalog": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias testing.testEnvironmentCatalog.get
      * @memberOf! ()
      *
@@ -1665,9 +2101,18 @@ export namespace testing_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Testenvironmentcatalog$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Testenvironmentcatalog$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestEnvironmentCatalog>;
+    get(
+      params: Params$Resource$Testenvironmentcatalog$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Testenvironmentcatalog$Get,
       options:
@@ -1683,12 +2128,20 @@ export namespace testing_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Testenvironmentcatalog$Get
-        | BodyResponseCallback<Schema$TestEnvironmentCatalog>,
+        | BodyResponseCallback<Schema$TestEnvironmentCatalog>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestEnvironmentCatalog>,
-      callback?: BodyResponseCallback<Schema$TestEnvironmentCatalog>
-    ): void | GaxiosPromise<Schema$TestEnvironmentCatalog> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestEnvironmentCatalog>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestEnvironmentCatalog>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestEnvironmentCatalog>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Testenvironmentcatalog$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1721,7 +2174,10 @@ export namespace testing_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TestEnvironmentCatalog>(parameters, callback);
+        createAPIRequest<Schema$TestEnvironmentCatalog>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TestEnvironmentCatalog>(parameters);
       }
@@ -1730,11 +2186,6 @@ export namespace testing_v1 {
 
   export interface Params$Resource$Testenvironmentcatalog$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The type of environment that should be listed.
      */

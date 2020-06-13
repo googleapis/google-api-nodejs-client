@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace analyticsreporting_v4 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace analyticsreporting_v4 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1100,19 +1110,79 @@ export namespace analyticsreporting_v4 {
     /**
      * analyticsreporting.reports.batchGet
      * @desc Returns the Analytics data.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsreporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsreporting = google.analyticsreporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsreporting.reports.batchGet({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "reportRequests": [],
+     *       //   "useResourceQuotas": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "queryCost": 0,
+     *   //   "reports": [],
+     *   //   "resourceQuotasRemaining": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analyticsreporting.reports.batchGet
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GetReportsRequest} params.resource Request body data
+     * @param {().GetReportsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchGet(
+      params: Params$Resource$Reports$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
       params?: Params$Resource$Reports$Batchget,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetReportsResponse>;
+    batchGet(
+      params: Params$Resource$Reports$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchGet(
       params: Params$Resource$Reports$Batchget,
       options: MethodOptions | BodyResponseCallback<Schema$GetReportsResponse>,
@@ -1126,12 +1196,20 @@ export namespace analyticsreporting_v4 {
     batchGet(
       paramsOrCallback?:
         | Params$Resource$Reports$Batchget
-        | BodyResponseCallback<Schema$GetReportsResponse>,
+        | BodyResponseCallback<Schema$GetReportsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetReportsResponse>,
-      callback?: BodyResponseCallback<Schema$GetReportsResponse>
-    ): void | GaxiosPromise<Schema$GetReportsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetReportsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1165,7 +1243,10 @@ export namespace analyticsreporting_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetReportsResponse>(parameters, callback);
+        createAPIRequest<Schema$GetReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetReportsResponse>(parameters);
       }
@@ -1173,11 +1254,6 @@ export namespace analyticsreporting_v4 {
   }
 
   export interface Params$Resource$Reports$Batchget extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1193,19 +1269,84 @@ export namespace analyticsreporting_v4 {
     /**
      * analyticsreporting.userActivity.search
      * @desc Returns User Activity data.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsreporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsreporting = google.analyticsreporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsreporting.userActivity.search({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activityTypes": [],
+     *       //   "dateRange": {},
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "user": {},
+     *       //   "viewId": "my_viewId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sampleRate": {},
+     *   //   "sessions": [],
+     *   //   "totalRows": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analyticsreporting.userActivity.search
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SearchUserActivityRequest} params.resource Request body data
+     * @param {().SearchUserActivityRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Useractivity$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Useractivity$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchUserActivityResponse>;
+    search(
+      params: Params$Resource$Useractivity$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Useractivity$Search,
       options:
@@ -1223,12 +1364,20 @@ export namespace analyticsreporting_v4 {
     search(
       paramsOrCallback?:
         | Params$Resource$Useractivity$Search
-        | BodyResponseCallback<Schema$SearchUserActivityResponse>,
+        | BodyResponseCallback<Schema$SearchUserActivityResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchUserActivityResponse>,
-      callback?: BodyResponseCallback<Schema$SearchUserActivityResponse>
-    ): void | GaxiosPromise<Schema$SearchUserActivityResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchUserActivityResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchUserActivityResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchUserActivityResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Useractivity$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1265,7 +1414,7 @@ export namespace analyticsreporting_v4 {
       if (callback) {
         createAPIRequest<Schema$SearchUserActivityResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SearchUserActivityResponse>(parameters);
@@ -1275,11 +1424,6 @@ export namespace analyticsreporting_v4 {
 
   export interface Params$Resource$Useractivity$Search
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

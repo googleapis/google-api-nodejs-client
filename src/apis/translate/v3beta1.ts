@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace translate_v3beta1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace translate_v3beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -130,11 +140,11 @@ export namespace translate_v3beta1 {
      */
     inputConfigs?: Schema$InputConfig[];
     /**
-     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://goo.gl/xmQnxf for more information on and examples of labels.
+     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://cloud.google.com/translate/docs/labels for more information.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The models to use for translation. Map&#39;s key is target language code. Map&#39;s value is model name. Value can be a built-in general model, or an AutoML Translation model.  The value format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used.
+     * Optional. The models to use for translation. Map&#39;s key is target language code. Map&#39;s value is model name. Value can be a built-in general model, or an AutoML Translation model.  The value format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used.
      */
     models?: {[key: string]: string} | null;
     /**
@@ -176,7 +186,7 @@ export namespace translate_v3beta1 {
      */
     content?: string | null;
     /**
-     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://goo.gl/xmQnxf for more information on and examples of labels.
+     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://cloud.google.com/translate/docs/labels for more information.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -184,7 +194,7 @@ export namespace translate_v3beta1 {
      */
     mimeType?: string | null;
     /**
-     * Optional. The language detection model to be used.  Format: `projects/{project-id}/locations/{location-id}/models/language-detection/{model-id}`  Only one language detection model is currently supported: `projects/{project-id}/locations/{location-id}/models/language-detection/default`.  If not specified, the default model is used.
+     * Optional. The language detection model to be used.  Format: `projects/{project-number-or-id}/locations/{location-id}/models/language-detection/{model-id}`  Only one language detection model is currently supported: `projects/{project-number-or-id}/locations/{location-id}/models/language-detection/default`.  If not specified, the default model is used.
      */
     model?: string | null;
   }
@@ -244,7 +254,7 @@ export namespace translate_v3beta1 {
      */
     languagePair?: Schema$LanguageCodePair;
     /**
-     * Required. The resource name of the glossary. Glossary names have the form `projects/{project-id}/locations/{location-id}/glossaries/{glossary-id}`.
+     * Required. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`.
      */
     name?: string | null;
     /**
@@ -467,7 +477,7 @@ export namespace translate_v3beta1 {
      */
     glossaryConfig?: Schema$TranslateTextGlossaryConfig;
     /**
-     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://goo.gl/xmQnxf for more information on and examples of labels.
+     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://cloud.google.com/translate/docs/labels for more information.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -475,7 +485,7 @@ export namespace translate_v3beta1 {
      */
     mimeType?: string | null;
     /**
-     * Optional. The `model` type requested for this translation.  The format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-id}/locations/global/models/general/nmt`.  If missing, the system decides which google base model to use.
+     * Optional. The `model` type requested for this translation.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-number-or-id}/locations/global/models/general/nmt`.  If missing, the system decides which google base model to use.
      */
     model?: string | null;
     /**
@@ -510,7 +520,7 @@ export namespace translate_v3beta1 {
      */
     glossaryConfig?: Schema$TranslateTextGlossaryConfig;
     /**
-     * Only present when `model` is present in the request. This is same as `model` provided in the request.
+     * Only present when `model` is present in the request. `model` here is normalized to have project number.  For example: If the `model` requested in TranslationTextRequest is `projects/{project-id}/locations/{location-id}/models/general/nmt` then `model` here would be normalized to `projects/{project-number}/locations/{location-id}/models/general/nmt`.
      */
     model?: string | null;
     /**
@@ -539,20 +549,93 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.detectLanguage
      * @desc Detects the language of text within a request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.detectLanguage({
+     *     // Required. Project or location to make a call. Must refer to a caller's
+     *     // project.
+     *     //
+     *     // Format: `projects/{project-number-or-id}/locations/{location-id}` or
+     *     // `projects/{project-number-or-id}`.
+     *     //
+     *     // For global calls, use `projects/{project-number-or-id}/locations/global` or
+     *     // `projects/{project-number-or-id}`.
+     *     //
+     *     // Only models within the same region (has same location-id) can be used.
+     *     // Otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "content": "my_content",
+     *       //   "labels": {},
+     *       //   "mimeType": "my_mimeType",
+     *       //   "model": "my_model"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "languages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.detectLanguage
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}/locations/{location-id}` or `projects/{project-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
-     * @param {().DetectLanguageRequest} params.resource Request body data
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {().DetectLanguageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     detectLanguage(
+      params: Params$Resource$Projects$Detectlanguage,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    detectLanguage(
       params?: Params$Resource$Projects$Detectlanguage,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DetectLanguageResponse>;
+    detectLanguage(
+      params: Params$Resource$Projects$Detectlanguage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     detectLanguage(
       params: Params$Resource$Projects$Detectlanguage,
       options:
@@ -570,12 +653,20 @@ export namespace translate_v3beta1 {
     detectLanguage(
       paramsOrCallback?:
         | Params$Resource$Projects$Detectlanguage
-        | BodyResponseCallback<Schema$DetectLanguageResponse>,
+        | BodyResponseCallback<Schema$DetectLanguageResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DetectLanguageResponse>,
-      callback?: BodyResponseCallback<Schema$DetectLanguageResponse>
-    ): void | GaxiosPromise<Schema$DetectLanguageResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DetectLanguageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DetectLanguageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DetectLanguageResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Detectlanguage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -609,7 +700,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DetectLanguageResponse>(parameters, callback);
+        createAPIRequest<Schema$DetectLanguageResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DetectLanguageResponse>(parameters);
       }
@@ -618,21 +712,104 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.getSupportedLanguages
      * @desc Returns a list of supported languages for translation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.getSupportedLanguages({
+     *     // Optional. The language to use to return localized, human readable names
+     *     // of supported languages. If missing, then display names are not returned
+     *     // in a response.
+     *     displayLanguageCode: 'placeholder-value',
+     *     // Optional. Get supported languages of this model.
+     *     //
+     *     // The format depends on model type:
+     *     //
+     *     // - AutoML Translation models:
+     *     //   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
+     *     //
+     *     // - General (built-in) models:
+     *     //   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+     *     //   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`
+     *     //
+     *     //
+     *     // Returns languages supported by the specified model.
+     *     // If missing, we get supported languages of Google general base (PBMT) model.
+     *     model: 'placeholder-value',
+     *     // Required. Project or location to make a call. Must refer to a caller's
+     *     // project.
+     *     //
+     *     // Format: `projects/{project-number-or-id}` or
+     *     // `projects/{project-number-or-id}/locations/{location-id}`.
+     *     //
+     *     // For global calls, use `projects/{project-number-or-id}/locations/global` or
+     *     // `projects/{project-number-or-id}`.
+     *     //
+     *     // Non-global location is required for AutoML models.
+     *     //
+     *     // Only models within the same region (have same location-id) can be used,
+     *     // otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "languages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.getSupportedLanguages
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.displayLanguageCode Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
-     * @param {string=} params.model Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string=} params.model Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getSupportedLanguages(
+      params: Params$Resource$Projects$Getsupportedlanguages,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSupportedLanguages(
       params?: Params$Resource$Projects$Getsupportedlanguages,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SupportedLanguages>;
+    getSupportedLanguages(
+      params: Params$Resource$Projects$Getsupportedlanguages,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getSupportedLanguages(
       params: Params$Resource$Projects$Getsupportedlanguages,
       options: MethodOptions | BodyResponseCallback<Schema$SupportedLanguages>,
@@ -648,12 +825,20 @@ export namespace translate_v3beta1 {
     getSupportedLanguages(
       paramsOrCallback?:
         | Params$Resource$Projects$Getsupportedlanguages
-        | BodyResponseCallback<Schema$SupportedLanguages>,
+        | BodyResponseCallback<Schema$SupportedLanguages>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SupportedLanguages>,
-      callback?: BodyResponseCallback<Schema$SupportedLanguages>
-    ): void | GaxiosPromise<Schema$SupportedLanguages> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SupportedLanguages>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SupportedLanguages>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SupportedLanguages>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getsupportedlanguages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -687,7 +872,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SupportedLanguages>(parameters, callback);
+        createAPIRequest<Schema$SupportedLanguages>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SupportedLanguages>(parameters);
       }
@@ -696,20 +884,100 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.translateText
      * @desc Translates input text and returns translated text.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.translateText({
+     *     // Required. Project or location to make a call. Must refer to a caller's
+     *     // project.
+     *     //
+     *     // Format: `projects/{project-number-or-id}` or
+     *     // `projects/{project-number-or-id}/locations/{location-id}`.
+     *     //
+     *     // For global calls, use `projects/{project-number-or-id}/locations/global` or
+     *     // `projects/{project-number-or-id}`.
+     *     //
+     *     // Non-global location is required for requests using AutoML models or
+     *     // custom glossaries.
+     *     //
+     *     // Models and glossaries must be within the same region (have same
+     *     // location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contents": [],
+     *       //   "glossaryConfig": {},
+     *       //   "labels": {},
+     *       //   "mimeType": "my_mimeType",
+     *       //   "model": "my_model",
+     *       //   "sourceLanguageCode": "my_sourceLanguageCode",
+     *       //   "targetLanguageCode": "my_targetLanguageCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "glossaryTranslations": [],
+     *   //   "translations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.translateText
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
-     * @param {().TranslateTextRequest} params.resource Request body data
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {().TranslateTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     translateText(
+      params: Params$Resource$Projects$Translatetext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    translateText(
       params?: Params$Resource$Projects$Translatetext,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TranslateTextResponse>;
+    translateText(
+      params: Params$Resource$Projects$Translatetext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     translateText(
       params: Params$Resource$Projects$Translatetext,
       options:
@@ -727,12 +995,20 @@ export namespace translate_v3beta1 {
     translateText(
       paramsOrCallback?:
         | Params$Resource$Projects$Translatetext
-        | BodyResponseCallback<Schema$TranslateTextResponse>,
+        | BodyResponseCallback<Schema$TranslateTextResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TranslateTextResponse>,
-      callback?: BodyResponseCallback<Schema$TranslateTextResponse>
-    ): void | GaxiosPromise<Schema$TranslateTextResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TranslateTextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TranslateTextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TranslateTextResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Translatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -766,7 +1042,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TranslateTextResponse>(parameters, callback);
+        createAPIRequest<Schema$TranslateTextResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TranslateTextResponse>(parameters);
       }
@@ -776,12 +1055,7 @@ export namespace translate_v3beta1 {
   export interface Params$Resource$Projects$Detectlanguage
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}/locations/{location-id}` or `projects/{project-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -793,32 +1067,22 @@ export namespace translate_v3beta1 {
   export interface Params$Resource$Projects$Getsupportedlanguages
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
      */
     displayLanguageCode?: string;
     /**
-     * Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
      */
     model?: string;
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Translatetext
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -845,20 +1109,95 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.batchTranslateText
      * @desc Translates a large volume of text in asynchronous batch mode. This function provides real-time output as the inputs are being processed. If caller cancels a request, the partial results (for an input file, it's all or nothing) may still be available on the specified output location.  This call returns immediately and you can use google.longrunning.Operation.name to poll the status of the call.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.batchTranslateText({
+     *     // Required. Location to make a call. Must refer to a caller's project.
+     *     //
+     *     // Format: `projects/{project-number-or-id}/locations/{location-id}`.
+     *     //
+     *     // The `global` location is not supported for batch translation.
+     *     //
+     *     // Only AutoML Translation models or glossaries within the same region (have
+     *     // the same location-id) can be used, otherwise an INVALID_ARGUMENT (400)
+     *     // error is returned.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "glossaries": {},
+     *       //   "inputConfigs": [],
+     *       //   "labels": {},
+     *       //   "models": {},
+     *       //   "outputConfig": {},
+     *       //   "sourceLanguageCode": "my_sourceLanguageCode",
+     *       //   "targetLanguageCodes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.batchTranslateText
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}/locations/{location-id}`.  The `global` location is not supported for batch translation.  Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
-     * @param {().BatchTranslateTextRequest} params.resource Request body data
+     * @param {string} params.parent Required. Location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}`.  The `global` location is not supported for batch translation.  Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {().BatchTranslateTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchTranslateText(
+      params: Params$Resource$Projects$Locations$Batchtranslatetext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchTranslateText(
       params?: Params$Resource$Projects$Locations$Batchtranslatetext,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    batchTranslateText(
+      params: Params$Resource$Projects$Locations$Batchtranslatetext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchTranslateText(
       params: Params$Resource$Projects$Locations$Batchtranslatetext,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -872,12 +1211,17 @@ export namespace translate_v3beta1 {
     batchTranslateText(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Batchtranslatetext
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batchtranslatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -911,7 +1255,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -920,20 +1267,93 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.detectLanguage
      * @desc Detects the language of text within a request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.detectLanguage({
+     *     // Required. Project or location to make a call. Must refer to a caller's
+     *     // project.
+     *     //
+     *     // Format: `projects/{project-number-or-id}/locations/{location-id}` or
+     *     // `projects/{project-number-or-id}`.
+     *     //
+     *     // For global calls, use `projects/{project-number-or-id}/locations/global` or
+     *     // `projects/{project-number-or-id}`.
+     *     //
+     *     // Only models within the same region (has same location-id) can be used.
+     *     // Otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "content": "my_content",
+     *       //   "labels": {},
+     *       //   "mimeType": "my_mimeType",
+     *       //   "model": "my_model"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "languages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.detectLanguage
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}/locations/{location-id}` or `projects/{project-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
-     * @param {().DetectLanguageRequest} params.resource Request body data
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {().DetectLanguageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     detectLanguage(
+      params: Params$Resource$Projects$Locations$Detectlanguage,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    detectLanguage(
       params?: Params$Resource$Projects$Locations$Detectlanguage,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DetectLanguageResponse>;
+    detectLanguage(
+      params: Params$Resource$Projects$Locations$Detectlanguage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     detectLanguage(
       params: Params$Resource$Projects$Locations$Detectlanguage,
       options:
@@ -951,12 +1371,20 @@ export namespace translate_v3beta1 {
     detectLanguage(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Detectlanguage
-        | BodyResponseCallback<Schema$DetectLanguageResponse>,
+        | BodyResponseCallback<Schema$DetectLanguageResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DetectLanguageResponse>,
-      callback?: BodyResponseCallback<Schema$DetectLanguageResponse>
-    ): void | GaxiosPromise<Schema$DetectLanguageResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DetectLanguageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DetectLanguageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DetectLanguageResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Detectlanguage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -990,7 +1418,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DetectLanguageResponse>(parameters, callback);
+        createAPIRequest<Schema$DetectLanguageResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DetectLanguageResponse>(parameters);
       }
@@ -999,6 +1430,53 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.get
      * @desc Gets information about a location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.get
      * @memberOf! ()
      *
@@ -1009,9 +1487,18 @@ export namespace translate_v3beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Location>,
@@ -1025,10 +1512,17 @@ export namespace translate_v3beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Get
-        | BodyResponseCallback<Schema$Location>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback?: BodyResponseCallback<Schema$Location>
-    ): void | GaxiosPromise<Schema$Location> {
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1059,7 +1553,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Location>(parameters, callback);
+        createAPIRequest<Schema$Location>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
       }
@@ -1068,21 +1565,104 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.getSupportedLanguages
      * @desc Returns a list of supported languages for translation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.getSupportedLanguages({
+     *     // Optional. The language to use to return localized, human readable names
+     *     // of supported languages. If missing, then display names are not returned
+     *     // in a response.
+     *     displayLanguageCode: 'placeholder-value',
+     *     // Optional. Get supported languages of this model.
+     *     //
+     *     // The format depends on model type:
+     *     //
+     *     // - AutoML Translation models:
+     *     //   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
+     *     //
+     *     // - General (built-in) models:
+     *     //   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+     *     //   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`
+     *     //
+     *     //
+     *     // Returns languages supported by the specified model.
+     *     // If missing, we get supported languages of Google general base (PBMT) model.
+     *     model: 'placeholder-value',
+     *     // Required. Project or location to make a call. Must refer to a caller's
+     *     // project.
+     *     //
+     *     // Format: `projects/{project-number-or-id}` or
+     *     // `projects/{project-number-or-id}/locations/{location-id}`.
+     *     //
+     *     // For global calls, use `projects/{project-number-or-id}/locations/global` or
+     *     // `projects/{project-number-or-id}`.
+     *     //
+     *     // Non-global location is required for AutoML models.
+     *     //
+     *     // Only models within the same region (have same location-id) can be used,
+     *     // otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "languages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.getSupportedLanguages
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.displayLanguageCode Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
-     * @param {string=} params.model Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string=} params.model Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getSupportedLanguages(
+      params: Params$Resource$Projects$Locations$Getsupportedlanguages,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSupportedLanguages(
       params?: Params$Resource$Projects$Locations$Getsupportedlanguages,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SupportedLanguages>;
+    getSupportedLanguages(
+      params: Params$Resource$Projects$Locations$Getsupportedlanguages,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getSupportedLanguages(
       params: Params$Resource$Projects$Locations$Getsupportedlanguages,
       options: MethodOptions | BodyResponseCallback<Schema$SupportedLanguages>,
@@ -1098,12 +1678,20 @@ export namespace translate_v3beta1 {
     getSupportedLanguages(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Getsupportedlanguages
-        | BodyResponseCallback<Schema$SupportedLanguages>,
+        | BodyResponseCallback<Schema$SupportedLanguages>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SupportedLanguages>,
-      callback?: BodyResponseCallback<Schema$SupportedLanguages>
-    ): void | GaxiosPromise<Schema$SupportedLanguages> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SupportedLanguages>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SupportedLanguages>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SupportedLanguages>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getsupportedlanguages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1137,7 +1725,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SupportedLanguages>(parameters, callback);
+        createAPIRequest<Schema$SupportedLanguages>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SupportedLanguages>(parameters);
       }
@@ -1146,6 +1737,56 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.list
      * @memberOf! ()
      *
@@ -1159,9 +1800,18 @@ export namespace translate_v3beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLocationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
@@ -1177,12 +1827,20 @@ export namespace translate_v3beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$List
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLocationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1216,7 +1874,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
@@ -1225,20 +1886,100 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.translateText
      * @desc Translates input text and returns translated text.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.translateText({
+     *     // Required. Project or location to make a call. Must refer to a caller's
+     *     // project.
+     *     //
+     *     // Format: `projects/{project-number-or-id}` or
+     *     // `projects/{project-number-or-id}/locations/{location-id}`.
+     *     //
+     *     // For global calls, use `projects/{project-number-or-id}/locations/global` or
+     *     // `projects/{project-number-or-id}`.
+     *     //
+     *     // Non-global location is required for requests using AutoML models or
+     *     // custom glossaries.
+     *     //
+     *     // Models and glossaries must be within the same region (have same
+     *     // location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contents": [],
+     *       //   "glossaryConfig": {},
+     *       //   "labels": {},
+     *       //   "mimeType": "my_mimeType",
+     *       //   "model": "my_model",
+     *       //   "sourceLanguageCode": "my_sourceLanguageCode",
+     *       //   "targetLanguageCode": "my_targetLanguageCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "glossaryTranslations": [],
+     *   //   "translations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.translateText
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
-     * @param {().TranslateTextRequest} params.resource Request body data
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {().TranslateTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     translateText(
+      params: Params$Resource$Projects$Locations$Translatetext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    translateText(
       params?: Params$Resource$Projects$Locations$Translatetext,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TranslateTextResponse>;
+    translateText(
+      params: Params$Resource$Projects$Locations$Translatetext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     translateText(
       params: Params$Resource$Projects$Locations$Translatetext,
       options:
@@ -1256,12 +1997,20 @@ export namespace translate_v3beta1 {
     translateText(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Translatetext
-        | BodyResponseCallback<Schema$TranslateTextResponse>,
+        | BodyResponseCallback<Schema$TranslateTextResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TranslateTextResponse>,
-      callback?: BodyResponseCallback<Schema$TranslateTextResponse>
-    ): void | GaxiosPromise<Schema$TranslateTextResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TranslateTextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TranslateTextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TranslateTextResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Translatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1295,7 +2044,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TranslateTextResponse>(parameters, callback);
+        createAPIRequest<Schema$TranslateTextResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TranslateTextResponse>(parameters);
       }
@@ -1305,12 +2057,7 @@ export namespace translate_v3beta1 {
   export interface Params$Resource$Projects$Locations$Batchtranslatetext
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. Location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}/locations/{location-id}`.  The `global` location is not supported for batch translation.  Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}`.  The `global` location is not supported for batch translation.  Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -1322,12 +2069,7 @@ export namespace translate_v3beta1 {
   export interface Params$Resource$Projects$Locations$Detectlanguage
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}/locations/{location-id}` or `projects/{project-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -1339,11 +2081,6 @@ export namespace translate_v3beta1 {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name for the location.
      */
     name?: string;
@@ -1351,30 +2088,20 @@ export namespace translate_v3beta1 {
   export interface Params$Resource$Projects$Locations$Getsupportedlanguages
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
      */
     displayLanguageCode?: string;
     /**
-     * Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
      */
     model?: string;
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -1395,12 +2122,7 @@ export namespace translate_v3beta1 {
   export interface Params$Resource$Projects$Locations$Translatetext
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -1419,20 +2141,87 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.glossaries.create
      * @desc Creates a glossary and returns the long-running operation. Returns NOT_FOUND, if the project doesn't exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.glossaries.create({
+     *     // Required. The project name.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "endTime": "my_endTime",
+     *       //   "entryCount": 0,
+     *       //   "inputConfig": {},
+     *       //   "languageCodesSet": {},
+     *       //   "languagePair": {},
+     *       //   "name": "my_name",
+     *       //   "submitTime": "my_submitTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.glossaries.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The project name.
-     * @param {().Glossary} params.resource Request body data
+     * @param {().Glossary} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Glossaries$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Glossaries$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Glossaries$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Glossaries$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1446,12 +2235,17 @@ export namespace translate_v3beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Glossaries$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1485,7 +2279,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1494,6 +2291,53 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.glossaries.delete
      * @desc Deletes a glossary, or cancels glossary construction if the glossary isn't created yet. Returns NOT_FOUND, if the glossary doesn't exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.glossaries.delete({
+     *     // Required. The name of the glossary to delete.
+     *     name: 'projects/my-project/locations/my-location/glossaries/my-glossarie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.glossaries.delete
      * @memberOf! ()
      *
@@ -1504,9 +2348,18 @@ export namespace translate_v3beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Glossaries$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Glossaries$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Glossaries$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1520,12 +2373,17 @@ export namespace translate_v3beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Glossaries$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1556,7 +2414,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1565,6 +2426,55 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.glossaries.get
      * @desc Gets a glossary. Returns NOT_FOUND, if the glossary doesn't exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.glossaries.get({
+     *     // Required. The name of the glossary to retrieve.
+     *     name: 'projects/my-project/locations/my-location/glossaries/my-glossarie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "entryCount": 0,
+     *   //   "inputConfig": {},
+     *   //   "languageCodesSet": {},
+     *   //   "languagePair": {},
+     *   //   "name": "my_name",
+     *   //   "submitTime": "my_submitTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.glossaries.get
      * @memberOf! ()
      *
@@ -1575,9 +2485,18 @@ export namespace translate_v3beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Glossaries$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Glossaries$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Glossary>;
+    get(
+      params: Params$Resource$Projects$Locations$Glossaries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Glossaries$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Glossary>,
@@ -1591,10 +2510,17 @@ export namespace translate_v3beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Glossaries$Get
-        | BodyResponseCallback<Schema$Glossary>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Glossary>,
-      callback?: BodyResponseCallback<Schema$Glossary>
-    ): void | GaxiosPromise<Schema$Glossary> {
+        | BodyResponseCallback<Schema$Glossary>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Glossary>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Glossary>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Glossary> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1625,7 +2551,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Glossary>(parameters, callback);
+        createAPIRequest<Schema$Glossary>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Glossary>(parameters);
       }
@@ -1634,6 +2563,62 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.glossaries.list
      * @desc Lists glossaries in a project. Returns NOT_FOUND, if the project doesn't exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.glossaries.list({
+     *     // Optional. Filter specifying constraints of a list operation.
+     *     // Filtering is not supported yet, and the parameter currently has no effect.
+     *     // If missing, no filtering is performed.
+     *     filter: 'placeholder-value',
+     *     // Optional. Requested page size. The server may return fewer glossaries than
+     *     // requested. If unspecified, the server picks an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     // Typically, this is the value of [ListGlossariesResponse.next_page_token]
+     *     // returned from the previous call to `ListGlossaries` method.
+     *     // The first page is returned if `page_token`is empty or missing.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project from which to list all of the glossaries.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "glossaries": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.glossaries.list
      * @memberOf! ()
      *
@@ -1647,9 +2632,18 @@ export namespace translate_v3beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Glossaries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Glossaries$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListGlossariesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Glossaries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Glossaries$List,
       options:
@@ -1665,12 +2659,20 @@ export namespace translate_v3beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Glossaries$List
-        | BodyResponseCallback<Schema$ListGlossariesResponse>,
+        | BodyResponseCallback<Schema$ListGlossariesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListGlossariesResponse>,
-      callback?: BodyResponseCallback<Schema$ListGlossariesResponse>
-    ): void | GaxiosPromise<Schema$ListGlossariesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGlossariesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGlossariesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGlossariesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Glossaries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1704,7 +2706,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListGlossariesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListGlossariesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListGlossariesResponse>(parameters);
       }
@@ -1713,11 +2718,6 @@ export namespace translate_v3beta1 {
 
   export interface Params$Resource$Projects$Locations$Glossaries$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project name.
      */
@@ -1731,11 +2731,6 @@ export namespace translate_v3beta1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the glossary to delete.
      */
     name?: string;
@@ -1743,22 +2738,12 @@ export namespace translate_v3beta1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the glossary to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Filter specifying constraints of a list operation. Filtering is not supported yet, and the parameter currently has no effect. If missing, no filtering is performed.
      */
@@ -1786,20 +2771,76 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.operations.cancel
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1813,10 +2854,17 @@ export namespace translate_v3beta1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1850,7 +2898,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1859,6 +2910,47 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.operations.delete
      * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.operations.delete
      * @memberOf! ()
      *
@@ -1869,9 +2961,18 @@ export namespace translate_v3beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1885,10 +2986,17 @@ export namespace translate_v3beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1919,7 +3027,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1928,6 +3039,53 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.operations.get
      * @memberOf! ()
      *
@@ -1938,9 +3096,18 @@ export namespace translate_v3beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1954,12 +3121,17 @@ export namespace translate_v3beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1990,7 +3162,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1999,6 +3174,56 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.operations.list
      * @memberOf! ()
      *
@@ -2012,9 +3237,18 @@ export namespace translate_v3beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
@@ -2030,12 +3264,20 @@ export namespace translate_v3beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2069,7 +3311,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
@@ -2078,20 +3323,84 @@ export namespace translate_v3beta1 {
     /**
      * translate.projects.locations.operations.wait
      * @desc Waits for the specified long-running operation until it is done or reaches at most a specified timeout, returning the latest state.  If the operation is already done, the latest state is immediately returned.  If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used.  If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis.  It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.operations.wait({
+     *     // The name of the operation resource to wait on.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "timeout": "my_timeout"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias translate.projects.locations.operations.wait
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to wait on.
-     * @param {().WaitOperationRequest} params.resource Request body data
+     * @param {().WaitOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     wait(
+      params: Params$Resource$Projects$Locations$Operations$Wait,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    wait(
       params?: Params$Resource$Projects$Locations$Operations$Wait,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    wait(
+      params: Params$Resource$Projects$Locations$Operations$Wait,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2105,12 +3414,17 @@ export namespace translate_v3beta1 {
     wait(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Wait
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Wait;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2144,7 +3458,10 @@ export namespace translate_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2153,11 +3470,6 @@ export namespace translate_v3beta1 {
 
   export interface Params$Resource$Projects$Locations$Operations$Cancel
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -2171,11 +3483,6 @@ export namespace translate_v3beta1 {
   export interface Params$Resource$Projects$Locations$Operations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
@@ -2183,22 +3490,12 @@ export namespace translate_v3beta1 {
   export interface Params$Resource$Projects$Locations$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -2218,11 +3515,6 @@ export namespace translate_v3beta1 {
   }
   export interface Params$Resource$Projects$Locations$Operations$Wait
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to wait on.
      */

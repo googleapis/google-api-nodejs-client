@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace cloudsearch_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace cloudsearch_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -134,7 +144,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$BooleanOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the boolean property. For example, if operatorName is *closed* and the property&#39;s name is *isClosed*, then queries like *closed:&amp;lt;value&amp;gt;* will show results only where the value of the property named *isClosed* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the boolean property. For example, if operatorName is *closed* and the property&#39;s name is *isClosed*, then queries like *closed:&amp;lt;value&amp;gt;* show results only where the value of the property named *isClosed* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator returns all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -175,6 +185,41 @@ export namespace cloudsearch_v1 {
      * Number of items aggregrated by status code.
      */
     itemCountByStatus?: Schema$ItemCountByStatus[];
+  }
+  export interface Schema$CustomerQueryStats {
+    /**
+     * Date for which query stats were calculated. Stats calculated on the next day close to midnight are returned.
+     */
+    date?: Schema$Date;
+    queryCountByStatus?: Schema$QueryCountByStatus[];
+  }
+  export interface Schema$CustomerSessionStats {
+    /**
+     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     */
+    date?: Schema$Date;
+    /**
+     * The count of search sessions on the day
+     */
+    searchSessionsCount?: string | null;
+  }
+  export interface Schema$CustomerUserStats {
+    /**
+     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     */
+    date?: Schema$Date;
+    /**
+     * The count of unique active users in the past one day
+     */
+    oneDayActiveUsersCount?: string | null;
+    /**
+     * The count of unique active users in the past seven days
+     */
+    sevenDaysActiveUsersCount?: string | null;
+    /**
+     * The count of unique active users in the past thirty days
+     */
+    thirtyDaysActiveUsersCount?: string | null;
   }
   /**
    * Datasource is a logical namespace for items to be indexed. All items must belong to a datasource.  This is the prerequisite before items can be indexed into Cloud Search.
@@ -261,15 +306,15 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$DateOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the date property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property&#39;s name is *closeDate*, then queries like *closedafter:&amp;lt;value&amp;gt;* will show results only where the value of the property named *closeDate* is later than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the date property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property&#39;s name is *closeDate*, then queries like *closedafter:&amp;lt;value&amp;gt;* show results only where the value of the property named *closeDate* is later than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     greaterThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the date property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property&#39;s name is *closeDate*, then queries like *closedbefore:&amp;lt;value&amp;gt;* will show results only where the value of the property named *closeDate* is earlier than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the date property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property&#39;s name is *closeDate*, then queries like *closedbefore:&amp;lt;value&amp;gt;* show results only where the value of the property named *closeDate* is earlier than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     lessThanOperatorName?: string | null;
     /**
-     * Indicates the actual string required in the query in order to isolate the date property. For example, suppose an issue tracking schema object has a property named *closeDate* that specifies an operator with an operatorName of *closedon*. For searches on that data, queries like *closedon:&amp;lt;value&amp;gt;* will show results only where the value of the *closeDate* property matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the indexed datasource. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the actual string required in the query in order to isolate the date property. For example, suppose an issue tracking schema object has a property named *closeDate* that specifies an operator with an operatorName of *closedon*. For searches on that data, queries like *closedon:&amp;lt;value&amp;gt;* show results only where the value of the *closeDate* property matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator returns all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the indexed datasource. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -312,11 +357,11 @@ export namespace cloudsearch_v1 {
     queue?: string | null;
   }
   /**
-   * A reference to a top-level property within the object that should be displayed in search results. The values of the chosen properties will be displayed in the search results along with the dislpay label for that property if one is specified. If a display label is not specified, only the values will be shown.
+   * A reference to a top-level property within the object that should be displayed in search results. The values of the chosen properties is displayed in the search results along with the display label for that property if one is specified. If a display label is not specified, only the values is shown.
    */
   export interface Schema$DisplayedProperty {
     /**
-     * The name of the top-level property as defined in a property definition for the object. If the name is not a defined property in the schema, an error will be given when attempting to update the schema.
+     * The name of the top-level property as defined in a property definition for the object. If the name is not a defined property in the schema, an error is given when attempting to update the schema.
      */
     propertyName?: string | null;
   }
@@ -378,11 +423,11 @@ export namespace cloudsearch_v1 {
     emailAddress?: string | null;
   }
   /**
-   * Used to provide a search operator for enum properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched. For example, if you provide no operator for a *priority* enum property with possible values *p0* and *p1*, a query that contains the term *p0* will return items that have *p0* as the value of the *priority* property, as well as any items that contain the string *p0* in other fields. If you provide an operator name for the enum, such as *priority*, then search users can use that operator to refine results to only items that have *p0* as this property&#39;s value, with the query *priority:p0*.
+   * Used to provide a search operator for enum properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched. For example, if you provide no operator for a *priority* enum property with possible values *p0* and *p1*, a query that contains the term *p0* returns items that have *p0* as the value of the *priority* property, as well as any items that contain the string *p0* in other fields. If you provide an operator name for the enum, such as *priority*, then search users can use that operator to refine results to only items that have *p0* as this property&#39;s value, with the query *priority:p0*.
    */
   export interface Schema$EnumOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the enum property. For example, if operatorName is *priority* and the property&#39;s name is *priorityVal*, then queries like *priority:&amp;lt;value&amp;gt;* will show results only where the value of the property named *priorityVal* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the enum property. For example, if operatorName is *priority* and the property&#39;s name is *priorityVal*, then queries like *priority:&amp;lt;value&amp;gt;* show results only where the value of the property named *priorityVal* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator returns all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -447,7 +492,7 @@ export namespace cloudsearch_v1 {
      */
     count?: number | null;
     /**
-     * Percent of results that match the bucket value. This value is between (0-100]. Percentages are returned for all searches, but are an estimate. Because percentages are always returned, you should render percentages instead of counts.
+     * Percent of results that match the bucket value. The returned value is between (0-100], and is rounded down to an integer if fractional. If the value is not explicitly returned, it represents a percentage value that rounds to 0. Percentages are returned for all searches, but are an estimate. Because percentages are always returned, you should render percentages instead of counts.
      */
     percentage?: number | null;
     value?: Schema$Value;
@@ -533,7 +578,7 @@ export namespace cloudsearch_v1 {
      */
     freshnessDuration?: string | null;
     /**
-     * This property indicates the freshness level of the object in the index. If set, this property must be a top-level property within the property definitions and it must be a timestamp type or date type. Otherwise, the Indexing API uses updateTime as the freshness indicator. The maximum length is 256 characters.  When a property is used to calculate fresheness, the value defaults to 2 years from the current time.
+     * This property indicates the freshness level of the object in the index. If set, this property must be a top-level property within the property definitions and it must be a timestamp type or date type. Otherwise, the Indexing API uses updateTime as the freshness indicator. The maximum length is 256 characters.  When a property is used to calculate freshness, the value defaults to 2 years from the current time.
      */
     freshnessProperty?: string | null;
   }
@@ -543,41 +588,29 @@ export namespace cloudsearch_v1 {
      */
     stats?: Schema$CustomerIndexStats[];
   }
+  export interface Schema$GetCustomerQueryStatsResponse {
+    stats?: Schema$CustomerQueryStats[];
+  }
+  export interface Schema$GetCustomerSessionStatsResponse {
+    stats?: Schema$CustomerSessionStats[];
+  }
+  export interface Schema$GetCustomerUserStatsResponse {
+    stats?: Schema$CustomerUserStats[];
+  }
   export interface Schema$GetDataSourceIndexStatsResponse {
     /**
      * Summary of indexed item counts, one for each day in the requested range.
      */
     stats?: Schema$DataSourceIndexStats[];
   }
-  /**
-   * Gmail Action restricts (i.e. read/replied/snoozed).
-   */
-  export interface Schema$GmailActionRestrict {
-    type?: string | null;
+  export interface Schema$GetSearchApplicationQueryStatsResponse {
+    stats?: Schema$SearchApplicationQueryStats[];
   }
-  /**
-   * Gmail Attachment restricts (i.e. has:attachment, has:drive, filename:pdf).
-   */
-  export interface Schema$GmailAttachmentRestrict {
-    type?: string | null;
+  export interface Schema$GetSearchApplicationSessionStatsResponse {
+    stats?: Schema$SearchApplicationSessionStats[];
   }
-  /**
-   * Gmail Folder restricts (i.e. in Drafts/Sent/Chats/User Generated Labels).
-   */
-  export interface Schema$GmailFolderRestrict {
-    type?: string | null;
-  }
-  /**
-   * Gmail Intelligent restricts (i.e. smartlabels, important).
-   */
-  export interface Schema$GmailIntelligentRestrict {
-    type?: string | null;
-  }
-  /**
-   * Gmail Time restricts (i.e. received today, this week).
-   */
-  export interface Schema$GmailTimeRestrict {
-    type?: string | null;
+  export interface Schema$GetSearchApplicationUserStatsResponse {
+    stats?: Schema$SearchApplicationUserStats[];
   }
   export interface Schema$GSuitePrincipal {
     /**
@@ -598,7 +631,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$HtmlOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the html property. For example, if operatorName is *subject* and the property&#39;s name is *subjectLine*, then queries like *subject:&amp;lt;value&amp;gt;* will show results only where the value of the property named *subjectLine* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any html properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the html property. For example, if operatorName is *subject* and the property&#39;s name is *subjectLine*, then queries like *subject:&amp;lt;value&amp;gt;* show results only where the value of the property named *subjectLine* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator return all items where *&amp;lt;value&amp;gt;* matches the value of any html properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -654,15 +687,15 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$IntegerOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the integer property using the greater-than operator. For example, if greaterThanOperatorName is *priorityabove* and the property&#39;s name is *priorityVal*, then queries like *priorityabove:&amp;lt;value&amp;gt;* will show results only where the value of the property named *priorityVal* is greater than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the integer property using the greater-than operator. For example, if greaterThanOperatorName is *priorityabove* and the property&#39;s name is *priorityVal*, then queries like *priorityabove:&amp;lt;value&amp;gt;* show results only where the value of the property named *priorityVal* is greater than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     greaterThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the integer property using the less-than operator. For example, if lessThanOperatorName is *prioritybelow* and the property&#39;s name is *priorityVal*, then queries like *prioritybelow:&amp;lt;value&amp;gt;* will show results only where the value of the property named *priorityVal* is less than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the integer property using the less-than operator. For example, if lessThanOperatorName is *prioritybelow* and the property&#39;s name is *priorityVal*, then queries like *prioritybelow:&amp;lt;value&amp;gt;* show results only where the value of the property named *priorityVal* is less than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     lessThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the integer property. For example, if operatorName is *priority* and the property&#39;s name is *priorityVal*, then queries like *priority:&amp;lt;value&amp;gt;* will show results only where the value of the property named *priorityVal* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the integer property. For example, if operatorName is *priority* and the property&#39;s name is *priorityVal*, then queries like *priority:&amp;lt;value&amp;gt;* show results only where the value of the property named *priorityVal* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator returns all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -753,7 +786,7 @@ export namespace cloudsearch_v1 {
     version?: string | null;
   }
   /**
-   * Access control list information for the item. For more information see https://developers.google.com/cloud-search/docs/guides/index-your-data#acls
+   * Access control list information for the item. For more information see [Map ACLs](/cloud-search/docs/guides/acls).
    */
   export interface Schema$ItemAcl {
     /**
@@ -846,7 +879,7 @@ export namespace cloudsearch_v1 {
      */
     searchQualityMetadata?: Schema$SearchQualityMetadata;
     /**
-     * Link to the source repository serving the data.  &amp;#83;earch results apply this link to the title. The maximum length is 2048 characters.
+     * Link to the source repository serving the data.  &amp;#83;earch results apply this link to the title. Whitespace or special characters may cause Cloud &amp;#83;earch result links to trigger a redirect notice; to avoid this, encode the URL. The maximum length is 2048 characters.
      */
     sourceRepositoryUrl?: string | null;
     /**
@@ -994,7 +1027,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$Metaline {
     /**
-     * The list of displayed properties for the metaline. The maxiumum number of properties is 5.
+     * The list of displayed properties for the metaline. The maximum number of properties is 5.
      */
     properties?: Schema$DisplayedProperty[];
   }
@@ -1047,11 +1080,11 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$ObjectDisplayOptions {
     /**
-     * Defines the properties that will be displayed in the metalines of the search results. The property values will be displayed in the order given here. If a property holds multiple values, all of the values will be diplayed before the next properties. For this reason, it is a good practice to specify singular properties before repeated properties in this list. All of the properties must set is_returnable to true. The maximum number of metalines is 3.
+     * Defines the properties that are displayed in the metalines of the search results. The property values are displayed in the order given here. If a property holds multiple values, all of the values are displayed before the next properties. For this reason, it is a good practice to specify singular properties before repeated properties in this list. All of the properties must set is_returnable to true. The maximum number of metalines is 3.
      */
     metalines?: Schema$Metaline[];
     /**
-     * The user friendly label to display in the search result to inidicate the type of the item. This is OPTIONAL; if not given, an object label will not be displayed on the context line of the search results. The maximum length is 32 characters.
+     * The user friendly label to display in the search result to indicate the type of the item. This is OPTIONAL; if not provided, an object label isn&#39;t displayed on the context line of the search results. The maximum length is 64 characters.
      */
     objectDisplayLabel?: string | null;
   }
@@ -1161,7 +1194,7 @@ export namespace cloudsearch_v1 {
      */
     debugOptions?: Schema$DebugOptions;
     /**
-     * Maximum number of items to return. &lt;br /&gt;The maximum and the default value is 1000
+     * Maximum number of items to return. &lt;br /&gt;The maximum value is 100 and the default value is 20.
      */
     limit?: number | null;
     /**
@@ -1229,7 +1262,7 @@ export namespace cloudsearch_v1 {
      */
     isFacetable?: boolean | null;
     /**
-     * Indicates that multiple values are allowed for the property. For example, a document only has one description but can have multiple comments. Cannot be true for properties whose type is a boolean. If set to false, properties that contain more than one value will cause the indexing request for that item to be rejected.
+     * Indicates that multiple values are allowed for the property. For example, a document only has one description but can have multiple comments. Cannot be true for properties whose type is a boolean. If set to false, properties that contain more than one value cause the indexing request for that item to be rejected.
      */
     isRepeatable?: boolean | null;
     /**
@@ -1245,7 +1278,7 @@ export namespace cloudsearch_v1 {
      */
     isSuggestable?: boolean | null;
     /**
-     * Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable.  Note: This is an alpha feature and is enabled for whitelisted users only.
+     * Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable.
      */
     isWildcardSearchable?: boolean | null;
     /**
@@ -1261,7 +1294,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$PropertyDisplayOptions {
     /**
-     * The user friendly label for the property that will be used if the property is specified to be displayed in ObjectDisplayOptions. If given, the display label will be shown in front of the property values when the property is part of the object display options. For example, if the property value is &#39;1&#39;, the value by itself may not be useful context for the user. If the display name given was &#39;priority&#39;, then the user will see &#39;priority : 1&#39; in the search results which provides clear conext to search users. This is OPTIONAL; if not given, only the property values will be displayed. The maximum length is 32 characters.
+     * The user friendly label for the property that is used if the property is specified to be displayed in ObjectDisplayOptions. If provided, the display label is shown in front of the property values when the property is part of the object display options. For example, if the property value is &#39;1&#39;, the value by itself may not be useful context for the user. If the display name given was &#39;priority&#39;, then the user sees &#39;priority : 1&#39; in the search results which provides clear context to search users. This is OPTIONAL; if not given, only the property values are displayed. The maximum length is 64 characters.
      */
     displayLabel?: string | null;
   }
@@ -1312,12 +1345,23 @@ export namespace cloudsearch_v1 {
      */
     item?: Schema$PushItem;
   }
+  export interface Schema$QueryCountByStatus {
+    count?: string | null;
+    /**
+     * This represents the http status code.
+     */
+    statusCode?: number | null;
+  }
   export interface Schema$QueryInterpretation {
     interpretationType?: string | null;
     /**
-     * The interpretation of the query used in search. For example, queries with natural language intent like &quot;email from john&quot; will be interpreted as &quot;from:john source:mail&quot;. This field will not be filled when the reason is NO_RESULTS_FOUND_FOR_USER_QUERY.
+     * The interpretation of the query used in search. For example, queries with natural language intent like &quot;email from john&quot; will be interpreted as &quot;from:john source:mail&quot;. This field will not be filled when the reason is NOT_ENOUGH_RESULTS_FOUND_FOR_USER_QUERY.
      */
     interpretedQuery?: string | null;
+    /**
+     * The reason for interpretation of the query. This field will not be UNSPECIFIED if the interpretation type is not NONE.
+     */
+    reason?: string | null;
   }
   /**
    * Options to interpret user query.
@@ -1327,6 +1371,10 @@ export namespace cloudsearch_v1 {
      * Flag to disable natural language (NL) interpretation of queries. Default is false, Set to true to disable natural language interpretation. NL interpretation only applies to predefined datasources.
      */
     disableNlInterpretation?: boolean | null;
+    /**
+     * Enable this flag to turn off all internal optimizations like natural language (NL) interpretation of queries, supplemental result retrieval, and usage of synonyms including custom ones. Nl interpretation will be disabled if either one of the two flags is true.
+     */
+    enableVerbatimMode?: boolean | null;
   }
   /**
    * Information relevant only to a query entry.
@@ -1377,6 +1425,10 @@ export namespace cloudsearch_v1 {
      * Indicates the operator name that can be used to  isolate the property using the less-than operator.
      */
     lessThanOperatorName?: string | null;
+    /**
+     * Name of the object corresponding to the operator. This field is only filled for schema-specific operators, and is unset for common operators.
+     */
+    objectType?: string | null;
     /**
      * The name of the operator.
      */
@@ -1437,11 +1489,11 @@ export namespace cloudsearch_v1 {
      */
     debugOptions?: Schema$DebugOptions;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  When specified, the documents in search results are biased towards the specified language. Suggest API does not use this parameter. It autocompletes only based on characters in the query.
+     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  Set this field using the language set in browser or for the page. In the event that the user&#39;s language preference is known, set this field to the known user language.  When specified, the documents in search results are biased towards the specified language.  The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
      */
     languageCode?: string | null;
     /**
-     * Id of the application created using SearchApplicationsService.
+     * The ID generated when you create a search application using the [admin console](https://support.google.com/a/answer/9043922).
      */
     searchApplicationId?: string | null;
     /**
@@ -1478,14 +1530,6 @@ export namespace cloudsearch_v1 {
      */
     driveMimeTypeRestrict?: Schema$DriveMimeTypeRestrict;
     driveTimeSpanRestrict?: Schema$DriveTimeSpanRestrict;
-    gmailActionRestrict?: Schema$GmailActionRestrict;
-    gmailAttachmentRestrict?: Schema$GmailAttachmentRestrict;
-    /**
-     * Gmail Types.
-     */
-    gmailFolderRestrict?: Schema$GmailFolderRestrict;
-    gmailIntelligentRestrict?: Schema$GmailIntelligentRestrict;
-    gmailTimeRestrict?: Schema$GmailTimeRestrict;
     /**
      * The search restrict (e.g. &quot;after:2017-09-11 before:2017-09-12&quot;).
      */
@@ -1599,7 +1643,7 @@ export namespace cloudsearch_v1 {
      */
     name?: string | null;
     /**
-     * IDs of the Long Running Operations (LROs) currently running for this schema. Output only field.
+     * Output only. IDs of the Long Running Operations (LROs) currently running for this schema. Output only field.
      */
     operationIds?: string[] | null;
     /**
@@ -1610,6 +1654,41 @@ export namespace cloudsearch_v1 {
      * Configuration for a sources specified in data_source_restrictions.
      */
     sourceConfig?: Schema$SourceConfig[];
+  }
+  export interface Schema$SearchApplicationQueryStats {
+    /**
+     * Date for which query stats were calculated. Stats calculated on the next day close to midnight are returned.
+     */
+    date?: Schema$Date;
+    queryCountByStatus?: Schema$QueryCountByStatus[];
+  }
+  export interface Schema$SearchApplicationSessionStats {
+    /**
+     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     */
+    date?: Schema$Date;
+    /**
+     * The count of search sessions on the day
+     */
+    searchSessionsCount?: string | null;
+  }
+  export interface Schema$SearchApplicationUserStats {
+    /**
+     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     */
+    date?: Schema$Date;
+    /**
+     * The count of unique active users in the past one day
+     */
+    oneDayActiveUsersCount?: string | null;
+    /**
+     * The count of unique active users in the past seven days
+     */
+    sevenDaysActiveUsersCount?: string | null;
+    /**
+     * The count of unique active users in the past thirty days
+     */
+    thirtyDaysActiveUsersCount?: string | null;
   }
   export interface Schema$SearchItemsByViewUrlRequest {
     /**
@@ -1908,7 +1987,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$SuggestRequest {
     /**
-     * The sources to use for suggestions. If not specified, all data sources from the current search application are used. Suggestions are based on Gmail titles. Suggestions from third party sources are not available.
+     * The sources to use for suggestions. If not specified, the data sources are taken from the current search application.  NOTE: Suggestions are supported only for third party data sources and people (i.e. PredefinedSource.PERSON).
      */
     dataSourceRestrictions?: Schema$DataSourceRestriction[];
     /**
@@ -1955,11 +2034,11 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$TextOperatorOptions {
     /**
-     * If true, the text value will be tokenized as one atomic value in operator searches and facet matches. For example, if the operator name is &quot;genre&quot; and the value is &quot;science-fiction&quot; the query restrictions &quot;genre:science&quot; and &quot;genre:fiction&quot; will not match the item; &quot;genre:science-fiction&quot; will. Value matching is case-sensitive and does not remove special characters. If false, the text will be tokenized. For example, if the value is &quot;science-fiction&quot; the queries &quot;genre:science&quot; and &quot;genre:fiction&quot; will match the item.
+     * If true, the text value is tokenized as one atomic value in operator searches and facet matches. For example, if the operator name is &quot;genre&quot; and the value is &quot;science-fiction&quot; the query restrictions &quot;genre:science&quot; and &quot;genre:fiction&quot; doesn&#39;t match the item; &quot;genre:science-fiction&quot; does. Value matching is case-sensitive and does not remove special characters. If false, the text is tokenized. For example, if the value is &quot;science-fiction&quot; the queries &quot;genre:science&quot; and &quot;genre:fiction&quot; matches the item.
      */
     exactMatchWithOperator?: boolean | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the text property. For example, if operatorName is *subject* and the property&#39;s name is *subjectLine*, then queries like *subject:&amp;lt;value&amp;gt;* will show results only where the value of the property named *subjectLine* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any text properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the text property. For example, if operatorName is *subject* and the property&#39;s name is *subjectLine*, then queries like *subject:&amp;lt;value&amp;gt;* show results only where the value of the property named *subjectLine* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator returns all items where *&amp;lt;value&amp;gt;* matches the value of any text properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -1990,15 +2069,15 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$TimestampOperatorOptions {
     /**
-     * Indicates the operator name required in the query in order to isolate the timestamp property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property&#39;s name is *closeDate*, then queries like *closedafter:&amp;lt;value&amp;gt;* will show results only where the value of the property named *closeDate* is later than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the timestamp property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property&#39;s name is *closeDate*, then queries like *closedafter:&amp;lt;value&amp;gt;* show results only where the value of the property named *closeDate* is later than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     greaterThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the timestamp property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property&#39;s name is *closeDate*, then queries like *closedbefore:&amp;lt;value&amp;gt;* will show results only where the value of the property named *closeDate* is earlier than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the timestamp property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property&#39;s name is *closeDate*, then queries like *closedbefore:&amp;lt;value&amp;gt;* show results only where the value of the property named *closeDate* is earlier than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     lessThanOperatorName?: string | null;
     /**
-     * Indicates the operator name required in the query in order to isolate the timestamp property. For example, if operatorName is *closedon* and the property&#39;s name is *closeDate*, then queries like *closedon:&amp;lt;value&amp;gt;* will show results only where the value of the property named *closeDate* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
+     * Indicates the operator name required in the query in order to isolate the timestamp property. For example, if operatorName is *closedon* and the property&#39;s name is *closeDate*, then queries like *closedon:&amp;lt;value&amp;gt;* show results only where the value of the property named *closeDate* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator returns all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
     operatorName?: string | null;
   }
@@ -2058,7 +2137,7 @@ export namespace cloudsearch_v1 {
      */
     schema?: Schema$Schema;
     /**
-     * If true, the request will be validated without side effects.
+     * If true, the schema will be checked for validity, but will not be registered with the data source, even if valid.
      */
     validateOnly?: boolean | null;
   }
@@ -2125,22 +2204,88 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.datasources.items.checkAccess
-     * @desc Checks whether an item is accessible by specified principal.
+     * @desc Checks whether an item is accessible by specified principal.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.debug',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.debug.datasources.items.checkAccess({
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Item name, format:
+     *     // datasources/{source_id}/items/{item_id}
+     *     name: 'datasources/my-datasource/items/my-item',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "groupResourceName": "my_groupResourceName",
+     *       //   "gsuitePrincipal": {},
+     *       //   "userResourceName": "my_userResourceName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hasAccess": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.debug.datasources.items.checkAccess
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name Item name, format: datasources/{source_id}/items/{item_id}
-     * @param {().Principal} params.resource Request body data
+     * @param {().Principal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     checkAccess(
+      params: Params$Resource$Debug$Datasources$Items$Checkaccess,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkAccess(
       params?: Params$Resource$Debug$Datasources$Items$Checkaccess,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CheckAccessResponse>;
+    checkAccess(
+      params: Params$Resource$Debug$Datasources$Items$Checkaccess,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     checkAccess(
       params: Params$Resource$Debug$Datasources$Items$Checkaccess,
       options: MethodOptions | BodyResponseCallback<Schema$CheckAccessResponse>,
@@ -2156,12 +2301,20 @@ export namespace cloudsearch_v1 {
     checkAccess(
       paramsOrCallback?:
         | Params$Resource$Debug$Datasources$Items$Checkaccess
-        | BodyResponseCallback<Schema$CheckAccessResponse>,
+        | BodyResponseCallback<Schema$CheckAccessResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CheckAccessResponse>,
-      callback?: BodyResponseCallback<Schema$CheckAccessResponse>
-    ): void | GaxiosPromise<Schema$CheckAccessResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckAccessResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckAccessResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CheckAccessResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debug$Datasources$Items$Checkaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2195,7 +2348,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CheckAccessResponse>(parameters, callback);
+        createAPIRequest<Schema$CheckAccessResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CheckAccessResponse>(parameters);
       }
@@ -2203,21 +2359,85 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.datasources.items.searchByViewUrl
-     * @desc Fetches the item whose viewUrl exactly matches that of the URL provided in the request.
+     * @desc Fetches the item whose viewUrl exactly matches that of the URL provided in the request.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.debug',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.debug.datasources.items.searchByViewUrl({
+     *     // Source name, format:
+     *     // datasources/{source_id}
+     *     name: 'datasources/my-datasource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "debugOptions": {},
+     *       //   "pageToken": "my_pageToken",
+     *       //   "viewUrl": "my_viewUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.debug.datasources.items.searchByViewUrl
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Source name, format: datasources/{source_id}
-     * @param {().SearchItemsByViewUrlRequest} params.resource Request body data
+     * @param {().SearchItemsByViewUrlRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     searchByViewUrl(
+      params: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchByViewUrl(
       params?: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchItemsByViewUrlResponse>;
+    searchByViewUrl(
+      params: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     searchByViewUrl(
       params: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
       options:
@@ -2235,12 +2455,20 @@ export namespace cloudsearch_v1 {
     searchByViewUrl(
       paramsOrCallback?:
         | Params$Resource$Debug$Datasources$Items$Searchbyviewurl
-        | BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>,
+        | BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>,
-      callback?: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>
-    ): void | GaxiosPromise<Schema$SearchItemsByViewUrlResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchItemsByViewUrlResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debug$Datasources$Items$Searchbyviewurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2276,7 +2504,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchItemsByViewUrlResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SearchItemsByViewUrlResponse>(
@@ -2288,11 +2516,6 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Debug$Datasources$Items$Checkaccess
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -2309,11 +2532,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Debug$Datasources$Items$Searchbyviewurl
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Source name, format: datasources/{source_id}
      */
@@ -2333,7 +2551,60 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.datasources.items.unmappedids.list
-     * @desc List all unmapped identities for a specific item.
+     * @desc List all unmapped identities for a specific item.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.debug',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.debug.datasources.items.unmappedids.list({
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Maximum number of items to fetch in a request.
+     *     // Defaults to 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // The name of the item, in the following format:
+     *     // datasources/{source_id}/items/{ID}
+     *     parent: 'datasources/my-datasource/items/my-item',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unmappedIdentities": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.debug.datasources.items.unmappedids.list
      * @memberOf! ()
      *
@@ -2347,9 +2618,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListUnmappedIdentitiesResponse>;
+    list(
+      params: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
       options:
@@ -2367,12 +2647,20 @@ export namespace cloudsearch_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Debug$Datasources$Items$Unmappedids$List
-        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
+        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
-      callback?: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
-    ): void | GaxiosPromise<Schema$ListUnmappedIdentitiesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUnmappedIdentitiesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debug$Datasources$Items$Unmappedids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2408,7 +2696,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
@@ -2420,11 +2708,6 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Debug$Datasources$Items$Unmappedids$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -2464,7 +2747,66 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.identitysources.items.listForunmappedidentity
-     * @desc Lists names of items associated with an unmapped identity.
+     * @desc Lists names of items associated with an unmapped identity.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.debug',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.debug.identitysources.items.listForunmappedidentity(
+     *     {
+     *       // If you are asked by Google to help with debugging, set this field.
+     *       // Otherwise, ignore this field.
+     *       'debugOptions.enableDebugging': 'placeholder-value',
+     *
+     *       groupResourceName: 'placeholder-value',
+     *       // Maximum number of items to fetch in a request.
+     *       // Defaults to 100.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // The name of the identity source, in the following format:
+     *       // identitysources/{source_id}}
+     *       parent: 'identitysources/my-identitysource',
+     *
+     *       userResourceName: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "itemNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.debug.identitysources.items.listForunmappedidentity
      * @memberOf! ()
      *
@@ -2480,9 +2822,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     listForunmappedidentity(
+      params: Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listForunmappedidentity(
       params?: Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListItemNamesForUnmappedIdentityResponse>;
+    listForunmappedidentity(
+      params: Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listForunmappedidentity(
       params: Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
       options:
@@ -2506,14 +2857,20 @@ export namespace cloudsearch_v1 {
     listForunmappedidentity(
       paramsOrCallback?:
         | Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity
-        | BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>,
+        | BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>,
-      callback?: BodyResponseCallback<
-        Schema$ListItemNamesForUnmappedIdentityResponse
-      >
-    ): void | GaxiosPromise<Schema$ListItemNamesForUnmappedIdentityResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListItemNamesForUnmappedIdentityResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2548,7 +2905,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListItemNamesForUnmappedIdentityResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -2560,11 +2917,6 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -2599,7 +2951,62 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.identitysources.unmappedids.list
-     * @desc Lists unmapped user identities for an identity source.
+     * @desc Lists unmapped user identities for an identity source.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.debug',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.debug.identitysources.unmappedids.list({
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Maximum number of items to fetch in a request.
+     *     // Defaults to 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // The name of the identity source, in the following format:
+     *     // identitysources/{source_id}
+     *     parent: 'identitysources/my-identitysource',
+     *     // Limit users selection to this status.
+     *     resolutionStatusCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unmappedIdentities": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.debug.identitysources.unmappedids.list
      * @memberOf! ()
      *
@@ -2614,9 +3021,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Debug$Identitysources$Unmappedids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Debug$Identitysources$Unmappedids$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListUnmappedIdentitiesResponse>;
+    list(
+      params: Params$Resource$Debug$Identitysources$Unmappedids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Debug$Identitysources$Unmappedids$List,
       options:
@@ -2634,12 +3050,20 @@ export namespace cloudsearch_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Debug$Identitysources$Unmappedids$List
-        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
+        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
-      callback?: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
-    ): void | GaxiosPromise<Schema$ListUnmappedIdentitiesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUnmappedIdentitiesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debug$Identitysources$Unmappedids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2675,7 +3099,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
@@ -2687,11 +3111,6 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Debug$Identitysources$Unmappedids$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -2733,7 +3152,59 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.deleteSchema
-     * @desc Deletes the schema of a data source.
+     * @desc Deletes the schema of a data source.  **Note:** This API requires an admin or service account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.deleteSchema({
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Name of the data source to delete Schema.  Format:
+     *     // datasources/{source_id}
+     *     name: 'datasources/my-datasource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.indexing.datasources.deleteSchema
      * @memberOf! ()
      *
@@ -2745,9 +3216,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     deleteSchema(
+      params: Params$Resource$Indexing$Datasources$Deleteschema,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteSchema(
       params?: Params$Resource$Indexing$Datasources$Deleteschema,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    deleteSchema(
+      params: Params$Resource$Indexing$Datasources$Deleteschema,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteSchema(
       params: Params$Resource$Indexing$Datasources$Deleteschema,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2761,12 +3241,17 @@ export namespace cloudsearch_v1 {
     deleteSchema(
       paramsOrCallback?:
         | Params$Resource$Indexing$Datasources$Deleteschema
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Deleteschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2800,7 +3285,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2808,7 +3296,56 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.getSchema
-     * @desc Gets the schema of a data source.
+     * @desc Gets the schema of a data source.  **Note:** This API requires an admin or service account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.getSchema({
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Name of the data source to get Schema.  Format:
+     *     // datasources/{source_id}
+     *     name: 'datasources/my-datasource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "objectDefinitions": [],
+     *   //   "operationIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.indexing.datasources.getSchema
      * @memberOf! ()
      *
@@ -2820,9 +3357,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     getSchema(
+      params: Params$Resource$Indexing$Datasources$Getschema,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSchema(
       params?: Params$Resource$Indexing$Datasources$Getschema,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Schema>;
+    getSchema(
+      params: Params$Resource$Indexing$Datasources$Getschema,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getSchema(
       params: Params$Resource$Indexing$Datasources$Getschema,
       options: MethodOptions | BodyResponseCallback<Schema$Schema>,
@@ -2836,10 +3382,17 @@ export namespace cloudsearch_v1 {
     getSchema(
       paramsOrCallback?:
         | Params$Resource$Indexing$Datasources$Getschema
-        | BodyResponseCallback<Schema$Schema>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Schema>,
-      callback?: BodyResponseCallback<Schema$Schema>
-    ): void | GaxiosPromise<Schema$Schema> {
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Schema> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Getschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2873,7 +3426,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Schema>(parameters, callback);
+        createAPIRequest<Schema$Schema>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Schema>(parameters);
       }
@@ -2881,21 +3437,89 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.updateSchema
-     * @desc Updates the schema of a data source.
+     * @desc Updates the schema of a data source. This method does not perform incremental updates to the schema. Instead, this method updates the schema by overwriting the entire schema.  **Note:** This API requires an admin or service account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.updateSchema({
+     *     // Name of the data source to update Schema.  Format:
+     *     // datasources/{source_id}
+     *     name: 'datasources/my-datasource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "debugOptions": {},
+     *       //   "schema": {},
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.indexing.datasources.updateSchema
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the data source to update Schema.  Format: datasources/{source_id}
-     * @param {().UpdateSchemaRequest} params.resource Request body data
+     * @param {().UpdateSchemaRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     updateSchema(
+      params: Params$Resource$Indexing$Datasources$Updateschema,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateSchema(
       params?: Params$Resource$Indexing$Datasources$Updateschema,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    updateSchema(
+      params: Params$Resource$Indexing$Datasources$Updateschema,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateSchema(
       params: Params$Resource$Indexing$Datasources$Updateschema,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2909,12 +3533,17 @@ export namespace cloudsearch_v1 {
     updateSchema(
       paramsOrCallback?:
         | Params$Resource$Indexing$Datasources$Updateschema
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Updateschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2948,7 +3577,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2957,11 +3589,6 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Indexing$Datasources$Deleteschema
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -2974,11 +3601,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Getschema
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
@@ -2989,11 +3611,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Indexing$Datasources$Updateschema
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the data source to update Schema.  Format: datasources/{source_id}
      */
@@ -3013,7 +3630,73 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.delete
-     * @desc Deletes Item resource for the specified resource name.
+     * @desc Deletes Item resource for the specified resource name. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.delete({
+     *     // Name of connector making this call.
+     *     // <br />Format: datasources/{source_id}/connectors/{ID}
+     *     connectorName: 'placeholder-value',
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Required. The RequestMode for this request.
+     *     mode: 'placeholder-value',
+     *     // Required. Name of the item to delete.
+     *     // Format: datasources/{source_id}/items/{item_id}
+     *     name: 'datasources/my-datasource/items/my-item',
+     *     // Required. The incremented version of the item to delete from the index.
+     *     // The indexing system stores the version from the datasource as a
+     *     // byte string and compares the Item version in the index
+     *     // to the version of the queued Item using lexical ordering.
+     *     // <br /><br />
+     *     // Cloud Search Indexing won't delete any queued item with
+     *     // a version value that is less than or equal to
+     *     // the version of the currently indexed item.
+     *     // The maximum length for this field is 1024 bytes.
+     *     version: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.indexing.datasources.items.delete
      * @memberOf! ()
      *
@@ -3028,9 +3711,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Indexing$Datasources$Items$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Indexing$Datasources$Items$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Indexing$Datasources$Items$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Indexing$Datasources$Items$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3044,12 +3736,17 @@ export namespace cloudsearch_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Indexing$Datasources$Items$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3083,7 +3780,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3091,21 +3791,88 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.deleteQueueItems
-     * @desc Deletes all items in a queue. This method is useful for deleting stale items.
+     * @desc Deletes all items in a queue. This method is useful for deleting stale items.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.deleteQueueItems({
+     *     // Name of the Data Source to delete items in a queue.
+     *     // Format: datasources/{source_id}
+     *     name: 'datasources/my-datasource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectorName": "my_connectorName",
+     *       //   "debugOptions": {},
+     *       //   "queue": "my_queue"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.indexing.datasources.items.deleteQueueItems
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the Data Source to delete items in a queue. Format: datasources/{source_id}
-     * @param {().DeleteQueueItemsRequest} params.resource Request body data
+     * @param {().DeleteQueueItemsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     deleteQueueItems(
+      params: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteQueueItems(
       params?: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    deleteQueueItems(
+      params: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteQueueItems(
       params: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3119,12 +3886,17 @@ export namespace cloudsearch_v1 {
     deleteQueueItems(
       paramsOrCallback?:
         | Params$Resource$Indexing$Datasources$Items$Deletequeueitems
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Deletequeueitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3157,7 +3929,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3165,7 +3940,66 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.get
-     * @desc Gets Item resource by item name.
+     * @desc Gets Item resource by item name.  This API requires an admin or service account to execute.  The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.get({
+     *     // Name of connector making this call.
+     *     // <br />Format: datasources/{source_id}/connectors/{ID}
+     *     connectorName: 'placeholder-value',
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Name of the item to get info.
+     *     // Format: datasources/{source_id}/items/{item_id}
+     *     name: 'datasources/my-datasource/items/my-item',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": {},
+     *   //   "content": {},
+     *   //   "itemType": "my_itemType",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "payload": "my_payload",
+     *   //   "queue": "my_queue",
+     *   //   "status": {},
+     *   //   "structuredData": {},
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.indexing.datasources.items.get
      * @memberOf! ()
      *
@@ -3178,9 +4012,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Indexing$Datasources$Items$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Indexing$Datasources$Items$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Item>;
+    get(
+      params: Params$Resource$Indexing$Datasources$Items$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Indexing$Datasources$Items$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Item>,
@@ -3194,10 +4037,17 @@ export namespace cloudsearch_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Indexing$Datasources$Items$Get
-        | BodyResponseCallback<Schema$Item>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Item>,
-      callback?: BodyResponseCallback<Schema$Item>
-    ): void | GaxiosPromise<Schema$Item> {
+        | BodyResponseCallback<Schema$Item>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Item>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Item>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Item> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3231,7 +4081,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Item>(parameters, callback);
+        createAPIRequest<Schema$Item>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Item>(parameters);
       }
@@ -3239,21 +4092,92 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.index
-     * @desc Updates Item ACL, metadata, and content. It will insert the Item if it does not exist. This method does not support partial updates.  Fields with no provided values are cleared out in the Cloud Search index.
+     * @desc Updates Item ACL, metadata, and content. It will insert the Item if it does not exist. This method does not support partial updates.  Fields with no provided values are cleared out in the Cloud Search index.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.index({
+     *     // Name of the Item. Format:
+     *     // datasources/{source_id}/items/{item_id}
+     *     // <br />This is a required field.
+     *     // The maximum length is 1536 characters.
+     *     name: 'datasources/my-datasource/items/my-item',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectorName": "my_connectorName",
+     *       //   "debugOptions": {},
+     *       //   "indexItemOptions": {},
+     *       //   "item": {},
+     *       //   "mode": "my_mode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.indexing.datasources.items.index
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the Item. Format: datasources/{source_id}/items/{item_id} <br />This is a required field. The maximum length is 1536 characters.
-     * @param {().IndexItemRequest} params.resource Request body data
+     * @param {().IndexItemRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     index(
+      params: Params$Resource$Indexing$Datasources$Items$Index,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    index(
       params?: Params$Resource$Indexing$Datasources$Items$Index,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    index(
+      params: Params$Resource$Indexing$Datasources$Items$Index,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     index(
       params: Params$Resource$Indexing$Datasources$Items$Index,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3267,12 +4191,17 @@ export namespace cloudsearch_v1 {
     index(
       paramsOrCallback?:
         | Params$Resource$Indexing$Datasources$Items$Index
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Index;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3306,7 +4235,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3314,12 +4246,90 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.list
-     * @desc Lists all or a subset of Item resources.
+     * @desc Lists all or a subset of Item resources.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.list({
+     *     // When set to true, the indexing system only populates the following fields:
+     *     // name,
+     *     // version,
+     *     // queue.
+     *     // metadata.hash,
+     *     // metadata.title,
+     *     // metadata.sourceRepositoryURL,
+     *     // metadata.objectType,
+     *     // metadata.createTime,
+     *     // metadata.updateTime,
+     *     // metadata.contentLanguage,
+     *     // metadata.mimeType,
+     *     // structured_data.hash,
+     *     // content.hash,
+     *     // itemType,
+     *     // itemStatus.code,
+     *     // itemStatus.processingError.code,
+     *     // itemStatus.repositoryError.type,
+     *     // <br />If this value is false, then all the fields are populated in Item.
+     *     brief: 'placeholder-value',
+     *     // Name of connector making this call.
+     *     // <br />Format: datasources/{source_id}/connectors/{ID}
+     *     connectorName: 'placeholder-value',
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Name of the Data Source to list Items.  Format:
+     *     // datasources/{source_id}
+     *     name: 'datasources/my-datasource',
+     *     // Maximum number of items to fetch in a request.
+     *     // The max value is 1000 when brief is true.  The max value is 10 if brief
+     *     // is false.
+     *     // <br />The default value is 10
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.indexing.datasources.items.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.brief When set to true, the indexing system only populates the following fields: name, version, metadata.hash, structured_data.hash, content.hash. <br />If this value is false, then all the fields are populated in Item.
+     * @param {boolean=} params.brief When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, <br />If this value is false, then all the fields are populated in Item.
      * @param {string=} params.connectorName Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name Name of the Data Source to list Items.  Format: datasources/{source_id}
@@ -3330,9 +4340,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Indexing$Datasources$Items$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Indexing$Datasources$Items$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListItemsResponse>;
+    list(
+      params: Params$Resource$Indexing$Datasources$Items$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Indexing$Datasources$Items$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListItemsResponse>,
@@ -3346,12 +4365,20 @@ export namespace cloudsearch_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Indexing$Datasources$Items$List
-        | BodyResponseCallback<Schema$ListItemsResponse>,
+        | BodyResponseCallback<Schema$ListItemsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListItemsResponse>,
-      callback?: BodyResponseCallback<Schema$ListItemsResponse>
-    ): void | GaxiosPromise<Schema$ListItemsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListItemsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListItemsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListItemsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3385,7 +4412,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListItemsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListItemsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListItemsResponse>(parameters);
       }
@@ -3393,21 +4423,86 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.poll
-     * @desc Polls for unreserved items from the indexing queue and marks a set as reserved, starting with items that have the oldest timestamp from the highest priority ItemStatus. The priority order is as follows: <br /> ERROR <br /> MODIFIED <br /> NEW_ITEM <br /> ACCEPTED <br /> Reserving items ensures that polling from other threads cannot create overlapping sets.  After handling the reserved items, the client should put items back into the unreserved state, either by calling index, or by calling push with the type REQUEUE.  Items automatically become available (unreserved) after 4 hours even if no update or push method is called.
+     * @desc Polls for unreserved items from the indexing queue and marks a set as reserved, starting with items that have the oldest timestamp from the highest priority ItemStatus. The priority order is as follows: <br /> ERROR <br /> MODIFIED <br /> NEW_ITEM <br /> ACCEPTED <br /> Reserving items ensures that polling from other threads cannot create overlapping sets.  After handling the reserved items, the client should put items back into the unreserved state, either by calling index, or by calling push with the type REQUEUE.  Items automatically become available (unreserved) after 4 hours even if no update or push method is called.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.poll({
+     *     // Name of the Data Source to poll items.
+     *     // Format: datasources/{source_id}
+     *     name: 'datasources/my-datasource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectorName": "my_connectorName",
+     *       //   "debugOptions": {},
+     *       //   "limit": 0,
+     *       //   "queue": "my_queue",
+     *       //   "statusCodes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.indexing.datasources.items.poll
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the Data Source to poll items. Format: datasources/{source_id}
-     * @param {().PollItemsRequest} params.resource Request body data
+     * @param {().PollItemsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     poll(
+      params: Params$Resource$Indexing$Datasources$Items$Poll,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    poll(
       params?: Params$Resource$Indexing$Datasources$Items$Poll,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PollItemsResponse>;
+    poll(
+      params: Params$Resource$Indexing$Datasources$Items$Poll,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     poll(
       params: Params$Resource$Indexing$Datasources$Items$Poll,
       options: MethodOptions | BodyResponseCallback<Schema$PollItemsResponse>,
@@ -3421,12 +4516,20 @@ export namespace cloudsearch_v1 {
     poll(
       paramsOrCallback?:
         | Params$Resource$Indexing$Datasources$Items$Poll
-        | BodyResponseCallback<Schema$PollItemsResponse>,
+        | BodyResponseCallback<Schema$PollItemsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PollItemsResponse>,
-      callback?: BodyResponseCallback<Schema$PollItemsResponse>
-    ): void | GaxiosPromise<Schema$PollItemsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PollItemsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PollItemsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PollItemsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Poll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3460,7 +4563,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PollItemsResponse>(parameters, callback);
+        createAPIRequest<Schema$PollItemsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PollItemsResponse>(parameters);
       }
@@ -3468,21 +4574,96 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.push
-     * @desc Pushes an item onto a queue for later polling and updating.
+     * @desc Pushes an item onto a queue for later polling and updating.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.push({
+     *     // Name of the item to
+     *     // push into the indexing queue.<br />
+     *     // Format: datasources/{source_id}/items/{ID}
+     *     // <br />This is a required field.
+     *     // The maximum length is 1536 characters.
+     *     name: 'datasources/my-datasource/items/my-item',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectorName": "my_connectorName",
+     *       //   "debugOptions": {},
+     *       //   "item": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": {},
+     *   //   "content": {},
+     *   //   "itemType": "my_itemType",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "payload": "my_payload",
+     *   //   "queue": "my_queue",
+     *   //   "status": {},
+     *   //   "structuredData": {},
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.indexing.datasources.items.push
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the item to push into the indexing queue.<br /> Format: datasources/{source_id}/items/{ID} <br />This is a required field. The maximum length is 1536 characters.
-     * @param {().PushItemRequest} params.resource Request body data
+     * @param {().PushItemRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     push(
+      params: Params$Resource$Indexing$Datasources$Items$Push,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    push(
       params?: Params$Resource$Indexing$Datasources$Items$Push,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Item>;
+    push(
+      params: Params$Resource$Indexing$Datasources$Items$Push,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     push(
       params: Params$Resource$Indexing$Datasources$Items$Push,
       options: MethodOptions | BodyResponseCallback<Schema$Item>,
@@ -3496,10 +4677,17 @@ export namespace cloudsearch_v1 {
     push(
       paramsOrCallback?:
         | Params$Resource$Indexing$Datasources$Items$Push
-        | BodyResponseCallback<Schema$Item>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Item>,
-      callback?: BodyResponseCallback<Schema$Item>
-    ): void | GaxiosPromise<Schema$Item> {
+        | BodyResponseCallback<Schema$Item>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Item>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Item>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Item> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Push;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3533,7 +4721,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Item>(parameters, callback);
+        createAPIRequest<Schema$Item>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Item>(parameters);
       }
@@ -3541,21 +4732,88 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.unreserve
-     * @desc Unreserves all items from a queue, making them all eligible to be polled.  This method is useful for resetting the indexing queue after a connector has been restarted.
+     * @desc Unreserves all items from a queue, making them all eligible to be polled.  This method is useful for resetting the indexing queue after a connector has been restarted.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.unreserve({
+     *     // Name of the Data Source to unreserve all items.
+     *     // Format: datasources/{source_id}
+     *     name: 'datasources/my-datasource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectorName": "my_connectorName",
+     *       //   "debugOptions": {},
+     *       //   "queue": "my_queue"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.indexing.datasources.items.unreserve
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the Data Source to unreserve all items. Format: datasources/{source_id}
-     * @param {().UnreserveItemsRequest} params.resource Request body data
+     * @param {().UnreserveItemsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     unreserve(
+      params: Params$Resource$Indexing$Datasources$Items$Unreserve,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unreserve(
       params?: Params$Resource$Indexing$Datasources$Items$Unreserve,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    unreserve(
+      params: Params$Resource$Indexing$Datasources$Items$Unreserve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     unreserve(
       params: Params$Resource$Indexing$Datasources$Items$Unreserve,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3569,12 +4827,17 @@ export namespace cloudsearch_v1 {
     unreserve(
       paramsOrCallback?:
         | Params$Resource$Indexing$Datasources$Items$Unreserve
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Unreserve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3608,7 +4871,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3616,21 +4882,84 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.upload
-     * @desc Creates an upload session for uploading item content. For items smaller than 100 KB, it's easier to embed the content inline within an index request.
+     * @desc Creates an upload session for uploading item content. For items smaller than 100 KB, it's easier to embed the content inline within an index request.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.upload({
+     *     // Name of the Item to start a resumable upload.
+     *     // Format: datasources/{source_id}/items/{item_id}.
+     *     // The maximum length is 1536 bytes.
+     *     name: 'datasources/my-datasource/items/my-item',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectorName": "my_connectorName",
+     *       //   "debugOptions": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.indexing.datasources.items.upload
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the Item to start a resumable upload. Format: datasources/{source_id}/items/{item_id}.
-     * @param {().StartUploadItemRequest} params.resource Request body data
+     * @param {string} params.name Name of the Item to start a resumable upload. Format: datasources/{source_id}/items/{item_id}. The maximum length is 1536 bytes.
+     * @param {().StartUploadItemRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     upload(
+      params: Params$Resource$Indexing$Datasources$Items$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
       params?: Params$Resource$Indexing$Datasources$Items$Upload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UploadItemRef>;
+    upload(
+      params: Params$Resource$Indexing$Datasources$Items$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     upload(
       params: Params$Resource$Indexing$Datasources$Items$Upload,
       options: MethodOptions | BodyResponseCallback<Schema$UploadItemRef>,
@@ -3644,12 +4973,17 @@ export namespace cloudsearch_v1 {
     upload(
       paramsOrCallback?:
         | Params$Resource$Indexing$Datasources$Items$Upload
-        | BodyResponseCallback<Schema$UploadItemRef>,
+        | BodyResponseCallback<Schema$UploadItemRef>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UploadItemRef>,
-      callback?: BodyResponseCallback<Schema$UploadItemRef>
-    ): void | GaxiosPromise<Schema$UploadItemRef> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadItemRef>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadItemRef>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UploadItemRef> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Indexing$Datasources$Items$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3683,7 +5017,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UploadItemRef>(parameters, callback);
+        createAPIRequest<Schema$UploadItemRef>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UploadItemRef>(parameters);
       }
@@ -3692,11 +5029,6 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Indexing$Datasources$Items$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
      */
@@ -3721,11 +5053,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Deletequeueitems
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the Data Source to delete items in a queue. Format: datasources/{source_id}
      */
     name?: string;
@@ -3737,11 +5064,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Indexing$Datasources$Items$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
      */
@@ -3758,11 +5080,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Index
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the Item. Format: datasources/{source_id}/items/{item_id} <br />This is a required field. The maximum length is 1536 characters.
      */
     name?: string;
@@ -3775,12 +5092,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * When set to true, the indexing system only populates the following fields: name, version, metadata.hash, structured_data.hash, content.hash. <br />If this value is false, then all the fields are populated in Item.
+     * When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, <br />If this value is false, then all the fields are populated in Item.
      */
     brief?: boolean;
     /**
@@ -3807,11 +5119,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Poll
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the Data Source to poll items. Format: datasources/{source_id}
      */
     name?: string;
@@ -3823,11 +5130,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Indexing$Datasources$Items$Push
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the item to push into the indexing queue.<br /> Format: datasources/{source_id}/items/{ID} <br />This is a required field. The maximum length is 1536 characters.
      */
@@ -3841,11 +5143,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Unreserve
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the Data Source to unreserve all items. Format: datasources/{source_id}
      */
     name?: string;
@@ -3858,12 +5155,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Upload
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Name of the Item to start a resumable upload. Format: datasources/{source_id}/items/{item_id}.
+     * Name of the Item to start a resumable upload. Format: datasources/{source_id}/items/{item_id}. The maximum length is 1536 bytes.
      */
     name?: string;
 
@@ -3881,13 +5173,69 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.media.upload
-     * @desc Uploads media for indexing.  The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content:  1. Call    indexing.datasources.items.upload    with the resource name to begin an upload session and retrieve the    UploadItemRef. 1. Call media.upload to upload the content using the same resource name from step 1. 1. Call indexing.datasources.items.index    to index the item. Populate the    [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent)    with the UploadItemRef from step 1.   For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest).
+     * @desc Uploads media for indexing.  The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content:  1. Call    indexing.datasources.items.upload    with the resource name to begin an upload session and retrieve the    UploadItemRef. 1. Call media.upload to upload the content using the same resource name from step 1. 1. Call indexing.datasources.items.index    to index the item. Populate the    [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent)    with the UploadItemRef from step 1.   For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest).    **Note:** This API requires a service account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.media.upload({
+     *     // Name of the media that is being downloaded.  See
+     *     // ReadRequest.resource_name.
+     *     resourceName: '.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "resourceName": "my_resourceName"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resourceName": "my_resourceName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.media.upload
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resourceName Name of the media that is being downloaded.  See ReadRequest.resource_name.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -3896,9 +5244,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     upload(
+      params: Params$Resource$Media$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Media>;
+    upload(
+      params: Params$Resource$Media$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     upload(
       params: Params$Resource$Media$Upload,
       options: MethodOptions | BodyResponseCallback<Schema$Media>,
@@ -3912,10 +5269,17 @@ export namespace cloudsearch_v1 {
     upload(
       paramsOrCallback?:
         | Params$Resource$Media$Upload
-        | BodyResponseCallback<Schema$Media>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Media>,
-      callback?: BodyResponseCallback<Schema$Media>
-    ): void | GaxiosPromise<Schema$Media> {
+        | BodyResponseCallback<Schema$Media>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Media>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Media>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Media> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3952,7 +5316,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Media>(parameters, callback);
+        createAPIRequest<Schema$Media>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Media>(parameters);
       }
@@ -3960,11 +5327,6 @@ export namespace cloudsearch_v1 {
   }
 
   export interface Params$Resource$Media$Upload extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the media that is being downloaded.  See ReadRequest.resource_name.
      */
@@ -4000,6 +5362,57 @@ export namespace cloudsearch_v1 {
     /**
      * cloudsearch.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.debug',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.operations.get
      * @memberOf! ()
      *
@@ -4010,9 +5423,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -4026,12 +5448,17 @@ export namespace cloudsearch_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4061,7 +5488,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -4069,11 +5499,6 @@ export namespace cloudsearch_v1 {
   }
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */
@@ -4090,20 +5515,94 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.query.search
-     * @desc The Cloud Search Query API provides the search method, which returns the most relevant results from a user query.  The results can come from G Suite Apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party.
+     * @desc The Cloud Search Query API provides the search method, which returns the most relevant results from a user query.  The results can come from G Suite Apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party.  **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.query.search({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSourceRestrictions": [],
+     *       //   "facetOptions": [],
+     *       //   "pageSize": 0,
+     *       //   "query": "my_query",
+     *       //   "queryInterpretationOptions": {},
+     *       //   "requestOptions": {},
+     *       //   "sortOptions": {},
+     *       //   "start": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "debugInfo": {},
+     *   //   "errorInfo": {},
+     *   //   "facetResults": [],
+     *   //   "hasMoreResults": false,
+     *   //   "queryInterpretation": {},
+     *   //   "resultCountEstimate": "my_resultCountEstimate",
+     *   //   "resultCountExact": "my_resultCountExact",
+     *   //   "resultCounts": {},
+     *   //   "results": [],
+     *   //   "spellResults": [],
+     *   //   "structuredResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.query.search
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SearchRequest} params.resource Request body data
+     * @param {().SearchRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Query$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Query$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchResponse>;
+    search(
+      params: Params$Resource$Query$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Query$Search,
       options: MethodOptions | BodyResponseCallback<Schema$SearchResponse>,
@@ -4117,12 +5616,17 @@ export namespace cloudsearch_v1 {
     search(
       paramsOrCallback?:
         | Params$Resource$Query$Search
-        | BodyResponseCallback<Schema$SearchResponse>,
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchResponse>,
-      callback?: BodyResponseCallback<Schema$SearchResponse>
-    ): void | GaxiosPromise<Schema$SearchResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SearchResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Query$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4152,7 +5656,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SearchResponse>(parameters, callback);
+        createAPIRequest<Schema$SearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SearchResponse>(parameters);
       }
@@ -4160,20 +5667,79 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.query.suggest
-     * @desc Provides suggestions for autocompleting the query.
+     * @desc Provides suggestions for autocompleting the query.  **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.query.suggest({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSourceRestrictions": [],
+     *       //   "query": "my_query",
+     *       //   "requestOptions": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "suggestResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.query.suggest
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SuggestRequest} params.resource Request body data
+     * @param {().SuggestRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     suggest(
+      params: Params$Resource$Query$Suggest,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suggest(
       params?: Params$Resource$Query$Suggest,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SuggestResponse>;
+    suggest(
+      params: Params$Resource$Query$Suggest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     suggest(
       params: Params$Resource$Query$Suggest,
       options: MethodOptions | BodyResponseCallback<Schema$SuggestResponse>,
@@ -4187,12 +5753,17 @@ export namespace cloudsearch_v1 {
     suggest(
       paramsOrCallback?:
         | Params$Resource$Query$Suggest
-        | BodyResponseCallback<Schema$SuggestResponse>,
+        | BodyResponseCallback<Schema$SuggestResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SuggestResponse>,
-      callback?: BodyResponseCallback<Schema$SuggestResponse>
-    ): void | GaxiosPromise<Schema$SuggestResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SuggestResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SuggestResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SuggestResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Query$Suggest;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4222,7 +5793,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SuggestResponse>(parameters, callback);
+        createAPIRequest<Schema$SuggestResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SuggestResponse>(parameters);
       }
@@ -4231,21 +5805,11 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Query$Search extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SearchRequest;
   }
   export interface Params$Resource$Query$Suggest extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -4260,24 +5824,106 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.query.sources.list
-     * @desc Returns list of sources that user can use for Search and Suggest APIs.
+     * @desc Returns list of sources that user can use for Search and Suggest APIs.  **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.query.sources.list({
+     *     // Number of sources to return in the response.
+     *     pageToken: 'placeholder-value',
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'requestOptions.debugOptions.enableDebugging': 'placeholder-value',
+     *     // The BCP-47 language code, such as "en-US" or "sr-Latn".
+     *     // For more information, see
+     *     // http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *     // For translations.
+     *     //
+     *     // Set this field using the language set in browser or for the page. In the
+     *     // event that the user's language preference is known, set this field to the
+     *     // known user language.
+     *     //
+     *     // When specified, the documents in search results are biased towards the
+     *     // specified language.
+     *     //
+     *     // The suggest API does not use this parameter. Instead, suggest autocompletes
+     *     // only based on characters in the query.
+     *     'requestOptions.languageCode': 'placeholder-value',
+     *     // The ID generated when you create a search application using the
+     *     // [admin console](https://support.google.com/a/answer/9043922).
+     *     'requestOptions.searchApplicationId': 'placeholder-value',
+     *     // Current user's time zone id, such as "America/Los_Angeles" or
+     *     // "Australia/Sydney". These IDs are defined by
+     *     // [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/)
+     *     // project, and currently available in the file
+     *     // [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml).
+     *     // This field is used to correctly interpret date and time queries.
+     *     // If this field is not specified, the default time zone (UTC) is used.
+     *     'requestOptions.timeZone': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.query.sources.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.pageToken Number of sources to return in the response.
      * @param {boolean=} params.requestOptions.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string=} params.requestOptions.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  When specified, the documents in search results are biased towards the specified language. Suggest API does not use this parameter. It autocompletes only based on characters in the query.
-     * @param {string=} params.requestOptions.searchApplicationId Id of the application created using SearchApplicationsService.
+     * @param {string=} params.requestOptions.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language.  When specified, the documents in search results are biased towards the specified language.  The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
+     * @param {string=} params.requestOptions.searchApplicationId The ID generated when you create a search application using the [admin console](https://support.google.com/a/answer/9043922).
      * @param {string=} params.requestOptions.timeZone Current user's time zone id, such as "America/Los_Angeles" or "Australia/Sydney". These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml). This field is used to correctly interpret date and time queries. If this field is not specified, the default time zone (UTC) is used.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Query$Sources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Query$Sources$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListQuerySourcesResponse>;
+    list(
+      params: Params$Resource$Query$Sources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Query$Sources$List,
       options:
@@ -4293,12 +5939,20 @@ export namespace cloudsearch_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Query$Sources$List
-        | BodyResponseCallback<Schema$ListQuerySourcesResponse>,
+        | BodyResponseCallback<Schema$ListQuerySourcesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListQuerySourcesResponse>,
-      callback?: BodyResponseCallback<Schema$ListQuerySourcesResponse>
-    ): void | GaxiosPromise<Schema$ListQuerySourcesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListQuerySourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListQuerySourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListQuerySourcesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Query$Sources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4329,7 +5983,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListQuerySourcesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListQuerySourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListQuerySourcesResponse>(parameters);
       }
@@ -4339,11 +5996,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Query$Sources$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Number of sources to return in the response.
      */
     pageToken?: string;
@@ -4352,11 +6004,11 @@ export namespace cloudsearch_v1 {
      */
     'requestOptions.debugOptions.enableDebugging'?: boolean;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  When specified, the documents in search results are biased towards the specified language. Suggest API does not use this parameter. It autocompletes only based on characters in the query.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language.  When specified, the documents in search results are biased towards the specified language.  The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
      */
     'requestOptions.languageCode'?: string;
     /**
-     * Id of the application created using SearchApplicationsService.
+     * The ID generated when you create a search application using the [admin console](https://support.google.com/a/answer/9043922).
      */
     'requestOptions.searchApplicationId'?: string;
     /**
@@ -4386,20 +6038,89 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.create
-     * @desc Creates a datasource.
+     * @desc Creates a datasource.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.datasources.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableModifications": false,
+     *       //   "disableServing": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "indexingServiceAccounts": [],
+     *       //   "itemsVisibility": [],
+     *       //   "name": "my_name",
+     *       //   "operationIds": [],
+     *       //   "shortName": "my_shortName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.settings.datasources.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().DataSource} params.resource Request body data
+     * @param {().DataSource} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Settings$Datasources$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Settings$Datasources$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Settings$Datasources$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Settings$Datasources$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -4413,12 +6134,17 @@ export namespace cloudsearch_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Settings$Datasources$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Datasources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4452,7 +6178,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -4460,7 +6189,59 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.delete
-     * @desc Deletes a datasource.
+     * @desc Deletes a datasource.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.datasources.delete({
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Name of the datasource.
+     *     // Format: datasources/{source_id}.
+     *     name: 'datasources/my-datasource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.settings.datasources.delete
      * @memberOf! ()
      *
@@ -4472,9 +6253,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Settings$Datasources$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Settings$Datasources$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Settings$Datasources$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Settings$Datasources$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -4488,12 +6278,17 @@ export namespace cloudsearch_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Settings$Datasources$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Datasources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4527,7 +6322,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -4535,7 +6333,62 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.get
-     * @desc Gets a datasource.
+     * @desc Gets a datasource.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.datasources.get({
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Name of the datasource resource.
+     *     // Format: datasources/{source_id}.
+     *     name: 'datasources/my-datasource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disableModifications": false,
+     *   //   "disableServing": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "indexingServiceAccounts": [],
+     *   //   "itemsVisibility": [],
+     *   //   "name": "my_name",
+     *   //   "operationIds": [],
+     *   //   "shortName": "my_shortName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.settings.datasources.get
      * @memberOf! ()
      *
@@ -4547,9 +6400,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Settings$Datasources$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Settings$Datasources$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DataSource>;
+    get(
+      params: Params$Resource$Settings$Datasources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Settings$Datasources$Get,
       options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
@@ -4563,12 +6425,17 @@ export namespace cloudsearch_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Settings$Datasources$Get
-        | BodyResponseCallback<Schema$DataSource>,
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DataSource>,
-      callback?: BodyResponseCallback<Schema$DataSource>
-    ): void | GaxiosPromise<Schema$DataSource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DataSource>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DataSource> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4602,7 +6469,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DataSource>(parameters, callback);
+        createAPIRequest<Schema$DataSource>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
       }
@@ -4610,7 +6480,59 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.list
-     * @desc Lists datasources.
+     * @desc Lists datasources.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.datasources.list({
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Maximum number of datasources to fetch in a request.
+     *     // The max value is 100.
+     *     // <br />The default value is 10
+     *     pageSize: 'placeholder-value',
+     *     // Starting index of the results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.settings.datasources.list
      * @memberOf! ()
      *
@@ -4623,9 +6545,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Settings$Datasources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Settings$Datasources$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDataSourceResponse>;
+    list(
+      params: Params$Resource$Settings$Datasources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Settings$Datasources$List,
       options:
@@ -4641,12 +6572,20 @@ export namespace cloudsearch_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Settings$Datasources$List
-        | BodyResponseCallback<Schema$ListDataSourceResponse>,
+        | BodyResponseCallback<Schema$ListDataSourceResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDataSourceResponse>,
-      callback?: BodyResponseCallback<Schema$ListDataSourceResponse>
-    ): void | GaxiosPromise<Schema$ListDataSourceResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDataSourceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDataSourceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDataSourceResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4680,7 +6619,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDataSourceResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDataSourceResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDataSourceResponse>(parameters);
       }
@@ -4688,21 +6630,89 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.update
-     * @desc Updates a datasource.
+     * @desc Updates a datasource.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.datasources.update({
+     *     // Name of the datasource resource.
+     *     // Format: datasources/{source_id}.
+     *     // <br />The name is ignored when creating a datasource.
+     *     name: 'datasources/my-datasource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "debugOptions": {},
+     *       //   "source": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.settings.datasources.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the datasource resource. Format: datasources/{source_id}. <br />The name is ignored when creating a datasource.
-     * @param {().UpdateDataSourceRequest} params.resource Request body data
+     * @param {().UpdateDataSourceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Settings$Datasources$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Settings$Datasources$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    update(
+      params: Params$Resource$Settings$Datasources$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Settings$Datasources$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -4716,12 +6726,17 @@ export namespace cloudsearch_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Settings$Datasources$Update
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Datasources$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4755,7 +6770,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -4765,22 +6783,12 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Datasources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$DataSource;
   }
   export interface Params$Resource$Settings$Datasources$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -4793,11 +6801,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Datasources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
@@ -4808,11 +6811,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Settings$Datasources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -4828,11 +6826,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Settings$Datasources$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the datasource resource. Format: datasources/{source_id}. <br />The name is ignored when creating a datasource.
      */
@@ -4852,20 +6845,89 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.create
-     * @desc Creates a search application.
+     * @desc Creates a search application.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.searchapplications.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSourceRestrictions": [],
+     *       //   "defaultFacetOptions": [],
+     *       //   "defaultSortOptions": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "operationIds": [],
+     *       //   "scoringConfig": {},
+     *       //   "sourceConfig": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.settings.searchapplications.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SearchApplication} params.resource Request body data
+     * @param {().SearchApplication} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Settings$Searchapplications$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Settings$Searchapplications$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Settings$Searchapplications$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Settings$Searchapplications$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -4879,12 +6941,17 @@ export namespace cloudsearch_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Settings$Searchapplications$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Searchapplications$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4918,7 +6985,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -4926,7 +6996,59 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.delete
-     * @desc Deletes a search application.
+     * @desc Deletes a search application.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.searchapplications.delete({
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // The name of the search application to be deleted.
+     *     // <br />Format: applications/{application_id}.
+     *     name: 'searchapplications/my-searchapplication',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.settings.searchapplications.delete
      * @memberOf! ()
      *
@@ -4938,9 +7060,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Settings$Searchapplications$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Settings$Searchapplications$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Settings$Searchapplications$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Settings$Searchapplications$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -4954,12 +7085,17 @@ export namespace cloudsearch_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Settings$Searchapplications$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Searchapplications$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4993,7 +7129,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -5001,21 +7140,85 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.get
-     * @desc Gets the specified search application.
+     * @desc Gets the specified search application.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.searchapplications.get({
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Name of the search application.
+     *     // <br />Format: searchapplications/{application_id}.
+     *     name: 'searchapplications/my-searchapplication',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceRestrictions": [],
+     *   //   "defaultFacetOptions": [],
+     *   //   "defaultSortOptions": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "operationIds": [],
+     *   //   "scoringConfig": {},
+     *   //   "sourceConfig": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.settings.searchapplications.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the search application. <br />Format: applications/{application_id}.
+     * @param {string} params.name Name of the search application. <br />Format: searchapplications/{application_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Settings$Searchapplications$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Settings$Searchapplications$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchApplication>;
+    get(
+      params: Params$Resource$Settings$Searchapplications$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Settings$Searchapplications$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SearchApplication>,
@@ -5029,12 +7232,20 @@ export namespace cloudsearch_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Settings$Searchapplications$Get
-        | BodyResponseCallback<Schema$SearchApplication>,
+        | BodyResponseCallback<Schema$SearchApplication>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchApplication>,
-      callback?: BodyResponseCallback<Schema$SearchApplication>
-    ): void | GaxiosPromise<Schema$SearchApplication> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchApplication>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchApplication>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchApplication>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Searchapplications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5068,7 +7279,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SearchApplication>(parameters, callback);
+        createAPIRequest<Schema$SearchApplication>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SearchApplication>(parameters);
       }
@@ -5076,7 +7290,58 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.list
-     * @desc Lists all search applications.
+     * @desc Lists all search applications.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.searchapplications.list({
+     *     // If you are asked by Google to help with debugging, set this field.
+     *     // Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     // <br/> The default value is 10
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "searchApplications": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.settings.searchapplications.list
      * @memberOf! ()
      *
@@ -5089,9 +7354,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Settings$Searchapplications$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Settings$Searchapplications$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSearchApplicationsResponse>;
+    list(
+      params: Params$Resource$Settings$Searchapplications$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Settings$Searchapplications$List,
       options:
@@ -5109,12 +7383,20 @@ export namespace cloudsearch_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Settings$Searchapplications$List
-        | BodyResponseCallback<Schema$ListSearchApplicationsResponse>,
+        | BodyResponseCallback<Schema$ListSearchApplicationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSearchApplicationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListSearchApplicationsResponse>
-    ): void | GaxiosPromise<Schema$ListSearchApplicationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSearchApplicationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSearchApplicationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSearchApplicationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Searchapplications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5150,7 +7432,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSearchApplicationsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListSearchApplicationsResponse>(
@@ -5161,21 +7443,87 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.reset
-     * @desc Resets a search application to default settings. This will return an empty response.
+     * @desc Resets a search application to default settings. This will return an empty response.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.searchapplications.reset({
+     *     // The name of the search application to be reset.
+     *     // <br />Format: applications/{application_id}.
+     *     name: 'searchapplications/my-searchapplication',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "debugOptions": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.settings.searchapplications.reset
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the search application to be reset. <br />Format: applications/{application_id}.
-     * @param {().ResetSearchApplicationRequest} params.resource Request body data
+     * @param {().ResetSearchApplicationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     reset(
+      params: Params$Resource$Settings$Searchapplications$Reset,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reset(
       params?: Params$Resource$Settings$Searchapplications$Reset,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    reset(
+      params: Params$Resource$Settings$Searchapplications$Reset,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reset(
       params: Params$Resource$Settings$Searchapplications$Reset,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -5189,12 +7537,17 @@ export namespace cloudsearch_v1 {
     reset(
       paramsOrCallback?:
         | Params$Resource$Settings$Searchapplications$Reset
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Searchapplications$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5228,7 +7581,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -5236,21 +7592,94 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.update
-     * @desc Updates a search application.
+     * @desc Updates a search application.  **Note:** This API requires an admin account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.searchapplications.update({
+     *     // Name of the Search Application.
+     *     // <br />Format: searchapplications/{application_id}.
+     *     name: 'searchapplications/my-searchapplication',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSourceRestrictions": [],
+     *       //   "defaultFacetOptions": [],
+     *       //   "defaultSortOptions": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "operationIds": [],
+     *       //   "scoringConfig": {},
+     *       //   "sourceConfig": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.settings.searchapplications.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the Search Application. <br />Format: searchapplications/{application_id}.
-     * @param {().SearchApplication} params.resource Request body data
+     * @param {().SearchApplication} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Settings$Searchapplications$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Settings$Searchapplications$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    update(
+      params: Params$Resource$Settings$Searchapplications$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Settings$Searchapplications$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -5264,12 +7693,17 @@ export namespace cloudsearch_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Settings$Searchapplications$Update
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Settings$Searchapplications$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5303,7 +7737,10 @@ export namespace cloudsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -5313,22 +7750,12 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Searchapplications$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SearchApplication;
   }
   export interface Params$Resource$Settings$Searchapplications$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -5341,26 +7768,16 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Searchapplications$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the search application. <br />Format: applications/{application_id}.
+     * Name of the search application. <br />Format: searchapplications/{application_id}.
      */
     name?: string;
   }
   export interface Params$Resource$Settings$Searchapplications$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -5377,11 +7794,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Searchapplications$Reset
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the search application to be reset. <br />Format: applications/{application_id}.
      */
     name?: string;
@@ -5393,11 +7805,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Settings$Searchapplications$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the Search Application. <br />Format: searchapplications/{application_id}.
      */
@@ -5412,14 +7819,74 @@ export namespace cloudsearch_v1 {
   export class Resource$Stats {
     context: APIRequestContext;
     index: Resource$Stats$Index;
+    query: Resource$Stats$Query;
+    session: Resource$Stats$Session;
+    user: Resource$Stats$User;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.index = new Resource$Stats$Index(this.context);
+      this.query = new Resource$Stats$Query(this.context);
+      this.session = new Resource$Stats$Session(this.context);
+      this.user = new Resource$Stats$User(this.context);
     }
 
     /**
      * cloudsearch.stats.getIndex
-     * @desc Gets indexed item statistics aggreggated across all data sources. This API only returns statistics for previous dates; it doesn't return statistics for the current day.
+     * @desc Gets indexed item statistics aggreggated across all data sources. This API only returns statistics for previous dates; it doesn't return statistics for the current day.  **Note:** This API requires a standard end user account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.getIndex({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.stats.getIndex
      * @memberOf! ()
      *
@@ -5435,9 +7902,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     getIndex(
+      params: Params$Resource$Stats$Getindex,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIndex(
       params?: Params$Resource$Stats$Getindex,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetCustomerIndexStatsResponse>;
+    getIndex(
+      params: Params$Resource$Stats$Getindex,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIndex(
       params: Params$Resource$Stats$Getindex,
       options:
@@ -5455,12 +7931,20 @@ export namespace cloudsearch_v1 {
     getIndex(
       paramsOrCallback?:
         | Params$Resource$Stats$Getindex
-        | BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>,
+        | BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>,
-      callback?: BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>
-    ): void | GaxiosPromise<Schema$GetCustomerIndexStatsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetCustomerIndexStatsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Stats$Getindex;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5492,10 +7976,475 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetCustomerIndexStatsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GetCustomerIndexStatsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * cloudsearch.stats.getQuery
+     * @desc Get the query statistics for customer.  **Note:** This API requires a standard end user account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.getQuery({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudsearch.stats.getQuery
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
+     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getQuery(
+      params: Params$Resource$Stats$Getquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getQuery(
+      params?: Params$Resource$Stats$Getquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetCustomerQueryStatsResponse>;
+    getQuery(
+      params: Params$Resource$Stats$Getquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getQuery(
+      params: Params$Resource$Stats$Getquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>,
+      callback: BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>
+    ): void;
+    getQuery(
+      params: Params$Resource$Stats$Getquery,
+      callback: BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>
+    ): void;
+    getQuery(
+      callback: BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>
+    ): void;
+    getQuery(
+      paramsOrCallback?:
+        | Params$Resource$Stats$Getquery
+        | BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetCustomerQueryStatsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Stats$Getquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Stats$Getquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/stats/query').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetCustomerQueryStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$GetCustomerQueryStatsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * cloudsearch.stats.getSession
+     * @desc Get the # of search sessions, % of successful sessions with a click query statistics for customer.  **Note:** This API requires a standard end user account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.getSession({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudsearch.stats.getSession
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
+     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getSession(
+      params: Params$Resource$Stats$Getsession,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSession(
+      params?: Params$Resource$Stats$Getsession,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetCustomerSessionStatsResponse>;
+    getSession(
+      params: Params$Resource$Stats$Getsession,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSession(
+      params: Params$Resource$Stats$Getsession,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>,
+      callback: BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>
+    ): void;
+    getSession(
+      params: Params$Resource$Stats$Getsession,
+      callback: BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>
+    ): void;
+    getSession(
+      callback: BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>
+    ): void;
+    getSession(
+      paramsOrCallback?:
+        | Params$Resource$Stats$Getsession
+        | BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetCustomerSessionStatsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Stats$Getsession;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Stats$Getsession;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/stats/session').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetCustomerSessionStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$GetCustomerSessionStatsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * cloudsearch.stats.getUser
+     * @desc Get the users statistics for customer.  **Note:** This API requires a standard end user account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.getUser({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudsearch.stats.getUser
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
+     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getUser(
+      params: Params$Resource$Stats$Getuser,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getUser(
+      params?: Params$Resource$Stats$Getuser,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetCustomerUserStatsResponse>;
+    getUser(
+      params: Params$Resource$Stats$Getuser,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getUser(
+      params: Params$Resource$Stats$Getuser,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetCustomerUserStatsResponse>,
+      callback: BodyResponseCallback<Schema$GetCustomerUserStatsResponse>
+    ): void;
+    getUser(
+      params: Params$Resource$Stats$Getuser,
+      callback: BodyResponseCallback<Schema$GetCustomerUserStatsResponse>
+    ): void;
+    getUser(
+      callback: BodyResponseCallback<Schema$GetCustomerUserStatsResponse>
+    ): void;
+    getUser(
+      paramsOrCallback?:
+        | Params$Resource$Stats$Getuser
+        | BodyResponseCallback<Schema$GetCustomerUserStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetCustomerUserStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetCustomerUserStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetCustomerUserStatsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Stats$Getuser;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Stats$Getuser;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/stats/user').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetCustomerUserStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$GetCustomerUserStatsResponse>(
           parameters
         );
       }
@@ -5504,10 +8453,83 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Stats$Getindex extends StandardParameters {
     /**
-     * Auth client or API Key for the request
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
+    'fromDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'fromDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'fromDate.year'?: number;
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'toDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'toDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'toDate.year'?: number;
+  }
+  export interface Params$Resource$Stats$Getquery extends StandardParameters {
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'fromDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'fromDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'fromDate.year'?: number;
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'toDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'toDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'toDate.year'?: number;
+  }
+  export interface Params$Resource$Stats$Getsession extends StandardParameters {
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'fromDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'fromDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'fromDate.year'?: number;
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'toDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'toDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'toDate.year'?: number;
+  }
+  export interface Params$Resource$Stats$Getuser extends StandardParameters {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
@@ -5551,7 +8573,64 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.index.datasources.get
-     * @desc Gets indexed item statistics for a single data source.
+     * @desc Gets indexed item statistics for a single data source.  **Note:** This API requires a standard end user account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.index.datasources.get({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // The resource id of the data source to retrieve statistics for,
+     *     // in the following format: "datasources/{source_id}"
+     *     name: 'datasources/my-datasource',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudsearch.stats.index.datasources.get
      * @memberOf! ()
      *
@@ -5568,9 +8647,18 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Stats$Index$Datasources$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Stats$Index$Datasources$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetDataSourceIndexStatsResponse>;
+    get(
+      params: Params$Resource$Stats$Index$Datasources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Stats$Index$Datasources$Get,
       options:
@@ -5588,12 +8676,20 @@ export namespace cloudsearch_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Stats$Index$Datasources$Get
-        | BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>,
+        | BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>,
-      callback?: BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>
-    ): void | GaxiosPromise<Schema$GetDataSourceIndexStatsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetDataSourceIndexStatsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Stats$Index$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5629,7 +8725,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetDataSourceIndexStatsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GetDataSourceIndexStatsResponse>(
@@ -5641,11 +8737,6 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Stats$Index$Datasources$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
@@ -5660,6 +8751,663 @@ export namespace cloudsearch_v1 {
     'fromDate.year'?: number;
     /**
      * The resource id of the data source to retrieve statistics for, in the following format: "datasources/{source_id}"
+     */
+    name?: string;
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'toDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'toDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'toDate.year'?: number;
+  }
+
+  export class Resource$Stats$Query {
+    context: APIRequestContext;
+    searchapplications: Resource$Stats$Query$Searchapplications;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.searchapplications = new Resource$Stats$Query$Searchapplications(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Stats$Query$Searchapplications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * cloudsearch.stats.query.searchapplications.get
+     * @desc Get the query statistics for search application.  **Note:** This API requires a standard end user account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.query.searchapplications.get({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // The resource id of the search application query stats, in the following
+     *     // format: searchapplications/{application_id}
+     *     name: 'searchapplications/my-searchapplication',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudsearch.stats.query.searchapplications.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
+     * @param {string} params.name The resource id of the search application query stats, in the following format: searchapplications/{application_id}
+     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Stats$Query$Searchapplications$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Stats$Query$Searchapplications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetSearchApplicationQueryStatsResponse>;
+    get(
+      params: Params$Resource$Stats$Query$Searchapplications$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Stats$Query$Searchapplications$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>,
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationQueryStatsResponse
+      >
+    ): void;
+    get(
+      params: Params$Resource$Stats$Query$Searchapplications$Get,
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationQueryStatsResponse
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationQueryStatsResponse
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Stats$Query$Searchapplications$Get
+        | BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetSearchApplicationQueryStatsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Stats$Query$Searchapplications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Stats$Query$Searchapplications$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/stats/query/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetSearchApplicationQueryStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$GetSearchApplicationQueryStatsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Stats$Query$Searchapplications$Get
+    extends StandardParameters {
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'fromDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'fromDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'fromDate.year'?: number;
+    /**
+     * The resource id of the search application query stats, in the following format: searchapplications/{application_id}
+     */
+    name?: string;
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'toDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'toDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'toDate.year'?: number;
+  }
+
+  export class Resource$Stats$Session {
+    context: APIRequestContext;
+    searchapplications: Resource$Stats$Session$Searchapplications;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.searchapplications = new Resource$Stats$Session$Searchapplications(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Stats$Session$Searchapplications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * cloudsearch.stats.session.searchapplications.get
+     * @desc Get the # of search sessions, % of successful sessions with a click query statistics for search application.  **Note:** This API requires a standard end user account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.session.searchapplications.get({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // The resource id of the search application session stats, in the following
+     *     // format: searchapplications/{application_id}
+     *     name: 'searchapplications/my-searchapplication',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudsearch.stats.session.searchapplications.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
+     * @param {string} params.name The resource id of the search application session stats, in the following format: searchapplications/{application_id}
+     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Stats$Session$Searchapplications$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Stats$Session$Searchapplications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetSearchApplicationSessionStatsResponse>;
+    get(
+      params: Params$Resource$Stats$Session$Searchapplications$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Stats$Session$Searchapplications$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>,
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationSessionStatsResponse
+      >
+    ): void;
+    get(
+      params: Params$Resource$Stats$Session$Searchapplications$Get,
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationSessionStatsResponse
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationSessionStatsResponse
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Stats$Session$Searchapplications$Get
+        | BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetSearchApplicationSessionStatsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Stats$Session$Searchapplications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Stats$Session$Searchapplications$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/stats/session/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetSearchApplicationSessionStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GetSearchApplicationSessionStatsResponse
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Stats$Session$Searchapplications$Get
+    extends StandardParameters {
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'fromDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'fromDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'fromDate.year'?: number;
+    /**
+     * The resource id of the search application session stats, in the following format: searchapplications/{application_id}
+     */
+    name?: string;
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'toDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'toDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'toDate.year'?: number;
+  }
+
+  export class Resource$Stats$User {
+    context: APIRequestContext;
+    searchapplications: Resource$Stats$User$Searchapplications;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.searchapplications = new Resource$Stats$User$Searchapplications(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Stats$User$Searchapplications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * cloudsearch.stats.user.searchapplications.get
+     * @desc Get the users statistics for search application.  **Note:** This API requires a standard end user account to execute.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.user.searchapplications.get({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // The resource id of the search application session stats, in the following
+     *     // format: searchapplications/{application_id}
+     *     name: 'searchapplications/my-searchapplication',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudsearch.stats.user.searchapplications.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
+     * @param {string} params.name The resource id of the search application session stats, in the following format: searchapplications/{application_id}
+     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Stats$User$Searchapplications$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Stats$User$Searchapplications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetSearchApplicationUserStatsResponse>;
+    get(
+      params: Params$Resource$Stats$User$Searchapplications$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Stats$User$Searchapplications$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>,
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationUserStatsResponse
+      >
+    ): void;
+    get(
+      params: Params$Resource$Stats$User$Searchapplications$Get,
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationUserStatsResponse
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationUserStatsResponse
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Stats$User$Searchapplications$Get
+        | BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetSearchApplicationUserStatsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Stats$User$Searchapplications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Stats$User$Searchapplications$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/stats/user/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetSearchApplicationUserStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$GetSearchApplicationUserStatsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Stats$User$Searchapplications$Get
+    extends StandardParameters {
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'fromDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'fromDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'fromDate.year'?: number;
+    /**
+     * The resource id of the search application session stats, in the following format: searchapplications/{application_id}
      */
     name?: string;
     /**

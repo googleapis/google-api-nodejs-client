@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace doubleclickbidmanager_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace doubleclickbidmanager_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -154,7 +164,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     filterType?: string | null;
     /**
-     * SDF Version (column names, types, order) in which the entities will be returned. Default to 3.1.
+     * SDF Version (column names, types, order) in which the entities will be returned. Default to 5.
      */
     version?: string | null;
   }
@@ -535,19 +545,76 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * doubleclickbidmanager.lineitems.downloadlineitems
      * @desc Retrieves line items in CSV format. TrueView line items are not supported.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.lineitems.downloadlineitems({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fileSpec": "my_fileSpec",
+     *       //   "filterIds": [],
+     *       //   "filterType": "my_filterType",
+     *       //   "format": "my_format"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lineItems": "my_lineItems"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.lineitems.downloadlineitems
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().DownloadLineItemsRequest} params.resource Request body data
+     * @param {().DownloadLineItemsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     downloadlineitems(
+      params: Params$Resource$Lineitems$Downloadlineitems,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    downloadlineitems(
       params?: Params$Resource$Lineitems$Downloadlineitems,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DownloadLineItemsResponse>;
+    downloadlineitems(
+      params: Params$Resource$Lineitems$Downloadlineitems,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     downloadlineitems(
       params: Params$Resource$Lineitems$Downloadlineitems,
       options:
@@ -565,12 +632,20 @@ export namespace doubleclickbidmanager_v1 {
     downloadlineitems(
       paramsOrCallback?:
         | Params$Resource$Lineitems$Downloadlineitems
-        | BodyResponseCallback<Schema$DownloadLineItemsResponse>,
+        | BodyResponseCallback<Schema$DownloadLineItemsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DownloadLineItemsResponse>,
-      callback?: BodyResponseCallback<Schema$DownloadLineItemsResponse>
-    ): void | GaxiosPromise<Schema$DownloadLineItemsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DownloadLineItemsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DownloadLineItemsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DownloadLineItemsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Lineitems$Downloadlineitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -605,7 +680,7 @@ export namespace doubleclickbidmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$DownloadLineItemsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$DownloadLineItemsResponse>(parameters);
@@ -615,19 +690,75 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * doubleclickbidmanager.lineitems.uploadlineitems
      * @desc Uploads line items in CSV format. TrueView line items are not supported.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.lineitems.uploadlineitems({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dryRun": false,
+     *       //   "format": "my_format",
+     *       //   "lineItems": "my_lineItems"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "uploadStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.lineitems.uploadlineitems
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().UploadLineItemsRequest} params.resource Request body data
+     * @param {().UploadLineItemsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     uploadlineitems(
+      params: Params$Resource$Lineitems$Uploadlineitems,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    uploadlineitems(
       params?: Params$Resource$Lineitems$Uploadlineitems,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UploadLineItemsResponse>;
+    uploadlineitems(
+      params: Params$Resource$Lineitems$Uploadlineitems,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     uploadlineitems(
       params: Params$Resource$Lineitems$Uploadlineitems,
       options:
@@ -645,12 +776,20 @@ export namespace doubleclickbidmanager_v1 {
     uploadlineitems(
       paramsOrCallback?:
         | Params$Resource$Lineitems$Uploadlineitems
-        | BodyResponseCallback<Schema$UploadLineItemsResponse>,
+        | BodyResponseCallback<Schema$UploadLineItemsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UploadLineItemsResponse>,
-      callback?: BodyResponseCallback<Schema$UploadLineItemsResponse>
-    ): void | GaxiosPromise<Schema$UploadLineItemsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadLineItemsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadLineItemsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UploadLineItemsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Lineitems$Uploadlineitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -683,7 +822,10 @@ export namespace doubleclickbidmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UploadLineItemsResponse>(parameters, callback);
+        createAPIRequest<Schema$UploadLineItemsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UploadLineItemsResponse>(parameters);
       }
@@ -693,22 +835,12 @@ export namespace doubleclickbidmanager_v1 {
   export interface Params$Resource$Lineitems$Downloadlineitems
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$DownloadLineItemsRequest;
   }
   export interface Params$Resource$Lineitems$Uploadlineitems
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -724,19 +856,87 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * doubleclickbidmanager.queries.createquery
      * @desc Creates a query.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.queries.createquery({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "params": {},
+     *       //   "queryId": "my_queryId",
+     *       //   "reportDataEndTimeMs": "my_reportDataEndTimeMs",
+     *       //   "reportDataStartTimeMs": "my_reportDataStartTimeMs",
+     *       //   "schedule": {},
+     *       //   "timezoneCode": "my_timezoneCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "params": {},
+     *   //   "queryId": "my_queryId",
+     *   //   "reportDataEndTimeMs": "my_reportDataEndTimeMs",
+     *   //   "reportDataStartTimeMs": "my_reportDataStartTimeMs",
+     *   //   "schedule": {},
+     *   //   "timezoneCode": "my_timezoneCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.queries.createquery
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Query} params.resource Request body data
+     * @param {().Query} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     createquery(
+      params: Params$Resource$Queries$Createquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createquery(
       params?: Params$Resource$Queries$Createquery,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Query>;
+    createquery(
+      params: Params$Resource$Queries$Createquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     createquery(
       params: Params$Resource$Queries$Createquery,
       options: MethodOptions | BodyResponseCallback<Schema$Query>,
@@ -750,10 +950,17 @@ export namespace doubleclickbidmanager_v1 {
     createquery(
       paramsOrCallback?:
         | Params$Resource$Queries$Createquery
-        | BodyResponseCallback<Schema$Query>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Query>,
-      callback?: BodyResponseCallback<Schema$Query>
-    ): void | GaxiosPromise<Schema$Query> {
+        | BodyResponseCallback<Schema$Query>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Query>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Query>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Query> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Queries$Createquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -787,7 +994,10 @@ export namespace doubleclickbidmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Query>(parameters, callback);
+        createAPIRequest<Schema$Query>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Query>(parameters);
       }
@@ -796,6 +1006,41 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * doubleclickbidmanager.queries.deletequery
      * @desc Deletes a stored query as well as the associated stored reports.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.queries.deletequery({
+     *     // Query ID to delete.
+     *     queryId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.queries.deletequery
      * @memberOf! ()
      *
@@ -806,9 +1051,18 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     deletequery(
+      params: Params$Resource$Queries$Deletequery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deletequery(
       params?: Params$Resource$Queries$Deletequery,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    deletequery(
+      params: Params$Resource$Queries$Deletequery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deletequery(
       params: Params$Resource$Queries$Deletequery,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -822,10 +1076,15 @@ export namespace doubleclickbidmanager_v1 {
     deletequery(
       paramsOrCallback?:
         | Params$Resource$Queries$Deletequery
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Queries$Deletequery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -858,7 +1117,10 @@ export namespace doubleclickbidmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -867,6 +1129,53 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * doubleclickbidmanager.queries.getquery
      * @desc Retrieves a stored query.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.queries.getquery({
+     *     // Query ID to retrieve.
+     *     queryId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "params": {},
+     *   //   "queryId": "my_queryId",
+     *   //   "reportDataEndTimeMs": "my_reportDataEndTimeMs",
+     *   //   "reportDataStartTimeMs": "my_reportDataStartTimeMs",
+     *   //   "schedule": {},
+     *   //   "timezoneCode": "my_timezoneCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.queries.getquery
      * @memberOf! ()
      *
@@ -877,9 +1186,18 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     getquery(
+      params: Params$Resource$Queries$Getquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getquery(
       params?: Params$Resource$Queries$Getquery,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Query>;
+    getquery(
+      params: Params$Resource$Queries$Getquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getquery(
       params: Params$Resource$Queries$Getquery,
       options: MethodOptions | BodyResponseCallback<Schema$Query>,
@@ -893,10 +1211,17 @@ export namespace doubleclickbidmanager_v1 {
     getquery(
       paramsOrCallback?:
         | Params$Resource$Queries$Getquery
-        | BodyResponseCallback<Schema$Query>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Query>,
-      callback?: BodyResponseCallback<Schema$Query>
-    ): void | GaxiosPromise<Schema$Query> {
+        | BodyResponseCallback<Schema$Query>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Query>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Query>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Query> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Queries$Getquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -928,7 +1253,10 @@ export namespace doubleclickbidmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Query>(parameters, callback);
+        createAPIRequest<Schema$Query>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Query>(parameters);
       }
@@ -937,6 +1265,44 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * doubleclickbidmanager.queries.listqueries
      * @desc Retrieves stored queries.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.queries.listqueries({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "queries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.queries.listqueries
      * @memberOf! ()
      *
@@ -946,9 +1312,18 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     listqueries(
+      params: Params$Resource$Queries$Listqueries,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listqueries(
       params?: Params$Resource$Queries$Listqueries,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListQueriesResponse>;
+    listqueries(
+      params: Params$Resource$Queries$Listqueries,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listqueries(
       params: Params$Resource$Queries$Listqueries,
       options: MethodOptions | BodyResponseCallback<Schema$ListQueriesResponse>,
@@ -964,12 +1339,20 @@ export namespace doubleclickbidmanager_v1 {
     listqueries(
       paramsOrCallback?:
         | Params$Resource$Queries$Listqueries
-        | BodyResponseCallback<Schema$ListQueriesResponse>,
+        | BodyResponseCallback<Schema$ListQueriesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListQueriesResponse>,
-      callback?: BodyResponseCallback<Schema$ListQueriesResponse>
-    ): void | GaxiosPromise<Schema$ListQueriesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListQueriesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Queries$Listqueries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1003,7 +1386,10 @@ export namespace doubleclickbidmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListQueriesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListQueriesResponse>(parameters);
       }
@@ -1012,20 +1398,75 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * doubleclickbidmanager.queries.runquery
      * @desc Runs a stored query to generate a report.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.queries.runquery({
+     *     // Query ID to run.
+     *     queryId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataRange": "my_dataRange",
+     *       //   "reportDataEndTimeMs": "my_reportDataEndTimeMs",
+     *       //   "reportDataStartTimeMs": "my_reportDataStartTimeMs",
+     *       //   "timezoneCode": "my_timezoneCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.queries.runquery
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.queryId Query ID to run.
-     * @param {().RunQueryRequest} params.resource Request body data
+     * @param {().RunQueryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     runquery(
+      params: Params$Resource$Queries$Runquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runquery(
       params?: Params$Resource$Queries$Runquery,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    runquery(
+      params: Params$Resource$Queries$Runquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     runquery(
       params: Params$Resource$Queries$Runquery,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1039,10 +1480,15 @@ export namespace doubleclickbidmanager_v1 {
     runquery(
       paramsOrCallback?:
         | Params$Resource$Queries$Runquery
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Queries$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1074,7 +1520,10 @@ export namespace doubleclickbidmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1084,11 +1533,6 @@ export namespace doubleclickbidmanager_v1 {
   export interface Params$Resource$Queries$Createquery
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Query;
@@ -1096,39 +1540,19 @@ export namespace doubleclickbidmanager_v1 {
   export interface Params$Resource$Queries$Deletequery
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Query ID to delete.
      */
     queryId?: string;
   }
   export interface Params$Resource$Queries$Getquery extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Query ID to retrieve.
      */
     queryId?: string;
   }
   export interface Params$Resource$Queries$Listqueries
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Queries$Runquery extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Query ID to run.
      */
@@ -1149,6 +1573,47 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * doubleclickbidmanager.reports.listreports
      * @desc Retrieves stored reports.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.reports.listreports({
+     *     // Query ID with which the reports are associated.
+     *     queryId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "reports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.reports.listreports
      * @memberOf! ()
      *
@@ -1159,9 +1624,18 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     listreports(
+      params: Params$Resource$Reports$Listreports,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listreports(
       params?: Params$Resource$Reports$Listreports,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListReportsResponse>;
+    listreports(
+      params: Params$Resource$Reports$Listreports,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listreports(
       params: Params$Resource$Reports$Listreports,
       options: MethodOptions | BodyResponseCallback<Schema$ListReportsResponse>,
@@ -1177,12 +1651,20 @@ export namespace doubleclickbidmanager_v1 {
     listreports(
       paramsOrCallback?:
         | Params$Resource$Reports$Listreports
-        | BodyResponseCallback<Schema$ListReportsResponse>,
+        | BodyResponseCallback<Schema$ListReportsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListReportsResponse>,
-      callback?: BodyResponseCallback<Schema$ListReportsResponse>
-    ): void | GaxiosPromise<Schema$ListReportsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReportsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Listreports;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1215,7 +1697,10 @@ export namespace doubleclickbidmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListReportsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListReportsResponse>(parameters);
       }
@@ -1224,11 +1709,6 @@ export namespace doubleclickbidmanager_v1 {
 
   export interface Params$Resource$Reports$Listreports
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Query ID with which the reports are associated.
      */
@@ -1244,19 +1724,81 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * doubleclickbidmanager.sdf.download
      * @desc Retrieves entities in SDF format.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclickbidmanager = google.doubleclickbidmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclickbidmanager.sdf.download({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fileTypes": [],
+     *       //   "filterIds": [],
+     *       //   "filterType": "my_filterType",
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adGroups": "my_adGroups",
+     *   //   "ads": "my_ads",
+     *   //   "campaigns": "my_campaigns",
+     *   //   "insertionOrders": "my_insertionOrders",
+     *   //   "inventorySources": "my_inventorySources",
+     *   //   "lineItems": "my_lineItems"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias doubleclickbidmanager.sdf.download
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().DownloadRequest} params.resource Request body data
+     * @param {().DownloadRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     download(
+      params: Params$Resource$Sdf$Download,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    download(
       params?: Params$Resource$Sdf$Download,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DownloadResponse>;
+    download(
+      params: Params$Resource$Sdf$Download,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     download(
       params: Params$Resource$Sdf$Download,
       options: MethodOptions | BodyResponseCallback<Schema$DownloadResponse>,
@@ -1270,12 +1812,17 @@ export namespace doubleclickbidmanager_v1 {
     download(
       paramsOrCallback?:
         | Params$Resource$Sdf$Download
-        | BodyResponseCallback<Schema$DownloadResponse>,
+        | BodyResponseCallback<Schema$DownloadResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DownloadResponse>,
-      callback?: BodyResponseCallback<Schema$DownloadResponse>
-    ): void | GaxiosPromise<Schema$DownloadResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DownloadResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DownloadResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DownloadResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sdf$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1308,7 +1855,10 @@ export namespace doubleclickbidmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DownloadResponse>(parameters, callback);
+        createAPIRequest<Schema$DownloadResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DownloadResponse>(parameters);
       }
@@ -1316,11 +1866,6 @@ export namespace doubleclickbidmanager_v1 {
   }
 
   export interface Params$Resource$Sdf$Download extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

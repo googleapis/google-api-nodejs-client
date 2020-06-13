@@ -2,7 +2,7 @@
 
 # oslogin
 
-> Manages OS login configuration for Google account users.
+> You can use OS Login to manage access to your VM instances using IAM roles.
 
 ## Installation
 

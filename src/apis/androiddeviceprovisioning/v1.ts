@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace androiddeviceprovisioning_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace androiddeviceprovisioning_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -775,12 +785,12 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$UpdateDeviceMetadataRequest {
     /**
-     * Required. The metdata to attach to the device.
+     * Required. The metadata to attach to the device.
      */
     deviceMetadata?: Schema$DeviceMetadata;
   }
   /**
-   * Identifies metdata updates to one device.
+   * Identifies metadata updates to one device.
    */
   export interface Schema$UpdateMetadataArguments {
     /**
@@ -812,6 +822,50 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.customers.list
      * @desc Lists the user's customer accounts.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.customers.list({
+     *     // The maximum number of customers to show in a page of results.
+     *     // A number between 1 and 100 (inclusive).
+     *     pageSize: 'placeholder-value',
+     *     // A token specifying which result page to return.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customers": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.customers.list
      * @memberOf! ()
      *
@@ -823,9 +877,18 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomerListCustomersResponse>;
+    list(
+      params: Params$Resource$Customers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customers$List,
       options:
@@ -843,12 +906,20 @@ export namespace androiddeviceprovisioning_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customers$List
-        | BodyResponseCallback<Schema$CustomerListCustomersResponse>,
+        | BodyResponseCallback<Schema$CustomerListCustomersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomerListCustomersResponse>,
-      callback?: BodyResponseCallback<Schema$CustomerListCustomersResponse>
-    ): void | GaxiosPromise<Schema$CustomerListCustomersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomerListCustomersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomerListCustomersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CustomerListCustomersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -881,7 +952,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$CustomerListCustomersResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$CustomerListCustomersResponse>(
@@ -892,11 +963,6 @@ export namespace androiddeviceprovisioning_v1 {
   }
 
   export interface Params$Resource$Customers$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of customers to show in a page of results. A number between 1 and 100 (inclusive).
      */
@@ -916,20 +982,96 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.customers.configurations.create
      * @desc Creates a new configuration. Once created, a customer can apply the configuration to devices.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.customers.configurations.create({
+     *     // Required. The customer that manages the configuration. An API resource name
+     *     // in the format `customers/[CUSTOMER_ID]`.
+     *     parent: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "companyName": "my_companyName",
+     *       //   "configurationId": "my_configurationId",
+     *       //   "configurationName": "my_configurationName",
+     *       //   "contactEmail": "my_contactEmail",
+     *       //   "contactPhone": "my_contactPhone",
+     *       //   "customMessage": "my_customMessage",
+     *       //   "dpcExtras": "my_dpcExtras",
+     *       //   "dpcResourcePath": "my_dpcResourcePath",
+     *       //   "isDefault": false,
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "companyName": "my_companyName",
+     *   //   "configurationId": "my_configurationId",
+     *   //   "configurationName": "my_configurationName",
+     *   //   "contactEmail": "my_contactEmail",
+     *   //   "contactPhone": "my_contactPhone",
+     *   //   "customMessage": "my_customMessage",
+     *   //   "dpcExtras": "my_dpcExtras",
+     *   //   "dpcResourcePath": "my_dpcResourcePath",
+     *   //   "isDefault": false,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.customers.configurations.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The customer that manages the configuration. An API resource name in the format `customers/[CUSTOMER_ID]`.
-     * @param {().Configuration} params.resource Request body data
+     * @param {().Configuration} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Customers$Configurations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Customers$Configurations$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Configuration>;
+    create(
+      params: Params$Resource$Customers$Configurations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Customers$Configurations$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Configuration>,
@@ -943,12 +1085,17 @@ export namespace androiddeviceprovisioning_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Customers$Configurations$Create
-        | BodyResponseCallback<Schema$Configuration>,
+        | BodyResponseCallback<Schema$Configuration>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Configuration>,
-      callback?: BodyResponseCallback<Schema$Configuration>
-    ): void | GaxiosPromise<Schema$Configuration> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Configuration>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Configuration>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Configuration> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Configurations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -983,7 +1130,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Configuration>(parameters, callback);
+        createAPIRequest<Schema$Configuration>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
       }
@@ -992,6 +1142,46 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.customers.configurations.delete
      * @desc Deletes an unused configuration. The API call fails if the customer has devices with the configuration applied.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.customers.configurations.delete({
+     *     // Required. The configuration to delete. An API resource name in the format
+     *     // `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. If the
+     *     // configuration is applied to any devices, the API call fails.
+     *     name: 'customers/my-customer/configurations/my-configuration',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.customers.configurations.delete
      * @memberOf! ()
      *
@@ -1002,9 +1192,18 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Customers$Configurations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Customers$Configurations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Customers$Configurations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Customers$Configurations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1018,10 +1217,17 @@ export namespace androiddeviceprovisioning_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Customers$Configurations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Configurations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1053,7 +1259,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1062,6 +1271,56 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.customers.configurations.get
      * @desc Gets the details of a configuration.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.customers.configurations.get({
+     *     // Required. The configuration to get. An API resource name in the format
+     *     // `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`.
+     *     name: 'customers/my-customer/configurations/my-configuration',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "companyName": "my_companyName",
+     *   //   "configurationId": "my_configurationId",
+     *   //   "configurationName": "my_configurationName",
+     *   //   "contactEmail": "my_contactEmail",
+     *   //   "contactPhone": "my_contactPhone",
+     *   //   "customMessage": "my_customMessage",
+     *   //   "dpcExtras": "my_dpcExtras",
+     *   //   "dpcResourcePath": "my_dpcResourcePath",
+     *   //   "isDefault": false,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.customers.configurations.get
      * @memberOf! ()
      *
@@ -1072,9 +1331,18 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Customers$Configurations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Customers$Configurations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Configuration>;
+    get(
+      params: Params$Resource$Customers$Configurations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Customers$Configurations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Configuration>,
@@ -1088,12 +1356,17 @@ export namespace androiddeviceprovisioning_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Customers$Configurations$Get
-        | BodyResponseCallback<Schema$Configuration>,
+        | BodyResponseCallback<Schema$Configuration>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Configuration>,
-      callback?: BodyResponseCallback<Schema$Configuration>
-    ): void | GaxiosPromise<Schema$Configuration> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Configuration>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Configuration>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Configuration> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Configurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1125,7 +1398,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Configuration>(parameters, callback);
+        createAPIRequest<Schema$Configuration>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
       }
@@ -1134,6 +1410,47 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.customers.configurations.list
      * @desc Lists a customer's configurations.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.customers.configurations.list({
+     *     // Required. The customer that manages the listed configurations. An API
+     *     // resource name in the format `customers/[CUSTOMER_ID]`.
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configurations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.customers.configurations.list
      * @memberOf! ()
      *
@@ -1144,9 +1461,18 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customers$Configurations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customers$Configurations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomerListConfigurationsResponse>;
+    list(
+      params: Params$Resource$Customers$Configurations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customers$Configurations$List,
       options:
@@ -1164,12 +1490,20 @@ export namespace androiddeviceprovisioning_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customers$Configurations$List
-        | BodyResponseCallback<Schema$CustomerListConfigurationsResponse>,
+        | BodyResponseCallback<Schema$CustomerListConfigurationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomerListConfigurationsResponse>,
-      callback?: BodyResponseCallback<Schema$CustomerListConfigurationsResponse>
-    ): void | GaxiosPromise<Schema$CustomerListConfigurationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomerListConfigurationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomerListConfigurationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CustomerListConfigurationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Configurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1206,7 +1540,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$CustomerListConfigurationsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$CustomerListConfigurationsResponse>(
@@ -1218,21 +1552,103 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.customers.configurations.patch
      * @desc Updates a configuration's field values.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.customers.configurations.patch({
+     *     // Output only. The API resource name in the format
+     *     // `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. Assigned by
+     *     // the server.
+     *     name: 'customers/my-customer/configurations/my-configuration',
+     *     // Required. The field mask applied to the target `Configuration` before
+     *     // updating the fields. To learn more about using field masks, read
+     *     // [FieldMask](/protocol-buffers/docs/reference/google.protobuf#fieldmask) in
+     *     // the Protocol Buffers documentation.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "companyName": "my_companyName",
+     *       //   "configurationId": "my_configurationId",
+     *       //   "configurationName": "my_configurationName",
+     *       //   "contactEmail": "my_contactEmail",
+     *       //   "contactPhone": "my_contactPhone",
+     *       //   "customMessage": "my_customMessage",
+     *       //   "dpcExtras": "my_dpcExtras",
+     *       //   "dpcResourcePath": "my_dpcResourcePath",
+     *       //   "isDefault": false,
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "companyName": "my_companyName",
+     *   //   "configurationId": "my_configurationId",
+     *   //   "configurationName": "my_configurationName",
+     *   //   "contactEmail": "my_contactEmail",
+     *   //   "contactPhone": "my_contactPhone",
+     *   //   "customMessage": "my_customMessage",
+     *   //   "dpcExtras": "my_dpcExtras",
+     *   //   "dpcResourcePath": "my_dpcResourcePath",
+     *   //   "isDefault": false,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.customers.configurations.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. Assigned by the server.
      * @param {string=} params.updateMask Required. The field mask applied to the target `Configuration` before updating the fields. To learn more about using field masks, read [FieldMask](/protocol-buffers/docs/reference/google.protobuf#fieldmask) in the Protocol Buffers documentation.
-     * @param {().Configuration} params.resource Request body data
+     * @param {().Configuration} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Customers$Configurations$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Customers$Configurations$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Configuration>;
+    patch(
+      params: Params$Resource$Customers$Configurations$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Customers$Configurations$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Configuration>,
@@ -1246,12 +1662,17 @@ export namespace androiddeviceprovisioning_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Customers$Configurations$Patch
-        | BodyResponseCallback<Schema$Configuration>,
+        | BodyResponseCallback<Schema$Configuration>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Configuration>,
-      callback?: BodyResponseCallback<Schema$Configuration>
-    ): void | GaxiosPromise<Schema$Configuration> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Configuration>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Configuration>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Configuration> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Configurations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1283,7 +1704,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Configuration>(parameters, callback);
+        createAPIRequest<Schema$Configuration>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
       }
@@ -1292,11 +1716,6 @@ export namespace androiddeviceprovisioning_v1 {
 
   export interface Params$Resource$Customers$Configurations$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The customer that manages the configuration. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
@@ -1310,22 +1729,12 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Customers$Configurations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The configuration to delete. An API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. If the configuration is applied to any devices, the API call fails.
      */
     name?: string;
   }
   export interface Params$Resource$Customers$Configurations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The configuration to get. An API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`.
      */
@@ -1334,22 +1743,12 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Customers$Configurations$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The customer that manages the listed configurations. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
     parent?: string;
   }
   export interface Params$Resource$Customers$Configurations$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. Assigned by the server.
      */
@@ -1374,20 +1773,79 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.customers.devices.applyConfiguration
      * @desc Applies a Configuration to the device to register the device for zero-touch enrollment. After applying a configuration to a device, the device automatically provisions itself on first boot, or next factory reset.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.customers.devices.applyConfiguration(
+     *     {
+     *       // Required. The customer managing the device. An API resource name in the
+     *       // format `customers/[CUSTOMER_ID]`.
+     *       parent: 'customers/my-customer',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "configuration": "my_configuration",
+     *         //   "device": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.customers.devices.applyConfiguration
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The customer managing the device. An API resource name in the format `customers/[CUSTOMER_ID]`.
-     * @param {().CustomerApplyConfigurationRequest} params.resource Request body data
+     * @param {().CustomerApplyConfigurationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     applyConfiguration(
+      params: Params$Resource$Customers$Devices$Applyconfiguration,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    applyConfiguration(
       params?: Params$Resource$Customers$Devices$Applyconfiguration,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    applyConfiguration(
+      params: Params$Resource$Customers$Devices$Applyconfiguration,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     applyConfiguration(
       params: Params$Resource$Customers$Devices$Applyconfiguration,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1401,10 +1859,17 @@ export namespace androiddeviceprovisioning_v1 {
     applyConfiguration(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$Applyconfiguration
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Applyconfiguration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1439,7 +1904,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1448,6 +1916,52 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.customers.devices.get
      * @desc Gets the details of a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.customers.devices.get({
+     *     // Required. The device to get. An API resource name in the format
+     *     // `customers/[CUSTOMER_ID]/devices/[DEVICE_ID]`.
+     *     name: 'customers/my-customer/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "claims": [],
+     *   //   "configuration": "my_configuration",
+     *   //   "deviceId": "my_deviceId",
+     *   //   "deviceIdentifier": {},
+     *   //   "deviceMetadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.customers.devices.get
      * @memberOf! ()
      *
@@ -1458,9 +1972,18 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Customers$Devices$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Customers$Devices$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Device>;
+    get(
+      params: Params$Resource$Customers$Devices$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Customers$Devices$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Device>,
@@ -1474,10 +1997,17 @@ export namespace androiddeviceprovisioning_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$Get
-        | BodyResponseCallback<Schema$Device>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Device>,
-      callback?: BodyResponseCallback<Schema$Device>
-    ): void | GaxiosPromise<Schema$Device> {
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Device> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1509,7 +2039,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Device>(parameters, callback);
+        createAPIRequest<Schema$Device>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Device>(parameters);
       }
@@ -1518,6 +2051,53 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.customers.devices.list
      * @desc Lists a customer's devices.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.customers.devices.list({
+     *     // The maximum number of devices to show in a page of results.
+     *     // Must be between 1 and 100 inclusive.
+     *     pageSize: 'placeholder-value',
+     *     // A token specifying which result page to return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The customer managing the devices. An API resource name in the
+     *     // format `customers/[CUSTOMER_ID]`.
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.customers.devices.list
      * @memberOf! ()
      *
@@ -1530,9 +2110,18 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customers$Devices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customers$Devices$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomerListDevicesResponse>;
+    list(
+      params: Params$Resource$Customers$Devices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customers$Devices$List,
       options:
@@ -1550,12 +2139,20 @@ export namespace androiddeviceprovisioning_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$List
-        | BodyResponseCallback<Schema$CustomerListDevicesResponse>,
+        | BodyResponseCallback<Schema$CustomerListDevicesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomerListDevicesResponse>,
-      callback?: BodyResponseCallback<Schema$CustomerListDevicesResponse>
-    ): void | GaxiosPromise<Schema$CustomerListDevicesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomerListDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomerListDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CustomerListDevicesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1592,7 +2189,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$CustomerListDevicesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$CustomerListDevicesResponse>(parameters);
@@ -1602,20 +2199,78 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.customers.devices.removeConfiguration
      * @desc Removes a configuration from device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.customers.devices.removeConfiguration(
+     *     {
+     *       // Required. The customer managing the device in the format
+     *       // `customers/[CUSTOMER_ID]`.
+     *       parent: 'customers/my-customer',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "device": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.customers.devices.removeConfiguration
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The customer managing the device in the format `customers/[CUSTOMER_ID]`.
-     * @param {().CustomerRemoveConfigurationRequest} params.resource Request body data
+     * @param {().CustomerRemoveConfigurationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     removeConfiguration(
+      params: Params$Resource$Customers$Devices$Removeconfiguration,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeConfiguration(
       params?: Params$Resource$Customers$Devices$Removeconfiguration,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    removeConfiguration(
+      params: Params$Resource$Customers$Devices$Removeconfiguration,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     removeConfiguration(
       params: Params$Resource$Customers$Devices$Removeconfiguration,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1629,10 +2284,17 @@ export namespace androiddeviceprovisioning_v1 {
     removeConfiguration(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$Removeconfiguration
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Removeconfiguration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1666,7 +2328,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1675,20 +2340,76 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.customers.devices.unclaim
      * @desc Unclaims a device from a customer and removes it from zero-touch enrollment.  After removing a device, a customer must contact their reseller to register the device into zero-touch enrollment again.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.customers.devices.unclaim({
+     *     // Required. The customer managing the device. An API resource name in the
+     *     // format `customers/[CUSTOMER_ID]`.
+     *     parent: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "device": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.customers.devices.unclaim
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The customer managing the device. An API resource name in the format `customers/[CUSTOMER_ID]`.
-     * @param {().CustomerUnclaimDeviceRequest} params.resource Request body data
+     * @param {().CustomerUnclaimDeviceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     unclaim(
+      params: Params$Resource$Customers$Devices$Unclaim,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unclaim(
       params?: Params$Resource$Customers$Devices$Unclaim,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    unclaim(
+      params: Params$Resource$Customers$Devices$Unclaim,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     unclaim(
       params: Params$Resource$Customers$Devices$Unclaim,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1702,10 +2423,17 @@ export namespace androiddeviceprovisioning_v1 {
     unclaim(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$Unclaim
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Unclaim;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1740,7 +2468,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1749,11 +2480,6 @@ export namespace androiddeviceprovisioning_v1 {
 
   export interface Params$Resource$Customers$Devices$Applyconfiguration
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The customer managing the device. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
@@ -1767,22 +2493,12 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Customers$Devices$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The device to get. An API resource name in the format `customers/[CUSTOMER_ID]/devices/[DEVICE_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Customers$Devices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of devices to show in a page of results. Must be between 1 and 100 inclusive.
      */
@@ -1799,11 +2515,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Customers$Devices$Removeconfiguration
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The customer managing the device in the format `customers/[CUSTOMER_ID]`.
      */
     parent?: string;
@@ -1815,11 +2526,6 @@ export namespace androiddeviceprovisioning_v1 {
   }
   export interface Params$Resource$Customers$Devices$Unclaim
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The customer managing the device. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
@@ -1840,6 +2546,47 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.customers.dpcs.list
      * @desc Lists the DPCs (device policy controllers) that support zero-touch enrollment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.customers.dpcs.list({
+     *     // Required. The customer that can use the DPCs in configurations. An API
+     *     // resource name in the format `customers/[CUSTOMER_ID]`.
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dpcs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.customers.dpcs.list
      * @memberOf! ()
      *
@@ -1850,9 +2597,18 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customers$Dpcs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customers$Dpcs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomerListDpcsResponse>;
+    list(
+      params: Params$Resource$Customers$Dpcs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customers$Dpcs$List,
       options:
@@ -1868,12 +2624,20 @@ export namespace androiddeviceprovisioning_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customers$Dpcs$List
-        | BodyResponseCallback<Schema$CustomerListDpcsResponse>,
+        | BodyResponseCallback<Schema$CustomerListDpcsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomerListDpcsResponse>,
-      callback?: BodyResponseCallback<Schema$CustomerListDpcsResponse>
-    ): void | GaxiosPromise<Schema$CustomerListDpcsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomerListDpcsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomerListDpcsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CustomerListDpcsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Dpcs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1905,7 +2669,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomerListDpcsResponse>(parameters, callback);
+        createAPIRequest<Schema$CustomerListDpcsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomerListDpcsResponse>(parameters);
       }
@@ -1914,11 +2681,6 @@ export namespace androiddeviceprovisioning_v1 {
 
   export interface Params$Resource$Customers$Dpcs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The customer that can use the DPCs in configurations. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
@@ -1934,6 +2696,50 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.operations.get
      * @memberOf! ()
      *
@@ -1944,9 +2750,18 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1960,12 +2775,17 @@ export namespace androiddeviceprovisioning_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1996,7 +2816,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2004,11 +2827,6 @@ export namespace androiddeviceprovisioning_v1 {
   }
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */
@@ -2037,20 +2855,83 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.partners.customers.create
      * @desc Creates a customer for zero-touch enrollment. After the method returns successfully, admin and owner roles can manage devices and EMM configs by calling API methods or using their zero-touch enrollment portal. The customer receives an email that welcomes them to zero-touch enrollment and explains how to sign into the portal.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.partners.customers.create({
+     *     // Required. The parent resource ID in the format `partners/[PARTNER_ID]` that
+     *     // identifies the reseller.
+     *     parent: 'partners/my-partner',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customer": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adminEmails": [],
+     *   //   "companyId": "my_companyId",
+     *   //   "companyName": "my_companyName",
+     *   //   "name": "my_name",
+     *   //   "ownerEmails": [],
+     *   //   "termsStatus": "my_termsStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.partners.customers.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The parent resource ID in the format `partners/[PARTNER_ID]` that identifies the reseller.
-     * @param {().CreateCustomerRequest} params.resource Request body data
+     * @param {().CreateCustomerRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Partners$Customers$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Partners$Customers$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Company>;
+    create(
+      params: Params$Resource$Partners$Customers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Partners$Customers$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Company>,
@@ -2064,10 +2945,17 @@ export namespace androiddeviceprovisioning_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Partners$Customers$Create
-        | BodyResponseCallback<Schema$Company>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Company>,
-      callback?: BodyResponseCallback<Schema$Company>
-    ): void | GaxiosPromise<Schema$Company> {
+        | BodyResponseCallback<Schema$Company>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Company>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Company>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Company> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Customers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2102,7 +2990,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Company>(parameters, callback);
+        createAPIRequest<Schema$Company>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Company>(parameters);
       }
@@ -2111,6 +3002,53 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.partners.customers.list
      * @desc Lists the customers that are enrolled to the reseller identified by the `partnerId` argument. This list includes customers that the reseller created and customers that enrolled themselves using the portal.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.partners.customers.list({
+     *     // The maximum number of results to be returned. If not specified or 0, all
+     *     // the records are returned.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results returned by the server.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The ID of the reseller partner.
+     *     partnerId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customers": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.partners.customers.list
      * @memberOf! ()
      *
@@ -2123,9 +3061,18 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Partners$Customers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Partners$Customers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCustomersResponse>;
+    list(
+      params: Params$Resource$Partners$Customers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Partners$Customers$List,
       options:
@@ -2141,12 +3088,20 @@ export namespace androiddeviceprovisioning_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Partners$Customers$List
-        | BodyResponseCallback<Schema$ListCustomersResponse>,
+        | BodyResponseCallback<Schema$ListCustomersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListCustomersResponse>,
-      callback?: BodyResponseCallback<Schema$ListCustomersResponse>
-    ): void | GaxiosPromise<Schema$ListCustomersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCustomersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCustomersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCustomersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Customers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2181,7 +3136,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListCustomersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListCustomersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListCustomersResponse>(parameters);
       }
@@ -2190,11 +3148,6 @@ export namespace androiddeviceprovisioning_v1 {
 
   export interface Params$Resource$Partners$Customers$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The parent resource ID in the format `partners/[PARTNER_ID]` that identifies the reseller.
      */
@@ -2207,11 +3160,6 @@ export namespace androiddeviceprovisioning_v1 {
   }
   export interface Params$Resource$Partners$Customers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of results to be returned. If not specified or 0, all the records are returned.
      */
@@ -2235,20 +3183,81 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.partners.devices.claim
      * @desc Claims a device for a customer and adds it to zero-touch enrollment. If the device is already claimed by another customer, the call returns an error.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.partners.devices.claim({
+     *     // Required. The ID of the reseller partner.
+     *     partnerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customerId": "my_customerId",
+     *       //   "deviceIdentifier": {},
+     *       //   "deviceMetadata": {},
+     *       //   "sectionType": "my_sectionType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceId": "my_deviceId",
+     *   //   "deviceName": "my_deviceName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.partners.devices.claim
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The ID of the reseller partner.
-     * @param {().ClaimDeviceRequest} params.resource Request body data
+     * @param {().ClaimDeviceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     claim(
+      params: Params$Resource$Partners$Devices$Claim,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    claim(
       params?: Params$Resource$Partners$Devices$Claim,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ClaimDeviceResponse>;
+    claim(
+      params: Params$Resource$Partners$Devices$Claim,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     claim(
       params: Params$Resource$Partners$Devices$Claim,
       options: MethodOptions | BodyResponseCallback<Schema$ClaimDeviceResponse>,
@@ -2262,12 +3271,20 @@ export namespace androiddeviceprovisioning_v1 {
     claim(
       paramsOrCallback?:
         | Params$Resource$Partners$Devices$Claim
-        | BodyResponseCallback<Schema$ClaimDeviceResponse>,
+        | BodyResponseCallback<Schema$ClaimDeviceResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ClaimDeviceResponse>,
-      callback?: BodyResponseCallback<Schema$ClaimDeviceResponse>
-    ): void | GaxiosPromise<Schema$ClaimDeviceResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ClaimDeviceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ClaimDeviceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ClaimDeviceResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Claim;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2302,7 +3319,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ClaimDeviceResponse>(parameters, callback);
+        createAPIRequest<Schema$ClaimDeviceResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ClaimDeviceResponse>(parameters);
       }
@@ -2311,20 +3331,81 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.partners.devices.claimAsync
      * @desc Claims a batch of devices for a customer asynchronously. Adds the devices to zero-touch enrollment. To learn more, read [Long‑running batch operations](/zero-touch/guides/how-it-works#operations).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.partners.devices.claimAsync({
+     *     // Required. The ID of the reseller partner.
+     *     partnerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "claims": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.partners.devices.claimAsync
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The ID of the reseller partner.
-     * @param {().ClaimDevicesRequest} params.resource Request body data
+     * @param {().ClaimDevicesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     claimAsync(
+      params: Params$Resource$Partners$Devices$Claimasync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    claimAsync(
       params?: Params$Resource$Partners$Devices$Claimasync,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    claimAsync(
+      params: Params$Resource$Partners$Devices$Claimasync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     claimAsync(
       params: Params$Resource$Partners$Devices$Claimasync,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2338,12 +3419,17 @@ export namespace androiddeviceprovisioning_v1 {
     claimAsync(
       paramsOrCallback?:
         | Params$Resource$Partners$Devices$Claimasync
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Claimasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2377,7 +3463,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2386,20 +3475,83 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.partners.devices.findByIdentifier
      * @desc Finds devices by hardware identifiers, such as IMEI.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.partners.devices.findByIdentifier(
+     *     {
+     *       // Required. The ID of the reseller partner.
+     *       partnerId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "deviceIdentifier": {},
+     *         //   "limit": "my_limit",
+     *         //   "pageToken": "my_pageToken"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.partners.devices.findByIdentifier
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The ID of the reseller partner.
-     * @param {().FindDevicesByDeviceIdentifierRequest} params.resource Request body data
+     * @param {().FindDevicesByDeviceIdentifierRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     findByIdentifier(
+      params: Params$Resource$Partners$Devices$Findbyidentifier,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    findByIdentifier(
       params?: Params$Resource$Partners$Devices$Findbyidentifier,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FindDevicesByDeviceIdentifierResponse>;
+    findByIdentifier(
+      params: Params$Resource$Partners$Devices$Findbyidentifier,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     findByIdentifier(
       params: Params$Resource$Partners$Devices$Findbyidentifier,
       options:
@@ -2423,14 +3575,20 @@ export namespace androiddeviceprovisioning_v1 {
     findByIdentifier(
       paramsOrCallback?:
         | Params$Resource$Partners$Devices$Findbyidentifier
-        | BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>,
+        | BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>,
-      callback?: BodyResponseCallback<
-        Schema$FindDevicesByDeviceIdentifierResponse
-      >
-    ): void | GaxiosPromise<Schema$FindDevicesByDeviceIdentifierResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FindDevicesByDeviceIdentifierResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Findbyidentifier;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2466,7 +3624,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$FindDevicesByDeviceIdentifierResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$FindDevicesByDeviceIdentifierResponse>(
@@ -2478,20 +3636,82 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.partners.devices.findByOwner
      * @desc Finds devices claimed for customers. The results only contain devices registered to the reseller that's identified by the `partnerId` argument. The customer's devices purchased from other resellers don't appear in the results.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.partners.devices.findByOwner({
+     *     // Required. The ID of the reseller partner.
+     *     partnerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customerId": [],
+     *       //   "limit": "my_limit",
+     *       //   "pageToken": "my_pageToken",
+     *       //   "sectionType": "my_sectionType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.partners.devices.findByOwner
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The ID of the reseller partner.
-     * @param {().FindDevicesByOwnerRequest} params.resource Request body data
+     * @param {().FindDevicesByOwnerRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     findByOwner(
+      params: Params$Resource$Partners$Devices$Findbyowner,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    findByOwner(
       params?: Params$Resource$Partners$Devices$Findbyowner,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FindDevicesByOwnerResponse>;
+    findByOwner(
+      params: Params$Resource$Partners$Devices$Findbyowner,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     findByOwner(
       params: Params$Resource$Partners$Devices$Findbyowner,
       options:
@@ -2509,12 +3729,20 @@ export namespace androiddeviceprovisioning_v1 {
     findByOwner(
       paramsOrCallback?:
         | Params$Resource$Partners$Devices$Findbyowner
-        | BodyResponseCallback<Schema$FindDevicesByOwnerResponse>,
+        | BodyResponseCallback<Schema$FindDevicesByOwnerResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FindDevicesByOwnerResponse>,
-      callback?: BodyResponseCallback<Schema$FindDevicesByOwnerResponse>
-    ): void | GaxiosPromise<Schema$FindDevicesByOwnerResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FindDevicesByOwnerResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FindDevicesByOwnerResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FindDevicesByOwnerResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Findbyowner;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2550,7 +3778,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$FindDevicesByOwnerResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$FindDevicesByOwnerResponse>(parameters);
@@ -2560,6 +3788,52 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.partners.devices.get
      * @desc Gets a device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.partners.devices.get({
+     *     // Required. The device API resource name in the format
+     *     // `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
+     *     name: 'partners/my-partner/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "claims": [],
+     *   //   "configuration": "my_configuration",
+     *   //   "deviceId": "my_deviceId",
+     *   //   "deviceIdentifier": {},
+     *   //   "deviceMetadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.partners.devices.get
      * @memberOf! ()
      *
@@ -2570,9 +3844,18 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Partners$Devices$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Partners$Devices$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Device>;
+    get(
+      params: Params$Resource$Partners$Devices$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Partners$Devices$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Device>,
@@ -2586,10 +3869,17 @@ export namespace androiddeviceprovisioning_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Partners$Devices$Get
-        | BodyResponseCallback<Schema$Device>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Device>,
-      callback?: BodyResponseCallback<Schema$Device>
-    ): void | GaxiosPromise<Schema$Device> {
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Device> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2621,7 +3911,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Device>(parameters, callback);
+        createAPIRequest<Schema$Device>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Device>(parameters);
       }
@@ -2630,21 +3923,80 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.partners.devices.metadata
      * @desc Updates reseller metadata associated with the device.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.partners.devices.metadata({
+     *     // Required. The ID of the device.
+     *     deviceId: '[^/]+',
+     *     // Required. The owner of the newly set metadata. Set this to the partner ID.
+     *     metadataOwnerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deviceMetadata": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.partners.devices.metadata
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.deviceId Required. The ID of the device.
      * @param {string} params.metadataOwnerId Required. The owner of the newly set metadata. Set this to the partner ID.
-     * @param {().UpdateDeviceMetadataRequest} params.resource Request body data
+     * @param {().UpdateDeviceMetadataRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     metadata(
+      params: Params$Resource$Partners$Devices$Metadata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    metadata(
       params?: Params$Resource$Partners$Devices$Metadata,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DeviceMetadata>;
+    metadata(
+      params: Params$Resource$Partners$Devices$Metadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     metadata(
       params: Params$Resource$Partners$Devices$Metadata,
       options: MethodOptions | BodyResponseCallback<Schema$DeviceMetadata>,
@@ -2658,12 +4010,17 @@ export namespace androiddeviceprovisioning_v1 {
     metadata(
       paramsOrCallback?:
         | Params$Resource$Partners$Devices$Metadata
-        | BodyResponseCallback<Schema$DeviceMetadata>,
+        | BodyResponseCallback<Schema$DeviceMetadata>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DeviceMetadata>,
-      callback?: BodyResponseCallback<Schema$DeviceMetadata>
-    ): void | GaxiosPromise<Schema$DeviceMetadata> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeviceMetadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeviceMetadata>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DeviceMetadata> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Metadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2698,7 +4055,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DeviceMetadata>(parameters, callback);
+        createAPIRequest<Schema$DeviceMetadata>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DeviceMetadata>(parameters);
       }
@@ -2707,20 +4067,79 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.partners.devices.unclaim
      * @desc Unclaims a device from a customer and removes it from zero-touch enrollment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.partners.devices.unclaim({
+     *     // Required. The ID of the reseller partner.
+     *     partnerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deviceId": "my_deviceId",
+     *       //   "deviceIdentifier": {},
+     *       //   "sectionType": "my_sectionType",
+     *       //   "vacationModeDays": 0,
+     *       //   "vacationModeExpireTime": "my_vacationModeExpireTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.partners.devices.unclaim
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The ID of the reseller partner.
-     * @param {().UnclaimDeviceRequest} params.resource Request body data
+     * @param {().UnclaimDeviceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     unclaim(
+      params: Params$Resource$Partners$Devices$Unclaim,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unclaim(
       params?: Params$Resource$Partners$Devices$Unclaim,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    unclaim(
+      params: Params$Resource$Partners$Devices$Unclaim,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     unclaim(
       params: Params$Resource$Partners$Devices$Unclaim,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2734,10 +4153,17 @@ export namespace androiddeviceprovisioning_v1 {
     unclaim(
       paramsOrCallback?:
         | Params$Resource$Partners$Devices$Unclaim
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Unclaim;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2771,7 +4197,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2780,20 +4209,81 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.partners.devices.unclaimAsync
      * @desc Unclaims a batch of devices for a customer asynchronously. Removes the devices from zero-touch enrollment. To learn more, read [Long‑running batch operations](/zero-touch/guides/how-it-works#operations).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.partners.devices.unclaimAsync({
+     *     // Required. The reseller partner ID.
+     *     partnerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "unclaims": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.partners.devices.unclaimAsync
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The reseller partner ID.
-     * @param {().UnclaimDevicesRequest} params.resource Request body data
+     * @param {().UnclaimDevicesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     unclaimAsync(
+      params: Params$Resource$Partners$Devices$Unclaimasync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unclaimAsync(
       params?: Params$Resource$Partners$Devices$Unclaimasync,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    unclaimAsync(
+      params: Params$Resource$Partners$Devices$Unclaimasync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     unclaimAsync(
       params: Params$Resource$Partners$Devices$Unclaimasync,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2807,12 +4297,17 @@ export namespace androiddeviceprovisioning_v1 {
     unclaimAsync(
       paramsOrCallback?:
         | Params$Resource$Partners$Devices$Unclaimasync
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Unclaimasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2846,7 +4341,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2855,20 +4353,83 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.partners.devices.updateMetadataAsync
      * @desc Updates the reseller metadata attached to a batch of devices. This method updates devices asynchronously and returns an `Operation` that can be used to track progress. Read [Long‑running batch operations](/zero-touch/guides/how-it-works#operations).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.partners.devices.updateMetadataAsync(
+     *     {
+     *       // Required. The reseller partner ID.
+     *       partnerId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "updates": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.partners.devices.updateMetadataAsync
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The reseller partner ID.
-     * @param {().UpdateDeviceMetadataInBatchRequest} params.resource Request body data
+     * @param {().UpdateDeviceMetadataInBatchRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     updateMetadataAsync(
+      params: Params$Resource$Partners$Devices$Updatemetadataasync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateMetadataAsync(
       params?: Params$Resource$Partners$Devices$Updatemetadataasync,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    updateMetadataAsync(
+      params: Params$Resource$Partners$Devices$Updatemetadataasync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateMetadataAsync(
       params: Params$Resource$Partners$Devices$Updatemetadataasync,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2882,12 +4443,17 @@ export namespace androiddeviceprovisioning_v1 {
     updateMetadataAsync(
       paramsOrCallback?:
         | Params$Resource$Partners$Devices$Updatemetadataasync
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Devices$Updatemetadataasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2921,7 +4487,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2930,11 +4499,6 @@ export namespace androiddeviceprovisioning_v1 {
 
   export interface Params$Resource$Partners$Devices$Claim
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the reseller partner.
      */
@@ -2948,11 +4512,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Partners$Devices$Claimasync
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the reseller partner.
      */
     partnerId?: string;
@@ -2964,11 +4523,6 @@ export namespace androiddeviceprovisioning_v1 {
   }
   export interface Params$Resource$Partners$Devices$Findbyidentifier
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the reseller partner.
      */
@@ -2982,11 +4536,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Partners$Devices$Findbyowner
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the reseller partner.
      */
     partnerId?: string;
@@ -2999,22 +4548,12 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Partners$Devices$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The device API resource name in the format `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Partners$Devices$Metadata
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the device.
      */
@@ -3032,11 +4571,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Partners$Devices$Unclaim
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the reseller partner.
      */
     partnerId?: string;
@@ -3049,11 +4583,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Partners$Devices$Unclaimasync
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The reseller partner ID.
      */
     partnerId?: string;
@@ -3065,11 +4594,6 @@ export namespace androiddeviceprovisioning_v1 {
   }
   export interface Params$Resource$Partners$Devices$Updatemetadataasync
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The reseller partner ID.
      */
@@ -3092,6 +4616,52 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.partners.vendors.list
      * @desc Lists the vendors of the partner.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.partners.vendors.list({
+     *     // The maximum number of results to be returned.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results returned by the server.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name in the format `partners/[PARTNER_ID]`.
+     *     parent: 'partners/my-partner',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0,
+     *   //   "vendors": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.partners.vendors.list
      * @memberOf! ()
      *
@@ -3104,9 +4674,18 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Partners$Vendors$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Partners$Vendors$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListVendorsResponse>;
+    list(
+      params: Params$Resource$Partners$Vendors$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Partners$Vendors$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListVendorsResponse>,
@@ -3120,12 +4699,20 @@ export namespace androiddeviceprovisioning_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Partners$Vendors$List
-        | BodyResponseCallback<Schema$ListVendorsResponse>,
+        | BodyResponseCallback<Schema$ListVendorsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListVendorsResponse>,
-      callback?: BodyResponseCallback<Schema$ListVendorsResponse>
-    ): void | GaxiosPromise<Schema$ListVendorsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVendorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVendorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListVendorsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Vendors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3160,7 +4747,10 @@ export namespace androiddeviceprovisioning_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListVendorsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListVendorsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListVendorsResponse>(parameters);
       }
@@ -3169,11 +4759,6 @@ export namespace androiddeviceprovisioning_v1 {
 
   export interface Params$Resource$Partners$Vendors$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of results to be returned.
      */
@@ -3197,6 +4782,53 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * androiddeviceprovisioning.partners.vendors.customers.list
      * @desc Lists the customers of the vendor.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androiddeviceprovisioning.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androiddeviceprovisioning = google.androiddeviceprovisioning('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androiddeviceprovisioning.partners.vendors.customers.list({
+     *     // The maximum number of results to be returned.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results returned by the server.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name in the format
+     *     // `partners/[PARTNER_ID]/vendors/[VENDOR_ID]`.
+     *     parent: 'partners/my-partner/vendors/my-vendor',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customers": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androiddeviceprovisioning.partners.vendors.customers.list
      * @memberOf! ()
      *
@@ -3209,9 +4841,18 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Partners$Vendors$Customers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Partners$Vendors$Customers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListVendorCustomersResponse>;
+    list(
+      params: Params$Resource$Partners$Vendors$Customers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Partners$Vendors$Customers$List,
       options:
@@ -3229,12 +4870,20 @@ export namespace androiddeviceprovisioning_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Partners$Vendors$Customers$List
-        | BodyResponseCallback<Schema$ListVendorCustomersResponse>,
+        | BodyResponseCallback<Schema$ListVendorCustomersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListVendorCustomersResponse>,
-      callback?: BodyResponseCallback<Schema$ListVendorCustomersResponse>
-    ): void | GaxiosPromise<Schema$ListVendorCustomersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVendorCustomersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVendorCustomersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListVendorCustomersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Vendors$Customers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3271,7 +4920,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$ListVendorCustomersResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListVendorCustomersResponse>(parameters);
@@ -3281,11 +4930,6 @@ export namespace androiddeviceprovisioning_v1 {
 
   export interface Params$Resource$Partners$Vendors$Customers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of results to be returned.
      */

@@ -1,4 +1,4 @@
-// Copyright 2012-2016, Google, Inc.
+// Copyright 2012 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -75,8 +75,9 @@ export class GoogleApis extends apis.GeneratedAPIs {
    */
   private addAPIs(apisToAdd: apis.GeneratedAPIs) {
     for (const apiName in apisToAdd) {
+      // eslint-disable-next-line no-prototype-builtins
       if (apisToAdd.hasOwnProperty(apiName)) {
-        // tslint:disable-next-line: no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         this[apiName] = (apisToAdd as any)[apiName].bind(this);
       }
     }
@@ -128,13 +129,13 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * discovery doc.
    * @returns A promise that resolves with the configured endpoint.
    */
-  async discoverAPI(
+  async discoverAPI<T = Endpoint>(
     apiPath: string,
     options: {} = {}
-  ): Promise<Readonly<Endpoint>> {
+  ): Promise<Readonly<T>> {
     const endpointCreator = await this._discovery.discoverAPI(apiPath);
     const ep = endpointCreator(options, this);
     ep.google = this; // for drive.google.transporter
-    return Object.freeze(ep);
+    return (Object.freeze(ep) as {}) as T;
   }
 }

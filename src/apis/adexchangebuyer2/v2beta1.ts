@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace adexchangebuyer2_v2beta1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace adexchangebuyer2_v2beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -224,13 +234,17 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     billedImpressions?: Schema$MetricValue;
     /**
-     * The number of bids that won an impression.
+     * The number of bids that won the auction.
      */
     impressionsWon?: Schema$MetricValue;
     /**
      * The number of bids for which the corresponding impression was measurable for viewability (as defined by Active View).
      */
     measurableImpressions?: Schema$MetricValue;
+    /**
+     * The number of bids that won the auction and also won the mediation waterfall (if any).
+     */
+    reachedQueries?: Schema$MetricValue;
     /**
      * The values of all dimensions associated with metric values in this row.
      */
@@ -300,7 +314,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     clientName?: string | null;
     /**
-     * Numerical identifier of the client entity. The entity can be an advertiser, a brand, or an agency. This identifier is unique among all the entities with the same type.  A list of all known advertisers with their identifiers is available in the [advertisers.txt](https://storage.googleapis.com/adx-rtb-dictionaries/advertisers.txt) file.  A list of all known brands with their identifiers is available in the [brands.txt](https://storage.googleapis.com/adx-rtb-dictionaries/brands.txt) file.  A list of all known agencies with their identifiers is available in the [agencies.txt](https://storage.googleapis.com/adx-rtb-dictionaries/agencies.txt) file.
+     * Numerical identifier of the client entity. The entity can be an advertiser, a brand, or an agency. This identifier is unique among all the entities with the same type. The value of this field is ignored if the entity type is not provided.  A list of all known advertisers with their identifiers is available in the [advertisers.txt](https://storage.googleapis.com/adx-rtb-dictionaries/advertisers.txt) file.  A list of all known brands with their identifiers is available in the [brands.txt](https://storage.googleapis.com/adx-rtb-dictionaries/brands.txt) file.  A list of all known agencies with their identifiers is available in the [agencies.txt](https://storage.googleapis.com/adx-rtb-dictionaries/agencies.txt) file.
      */
     entityId?: string | null;
     /**
@@ -308,7 +322,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     entityName?: string | null;
     /**
-     * The type of the client entity: `ADVERTISER`, `BRAND`, or `AGENCY`.
+     * An optional field for specifying the type of the client entity: `ADVERTISER`, `BRAND`, or `AGENCY`.
      */
     entityType?: string | null;
     /**
@@ -928,7 +942,11 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     environment?: string | null;
     /**
-     * The list of formats on which to filter; may be empty. The filters represented by multiple formats are ORed together (i.e., if non-empty, results must match any one of the formats).
+     * Creative format bidded on or allowed to bid on, can be empty.
+     */
+    format?: string | null;
+    /**
+     * Creative formats bidded on or allowed to bid on, can be empty. Although this field is a list, it can only be populated with a single item. A HTTP 400 bad request error will be returned in the response if you specify multiple items.
      */
     formats?: string[] | null;
     /**
@@ -1749,7 +1767,7 @@ export namespace adexchangebuyer2_v2beta1 {
     updateTime?: string | null;
   }
   /**
-   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources.  Represents a publisher profile in Marketplace.  All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.
+   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources.  Represents a publisher profile (https://support.google.com/admanager/answer/6035806?hl=en) in Marketplace.  All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.
    */
   export interface Schema$PublisherProfile {
     /**
@@ -1776,6 +1794,10 @@ export namespace adexchangebuyer2_v2beta1 {
      * URL to publisher&#39;s Google+ page.
      */
     googlePlusUrl?: string | null;
+    /**
+     * Indicates if this profile is the parent profile of the seller. A parent profile represents all the inventory from the seller, as opposed to child profile that is created to brand a portion of inventory. One seller should have only one parent publisher profile, and can have multiple child profiles. Publisher profiles for the same seller will have same value of field google.ads.adexchange.buyer.v2beta1.PublisherProfile.seller. See https://support.google.com/admanager/answer/6035806?hl=en for details.
+     */
+    isParent?: boolean | null;
     /**
      * A Google public URL to the logo for this publisher profile. The logo is stored as a PNG, JPG, or GIF image.
      */
@@ -2126,20 +2148,94 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.clients.create
      * @desc Creates a new client buyer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.clients.create({
+     *     // Unique numerical account ID for the buyer of which the client buyer
+     *     // is a customer; the sponsor buyer to create a client for. (required)
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientAccountId": "my_clientAccountId",
+     *       //   "clientName": "my_clientName",
+     *       //   "entityId": "my_entityId",
+     *       //   "entityName": "my_entityName",
+     *       //   "entityType": "my_entityType",
+     *       //   "partnerClientId": "my_partnerClientId",
+     *       //   "role": "my_role",
+     *       //   "status": "my_status",
+     *       //   "visibleToSeller": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientAccountId": "my_clientAccountId",
+     *   //   "clientName": "my_clientName",
+     *   //   "entityId": "my_entityId",
+     *   //   "entityName": "my_entityName",
+     *   //   "entityType": "my_entityType",
+     *   //   "partnerClientId": "my_partnerClientId",
+     *   //   "role": "my_role",
+     *   //   "status": "my_status",
+     *   //   "visibleToSeller": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.clients.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to create a client for. (required)
-     * @param {().Client} params.resource Request body data
+     * @param {().Client} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Clients$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Clients$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Client>;
+    create(
+      params: Params$Resource$Accounts$Clients$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Clients$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Client>,
@@ -2153,10 +2249,17 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Clients$Create
-        | BodyResponseCallback<Schema$Client>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Client>,
-      callback?: BodyResponseCallback<Schema$Client>
-    ): void | GaxiosPromise<Schema$Client> {
+        | BodyResponseCallback<Schema$Client>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Client>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Client>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Client> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2191,7 +2294,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Client>(parameters, callback);
+        createAPIRequest<Schema$Client>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Client>(parameters);
       }
@@ -2200,6 +2306,56 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.clients.get
      * @desc Gets a client buyer with a given client account ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.clients.get({
+     *     // Numerical account ID of the client's sponsor buyer. (required)
+     *     accountId: 'placeholder-value',
+     *     // Numerical account ID of the client buyer to retrieve. (required)
+     *     clientAccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientAccountId": "my_clientAccountId",
+     *   //   "clientName": "my_clientName",
+     *   //   "entityId": "my_entityId",
+     *   //   "entityName": "my_entityName",
+     *   //   "entityType": "my_entityType",
+     *   //   "partnerClientId": "my_partnerClientId",
+     *   //   "role": "my_role",
+     *   //   "status": "my_status",
+     *   //   "visibleToSeller": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.clients.get
      * @memberOf! ()
      *
@@ -2211,9 +2367,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Clients$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Clients$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Client>;
+    get(
+      params: Params$Resource$Accounts$Clients$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Clients$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Client>,
@@ -2227,10 +2392,17 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Clients$Get
-        | BodyResponseCallback<Schema$Client>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Client>,
-      callback?: BodyResponseCallback<Schema$Client>
-    ): void | GaxiosPromise<Schema$Client> {
+        | BodyResponseCallback<Schema$Client>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Client>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Client>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Client> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2265,7 +2437,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Client>(parameters, callback);
+        createAPIRequest<Schema$Client>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Client>(parameters);
       }
@@ -2274,6 +2449,61 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.clients.list
      * @desc Lists all the clients for the current sponsor buyer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.clients.list({
+     *     // Unique numerical account ID of the sponsor buyer to list the clients for.
+     *     accountId: 'placeholder-value',
+     *     // Requested page size. The server may return fewer clients than requested.
+     *     // If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListClientsResponse.nextPageToken
+     *     // returned from the previous call to the
+     *     // accounts.clients.list
+     *     // method.
+     *     pageToken: 'placeholder-value',
+     *     // Optional unique identifier (from the standpoint of an Ad Exchange sponsor
+     *     // buyer partner) of the client to return.
+     *     // If specified, at most one client will be returned in the response.
+     *     partnerClientId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clients": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.clients.list
      * @memberOf! ()
      *
@@ -2287,9 +2517,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Clients$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Clients$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListClientsResponse>;
+    list(
+      params: Params$Resource$Accounts$Clients$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Clients$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListClientsResponse>,
@@ -2303,12 +2542,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Clients$List
-        | BodyResponseCallback<Schema$ListClientsResponse>,
+        | BodyResponseCallback<Schema$ListClientsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListClientsResponse>,
-      callback?: BodyResponseCallback<Schema$ListClientsResponse>
-    ): void | GaxiosPromise<Schema$ListClientsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListClientsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListClientsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListClientsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2343,7 +2590,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListClientsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListClientsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListClientsResponse>(parameters);
       }
@@ -2352,21 +2602,97 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.clients.update
      * @desc Updates an existing client buyer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.clients.update({
+     *     // Unique numerical account ID for the buyer of which the client buyer
+     *     // is a customer; the sponsor buyer to update a client for. (required)
+     *     accountId: 'placeholder-value',
+     *     // Unique numerical account ID of the client to update. (required)
+     *     clientAccountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientAccountId": "my_clientAccountId",
+     *       //   "clientName": "my_clientName",
+     *       //   "entityId": "my_entityId",
+     *       //   "entityName": "my_entityName",
+     *       //   "entityType": "my_entityType",
+     *       //   "partnerClientId": "my_partnerClientId",
+     *       //   "role": "my_role",
+     *       //   "status": "my_status",
+     *       //   "visibleToSeller": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientAccountId": "my_clientAccountId",
+     *   //   "clientName": "my_clientName",
+     *   //   "entityId": "my_entityId",
+     *   //   "entityName": "my_entityName",
+     *   //   "entityType": "my_entityType",
+     *   //   "partnerClientId": "my_partnerClientId",
+     *   //   "role": "my_role",
+     *   //   "status": "my_status",
+     *   //   "visibleToSeller": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.clients.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to update a client for. (required)
      * @param {string} params.clientAccountId Unique numerical account ID of the client to update. (required)
-     * @param {().Client} params.resource Request body data
+     * @param {().Client} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Clients$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Clients$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Client>;
+    update(
+      params: Params$Resource$Accounts$Clients$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Clients$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Client>,
@@ -2380,10 +2706,17 @@ export namespace adexchangebuyer2_v2beta1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Clients$Update
-        | BodyResponseCallback<Schema$Client>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Client>,
-      callback?: BodyResponseCallback<Schema$Client>
-    ): void | GaxiosPromise<Schema$Client> {
+        | BodyResponseCallback<Schema$Client>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Client>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Client>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Client> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2418,7 +2751,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Client>(parameters, callback);
+        createAPIRequest<Schema$Client>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Client>(parameters);
       }
@@ -2427,11 +2763,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Accounts$Clients$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to create a client for. (required)
      */
@@ -2445,11 +2776,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Clients$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
     accountId?: string;
@@ -2460,11 +2786,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Clients$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique numerical account ID of the sponsor buyer to list the clients for.
      */
@@ -2484,11 +2805,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Clients$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to update a client for. (required)
      */
@@ -2513,21 +2829,85 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.clients.invitations.create
      * @desc Creates and sends out an email invitation to access an Ad Exchange client buyer account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.clients.invitations.create({
+     *     // Numerical account ID of the client's sponsor buyer. (required)
+     *     accountId: 'placeholder-value',
+     *     // Numerical account ID of the client buyer that the user
+     *     // should be associated with. (required)
+     *     clientAccountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientAccountId": "my_clientAccountId",
+     *       //   "email": "my_email",
+     *       //   "invitationId": "my_invitationId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientAccountId": "my_clientAccountId",
+     *   //   "email": "my_email",
+     *   //   "invitationId": "my_invitationId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.clients.invitations.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
      * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user should be associated with. (required)
-     * @param {().ClientUserInvitation} params.resource Request body data
+     * @param {().ClientUserInvitation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Clients$Invitations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Clients$Invitations$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ClientUserInvitation>;
+    create(
+      params: Params$Resource$Accounts$Clients$Invitations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Clients$Invitations$Create,
       options:
@@ -2543,12 +2923,20 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Clients$Invitations$Create
-        | BodyResponseCallback<Schema$ClientUserInvitation>,
+        | BodyResponseCallback<Schema$ClientUserInvitation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ClientUserInvitation>,
-      callback?: BodyResponseCallback<Schema$ClientUserInvitation>
-    ): void | GaxiosPromise<Schema$ClientUserInvitation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ClientUserInvitation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ClientUserInvitation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ClientUserInvitation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Invitations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2583,7 +2971,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ClientUserInvitation>(parameters, callback);
+        createAPIRequest<Schema$ClientUserInvitation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ClientUserInvitation>(parameters);
       }
@@ -2592,6 +2983,53 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.clients.invitations.get
      * @desc Retrieves an existing client user invitation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.clients.invitations.get({
+     *     // Numerical account ID of the client's sponsor buyer. (required)
+     *     accountId: 'placeholder-value',
+     *     // Numerical account ID of the client buyer that the user invitation
+     *     // to be retrieved is associated with. (required)
+     *     clientAccountId: 'placeholder-value',
+     *     // Numerical identifier of the user invitation to retrieve. (required)
+     *     invitationId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientAccountId": "my_clientAccountId",
+     *   //   "email": "my_email",
+     *   //   "invitationId": "my_invitationId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.clients.invitations.get
      * @memberOf! ()
      *
@@ -2604,9 +3042,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Clients$Invitations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Clients$Invitations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ClientUserInvitation>;
+    get(
+      params: Params$Resource$Accounts$Clients$Invitations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Clients$Invitations$Get,
       options:
@@ -2622,12 +3069,20 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Clients$Invitations$Get
-        | BodyResponseCallback<Schema$ClientUserInvitation>,
+        | BodyResponseCallback<Schema$ClientUserInvitation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ClientUserInvitation>,
-      callback?: BodyResponseCallback<Schema$ClientUserInvitation>
-    ): void | GaxiosPromise<Schema$ClientUserInvitation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ClientUserInvitation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ClientUserInvitation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ClientUserInvitation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Invitations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2662,7 +3117,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ClientUserInvitation>(parameters, callback);
+        createAPIRequest<Schema$ClientUserInvitation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ClientUserInvitation>(parameters);
       }
@@ -2671,6 +3129,64 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.clients.invitations.list
      * @desc Lists all the client users invitations for a client with a given account ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.clients.invitations.list({
+     *     // Numerical account ID of the client's sponsor buyer. (required)
+     *     accountId: 'placeholder-value',
+     *     // Numerical account ID of the client buyer to list invitations for.
+     *     // (required)
+     *     // You must either specify a string representation of a
+     *     // numerical account identifier or the `-` character
+     *     // to list all the invitations for all the clients
+     *     // of a given sponsor buyer.
+     *     clientAccountId: 'placeholder-value',
+     *     // Requested page size. Server may return fewer clients than requested.
+     *     // If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListClientUserInvitationsResponse.nextPageToken
+     *     // returned from the previous call to the
+     *     // clients.invitations.list
+     *     // method.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "invitations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.clients.invitations.list
      * @memberOf! ()
      *
@@ -2684,9 +3200,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Clients$Invitations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Clients$Invitations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListClientUserInvitationsResponse>;
+    list(
+      params: Params$Resource$Accounts$Clients$Invitations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Clients$Invitations$List,
       options:
@@ -2704,12 +3229,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Clients$Invitations$List
-        | BodyResponseCallback<Schema$ListClientUserInvitationsResponse>,
+        | BodyResponseCallback<Schema$ListClientUserInvitationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListClientUserInvitationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListClientUserInvitationsResponse>
-    ): void | GaxiosPromise<Schema$ListClientUserInvitationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListClientUserInvitationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListClientUserInvitationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListClientUserInvitationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Invitations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2746,7 +3279,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListClientUserInvitationsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListClientUserInvitationsResponse>(
@@ -2758,11 +3291,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Accounts$Clients$Invitations$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
@@ -2780,11 +3308,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Clients$Invitations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
     accountId?: string;
@@ -2799,11 +3322,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Clients$Invitations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
@@ -2831,6 +3349,54 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.clients.users.get
      * @desc Retrieves an existing client user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.clients.users.get({
+     *     // Numerical account ID of the client's sponsor buyer. (required)
+     *     accountId: 'placeholder-value',
+     *     // Numerical account ID of the client buyer
+     *     // that the user to be retrieved is associated with. (required)
+     *     clientAccountId: 'placeholder-value',
+     *     // Numerical identifier of the user to retrieve. (required)
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientAccountId": "my_clientAccountId",
+     *   //   "email": "my_email",
+     *   //   "status": "my_status",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.clients.users.get
      * @memberOf! ()
      *
@@ -2843,9 +3409,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Clients$Users$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Clients$Users$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ClientUser>;
+    get(
+      params: Params$Resource$Accounts$Clients$Users$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Clients$Users$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ClientUser>,
@@ -2859,12 +3434,17 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Clients$Users$Get
-        | BodyResponseCallback<Schema$ClientUser>,
+        | BodyResponseCallback<Schema$ClientUser>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ClientUser>,
-      callback?: BodyResponseCallback<Schema$ClientUser>
-    ): void | GaxiosPromise<Schema$ClientUser> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ClientUser>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ClientUser>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ClientUser> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2899,7 +3479,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ClientUser>(parameters, callback);
+        createAPIRequest<Schema$ClientUser>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ClientUser>(parameters);
       }
@@ -2908,6 +3491,64 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.clients.users.list
      * @desc Lists all the known client users for a specified sponsor buyer account ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.clients.users.list({
+     *     // Numerical account ID of the sponsor buyer of the client to list users for.
+     *     // (required)
+     *     accountId: 'placeholder-value',
+     *     // The account ID of the client buyer to list users for. (required)
+     *     // You must specify either a string representation of a
+     *     // numerical account identifier or the `-` character
+     *     // to list all the client users for all the clients
+     *     // of a given sponsor buyer.
+     *     clientAccountId: 'placeholder-value',
+     *     // Requested page size. The server may return fewer clients than requested.
+     *     // If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListClientUsersResponse.nextPageToken
+     *     // returned from the previous call to the
+     *     // accounts.clients.users.list
+     *     // method.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "users": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.clients.users.list
      * @memberOf! ()
      *
@@ -2921,9 +3562,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Clients$Users$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Clients$Users$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListClientUsersResponse>;
+    list(
+      params: Params$Resource$Accounts$Clients$Users$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Clients$Users$List,
       options:
@@ -2939,12 +3589,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Clients$Users$List
-        | BodyResponseCallback<Schema$ListClientUsersResponse>,
+        | BodyResponseCallback<Schema$ListClientUsersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListClientUsersResponse>,
-      callback?: BodyResponseCallback<Schema$ListClientUsersResponse>
-    ): void | GaxiosPromise<Schema$ListClientUsersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListClientUsersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListClientUsersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListClientUsersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2979,7 +3637,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListClientUsersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListClientUsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListClientUsersResponse>(parameters);
       }
@@ -2988,6 +3649,65 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.clients.users.update
      * @desc Updates an existing client user. Only the user status can be changed on update.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.clients.users.update({
+     *     // Numerical account ID of the client's sponsor buyer. (required)
+     *     accountId: 'placeholder-value',
+     *     // Numerical account ID of the client buyer that the user to be retrieved
+     *     // is associated with. (required)
+     *     clientAccountId: 'placeholder-value',
+     *     // Numerical identifier of the user to retrieve. (required)
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientAccountId": "my_clientAccountId",
+     *       //   "email": "my_email",
+     *       //   "status": "my_status",
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientAccountId": "my_clientAccountId",
+     *   //   "email": "my_email",
+     *   //   "status": "my_status",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.clients.users.update
      * @memberOf! ()
      *
@@ -2995,15 +3715,24 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
      * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
      * @param {string} params.userId Numerical identifier of the user to retrieve. (required)
-     * @param {().ClientUser} params.resource Request body data
+     * @param {().ClientUser} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Clients$Users$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Clients$Users$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ClientUser>;
+    update(
+      params: Params$Resource$Accounts$Clients$Users$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Clients$Users$Update,
       options: MethodOptions | BodyResponseCallback<Schema$ClientUser>,
@@ -3017,12 +3746,17 @@ export namespace adexchangebuyer2_v2beta1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Clients$Users$Update
-        | BodyResponseCallback<Schema$ClientUser>,
+        | BodyResponseCallback<Schema$ClientUser>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ClientUser>,
-      callback?: BodyResponseCallback<Schema$ClientUser>
-    ): void | GaxiosPromise<Schema$ClientUser> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ClientUser>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ClientUser>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ClientUser> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Clients$Users$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3057,7 +3791,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ClientUser>(parameters, callback);
+        createAPIRequest<Schema$ClientUser>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ClientUser>(parameters);
       }
@@ -3066,11 +3803,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Accounts$Clients$Users$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
@@ -3086,11 +3818,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Clients$Users$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Numerical account ID of the sponsor buyer of the client to list users for. (required)
      */
@@ -3110,11 +3837,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Clients$Users$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
@@ -3147,21 +3869,134 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.creatives.create
      * @desc Creates a creative.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.creatives.create({
+     *     // The account that this creative belongs to.
+     *     // Can be used to filter the response of the
+     *     // creatives.list
+     *     // method.
+     *     accountId: 'placeholder-value',
+     *     // Indicates if multiple creatives can share an ID or not. Default is
+     *     // NO_DUPLICATES (one ID per creative).
+     *     duplicateIdMode: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
+     *       //   "adTechnologyProviders": {},
+     *       //   "advertiserName": "my_advertiserName",
+     *       //   "agencyId": "my_agencyId",
+     *       //   "apiUpdateTime": "my_apiUpdateTime",
+     *       //   "attributes": [],
+     *       //   "clickThroughUrls": [],
+     *       //   "corrections": [],
+     *       //   "creativeId": "my_creativeId",
+     *       //   "dealsStatus": "my_dealsStatus",
+     *       //   "declaredClickThroughUrls": [],
+     *       //   "detectedAdvertiserIds": [],
+     *       //   "detectedDomains": [],
+     *       //   "detectedLanguages": [],
+     *       //   "detectedProductCategories": [],
+     *       //   "detectedSensitiveCategories": [],
+     *       //   "html": {},
+     *       //   "impressionTrackingUrls": [],
+     *       //   "native": {},
+     *       //   "openAuctionStatus": "my_openAuctionStatus",
+     *       //   "restrictedCategories": [],
+     *       //   "servingRestrictions": [],
+     *       //   "vendorIds": [],
+     *       //   "version": 0,
+     *       //   "video": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
+     *   //   "adTechnologyProviders": {},
+     *   //   "advertiserName": "my_advertiserName",
+     *   //   "agencyId": "my_agencyId",
+     *   //   "apiUpdateTime": "my_apiUpdateTime",
+     *   //   "attributes": [],
+     *   //   "clickThroughUrls": [],
+     *   //   "corrections": [],
+     *   //   "creativeId": "my_creativeId",
+     *   //   "dealsStatus": "my_dealsStatus",
+     *   //   "declaredClickThroughUrls": [],
+     *   //   "detectedAdvertiserIds": [],
+     *   //   "detectedDomains": [],
+     *   //   "detectedLanguages": [],
+     *   //   "detectedProductCategories": [],
+     *   //   "detectedSensitiveCategories": [],
+     *   //   "html": {},
+     *   //   "impressionTrackingUrls": [],
+     *   //   "native": {},
+     *   //   "openAuctionStatus": "my_openAuctionStatus",
+     *   //   "restrictedCategories": [],
+     *   //   "servingRestrictions": [],
+     *   //   "vendorIds": [],
+     *   //   "version": 0,
+     *   //   "video": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.creatives.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
      * @param {string=} params.duplicateIdMode Indicates if multiple creatives can share an ID or not. Default is NO_DUPLICATES (one ID per creative).
-     * @param {().Creative} params.resource Request body data
+     * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Creatives$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Creatives$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Creative>;
+    create(
+      params: Params$Resource$Accounts$Creatives$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Creatives$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Creative>,
@@ -3175,10 +4010,17 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Creatives$Create
-        | BodyResponseCallback<Schema$Creative>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
-      callback?: BodyResponseCallback<Schema$Creative>
-    ): void | GaxiosPromise<Schema$Creative> {
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3213,7 +4055,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Creative>(parameters, callback);
+        createAPIRequest<Schema$Creative>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
       }
@@ -3222,6 +4067,73 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.creatives.get
      * @desc Gets a creative.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.creatives.get({
+     *     // The account the creative belongs to.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the creative to retrieve.
+     *     creativeId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
+     *   //   "adTechnologyProviders": {},
+     *   //   "advertiserName": "my_advertiserName",
+     *   //   "agencyId": "my_agencyId",
+     *   //   "apiUpdateTime": "my_apiUpdateTime",
+     *   //   "attributes": [],
+     *   //   "clickThroughUrls": [],
+     *   //   "corrections": [],
+     *   //   "creativeId": "my_creativeId",
+     *   //   "dealsStatus": "my_dealsStatus",
+     *   //   "declaredClickThroughUrls": [],
+     *   //   "detectedAdvertiserIds": [],
+     *   //   "detectedDomains": [],
+     *   //   "detectedLanguages": [],
+     *   //   "detectedProductCategories": [],
+     *   //   "detectedSensitiveCategories": [],
+     *   //   "html": {},
+     *   //   "impressionTrackingUrls": [],
+     *   //   "native": {},
+     *   //   "openAuctionStatus": "my_openAuctionStatus",
+     *   //   "restrictedCategories": [],
+     *   //   "servingRestrictions": [],
+     *   //   "vendorIds": [],
+     *   //   "version": 0,
+     *   //   "video": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.creatives.get
      * @memberOf! ()
      *
@@ -3233,9 +4145,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Creatives$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Creatives$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Creative>;
+    get(
+      params: Params$Resource$Accounts$Creatives$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Creatives$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Creative>,
@@ -3249,10 +4170,17 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Creatives$Get
-        | BodyResponseCallback<Schema$Creative>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
-      callback?: BodyResponseCallback<Schema$Creative>
-    ): void | GaxiosPromise<Schema$Creative> {
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3286,7 +4214,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Creative>(parameters, callback);
+        createAPIRequest<Schema$Creative>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
       }
@@ -3295,6 +4226,75 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.creatives.list
      * @desc Lists creatives.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.creatives.list({
+     *     // The account to list the creatives from.
+     *     // Specify "-" to list all creatives the current user has access to.
+     *     accountId: 'placeholder-value',
+     *     // Requested page size. The server may return fewer creatives than requested
+     *     // (due to timeout constraint) even if more are available via another call.
+     *     // If unspecified, server will pick an appropriate default.
+     *     // Acceptable values are 1 to 1000, inclusive.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListCreativesResponse.next_page_token
+     *     // returned from the previous call to 'ListCreatives' method.
+     *     pageToken: 'placeholder-value',
+     *     // An optional query string to filter creatives. If no filter is specified,
+     *     // all active creatives will be returned.
+     *     // <p>Supported queries are:
+     *     // <ul>
+     *     // <li>accountId=<i>account_id_string</i>
+     *     // <li>creativeId=<i>creative_id_string</i>
+     *     // <li>dealsStatus: {approved, conditionally_approved, disapproved,
+     *     //                    not_checked}
+     *     // <li>openAuctionStatus: {approved, conditionally_approved, disapproved,
+     *     //                           not_checked}
+     *     // <li>attribute: {a numeric attribute from the list of attributes}
+     *     // <li>disapprovalReason: {a reason from
+     *     // DisapprovalReason}
+     *     // </ul>
+     *     // Example: 'accountId=12345 AND (dealsStatus:disapproved AND
+     *     // disapprovalReason:unacceptable_content) OR attribute:47'
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creatives": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.creatives.list
      * @memberOf! ()
      *
@@ -3308,9 +4308,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Creatives$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Creatives$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCreativesResponse>;
+    list(
+      params: Params$Resource$Accounts$Creatives$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Creatives$List,
       options:
@@ -3326,12 +4335,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Creatives$List
-        | BodyResponseCallback<Schema$ListCreativesResponse>,
+        | BodyResponseCallback<Schema$ListCreativesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListCreativesResponse>,
-      callback?: BodyResponseCallback<Schema$ListCreativesResponse>
-    ): void | GaxiosPromise<Schema$ListCreativesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCreativesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCreativesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCreativesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3366,7 +4383,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListCreativesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListCreativesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListCreativesResponse>(parameters);
       }
@@ -3375,21 +4395,77 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.creatives.stopWatching
      * @desc Stops watching a creative. Will stop push notifications being sent to the topics when the creative changes status.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.creatives.stopWatching({
+     *     // The account of the creative to stop notifications for.
+     *     accountId: 'placeholder-value',
+     *     // The creative ID of the creative to stop notifications for.
+     *     // Specify "-" to specify stopping account level notifications.
+     *     creativeId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.creatives.stopWatching
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account of the creative to stop notifications for.
      * @param {string} params.creativeId The creative ID of the creative to stop notifications for. Specify "-" to specify stopping account level notifications.
-     * @param {().StopWatchingCreativeRequest} params.resource Request body data
+     * @param {().StopWatchingCreativeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     stopWatching(
+      params: Params$Resource$Accounts$Creatives$Stopwatching,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stopWatching(
       params?: Params$Resource$Accounts$Creatives$Stopwatching,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    stopWatching(
+      params: Params$Resource$Accounts$Creatives$Stopwatching,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     stopWatching(
       params: Params$Resource$Accounts$Creatives$Stopwatching,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3403,10 +4479,17 @@ export namespace adexchangebuyer2_v2beta1 {
     stopWatching(
       paramsOrCallback?:
         | Params$Resource$Accounts$Creatives$Stopwatching
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Stopwatching;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3441,7 +4524,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3450,21 +4536,136 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.creatives.update
      * @desc Updates a creative.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.creatives.update({
+     *     // The account that this creative belongs to.
+     *     // Can be used to filter the response of the
+     *     // creatives.list
+     *     // method.
+     *     accountId: 'placeholder-value',
+     *     // The buyer-defined creative ID of this creative.
+     *     // Can be used to filter the response of the
+     *     // creatives.list
+     *     // method.
+     *     creativeId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
+     *       //   "adTechnologyProviders": {},
+     *       //   "advertiserName": "my_advertiserName",
+     *       //   "agencyId": "my_agencyId",
+     *       //   "apiUpdateTime": "my_apiUpdateTime",
+     *       //   "attributes": [],
+     *       //   "clickThroughUrls": [],
+     *       //   "corrections": [],
+     *       //   "creativeId": "my_creativeId",
+     *       //   "dealsStatus": "my_dealsStatus",
+     *       //   "declaredClickThroughUrls": [],
+     *       //   "detectedAdvertiserIds": [],
+     *       //   "detectedDomains": [],
+     *       //   "detectedLanguages": [],
+     *       //   "detectedProductCategories": [],
+     *       //   "detectedSensitiveCategories": [],
+     *       //   "html": {},
+     *       //   "impressionTrackingUrls": [],
+     *       //   "native": {},
+     *       //   "openAuctionStatus": "my_openAuctionStatus",
+     *       //   "restrictedCategories": [],
+     *       //   "servingRestrictions": [],
+     *       //   "vendorIds": [],
+     *       //   "version": 0,
+     *       //   "video": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
+     *   //   "adTechnologyProviders": {},
+     *   //   "advertiserName": "my_advertiserName",
+     *   //   "agencyId": "my_agencyId",
+     *   //   "apiUpdateTime": "my_apiUpdateTime",
+     *   //   "attributes": [],
+     *   //   "clickThroughUrls": [],
+     *   //   "corrections": [],
+     *   //   "creativeId": "my_creativeId",
+     *   //   "dealsStatus": "my_dealsStatus",
+     *   //   "declaredClickThroughUrls": [],
+     *   //   "detectedAdvertiserIds": [],
+     *   //   "detectedDomains": [],
+     *   //   "detectedLanguages": [],
+     *   //   "detectedProductCategories": [],
+     *   //   "detectedSensitiveCategories": [],
+     *   //   "html": {},
+     *   //   "impressionTrackingUrls": [],
+     *   //   "native": {},
+     *   //   "openAuctionStatus": "my_openAuctionStatus",
+     *   //   "restrictedCategories": [],
+     *   //   "servingRestrictions": [],
+     *   //   "vendorIds": [],
+     *   //   "version": 0,
+     *   //   "video": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.creatives.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
      * @param {string} params.creativeId The buyer-defined creative ID of this creative. Can be used to filter the response of the creatives.list method.
-     * @param {().Creative} params.resource Request body data
+     * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Creatives$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Creatives$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Creative>;
+    update(
+      params: Params$Resource$Accounts$Creatives$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Creatives$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Creative>,
@@ -3478,10 +4679,17 @@ export namespace adexchangebuyer2_v2beta1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Creatives$Update
-        | BodyResponseCallback<Schema$Creative>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
-      callback?: BodyResponseCallback<Schema$Creative>
-    ): void | GaxiosPromise<Schema$Creative> {
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3515,7 +4723,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Creative>(parameters, callback);
+        createAPIRequest<Schema$Creative>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
       }
@@ -3524,21 +4735,82 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.creatives.watch
      * @desc Watches a creative. Will result in push notifications being sent to the topic when the creative changes status.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.creatives.watch({
+     *     // The account of the creative to watch.
+     *     accountId: 'placeholder-value',
+     *     // The creative ID to watch for status changes.
+     *     // Specify "-" to watch all creatives under the above account.
+     *     // If both creative-level and account-level notifications are
+     *     // sent, only a single notification will be sent to the
+     *     // creative-level notification topic.
+     *     creativeId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "topic": "my_topic"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.creatives.watch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account of the creative to watch.
      * @param {string} params.creativeId The creative ID to watch for status changes. Specify "-" to watch all creatives under the above account. If both creative-level and account-level notifications are sent, only a single notification will be sent to the creative-level notification topic.
-     * @param {().WatchCreativeRequest} params.resource Request body data
+     * @param {().WatchCreativeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     watch(
+      params: Params$Resource$Accounts$Creatives$Watch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    watch(
       params?: Params$Resource$Accounts$Creatives$Watch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    watch(
+      params: Params$Resource$Accounts$Creatives$Watch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     watch(
       params: Params$Resource$Accounts$Creatives$Watch,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3552,10 +4824,17 @@ export namespace adexchangebuyer2_v2beta1 {
     watch(
       paramsOrCallback?:
         | Params$Resource$Accounts$Creatives$Watch
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3590,7 +4869,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3599,11 +4881,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Accounts$Creatives$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
      */
@@ -3621,11 +4898,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Creatives$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account the creative belongs to.
      */
     accountId?: string;
@@ -3636,11 +4908,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Creatives$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account to list the creatives from. Specify "-" to list all creatives the current user has access to.
      */
@@ -3661,11 +4928,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Creatives$Stopwatching
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account of the creative to stop notifications for.
      */
     accountId?: string;
@@ -3682,11 +4944,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Creatives$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
      */
     accountId?: string;
@@ -3702,11 +4959,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Creatives$Watch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account of the creative to watch.
      */
@@ -3731,21 +4983,78 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.creatives.dealAssociations.add
      * @desc Associate an existing deal with a creative.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.creatives.dealAssociations.add({
+     *     // The account the creative belongs to.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the creative associated with the deal.
+     *     creativeId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "association": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.creatives.dealAssociations.add
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account the creative belongs to.
      * @param {string} params.creativeId The ID of the creative associated with the deal.
-     * @param {().AddDealAssociationRequest} params.resource Request body data
+     * @param {().AddDealAssociationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     add(
+      params: Params$Resource$Accounts$Creatives$Dealassociations$Add,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    add(
       params?: Params$Resource$Accounts$Creatives$Dealassociations$Add,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    add(
+      params: Params$Resource$Accounts$Creatives$Dealassociations$Add,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     add(
       params: Params$Resource$Accounts$Creatives$Dealassociations$Add,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3759,10 +5068,17 @@ export namespace adexchangebuyer2_v2beta1 {
     add(
       paramsOrCallback?:
         | Params$Resource$Accounts$Creatives$Dealassociations$Add
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Dealassociations$Add;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3797,7 +5113,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3806,6 +5125,73 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.creatives.dealAssociations.list
      * @desc List all creative-deal associations.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.creatives.dealAssociations.list({
+     *     // The account to list the associations from.
+     *     // Specify "-" to list all creatives the current user has access to.
+     *     accountId: 'placeholder-value',
+     *     // The creative ID to list the associations from.
+     *     // Specify "-" to list all creatives under the above account.
+     *     creativeId: 'placeholder-value',
+     *     // Requested page size. Server may return fewer associations than requested.
+     *     // If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListDealAssociationsResponse.next_page_token
+     *     // returned from the previous call to 'ListDealAssociations' method.
+     *     pageToken: 'placeholder-value',
+     *     // An optional query string to filter deal associations. If no filter is
+     *     // specified, all associations will be returned.
+     *     // Supported queries are:
+     *     // <ul>
+     *     // <li>accountId=<i>account_id_string</i>
+     *     // <li>creativeId=<i>creative_id_string</i>
+     *     // <li>dealsId=<i>deals_id_string</i>
+     *     // <li>dealsStatus:{approved, conditionally_approved, disapproved,
+     *     //                   not_checked}
+     *     // <li>openAuctionStatus:{approved, conditionally_approved, disapproved,
+     *     //                          not_checked}
+     *     // </ul>
+     *     // Example: 'dealsId=12345 AND dealsStatus:disapproved'
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.creatives.dealAssociations.list
      * @memberOf! ()
      *
@@ -3820,9 +5206,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Creatives$Dealassociations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Creatives$Dealassociations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDealAssociationsResponse>;
+    list(
+      params: Params$Resource$Accounts$Creatives$Dealassociations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Creatives$Dealassociations$List,
       options:
@@ -3840,12 +5235,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Creatives$Dealassociations$List
-        | BodyResponseCallback<Schema$ListDealAssociationsResponse>,
+        | BodyResponseCallback<Schema$ListDealAssociationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDealAssociationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListDealAssociationsResponse>
-    ): void | GaxiosPromise<Schema$ListDealAssociationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDealAssociationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDealAssociationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDealAssociationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Dealassociations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3882,7 +5285,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListDealAssociationsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListDealAssociationsResponse>(
@@ -3894,21 +5297,80 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.creatives.dealAssociations.remove
      * @desc Remove the association between a deal and a creative.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.creatives.dealAssociations.remove(
+     *     {
+     *       // The account the creative belongs to.
+     *       accountId: 'placeholder-value',
+     *       // The ID of the creative associated with the deal.
+     *       creativeId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "association": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.creatives.dealAssociations.remove
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account the creative belongs to.
      * @param {string} params.creativeId The ID of the creative associated with the deal.
-     * @param {().RemoveDealAssociationRequest} params.resource Request body data
+     * @param {().RemoveDealAssociationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     remove(
+      params: Params$Resource$Accounts$Creatives$Dealassociations$Remove,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    remove(
       params?: Params$Resource$Accounts$Creatives$Dealassociations$Remove,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    remove(
+      params: Params$Resource$Accounts$Creatives$Dealassociations$Remove,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     remove(
       params: Params$Resource$Accounts$Creatives$Dealassociations$Remove,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3922,10 +5384,17 @@ export namespace adexchangebuyer2_v2beta1 {
     remove(
       paramsOrCallback?:
         | Params$Resource$Accounts$Creatives$Dealassociations$Remove
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Creatives$Dealassociations$Remove;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3960,7 +5429,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3969,11 +5441,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Accounts$Creatives$Dealassociations$Add
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account the creative belongs to.
      */
@@ -3990,11 +5457,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Creatives$Dealassociations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account to list the associations from. Specify "-" to list all creatives the current user has access to.
      */
@@ -4019,11 +5481,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Creatives$Dealassociations$Remove
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account the creative belongs to.
      */
     accountId?: string;
@@ -4047,6 +5504,60 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.finalizedProposals.list
      * @desc List finalized proposals, regardless if a proposal is being renegotiated. A filter expression (PQL query) may be specified to filter the results. The notes will not be returned.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.finalizedProposals.list({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // An optional PQL filter query used to query for proposals.
+     *     //
+     *     // Nested repeated fields, such as proposal.deals.targetingCriterion,
+     *     // cannot be filtered.
+     *     filter: 'placeholder-value',
+     *     // Syntax the filter is written in. Current implementation defaults to PQL
+     *     // but in the future it will be LIST_FILTER.
+     *     filterSyntax: 'placeholder-value',
+     *     // Requested page size. The server may return fewer results than requested.
+     *     // If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // The page token as returned from ListProposalsResponse.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "proposals": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.finalizedProposals.list
      * @memberOf! ()
      *
@@ -4061,9 +5572,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Finalizedproposals$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Finalizedproposals$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListProposalsResponse>;
+    list(
+      params: Params$Resource$Accounts$Finalizedproposals$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Finalizedproposals$List,
       options:
@@ -4079,12 +5599,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Finalizedproposals$List
-        | BodyResponseCallback<Schema$ListProposalsResponse>,
+        | BodyResponseCallback<Schema$ListProposalsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListProposalsResponse>,
-      callback?: BodyResponseCallback<Schema$ListProposalsResponse>
-    ): void | GaxiosPromise<Schema$ListProposalsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProposalsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProposalsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListProposalsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Finalizedproposals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4118,7 +5646,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListProposalsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListProposalsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListProposalsResponse>(parameters);
       }
@@ -4127,11 +5658,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Accounts$Finalizedproposals$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -4163,6 +5689,62 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.products.get
      * @desc Gets the requested product by ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.products.get({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // The ID for the product to get the head revision for.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "availableEndTime": "my_availableEndTime",
+     *   //   "availableStartTime": "my_availableStartTime",
+     *   //   "createTime": "my_createTime",
+     *   //   "creatorContacts": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "hasCreatorSignedOff": false,
+     *   //   "productId": "my_productId",
+     *   //   "productRevision": "my_productRevision",
+     *   //   "publisherProfileId": "my_publisherProfileId",
+     *   //   "seller": {},
+     *   //   "syndicationProduct": "my_syndicationProduct",
+     *   //   "targetingCriterion": [],
+     *   //   "terms": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "webPropertyCode": "my_webPropertyCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.products.get
      * @memberOf! ()
      *
@@ -4174,9 +5756,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Products$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Products$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Product>;
+    get(
+      params: Params$Resource$Accounts$Products$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Products$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Product>,
@@ -4190,10 +5781,17 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Products$Get
-        | BodyResponseCallback<Schema$Product>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
-      callback?: BodyResponseCallback<Schema$Product>
-    ): void | GaxiosPromise<Schema$Product> {
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4227,7 +5825,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Product>(parameters, callback);
+        createAPIRequest<Schema$Product>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
       }
@@ -4236,6 +5837,59 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.products.list
      * @desc List all products visible to the buyer (optionally filtered by the specified PQL query).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.products.list({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // An optional PQL query used to query for products. See
+     *     // https://developers.google.com/ad-manager/docs/pqlreference
+     *     // for documentation about PQL and examples.
+     *     //
+     *     // Nested repeated fields, such as product.targetingCriterion.inclusions,
+     *     // cannot be filtered.
+     *     filter: 'placeholder-value',
+     *     // Requested page size. The server may return fewer results than requested.
+     *     // If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // The page token as returned from ListProductsResponse.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "products": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.products.list
      * @memberOf! ()
      *
@@ -4249,9 +5903,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Products$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Products$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListProductsResponse>;
+    list(
+      params: Params$Resource$Accounts$Products$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Products$List,
       options:
@@ -4267,12 +5930,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Products$List
-        | BodyResponseCallback<Schema$ListProductsResponse>,
+        | BodyResponseCallback<Schema$ListProductsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListProductsResponse>,
-      callback?: BodyResponseCallback<Schema$ListProductsResponse>
-    ): void | GaxiosPromise<Schema$ListProductsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProductsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProductsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListProductsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4307,7 +5978,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListProductsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListProductsResponse>(parameters);
       }
@@ -4316,11 +5990,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Accounts$Products$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -4332,11 +6001,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Products$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -4364,21 +6028,97 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.proposals.accept
      * @desc Mark the proposal as accepted at the given revision number. If the number does not match the server's revision number an `ABORTED` error message will be returned. This call updates the proposal_state from `PROPOSED` to `BUYER_ACCEPTED`, or from `SELLER_ACCEPTED` to `FINALIZED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.proposals.accept({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the proposal to accept.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "proposalRevision": "my_proposalRevision"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "deals": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "seller": {},
+     *   //   "sellerContacts": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.proposals.accept
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The ID of the proposal to accept.
-     * @param {().AcceptProposalRequest} params.resource Request body data
+     * @param {().AcceptProposalRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     accept(
+      params: Params$Resource$Accounts$Proposals$Accept,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accept(
       params?: Params$Resource$Accounts$Proposals$Accept,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Proposal>;
+    accept(
+      params: Params$Resource$Accounts$Proposals$Accept,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     accept(
       params: Params$Resource$Accounts$Proposals$Accept,
       options: MethodOptions | BodyResponseCallback<Schema$Proposal>,
@@ -4392,10 +6132,17 @@ export namespace adexchangebuyer2_v2beta1 {
     accept(
       paramsOrCallback?:
         | Params$Resource$Accounts$Proposals$Accept
-        | BodyResponseCallback<Schema$Proposal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Proposal>,
-      callback?: BodyResponseCallback<Schema$Proposal>
-    ): void | GaxiosPromise<Schema$Proposal> {
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4430,7 +6177,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Proposal>(parameters, callback);
+        createAPIRequest<Schema$Proposal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
       }
@@ -4439,21 +6189,84 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.proposals.addNote
      * @desc Create a new note and attach it to the proposal. The note is assigned a unique ID by the server. The proposal revision number will not increase when associated with a new note.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.proposals.addNote({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the proposal to attach the note to.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "note": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creatorRole": "my_creatorRole",
+     *   //   "note": "my_note",
+     *   //   "noteId": "my_noteId",
+     *   //   "proposalRevision": "my_proposalRevision"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.proposals.addNote
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The ID of the proposal to attach the note to.
-     * @param {().AddNoteRequest} params.resource Request body data
+     * @param {().AddNoteRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     addNote(
+      params: Params$Resource$Accounts$Proposals$Addnote,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addNote(
       params?: Params$Resource$Accounts$Proposals$Addnote,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Note>;
+    addNote(
+      params: Params$Resource$Accounts$Proposals$Addnote,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addNote(
       params: Params$Resource$Accounts$Proposals$Addnote,
       options: MethodOptions | BodyResponseCallback<Schema$Note>,
@@ -4467,10 +6280,17 @@ export namespace adexchangebuyer2_v2beta1 {
     addNote(
       paramsOrCallback?:
         | Params$Resource$Accounts$Proposals$Addnote
-        | BodyResponseCallback<Schema$Note>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Note>,
-      callback?: BodyResponseCallback<Schema$Note>
-    ): void | GaxiosPromise<Schema$Note> {
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Note>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Note> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Addnote;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4505,7 +6325,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Note>(parameters, callback);
+        createAPIRequest<Schema$Note>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Note>(parameters);
       }
@@ -4514,21 +6337,95 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.proposals.cancelNegotiation
      * @desc Cancel an ongoing negotiation on a proposal. This does not cancel or end serving for the deals if the proposal has been finalized, but only cancels a negotiation unilaterally.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.proposals.cancelNegotiation({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the proposal to cancel negotiation for.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "deals": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "seller": {},
+     *   //   "sellerContacts": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.proposals.cancelNegotiation
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The ID of the proposal to cancel negotiation for.
-     * @param {().CancelNegotiationRequest} params.resource Request body data
+     * @param {().CancelNegotiationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     cancelNegotiation(
+      params: Params$Resource$Accounts$Proposals$Cancelnegotiation,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancelNegotiation(
       params?: Params$Resource$Accounts$Proposals$Cancelnegotiation,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Proposal>;
+    cancelNegotiation(
+      params: Params$Resource$Accounts$Proposals$Cancelnegotiation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancelNegotiation(
       params: Params$Resource$Accounts$Proposals$Cancelnegotiation,
       options: MethodOptions | BodyResponseCallback<Schema$Proposal>,
@@ -4542,10 +6439,17 @@ export namespace adexchangebuyer2_v2beta1 {
     cancelNegotiation(
       paramsOrCallback?:
         | Params$Resource$Accounts$Proposals$Cancelnegotiation
-        | BodyResponseCallback<Schema$Proposal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Proposal>,
-      callback?: BodyResponseCallback<Schema$Proposal>
-    ): void | GaxiosPromise<Schema$Proposal> {
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Cancelnegotiation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4580,7 +6484,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Proposal>(parameters, callback);
+        createAPIRequest<Schema$Proposal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
       }
@@ -4589,21 +6496,95 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.proposals.completeSetup
      * @desc Update the given proposal to indicate that setup has been completed. This method is called by the buyer when the line items have been created on their end for a finalized proposal and all the required creatives have been uploaded using the creatives API. This call updates the `is_setup_completed` bit on the proposal and also notifies the seller. The server will advance the revision number of the most recent proposal.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.proposals.completeSetup({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the proposal to mark as setup completed.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "deals": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "seller": {},
+     *   //   "sellerContacts": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.proposals.completeSetup
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The ID of the proposal to mark as setup completed.
-     * @param {().CompleteSetupRequest} params.resource Request body data
+     * @param {().CompleteSetupRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     completeSetup(
+      params: Params$Resource$Accounts$Proposals$Completesetup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    completeSetup(
       params?: Params$Resource$Accounts$Proposals$Completesetup,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Proposal>;
+    completeSetup(
+      params: Params$Resource$Accounts$Proposals$Completesetup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     completeSetup(
       params: Params$Resource$Accounts$Proposals$Completesetup,
       options: MethodOptions | BodyResponseCallback<Schema$Proposal>,
@@ -4617,10 +6598,17 @@ export namespace adexchangebuyer2_v2beta1 {
     completeSetup(
       paramsOrCallback?:
         | Params$Resource$Accounts$Proposals$Completesetup
-        | BodyResponseCallback<Schema$Proposal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Proposal>,
-      callback?: BodyResponseCallback<Schema$Proposal>
-    ): void | GaxiosPromise<Schema$Proposal> {
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Completesetup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4655,7 +6643,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Proposal>(parameters, callback);
+        createAPIRequest<Schema$Proposal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
       }
@@ -4664,20 +6655,111 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.proposals.create
      * @desc Create the given proposal. Each created proposal and any deals it contains are assigned a unique ID by the server.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.proposals.create({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billedBuyer": {},
+     *       //   "buyer": {},
+     *       //   "buyerContacts": [],
+     *       //   "buyerPrivateData": {},
+     *       //   "deals": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "isRenegotiating": false,
+     *       //   "isSetupComplete": false,
+     *       //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *       //   "notes": [],
+     *       //   "originatorRole": "my_originatorRole",
+     *       //   "privateAuctionId": "my_privateAuctionId",
+     *       //   "proposalId": "my_proposalId",
+     *       //   "proposalRevision": "my_proposalRevision",
+     *       //   "proposalState": "my_proposalState",
+     *       //   "seller": {},
+     *       //   "sellerContacts": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "deals": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "seller": {},
+     *   //   "sellerContacts": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.proposals.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
-     * @param {().Proposal} params.resource Request body data
+     * @param {().Proposal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Proposals$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Proposals$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Proposal>;
+    create(
+      params: Params$Resource$Accounts$Proposals$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Proposals$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Proposal>,
@@ -4691,10 +6773,17 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Proposals$Create
-        | BodyResponseCallback<Schema$Proposal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Proposal>,
-      callback?: BodyResponseCallback<Schema$Proposal>
-    ): void | GaxiosPromise<Schema$Proposal> {
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4729,7 +6818,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Proposal>(parameters, callback);
+        createAPIRequest<Schema$Proposal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
       }
@@ -4738,6 +6830,65 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.proposals.get
      * @desc Gets a proposal given its ID. The proposal is returned at its head revision.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.proposals.get({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // The unique ID of the proposal
+     *     proposalId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "deals": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "seller": {},
+     *   //   "sellerContacts": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.proposals.get
      * @memberOf! ()
      *
@@ -4749,9 +6900,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Proposals$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Proposals$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Proposal>;
+    get(
+      params: Params$Resource$Accounts$Proposals$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Proposals$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Proposal>,
@@ -4765,10 +6925,17 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Proposals$Get
-        | BodyResponseCallback<Schema$Proposal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Proposal>,
-      callback?: BodyResponseCallback<Schema$Proposal>
-    ): void | GaxiosPromise<Schema$Proposal> {
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4802,7 +6969,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Proposal>(parameters, callback);
+        createAPIRequest<Schema$Proposal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
       }
@@ -4811,6 +6981,60 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.proposals.list
      * @desc List proposals. A filter expression (PQL query) may be specified to filter the results. To retrieve all finalized proposals, regardless if a proposal is being renegotiated, see the FinalizedProposals resource. Note that Bidder/ChildSeat relationships differ from the usual behavior. A Bidder account can only see its child seats' proposals by specifying the ChildSeat's accountId in the request path.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.proposals.list({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // An optional PQL filter query used to query for proposals.
+     *     //
+     *     // Nested repeated fields, such as proposal.deals.targetingCriterion,
+     *     // cannot be filtered.
+     *     filter: 'placeholder-value',
+     *     // Syntax the filter is written in. Current implementation defaults to PQL
+     *     // but in the future it will be LIST_FILTER.
+     *     filterSyntax: 'placeholder-value',
+     *     // Requested page size. The server may return fewer results than requested.
+     *     // If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // The page token as returned from ListProposalsResponse.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "proposals": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.proposals.list
      * @memberOf! ()
      *
@@ -4825,9 +7049,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Proposals$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Proposals$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListProposalsResponse>;
+    list(
+      params: Params$Resource$Accounts$Proposals$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Proposals$List,
       options:
@@ -4843,12 +7076,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Proposals$List
-        | BodyResponseCallback<Schema$ListProposalsResponse>,
+        | BodyResponseCallback<Schema$ListProposalsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListProposalsResponse>,
-      callback?: BodyResponseCallback<Schema$ListProposalsResponse>
-    ): void | GaxiosPromise<Schema$ListProposalsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProposalsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProposalsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListProposalsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4883,7 +7124,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListProposalsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListProposalsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListProposalsResponse>(parameters);
       }
@@ -4892,21 +7136,97 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.proposals.pause
      * @desc Update the given proposal to pause serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to true for all deals in the proposal.  It is a no-op to pause an already-paused proposal. It is an error to call PauseProposal for a proposal that is not finalized or renegotiating.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.proposals.pause({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the proposal to pause.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "reason": "my_reason"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "deals": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "seller": {},
+     *   //   "sellerContacts": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.proposals.pause
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The ID of the proposal to pause.
-     * @param {().PauseProposalRequest} params.resource Request body data
+     * @param {().PauseProposalRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     pause(
+      params: Params$Resource$Accounts$Proposals$Pause,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    pause(
       params?: Params$Resource$Accounts$Proposals$Pause,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Proposal>;
+    pause(
+      params: Params$Resource$Accounts$Proposals$Pause,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     pause(
       params: Params$Resource$Accounts$Proposals$Pause,
       options: MethodOptions | BodyResponseCallback<Schema$Proposal>,
@@ -4920,10 +7240,17 @@ export namespace adexchangebuyer2_v2beta1 {
     pause(
       paramsOrCallback?:
         | Params$Resource$Accounts$Proposals$Pause
-        | BodyResponseCallback<Schema$Proposal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Proposal>,
-      callback?: BodyResponseCallback<Schema$Proposal>
-    ): void | GaxiosPromise<Schema$Proposal> {
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4958,7 +7285,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Proposal>(parameters, callback);
+        createAPIRequest<Schema$Proposal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
       }
@@ -4967,21 +7297,95 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.proposals.resume
      * @desc Update the given proposal to resume serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to false for all deals in the proposal.  Note that if the `has_seller_paused` bit is also set, serving will not resume until the seller also resumes.  It is a no-op to resume an already-running proposal. It is an error to call ResumeProposal for a proposal that is not finalized or renegotiating.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.proposals.resume({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the proposal to resume.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "deals": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "seller": {},
+     *   //   "sellerContacts": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.proposals.resume
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The ID of the proposal to resume.
-     * @param {().ResumeProposalRequest} params.resource Request body data
+     * @param {().ResumeProposalRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     resume(
+      params: Params$Resource$Accounts$Proposals$Resume,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resume(
       params?: Params$Resource$Accounts$Proposals$Resume,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Proposal>;
+    resume(
+      params: Params$Resource$Accounts$Proposals$Resume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resume(
       params: Params$Resource$Accounts$Proposals$Resume,
       options: MethodOptions | BodyResponseCallback<Schema$Proposal>,
@@ -4995,10 +7399,17 @@ export namespace adexchangebuyer2_v2beta1 {
     resume(
       paramsOrCallback?:
         | Params$Resource$Accounts$Proposals$Resume
-        | BodyResponseCallback<Schema$Proposal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Proposal>,
-      callback?: BodyResponseCallback<Schema$Proposal>
-    ): void | GaxiosPromise<Schema$Proposal> {
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5033,7 +7444,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Proposal>(parameters, callback);
+        createAPIRequest<Schema$Proposal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
       }
@@ -5042,21 +7456,114 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.proposals.update
      * @desc Update the given proposal at the client known revision number. If the server revision has advanced since the passed-in `proposal.proposal_revision`, an `ABORTED` error message will be returned. Only the buyer-modifiable fields of the proposal will be updated.  Note that the deals in the proposal will be updated to match the passed-in copy. If a passed-in deal does not have a `deal_id`, the server will assign a new unique ID and create the deal. If passed-in deal has a `deal_id`, it will be updated to match the passed-in copy. Any existing deals not present in the passed-in proposal will be deleted. It is an error to pass in a deal with a `deal_id` not present at head.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.proposals.update({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // The unique ID of the proposal.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billedBuyer": {},
+     *       //   "buyer": {},
+     *       //   "buyerContacts": [],
+     *       //   "buyerPrivateData": {},
+     *       //   "deals": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "isRenegotiating": false,
+     *       //   "isSetupComplete": false,
+     *       //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *       //   "notes": [],
+     *       //   "originatorRole": "my_originatorRole",
+     *       //   "privateAuctionId": "my_privateAuctionId",
+     *       //   "proposalId": "my_proposalId",
+     *       //   "proposalRevision": "my_proposalRevision",
+     *       //   "proposalState": "my_proposalState",
+     *       //   "seller": {},
+     *       //   "sellerContacts": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "deals": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "seller": {},
+     *   //   "sellerContacts": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.proposals.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The unique ID of the proposal.
-     * @param {().Proposal} params.resource Request body data
+     * @param {().Proposal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Proposals$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Proposals$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Proposal>;
+    update(
+      params: Params$Resource$Accounts$Proposals$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Proposals$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Proposal>,
@@ -5070,10 +7577,17 @@ export namespace adexchangebuyer2_v2beta1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Proposals$Update
-        | BodyResponseCallback<Schema$Proposal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Proposal>,
-      callback?: BodyResponseCallback<Schema$Proposal>
-    ): void | GaxiosPromise<Schema$Proposal> {
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Proposals$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5107,7 +7621,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Proposal>(parameters, callback);
+        createAPIRequest<Schema$Proposal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Proposal>(parameters);
       }
@@ -5116,11 +7633,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Accounts$Proposals$Accept
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -5138,11 +7650,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Proposals$Addnote
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -5158,11 +7665,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Proposals$Cancelnegotiation
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -5180,11 +7682,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Proposals$Completesetup
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -5201,11 +7698,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Proposals$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -5218,11 +7710,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Proposals$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -5233,11 +7720,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Proposals$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -5262,11 +7744,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Proposals$Pause
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -5283,11 +7760,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Proposals$Resume
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -5303,11 +7775,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Proposals$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -5332,6 +7799,63 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.publisherProfiles.get
      * @desc Gets the requested publisher profile by id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.publisherProfiles.get({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // The id for the publisher profile to get.
+     *     publisherProfileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audienceDescription": "my_audienceDescription",
+     *   //   "buyerPitchStatement": "my_buyerPitchStatement",
+     *   //   "directDealsContact": "my_directDealsContact",
+     *   //   "displayName": "my_displayName",
+     *   //   "domains": [],
+     *   //   "googlePlusUrl": "my_googlePlusUrl",
+     *   //   "isParent": false,
+     *   //   "logoUrl": "my_logoUrl",
+     *   //   "mediaKitUrl": "my_mediaKitUrl",
+     *   //   "overview": "my_overview",
+     *   //   "programmaticDealsContact": "my_programmaticDealsContact",
+     *   //   "publisherProfileId": "my_publisherProfileId",
+     *   //   "rateCardInfoUrl": "my_rateCardInfoUrl",
+     *   //   "samplePageUrl": "my_samplePageUrl",
+     *   //   "seller": {},
+     *   //   "topHeadlines": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.publisherProfiles.get
      * @memberOf! ()
      *
@@ -5343,9 +7867,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Publisherprofiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Publisherprofiles$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PublisherProfile>;
+    get(
+      params: Params$Resource$Accounts$Publisherprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Publisherprofiles$Get,
       options: MethodOptions | BodyResponseCallback<Schema$PublisherProfile>,
@@ -5359,12 +7892,17 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Publisherprofiles$Get
-        | BodyResponseCallback<Schema$PublisherProfile>,
+        | BodyResponseCallback<Schema$PublisherProfile>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PublisherProfile>,
-      callback?: BodyResponseCallback<Schema$PublisherProfile>
-    ): void | GaxiosPromise<Schema$PublisherProfile> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PublisherProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PublisherProfile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PublisherProfile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Publisherprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5399,7 +7937,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PublisherProfile>(parameters, callback);
+        createAPIRequest<Schema$PublisherProfile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PublisherProfile>(parameters);
       }
@@ -5408,6 +7949,51 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.accounts.publisherProfiles.list
      * @desc List all publisher profiles visible to the buyer
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.publisherProfiles.list({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // Specify the number of results to include per page.
+     *     pageSize: 'placeholder-value',
+     *     // The page token as return from ListPublisherProfilesResponse.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "publisherProfiles": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.accounts.publisherProfiles.list
      * @memberOf! ()
      *
@@ -5420,9 +8006,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Publisherprofiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Publisherprofiles$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListPublisherProfilesResponse>;
+    list(
+      params: Params$Resource$Accounts$Publisherprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Publisherprofiles$List,
       options:
@@ -5440,12 +8035,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Publisherprofiles$List
-        | BodyResponseCallback<Schema$ListPublisherProfilesResponse>,
+        | BodyResponseCallback<Schema$ListPublisherProfilesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListPublisherProfilesResponse>,
-      callback?: BodyResponseCallback<Schema$ListPublisherProfilesResponse>
-    ): void | GaxiosPromise<Schema$ListPublisherProfilesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPublisherProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPublisherProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPublisherProfilesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Publisherprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5481,7 +8084,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListPublisherProfilesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListPublisherProfilesResponse>(
@@ -5494,11 +8097,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Publisherprofiles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -5509,11 +8107,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Publisherprofiles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -5589,21 +8182,117 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.create
      * @desc Creates the specified filter set for the account with the given account ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.create({
+     *     // Whether the filter set is transient, or should be persisted indefinitely.
+     *     // By default, filter sets are not transient.
+     *     // If transient, it will be available for at least 1 hour after creation.
+     *     isTransient: 'placeholder-value',
+     *     // Name of the owner (bidder or account) of the filter set to be created.
+     *     // For example:
+     *     //
+     *     // - For a bidder-level filter set for bidder 123: `bidders/123`
+     *     //
+     *     // - For an account-level filter set for the buyer account representing bidder
+     *     //   123: `bidders/123/accounts/123`
+     *     //
+     *     // - For an account-level filter set for the child seat buyer account 456
+     *     //   whose bidder is 123: `bidders/123/accounts/456`
+     *     ownerName: 'bidders/my-bidder/accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "absoluteDateRange": {},
+     *       //   "breakdownDimensions": [],
+     *       //   "creativeId": "my_creativeId",
+     *       //   "dealId": "my_dealId",
+     *       //   "environment": "my_environment",
+     *       //   "format": "my_format",
+     *       //   "formats": [],
+     *       //   "name": "my_name",
+     *       //   "platforms": [],
+     *       //   "publisherIdentifiers": [],
+     *       //   "realtimeTimeRange": {},
+     *       //   "relativeDateRange": {},
+     *       //   "sellerNetworkIds": [],
+     *       //   "timeSeriesGranularity": "my_timeSeriesGranularity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "absoluteDateRange": {},
+     *   //   "breakdownDimensions": [],
+     *   //   "creativeId": "my_creativeId",
+     *   //   "dealId": "my_dealId",
+     *   //   "environment": "my_environment",
+     *   //   "format": "my_format",
+     *   //   "formats": [],
+     *   //   "name": "my_name",
+     *   //   "platforms": [],
+     *   //   "publisherIdentifiers": [],
+     *   //   "realtimeTimeRange": {},
+     *   //   "relativeDateRange": {},
+     *   //   "sellerNetworkIds": [],
+     *   //   "timeSeriesGranularity": "my_timeSeriesGranularity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.isTransient Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
      * @param {string} params.ownerName Name of the owner (bidder or account) of the filter set to be created. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
-     * @param {().FilterSet} params.resource Request body data
+     * @param {().FilterSet} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FilterSet>;
+    create(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Bidders$Accounts$Filtersets$Create,
       options: MethodOptions | BodyResponseCallback<Schema$FilterSet>,
@@ -5617,12 +8306,17 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$Create
-        | BodyResponseCallback<Schema$FilterSet>,
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FilterSet>,
-      callback?: BodyResponseCallback<Schema$FilterSet>
-    ): void | GaxiosPromise<Schema$FilterSet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FilterSet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5657,7 +8351,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FilterSet>(parameters, callback);
+        createAPIRequest<Schema$FilterSet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FilterSet>(parameters);
       }
@@ -5666,6 +8363,54 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.delete
      * @desc Deletes the requested filter set from the account with the given account ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.delete({
+     *     // Full name of the resource to delete.
+     *     // For example:
+     *     //
+     *     // - For a bidder-level filter set for bidder 123:
+     *     //   `bidders/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the buyer account representing bidder
+     *     //   123: `bidders/123/accounts/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the child seat buyer account 456
+     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     name: 'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.delete
      * @memberOf! ()
      *
@@ -5676,9 +8421,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Bidders$Accounts$Filtersets$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -5692,10 +8446,17 @@ export namespace adexchangebuyer2_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5727,7 +8488,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -5736,6 +8500,69 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.get
      * @desc Retrieves the requested filter set for the account with the given account ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.get({
+     *     // Full name of the resource being requested.
+     *     // For example:
+     *     //
+     *     // - For a bidder-level filter set for bidder 123:
+     *     //   `bidders/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the buyer account representing bidder
+     *     //   123: `bidders/123/accounts/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the child seat buyer account 456
+     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     name: 'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "absoluteDateRange": {},
+     *   //   "breakdownDimensions": [],
+     *   //   "creativeId": "my_creativeId",
+     *   //   "dealId": "my_dealId",
+     *   //   "environment": "my_environment",
+     *   //   "format": "my_format",
+     *   //   "formats": [],
+     *   //   "name": "my_name",
+     *   //   "platforms": [],
+     *   //   "publisherIdentifiers": [],
+     *   //   "realtimeTimeRange": {},
+     *   //   "relativeDateRange": {},
+     *   //   "sellerNetworkIds": [],
+     *   //   "timeSeriesGranularity": "my_timeSeriesGranularity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.get
      * @memberOf! ()
      *
@@ -5746,9 +8573,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FilterSet>;
+    get(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Bidders$Accounts$Filtersets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$FilterSet>,
@@ -5762,12 +8598,17 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$Get
-        | BodyResponseCallback<Schema$FilterSet>,
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FilterSet>,
-      callback?: BodyResponseCallback<Schema$FilterSet>
-    ): void | GaxiosPromise<Schema$FilterSet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FilterSet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5799,7 +8640,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FilterSet>(parameters, callback);
+        createAPIRequest<Schema$FilterSet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FilterSet>(parameters);
       }
@@ -5808,6 +8652,66 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.list
      * @desc Lists all filter sets for the account with the given account ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.list({
+     *     // Name of the owner (bidder or account) of the filter sets to be listed.
+     *     // For example:
+     *     //
+     *     // - For a bidder-level filter set for bidder 123: `bidders/123`
+     *     //
+     *     // - For an account-level filter set for the buyer account representing bidder
+     *     //   123: `bidders/123/accounts/123`
+     *     //
+     *     // - For an account-level filter set for the child seat buyer account 456
+     *     //   whose bidder is 123: `bidders/123/accounts/456`
+     *     ownerName: 'bidders/my-bidder/accounts/my-account',
+     *     // Requested page size. The server may return fewer results than requested.
+     *     // If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListFilterSetsResponse.nextPageToken
+     *     // returned from the previous call to the
+     *     // accounts.filterSets.list
+     *     // method.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterSets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.list
      * @memberOf! ()
      *
@@ -5820,9 +8724,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListFilterSetsResponse>;
+    list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$List,
       options:
@@ -5838,12 +8751,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$List
-        | BodyResponseCallback<Schema$ListFilterSetsResponse>,
+        | BodyResponseCallback<Schema$ListFilterSetsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListFilterSetsResponse>,
-      callback?: BodyResponseCallback<Schema$ListFilterSetsResponse>
-    ): void | GaxiosPromise<Schema$ListFilterSetsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFilterSetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFilterSetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFilterSetsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5878,7 +8799,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListFilterSetsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListFilterSetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListFilterSetsResponse>(parameters);
       }
@@ -5887,11 +8811,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Accounts$Filtersets$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
      */
@@ -5909,11 +8828,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Full name of the resource to delete. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
@@ -5921,22 +8835,12 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Full name of the resource being requested. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
   export interface Params$Resource$Bidders$Accounts$Filtersets$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the owner (bidder or account) of the filter sets to be listed. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
      */
@@ -5960,6 +8864,69 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.bidMetrics.list
      * @desc Lists all metrics that are measured in terms of number of bids.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.bidMetrics.list(
+     *     {
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName:
+     *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListBidMetricsResponse.nextPageToken
+     *       // returned from the previous call to the bidMetrics.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bidMetricsRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.bidMetrics.list
      * @memberOf! ()
      *
@@ -5972,9 +8939,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBidMetricsResponse>;
+    list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List,
       options:
@@ -5990,12 +8966,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List
-        | BodyResponseCallback<Schema$ListBidMetricsResponse>,
+        | BodyResponseCallback<Schema$ListBidMetricsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBidMetricsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBidMetricsResponse>
-    ): void | GaxiosPromise<Schema$ListBidMetricsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBidMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBidMetricsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBidMetricsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6030,7 +9014,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListBidMetricsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListBidMetricsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListBidMetricsResponse>(parameters);
       }
@@ -6039,11 +9026,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -6067,6 +9049,69 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.bidResponseErrors.list
      * @desc List all errors that occurred in bid responses, with the number of bid responses affected for each reason.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.bidResponseErrors.list(
+     *     {
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName:
+     *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListBidResponseErrorsResponse.nextPageToken
+     *       // returned from the previous call to the bidResponseErrors.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "calloutStatusRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.bidResponseErrors.list
      * @memberOf! ()
      *
@@ -6079,9 +9124,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBidResponseErrorsResponse>;
+    list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List,
       options:
@@ -6099,12 +9153,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List
-        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>,
+        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
-    ): void | GaxiosPromise<Schema$ListBidResponseErrorsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBidResponseErrorsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6140,7 +9202,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListBidResponseErrorsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListBidResponseErrorsResponse>(
@@ -6152,11 +9214,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -6180,6 +9237,69 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.bidResponsesWithoutBids.list
      * @desc List all reasons for which bid responses were considered to have no applicable bids, with the number of bid responses affected for each reason.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.bidResponsesWithoutBids.list(
+     *     {
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName:
+     *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListBidResponsesWithoutBidsResponse.nextPageToken
+     *       // returned from the previous call to the bidResponsesWithoutBids.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bidResponseWithoutBidsStatusRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.bidResponsesWithoutBids.list
      * @memberOf! ()
      *
@@ -6192,9 +9312,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>;
+    list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List,
       options:
@@ -6212,14 +9341,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List
-        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>,
+        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$ListBidResponsesWithoutBidsResponse
-      >
-    ): void | GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6255,7 +9390,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListBidResponsesWithoutBidsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListBidResponsesWithoutBidsResponse>(
@@ -6267,11 +9402,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -6295,6 +9425,69 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.filteredBidRequests.list
      * @desc List all reasons that caused a bid request not to be sent for an impression, with the number of bid requests not sent for each reason.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.filteredBidRequests.list(
+     *     {
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName:
+     *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListFilteredBidRequestsResponse.nextPageToken
+     *       // returned from the previous call to the filteredBidRequests.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "calloutStatusRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.filteredBidRequests.list
      * @memberOf! ()
      *
@@ -6307,9 +9500,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListFilteredBidRequestsResponse>;
+    list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List,
       options:
@@ -6327,12 +9529,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List
-        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>,
+        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>,
-      callback?: BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
-    ): void | GaxiosPromise<Schema$ListFilteredBidRequestsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFilteredBidRequestsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6368,7 +9578,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListFilteredBidRequestsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListFilteredBidRequestsResponse>(
@@ -6380,11 +9590,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -6416,6 +9621,69 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.filteredBids.list
      * @desc List all reasons for which bids were filtered, with the number of bids filtered for each reason.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.filteredBids.list(
+     *     {
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName:
+     *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListFilteredBidsResponse.nextPageToken
+     *       // returned from the previous call to the filteredBids.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creativeStatusRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.filteredBids.list
      * @memberOf! ()
      *
@@ -6428,9 +9696,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListFilteredBidsResponse>;
+    list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List,
       options:
@@ -6446,12 +9723,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List
-        | BodyResponseCallback<Schema$ListFilteredBidsResponse>,
+        | BodyResponseCallback<Schema$ListFilteredBidsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListFilteredBidsResponse>,
-      callback?: BodyResponseCallback<Schema$ListFilteredBidsResponse>
-    ): void | GaxiosPromise<Schema$ListFilteredBidsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFilteredBidsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFilteredBidsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFilteredBidsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6486,7 +9771,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListFilteredBidsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListFilteredBidsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListFilteredBidsResponse>(parameters);
       }
@@ -6495,11 +9783,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -6523,6 +9806,74 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.filteredBids.creatives.list
      * @desc List all creatives associated with a specific reason for which bids were filtered, with the number of bids filtered for each creative.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.filteredBids.creatives.list(
+     *     {
+     *       // The ID of the creative status for which to retrieve a breakdown by
+     *       // creative.
+     *       // See
+     *       // [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
+     *       creativeStatusId: 'placeholder-value',
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName:
+     *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListCreativeStatusBreakdownByCreativeResponse.nextPageToken
+     *       // returned from the previous call to the filteredBids.creatives.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filteredBidCreativeRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.filteredBids.creatives.list
      * @memberOf! ()
      *
@@ -6536,9 +9887,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>;
+    list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List,
       options:
@@ -6566,18 +9926,24 @@ export namespace adexchangebuyer2_v2beta1 {
         | Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List
         | BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByCreativeResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByCreativeResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByCreativeResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$ListCreativeStatusBreakdownByCreativeResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$ListCreativeStatusBreakdownByCreativeResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6614,7 +9980,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativeStatusBreakdownByCreativeResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -6626,11 +9992,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      */
@@ -6658,6 +10019,75 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.filteredBids.details.list
      * @desc List all details associated with a specific reason for which bids were filtered, with the number of bids filtered for each detail.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.filteredBids.details.list(
+     *     {
+     *       // The ID of the creative status for which to retrieve a breakdown by detail.
+     *       // See
+     *       // [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
+     *       // Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
+     *       creativeStatusId: 'placeholder-value',
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName:
+     *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListCreativeStatusBreakdownByDetailResponse.nextPageToken
+     *       // returned from the previous call to the filteredBids.details.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "detailType": "my_detailType",
+     *   //   "filteredBidDetailRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.filteredBids.details.list
      * @memberOf! ()
      *
@@ -6671,9 +10101,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>;
+    list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List,
       options:
@@ -6701,18 +10140,24 @@ export namespace adexchangebuyer2_v2beta1 {
         | Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List
         | BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByDetailResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByDetailResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByDetailResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$ListCreativeStatusBreakdownByDetailResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$ListCreativeStatusBreakdownByDetailResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6749,7 +10194,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativeStatusBreakdownByDetailResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -6761,11 +10206,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
      */
@@ -6793,6 +10233,69 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.impressionMetrics.list
      * @desc Lists all metrics that are measured in terms of number of impressions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.impressionMetrics.list(
+     *     {
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName:
+     *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListImpressionMetricsResponse.nextPageToken
+     *       // returned from the previous call to the impressionMetrics.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "impressionMetricsRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.impressionMetrics.list
      * @memberOf! ()
      *
@@ -6805,9 +10308,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListImpressionMetricsResponse>;
+    list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List,
       options:
@@ -6825,12 +10337,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List
-        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>,
+        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>,
-      callback?: BodyResponseCallback<Schema$ListImpressionMetricsResponse>
-    ): void | GaxiosPromise<Schema$ListImpressionMetricsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListImpressionMetricsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6866,7 +10386,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListImpressionMetricsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListImpressionMetricsResponse>(
@@ -6878,11 +10398,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -6906,6 +10421,69 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.losingBids.list
      * @desc List all reasons for which bids lost in the auction, with the number of bids that lost for each reason.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.losingBids.list(
+     *     {
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName:
+     *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListLosingBidsResponse.nextPageToken
+     *       // returned from the previous call to the losingBids.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creativeStatusRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.losingBids.list
      * @memberOf! ()
      *
@@ -6918,9 +10496,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLosingBidsResponse>;
+    list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List,
       options:
@@ -6936,12 +10523,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List
-        | BodyResponseCallback<Schema$ListLosingBidsResponse>,
+        | BodyResponseCallback<Schema$ListLosingBidsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLosingBidsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLosingBidsResponse>
-    ): void | GaxiosPromise<Schema$ListLosingBidsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLosingBidsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLosingBidsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLosingBidsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6976,7 +10571,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLosingBidsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLosingBidsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLosingBidsResponse>(parameters);
       }
@@ -6985,11 +10583,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -7013,6 +10606,69 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.accounts.filterSets.nonBillableWinningBids.list
      * @desc List all reasons for which winning bids were not billable, with the number of bids not billed for each reason.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.accounts.filterSets.nonBillableWinningBids.list(
+     *     {
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName:
+     *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListNonBillableWinningBidsResponse.nextPageToken
+     *       // returned from the previous call to the nonBillableWinningBids.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nonBillableWinningBidStatusRows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.accounts.filterSets.nonBillableWinningBids.list
      * @memberOf! ()
      *
@@ -7025,9 +10681,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListNonBillableWinningBidsResponse>;
+    list(
+      params: Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List,
       options:
@@ -7045,12 +10710,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List
-        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>,
+        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>,
-      callback?: BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
-    ): void | GaxiosPromise<Schema$ListNonBillableWinningBidsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNonBillableWinningBidsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7086,7 +10759,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListNonBillableWinningBidsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListNonBillableWinningBidsResponse>(
@@ -7098,11 +10771,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -7158,21 +10826,117 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.create
      * @desc Creates the specified filter set for the account with the given account ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.create({
+     *     // Whether the filter set is transient, or should be persisted indefinitely.
+     *     // By default, filter sets are not transient.
+     *     // If transient, it will be available for at least 1 hour after creation.
+     *     isTransient: 'placeholder-value',
+     *     // Name of the owner (bidder or account) of the filter set to be created.
+     *     // For example:
+     *     //
+     *     // - For a bidder-level filter set for bidder 123: `bidders/123`
+     *     //
+     *     // - For an account-level filter set for the buyer account representing bidder
+     *     //   123: `bidders/123/accounts/123`
+     *     //
+     *     // - For an account-level filter set for the child seat buyer account 456
+     *     //   whose bidder is 123: `bidders/123/accounts/456`
+     *     ownerName: 'bidders/my-bidder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "absoluteDateRange": {},
+     *       //   "breakdownDimensions": [],
+     *       //   "creativeId": "my_creativeId",
+     *       //   "dealId": "my_dealId",
+     *       //   "environment": "my_environment",
+     *       //   "format": "my_format",
+     *       //   "formats": [],
+     *       //   "name": "my_name",
+     *       //   "platforms": [],
+     *       //   "publisherIdentifiers": [],
+     *       //   "realtimeTimeRange": {},
+     *       //   "relativeDateRange": {},
+     *       //   "sellerNetworkIds": [],
+     *       //   "timeSeriesGranularity": "my_timeSeriesGranularity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "absoluteDateRange": {},
+     *   //   "breakdownDimensions": [],
+     *   //   "creativeId": "my_creativeId",
+     *   //   "dealId": "my_dealId",
+     *   //   "environment": "my_environment",
+     *   //   "format": "my_format",
+     *   //   "formats": [],
+     *   //   "name": "my_name",
+     *   //   "platforms": [],
+     *   //   "publisherIdentifiers": [],
+     *   //   "realtimeTimeRange": {},
+     *   //   "relativeDateRange": {},
+     *   //   "sellerNetworkIds": [],
+     *   //   "timeSeriesGranularity": "my_timeSeriesGranularity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.isTransient Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
      * @param {string} params.ownerName Name of the owner (bidder or account) of the filter set to be created. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
-     * @param {().FilterSet} params.resource Request body data
+     * @param {().FilterSet} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Bidders$Filtersets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Bidders$Filtersets$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FilterSet>;
+    create(
+      params: Params$Resource$Bidders$Filtersets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Bidders$Filtersets$Create,
       options: MethodOptions | BodyResponseCallback<Schema$FilterSet>,
@@ -7186,12 +10950,17 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$Create
-        | BodyResponseCallback<Schema$FilterSet>,
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FilterSet>,
-      callback?: BodyResponseCallback<Schema$FilterSet>
-    ): void | GaxiosPromise<Schema$FilterSet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FilterSet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7226,7 +10995,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FilterSet>(parameters, callback);
+        createAPIRequest<Schema$FilterSet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FilterSet>(parameters);
       }
@@ -7235,6 +11007,54 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.delete
      * @desc Deletes the requested filter set from the account with the given account ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.delete({
+     *     // Full name of the resource to delete.
+     *     // For example:
+     *     //
+     *     // - For a bidder-level filter set for bidder 123:
+     *     //   `bidders/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the buyer account representing bidder
+     *     //   123: `bidders/123/accounts/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the child seat buyer account 456
+     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     name: 'bidders/my-bidder/filterSets/my-filterSet',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.delete
      * @memberOf! ()
      *
@@ -7245,9 +11065,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Bidders$Filtersets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Bidders$Filtersets$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Bidders$Filtersets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Bidders$Filtersets$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -7261,10 +11090,17 @@ export namespace adexchangebuyer2_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7296,7 +11132,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -7305,6 +11144,69 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.get
      * @desc Retrieves the requested filter set for the account with the given account ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.get({
+     *     // Full name of the resource being requested.
+     *     // For example:
+     *     //
+     *     // - For a bidder-level filter set for bidder 123:
+     *     //   `bidders/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the buyer account representing bidder
+     *     //   123: `bidders/123/accounts/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the child seat buyer account 456
+     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     name: 'bidders/my-bidder/filterSets/my-filterSet',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "absoluteDateRange": {},
+     *   //   "breakdownDimensions": [],
+     *   //   "creativeId": "my_creativeId",
+     *   //   "dealId": "my_dealId",
+     *   //   "environment": "my_environment",
+     *   //   "format": "my_format",
+     *   //   "formats": [],
+     *   //   "name": "my_name",
+     *   //   "platforms": [],
+     *   //   "publisherIdentifiers": [],
+     *   //   "realtimeTimeRange": {},
+     *   //   "relativeDateRange": {},
+     *   //   "sellerNetworkIds": [],
+     *   //   "timeSeriesGranularity": "my_timeSeriesGranularity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.get
      * @memberOf! ()
      *
@@ -7315,9 +11217,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Bidders$Filtersets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Bidders$Filtersets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FilterSet>;
+    get(
+      params: Params$Resource$Bidders$Filtersets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Bidders$Filtersets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$FilterSet>,
@@ -7331,12 +11242,17 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$Get
-        | BodyResponseCallback<Schema$FilterSet>,
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FilterSet>,
-      callback?: BodyResponseCallback<Schema$FilterSet>
-    ): void | GaxiosPromise<Schema$FilterSet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FilterSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FilterSet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7368,7 +11284,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FilterSet>(parameters, callback);
+        createAPIRequest<Schema$FilterSet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FilterSet>(parameters);
       }
@@ -7377,6 +11296,66 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.list
      * @desc Lists all filter sets for the account with the given account ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.list({
+     *     // Name of the owner (bidder or account) of the filter sets to be listed.
+     *     // For example:
+     *     //
+     *     // - For a bidder-level filter set for bidder 123: `bidders/123`
+     *     //
+     *     // - For an account-level filter set for the buyer account representing bidder
+     *     //   123: `bidders/123/accounts/123`
+     *     //
+     *     // - For an account-level filter set for the child seat buyer account 456
+     *     //   whose bidder is 123: `bidders/123/accounts/456`
+     *     ownerName: 'bidders/my-bidder',
+     *     // Requested page size. The server may return fewer results than requested.
+     *     // If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListFilterSetsResponse.nextPageToken
+     *     // returned from the previous call to the
+     *     // accounts.filterSets.list
+     *     // method.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterSets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.list
      * @memberOf! ()
      *
@@ -7389,9 +11368,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Filtersets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Filtersets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListFilterSetsResponse>;
+    list(
+      params: Params$Resource$Bidders$Filtersets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Filtersets$List,
       options:
@@ -7407,12 +11395,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$List
-        | BodyResponseCallback<Schema$ListFilterSetsResponse>,
+        | BodyResponseCallback<Schema$ListFilterSetsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListFilterSetsResponse>,
-      callback?: BodyResponseCallback<Schema$ListFilterSetsResponse>
-    ): void | GaxiosPromise<Schema$ListFilterSetsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFilterSetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFilterSetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFilterSetsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7447,7 +11443,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListFilterSetsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListFilterSetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListFilterSetsResponse>(parameters);
       }
@@ -7456,11 +11455,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Filtersets$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
      */
@@ -7478,11 +11472,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Full name of the resource to delete. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
@@ -7490,22 +11479,12 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Full name of the resource being requested. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
   export interface Params$Resource$Bidders$Filtersets$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the owner (bidder or account) of the filter sets to be listed. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
      */
@@ -7529,6 +11508,66 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.bidMetrics.list
      * @desc Lists all metrics that are measured in terms of number of bids.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.bidMetrics.list({
+     *     // Name of the filter set that should be applied to the requested metrics.
+     *     // For example:
+     *     //
+     *     // - For a bidder-level filter set for bidder 123:
+     *     //   `bidders/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the buyer account representing bidder
+     *     //   123: `bidders/123/accounts/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the child seat buyer account 456
+     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
+     *     // Requested page size. The server may return fewer results than requested.
+     *     // If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListBidMetricsResponse.nextPageToken
+     *     // returned from the previous call to the bidMetrics.list
+     *     // method.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bidMetricsRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.bidMetrics.list
      * @memberOf! ()
      *
@@ -7541,9 +11580,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Filtersets$Bidmetrics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Filtersets$Bidmetrics$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBidMetricsResponse>;
+    list(
+      params: Params$Resource$Bidders$Filtersets$Bidmetrics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Filtersets$Bidmetrics$List,
       options:
@@ -7559,12 +11607,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$Bidmetrics$List
-        | BodyResponseCallback<Schema$ListBidMetricsResponse>,
+        | BodyResponseCallback<Schema$ListBidMetricsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBidMetricsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBidMetricsResponse>
-    ): void | GaxiosPromise<Schema$ListBidMetricsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBidMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBidMetricsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBidMetricsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Bidmetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7599,7 +11655,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListBidMetricsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListBidMetricsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListBidMetricsResponse>(parameters);
       }
@@ -7608,11 +11667,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Filtersets$Bidmetrics$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -7636,6 +11690,66 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.bidResponseErrors.list
      * @desc List all errors that occurred in bid responses, with the number of bid responses affected for each reason.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.bidResponseErrors.list({
+     *     // Name of the filter set that should be applied to the requested metrics.
+     *     // For example:
+     *     //
+     *     // - For a bidder-level filter set for bidder 123:
+     *     //   `bidders/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the buyer account representing bidder
+     *     //   123: `bidders/123/accounts/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the child seat buyer account 456
+     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
+     *     // Requested page size. The server may return fewer results than requested.
+     *     // If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListBidResponseErrorsResponse.nextPageToken
+     *     // returned from the previous call to the bidResponseErrors.list
+     *     // method.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "calloutStatusRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.bidResponseErrors.list
      * @memberOf! ()
      *
@@ -7648,9 +11762,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Filtersets$Bidresponseerrors$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Filtersets$Bidresponseerrors$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBidResponseErrorsResponse>;
+    list(
+      params: Params$Resource$Bidders$Filtersets$Bidresponseerrors$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Filtersets$Bidresponseerrors$List,
       options:
@@ -7668,12 +11791,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$Bidresponseerrors$List
-        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>,
+        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
-    ): void | GaxiosPromise<Schema$ListBidResponseErrorsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBidResponseErrorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBidResponseErrorsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Bidresponseerrors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7709,7 +11840,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListBidResponseErrorsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListBidResponseErrorsResponse>(
@@ -7721,11 +11852,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Filtersets$Bidresponseerrors$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -7749,6 +11875,68 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.bidResponsesWithoutBids.list
      * @desc List all reasons for which bid responses were considered to have no applicable bids, with the number of bid responses affected for each reason.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.bidResponsesWithoutBids.list(
+     *     {
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListBidResponsesWithoutBidsResponse.nextPageToken
+     *       // returned from the previous call to the bidResponsesWithoutBids.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bidResponseWithoutBidsStatusRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.bidResponsesWithoutBids.list
      * @memberOf! ()
      *
@@ -7761,9 +11949,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>;
+    list(
+      params: Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List,
       options:
@@ -7781,14 +11978,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List
-        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>,
+        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$ListBidResponsesWithoutBidsResponse
-      >
-    ): void | GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7824,7 +12027,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListBidResponsesWithoutBidsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListBidResponsesWithoutBidsResponse>(
@@ -7836,11 +12039,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -7864,6 +12062,68 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.filteredBidRequests.list
      * @desc List all reasons that caused a bid request not to be sent for an impression, with the number of bid requests not sent for each reason.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.filteredBidRequests.list(
+     *     {
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListFilteredBidRequestsResponse.nextPageToken
+     *       // returned from the previous call to the filteredBidRequests.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "calloutStatusRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.filteredBidRequests.list
      * @memberOf! ()
      *
@@ -7876,9 +12136,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Filtersets$Filteredbidrequests$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Filtersets$Filteredbidrequests$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListFilteredBidRequestsResponse>;
+    list(
+      params: Params$Resource$Bidders$Filtersets$Filteredbidrequests$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbidrequests$List,
       options:
@@ -7896,12 +12165,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$Filteredbidrequests$List
-        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>,
+        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>,
-      callback?: BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
-    ): void | GaxiosPromise<Schema$ListFilteredBidRequestsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFilteredBidRequestsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Filteredbidrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7937,7 +12214,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListFilteredBidRequestsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListFilteredBidRequestsResponse>(
@@ -7949,11 +12226,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Filtersets$Filteredbidrequests$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -7985,6 +12257,66 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.filteredBids.list
      * @desc List all reasons for which bids were filtered, with the number of bids filtered for each reason.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.filteredBids.list({
+     *     // Name of the filter set that should be applied to the requested metrics.
+     *     // For example:
+     *     //
+     *     // - For a bidder-level filter set for bidder 123:
+     *     //   `bidders/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the buyer account representing bidder
+     *     //   123: `bidders/123/accounts/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the child seat buyer account 456
+     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
+     *     // Requested page size. The server may return fewer results than requested.
+     *     // If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListFilteredBidsResponse.nextPageToken
+     *     // returned from the previous call to the filteredBids.list
+     *     // method.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creativeStatusRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.filteredBids.list
      * @memberOf! ()
      *
@@ -7997,9 +12329,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Filtersets$Filteredbids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Filtersets$Filteredbids$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListFilteredBidsResponse>;
+    list(
+      params: Params$Resource$Bidders$Filtersets$Filteredbids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbids$List,
       options:
@@ -8015,12 +12356,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$Filteredbids$List
-        | BodyResponseCallback<Schema$ListFilteredBidsResponse>,
+        | BodyResponseCallback<Schema$ListFilteredBidsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListFilteredBidsResponse>,
-      callback?: BodyResponseCallback<Schema$ListFilteredBidsResponse>
-    ): void | GaxiosPromise<Schema$ListFilteredBidsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFilteredBidsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFilteredBidsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFilteredBidsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Filteredbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8055,7 +12404,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListFilteredBidsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListFilteredBidsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListFilteredBidsResponse>(parameters);
       }
@@ -8064,11 +12416,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Filtersets$Filteredbids$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -8092,6 +12439,73 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.filteredBids.creatives.list
      * @desc List all creatives associated with a specific reason for which bids were filtered, with the number of bids filtered for each creative.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.filteredBids.creatives.list(
+     *     {
+     *       // The ID of the creative status for which to retrieve a breakdown by
+     *       // creative.
+     *       // See
+     *       // [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
+     *       creativeStatusId: 'placeholder-value',
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListCreativeStatusBreakdownByCreativeResponse.nextPageToken
+     *       // returned from the previous call to the filteredBids.creatives.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filteredBidCreativeRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.filteredBids.creatives.list
      * @memberOf! ()
      *
@@ -8105,9 +12519,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>;
+    list(
+      params: Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List,
       options:
@@ -8135,18 +12558,24 @@ export namespace adexchangebuyer2_v2beta1 {
         | Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List
         | BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByCreativeResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByCreativeResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByCreativeResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$ListCreativeStatusBreakdownByCreativeResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$ListCreativeStatusBreakdownByCreativeResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8183,7 +12612,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativeStatusBreakdownByCreativeResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -8195,11 +12624,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      */
@@ -8227,6 +12651,74 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.filteredBids.details.list
      * @desc List all details associated with a specific reason for which bids were filtered, with the number of bids filtered for each detail.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.filteredBids.details.list(
+     *     {
+     *       // The ID of the creative status for which to retrieve a breakdown by detail.
+     *       // See
+     *       // [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
+     *       // Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
+     *       creativeStatusId: 'placeholder-value',
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListCreativeStatusBreakdownByDetailResponse.nextPageToken
+     *       // returned from the previous call to the filteredBids.details.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "detailType": "my_detailType",
+     *   //   "filteredBidDetailRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.filteredBids.details.list
      * @memberOf! ()
      *
@@ -8240,9 +12732,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Filtersets$Filteredbids$Details$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Filtersets$Filteredbids$Details$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>;
+    list(
+      params: Params$Resource$Bidders$Filtersets$Filteredbids$Details$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbids$Details$List,
       options:
@@ -8270,18 +12771,24 @@ export namespace adexchangebuyer2_v2beta1 {
         | Params$Resource$Bidders$Filtersets$Filteredbids$Details$List
         | BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByDetailResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByDetailResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByDetailResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$ListCreativeStatusBreakdownByDetailResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$ListCreativeStatusBreakdownByDetailResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Filteredbids$Details$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8318,7 +12825,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativeStatusBreakdownByDetailResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -8330,11 +12837,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Filtersets$Filteredbids$Details$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
      */
@@ -8362,6 +12864,66 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.impressionMetrics.list
      * @desc Lists all metrics that are measured in terms of number of impressions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.impressionMetrics.list({
+     *     // Name of the filter set that should be applied to the requested metrics.
+     *     // For example:
+     *     //
+     *     // - For a bidder-level filter set for bidder 123:
+     *     //   `bidders/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the buyer account representing bidder
+     *     //   123: `bidders/123/accounts/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the child seat buyer account 456
+     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
+     *     // Requested page size. The server may return fewer results than requested.
+     *     // If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListImpressionMetricsResponse.nextPageToken
+     *     // returned from the previous call to the impressionMetrics.list
+     *     // method.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "impressionMetricsRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.impressionMetrics.list
      * @memberOf! ()
      *
@@ -8374,9 +12936,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Filtersets$Impressionmetrics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Filtersets$Impressionmetrics$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListImpressionMetricsResponse>;
+    list(
+      params: Params$Resource$Bidders$Filtersets$Impressionmetrics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Filtersets$Impressionmetrics$List,
       options:
@@ -8394,12 +12965,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$Impressionmetrics$List
-        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>,
+        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>,
-      callback?: BodyResponseCallback<Schema$ListImpressionMetricsResponse>
-    ): void | GaxiosPromise<Schema$ListImpressionMetricsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListImpressionMetricsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListImpressionMetricsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Impressionmetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8435,7 +13014,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListImpressionMetricsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListImpressionMetricsResponse>(
@@ -8447,11 +13026,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Filtersets$Impressionmetrics$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -8475,6 +13049,66 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.losingBids.list
      * @desc List all reasons for which bids lost in the auction, with the number of bids that lost for each reason.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.losingBids.list({
+     *     // Name of the filter set that should be applied to the requested metrics.
+     *     // For example:
+     *     //
+     *     // - For a bidder-level filter set for bidder 123:
+     *     //   `bidders/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the buyer account representing bidder
+     *     //   123: `bidders/123/accounts/123/filterSets/abc`
+     *     //
+     *     // - For an account-level filter set for the child seat buyer account 456
+     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
+     *     // Requested page size. The server may return fewer results than requested.
+     *     // If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListLosingBidsResponse.nextPageToken
+     *     // returned from the previous call to the losingBids.list
+     *     // method.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creativeStatusRows": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.losingBids.list
      * @memberOf! ()
      *
@@ -8487,9 +13121,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Filtersets$Losingbids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Filtersets$Losingbids$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLosingBidsResponse>;
+    list(
+      params: Params$Resource$Bidders$Filtersets$Losingbids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Filtersets$Losingbids$List,
       options:
@@ -8505,12 +13148,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$Losingbids$List
-        | BodyResponseCallback<Schema$ListLosingBidsResponse>,
+        | BodyResponseCallback<Schema$ListLosingBidsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLosingBidsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLosingBidsResponse>
-    ): void | GaxiosPromise<Schema$ListLosingBidsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLosingBidsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLosingBidsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLosingBidsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Losingbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8545,7 +13196,10 @@ export namespace adexchangebuyer2_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLosingBidsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLosingBidsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLosingBidsResponse>(parameters);
       }
@@ -8554,11 +13208,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Filtersets$Losingbids$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
@@ -8582,6 +13231,68 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * adexchangebuyer2.bidders.filterSets.nonBillableWinningBids.list
      * @desc List all reasons for which winning bids were not billable, with the number of bids not billed for each reason.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.bidders.filterSets.nonBillableWinningBids.list(
+     *     {
+     *       // Name of the filter set that should be applied to the requested metrics.
+     *       // For example:
+     *       //
+     *       // - For a bidder-level filter set for bidder 123:
+     *       //   `bidders/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the buyer account representing bidder
+     *       //   123: `bidders/123/accounts/123/filterSets/abc`
+     *       //
+     *       // - For an account-level filter set for the child seat buyer account 456
+     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
+     *       // Requested page size. The server may return fewer results than requested.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // ListNonBillableWinningBidsResponse.nextPageToken
+     *       // returned from the previous call to the nonBillableWinningBids.list
+     *       // method.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nonBillableWinningBidStatusRows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexchangebuyer2.bidders.filterSets.nonBillableWinningBids.list
      * @memberOf! ()
      *
@@ -8594,9 +13305,18 @@ export namespace adexchangebuyer2_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListNonBillableWinningBidsResponse>;
+    list(
+      params: Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List,
       options:
@@ -8614,12 +13334,20 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List
-        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>,
+        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>,
-      callback?: BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
-    ): void | GaxiosPromise<Schema$ListNonBillableWinningBidsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNonBillableWinningBidsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8655,7 +13383,7 @@ export namespace adexchangebuyer2_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListNonBillableWinningBidsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListNonBillableWinningBidsResponse>(
@@ -8667,11 +13395,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */

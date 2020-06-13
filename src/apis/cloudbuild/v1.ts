@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace cloudbuild_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace cloudbuild_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -107,6 +117,7 @@ export namespace cloudbuild_v1 {
     context: APIRequestContext;
     operations: Resource$Operations;
     projects: Resource$Projects;
+    vbeta1: Resource$Vbeta1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -116,6 +127,7 @@ export namespace cloudbuild_v1 {
 
       this.operations = new Resource$Operations(this.context);
       this.projects = new Resource$Projects(this.context);
+      this.vbeta1 = new Resource$Vbeta1(this.context);
     }
   }
 
@@ -207,6 +219,10 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string | null;
     /**
+     * TTL in queue for this build. If provided and the build is enqueued longer than this value, the build will expire and the build status will be `EXPIRED`.  The TTL starts ticking from create_time.
+     */
+    queueTtl?: string | null;
+    /**
      * Output only. Results of the build.
      */
     results?: Schema$Results;
@@ -247,7 +263,7 @@ export namespace cloudbuild_v1 {
      */
     tags?: string[] | null;
     /**
-     * Amount of time that this build should be allowed to run, to second granularity. If this amount of time elapses, work on the build will cease and the build status will be `TIMEOUT`.  Default time is ten minutes.
+     * Amount of time that this build should be allowed to run, to second granularity. If this amount of time elapses, work on the build will cease and the build status will be `TIMEOUT`.  `timeout` starts ticking from `startTime`.  Default time is ten minutes.
      */
     timeout?: string | null;
     /**
@@ -273,11 +289,15 @@ export namespace cloudbuild_v1 {
      */
     diskSizeGb?: string | null;
     /**
+     * Option to specify whether or not to apply bash style string operations to the substitutions.  NOTE: this is always enabled for triggered builds and cannot be overridden in the build configuration file.
+     */
+    dynamicSubstitutions?: boolean | null;
+    /**
      * A list of global environment variable definitions that will exist for all build steps in this build. If a variable is defined in both globally and in a build step, the variable will use the build step value.  The elements are of the form &quot;KEY=VALUE&quot; for the environment variable &quot;KEY&quot; being given the value &quot;VALUE&quot;.
      */
     env?: string[] | null;
     /**
-     * Option to specify the logging mode, which determines where the logs are stored.
+     * Option to specify the logging mode, which determines if and where build logs are stored.
      */
     logging?: string | null;
     /**
@@ -301,7 +321,7 @@ export namespace cloudbuild_v1 {
      */
     sourceProvenanceHash?: string[] | null;
     /**
-     * Option to specify behavior when there is an error in the substitution checks.
+     * Option to specify behavior when there is an error in the substitution checks.  NOTE: this is always set to ALLOW_LOOSE for triggered builds and cannot be overridden in the build configuration file.
      */
     substitutionOption?: string | null;
     /**
@@ -309,7 +329,7 @@ export namespace cloudbuild_v1 {
      */
     volumes?: Schema$Volume[];
     /**
-     * Option to specify a `WorkerPool` for the build. User specifies the pool with the format &quot;[WORKERPOOL_PROJECT_ID]/[WORKERPOOL_NAME]&quot;. This is an experimental field.
+     * Option to specify a `WorkerPool` for the build. Format: projects/{project}/workerPools/{workerPool}  This field is experimental.
      */
     workerPool?: string | null;
   }
@@ -395,7 +415,7 @@ export namespace cloudbuild_v1 {
      */
     filename?: string | null;
     /**
-     * GitHubEventsConfig describes the configuration of a trigger that creates a build whenever a GitHub event is received.
+     * GitHubEventsConfig describes the configuration of a trigger that creates a build whenever a GitHub event is received.  Mutually exclusive with `trigger_template`.
      */
     github?: Schema$GitHubEventsConfig;
     /**
@@ -403,7 +423,7 @@ export namespace cloudbuild_v1 {
      */
     id?: string | null;
     /**
-     * ignored_files and included_files are file glob matches using http://godoc/pkg/path/filepath#Match extended with support for &quot;**&quot;.  If ignored_files and changed files are both empty, then they are not used to determine whether or not to trigger a build.  If ignored_files is not empty, then we ignore any files that match any of the ignored_file globs. If the change has no files that are outside of the ignored_files globs, then we do not trigger a build.
+     * ignored_files and included_files are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with support for &quot;**&quot;.  If ignored_files and changed files are both empty, then they are not used to determine whether or not to trigger a build.  If ignored_files is not empty, then we ignore any files that match any of the ignored_file globs. If the change has no files that are outside of the ignored_files globs, then we do not trigger a build.
      */
     ignoredFiles?: string[] | null;
     /**
@@ -411,11 +431,11 @@ export namespace cloudbuild_v1 {
      */
     includedFiles?: string[] | null;
     /**
-     * User assigned name of the trigger. Must be unique within the project.
+     * User-assigned name of the trigger. Must be unique within the project. Trigger names must meet the following requirements:  + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character.
      */
     name?: string | null;
     /**
-     * Substitutions data for Build resource.
+     * Substitutions for Build resource. The keys must match the following regular expression: `^_[A-Z0-9_]+$`.The keys cannot conflict with the keys in bindings.
      */
     substitutions?: {[key: string]: string} | null;
     /**
@@ -423,7 +443,7 @@ export namespace cloudbuild_v1 {
      */
     tags?: string[] | null;
     /**
-     * Template describing the types of source changes to trigger a build.  Branch and tag names in trigger templates are interpreted as regular expressions. Any branch or tag change that matches that regular expression will trigger a build.
+     * Template describing the types of source changes to trigger a build.  Branch and tag names in trigger templates are interpreted as regular expressions. Any branch or tag change that matches that regular expression will trigger a build.  Mutually exclusive with `github`.
      */
     triggerTemplate?: Schema$RepoSource;
   }
@@ -576,9 +596,13 @@ export namespace cloudbuild_v1 {
      */
     branch?: string | null;
     /**
-     * Whether to block builds on a &quot;/gcbrun&quot; comment from a repository owner or collaborator.
+     * Configure builds to run whether a repository owner or collaborator need to comment `/gcbrun`.
      */
     commentControl?: string | null;
+    /**
+     * If true, branches that do NOT match the git_ref will trigger a build.
+     */
+    invertRegex?: boolean | null;
   }
   /**
    * Push contains filter properties for matching GitHub git pushes.
@@ -588,6 +612,10 @@ export namespace cloudbuild_v1 {
      * Regexes matching branches to build.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
      */
     branch?: string | null;
+    /**
+     * When true, only trigger a build if the revision regex does NOT match the git_ref regex.
+     */
+    invertRegex?: boolean | null;
     /**
      * Regexes matching tags to build.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
      */
@@ -610,13 +638,21 @@ export namespace cloudbuild_v1 {
      */
     dir?: string | null;
     /**
+     * Only trigger a build if the revision regex does NOT match the revision regex.
+     */
+    invertRegex?: boolean | null;
+    /**
      * ID of the project that owns the Cloud Source Repository. If omitted, the project ID requesting the build is assumed.
      */
     projectId?: string | null;
     /**
-     * Name of the Cloud Source Repository. If omitted, the name &quot;default&quot; is assumed.
+     * Required. Name of the Cloud Source Repository.
      */
     repoName?: string | null;
+    /**
+     * Substitutions to use in a triggered build. Should only be used with RunBuildTrigger
+     */
+    substitutions?: {[key: string]: string} | null;
     /**
      * Regex matching tags to build.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
      */
@@ -768,20 +804,73 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'operations/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.operations.cancel
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -795,10 +884,17 @@ export namespace cloudbuild_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -829,7 +925,10 @@ export namespace cloudbuild_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -838,6 +937,50 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.operations.get
      * @memberOf! ()
      *
@@ -848,9 +991,18 @@ export namespace cloudbuild_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -864,12 +1016,17 @@ export namespace cloudbuild_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -899,7 +1056,10 @@ export namespace cloudbuild_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -908,6 +1068,53 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'operations',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.operations.list
      * @memberOf! ()
      *
@@ -921,9 +1128,18 @@ export namespace cloudbuild_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Operations$List,
       options:
@@ -939,12 +1155,20 @@ export namespace cloudbuild_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -974,7 +1198,10 @@ export namespace cloudbuild_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
@@ -983,11 +1210,6 @@ export namespace cloudbuild_v1 {
 
   export interface Params$Resource$Operations$Cancel
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -1000,21 +1222,11 @@ export namespace cloudbuild_v1 {
   }
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -1036,10 +1248,12 @@ export namespace cloudbuild_v1 {
   export class Resource$Projects {
     context: APIRequestContext;
     builds: Resource$Projects$Builds;
+    locations: Resource$Projects$Locations;
     triggers: Resource$Projects$Triggers;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.builds = new Resource$Projects$Builds(this.context);
+      this.locations = new Resource$Projects$Locations(this.context);
       this.triggers = new Resource$Projects$Triggers(this.context);
     }
   }
@@ -1053,21 +1267,100 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.builds.cancel
      * @desc Cancels a build in progress.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.builds.cancel({
+     *     // Required. ID of the build.
+     *     id: 'placeholder-value',
+     *     // Required. ID of the project.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifacts": {},
+     *   //   "buildTriggerId": "my_buildTriggerId",
+     *   //   "createTime": "my_createTime",
+     *   //   "finishTime": "my_finishTime",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "logUrl": "my_logUrl",
+     *   //   "logsBucket": "my_logsBucket",
+     *   //   "options": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "queueTtl": "my_queueTtl",
+     *   //   "results": {},
+     *   //   "secrets": [],
+     *   //   "source": {},
+     *   //   "sourceProvenance": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusDetail": "my_statusDetail",
+     *   //   "steps": [],
+     *   //   "substitutions": {},
+     *   //   "tags": [],
+     *   //   "timeout": "my_timeout",
+     *   //   "timing": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.builds.cancel
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id ID of the build.
-     * @param {string} params.projectId ID of the project.
-     * @param {().CancelBuildRequest} params.resource Request body data
+     * @param {string} params.id Required. ID of the build.
+     * @param {string} params.projectId Required. ID of the project.
+     * @param {().CancelBuildRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Builds$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Builds$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Build>;
+    cancel(
+      params: Params$Resource$Projects$Builds$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Builds$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Build>,
@@ -1081,10 +1374,17 @@ export namespace cloudbuild_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Builds$Cancel
-        | BodyResponseCallback<Schema$Build>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Build>,
-      callback?: BodyResponseCallback<Schema$Build>
-    ): void | GaxiosPromise<Schema$Build> {
+        | BodyResponseCallback<Schema$Build>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Build>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Build>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Build> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Builds$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1117,7 +1417,10 @@ export namespace cloudbuild_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Build>(parameters, callback);
+        createAPIRequest<Schema$Build>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Build>(parameters);
       }
@@ -1126,20 +1429,103 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.builds.create
      * @desc Starts a build with the specified configuration.  This method returns a long-running `Operation`, which includes the build ID. Pass the build ID to `GetBuild` to determine the build status (such as `SUCCESS` or `FAILURE`).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.builds.create({
+     *     // Required. ID of the project.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "artifacts": {},
+     *       //   "buildTriggerId": "my_buildTriggerId",
+     *       //   "createTime": "my_createTime",
+     *       //   "finishTime": "my_finishTime",
+     *       //   "id": "my_id",
+     *       //   "images": [],
+     *       //   "logUrl": "my_logUrl",
+     *       //   "logsBucket": "my_logsBucket",
+     *       //   "options": {},
+     *       //   "projectId": "my_projectId",
+     *       //   "queueTtl": "my_queueTtl",
+     *       //   "results": {},
+     *       //   "secrets": [],
+     *       //   "source": {},
+     *       //   "sourceProvenance": {},
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status",
+     *       //   "statusDetail": "my_statusDetail",
+     *       //   "steps": [],
+     *       //   "substitutions": {},
+     *       //   "tags": [],
+     *       //   "timeout": "my_timeout",
+     *       //   "timing": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.builds.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project.
-     * @param {().Build} params.resource Request body data
+     * @param {string} params.projectId Required. ID of the project.
+     * @param {().Build} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Builds$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Builds$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Builds$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Builds$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1153,12 +1539,17 @@ export namespace cloudbuild_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Builds$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Builds$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1192,7 +1583,10 @@ export namespace cloudbuild_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1201,20 +1595,93 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.builds.get
      * @desc Returns information about a previously requested build.  The `Build` that is returned includes its status (such as `SUCCESS`, `FAILURE`, or `WORKING`), and timing information.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.builds.get({
+     *     // Required. ID of the build.
+     *     id: 'placeholder-value',
+     *     // Required. ID of the project.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifacts": {},
+     *   //   "buildTriggerId": "my_buildTriggerId",
+     *   //   "createTime": "my_createTime",
+     *   //   "finishTime": "my_finishTime",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "logUrl": "my_logUrl",
+     *   //   "logsBucket": "my_logsBucket",
+     *   //   "options": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "queueTtl": "my_queueTtl",
+     *   //   "results": {},
+     *   //   "secrets": [],
+     *   //   "source": {},
+     *   //   "sourceProvenance": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusDetail": "my_statusDetail",
+     *   //   "steps": [],
+     *   //   "substitutions": {},
+     *   //   "tags": [],
+     *   //   "timeout": "my_timeout",
+     *   //   "timing": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.builds.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id ID of the build.
-     * @param {string} params.projectId ID of the project.
+     * @param {string} params.id Required. ID of the build.
+     * @param {string} params.projectId Required. ID of the project.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Builds$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Builds$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Build>;
+    get(
+      params: Params$Resource$Projects$Builds$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Builds$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Build>,
@@ -1228,10 +1695,17 @@ export namespace cloudbuild_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Builds$Get
-        | BodyResponseCallback<Schema$Build>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Build>,
-      callback?: BodyResponseCallback<Schema$Build>
-    ): void | GaxiosPromise<Schema$Build> {
+        | BodyResponseCallback<Schema$Build>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Build>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Build>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Build> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Builds$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1265,7 +1739,10 @@ export namespace cloudbuild_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Build>(parameters, callback);
+        createAPIRequest<Schema$Build>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Build>(parameters);
       }
@@ -1274,6 +1751,53 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.builds.list
      * @desc Lists previously requested builds.  Previously requested builds may still be in-progress, or may have finished successfully or unsuccessfully.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.builds.list({
+     *     // The raw filter text to constrain the results.
+     *     filter: 'placeholder-value',
+     *     // Number of results to return in the list.
+     *     pageSize: 'placeholder-value',
+     *     // Token to provide to skip to a particular spot in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. ID of the project.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "builds": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.builds.list
      * @memberOf! ()
      *
@@ -1281,15 +1805,24 @@ export namespace cloudbuild_v1 {
      * @param {string=} params.filter The raw filter text to constrain the results.
      * @param {integer=} params.pageSize Number of results to return in the list.
      * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
-     * @param {string} params.projectId ID of the project.
+     * @param {string} params.projectId Required. ID of the project.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Builds$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Builds$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBuildsResponse>;
+    list(
+      params: Params$Resource$Projects$Builds$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Builds$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListBuildsResponse>,
@@ -1303,12 +1836,20 @@ export namespace cloudbuild_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Builds$List
-        | BodyResponseCallback<Schema$ListBuildsResponse>,
+        | BodyResponseCallback<Schema$ListBuildsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBuildsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBuildsResponse>
-    ): void | GaxiosPromise<Schema$ListBuildsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBuildsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBuildsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBuildsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Builds$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1342,7 +1883,10 @@ export namespace cloudbuild_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListBuildsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListBuildsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListBuildsResponse>(parameters);
       }
@@ -1351,21 +1895,82 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.builds.retry
      * @desc Creates a new build based on the specified build.  This method creates a new build using the original build request, which may or may not result in an identical build.  For triggered builds:  * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision.  For non-triggered builds that specify `RepoSource`:  * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source.  For builds that specify `StorageSource`:  * If the original build pulled source from Google Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.builds.retry({
+     *     // Required. Build ID of the original build.
+     *     id: 'placeholder-value',
+     *     // Required. ID of the project.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.builds.retry
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Build ID of the original build.
-     * @param {string} params.projectId ID of the project.
-     * @param {().RetryBuildRequest} params.resource Request body data
+     * @param {string} params.id Required. Build ID of the original build.
+     * @param {string} params.projectId Required. ID of the project.
+     * @param {().RetryBuildRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     retry(
+      params: Params$Resource$Projects$Builds$Retry,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    retry(
       params?: Params$Resource$Projects$Builds$Retry,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    retry(
+      params: Params$Resource$Projects$Builds$Retry,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     retry(
       params: Params$Resource$Projects$Builds$Retry,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1379,12 +1984,17 @@ export namespace cloudbuild_v1 {
     retry(
       paramsOrCallback?:
         | Params$Resource$Projects$Builds$Retry
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Builds$Retry;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1417,7 +2027,10 @@ export namespace cloudbuild_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1427,16 +2040,11 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Builds$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the build.
+     * Required. ID of the build.
      */
     id?: string;
     /**
-     * ID of the project.
+     * Required. ID of the project.
      */
     projectId?: string;
 
@@ -1448,12 +2056,7 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Builds$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the project.
+     * Required. ID of the project.
      */
     projectId?: string;
 
@@ -1465,26 +2068,16 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Builds$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the build.
+     * Required. ID of the build.
      */
     id?: string;
     /**
-     * ID of the project.
+     * Required. ID of the project.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Builds$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The raw filter text to constrain the results.
      */
@@ -1498,23 +2091,18 @@ export namespace cloudbuild_v1 {
      */
     pageToken?: string;
     /**
-     * ID of the project.
+     * Required. ID of the project.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Builds$Retry
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Build ID of the original build.
+     * Required. Build ID of the original build.
      */
     id?: string;
     /**
-     * ID of the project.
+     * Required. ID of the project.
      */
     projectId?: string;
 
@@ -1522,6 +2110,474 @@ export namespace cloudbuild_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RetryBuildRequest;
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Locations$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * cloudbuild.projects.locations.operations.cancel
+     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudbuild.projects.locations.operations.cancel
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {().CancelOperationRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * cloudbuild.projects.locations.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudbuild.projects.locations.operations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Get
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * cloudbuild.projects.locations.operations.list
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudbuild.projects.locations.operations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
+     * @param {string} params.name The name of the operation's parent resource.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelOperationRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$List
+    extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Projects$Triggers {
@@ -1533,20 +2589,101 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.triggers.create
      * @desc Creates a new `BuildTrigger`.  This API is experimental.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.triggers.create({
+     *     // Required. ID of the project for which to configure automatic builds.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "build": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filename": "my_filename",
+     *       //   "github": {},
+     *       //   "id": "my_id",
+     *       //   "ignoredFiles": [],
+     *       //   "includedFiles": [],
+     *       //   "name": "my_name",
+     *       //   "substitutions": {},
+     *       //   "tags": [],
+     *       //   "triggerTemplate": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "build": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filename": "my_filename",
+     *   //   "github": {},
+     *   //   "id": "my_id",
+     *   //   "ignoredFiles": [],
+     *   //   "includedFiles": [],
+     *   //   "name": "my_name",
+     *   //   "substitutions": {},
+     *   //   "tags": [],
+     *   //   "triggerTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.triggers.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project for which to configure automatic builds.
-     * @param {().BuildTrigger} params.resource Request body data
+     * @param {string} params.projectId Required. ID of the project for which to configure automatic builds.
+     * @param {().BuildTrigger} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Triggers$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Triggers$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BuildTrigger>;
+    create(
+      params: Params$Resource$Projects$Triggers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Triggers$Create,
       options: MethodOptions | BodyResponseCallback<Schema$BuildTrigger>,
@@ -1560,12 +2697,17 @@ export namespace cloudbuild_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Triggers$Create
-        | BodyResponseCallback<Schema$BuildTrigger>,
+        | BodyResponseCallback<Schema$BuildTrigger>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BuildTrigger>,
-      callback?: BodyResponseCallback<Schema$BuildTrigger>
-    ): void | GaxiosPromise<Schema$BuildTrigger> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BuildTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BuildTrigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BuildTrigger> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Triggers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1599,7 +2741,10 @@ export namespace cloudbuild_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BuildTrigger>(parameters, callback);
+        createAPIRequest<Schema$BuildTrigger>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BuildTrigger>(parameters);
       }
@@ -1608,20 +2753,69 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.triggers.delete
      * @desc Deletes a `BuildTrigger` by its project ID and trigger ID.  This API is experimental.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.triggers.delete({
+     *     // Required. ID of the project that owns the trigger.
+     *     projectId: 'placeholder-value',
+     *     // Required. ID of the `BuildTrigger` to delete.
+     *     triggerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.triggers.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project that owns the trigger.
-     * @param {string} params.triggerId ID of the `BuildTrigger` to delete.
+     * @param {string} params.projectId Required. ID of the project that owns the trigger.
+     * @param {string} params.triggerId Required. ID of the `BuildTrigger` to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Triggers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Triggers$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Triggers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Triggers$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1635,10 +2829,17 @@ export namespace cloudbuild_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Triggers$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Triggers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1671,7 +2872,10 @@ export namespace cloudbuild_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1680,20 +2884,83 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.triggers.get
      * @desc Returns information about a `BuildTrigger`.  This API is experimental.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.triggers.get({
+     *     // Required. ID of the project that owns the trigger.
+     *     projectId: 'placeholder-value',
+     *     // Required. Identifier (`id` or `name`) of the `BuildTrigger` to get.
+     *     triggerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "build": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filename": "my_filename",
+     *   //   "github": {},
+     *   //   "id": "my_id",
+     *   //   "ignoredFiles": [],
+     *   //   "includedFiles": [],
+     *   //   "name": "my_name",
+     *   //   "substitutions": {},
+     *   //   "tags": [],
+     *   //   "triggerTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.triggers.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project that owns the trigger.
-     * @param {string} params.triggerId ID of the `BuildTrigger` to get.
+     * @param {string} params.projectId Required. ID of the project that owns the trigger.
+     * @param {string} params.triggerId Required. Identifier (`id` or `name`) of the `BuildTrigger` to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Triggers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Triggers$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BuildTrigger>;
+    get(
+      params: Params$Resource$Projects$Triggers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Triggers$Get,
       options: MethodOptions | BodyResponseCallback<Schema$BuildTrigger>,
@@ -1707,12 +2974,17 @@ export namespace cloudbuild_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Triggers$Get
-        | BodyResponseCallback<Schema$BuildTrigger>,
+        | BodyResponseCallback<Schema$BuildTrigger>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BuildTrigger>,
-      callback?: BodyResponseCallback<Schema$BuildTrigger>
-    ): void | GaxiosPromise<Schema$BuildTrigger> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BuildTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BuildTrigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BuildTrigger> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Triggers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1745,7 +3017,10 @@ export namespace cloudbuild_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BuildTrigger>(parameters, callback);
+        createAPIRequest<Schema$BuildTrigger>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BuildTrigger>(parameters);
       }
@@ -1754,21 +3029,75 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.triggers.list
      * @desc Lists existing `BuildTrigger`s.  This API is experimental.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.triggers.list({
+     *     // Number of results to return in the list.
+     *     pageSize: 'placeholder-value',
+     *     // Token to provide to skip to a particular spot in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. ID of the project for which to list BuildTriggers.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "triggers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.triggers.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Number of results to return in the list.
      * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
-     * @param {string} params.projectId ID of the project for which to list BuildTriggers.
+     * @param {string} params.projectId Required. ID of the project for which to list BuildTriggers.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Triggers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Triggers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBuildTriggersResponse>;
+    list(
+      params: Params$Resource$Projects$Triggers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Triggers$List,
       options:
@@ -1786,12 +3115,20 @@ export namespace cloudbuild_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Triggers$List
-        | BodyResponseCallback<Schema$ListBuildTriggersResponse>,
+        | BodyResponseCallback<Schema$ListBuildTriggersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBuildTriggersResponse>,
-      callback?: BodyResponseCallback<Schema$ListBuildTriggersResponse>
-    ): void | GaxiosPromise<Schema$ListBuildTriggersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBuildTriggersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBuildTriggersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBuildTriggersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Triggers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1827,7 +3164,7 @@ export namespace cloudbuild_v1 {
       if (callback) {
         createAPIRequest<Schema$ListBuildTriggersResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListBuildTriggersResponse>(parameters);
@@ -1837,21 +3174,104 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.triggers.patch
      * @desc Updates a `BuildTrigger` by its project ID and trigger ID.  This API is experimental.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.triggers.patch({
+     *     // Required. ID of the project that owns the trigger.
+     *     projectId: 'placeholder-value',
+     *     // Required. ID of the `BuildTrigger` to update.
+     *     triggerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "build": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disabled": false,
+     *       //   "filename": "my_filename",
+     *       //   "github": {},
+     *       //   "id": "my_id",
+     *       //   "ignoredFiles": [],
+     *       //   "includedFiles": [],
+     *       //   "name": "my_name",
+     *       //   "substitutions": {},
+     *       //   "tags": [],
+     *       //   "triggerTemplate": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "build": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disabled": false,
+     *   //   "filename": "my_filename",
+     *   //   "github": {},
+     *   //   "id": "my_id",
+     *   //   "ignoredFiles": [],
+     *   //   "includedFiles": [],
+     *   //   "name": "my_name",
+     *   //   "substitutions": {},
+     *   //   "tags": [],
+     *   //   "triggerTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.triggers.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project that owns the trigger.
-     * @param {string} params.triggerId ID of the `BuildTrigger` to update.
-     * @param {().BuildTrigger} params.resource Request body data
+     * @param {string} params.projectId Required. ID of the project that owns the trigger.
+     * @param {string} params.triggerId Required. ID of the `BuildTrigger` to update.
+     * @param {().BuildTrigger} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Triggers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Triggers$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BuildTrigger>;
+    patch(
+      params: Params$Resource$Projects$Triggers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Triggers$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$BuildTrigger>,
@@ -1865,12 +3285,17 @@ export namespace cloudbuild_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Triggers$Patch
-        | BodyResponseCallback<Schema$BuildTrigger>,
+        | BodyResponseCallback<Schema$BuildTrigger>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BuildTrigger>,
-      callback?: BodyResponseCallback<Schema$BuildTrigger>
-    ): void | GaxiosPromise<Schema$BuildTrigger> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BuildTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BuildTrigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BuildTrigger> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Triggers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1903,7 +3328,10 @@ export namespace cloudbuild_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BuildTrigger>(parameters, callback);
+        createAPIRequest<Schema$BuildTrigger>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BuildTrigger>(parameters);
       }
@@ -1912,21 +3340,91 @@ export namespace cloudbuild_v1 {
     /**
      * cloudbuild.projects.triggers.run
      * @desc Runs a `BuildTrigger` at a particular source revision.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.triggers.run({
+     *     // Required. ID of the project.
+     *     projectId: 'placeholder-value',
+     *     // Required. ID of the trigger.
+     *     triggerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "branchName": "my_branchName",
+     *       //   "commitSha": "my_commitSha",
+     *       //   "dir": "my_dir",
+     *       //   "invertRegex": false,
+     *       //   "projectId": "my_projectId",
+     *       //   "repoName": "my_repoName",
+     *       //   "substitutions": {},
+     *       //   "tagName": "my_tagName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudbuild.projects.triggers.run
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project.
-     * @param {string} params.triggerId ID of the trigger.
-     * @param {().RepoSource} params.resource Request body data
+     * @param {string} params.projectId Required. ID of the project.
+     * @param {string} params.triggerId Required. ID of the trigger.
+     * @param {().RepoSource} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     run(
+      params: Params$Resource$Projects$Triggers$Run,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    run(
       params?: Params$Resource$Projects$Triggers$Run,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    run(
+      params: Params$Resource$Projects$Triggers$Run,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     run(
       params: Params$Resource$Projects$Triggers$Run,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1940,12 +3438,17 @@ export namespace cloudbuild_v1 {
     run(
       paramsOrCallback?:
         | Params$Resource$Projects$Triggers$Run
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Triggers$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1978,7 +3481,10 @@ export namespace cloudbuild_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1988,12 +3494,7 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Triggers$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the project for which to configure automatic builds.
+     * Required. ID of the project for which to configure automatic builds.
      */
     projectId?: string;
 
@@ -2005,42 +3506,27 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Triggers$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the project that owns the trigger.
+     * Required. ID of the project that owns the trigger.
      */
     projectId?: string;
     /**
-     * ID of the `BuildTrigger` to delete.
+     * Required. ID of the `BuildTrigger` to delete.
      */
     triggerId?: string;
   }
   export interface Params$Resource$Projects$Triggers$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the project that owns the trigger.
+     * Required. ID of the project that owns the trigger.
      */
     projectId?: string;
     /**
-     * ID of the `BuildTrigger` to get.
+     * Required. Identifier (`id` or `name`) of the `BuildTrigger` to get.
      */
     triggerId?: string;
   }
   export interface Params$Resource$Projects$Triggers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Number of results to return in the list.
      */
@@ -2050,23 +3536,18 @@ export namespace cloudbuild_v1 {
      */
     pageToken?: string;
     /**
-     * ID of the project for which to list BuildTriggers.
+     * Required. ID of the project for which to list BuildTriggers.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Triggers$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the project that owns the trigger.
+     * Required. ID of the project that owns the trigger.
      */
     projectId?: string;
     /**
-     * ID of the `BuildTrigger` to update.
+     * Required. ID of the `BuildTrigger` to update.
      */
     triggerId?: string;
 
@@ -2078,16 +3559,11 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Triggers$Run
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the project.
+     * Required. ID of the project.
      */
     projectId?: string;
     /**
-     * ID of the trigger.
+     * Required. ID of the trigger.
      */
     triggerId?: string;
 
@@ -2095,5 +3571,190 @@ export namespace cloudbuild_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RepoSource;
+  }
+
+  export class Resource$Vbeta1 {
+    context: APIRequestContext;
+    projects: Resource$Vbeta1$Projects;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.projects = new Resource$Vbeta1$Projects(this.context);
+    }
+  }
+
+  export class Resource$Vbeta1$Projects {
+    context: APIRequestContext;
+    locations: Resource$Vbeta1$Projects$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Vbeta1$Projects$Locations(this.context);
+    }
+  }
+
+  export class Resource$Vbeta1$Projects$Locations {
+    context: APIRequestContext;
+    operations: Resource$Vbeta1$Projects$Locations$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Vbeta1$Projects$Locations$Operations(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Vbeta1$Projects$Locations$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * cloudbuild.vbeta1.projects.locations.operations.cancel
+     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.vbeta1.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudbuild.vbeta1.projects.locations.operations.cancel
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {().CancelOperationRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel(
+      params: Params$Resource$Vbeta1$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Vbeta1$Projects$Locations$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Vbeta1$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Vbeta1$Projects$Locations$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Vbeta1$Projects$Locations$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Vbeta1$Projects$Locations$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Vbeta1$Projects$Locations$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vbeta1$Projects$Locations$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/vbeta1/{+name}:cancel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Vbeta1$Projects$Locations$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelOperationRequest;
   }
 }

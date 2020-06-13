@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace cloudprofiler_v2 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace cloudprofiler_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -195,20 +205,87 @@ export namespace cloudprofiler_v2 {
     /**
      * cloudprofiler.projects.profiles.create
      * @desc CreateProfile creates a new profile resource in the online mode.  The server ensures that the new profiles are created at a constant rate per deployment, so the creation request may hang for some time until the next profile session is available.  The request may fail with ABORTED error if the creation is not available within ~1m, the response will indicate the duration of the backoff the client should take before attempting creating a profile again. The backoff duration is returned in google.rpc.RetryInfo extension on the response status. To a gRPC client, the extension will be return as a binary-serialized proto in the trailing metadata item named "google.rpc.retryinfo-bin".
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudprofiler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudprofiler = google.cloudprofiler('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudprofiler.projects.profiles.create({
+     *     // Parent project to create the profile in.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deployment": {},
+     *       //   "profileType": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployment": {},
+     *   //   "duration": "my_duration",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "profileBytes": "my_profileBytes",
+     *   //   "profileType": "my_profileType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudprofiler.projects.profiles.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Parent project to create the profile in.
-     * @param {().CreateProfileRequest} params.resource Request body data
+     * @param {().CreateProfileRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Profiles$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Profiles$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Profile>;
+    create(
+      params: Params$Resource$Projects$Profiles$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Profiles$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Profile>,
@@ -222,10 +299,17 @@ export namespace cloudprofiler_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Profiles$Create
-        | BodyResponseCallback<Schema$Profile>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
-      callback?: BodyResponseCallback<Schema$Profile>
-    ): void | GaxiosPromise<Schema$Profile> {
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -260,7 +344,10 @@ export namespace cloudprofiler_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Profile>(parameters, callback);
+        createAPIRequest<Schema$Profile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
       }
@@ -269,20 +356,91 @@ export namespace cloudprofiler_v2 {
     /**
      * cloudprofiler.projects.profiles.createOffline
      * @desc CreateOfflineProfile creates a new profile resource in the offline mode. The client provides the profile to create along with the profile bytes, the server records it.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudprofiler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudprofiler = google.cloudprofiler('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudprofiler.projects.profiles.createOffline({
+     *     // Parent project to create the profile in.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deployment": {},
+     *       //   "duration": "my_duration",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "profileBytes": "my_profileBytes",
+     *       //   "profileType": "my_profileType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployment": {},
+     *   //   "duration": "my_duration",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "profileBytes": "my_profileBytes",
+     *   //   "profileType": "my_profileType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudprofiler.projects.profiles.createOffline
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Parent project to create the profile in.
-     * @param {().Profile} params.resource Request body data
+     * @param {().Profile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     createOffline(
+      params: Params$Resource$Projects$Profiles$Createoffline,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createOffline(
       params?: Params$Resource$Projects$Profiles$Createoffline,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Profile>;
+    createOffline(
+      params: Params$Resource$Projects$Profiles$Createoffline,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     createOffline(
       params: Params$Resource$Projects$Profiles$Createoffline,
       options: MethodOptions | BodyResponseCallback<Schema$Profile>,
@@ -296,10 +454,17 @@ export namespace cloudprofiler_v2 {
     createOffline(
       paramsOrCallback?:
         | Params$Resource$Projects$Profiles$Createoffline
-        | BodyResponseCallback<Schema$Profile>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
-      callback?: BodyResponseCallback<Schema$Profile>
-    ): void | GaxiosPromise<Schema$Profile> {
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$Createoffline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -334,7 +499,10 @@ export namespace cloudprofiler_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Profile>(parameters, callback);
+        createAPIRequest<Schema$Profile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
       }
@@ -343,21 +511,97 @@ export namespace cloudprofiler_v2 {
     /**
      * cloudprofiler.projects.profiles.patch
      * @desc UpdateProfile updates the profile bytes and labels on the profile resource created in the online mode. Updating the bytes for profiles created in the offline mode is currently not supported: the profile content must be provided at the time of the profile creation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudprofiler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudprofiler = google.cloudprofiler('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudprofiler.projects.profiles.patch({
+     *     // Output only. Opaque, server-assigned, unique ID for this profile.
+     *     name: 'projects/my-project/profiles/my-profile',
+     *     // Field mask used to specify the fields to be overwritten. Currently only
+     *     // profile_bytes and labels fields are supported by UpdateProfile, so only
+     *     // those fields can be specified in the mask. When no mask is provided, all
+     *     // fields are overwritten.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deployment": {},
+     *       //   "duration": "my_duration",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "profileBytes": "my_profileBytes",
+     *       //   "profileType": "my_profileType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployment": {},
+     *   //   "duration": "my_duration",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "profileBytes": "my_profileBytes",
+     *   //   "profileType": "my_profileType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudprofiler.projects.profiles.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. Opaque, server-assigned, unique ID for this profile.
      * @param {string=} params.updateMask Field mask used to specify the fields to be overwritten. Currently only profile_bytes and labels fields are supported by UpdateProfile, so only those fields can be specified in the mask. When no mask is provided, all fields are overwritten.
-     * @param {().Profile} params.resource Request body data
+     * @param {().Profile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Profiles$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Profiles$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Profile>;
+    patch(
+      params: Params$Resource$Projects$Profiles$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Profiles$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Profile>,
@@ -371,10 +615,17 @@ export namespace cloudprofiler_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Profiles$Patch
-        | BodyResponseCallback<Schema$Profile>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
-      callback?: BodyResponseCallback<Schema$Profile>
-    ): void | GaxiosPromise<Schema$Profile> {
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -406,7 +657,10 @@ export namespace cloudprofiler_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Profile>(parameters, callback);
+        createAPIRequest<Schema$Profile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
       }
@@ -415,11 +669,6 @@ export namespace cloudprofiler_v2 {
 
   export interface Params$Resource$Projects$Profiles$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Parent project to create the profile in.
      */
@@ -433,11 +682,6 @@ export namespace cloudprofiler_v2 {
   export interface Params$Resource$Projects$Profiles$Createoffline
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Parent project to create the profile in.
      */
     parent?: string;
@@ -449,11 +693,6 @@ export namespace cloudprofiler_v2 {
   }
   export interface Params$Resource$Projects$Profiles$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. Opaque, server-assigned, unique ID for this profile.
      */

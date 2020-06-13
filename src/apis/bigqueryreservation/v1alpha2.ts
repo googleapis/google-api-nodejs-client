@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace bigqueryreservation_v1alpha2 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace bigqueryreservation_v1alpha2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -131,19 +141,6 @@ export namespace bigqueryreservation_v1alpha2 {
    */
   export interface Schema$Empty {}
   /**
-   * The response message for Locations.ListLocations.
-   */
-  export interface Schema$ListLocationsResponse {
-    /**
-     * A list of locations that matches the specified filter in the request.
-     */
-    locations?: Schema$Location[];
-    /**
-     * The standard List next-page token.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
    * The response for ReservationService.ListReservationGrants.
    */
   export interface Schema$ListReservationGrantsResponse {
@@ -181,40 +178,6 @@ export namespace bigqueryreservation_v1alpha2 {
      * List of slot pools visible to the user.
      */
     slotPools?: Schema$SlotPool[];
-  }
-  /**
-   * A resource that represents Google Cloud Platform location.
-   */
-  export interface Schema$Location {
-    /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
-     */
-    displayName?: string | null;
-    /**
-     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
-     */
-    locationId?: string | null;
-    /**
-     * Service-specific metadata. For example the available capacity at the given location.
-     */
-    metadata?: {[key: string]: any} | null;
-    /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
-     */
-    name?: string | null;
-  }
-  /**
-   * BigQuery-specific metadata about a location. This will be set on google.cloud.location.Location.metadata in Cloud Location API responses.
-   */
-  export interface Schema$LocationMetadata {
-    /**
-     * The legacy BigQuery location ID, e.g. “EU” for the “europe” location. This is for any API consumers that need the legacy “US” and “EU” locations.
-     */
-    legacyLocationId?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -278,6 +241,10 @@ export namespace bigqueryreservation_v1alpha2 {
      * Resource name of the reservation. E.g., projects/myproject/locations/eu/reservations/my_reservation. This reservation must be in the same location as the grant. This reservation should belong to the same parent project.
      */
     reservation?: string | null;
+    /**
+     * Output only. State of the ReservationGrant.
+     */
+    state?: string | null;
   }
   /**
    * The response for ReservationService.SearchReservationGrants.
@@ -293,13 +260,17 @@ export namespace bigqueryreservation_v1alpha2 {
     reservationGrants?: Schema$ReservationGrant[];
   }
   /**
-   * Slot pool is a way to purchase slots with some minimum committed period of usage. Slot pool is immutable and cannot be deleted until the end of the commitment period. After the end of the commitment period, slots are still available but can be freely removed any time.  A slot pool resource exists as a child resource of a top-level reservation. Sum of all the ACTIVE pools slot_count is always equal to the reservation slot_capacity.
+   * Slot pool is a way to purchase slots with some minimum committed period of usage. Slot pool is immutable and cannot be deleted until the end of the commitment period. After the end of the commitment period, slots are still available but can be freely removed any time. Annual commitments will automatically be downgraded to monthly after the commitment ends.  A slot pool resource exists as a child resource of a top-level reservation. Sum of all the ACTIVE pools slot_count is always equal to the reservation slot_capacity.
    */
   export interface Schema$SlotPool {
     /**
      * Output only. The end of the commitment period. Slot pool cannot be removed before commitment_end_time. It is applicable only for ACTIVE slot pools and is computed as a combination of the plan and the time when the slot pool became ACTIVE.
      */
     commitmentEndTime?: string | null;
+    /**
+     * Output only. For FAILED slot pool, provides the reason of failure.
+     */
+    failureStatus?: Schema$Status;
     /**
      * Output only. The resource name of the slot pool, e.g.,    projects/myproject/locations/us-central1/reservations/myreservation/slotPools/123
      */
@@ -363,158 +334,65 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.get
-     * @desc Gets information about a location.
-     * @alias bigqueryreservation.projects.locations.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params?: Params$Resource$Projects$Locations$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
-    get(
-      params: Params$Resource$Projects$Locations$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback: BodyResponseCallback<Schema$Location>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Get,
-      callback: BodyResponseCallback<Schema$Location>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Location>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Get
-        | BodyResponseCallback<Schema$Location>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback?: BodyResponseCallback<Schema$Location>
-    ): void | GaxiosPromise<Schema$Location> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Location>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Location>(parameters);
-      }
-    }
-
-    /**
-     * bigqueryreservation.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
-     * @alias bigqueryreservation.projects.locations.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params?: Params$Resource$Projects$Locations$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      callback: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$List,
-      callback: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$List
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha2/{+name}/locations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListLocationsResponse>(parameters);
-      }
-    }
-
-    /**
      * bigqueryreservation.projects.locations.searchReservationGrants
      * @desc Look up grants for a specified resource for a particular region. If the request is about a project:   1) Grants created on the project will be returned if they exist.   2) Otherwise grants created on the closest ancestor will be returned.   3) Grants for different JobTypes will all be returned. Same logic applies if the request is about a folder. If the request is about an organization, then grants created on the organization will be returned (organization doesn't have ancestors). Comparing to ListReservationGrants, there are two behavior differences:   1) permission on the grantee will be verified in this API.   2) Hierarchy lookup (project->folder->organization) happens in this API.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.searchReservationGrants(
+     *     {
+     *       // The maximum number of items to return.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // The parent resource name (containing project and location), which owns the
+     *       // grants. e.g.:
+     *       //   "projects/myproject/locations/us-central1".
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Please specify resource name as grantee in the query.
+     *       // e.g., "grantee=projects/myproject"
+     *       //       "grantee=folders/123"
+     *       //       "grantee=organizations/456"
+     *       query: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reservationGrants": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.searchReservationGrants
      * @memberOf! ()
      *
@@ -528,9 +406,18 @@ export namespace bigqueryreservation_v1alpha2 {
      * @return {object} Request object
      */
     searchReservationGrants(
+      params: Params$Resource$Projects$Locations$Searchreservationgrants,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchReservationGrants(
       params?: Params$Resource$Projects$Locations$Searchreservationgrants,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchReservationGrantsResponse>;
+    searchReservationGrants(
+      params: Params$Resource$Projects$Locations$Searchreservationgrants,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     searchReservationGrants(
       params: Params$Resource$Projects$Locations$Searchreservationgrants,
       options:
@@ -548,12 +435,20 @@ export namespace bigqueryreservation_v1alpha2 {
     searchReservationGrants(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Searchreservationgrants
-        | BodyResponseCallback<Schema$SearchReservationGrantsResponse>,
+        | BodyResponseCallback<Schema$SearchReservationGrantsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchReservationGrantsResponse>,
-      callback?: BodyResponseCallback<Schema$SearchReservationGrantsResponse>
-    ): void | GaxiosPromise<Schema$SearchReservationGrantsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchReservationGrantsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchReservationGrantsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchReservationGrantsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Searchreservationgrants;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -589,7 +484,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$SearchReservationGrantsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SearchReservationGrantsResponse>(
@@ -599,49 +494,8 @@ export namespace bigqueryreservation_v1alpha2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Resource name for the location.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The resource that owns the locations collection, if applicable.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
-  }
   export interface Params$Resource$Projects$Locations$Searchreservationgrants
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return.
      */
@@ -669,6 +523,47 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.operations.cancel
      * @memberOf! ()
      *
@@ -679,9 +574,18 @@ export namespace bigqueryreservation_v1alpha2 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -695,10 +599,17 @@ export namespace bigqueryreservation_v1alpha2 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -733,7 +644,10 @@ export namespace bigqueryreservation_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -742,6 +656,53 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.operations.get
      * @memberOf! ()
      *
@@ -752,9 +713,18 @@ export namespace bigqueryreservation_v1alpha2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -768,12 +738,17 @@ export namespace bigqueryreservation_v1alpha2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -805,7 +780,10 @@ export namespace bigqueryreservation_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -815,22 +793,12 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */
@@ -846,20 +814,91 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservationGrants.create
      * @desc Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have 'bigquery.admin' permissions on the project using the reservation and the project that owns this reservation. Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the grant does not match location of the reservation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservationGrants.create(
+     *     {
+     *       // The parent resource name of the reservation grant
+     *       // E.g.: projects/myproject/location/eu.
+     *       parent: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "grantee": "my_grantee",
+     *         //   "jobType": "my_jobType",
+     *         //   "name": "my_name",
+     *         //   "reservation": "my_reservation",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "grantee": "my_grantee",
+     *   //   "jobType": "my_jobType",
+     *   //   "name": "my_name",
+     *   //   "reservation": "my_reservation",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservationGrants.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent resource name of the reservation grant E.g.: projects/myproject/location/eu.
-     * @param {().ReservationGrant} params.resource Request body data
+     * @param {().ReservationGrant} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Reservationgrants$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Reservationgrants$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReservationGrant>;
+    create(
+      params: Params$Resource$Projects$Locations$Reservationgrants$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Reservationgrants$Create,
       options: MethodOptions | BodyResponseCallback<Schema$ReservationGrant>,
@@ -873,12 +912,17 @@ export namespace bigqueryreservation_v1alpha2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Reservationgrants$Create
-        | BodyResponseCallback<Schema$ReservationGrant>,
+        | BodyResponseCallback<Schema$ReservationGrant>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReservationGrant>,
-      callback?: BodyResponseCallback<Schema$ReservationGrant>
-    ): void | GaxiosPromise<Schema$ReservationGrant> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReservationGrant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReservationGrant>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ReservationGrant> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservationgrants$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -913,7 +957,10 @@ export namespace bigqueryreservation_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ReservationGrant>(parameters, callback);
+        createAPIRequest<Schema$ReservationGrant>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ReservationGrant>(parameters);
       }
@@ -922,6 +969,51 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservationGrants.delete
      * @desc Deletes a reservation grant. No expansion will happen. E.g: organizationA contains project1 and project2. Reservation res1 exists. CreateReservationGrant was invoked previously and following grants were created explicitly:   <organizationA, res1>   <project1, res1> Then deletion of <organizationA, res1> won't affect <project1, res1>. After deletion of <organizationA, res1>, queries from project1 will still use res1, while queries from project2 will use on-demand mode.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservationGrants.delete(
+     *     {
+     *       // Name of the resource, e.g.:
+     *       //   projects/myproject/locations/eu/reservationGrants/123
+     *       name:
+     *         'projects/my-project/locations/my-location/reservationGrants/my-reservationGrant',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservationGrants.delete
      * @memberOf! ()
      *
@@ -932,9 +1024,18 @@ export namespace bigqueryreservation_v1alpha2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Reservationgrants$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Reservationgrants$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Reservationgrants$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Reservationgrants$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -948,10 +1049,17 @@ export namespace bigqueryreservation_v1alpha2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Reservationgrants$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservationgrants$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -983,7 +1091,10 @@ export namespace bigqueryreservation_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -992,6 +1103,56 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservationGrants.list
      * @desc Lists reservation grants. Only explicitly created grants will be returned. E.g: organizationA contains project1 and project2. Reservation res1 exists. CreateReservationGrant was invoked previously and following grants were created explicitly:   <organizationA, res1>   <project1, res1> Then this API will just return the above two grants for reservation res1, and no expansion/merge will happen.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservationGrants.list(
+     *     {
+     *       // The maximum number of items to return.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // The parent resource name e.g.: projects/myproject/location/eu.
+     *       parent: 'projects/my-project/locations/my-location',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reservationGrants": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservationGrants.list
      * @memberOf! ()
      *
@@ -1004,9 +1165,18 @@ export namespace bigqueryreservation_v1alpha2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Reservationgrants$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Reservationgrants$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListReservationGrantsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Reservationgrants$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Reservationgrants$List,
       options:
@@ -1024,12 +1194,20 @@ export namespace bigqueryreservation_v1alpha2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Reservationgrants$List
-        | BodyResponseCallback<Schema$ListReservationGrantsResponse>,
+        | BodyResponseCallback<Schema$ListReservationGrantsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListReservationGrantsResponse>,
-      callback?: BodyResponseCallback<Schema$ListReservationGrantsResponse>
-    ): void | GaxiosPromise<Schema$ListReservationGrantsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReservationGrantsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReservationGrantsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReservationGrantsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservationgrants$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1066,7 +1244,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$ListReservationGrantsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListReservationGrantsResponse>(
@@ -1078,11 +1256,6 @@ export namespace bigqueryreservation_v1alpha2 {
 
   export interface Params$Resource$Projects$Locations$Reservationgrants$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The parent resource name of the reservation grant E.g.: projects/myproject/location/eu.
      */
@@ -1096,22 +1269,12 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservationgrants$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource, e.g.:   projects/myproject/locations/eu/reservationGrants/123
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Reservationgrants$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return.
      */
@@ -1139,21 +1302,89 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.create
      * @desc Creates a new reservation resource. Multiple reservations are created if the ancestor reservations do not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.create({
+     *     // Project, location, and (optionally) reservation name. E.g.,
+     *     //    projects/myproject/locations/us-central1/reservations/parent
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The reservation ID relative to the parent, e.g., "dev". This field must
+     *     // only contain alphanumeric characters.
+     *     reservationId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "slotCapacity": "my_slotCapacity",
+     *       //   "useParentReservation": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "slotCapacity": "my_slotCapacity",
+     *   //   "useParentReservation": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Project, location, and (optionally) reservation name. E.g.,    projects/myproject/locations/us-central1/reservations/parent
      * @param {string=} params.reservationId The reservation ID relative to the parent, e.g., "dev". This field must only contain alphanumeric characters.
-     * @param {().Reservation} params.resource Request body data
+     * @param {().Reservation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Reservations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Reservations$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Reservation>;
+    create(
+      params: Params$Resource$Projects$Locations$Reservations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Reservations$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Reservation>,
@@ -1167,12 +1398,17 @@ export namespace bigqueryreservation_v1alpha2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Reservations$Create
-        | BodyResponseCallback<Schema$Reservation>,
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Reservation>,
-      callback?: BodyResponseCallback<Schema$Reservation>
-    ): void | GaxiosPromise<Schema$Reservation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1207,7 +1443,10 @@ export namespace bigqueryreservation_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Reservation>(parameters, callback);
+        createAPIRequest<Schema$Reservation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Reservation>(parameters);
       }
@@ -1216,21 +1455,91 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.createReservation
      * @desc Creates a new reservation resource. Multiple reservations are created if the ancestor reservations do not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.createReservation(
+     *     {
+     *       // Project, location, and (optionally) reservation name. E.g.,
+     *       //    projects/myproject/locations/us-central1/reservations/parent
+     *       parent: 'projects/my-project/locations/my-location/reservations/.*',
+     *       // The reservation ID relative to the parent, e.g., "dev". This field must
+     *       // only contain alphanumeric characters.
+     *       reservationId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "name": "my_name",
+     *         //   "slotCapacity": "my_slotCapacity",
+     *         //   "useParentReservation": false
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "slotCapacity": "my_slotCapacity",
+     *   //   "useParentReservation": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.createReservation
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Project, location, and (optionally) reservation name. E.g.,    projects/myproject/locations/us-central1/reservations/parent
      * @param {string=} params.reservationId The reservation ID relative to the parent, e.g., "dev". This field must only contain alphanumeric characters.
-     * @param {().Reservation} params.resource Request body data
+     * @param {().Reservation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     createReservation(
+      params: Params$Resource$Projects$Locations$Reservations$Createreservation,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createReservation(
       params?: Params$Resource$Projects$Locations$Reservations$Createreservation,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Reservation>;
+    createReservation(
+      params: Params$Resource$Projects$Locations$Reservations$Createreservation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     createReservation(
       params: Params$Resource$Projects$Locations$Reservations$Createreservation,
       options: MethodOptions | BodyResponseCallback<Schema$Reservation>,
@@ -1244,12 +1553,17 @@ export namespace bigqueryreservation_v1alpha2 {
     createReservation(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Reservations$Createreservation
-        | BodyResponseCallback<Schema$Reservation>,
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Reservation>,
-      callback?: BodyResponseCallback<Schema$Reservation>
-    ): void | GaxiosPromise<Schema$Reservation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Createreservation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1284,7 +1598,10 @@ export namespace bigqueryreservation_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Reservation>(parameters, callback);
+        createAPIRequest<Schema$Reservation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Reservation>(parameters);
       }
@@ -1293,6 +1610,53 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.delete
      * @desc Deletes a reservation. Returns `google.rpc.Code.FAILED_PRECONDITION` in the following cases:   1. When reservation has child reservations. This check can be bypassed by      setting DeleteReservationRequest.force flag to true.   2. When top-level reservation with slot pools is being deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.delete({
+     *     // If true, deletes all the child reservations of the given reservation.
+     *     // Otherwise, attempting to delete a reservation that has child
+     *     // reservations will fail with error code
+     *     // `google.rpc.Code.FAILED_PRECONDITION`.
+     *     force: 'placeholder-value',
+     *     // Resource name of the reservation to retrieve. E.g.,
+     *     //    projects/myproject/locations/us-central1/reservations/my_reservation
+     *     name: 'projects/my-project/locations/my-location/reservations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.delete
      * @memberOf! ()
      *
@@ -1304,9 +1668,18 @@ export namespace bigqueryreservation_v1alpha2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Reservations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Reservations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Reservations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Reservations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1320,10 +1693,17 @@ export namespace bigqueryreservation_v1alpha2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Reservations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1355,7 +1735,10 @@ export namespace bigqueryreservation_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1364,6 +1747,52 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.get
      * @desc Returns information about the reservation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.get({
+     *     // Resource name of the reservation to retrieve. E.g.,
+     *     //    projects/myproject/locations/us-central1/reservations/path/to/reserv
+     *     name: 'projects/my-project/locations/my-location/reservations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "slotCapacity": "my_slotCapacity",
+     *   //   "useParentReservation": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.get
      * @memberOf! ()
      *
@@ -1374,9 +1803,18 @@ export namespace bigqueryreservation_v1alpha2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Reservations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Reservations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Reservation>;
+    get(
+      params: Params$Resource$Projects$Locations$Reservations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Reservations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Reservation>,
@@ -1390,12 +1828,17 @@ export namespace bigqueryreservation_v1alpha2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Reservations$Get
-        | BodyResponseCallback<Schema$Reservation>,
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Reservation>,
-      callback?: BodyResponseCallback<Schema$Reservation>
-    ): void | GaxiosPromise<Schema$Reservation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1427,7 +1870,10 @@ export namespace bigqueryreservation_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Reservation>(parameters, callback);
+        createAPIRequest<Schema$Reservation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Reservation>(parameters);
       }
@@ -1436,6 +1882,61 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.list
      * @desc Lists all the reservations for the project in the specified location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.list({
+     *     // Can be used to filter out reservations based on names, capacity, etc, e.g.:
+     *     // filter="reservation.slot_capacity > 200"
+     *     // filter="reservation.name = \"*dev/x\""
+     *     // Advanced filtering syntax can be
+     *     // [here](https://cloud.google.com/logging/docs/view/advanced-filters).
+     *     filter: 'placeholder-value',
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // The parent resource name containing project and location, e.g.:
+     *     //   "projects/myproject/locations/us-central1"
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reservations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.list
      * @memberOf! ()
      *
@@ -1449,9 +1950,18 @@ export namespace bigqueryreservation_v1alpha2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Reservations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Reservations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListReservationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Reservations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Reservations$List,
       options:
@@ -1467,12 +1977,20 @@ export namespace bigqueryreservation_v1alpha2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Reservations$List
-        | BodyResponseCallback<Schema$ListReservationsResponse>,
+        | BodyResponseCallback<Schema$ListReservationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListReservationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListReservationsResponse>
-    ): void | GaxiosPromise<Schema$ListReservationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReservationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReservationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReservationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1507,7 +2025,10 @@ export namespace bigqueryreservation_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListReservationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListReservationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListReservationsResponse>(parameters);
       }
@@ -1516,21 +2037,91 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.patch
      * @desc Updates an existing reservation resource. Applicable only for child reservations.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.patch({
+     *     // The resource name of the reservation, e.g.,
+     *     // "projects/x/locations/x/reservations/dev/team/product". Reservation names
+     *     // (e.g., "dev/team/product") exceeding a depth of six will fail with
+     *     // `google.rpc.Code.INVALID_ARGUMENT`.
+     *     name:
+     *       'projects/my-project/locations/my-location/reservations/my-reservation/.*',
+     *     // Standard field mask for the set of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "slotCapacity": "my_slotCapacity",
+     *       //   "useParentReservation": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "slotCapacity": "my_slotCapacity",
+     *   //   "useParentReservation": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the reservation, e.g., "projects/x/locations/x/reservations/dev/team/product". Reservation names (e.g., "dev/team/product") exceeding a depth of six will fail with `google.rpc.Code.INVALID_ARGUMENT`.
      * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {().Reservation} params.resource Request body data
+     * @param {().Reservation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Reservations$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Reservations$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Reservation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Reservations$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Reservations$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Reservation>,
@@ -1544,12 +2135,17 @@ export namespace bigqueryreservation_v1alpha2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Reservations$Patch
-        | BodyResponseCallback<Schema$Reservation>,
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Reservation>,
-      callback?: BodyResponseCallback<Schema$Reservation>
-    ): void | GaxiosPromise<Schema$Reservation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1581,7 +2177,10 @@ export namespace bigqueryreservation_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Reservation>(parameters, callback);
+        createAPIRequest<Schema$Reservation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Reservation>(parameters);
       }
@@ -1590,11 +2189,6 @@ export namespace bigqueryreservation_v1alpha2 {
 
   export interface Params$Resource$Projects$Locations$Reservations$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Project, location, and (optionally) reservation name. E.g.,    projects/myproject/locations/us-central1/reservations/parent
      */
@@ -1612,11 +2206,6 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservations$Createreservation
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Project, location, and (optionally) reservation name. E.g.,    projects/myproject/locations/us-central1/reservations/parent
      */
     parent?: string;
@@ -1633,11 +2222,6 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If true, deletes all the child reservations of the given reservation. Otherwise, attempting to delete a reservation that has child reservations will fail with error code `google.rpc.Code.FAILED_PRECONDITION`.
      */
     force?: boolean;
@@ -1649,22 +2233,12 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name of the reservation to retrieve. E.g.,    projects/myproject/locations/us-central1/reservations/path/to/reserv
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Reservations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Can be used to filter out reservations based on names, capacity, etc, e.g.: filter="reservation.slot_capacity > 200" filter="reservation.name = \"*dev/x\"" Advanced filtering syntax can be [here](https://cloud.google.com/logging/docs/view/advanced-filters).
      */
@@ -1684,11 +2258,6 @@ export namespace bigqueryreservation_v1alpha2 {
   }
   export interface Params$Resource$Projects$Locations$Reservations$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the reservation, e.g., "projects/x/locations/x/reservations/dev/team/product". Reservation names (e.g., "dev/team/product") exceeding a depth of six will fail with `google.rpc.Code.INVALID_ARGUMENT`.
      */
@@ -1713,6 +2282,51 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.slotPools.delete
      * @desc Deletes a slot pool. Attempting to delete slot pool before its commitment_end_time will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.slotPools.delete(
+     *     {
+     *       // Resource name of the slot pool to delete. E.g.,
+     *       //    projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123
+     *       name:
+     *         'projects/my-project/locations/my-location/reservations/my-reservation/slotPools/my-slotPool',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.slotPools.delete
      * @memberOf! ()
      *
@@ -1723,9 +2337,18 @@ export namespace bigqueryreservation_v1alpha2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Reservations$Slotpools$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Reservations$Slotpools$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Reservations$Slotpools$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Reservations$Slotpools$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1739,10 +2362,17 @@ export namespace bigqueryreservation_v1alpha2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Reservations$Slotpools$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Slotpools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1774,7 +2404,10 @@ export namespace bigqueryreservation_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1783,6 +2416,58 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.slotPools.get
      * @desc Returns information about the slot pool.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.slotPools.get(
+     *     {
+     *       // Resource name of the slot pool to retrieve. E.g.,
+     *       //    projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123
+     *       name:
+     *         'projects/my-project/locations/my-location/reservations/my-reservation/slotPools/my-slotPool',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "failureStatus": {},
+     *   //   "name": "my_name",
+     *   //   "plan": "my_plan",
+     *   //   "slotCount": "my_slotCount",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.slotPools.get
      * @memberOf! ()
      *
@@ -1793,9 +2478,18 @@ export namespace bigqueryreservation_v1alpha2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Reservations$Slotpools$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Reservations$Slotpools$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SlotPool>;
+    get(
+      params: Params$Resource$Projects$Locations$Reservations$Slotpools$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Reservations$Slotpools$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SlotPool>,
@@ -1809,10 +2503,17 @@ export namespace bigqueryreservation_v1alpha2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Reservations$Slotpools$Get
-        | BodyResponseCallback<Schema$SlotPool>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$SlotPool>,
-      callback?: BodyResponseCallback<Schema$SlotPool>
-    ): void | GaxiosPromise<Schema$SlotPool> {
+        | BodyResponseCallback<Schema$SlotPool>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SlotPool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SlotPool>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SlotPool> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Slotpools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1844,7 +2545,10 @@ export namespace bigqueryreservation_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SlotPool>(parameters, callback);
+        createAPIRequest<Schema$SlotPool>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SlotPool>(parameters);
       }
@@ -1853,6 +2557,59 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * bigqueryreservation.projects.locations.reservations.slotPools.list
      * @desc Lists all the slot pools for the reservation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.slotPools.list(
+     *     {
+     *       // The maximum number of items to return.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Resource name of the parent reservation. Only top-level reservations can
+     *       // have slot pools. E.g.,
+     *       //    projects/myproject/locations/us-central1/reservations/my_reservation
+     *       parent:
+     *         'projects/my-project/locations/my-location/reservations/my-reservation',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "slotPools": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias bigqueryreservation.projects.locations.reservations.slotPools.list
      * @memberOf! ()
      *
@@ -1865,9 +2622,18 @@ export namespace bigqueryreservation_v1alpha2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Reservations$Slotpools$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Reservations$Slotpools$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSlotPoolsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Reservations$Slotpools$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Reservations$Slotpools$List,
       options:
@@ -1883,12 +2649,20 @@ export namespace bigqueryreservation_v1alpha2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Reservations$Slotpools$List
-        | BodyResponseCallback<Schema$ListSlotPoolsResponse>,
+        | BodyResponseCallback<Schema$ListSlotPoolsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSlotPoolsResponse>,
-      callback?: BodyResponseCallback<Schema$ListSlotPoolsResponse>
-    ): void | GaxiosPromise<Schema$ListSlotPoolsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSlotPoolsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSlotPoolsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSlotPoolsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Reservations$Slotpools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1923,7 +2697,10 @@ export namespace bigqueryreservation_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSlotPoolsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSlotPoolsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSlotPoolsResponse>(parameters);
       }
@@ -1933,11 +2710,6 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservations$Slotpools$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name of the slot pool to delete. E.g.,    projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123
      */
     name?: string;
@@ -1945,22 +2717,12 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservations$Slotpools$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name of the slot pool to retrieve. E.g.,    projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Reservations$Slotpools$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return.
      */

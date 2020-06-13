@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace chat_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace chat_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -279,7 +289,7 @@ export namespace chat_v1 {
    */
   export interface Schema$FormAction {
     /**
-     * Apps Script function to invoke when the containing element is clicked/activated.
+     * The method name is used to identify which part of the form triggered the form submission. This information is echoed back to the bot as part of the card click event. The same method name can be used for several elements that trigger a common behavior if desired.
      */
     actionMethodName?: string | null;
     /**
@@ -292,7 +302,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Image {
     /**
-     * The aspect ratio of this image (width/height).
+     * The aspect ratio of this image (width/height). This field allows clients to reserve the right height for the image while waiting for it to load. It&#39;s not meant to override the native aspect ratio of the image. If unset, the server fills it by prefetching the image.
      */
     aspectRatio?: number | null;
     /**
@@ -504,7 +514,15 @@ export namespace chat_v1 {
      */
     name?: string | null;
     /**
-     * Output only. The type of a space.
+     * Whether the space is a DM between a bot and a single human.
+     */
+    singleUserBotDm?: boolean | null;
+    /**
+     * Whether the messages are threaded in this space.
+     */
+    threaded?: boolean | null;
+    /**
+     * Output only. The type of a space. This is deprecated. Use `single_user_bot_dm` instead.
      */
     type?: string | null;
   }
@@ -544,6 +562,10 @@ export namespace chat_v1 {
      * The user&#39;s display name.
      */
     displayName?: string | null;
+    /**
+     * Obfuscated domain information.
+     */
+    domainId?: string | null;
     /**
      * Resource name, in the format &quot;users/*&quot;.
      */
@@ -601,6 +623,52 @@ export namespace chat_v1 {
     /**
      * chat.spaces.get
      * @desc Returns a space.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.get({
+     *     // Required. Resource name of the space, in the form "spaces/x".
+     *     //
+     *     // Example: spaces/AAAAMpdlehY
+     *     name: 'spaces/my-space',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "singleUserBotDm": false,
+     *   //   "threaded": false,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.get
      * @memberOf! ()
      *
@@ -611,9 +679,18 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Spaces$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Spaces$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Space>;
+    get(
+      params: Params$Resource$Spaces$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Spaces$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Space>,
@@ -627,10 +704,17 @@ export namespace chat_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Spaces$Get
-        | BodyResponseCallback<Schema$Space>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Space>,
-      callback?: BodyResponseCallback<Schema$Space>
-    ): void | GaxiosPromise<Schema$Space> {
+        | BodyResponseCallback<Schema$Space>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Space>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Space>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Space> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Spaces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -660,7 +744,10 @@ export namespace chat_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Space>(parameters, callback);
+        createAPIRequest<Schema$Space>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Space>(parameters);
       }
@@ -669,6 +756,51 @@ export namespace chat_v1 {
     /**
      * chat.spaces.list
      * @desc Lists spaces the caller is a member of.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.list({
+     *     // Requested page size. The value is capped at 1000.
+     *     // Server may return fewer results than requested.
+     *     // If unspecified, server will default to 100.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "spaces": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.list
      * @memberOf! ()
      *
@@ -680,9 +812,18 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Spaces$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Spaces$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSpacesResponse>;
+    list(
+      params: Params$Resource$Spaces$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Spaces$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSpacesResponse>,
@@ -696,12 +837,20 @@ export namespace chat_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Spaces$List
-        | BodyResponseCallback<Schema$ListSpacesResponse>,
+        | BodyResponseCallback<Schema$ListSpacesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSpacesResponse>,
-      callback?: BodyResponseCallback<Schema$ListSpacesResponse>
-    ): void | GaxiosPromise<Schema$ListSpacesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSpacesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSpacesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSpacesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Spaces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -731,7 +880,10 @@ export namespace chat_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSpacesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSpacesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSpacesResponse>(parameters);
       }
@@ -740,21 +892,11 @@ export namespace chat_v1 {
 
   export interface Params$Resource$Spaces$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the space, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
      */
     name?: string;
   }
   export interface Params$Resource$Spaces$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
      */
@@ -774,6 +916,52 @@ export namespace chat_v1 {
     /**
      * chat.spaces.members.get
      * @desc Returns a membership.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.members.get({
+     *     // Required. Resource name of the membership to be retrieved, in the form
+     *     // "spaces/x/members/x".
+     *     //
+     *     // Example: spaces/AAAAMpdlehY/members/105115627578887013105
+     *     name: 'spaces/my-space/members/my-member',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "member": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.members.get
      * @memberOf! ()
      *
@@ -784,9 +972,18 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Spaces$Members$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Spaces$Members$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Membership>;
+    get(
+      params: Params$Resource$Spaces$Members$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Spaces$Members$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Membership>,
@@ -800,12 +997,17 @@ export namespace chat_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Spaces$Members$Get
-        | BodyResponseCallback<Schema$Membership>,
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Membership>,
-      callback?: BodyResponseCallback<Schema$Membership>
-    ): void | GaxiosPromise<Schema$Membership> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Membership> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spaces$Members$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -836,7 +1038,10 @@ export namespace chat_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Membership>(parameters, callback);
+        createAPIRequest<Schema$Membership>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Membership>(parameters);
       }
@@ -845,6 +1050,56 @@ export namespace chat_v1 {
     /**
      * chat.spaces.members.list
      * @desc Lists human memberships in a space.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.members.list({
+     *     // Requested page size. The value is capped at 1000.
+     *     // Server may return fewer results than requested.
+     *     // If unspecified, server will default to 100.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the space for which membership list is to be
+     *     // fetched, in the form "spaces/x".
+     *     //
+     *     // Example: spaces/AAAAMpdlehY
+     *     parent: 'spaces/my-space',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "memberships": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.members.list
      * @memberOf! ()
      *
@@ -857,9 +1112,18 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Spaces$Members$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Spaces$Members$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListMembershipsResponse>;
+    list(
+      params: Params$Resource$Spaces$Members$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Spaces$Members$List,
       options:
@@ -875,12 +1139,20 @@ export namespace chat_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Spaces$Members$List
-        | BodyResponseCallback<Schema$ListMembershipsResponse>,
+        | BodyResponseCallback<Schema$ListMembershipsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListMembershipsResponse>,
-      callback?: BodyResponseCallback<Schema$ListMembershipsResponse>
-    ): void | GaxiosPromise<Schema$ListMembershipsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMembershipsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMembershipsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spaces$Members$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -914,7 +1186,10 @@ export namespace chat_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListMembershipsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListMembershipsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListMembershipsResponse>(parameters);
       }
@@ -924,22 +1199,12 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Members$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x".  Example: spaces/AAAAMpdlehY/members/105115627578887013105
      */
     name?: string;
   }
   export interface Params$Resource$Spaces$Members$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
      */
@@ -963,21 +1228,111 @@ export namespace chat_v1 {
     /**
      * chat.spaces.messages.create
      * @desc Creates a message.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.messages.create({
+     *     // Required. Space resource name, in the form "spaces/x".
+     *     // Example: spaces/AAAAMpdlehY
+     *     parent: 'spaces/my-space',
+     *     // Opaque thread identifier string that can be specified to group messages
+     *     // into a single thread. If this is the first message with a given thread
+     *     // identifier, a new thread is created. Subsequent messages with the same
+     *     // thread identifier will be posted into the same thread. This relieves bots
+     *     // and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post
+     *     // further updates to it.
+     *     //
+     *     // Has no effect if thread field,
+     *     // corresponding to an existing thread, is set in message.
+     *     threadKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actionResponse": {},
+     *       //   "annotations": [],
+     *       //   "argumentText": "my_argumentText",
+     *       //   "cards": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "fallbackText": "my_fallbackText",
+     *       //   "name": "my_name",
+     *       //   "previewText": "my_previewText",
+     *       //   "sender": {},
+     *       //   "space": {},
+     *       //   "text": "my_text",
+     *       //   "thread": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actionResponse": {},
+     *   //   "annotations": [],
+     *   //   "argumentText": "my_argumentText",
+     *   //   "cards": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "fallbackText": "my_fallbackText",
+     *   //   "name": "my_name",
+     *   //   "previewText": "my_previewText",
+     *   //   "sender": {},
+     *   //   "space": {},
+     *   //   "text": "my_text",
+     *   //   "thread": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.messages.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      * @param {string=} params.threadKey Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it.  Has no effect if thread field, corresponding to an existing thread, is set in message.
-     * @param {().Message} params.resource Request body data
+     * @param {().Message} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Spaces$Messages$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Spaces$Messages$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Message>;
+    create(
+      params: Params$Resource$Spaces$Messages$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Spaces$Messages$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Message>,
@@ -991,10 +1346,17 @@ export namespace chat_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Spaces$Messages$Create
-        | BodyResponseCallback<Schema$Message>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>
-    ): void | GaxiosPromise<Schema$Message> {
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spaces$Messages$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1028,7 +1390,10 @@ export namespace chat_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(parameters, callback);
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
       }
@@ -1037,6 +1402,47 @@ export namespace chat_v1 {
     /**
      * chat.spaces.messages.delete
      * @desc Deletes a message.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.messages.delete({
+     *     // Required. Resource name of the message to be deleted, in the form
+     *     // "spaces/x/messages/x"
+     *     //
+     *     // Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     *     name: 'spaces/my-space/messages/my-message',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.messages.delete
      * @memberOf! ()
      *
@@ -1047,9 +1453,18 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Spaces$Messages$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Spaces$Messages$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Spaces$Messages$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Spaces$Messages$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1063,10 +1478,17 @@ export namespace chat_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Spaces$Messages$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spaces$Messages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1097,7 +1519,10 @@ export namespace chat_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1106,6 +1531,60 @@ export namespace chat_v1 {
     /**
      * chat.spaces.messages.get
      * @desc Returns a message.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.messages.get({
+     *     // Required. Resource name of the message to be retrieved, in the form
+     *     // "spaces/x/messages/x".
+     *     //
+     *     // Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     *     name: 'spaces/my-space/messages/my-message',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actionResponse": {},
+     *   //   "annotations": [],
+     *   //   "argumentText": "my_argumentText",
+     *   //   "cards": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "fallbackText": "my_fallbackText",
+     *   //   "name": "my_name",
+     *   //   "previewText": "my_previewText",
+     *   //   "sender": {},
+     *   //   "space": {},
+     *   //   "text": "my_text",
+     *   //   "thread": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.messages.get
      * @memberOf! ()
      *
@@ -1116,9 +1595,18 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Spaces$Messages$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Spaces$Messages$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Message>;
+    get(
+      params: Params$Resource$Spaces$Messages$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Spaces$Messages$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Message>,
@@ -1132,10 +1620,17 @@ export namespace chat_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Spaces$Messages$Get
-        | BodyResponseCallback<Schema$Message>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>
-    ): void | GaxiosPromise<Schema$Message> {
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spaces$Messages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1166,7 +1661,10 @@ export namespace chat_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(parameters, callback);
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
       }
@@ -1175,21 +1673,109 @@ export namespace chat_v1 {
     /**
      * chat.spaces.messages.update
      * @desc Updates a message.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.messages.update({
+     *     // Resource name, in the form "spaces/x/messages/x".
+     *     //
+     *     // Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     *     name: 'spaces/my-space/messages/my-message',
+     *     // Required. The field paths to be updated, comma separated if there are
+     *     // multiple.
+     *     //
+     *     // Currently supported field paths:
+     *     // * text
+     *     // * cards
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actionResponse": {},
+     *       //   "annotations": [],
+     *       //   "argumentText": "my_argumentText",
+     *       //   "cards": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "fallbackText": "my_fallbackText",
+     *       //   "name": "my_name",
+     *       //   "previewText": "my_previewText",
+     *       //   "sender": {},
+     *       //   "space": {},
+     *       //   "text": "my_text",
+     *       //   "thread": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actionResponse": {},
+     *   //   "annotations": [],
+     *   //   "argumentText": "my_argumentText",
+     *   //   "cards": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "fallbackText": "my_fallbackText",
+     *   //   "name": "my_name",
+     *   //   "previewText": "my_previewText",
+     *   //   "sender": {},
+     *   //   "space": {},
+     *   //   "text": "my_text",
+     *   //   "thread": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias chat.spaces.messages.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Resource name, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
-     * @param {string=} params.updateMask Required. The field paths to be updated.  Currently supported field paths: "text", "cards".
-     * @param {().Message} params.resource Request body data
+     * @param {string=} params.updateMask Required. The field paths to be updated, comma separated if there are multiple.  Currently supported field paths: * text * cards
+     * @param {().Message} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Spaces$Messages$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Spaces$Messages$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Message>;
+    update(
+      params: Params$Resource$Spaces$Messages$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Spaces$Messages$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Message>,
@@ -1203,10 +1789,17 @@ export namespace chat_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Spaces$Messages$Update
-        | BodyResponseCallback<Schema$Message>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>
-    ): void | GaxiosPromise<Schema$Message> {
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spaces$Messages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1237,7 +1830,10 @@ export namespace chat_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(parameters, callback);
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
       }
@@ -1246,11 +1842,6 @@ export namespace chat_v1 {
 
   export interface Params$Resource$Spaces$Messages$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      */
@@ -1268,22 +1859,12 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x"  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string;
   }
   export interface Params$Resource$Spaces$Messages$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
@@ -1292,16 +1873,11 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string;
     /**
-     * Required. The field paths to be updated.  Currently supported field paths: "text", "cards".
+     * Required. The field paths to be updated, comma separated if there are multiple.  Currently supported field paths: * text * cards
      */
     updateMask?: string;
 

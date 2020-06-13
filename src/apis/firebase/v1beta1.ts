@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace firebase_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace firebase_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -172,7 +182,7 @@ export namespace firebase_v1beta1 {
      */
     analyticsProperty?: Schema$AnalyticsProperty;
     /**
-     * A map of `AppId` to `StreamId` for each Firebase App in the specified `FirebaseProject`. Each `AppId` and `StreamId` appears only once.
+     * For Android Apps and iOS Apps: A map of `app` to `streamId` for each Firebase App in the specified `FirebaseProject`. Each `app` and `streamId` appears only once.&lt;br&gt; &lt;br&gt; For Web Apps: A map of `app` to `streamId` and `measurementId` for each Firebase App in the specified `FirebaseProject`. Each `app`, `streamId`, and `measurementId` appears only once.
      */
     streamMappings?: Schema$StreamMapping[];
   }
@@ -417,9 +427,17 @@ export namespace firebase_v1beta1 {
    */
   export interface Schema$Location {
     /**
-     * The ID of the default GCP resource location. It must be one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations).
+     * Products and services that are available in the GCP resource location.
+     */
+    features?: string[] | null;
+    /**
+     * The ID of the GCP resource location. It will be one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations#types).
      */
     locationId?: string | null;
+    /**
+     * Indicates whether the GCP resource location is a [regional or multi-regional location](https://firebase.google.com/docs/projects/locations#types) for data replication.
+     */
+    type?: string | null;
   }
   /**
    * This is proto2&#39;s version of MessageSet.
@@ -551,9 +569,13 @@ export namespace firebase_v1beta1 {
    */
   export interface Schema$StreamMapping {
     /**
-     * The fully qualified resource name of the Firebase App associated with the Google Analytics data stream, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/iosApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt; or &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/androidApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt;
+     * The fully qualified resource name of the Firebase App associated with the Google Analytics data stream, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/androidApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt; or &lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/iosApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt; or &lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/webApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt;
      */
     app?: string | null;
+    /**
+     * Applicable for Firebase Web Apps only.&lt;br&gt; &lt;br&gt;The unique Google-assigned identifier of the Google Analytics web stream associated with the Firebase Web App. Firebase SDKs use this ID to interact with Google Analytics APIs. &lt;br&gt; &lt;br&gt;Learn more about this ID and Google Analytics web streams in the [Analytics documentation](https://support.google.com/analytics/topic/9303475).
+     */
+    measurementId?: string | null;
     /**
      * The unique Google-assigned identifier of the Google Analytics data stream associated with the Firebase App. &lt;br&gt; &lt;br&gt;Learn more about Google Analytics data streams in the [Analytics documentation](https://support.google.com/analytics/answer/9303323).
      */
@@ -622,6 +644,10 @@ export namespace firebase_v1beta1 {
      */
     locationId?: string | null;
     /**
+     * This field will no longer be provided here. Instead, use `GetAnalyticsDetails`
+     */
+    measurementId?: string | null;
+    /**
      * The sender ID for use with Firebase Cloud Messaging.
      */
     messagingSenderId?: string | null;
@@ -644,6 +670,61 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.availableProjects.list
      * @desc Returns a list of [Google Cloud Platform (GCP) `Projects`] (https://cloud.google.com/resource-manager/reference/rest/v1/projects) that are available to have Firebase resources added to them. <br> <br>A GCP `Project` will only be returned if: <ol>   <li><p>The caller has sufficient          [Google IAM](https://cloud.google.com/iam) permissions to call          AddFirebase.</p></li>   <li><p>The GCP `Project` is not already a FirebaseProject.</p></li>   <li><p>The GCP `Project` is not in an Organization which has policies          that prevent Firebase resources from being added.</p></li> </ol>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.availableProjects.list({
+     *     // The maximum number of GCP `Projects` to return in the response.
+     *     // <br>
+     *     // <br>The server may return fewer than this value at its discretion.
+     *     // If no value is specified (or too large a value is specified), the server
+     *     // will impose its own limit.
+     *     // <br>
+     *     // <br>This value cannot be negative.
+     *     pageSize: 'placeholder-value',
+     *     // Token returned from a previous call to `ListAvailableProjects`
+     *     // indicating where in the set of GCP `Projects` to resume listing.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "projectInfo": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.availableProjects.list
      * @memberOf! ()
      *
@@ -655,9 +736,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Availableprojects$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Availableprojects$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAvailableProjectsResponse>;
+    list(
+      params: Params$Resource$Availableprojects$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Availableprojects$List,
       options:
@@ -675,12 +765,20 @@ export namespace firebase_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Availableprojects$List
-        | BodyResponseCallback<Schema$ListAvailableProjectsResponse>,
+        | BodyResponseCallback<Schema$ListAvailableProjectsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAvailableProjectsResponse>,
-      callback?: BodyResponseCallback<Schema$ListAvailableProjectsResponse>
-    ): void | GaxiosPromise<Schema$ListAvailableProjectsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAvailableProjectsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAvailableProjectsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAvailableProjectsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Availableprojects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -716,7 +814,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListAvailableProjectsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListAvailableProjectsResponse>(
@@ -728,11 +826,6 @@ export namespace firebase_v1beta1 {
 
   export interface Params$Resource$Availableprojects$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of GCP `Projects` to return in the response. <br> <br>The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), the server will impose its own limit. <br> <br>This value cannot be negative.
      */
@@ -752,6 +845,55 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.operations.get
      * @memberOf! ()
      *
@@ -762,9 +904,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -778,12 +929,17 @@ export namespace firebase_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -813,7 +969,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -821,11 +980,6 @@ export namespace firebase_v1beta1 {
   }
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */
@@ -854,21 +1008,92 @@ export namespace firebase_v1beta1 {
 
     /**
      * firebase.projects.addFirebase
-     * @desc Adds Firebase resources to the specified existing [Google Cloud Platform (GCP) `Project`] (https://cloud.google.com/resource-manager/reference/rest/v1/projects). <br> <br>Since a FirebaseProject is actually also a GCP `Project`, a `FirebaseProject` uses underlying GCP identifiers (most importantly, the `projectId`) as its own for easy interop with GCP APIs. <br> <br>The result of this call is an [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the provisioning process by calling GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When `done` is `true`, the `Operation` has either succeeded or failed. If the `Operation` succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to a FirebaseProject; if the `Operation` failed, its [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a google.rpc.Status. The `Operation` is automatically deleted after completion, so there is no need to call DeleteOperation. <br> <br>This method does not modify any billing account information on the underlying GCP `Project`. <br> <br>To call `AddFirebase`, a member must be an Editor or Owner for the existing GCP `Project`. Service accounts cannot call `AddFirebase`.
+     * @desc Adds Firebase resources to the specified existing [Google Cloud Platform (GCP) `Project`] (https://cloud.google.com/resource-manager/reference/rest/v1/projects). <br> <br>Since a FirebaseProject is actually also a GCP `Project`, a `FirebaseProject` uses underlying GCP identifiers (most importantly, the `projectId`) as its own for easy interop with GCP APIs. <br> <br>The result of this call is an [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the provisioning process by calling GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When `done` is `true`, the `Operation` has either succeeded or failed. If the `Operation` succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to a FirebaseProject; if the `Operation` failed, its [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a google.rpc.Status. The `Operation` is automatically deleted after completion, so there is no need to call DeleteOperation. <br> <br>This method does not modify any billing account information on the underlying GCP `Project`. <br> <br>To call `AddFirebase`, a project member or service account must have the following permissions (the IAM roles of Editor and Owner contain these permissions): `firebase.projects.update`, `resourcemanager.projects.get`, `serviceusage.services.enable`, and `serviceusage.services.get`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.addFirebase({
+     *     // The resource name of the GCP `Project` to which Firebase resources will be
+     *     // added, in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     // After calling `AddFirebase`, the
+     *     // [`projectId`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id)
+     *     // of the GCP `Project` is also the `projectId` of the FirebaseProject.
+     *     project: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "locationId": "my_locationId",
+     *       //   "regionCode": "my_regionCode",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.addFirebase
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.project The resource name of the GCP `Project` to which Firebase resources will be added, in the format: <br><code>projects/<var>projectId</var></code> After calling `AddFirebase`, the [`projectId`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id) of the GCP `Project` is also the `projectId` of the FirebaseProject.
-     * @param {().AddFirebaseRequest} params.resource Request body data
+     * @param {().AddFirebaseRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     addFirebase(
+      params: Params$Resource$Projects$Addfirebase,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addFirebase(
       params?: Params$Resource$Projects$Addfirebase,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    addFirebase(
+      params: Params$Resource$Projects$Addfirebase,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addFirebase(
       params: Params$Resource$Projects$Addfirebase,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -882,12 +1107,17 @@ export namespace firebase_v1beta1 {
     addFirebase(
       paramsOrCallback?:
         | Params$Resource$Projects$Addfirebase
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Addfirebase;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -921,7 +1151,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -929,21 +1162,88 @@ export namespace firebase_v1beta1 {
 
     /**
      * firebase.projects.addGoogleAnalytics
-     * @desc Links a FirebaseProject with an existing [Google Analytics account](http://www.google.com/analytics/). <br> <br>Using this call, you can either: <ul> <li>Provision a new Google Analytics property and associate the new property with your `FirebaseProject`.</li> <li>Associate an existing Google Analytics property with your `FirebaseProject`.</li> </ul> <br> Note that when you call `AddGoogleAnalytics`: <ul> <li>Any Firebase Apps already in your `FirebaseProject` are automatically provisioned as new <em>data streams</em> in the Google Analytics property.</li> <li>Any <em>data streams</em> already in the Google Analytics property are automatically associated with their corresponding Firebase Apps (only applies when an app's `packageName` or `bundleId` match those for an existing data stream).</li> </ul> Learn more about the hierarchy and structure of Google Analytics accounts in the [Analytics documentation](https://support.google.com/analytics/answer/9303323). <br> <br>The result of this call is an [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the provisioning process by calling GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When `done` is `true`, the `Operation` has either succeeded or failed. If the `Operation` succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to an AnalyticsDetails; if the `Operation` failed, its [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a google.rpc.Status. <br> <br>To call `AddGoogleAnalytics`, a member must be an Owner for the existing `FirebaseProject` and have the [`Edit` permission](https://support.google.com/analytics/answer/2884495) for the Google Analytics account. <br> <br>If a `FirebaseProject` already has Google Analytics enabled, and you call `AddGoogleAnalytics` using an `analyticsPropertyId` that's different from the currently associated property, then the call will fail. Analytics may have already been enabled in the Firebase console or by specifying `timeZone` and `regionCode` in the call to [`AddFirebase`](../../v1beta1/projects/addFirebase).
+     * @desc Links a FirebaseProject with an existing [Google Analytics account](http://www.google.com/analytics/). <br> <br>Using this call, you can either: <ul> <li>Specify an `analyticsAccountId` to provision a new Google Analytics property within the specified account and associate the new property with your `FirebaseProject`.</li> <li>Specify an existing `analyticsPropertyId` to associate the property with your `FirebaseProject`.</li> </ul> <br> Note that when you call `AddGoogleAnalytics`: <ol> <li>The first check determines if any existing data streams in the Google Analytics property correspond to any existing Firebase Apps in your `FirebaseProject` (based on the `packageName` or `bundleId` associated with the data stream). Then, as applicable, the data streams and apps are linked. Note that this auto-linking only applies to Android Apps and iOS Apps.</li> <li>If no corresponding data streams are found for your Firebase Apps, new data streams are provisioned in the Google Analytics property for each of your Firebase Apps. Note that a new data stream is always provisioned for a Web App even if it was previously associated with a data stream in your Analytics property.</li> </ol> Learn more about the hierarchy and structure of Google Analytics accounts in the [Analytics documentation](https://support.google.com/analytics/answer/9303323). <br> <br>The result of this call is an [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the provisioning process by calling GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When `done` is `true`, the `Operation` has either succeeded or failed. If the `Operation` succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to an AnalyticsDetails; if the `Operation` failed, its [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a google.rpc.Status. <br> <br>To call `AddGoogleAnalytics`, a member must be an Owner for the existing `FirebaseProject` and have the [`Edit` permission](https://support.google.com/analytics/answer/2884495) for the Google Analytics account. <br> <br>If a `FirebaseProject` already has Google Analytics enabled, and you call `AddGoogleAnalytics` using an `analyticsPropertyId` that's different from the currently associated property, then the call will fail. Analytics may have already been enabled in the Firebase console or by specifying `timeZone` and `regionCode` in the call to [`AddFirebase`](../../v1beta1/projects/addFirebase).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.addGoogleAnalytics({
+     *     // The parent `FirebaseProject` to link to an existing Google Analytics
+     *     // account, in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "analyticsAccountId": "my_analyticsAccountId",
+     *       //   "analyticsPropertyId": "my_analyticsPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.addGoogleAnalytics
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent `FirebaseProject` to link to an existing Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
-     * @param {().AddGoogleAnalyticsRequest} params.resource Request body data
+     * @param {().AddGoogleAnalyticsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     addGoogleAnalytics(
+      params: Params$Resource$Projects$Addgoogleanalytics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addGoogleAnalytics(
       params?: Params$Resource$Projects$Addgoogleanalytics,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    addGoogleAnalytics(
+      params: Params$Resource$Projects$Addgoogleanalytics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addGoogleAnalytics(
       params: Params$Resource$Projects$Addgoogleanalytics,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -957,12 +1257,17 @@ export namespace firebase_v1beta1 {
     addGoogleAnalytics(
       paramsOrCallback?:
         | Params$Resource$Projects$Addgoogleanalytics
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Addgoogleanalytics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -996,7 +1301,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1005,6 +1313,56 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.get
      * @desc Gets the FirebaseProject identified by the specified resource name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.get({
+     *     // The fully qualified resource name of the Project, in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     name: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "projectId": "my_projectId",
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "resources": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.get
      * @memberOf! ()
      *
@@ -1015,9 +1373,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FirebaseProject>;
+    get(
+      params: Params$Resource$Projects$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Get,
       options: MethodOptions | BodyResponseCallback<Schema$FirebaseProject>,
@@ -1031,12 +1398,17 @@ export namespace firebase_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Get
-        | BodyResponseCallback<Schema$FirebaseProject>,
+        | BodyResponseCallback<Schema$FirebaseProject>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FirebaseProject>,
-      callback?: BodyResponseCallback<Schema$FirebaseProject>
-    ): void | GaxiosPromise<Schema$FirebaseProject> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FirebaseProject>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FirebaseProject>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FirebaseProject> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1066,7 +1438,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FirebaseProject>(parameters, callback);
+        createAPIRequest<Schema$FirebaseProject>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FirebaseProject>(parameters);
       }
@@ -1075,6 +1450,55 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.getAdminSdkConfig
      * @desc Gets the configuration artifact used by servers to simplify initialization. <br> <br>Typically, this configuration is used with the Firebase Admin SDK [initializeApp](https://firebase.google.com/docs/admin/setup#initialize_the_sdk) command.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.getAdminSdkConfig({
+     *     // The fully qualified resource name of the Project, in the format:
+     *     // <br><code>projects/<var>projectId</var>/adminSdkConfig</code>
+     *     name: 'projects/my-project/adminSdkConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "databaseURL": "my_databaseURL",
+     *   //   "locationId": "my_locationId",
+     *   //   "projectId": "my_projectId",
+     *   //   "storageBucket": "my_storageBucket"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.getAdminSdkConfig
      * @memberOf! ()
      *
@@ -1085,9 +1509,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     getAdminSdkConfig(
+      params: Params$Resource$Projects$Getadminsdkconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAdminSdkConfig(
       params?: Params$Resource$Projects$Getadminsdkconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdminSdkConfig>;
+    getAdminSdkConfig(
+      params: Params$Resource$Projects$Getadminsdkconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAdminSdkConfig(
       params: Params$Resource$Projects$Getadminsdkconfig,
       options: MethodOptions | BodyResponseCallback<Schema$AdminSdkConfig>,
@@ -1103,12 +1536,17 @@ export namespace firebase_v1beta1 {
     getAdminSdkConfig(
       paramsOrCallback?:
         | Params$Resource$Projects$Getadminsdkconfig
-        | BodyResponseCallback<Schema$AdminSdkConfig>,
+        | BodyResponseCallback<Schema$AdminSdkConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AdminSdkConfig>,
-      callback?: BodyResponseCallback<Schema$AdminSdkConfig>
-    ): void | GaxiosPromise<Schema$AdminSdkConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdminSdkConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdminSdkConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdminSdkConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getadminsdkconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1139,7 +1577,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdminSdkConfig>(parameters, callback);
+        createAPIRequest<Schema$AdminSdkConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdminSdkConfig>(parameters);
       }
@@ -1148,6 +1589,53 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.getAnalyticsDetails
      * @desc Gets the Google Analytics details currently associated with a FirebaseProject. <br> <br>If the `FirebaseProject` is not yet linked to Google Analytics, then the response to `GetAnalyticsDetails` is NOT_FOUND.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.getAnalyticsDetails({
+     *     // The fully qualified resource name, in the format:
+     *     // <br><code>projects/<var>projectId</var>/analyticsDetails</code>
+     *     name: 'projects/my-project/analyticsDetails',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "analyticsProperty": {},
+     *   //   "streamMappings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.getAnalyticsDetails
      * @memberOf! ()
      *
@@ -1158,9 +1646,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     getAnalyticsDetails(
+      params: Params$Resource$Projects$Getanalyticsdetails,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAnalyticsDetails(
       params?: Params$Resource$Projects$Getanalyticsdetails,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnalyticsDetails>;
+    getAnalyticsDetails(
+      params: Params$Resource$Projects$Getanalyticsdetails,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAnalyticsDetails(
       params: Params$Resource$Projects$Getanalyticsdetails,
       options: MethodOptions | BodyResponseCallback<Schema$AnalyticsDetails>,
@@ -1176,12 +1673,17 @@ export namespace firebase_v1beta1 {
     getAnalyticsDetails(
       paramsOrCallback?:
         | Params$Resource$Projects$Getanalyticsdetails
-        | BodyResponseCallback<Schema$AnalyticsDetails>,
+        | BodyResponseCallback<Schema$AnalyticsDetails>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AnalyticsDetails>,
-      callback?: BodyResponseCallback<Schema$AnalyticsDetails>
-    ): void | GaxiosPromise<Schema$AnalyticsDetails> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyticsDetails>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyticsDetails>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AnalyticsDetails> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getanalyticsdetails;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1212,7 +1714,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AnalyticsDetails>(parameters, callback);
+        createAPIRequest<Schema$AnalyticsDetails>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AnalyticsDetails>(parameters);
       }
@@ -1221,6 +1726,61 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.list
      * @desc Lists each FirebaseProject accessible to the caller. <br> <br>The elements are returned in no particular order, but they will be a consistent view of the Projects when additional requests are made with a `pageToken`. <br> <br>This method is eventually consistent with Project mutations, which means newly provisioned Projects and recent modifications to existing Projects might not be reflected in the set of Projects. The list will include only ACTIVE Projects. <br> <br>Use GetFirebaseProject for consistent reads as well as for additional Project details.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.list({
+     *     // The maximum number of Projects to return in the response.
+     *     // <br>
+     *     // <br>The server may return fewer than this at its discretion.
+     *     // If no value is specified (or too large a value is specified), the server
+     *     // will impose its own limit.
+     *     // <br>
+     *     // <br>This value cannot be negative.
+     *     pageSize: 'placeholder-value',
+     *     // Token returned from a previous call to `ListFirebaseProjects` indicating
+     *     // where in the set of Projects to resume listing.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.list
      * @memberOf! ()
      *
@@ -1232,9 +1792,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListFirebaseProjectsResponse>;
+    list(
+      params: Params$Resource$Projects$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$List,
       options:
@@ -1252,12 +1821,20 @@ export namespace firebase_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$List
-        | BodyResponseCallback<Schema$ListFirebaseProjectsResponse>,
+        | BodyResponseCallback<Schema$ListFirebaseProjectsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListFirebaseProjectsResponse>,
-      callback?: BodyResponseCallback<Schema$ListFirebaseProjectsResponse>
-    ): void | GaxiosPromise<Schema$ListFirebaseProjectsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFirebaseProjectsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFirebaseProjectsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFirebaseProjectsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1289,7 +1866,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListFirebaseProjectsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListFirebaseProjectsResponse>(
@@ -1301,21 +1878,96 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.patch
      * @desc Updates the attributes of the FirebaseProject identified by the specified resource name. <br> <br>All [query parameters](#query-parameters) are required.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.patch({
+     *     // The fully qualified resource name of the Project, in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     name: 'projects/my-project',
+     *     // Specifies which fields to update.
+     *     // <br>
+     *     // <br>If this list is empty, then no state will be updated.
+     *     // <br>Note that the fields `name`, `project_id`, and `project_number` are all
+     *     // immutable.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "projectNumber": "my_projectNumber",
+     *       //   "resources": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "projectId": "my_projectId",
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "resources": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The fully qualified resource name of the Project, in the format: <br><code>projects/<var>projectId</var></code>
      * @param {string=} params.updateMask Specifies which fields to update. <br> <br>If this list is empty, then no state will be updated. <br>Note that the fields `name`, `project_id`, and `project_number` are all immutable.
-     * @param {().FirebaseProject} params.resource Request body data
+     * @param {().FirebaseProject} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FirebaseProject>;
+    patch(
+      params: Params$Resource$Projects$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$FirebaseProject>,
@@ -1329,12 +1981,17 @@ export namespace firebase_v1beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Patch
-        | BodyResponseCallback<Schema$FirebaseProject>,
+        | BodyResponseCallback<Schema$FirebaseProject>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FirebaseProject>,
-      callback?: BodyResponseCallback<Schema$FirebaseProject>
-    ): void | GaxiosPromise<Schema$FirebaseProject> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FirebaseProject>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FirebaseProject>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FirebaseProject> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1364,7 +2021,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FirebaseProject>(parameters, callback);
+        createAPIRequest<Schema$FirebaseProject>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FirebaseProject>(parameters);
       }
@@ -1372,21 +2032,81 @@ export namespace firebase_v1beta1 {
 
     /**
      * firebase.projects.removeAnalytics
-     * @desc Unlinks the specified `FirebaseProject` from its Google Analytics account. <br> <br>This call removes the association of the specified `FirebaseProject` with its current Google Analytics property. However, this call does not delete the Google Analytics resources, such as the Google Analytics property or any data streams. <br> <br>These resources may be re-associated later to the `FirebaseProject` by calling [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) and specifying the same `analyticsPropertyId`. <br> <br>To call `RemoveAnalytics`, a member must be an Owner for the `FirebaseProject`.
+     * @desc Unlinks the specified `FirebaseProject` from its Google Analytics account. <br> <br>This call removes the association of the specified `FirebaseProject` with its current Google Analytics property. However, this call does not delete the Google Analytics resources, such as the Google Analytics property or any data streams. <br> <br>These resources may be re-associated later to the `FirebaseProject` by calling [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) and specifying the same `analyticsPropertyId`. For Android Apps and iOS Apps, this call re-links data streams with their corresponding apps. However, for Web Apps, this call provisions a <em>new</em> data stream for each Web App. <br> <br>To call `RemoveAnalytics`, a member must be an Owner for the `FirebaseProject`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.removeAnalytics({
+     *     // The parent `FirebaseProject` to unlink from its Google Analytics account,
+     *     // in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "analyticsPropertyId": "my_analyticsPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.removeAnalytics
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent `FirebaseProject` to unlink from its Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
-     * @param {().RemoveAnalyticsRequest} params.resource Request body data
+     * @param {().RemoveAnalyticsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     removeAnalytics(
+      params: Params$Resource$Projects$Removeanalytics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeAnalytics(
       params?: Params$Resource$Projects$Removeanalytics,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    removeAnalytics(
+      params: Params$Resource$Projects$Removeanalytics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     removeAnalytics(
       params: Params$Resource$Projects$Removeanalytics,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1400,10 +2120,17 @@ export namespace firebase_v1beta1 {
     removeAnalytics(
       paramsOrCallback?:
         | Params$Resource$Projects$Removeanalytics
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Removeanalytics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1437,7 +2164,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1446,6 +2176,64 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.searchApps
      * @desc A convenience method that lists all available Apps for the specified FirebaseProject. <br> <br>Typically, interaction with an App should be done using the platform-specific service, but some tool use-cases require a summary of all known Apps (such as for App selector interfaces).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.searchApps({
+     *     // The maximum number of Apps to return in the response.
+     *     // <br>
+     *     // <br>The server may return fewer than this value at its discretion.
+     *     // If no value is specified (or too large a value is specified), then the
+     *     // server will impose its own limit.
+     *     // <br>
+     *     // <br>This value cannot be negative.
+     *     pageSize: 'placeholder-value',
+     *     // Token returned from a previous call to `SearchFirebaseApps` indicating
+     *     // where in the set of Apps to resume listing.
+     *     pageToken: 'placeholder-value',
+     *     // The parent Project for which to list Apps, in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apps": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.searchApps
      * @memberOf! ()
      *
@@ -1458,9 +2246,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     searchApps(
+      params: Params$Resource$Projects$Searchapps,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchApps(
       params?: Params$Resource$Projects$Searchapps,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchFirebaseAppsResponse>;
+    searchApps(
+      params: Params$Resource$Projects$Searchapps,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     searchApps(
       params: Params$Resource$Projects$Searchapps,
       options:
@@ -1478,12 +2275,20 @@ export namespace firebase_v1beta1 {
     searchApps(
       paramsOrCallback?:
         | Params$Resource$Projects$Searchapps
-        | BodyResponseCallback<Schema$SearchFirebaseAppsResponse>,
+        | BodyResponseCallback<Schema$SearchFirebaseAppsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchFirebaseAppsResponse>,
-      callback?: BodyResponseCallback<Schema$SearchFirebaseAppsResponse>
-    ): void | GaxiosPromise<Schema$SearchFirebaseAppsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchFirebaseAppsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchFirebaseAppsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchFirebaseAppsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Searchapps;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1519,7 +2324,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$SearchFirebaseAppsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SearchFirebaseAppsResponse>(parameters);
@@ -1529,11 +2334,6 @@ export namespace firebase_v1beta1 {
 
   export interface Params$Resource$Projects$Addfirebase
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the GCP `Project` to which Firebase resources will be added, in the format: <br><code>projects/<var>projectId</var></code> After calling `AddFirebase`, the [`projectId`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id) of the GCP `Project` is also the `projectId` of the FirebaseProject.
      */
@@ -1547,11 +2347,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Addgoogleanalytics
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The parent `FirebaseProject` to link to an existing Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
@@ -1563,22 +2358,12 @@ export namespace firebase_v1beta1 {
   }
   export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fully qualified resource name of the Project, in the format: <br><code>projects/<var>projectId</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Getadminsdkconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The fully qualified resource name of the Project, in the format: <br><code>projects/<var>projectId</var>/adminSdkConfig</code>
      */
@@ -1587,21 +2372,11 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Getanalyticsdetails
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fully qualified resource name, in the format: <br><code>projects/<var>projectId</var>/analyticsDetails</code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of Projects to return in the response. <br> <br>The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), the server will impose its own limit. <br> <br>This value cannot be negative.
      */
@@ -1612,11 +2387,6 @@ export namespace firebase_v1beta1 {
     pageToken?: string;
   }
   export interface Params$Resource$Projects$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The fully qualified resource name of the Project, in the format: <br><code>projects/<var>projectId</var></code>
      */
@@ -1634,11 +2404,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Removeanalytics
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The parent `FirebaseProject` to unlink from its Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
@@ -1650,11 +2415,6 @@ export namespace firebase_v1beta1 {
   }
   export interface Params$Resource$Projects$Searchapps
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of Apps to return in the response. <br> <br>The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. <br> <br>This value cannot be negative.
      */
@@ -1680,20 +2440,89 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.androidApps.create
      * @desc Requests that a new AndroidApp be created. <br> <br>The result of this call is an `Operation` which can be used to track the provisioning process. The `Operation` is automatically deleted after completion, so there is no need to call `DeleteOperation`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.androidApps.create({
+     *     // The parent Project in which to create an App, in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appId": "my_appId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "packageName": "my_packageName",
+     *       //   "projectId": "my_projectId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.androidApps.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
-     * @param {().AndroidApp} params.resource Request body data
+     * @param {string} params.parent The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {().AndroidApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Androidapps$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Androidapps$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Androidapps$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Androidapps$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1707,12 +2536,17 @@ export namespace firebase_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Androidapps$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Androidapps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1746,7 +2580,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1755,6 +2592,59 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.androidApps.get
      * @desc Gets the AndroidApp identified by the specified resource name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.androidApps.get({
+     *     // The fully qualified resource name of the App, in the format:
+     *     // <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>
+     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // from Sub-Collection access pattern may be used here, in the format:
+     *     // <br><code>projects/-/androidApps/<var>appId</var></code>
+     *     name: 'projects/my-project/androidApps/my-androidApp',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appId": "my_appId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "packageName": "my_packageName",
+     *   //   "projectId": "my_projectId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.androidApps.get
      * @memberOf! ()
      *
@@ -1765,9 +2655,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Androidapps$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Androidapps$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AndroidApp>;
+    get(
+      params: Params$Resource$Projects$Androidapps$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Androidapps$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AndroidApp>,
@@ -1781,12 +2680,17 @@ export namespace firebase_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Androidapps$Get
-        | BodyResponseCallback<Schema$AndroidApp>,
+        | BodyResponseCallback<Schema$AndroidApp>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AndroidApp>,
-      callback?: BodyResponseCallback<Schema$AndroidApp>
-    ): void | GaxiosPromise<Schema$AndroidApp> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AndroidApp>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AndroidApp>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AndroidApp> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Androidapps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1817,7 +2721,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AndroidApp>(parameters, callback);
+        createAPIRequest<Schema$AndroidApp>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AndroidApp>(parameters);
       }
@@ -1826,6 +2733,56 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.androidApps.getConfig
      * @desc Gets the configuration artifact associated with the specified AndroidApp.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.androidApps.getConfig({
+     *     // The resource name of the App configuration to download, in the format:
+     *     // <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/config</code>
+     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // from Sub-Collection access pattern may be used here, in the format:
+     *     // <br><code>projects/-/androidApps/<var>appId</var></code>
+     *     name: 'projects/my-project/androidApps/my-androidApp/config',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configFileContents": "my_configFileContents",
+     *   //   "configFilename": "my_configFilename"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.androidApps.getConfig
      * @memberOf! ()
      *
@@ -1836,9 +2793,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     getConfig(
+      params: Params$Resource$Projects$Androidapps$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
       params?: Params$Resource$Projects$Androidapps$Getconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AndroidAppConfig>;
+    getConfig(
+      params: Params$Resource$Projects$Androidapps$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getConfig(
       params: Params$Resource$Projects$Androidapps$Getconfig,
       options: MethodOptions | BodyResponseCallback<Schema$AndroidAppConfig>,
@@ -1852,12 +2818,17 @@ export namespace firebase_v1beta1 {
     getConfig(
       paramsOrCallback?:
         | Params$Resource$Projects$Androidapps$Getconfig
-        | BodyResponseCallback<Schema$AndroidAppConfig>,
+        | BodyResponseCallback<Schema$AndroidAppConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AndroidAppConfig>,
-      callback?: BodyResponseCallback<Schema$AndroidAppConfig>
-    ): void | GaxiosPromise<Schema$AndroidAppConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AndroidAppConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AndroidAppConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AndroidAppConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Androidapps$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1888,7 +2859,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AndroidAppConfig>(parameters, callback);
+        createAPIRequest<Schema$AndroidAppConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AndroidAppConfig>(parameters);
       }
@@ -1897,6 +2871,62 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.androidApps.list
      * @desc Lists each AndroidApp associated with the specified parent Project. <br> <br>The elements are returned in no particular order, but will be a consistent view of the Apps when additional requests are made with a `pageToken`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.androidApps.list({
+     *     // The maximum number of Apps to return in the response.
+     *     // <br>
+     *     // <br>The server may return fewer than this at its discretion.
+     *     // If no value is specified (or too large a value is specified), then the
+     *     // server will impose its own limit.
+     *     pageSize: 'placeholder-value',
+     *     // Token returned from a previous call to `ListAndroidApps` indicating where
+     *     // in the set of Apps to resume listing.
+     *     pageToken: 'placeholder-value',
+     *     // The parent Project for which to list Apps, in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apps": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.androidApps.list
      * @memberOf! ()
      *
@@ -1909,9 +2939,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Androidapps$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Androidapps$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAndroidAppsResponse>;
+    list(
+      params: Params$Resource$Projects$Androidapps$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Androidapps$List,
       options:
@@ -1927,12 +2966,20 @@ export namespace firebase_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Androidapps$List
-        | BodyResponseCallback<Schema$ListAndroidAppsResponse>,
+        | BodyResponseCallback<Schema$ListAndroidAppsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAndroidAppsResponse>,
-      callback?: BodyResponseCallback<Schema$ListAndroidAppsResponse>
-    ): void | GaxiosPromise<Schema$ListAndroidAppsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAndroidAppsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAndroidAppsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAndroidAppsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Androidapps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1966,7 +3013,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListAndroidAppsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListAndroidAppsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListAndroidAppsResponse>(parameters);
       }
@@ -1975,21 +3025,94 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.androidApps.patch
      * @desc Updates the attributes of the AndroidApp identified by the specified resource name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.androidApps.patch({
+     *     // The fully qualified resource name of the App, in the format:
+     *     // <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>
+     *     name: 'projects/my-project/androidApps/my-androidApp',
+     *     // Specifies which fields to update.
+     *     // <br>Note that the fields `name`, `appId`, `projectId`, and `packageName`
+     *     // are all immutable.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appId": "my_appId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "packageName": "my_packageName",
+     *       //   "projectId": "my_projectId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appId": "my_appId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "packageName": "my_packageName",
+     *   //   "projectId": "my_projectId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.androidApps.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>
      * @param {string=} params.updateMask Specifies which fields to update. <br>Note that the fields `name`, `appId`, `projectId`, and `packageName` are all immutable.
-     * @param {().AndroidApp} params.resource Request body data
+     * @param {().AndroidApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Androidapps$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Androidapps$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AndroidApp>;
+    patch(
+      params: Params$Resource$Projects$Androidapps$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Androidapps$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$AndroidApp>,
@@ -2003,12 +3126,17 @@ export namespace firebase_v1beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Androidapps$Patch
-        | BodyResponseCallback<Schema$AndroidApp>,
+        | BodyResponseCallback<Schema$AndroidApp>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AndroidApp>,
-      callback?: BodyResponseCallback<Schema$AndroidApp>
-    ): void | GaxiosPromise<Schema$AndroidApp> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AndroidApp>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AndroidApp>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AndroidApp> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Androidapps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2039,7 +3167,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AndroidApp>(parameters, callback);
+        createAPIRequest<Schema$AndroidApp>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AndroidApp>(parameters);
       }
@@ -2049,12 +3180,7 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Androidapps$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
 
@@ -2066,11 +3192,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Androidapps$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
      */
     name?: string;
@@ -2078,22 +3199,12 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Androidapps$Getconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the App configuration to download, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/config</code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Androidapps$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of Apps to return in the response. <br> <br>The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit.
      */
@@ -2109,11 +3220,6 @@ export namespace firebase_v1beta1 {
   }
   export interface Params$Resource$Projects$Androidapps$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>
      */
@@ -2138,20 +3244,88 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.androidApps.sha.create
      * @desc Adds a SHA certificate to the specified AndroidApp.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.androidApps.sha.create({
+     *     // The parent App to which a SHA certificate will be added, in the format:
+     *     // <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>
+     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // from Sub-Collection access pattern may be used here, in the format:
+     *     // <br><code>projects/-/androidApps/<var>appId</var></code>
+     *     parent: 'projects/my-project/androidApps/my-androidApp',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "certType": "my_certType",
+     *       //   "name": "my_name",
+     *       //   "shaHash": "my_shaHash"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certType": "my_certType",
+     *   //   "name": "my_name",
+     *   //   "shaHash": "my_shaHash"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.androidApps.sha.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent App to which a SHA certificate will be added, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
-     * @param {().ShaCertificate} params.resource Request body data
+     * @param {().ShaCertificate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Androidapps$Sha$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Androidapps$Sha$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ShaCertificate>;
+    create(
+      params: Params$Resource$Projects$Androidapps$Sha$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Androidapps$Sha$Create,
       options: MethodOptions | BodyResponseCallback<Schema$ShaCertificate>,
@@ -2165,12 +3339,17 @@ export namespace firebase_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Androidapps$Sha$Create
-        | BodyResponseCallback<Schema$ShaCertificate>,
+        | BodyResponseCallback<Schema$ShaCertificate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ShaCertificate>,
-      callback?: BodyResponseCallback<Schema$ShaCertificate>
-    ): void | GaxiosPromise<Schema$ShaCertificate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ShaCertificate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ShaCertificate>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ShaCertificate> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Androidapps$Sha$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2204,7 +3383,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ShaCertificate>(parameters, callback);
+        createAPIRequest<Schema$ShaCertificate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ShaCertificate>(parameters);
       }
@@ -2213,6 +3395,51 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.androidApps.sha.delete
      * @desc Removes a SHA certificate from the specified AndroidApp.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.androidApps.sha.delete({
+     *     // The fully qualified resource name of the `sha-key`, in the format:
+     *     // <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/sha/<var>shaId</var></code>
+     *     // <br>You can obtain the full name from the response of
+     *     // [`ListShaCertificates`](../projects.androidApps.sha/list) or the original
+     *     // [`CreateShaCertificate`](../projects.androidApps.sha/create).
+     *     name: 'projects/my-project/androidApps/my-androidApp/sha/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.androidApps.sha.delete
      * @memberOf! ()
      *
@@ -2223,9 +3450,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Androidapps$Sha$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Androidapps$Sha$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Androidapps$Sha$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Androidapps$Sha$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2239,10 +3475,17 @@ export namespace firebase_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Androidapps$Sha$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Androidapps$Sha$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2273,7 +3516,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2282,6 +3528,55 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.androidApps.sha.list
      * @desc Returns the list of SHA-1 and SHA-256 certificates for the specified AndroidApp.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.androidApps.sha.list({
+     *     // The parent App for which to list SHA certificates, in the format:
+     *     // <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>
+     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // from Sub-Collection access pattern may be used here, in the format:
+     *     // <br><code>projects/-/androidApps/<var>appId</var></code>
+     *     parent: 'projects/my-project/androidApps/my-androidApp',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificates": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.androidApps.sha.list
      * @memberOf! ()
      *
@@ -2292,9 +3587,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Androidapps$Sha$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Androidapps$Sha$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListShaCertificatesResponse>;
+    list(
+      params: Params$Resource$Projects$Androidapps$Sha$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Androidapps$Sha$List,
       options:
@@ -2312,12 +3616,20 @@ export namespace firebase_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Androidapps$Sha$List
-        | BodyResponseCallback<Schema$ListShaCertificatesResponse>,
+        | BodyResponseCallback<Schema$ListShaCertificatesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListShaCertificatesResponse>,
-      callback?: BodyResponseCallback<Schema$ListShaCertificatesResponse>
-    ): void | GaxiosPromise<Schema$ListShaCertificatesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListShaCertificatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListShaCertificatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListShaCertificatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Androidapps$Sha$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2353,7 +3665,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListShaCertificatesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListShaCertificatesResponse>(parameters);
@@ -2363,11 +3675,6 @@ export namespace firebase_v1beta1 {
 
   export interface Params$Resource$Projects$Androidapps$Sha$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The parent App to which a SHA certificate will be added, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
      */
@@ -2381,22 +3688,12 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Androidapps$Sha$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fully qualified resource name of the `sha-key`, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/sha/<var>shaId</var></code> <br>You can obtain the full name from the response of [`ListShaCertificates`](../projects.androidApps.sha/list) or the original [`CreateShaCertificate`](../projects.androidApps.sha/create).
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Androidapps$Sha$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The parent App for which to list SHA certificates, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
      */
@@ -2411,7 +3708,68 @@ export namespace firebase_v1beta1 {
 
     /**
      * firebase.projects.availableLocations.list
-     * @desc Returns a list of valid Google Cloud Platform (GCP) resource locations for the specified Project (including a FirebaseProject). <br> <br>The default GCP resource location of a project defines the geographical location where project resources, such as Cloud Firestore, will be provisioned by default. <br> <br>The returned list are the available [GCP resource locations](https://firebase.google.com/docs/projects/locations). <br> <br>This call checks for any location restrictions for the specified Project and, thus, might return a subset of all possible GCP resource locations. To list all GCP resource locations (regardless of any restrictions), call the endpoint without specifying a `projectId` (that is, `/v1beta1/{parent=projects/-}/listAvailableLocations`). <br> <br>To call `ListAvailableLocations` with a specified project, a member must be at minimum a Viewer of the project. Calls without a specified project do not require any specific project permissions.
+     * @desc Returns a list of valid Google Cloud Platform (GCP) resource locations for the specified Project (including a FirebaseProject). <br> <br>One of these locations can be selected as the Project's [_default_ GCP resource location](https://firebase.google.com/docs/projects/locations), which is the geographical location where project resources, such as Cloud Firestore, will be provisioned by default. However, if the default GCP resource location has already been set for the Project, then this setting cannot be changed. <br> <br>This call checks for any possible [location restrictions](https://cloud.google.com/resource-manager/docs/organization-policy/defining-locations) for the specified Project and, thus, might return a subset of all possible GCP resource locations. To list all GCP resource locations (regardless of any restrictions), call the endpoint without specifying a `projectId` (that is, `/v1beta1/{parent=projects/-}/listAvailableLocations`). <br> <br>To call `ListAvailableLocations` with a specified project, a member must be at minimum a Viewer of the project. Calls without a specified project do not require any specific project permissions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.availableLocations.list({
+     *     // The maximum number of locations to return in the response.
+     *     // <br>
+     *     // <br>The server may return fewer than this value at its discretion.
+     *     // If no value is specified (or too large a value is specified), then the
+     *     // server will impose its own limit.
+     *     // <br>
+     *     // <br>This value cannot be negative.
+     *     pageSize: 'placeholder-value',
+     *     // Token returned from a previous call to `ListAvailableLocations` indicating
+     *     // where in the list of locations to resume listing.
+     *     pageToken: 'placeholder-value',
+     *     // The Project for which to list GCP resource locations, in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br>If no project is specified (that is, `projects/-`), the returned list
+     *     // does not take into account org-specific or project-specific location
+     *     // restrictions.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.availableLocations.list
      * @memberOf! ()
      *
@@ -2424,9 +3782,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Availablelocations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Availablelocations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAvailableLocationsResponse>;
+    list(
+      params: Params$Resource$Projects$Availablelocations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Availablelocations$List,
       options:
@@ -2444,12 +3811,20 @@ export namespace firebase_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Availablelocations$List
-        | BodyResponseCallback<Schema$ListAvailableLocationsResponse>,
+        | BodyResponseCallback<Schema$ListAvailableLocationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAvailableLocationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListAvailableLocationsResponse>
-    ): void | GaxiosPromise<Schema$ListAvailableLocationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAvailableLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAvailableLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAvailableLocationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Availablelocations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2485,7 +3860,7 @@ export namespace firebase_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListAvailableLocationsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListAvailableLocationsResponse>(
@@ -2497,11 +3872,6 @@ export namespace firebase_v1beta1 {
 
   export interface Params$Resource$Projects$Availablelocations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of locations to return in the response. <br> <br>The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. <br> <br>This value cannot be negative.
      */
@@ -2525,20 +3895,86 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.defaultLocation.finalize
      * @desc Sets the default Google Cloud Platform (GCP) resource location for the specified FirebaseProject. <br> <br>This method creates an App Engine application with a [default Cloud Storage bucket](https://cloud.google.com/appengine/docs/standard/python/googlecloudstorageclient/setting-up-cloud-storage#activating_a_cloud_storage_bucket), located in the specified [`location_id`](#body.request_body.FIELDS.location_id). This location must be one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations). <br> <br>After the default GCP resource location is finalized, or if it was already set, it cannot be changed. The default GCP resource location for the specified FirebaseProject might already be set because either the GCP `Project` already has an App Engine application or `FinalizeDefaultLocation` was previously called with a specified `location_id`. Any new calls to `FinalizeDefaultLocation` with a <em>different</em> specified `location_id` will return a 409 error. <br> <br>The result of this call is an [`Operation`](../../v1beta1/operations), which can be used to track the provisioning process. The [`response`](../../v1beta1/operations#Operation.FIELDS.response) type of the `Operation` is google.protobuf.Empty. <br> <br>The `Operation` can be polled by its `name` using GetOperation until `done` is true. When `done` is true, the `Operation` has either succeeded or failed. If the `Operation` has succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) will be set to a google.protobuf.Empty; if the `Operation` has failed, its `error` will be set to a google.rpc.Status. The `Operation` is automatically deleted after completion, so there is no need to call DeleteOperation. <br> <br>All fields listed in the [request body](#request-body) are required. <br> <br>To call `FinalizeDefaultLocation`, a member must be an Owner of the project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.defaultLocation.finalize({
+     *     // The resource name of the Project for which the default GCP resource
+     *     // location will be set, in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "locationId": "my_locationId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.defaultLocation.finalize
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The resource name of the Project for which the default GCP resource location will be set, in the format: <br><code>projects/<var>projectId</var></code>
-     * @param {().FinalizeDefaultLocationRequest} params.resource Request body data
+     * @param {().FinalizeDefaultLocationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     finalize(
+      params: Params$Resource$Projects$Defaultlocation$Finalize,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    finalize(
       params?: Params$Resource$Projects$Defaultlocation$Finalize,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    finalize(
+      params: Params$Resource$Projects$Defaultlocation$Finalize,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     finalize(
       params: Params$Resource$Projects$Defaultlocation$Finalize,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2552,12 +3988,17 @@ export namespace firebase_v1beta1 {
     finalize(
       paramsOrCallback?:
         | Params$Resource$Projects$Defaultlocation$Finalize
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Defaultlocation$Finalize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2590,7 +4031,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2599,11 +4043,6 @@ export namespace firebase_v1beta1 {
 
   export interface Params$Resource$Projects$Defaultlocation$Finalize
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the Project for which the default GCP resource location will be set, in the format: <br><code>projects/<var>projectId</var></code>
      */
@@ -2624,20 +4063,90 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.iosApps.create
      * @desc Requests that a new IosApp be created. <br> <br>The result of this call is an `Operation` which can be used to track the provisioning process. The `Operation` is automatically deleted after completion, so there is no need to call `DeleteOperation`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.iosApps.create({
+     *     // The parent Project in which to create an App, in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appId": "my_appId",
+     *       //   "appStoreId": "my_appStoreId",
+     *       //   "bundleId": "my_bundleId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.iosApps.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
-     * @param {().IosApp} params.resource Request body data
+     * @param {string} params.parent The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {().IosApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Iosapps$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Iosapps$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Iosapps$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Iosapps$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2651,12 +4160,17 @@ export namespace firebase_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Iosapps$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Iosapps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2690,7 +4204,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2699,6 +4216,60 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.iosApps.get
      * @desc Gets the IosApp identified by the specified resource name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.iosApps.get({
+     *     // The fully qualified resource name of the App, in the format:
+     *     // <code>projects/<var>projectId</var>/iosApps/<var>appId</var></code>
+     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // from Sub-Collection access pattern may be used here, in the format:
+     *     // <br><code>projects/-/iosApps/<var>appId</var></code>
+     *     name: 'projects/my-project/iosApps/my-iosApp',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appId": "my_appId",
+     *   //   "appStoreId": "my_appStoreId",
+     *   //   "bundleId": "my_bundleId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "projectId": "my_projectId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.iosApps.get
      * @memberOf! ()
      *
@@ -2709,9 +4280,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Iosapps$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Iosapps$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IosApp>;
+    get(
+      params: Params$Resource$Projects$Iosapps$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Iosapps$Get,
       options: MethodOptions | BodyResponseCallback<Schema$IosApp>,
@@ -2725,10 +4305,17 @@ export namespace firebase_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Iosapps$Get
-        | BodyResponseCallback<Schema$IosApp>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$IosApp>,
-      callback?: BodyResponseCallback<Schema$IosApp>
-    ): void | GaxiosPromise<Schema$IosApp> {
+        | BodyResponseCallback<Schema$IosApp>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IosApp>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IosApp>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$IosApp> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Iosapps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2759,7 +4346,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$IosApp>(parameters, callback);
+        createAPIRequest<Schema$IosApp>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$IosApp>(parameters);
       }
@@ -2768,6 +4358,56 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.iosApps.getConfig
      * @desc Gets the configuration artifact associated with the specified IosApp.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.iosApps.getConfig({
+     *     // The resource name of the App configuration to download, in the format:
+     *     // <br><code>projects/<var>projectId</var>/iosApps/<var>appId</var>/config</code>
+     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // from Sub-Collection access pattern may be used here, in the format:
+     *     // <br><code>projects/-/iosApps/<var>appId</var></code>
+     *     name: 'projects/my-project/iosApps/my-iosApp/config',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configFileContents": "my_configFileContents",
+     *   //   "configFilename": "my_configFilename"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.iosApps.getConfig
      * @memberOf! ()
      *
@@ -2778,9 +4418,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     getConfig(
+      params: Params$Resource$Projects$Iosapps$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
       params?: Params$Resource$Projects$Iosapps$Getconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IosAppConfig>;
+    getConfig(
+      params: Params$Resource$Projects$Iosapps$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getConfig(
       params: Params$Resource$Projects$Iosapps$Getconfig,
       options: MethodOptions | BodyResponseCallback<Schema$IosAppConfig>,
@@ -2794,12 +4443,17 @@ export namespace firebase_v1beta1 {
     getConfig(
       paramsOrCallback?:
         | Params$Resource$Projects$Iosapps$Getconfig
-        | BodyResponseCallback<Schema$IosAppConfig>,
+        | BodyResponseCallback<Schema$IosAppConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$IosAppConfig>,
-      callback?: BodyResponseCallback<Schema$IosAppConfig>
-    ): void | GaxiosPromise<Schema$IosAppConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IosAppConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IosAppConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$IosAppConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Iosapps$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2830,7 +4484,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$IosAppConfig>(parameters, callback);
+        createAPIRequest<Schema$IosAppConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$IosAppConfig>(parameters);
       }
@@ -2839,6 +4496,62 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.iosApps.list
      * @desc Lists each IosApp associated with the specified parent Project. <br> <br>The elements are returned in no particular order, but will be a consistent view of the Apps when additional requests are made with a `pageToken`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.iosApps.list({
+     *     // The maximum number of Apps to return in the response.
+     *     // <br>
+     *     // <br>The server may return fewer than this at its discretion.
+     *     // If no value is specified (or too large a value is specified), the server
+     *     // will impose its own limit.
+     *     pageSize: 'placeholder-value',
+     *     // Token returned from a previous call to `ListIosApps` indicating where in
+     *     // the set of Apps to resume listing.
+     *     pageToken: 'placeholder-value',
+     *     // The parent Project for which to list Apps, in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apps": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.iosApps.list
      * @memberOf! ()
      *
@@ -2851,9 +4564,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Iosapps$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Iosapps$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListIosAppsResponse>;
+    list(
+      params: Params$Resource$Projects$Iosapps$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Iosapps$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListIosAppsResponse>,
@@ -2867,12 +4589,20 @@ export namespace firebase_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Iosapps$List
-        | BodyResponseCallback<Schema$ListIosAppsResponse>,
+        | BodyResponseCallback<Schema$ListIosAppsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListIosAppsResponse>,
-      callback?: BodyResponseCallback<Schema$ListIosAppsResponse>
-    ): void | GaxiosPromise<Schema$ListIosAppsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListIosAppsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListIosAppsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListIosAppsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Iosapps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2906,7 +4636,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListIosAppsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListIosAppsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListIosAppsResponse>(parameters);
       }
@@ -2915,21 +4648,96 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.iosApps.patch
      * @desc Updates the attributes of the IosApp identified by the specified resource name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.iosApps.patch({
+     *     // The fully qualified resource name of the App, in the format:
+     *     // <br><code>projects/<var>projectId</var>/iosApps/<var>appId</var></code>
+     *     name: 'projects/my-project/iosApps/my-iosApp',
+     *     // Specifies which fields to update.
+     *     // <br>Note that the fields `name`, `appId`, `projectId`, and `bundleId`
+     *     // are all immutable.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appId": "my_appId",
+     *       //   "appStoreId": "my_appStoreId",
+     *       //   "bundleId": "my_bundleId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appId": "my_appId",
+     *   //   "appStoreId": "my_appStoreId",
+     *   //   "bundleId": "my_bundleId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "projectId": "my_projectId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.iosApps.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/iosApps/<var>appId</var></code>
      * @param {string=} params.updateMask Specifies which fields to update. <br>Note that the fields `name`, `appId`, `projectId`, and `bundleId` are all immutable.
-     * @param {().IosApp} params.resource Request body data
+     * @param {().IosApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Iosapps$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Iosapps$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IosApp>;
+    patch(
+      params: Params$Resource$Projects$Iosapps$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Iosapps$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$IosApp>,
@@ -2943,10 +4751,17 @@ export namespace firebase_v1beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Iosapps$Patch
-        | BodyResponseCallback<Schema$IosApp>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$IosApp>,
-      callback?: BodyResponseCallback<Schema$IosApp>
-    ): void | GaxiosPromise<Schema$IosApp> {
+        | BodyResponseCallback<Schema$IosApp>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IosApp>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IosApp>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$IosApp> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Iosapps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2977,7 +4792,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$IosApp>(parameters, callback);
+        createAPIRequest<Schema$IosApp>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$IosApp>(parameters);
       }
@@ -2987,12 +4805,7 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Iosapps$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
 
@@ -3004,11 +4817,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Iosapps$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fully qualified resource name of the App, in the format: <code>projects/<var>projectId</var>/iosApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/iosApps/<var>appId</var></code>
      */
     name?: string;
@@ -3016,22 +4824,12 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Iosapps$Getconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the App configuration to download, in the format: <br><code>projects/<var>projectId</var>/iosApps/<var>appId</var>/config</code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/iosApps/<var>appId</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Iosapps$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of Apps to return in the response. <br> <br>The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.
      */
@@ -3047,11 +4845,6 @@ export namespace firebase_v1beta1 {
   }
   export interface Params$Resource$Projects$Iosapps$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/iosApps/<var>appId</var></code>
      */
@@ -3076,20 +4869,89 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.webApps.create
      * @desc Requests that a new WebApp be created. <br> <br>The result of this call is an `Operation` which can be used to track the provisioning process. The `Operation` is automatically deleted after completion, so there is no need to call `DeleteOperation`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.webApps.create({
+     *     // The parent Project in which to create an App, in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appId": "my_appId",
+     *       //   "appUrls": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.webApps.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
-     * @param {().WebApp} params.resource Request body data
+     * @param {string} params.parent The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {().WebApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Webapps$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Webapps$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Webapps$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Webapps$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3103,12 +4965,17 @@ export namespace firebase_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Webapps$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Webapps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3142,7 +5009,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3151,6 +5021,59 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.webApps.get
      * @desc Gets the WebApp identified by the specified resource name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.webApps.get({
+     *     // The fully qualified resource name of the App, in the format:
+     *     // <br><code>projects/<var>projectId</var>/webApps/<var>appId</var></code>
+     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // from Sub-Collection access pattern may be used here, in the format:
+     *     // <br><code>projects/-/webApps/<var>appId</var></code>
+     *     name: 'projects/my-project/webApps/my-webApp',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appId": "my_appId",
+     *   //   "appUrls": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "projectId": "my_projectId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.webApps.get
      * @memberOf! ()
      *
@@ -3161,9 +5084,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Webapps$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Webapps$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WebApp>;
+    get(
+      params: Params$Resource$Projects$Webapps$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Webapps$Get,
       options: MethodOptions | BodyResponseCallback<Schema$WebApp>,
@@ -3177,10 +5109,17 @@ export namespace firebase_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Webapps$Get
-        | BodyResponseCallback<Schema$WebApp>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$WebApp>,
-      callback?: BodyResponseCallback<Schema$WebApp>
-    ): void | GaxiosPromise<Schema$WebApp> {
+        | BodyResponseCallback<Schema$WebApp>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WebApp>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WebApp>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WebApp> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Webapps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3211,7 +5150,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WebApp>(parameters, callback);
+        createAPIRequest<Schema$WebApp>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WebApp>(parameters);
       }
@@ -3220,6 +5162,63 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.webApps.getConfig
      * @desc Gets the configuration artifact associated with the specified WebApp.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.webApps.getConfig({
+     *     // The resource name of the App configuration to download, in the format:
+     *     // <br><code>projects/<var>projectId</var>/webApps/<var>appId</var>/config</code>
+     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // from Sub-Collection access pattern may be used here, in the format:
+     *     // <br><code>projects/-/webApps/<var>appId</var></code>
+     *     name: 'projects/my-project/webApps/my-webApp/config',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiKey": "my_apiKey",
+     *   //   "appId": "my_appId",
+     *   //   "authDomain": "my_authDomain",
+     *   //   "databaseURL": "my_databaseURL",
+     *   //   "locationId": "my_locationId",
+     *   //   "measurementId": "my_measurementId",
+     *   //   "messagingSenderId": "my_messagingSenderId",
+     *   //   "projectId": "my_projectId",
+     *   //   "storageBucket": "my_storageBucket"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.webApps.getConfig
      * @memberOf! ()
      *
@@ -3230,9 +5229,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     getConfig(
+      params: Params$Resource$Projects$Webapps$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
       params?: Params$Resource$Projects$Webapps$Getconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WebAppConfig>;
+    getConfig(
+      params: Params$Resource$Projects$Webapps$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getConfig(
       params: Params$Resource$Projects$Webapps$Getconfig,
       options: MethodOptions | BodyResponseCallback<Schema$WebAppConfig>,
@@ -3246,12 +5254,17 @@ export namespace firebase_v1beta1 {
     getConfig(
       paramsOrCallback?:
         | Params$Resource$Projects$Webapps$Getconfig
-        | BodyResponseCallback<Schema$WebAppConfig>,
+        | BodyResponseCallback<Schema$WebAppConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WebAppConfig>,
-      callback?: BodyResponseCallback<Schema$WebAppConfig>
-    ): void | GaxiosPromise<Schema$WebAppConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WebAppConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WebAppConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WebAppConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Webapps$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3282,7 +5295,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WebAppConfig>(parameters, callback);
+        createAPIRequest<Schema$WebAppConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WebAppConfig>(parameters);
       }
@@ -3291,6 +5307,62 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.webApps.list
      * @desc Lists each WebApp associated with the specified parent Project. <br> <br>The elements are returned in no particular order, but will be a consistent view of the Apps when additional requests are made with a `pageToken`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.webApps.list({
+     *     // The maximum number of Apps to return in the response.
+     *     // <br>
+     *     // <br>The server may return fewer than this value at its discretion.
+     *     // If no value is specified (or too large a value is specified), then the
+     *     // server will impose its own limit.
+     *     pageSize: 'placeholder-value',
+     *     // Token returned from a previous call to `ListWebApps` indicating where in
+     *     // the set of Apps to resume listing.
+     *     pageToken: 'placeholder-value',
+     *     // The parent Project for which to list Apps, in the format:
+     *     // <br><code>projects/<var>projectId</var></code>
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apps": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.webApps.list
      * @memberOf! ()
      *
@@ -3303,9 +5375,18 @@ export namespace firebase_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Webapps$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Webapps$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListWebAppsResponse>;
+    list(
+      params: Params$Resource$Projects$Webapps$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Webapps$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListWebAppsResponse>,
@@ -3319,12 +5400,20 @@ export namespace firebase_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Webapps$List
-        | BodyResponseCallback<Schema$ListWebAppsResponse>,
+        | BodyResponseCallback<Schema$ListWebAppsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListWebAppsResponse>,
-      callback?: BodyResponseCallback<Schema$ListWebAppsResponse>
-    ): void | GaxiosPromise<Schema$ListWebAppsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWebAppsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWebAppsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWebAppsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Webapps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3358,7 +5447,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListWebAppsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListWebAppsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListWebAppsResponse>(parameters);
       }
@@ -3367,21 +5459,94 @@ export namespace firebase_v1beta1 {
     /**
      * firebase.projects.webApps.patch
      * @desc Updates the attributes of the WebApp identified by the specified resource name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.webApps.patch({
+     *     // The fully qualified resource name of the App, for example:
+     *     // <br><code>projects/<var>projectId</var>/webApps/<var>appId</var></code>
+     *     name: 'projects/my-project/webApps/my-webApp',
+     *     // Specifies which fields to update.
+     *     // <br>Note that the fields `name`, `appId`, and `projectId` are all
+     *     // immutable.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appId": "my_appId",
+     *       //   "appUrls": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appId": "my_appId",
+     *   //   "appUrls": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "projectId": "my_projectId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias firebase.projects.webApps.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The fully qualified resource name of the App, for example: <br><code>projects/<var>projectId</var>/webApps/<var>appId</var></code>
      * @param {string=} params.updateMask Specifies which fields to update. <br>Note that the fields `name`, `appId`, and `projectId` are all immutable.
-     * @param {().WebApp} params.resource Request body data
+     * @param {().WebApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Webapps$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Webapps$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WebApp>;
+    patch(
+      params: Params$Resource$Projects$Webapps$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Webapps$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$WebApp>,
@@ -3395,10 +5560,17 @@ export namespace firebase_v1beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Webapps$Patch
-        | BodyResponseCallback<Schema$WebApp>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$WebApp>,
-      callback?: BodyResponseCallback<Schema$WebApp>
-    ): void | GaxiosPromise<Schema$WebApp> {
+        | BodyResponseCallback<Schema$WebApp>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WebApp>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WebApp>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WebApp> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Webapps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3429,7 +5601,10 @@ export namespace firebase_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WebApp>(parameters, callback);
+        createAPIRequest<Schema$WebApp>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WebApp>(parameters);
       }
@@ -3439,12 +5614,7 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Webapps$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
 
@@ -3456,11 +5626,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Webapps$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/webApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/webApps/<var>appId</var></code>
      */
     name?: string;
@@ -3468,22 +5633,12 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Webapps$Getconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the App configuration to download, in the format: <br><code>projects/<var>projectId</var>/webApps/<var>appId</var>/config</code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/webApps/<var>appId</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Webapps$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of Apps to return in the response. <br> <br>The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit.
      */
@@ -3499,11 +5654,6 @@ export namespace firebase_v1beta1 {
   }
   export interface Params$Resource$Projects$Webapps$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The fully qualified resource name of the App, for example: <br><code>projects/<var>projectId</var>/webApps/<var>appId</var></code>
      */

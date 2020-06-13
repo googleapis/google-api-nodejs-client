@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace appengine_v1alpha {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace appengine_v1alpha {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -557,20 +567,93 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.authorizedCertificates.create
      * @desc Uploads the specified SSL certificate.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.authorizedCertificates.create({
+     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     appsId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "certificateRawData": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "domainMappingsCount": 0,
+     *       //   "domainNames": [],
+     *       //   "expireTime": "my_expireTime",
+     *       //   "id": "my_id",
+     *       //   "managedCertificate": {},
+     *       //   "name": "my_name",
+     *       //   "visibleDomainMappings": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificateRawData": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "domainMappingsCount": 0,
+     *   //   "domainNames": [],
+     *   //   "expireTime": "my_expireTime",
+     *   //   "id": "my_id",
+     *   //   "managedCertificate": {},
+     *   //   "name": "my_name",
+     *   //   "visibleDomainMappings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.authorizedCertificates.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     * @param {().AuthorizedCertificate} params.resource Request body data
+     * @param {().AuthorizedCertificate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Apps$Authorizedcertificates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Apps$Authorizedcertificates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AuthorizedCertificate>;
+    create(
+      params: Params$Resource$Apps$Authorizedcertificates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Apps$Authorizedcertificates$Create,
       options:
@@ -586,12 +669,20 @@ export namespace appengine_v1alpha {
     create(
       paramsOrCallback?:
         | Params$Resource$Apps$Authorizedcertificates$Create
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
-      callback?: BodyResponseCallback<Schema$AuthorizedCertificate>
-    ): void | GaxiosPromise<Schema$AuthorizedCertificate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AuthorizedCertificate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -624,7 +715,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
+        createAPIRequest<Schema$AuthorizedCertificate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AuthorizedCertificate>(parameters);
       }
@@ -633,6 +727,46 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.authorizedCertificates.delete
      * @desc Deletes the specified SSL certificate.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.authorizedCertificates.delete({
+     *     // Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     authorizedCertificatesId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.authorizedCertificates.delete
      * @memberOf! ()
      *
@@ -644,9 +778,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Apps$Authorizedcertificates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Apps$Authorizedcertificates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Apps$Authorizedcertificates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Apps$Authorizedcertificates$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -660,10 +803,17 @@ export namespace appengine_v1alpha {
     delete(
       paramsOrCallback?:
         | Params$Resource$Apps$Authorizedcertificates$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -697,7 +847,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -706,6 +859,62 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.authorizedCertificates.get
      * @desc Gets the specified SSL certificate.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.authorizedCertificates.get({
+     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     authorizedCertificatesId: 'placeholder-value',
+     *     // Controls the set of fields returned in the GET response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificateRawData": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "domainMappingsCount": 0,
+     *   //   "domainNames": [],
+     *   //   "expireTime": "my_expireTime",
+     *   //   "id": "my_id",
+     *   //   "managedCertificate": {},
+     *   //   "name": "my_name",
+     *   //   "visibleDomainMappings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.authorizedCertificates.get
      * @memberOf! ()
      *
@@ -718,9 +927,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Apps$Authorizedcertificates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Apps$Authorizedcertificates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AuthorizedCertificate>;
+    get(
+      params: Params$Resource$Apps$Authorizedcertificates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Apps$Authorizedcertificates$Get,
       options:
@@ -736,12 +954,20 @@ export namespace appengine_v1alpha {
     get(
       paramsOrCallback?:
         | Params$Resource$Apps$Authorizedcertificates$Get
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
-      callback?: BodyResponseCallback<Schema$AuthorizedCertificate>
-    ): void | GaxiosPromise<Schema$AuthorizedCertificate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AuthorizedCertificate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -775,7 +1001,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
+        createAPIRequest<Schema$AuthorizedCertificate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AuthorizedCertificate>(parameters);
       }
@@ -784,6 +1013,57 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.authorizedCertificates.list
      * @desc Lists all SSL certificates the user is authorized to administer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.authorizedCertificates.list({
+     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     appsId: 'placeholder-value',
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Controls the set of fields returned in the LIST response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificates": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.authorizedCertificates.list
      * @memberOf! ()
      *
@@ -797,9 +1077,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Apps$Authorizedcertificates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Apps$Authorizedcertificates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAuthorizedCertificatesResponse>;
+    list(
+      params: Params$Resource$Apps$Authorizedcertificates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Apps$Authorizedcertificates$List,
       options:
@@ -817,12 +1106,20 @@ export namespace appengine_v1alpha {
     list(
       paramsOrCallback?:
         | Params$Resource$Apps$Authorizedcertificates$List
-        | BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
+        | BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
-      callback?: BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>
-    ): void | GaxiosPromise<Schema$ListAuthorizedCertificatesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAuthorizedCertificatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -857,7 +1154,7 @@ export namespace appengine_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedCertificatesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedCertificatesResponse>(
@@ -869,6 +1166,74 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.authorizedCertificates.patch
      * @desc Updates the specified SSL certificate. To renew a certificate and maintain its existing domain mappings, update certificate_data with a new certificate. The new certificate must be applicable to the same domains as the original certificate. The certificate display_name may also be updated.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.authorizedCertificates.patch({
+     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     authorizedCertificatesId: 'placeholder-value',
+     *     // Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "certificateRawData": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "domainMappingsCount": 0,
+     *       //   "domainNames": [],
+     *       //   "expireTime": "my_expireTime",
+     *       //   "id": "my_id",
+     *       //   "managedCertificate": {},
+     *       //   "name": "my_name",
+     *       //   "visibleDomainMappings": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificateRawData": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "domainMappingsCount": 0,
+     *   //   "domainNames": [],
+     *   //   "expireTime": "my_expireTime",
+     *   //   "id": "my_id",
+     *   //   "managedCertificate": {},
+     *   //   "name": "my_name",
+     *   //   "visibleDomainMappings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.authorizedCertificates.patch
      * @memberOf! ()
      *
@@ -876,15 +1241,24 @@ export namespace appengine_v1alpha {
      * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
      * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
      * @param {string=} params.updateMask Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.
-     * @param {().AuthorizedCertificate} params.resource Request body data
+     * @param {().AuthorizedCertificate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Apps$Authorizedcertificates$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Apps$Authorizedcertificates$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AuthorizedCertificate>;
+    patch(
+      params: Params$Resource$Apps$Authorizedcertificates$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Apps$Authorizedcertificates$Patch,
       options:
@@ -900,12 +1274,20 @@ export namespace appengine_v1alpha {
     patch(
       paramsOrCallback?:
         | Params$Resource$Apps$Authorizedcertificates$Patch
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
-      callback?: BodyResponseCallback<Schema$AuthorizedCertificate>
-    ): void | GaxiosPromise<Schema$AuthorizedCertificate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AuthorizedCertificate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -939,7 +1321,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
+        createAPIRequest<Schema$AuthorizedCertificate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AuthorizedCertificate>(parameters);
       }
@@ -948,11 +1333,6 @@ export namespace appengine_v1alpha {
 
   export interface Params$Resource$Apps$Authorizedcertificates$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
@@ -966,11 +1346,6 @@ export namespace appengine_v1alpha {
   export interface Params$Resource$Apps$Authorizedcertificates$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
      */
     appsId?: string;
@@ -981,11 +1356,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Authorizedcertificates$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
      */
@@ -1001,11 +1371,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Authorizedcertificates$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
@@ -1025,11 +1390,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Authorizedcertificates$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
      */
@@ -1058,6 +1418,55 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.authorizedDomains.list
      * @desc Lists all domains the user is authorized to administer.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.authorizedDomains.list({
+     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     appsId: 'placeholder-value',
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domains": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.authorizedDomains.list
      * @memberOf! ()
      *
@@ -1070,9 +1479,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Apps$Authorizeddomains$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Apps$Authorizeddomains$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
+    list(
+      params: Params$Resource$Apps$Authorizeddomains$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Apps$Authorizeddomains$List,
       options:
@@ -1090,12 +1508,20 @@ export namespace appengine_v1alpha {
     list(
       paramsOrCallback?:
         | Params$Resource$Apps$Authorizeddomains$List
-        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
-      callback?: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
-    ): void | GaxiosPromise<Schema$ListAuthorizedDomainsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAuthorizedDomainsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizeddomains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1131,7 +1557,7 @@ export namespace appengine_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -1143,11 +1569,6 @@ export namespace appengine_v1alpha {
 
   export interface Params$Resource$Apps$Authorizeddomains$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
@@ -1171,6 +1592,65 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.domainMappings.create
      * @desc Maps a domain to an application. A user must be authorized to administer a domain in order to map it to an application. For a list of available authorized domains, see AuthorizedDomains.ListAuthorizedDomains.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.domainMappings.create({
+     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     appsId: 'placeholder-value',
+     *     // Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manaually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated.
+     *     noManagedCertificate: 'placeholder-value',
+     *     // Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.
+     *     overrideStrategy: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "resourceRecords": [],
+     *       //   "sslSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.domainMappings.create
      * @memberOf! ()
      *
@@ -1178,15 +1658,24 @@ export namespace appengine_v1alpha {
      * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      * @param {boolean=} params.noManagedCertificate Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manaually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated.
      * @param {string=} params.overrideStrategy Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.
-     * @param {().DomainMapping} params.resource Request body data
+     * @param {().DomainMapping} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Apps$Domainmappings$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Apps$Domainmappings$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Apps$Domainmappings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Apps$Domainmappings$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1200,12 +1689,17 @@ export namespace appengine_v1alpha {
     create(
       paramsOrCallback?:
         | Params$Resource$Apps$Domainmappings$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1239,7 +1733,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1248,6 +1745,52 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.domainMappings.delete
      * @desc Deletes the specified domain mapping. A user must be authorized to administer the associated domain in order to delete a DomainMapping resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.domainMappings.delete({
+     *     // Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     domainMappingsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.domainMappings.delete
      * @memberOf! ()
      *
@@ -1259,9 +1802,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Apps$Domainmappings$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Apps$Domainmappings$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Apps$Domainmappings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Apps$Domainmappings$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1275,12 +1827,17 @@ export namespace appengine_v1alpha {
     delete(
       paramsOrCallback?:
         | Params$Resource$Apps$Domainmappings$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1314,7 +1871,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1323,6 +1883,55 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.domainMappings.get
      * @desc Gets the specified domain mapping.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.domainMappings.get({
+     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     domainMappingsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "resourceRecords": [],
+     *   //   "sslSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.domainMappings.get
      * @memberOf! ()
      *
@@ -1334,9 +1943,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Apps$Domainmappings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Apps$Domainmappings$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DomainMapping>;
+    get(
+      params: Params$Resource$Apps$Domainmappings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Apps$Domainmappings$Get,
       options: MethodOptions | BodyResponseCallback<Schema$DomainMapping>,
@@ -1350,12 +1968,17 @@ export namespace appengine_v1alpha {
     get(
       paramsOrCallback?:
         | Params$Resource$Apps$Domainmappings$Get
-        | BodyResponseCallback<Schema$DomainMapping>,
+        | BodyResponseCallback<Schema$DomainMapping>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DomainMapping>,
-      callback?: BodyResponseCallback<Schema$DomainMapping>
-    ): void | GaxiosPromise<Schema$DomainMapping> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DomainMapping>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DomainMapping>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DomainMapping> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1389,7 +2012,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DomainMapping>(parameters, callback);
+        createAPIRequest<Schema$DomainMapping>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
       }
@@ -1398,6 +2024,55 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.domainMappings.list
      * @desc Lists the domain mappings on an application.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.domainMappings.list({
+     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     appsId: 'placeholder-value',
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domainMappings": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.domainMappings.list
      * @memberOf! ()
      *
@@ -1410,9 +2085,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Apps$Domainmappings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Apps$Domainmappings$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDomainMappingsResponse>;
+    list(
+      params: Params$Resource$Apps$Domainmappings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Apps$Domainmappings$List,
       options:
@@ -1430,12 +2114,20 @@ export namespace appengine_v1alpha {
     list(
       paramsOrCallback?:
         | Params$Resource$Apps$Domainmappings$List
-        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
-      callback?: BodyResponseCallback<Schema$ListDomainMappingsResponse>
-    ): void | GaxiosPromise<Schema$ListDomainMappingsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDomainMappingsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1471,7 +2163,7 @@ export namespace appengine_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
@@ -1481,6 +2173,67 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.domainMappings.patch
      * @desc Updates the specified domain mapping. To map an SSL certificate to a domain mapping, update certificate_id to point to an AuthorizedCertificate resource. A user must be authorized to administer the associated domain in order to update a DomainMapping resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.domainMappings.patch({
+     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     domainMappingsId: 'placeholder-value',
+     *     // Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated. Only applicable if ssl_settings.certificate_id is specified in the update mask.
+     *     noManagedCertificate: 'placeholder-value',
+     *     // Standard field mask for the set of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "resourceRecords": [],
+     *       //   "sslSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.domainMappings.patch
      * @memberOf! ()
      *
@@ -1489,15 +2242,24 @@ export namespace appengine_v1alpha {
      * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
      * @param {boolean=} params.noManagedCertificate Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated. Only applicable if ssl_settings.certificate_id is specified in the update mask.
      * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {().DomainMapping} params.resource Request body data
+     * @param {().DomainMapping} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Apps$Domainmappings$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Apps$Domainmappings$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Apps$Domainmappings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Apps$Domainmappings$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1511,12 +2273,17 @@ export namespace appengine_v1alpha {
     patch(
       paramsOrCallback?:
         | Params$Resource$Apps$Domainmappings$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1550,7 +2317,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1559,11 +2329,6 @@ export namespace appengine_v1alpha {
 
   export interface Params$Resource$Apps$Domainmappings$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
@@ -1585,11 +2350,6 @@ export namespace appengine_v1alpha {
   export interface Params$Resource$Apps$Domainmappings$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
      */
     appsId?: string;
@@ -1601,11 +2361,6 @@ export namespace appengine_v1alpha {
   export interface Params$Resource$Apps$Domainmappings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
      */
     appsId?: string;
@@ -1616,11 +2371,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Domainmappings$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
@@ -1636,11 +2386,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Domainmappings$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
      */
@@ -1673,6 +2418,56 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.locations.get
      * @desc Gets information about a location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.locations.get({
+     *     // Part of `name`. Resource name for the location.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     locationsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.locations.get
      * @memberOf! ()
      *
@@ -1684,9 +2479,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Apps$Locations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Apps$Locations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Apps$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Apps$Locations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Location>,
@@ -1700,10 +2504,17 @@ export namespace appengine_v1alpha {
     get(
       paramsOrCallback?:
         | Params$Resource$Apps$Locations$Get
-        | BodyResponseCallback<Schema$Location>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback?: BodyResponseCallback<Schema$Location>
-    ): void | GaxiosPromise<Schema$Location> {
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1736,7 +2547,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Location>(parameters, callback);
+        createAPIRequest<Schema$Location>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
       }
@@ -1745,6 +2559,57 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.locations.list({
+     *     // Part of `name`. The resource that owns the locations collection, if applicable.
+     *     appsId: 'placeholder-value',
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.locations.list
      * @memberOf! ()
      *
@@ -1758,9 +2623,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Apps$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Apps$Locations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLocationsResponse>;
+    list(
+      params: Params$Resource$Apps$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Apps$Locations$List,
       options:
@@ -1776,12 +2650,20 @@ export namespace appengine_v1alpha {
     list(
       paramsOrCallback?:
         | Params$Resource$Apps$Locations$List
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLocationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1815,7 +2697,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
@@ -1824,11 +2709,6 @@ export namespace appengine_v1alpha {
 
   export interface Params$Resource$Apps$Locations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Resource name for the location.
      */
@@ -1840,11 +2720,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. The resource that owns the locations collection, if applicable.
      */
@@ -1872,6 +2747,56 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.operations.get
      * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.operations.get({
+     *     // Part of `name`. The name of the operation resource.
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     operationsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.operations.get
      * @memberOf! ()
      *
@@ -1883,9 +2808,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Apps$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Apps$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Apps$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Apps$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1899,12 +2833,17 @@ export namespace appengine_v1alpha {
     get(
       paramsOrCallback?:
         | Params$Resource$Apps$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1937,7 +2876,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1946,6 +2888,57 @@ export namespace appengine_v1alpha {
     /**
      * appengine.apps.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/x/operations. To override the binding, API services can add a binding such as "/v1/{name=users/x}/operations" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.operations.list({
+     *     // Part of `name`. The name of the operation's parent resource.
+     *     appsId: 'placeholder-value',
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appengine.apps.operations.list
      * @memberOf! ()
      *
@@ -1959,9 +2952,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Apps$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Apps$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Apps$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Apps$Operations$List,
       options:
@@ -1977,12 +2979,20 @@ export namespace appengine_v1alpha {
     list(
       paramsOrCallback?:
         | Params$Resource$Apps$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2016,7 +3026,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
@@ -2025,11 +3038,6 @@ export namespace appengine_v1alpha {
 
   export interface Params$Resource$Apps$Operations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. The name of the operation resource.
      */
@@ -2041,11 +3049,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. The name of the operation's parent resource.
      */

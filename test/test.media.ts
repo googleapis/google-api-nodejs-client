@@ -1,4 +1,4 @@
-// Copyright 2014-2016, Google, Inc.
+// Copyright 2014 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -12,13 +12,13 @@
 // limitations under the License.
 
 import * as assert from 'assert';
+import {describe, it, before, beforeEach, after} from 'mocha';
 import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
 import {URL} from 'url';
 
 import {drive_v2, gmail_v1, GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 const boundaryPrefix = 'multipart/related; boundary=';
@@ -90,7 +90,6 @@ describe('Media', () => {
   before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
-    nock.enableNetConnect();
     [remoteDrive, remoteGmail] = await Promise.all([
       Utils.loadApi<drive_v2.Drive>(google, 'drive', 'v2'),
       Utils.loadApi<gmail_v1.Gmail>(google, 'gmail', 'v1'),
@@ -109,7 +108,7 @@ describe('Media', () => {
   it('should post progress for uploads', async () => {
     const scope = nock(Utils.baseUrl)
       .post(
-        '/upload/youtube/v3/videos?part=id%2Csnippet&notifySubscribers=false&uploadType=multipart'
+        '/upload/youtube/v3/videos?part=id&part=snippet&notifySubscribers=false&uploadType=multipart'
       )
       .reply(200);
     const fileName = path.join(__dirname, '../../test/fixtures/mediabody.txt');
@@ -119,7 +118,7 @@ describe('Media', () => {
     const progressEvents = new Array<number>();
     await youtube.videos.insert(
       {
-        part: 'id,snippet',
+        part: ['id', 'snippet'],
         notifySubscribers: false,
         requestBody: {
           snippet: {
@@ -129,6 +128,38 @@ describe('Media', () => {
           },
         },
         media: {body: fs.createReadStream(fileName)},
+      },
+      {
+        onUploadProgress: (evt: {bytesRead: number}) => {
+          progressEvents.push(evt.bytesRead);
+        },
+      }
+    );
+    assert(progressEvents.length > 0);
+    assert.strictEqual(progressEvents[0], fileSize);
+    scope.done();
+  });
+
+  // See: https://github.com/googleapis/google-api-nodejs-client/issues/1820
+  it('should post progress for uploads, for APIs with empty requestBody', async () => {
+    const scope = nock(Utils.baseUrl)
+      .post(
+        '/upload/youtube/v3/thumbnails/set?videoId=abc123&uploadType=multipart'
+      )
+      .reply(200);
+    const fileName = path.join(__dirname, '../../test/fixtures/mediabody.txt');
+    const fileSize = fs.statSync(fileName).size;
+    const google = new GoogleApis();
+    const youtube = google.youtube('v3');
+    const progressEvents = new Array<number>();
+    await youtube.thumbnails.set(
+      {
+        videoId: 'abc123',
+        requestBody: {},
+        media: {
+          mimeType: 'image/jpeg',
+          body: fs.createReadStream(fileName),
+        },
       },
       {
         onUploadProgress: (evt: {bytesRead: number}) => {
@@ -427,7 +458,7 @@ describe('Media', () => {
       media,
     });
     assert.strictEqual(typeof res.data, 'object');
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     assert.strictEqual((res.data as any).hello, 'world');
     assert.strictEqual(typeof res, 'object');
     requestBody = {
@@ -443,13 +474,12 @@ describe('Media', () => {
       media,
     });
     assert.strictEqual(typeof res2.data, 'object');
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     assert.strictEqual((res2.data as any).hello, 'world');
     assert.strictEqual(typeof res2, 'object');
   });
 
   after(() => {
     nock.cleanAll();
-    nock.enableNetConnect();
   });
 });

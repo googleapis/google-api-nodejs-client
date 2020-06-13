@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace appsactivity_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace appsactivity_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -314,6 +324,60 @@ export namespace appsactivity_v1 {
     /**
      * appsactivity.activities.list
      * @desc Returns a list of activities visible to the current logged in user. Visible activities are determined by the visibility settings of the object that was acted on, e.g. Drive files a user can see. An activity is a record of past events. Multiple events may be merged if they are similar. A request is scoped to activities from a given Google service using the source parameter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appsactivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appsactivity = google.appsactivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/activity'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appsactivity.activities.list({
+     *     // Identifies the Drive folder containing the items for which to return activities.
+     *     'drive.ancestorId': 'placeholder-value',
+     *     // Identifies the Drive item to return activities for.
+     *     'drive.fileId': 'placeholder-value',
+     *     // Indicates the strategy to use when grouping singleEvents items in the associated combinedEvent object.
+     *     groupingStrategy: 'placeholder-value',
+     *     // The maximum number of events to return on a page. The response includes a continuation token if there are more events.
+     *     pageSize: 'placeholder-value',
+     *     // A token to retrieve a specific page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The Google service from which to return activities. Possible values of source are:
+     *     // - drive.google.com
+     *     source: 'placeholder-value',
+     *     // The ID used for ACL checks (does not filter the resulting event list by the assigned value). Use the special value me to indicate the currently authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activities": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias appsactivity.activities.list
      * @memberOf! ()
      *
@@ -330,9 +394,18 @@ export namespace appsactivity_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Activities$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Activities$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListActivitiesResponse>;
+    list(
+      params: Params$Resource$Activities$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Activities$List,
       options:
@@ -348,12 +421,20 @@ export namespace appsactivity_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Activities$List
-        | BodyResponseCallback<Schema$ListActivitiesResponse>,
+        | BodyResponseCallback<Schema$ListActivitiesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListActivitiesResponse>,
-      callback?: BodyResponseCallback<Schema$ListActivitiesResponse>
-    ): void | GaxiosPromise<Schema$ListActivitiesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListActivitiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListActivitiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListActivitiesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -386,7 +467,10 @@ export namespace appsactivity_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListActivitiesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListActivitiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListActivitiesResponse>(parameters);
       }
@@ -394,11 +478,6 @@ export namespace appsactivity_v1 {
   }
 
   export interface Params$Resource$Activities$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifies the Drive folder containing the items for which to return activities.
      */

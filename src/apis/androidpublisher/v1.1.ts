@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace androidpublisher_v1_1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace androidpublisher_v1_1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -90,7 +100,6 @@ export namespace androidpublisher_v1_1 {
   export class Androidpublisher {
     context: APIRequestContext;
     inapppurchases: Resource$Inapppurchases;
-    purchases: Resource$Purchases;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -99,7 +108,6 @@ export namespace androidpublisher_v1_1 {
       };
 
       this.inapppurchases = new Resource$Inapppurchases(this.context);
-      this.purchases = new Resource$Purchases(this.context);
     }
   }
 
@@ -136,27 +144,6 @@ export namespace androidpublisher_v1_1 {
      */
     purchaseType?: number | null;
   }
-  /**
-   * A SubscriptionPurchase resource indicates the status of a user&#39;s subscription purchase.
-   */
-  export interface Schema$SubscriptionPurchase {
-    /**
-     * Whether the subscription will automatically be renewed when it reaches its current expiry time.
-     */
-    autoRenewing?: boolean | null;
-    /**
-     * Time at which the subscription was granted, in milliseconds since the Epoch.
-     */
-    initiationTimestampMsec?: string | null;
-    /**
-     * This kind represents a subscriptionPurchase object in the androidpublisher service.
-     */
-    kind?: string | null;
-    /**
-     * Time at which the subscription will expire, in milliseconds since the Epoch.
-     */
-    validUntilTimestampMsec?: string | null;
-  }
 
   export class Resource$Inapppurchases {
     context: APIRequestContext;
@@ -167,6 +154,56 @@ export namespace androidpublisher_v1_1 {
     /**
      * androidpublisher.inapppurchases.get
      * @desc Checks the purchase and consumption status of an inapp item.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v1.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.inapppurchases.get({
+     *     // The package name of the application the inapp product was sold in (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // The inapp product SKU (for example, 'com.some.thing.inapp1').
+     *     productId: 'placeholder-value',
+     *     // The token provided to the user's device when the inapp product was purchased.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consumptionState": 0,
+     *   //   "developerPayload": "my_developerPayload",
+     *   //   "kind": "my_kind",
+     *   //   "orderId": "my_orderId",
+     *   //   "purchaseState": 0,
+     *   //   "purchaseTime": "my_purchaseTime",
+     *   //   "purchaseType": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias androidpublisher.inapppurchases.get
      * @memberOf! ()
      *
@@ -179,9 +216,18 @@ export namespace androidpublisher_v1_1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Inapppurchases$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Inapppurchases$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InappPurchase>;
+    get(
+      params: Params$Resource$Inapppurchases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Inapppurchases$Get,
       options: MethodOptions | BodyResponseCallback<Schema$InappPurchase>,
@@ -195,12 +241,17 @@ export namespace androidpublisher_v1_1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Inapppurchases$Get
-        | BodyResponseCallback<Schema$InappPurchase>,
+        | BodyResponseCallback<Schema$InappPurchase>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InappPurchase>,
-      callback?: BodyResponseCallback<Schema$InappPurchase>
-    ): void | GaxiosPromise<Schema$InappPurchase> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InappPurchase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InappPurchase>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InappPurchase> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inapppurchases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -234,7 +285,10 @@ export namespace androidpublisher_v1_1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$InappPurchase>(parameters, callback);
+        createAPIRequest<Schema$InappPurchase>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$InappPurchase>(parameters);
       }
@@ -243,11 +297,6 @@ export namespace androidpublisher_v1_1 {
 
   export interface Params$Resource$Inapppurchases$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      */
@@ -258,202 +307,6 @@ export namespace androidpublisher_v1_1 {
     productId?: string;
     /**
      * The token provided to the user's device when the inapp product was purchased.
-     */
-    token?: string;
-  }
-
-  export class Resource$Purchases {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * androidpublisher.purchases.cancel
-     * @desc Cancels a user's subscription purchase. The subscription remains valid until its expiration time.
-     * @alias androidpublisher.purchases.cancel
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    cancel(
-      params?: Params$Resource$Purchases$Cancel,
-      options?: MethodOptions
-    ): GaxiosPromise<void>;
-    cancel(
-      params: Params$Resource$Purchases$Cancel,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
-    ): void;
-    cancel(
-      params: Params$Resource$Purchases$Cancel,
-      callback: BodyResponseCallback<void>
-    ): void;
-    cancel(callback: BodyResponseCallback<void>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Purchases$Cancel
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Purchases$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Purchases$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidpublisher/v1.1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['packageName', 'subscriptionId', 'token'],
-        pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<void>(parameters, callback);
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-
-    /**
-     * androidpublisher.purchases.get
-     * @desc Checks whether a user's subscription purchase is valid and returns its expiry time.
-     * @alias androidpublisher.purchases.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params?: Params$Resource$Purchases$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$SubscriptionPurchase>;
-    get(
-      params: Params$Resource$Purchases$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SubscriptionPurchase>,
-      callback: BodyResponseCallback<Schema$SubscriptionPurchase>
-    ): void;
-    get(
-      params: Params$Resource$Purchases$Get,
-      callback: BodyResponseCallback<Schema$SubscriptionPurchase>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Purchases$Get
-        | BodyResponseCallback<Schema$SubscriptionPurchase>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SubscriptionPurchase>,
-      callback?: BodyResponseCallback<Schema$SubscriptionPurchase>
-    ): void | GaxiosPromise<Schema$SubscriptionPurchase> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Purchases$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Purchases$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidpublisher/v1.1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['packageName', 'subscriptionId', 'token'],
-        pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$SubscriptionPurchase>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Purchases$Cancel extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     */
-    packageName?: string;
-    /**
-     * The purchased subscription ID (for example, 'monthly001').
-     */
-    subscriptionId?: string;
-    /**
-     * The token provided to the user's device when the subscription was purchased.
-     */
-    token?: string;
-  }
-  export interface Params$Resource$Purchases$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     */
-    packageName?: string;
-    /**
-     * The purchased subscription ID (for example, 'monthly001').
-     */
-    subscriptionId?: string;
-    /**
-     * The token provided to the user's device when the subscription was purchased.
      */
     token?: string;
   }

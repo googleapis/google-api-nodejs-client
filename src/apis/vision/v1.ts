@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace vision_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace vision_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -130,7 +140,7 @@ export namespace vision_v1 {
    */
   export interface Schema$AddProductToProductSetRequest {
     /**
-     * The resource name for the Product to be added to this ProductSet.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     * Required. The resource name for the Product to be added to this ProductSet.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      */
     product?: string | null;
   }
@@ -293,7 +303,7 @@ export namespace vision_v1 {
      */
     parent?: string | null;
     /**
-     * Individual async file annotation requests for this batch.
+     * Required. Individual async file annotation requests for this batch.
      */
     requests?: Schema$AsyncAnnotateFileRequest[];
   }
@@ -319,7 +329,7 @@ export namespace vision_v1 {
      */
     parent?: string | null;
     /**
-     * Individual image annotation requests for this batch.
+     * Required. Individual image annotation requests for this batch.
      */
     requests?: Schema$AnnotateImageRequest[];
   }
@@ -341,7 +351,7 @@ export namespace vision_v1 {
      */
     parent?: string | null;
     /**
-     * The list of file annotation requests. Right now we support only one AnnotateFileRequest in BatchAnnotateFilesRequest.
+     * Required. The list of file annotation requests. Right now we support only one AnnotateFileRequest in BatchAnnotateFilesRequest.
      */
     requests?: Schema$AnnotateFileRequest[];
   }
@@ -363,7 +373,7 @@ export namespace vision_v1 {
      */
     parent?: string | null;
     /**
-     * Individual image annotation requests for this batch.
+     * Required. Individual image annotation requests for this batch.
      */
     requests?: Schema$AnnotateImageRequest[];
   }
@@ -1211,7 +1221,7 @@ export namespace vision_v1 {
      */
     name?: string | null;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
+     * Immutable. The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
@@ -2073,7 +2083,7 @@ export namespace vision_v1 {
      */
     name?: string | null;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
+     * Immutable. The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
@@ -2965,7 +2975,7 @@ export namespace vision_v1 {
      */
     name?: string | null;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
+     * Immutable. The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
@@ -3080,7 +3090,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p3beta1ReferenceImage {
     /**
-     * Bounding polygons around the areas of interest in the reference image. Optional. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
+     * Optional. Bounding polygons around the areas of interest in the reference image. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
      */
     boundingPolys?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly[];
     /**
@@ -3088,7 +3098,7 @@ export namespace vision_v1 {
      */
     name?: string | null;
     /**
-     * The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.  Required.
+     * Required. The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.
      */
     uri?: string | null;
   }
@@ -3371,10 +3381,6 @@ export namespace vision_v1 {
      */
     imagePropertiesAnnotation?: Schema$GoogleCloudVisionV1p4beta1ImageProperties;
     /**
-     * If present, image quality calculation has completed successfully.
-     */
-    imageQualityAnnotation?: Schema$GoogleCloudVisionV1p4beta1ImageQuality;
-    /**
      * If present, label detection has completed successfully.
      */
     labelAnnotations?: Schema$GoogleCloudVisionV1p4beta1EntityAnnotation[];
@@ -3394,10 +3400,6 @@ export namespace vision_v1 {
      * If present, product search has completed successfully.
      */
     productSearchResults?: Schema$GoogleCloudVisionV1p4beta1ProductSearchResults;
-    /**
-     * If present, image quality optimization has completed successfully.
-     */
-    qualityOptimizationResult?: Schema$GoogleCloudVisionV1p4beta1QualityOptimizationResult;
     /**
      * If present, safe-search annotation has completed successfully.
      */
@@ -3501,6 +3503,23 @@ export namespace vision_v1 {
      * The bounding polygon vertices.
      */
     vertices?: Schema$GoogleCloudVisionV1p4beta1Vertex[];
+  }
+  /**
+   * A Celebrity is a group of Faces with an identity.
+   */
+  export interface Schema$GoogleCloudVisionV1p4beta1Celebrity {
+    /**
+     * The Celebrity&#39;s description.
+     */
+    description?: string | null;
+    /**
+     * The Celebrity&#39;s display name.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the preloaded Celebrity. Has the format `builtin/{mid}`.
+     */
+    name?: string | null;
   }
   /**
    * Color information consists of RGB channels, score, and the fraction of the image that the color occupies in the image.
@@ -3640,6 +3659,10 @@ export namespace vision_v1 {
      */
     panAngle?: number | null;
     /**
+     * Additional recognition information. Only computed if image_context.face_recognition_params is provided, **and** a match is found to a Celebrity in the input CelebritySet. This field is sorted in order of decreasing confidence values.
+     */
+    recognitionResult?: Schema$GoogleCloudVisionV1p4beta1FaceRecognitionResult[];
+    /**
      * Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].
      */
     rollAngle?: number | null;
@@ -3672,6 +3695,19 @@ export namespace vision_v1 {
      * Face landmark type.
      */
     type?: string | null;
+  }
+  /**
+   * Information about a face&#39;s identity.
+   */
+  export interface Schema$GoogleCloudVisionV1p4beta1FaceRecognitionResult {
+    /**
+     * The Celebrity that this face was matched to.
+     */
+    celebrity?: Schema$GoogleCloudVisionV1p4beta1Celebrity;
+    /**
+     * Recognition confidence. Range [0, 1].
+     */
+    confidence?: number | null;
   }
   /**
    * The Google Cloud Storage location where the output will be written to.
@@ -3712,15 +3748,6 @@ export namespace vision_v1 {
      * If present, dominant colors completed successfully.
      */
     dominantColors?: Schema$GoogleCloudVisionV1p4beta1DominantColorsAnnotation;
-  }
-  /**
-   * Stores image quality scores, could be aesthetic quality or technical quality.
-   */
-  export interface Schema$GoogleCloudVisionV1p4beta1ImageQuality {
-    /**
-     * A score representing the aesthetic/technical quality of the image. The score is in range [0, 1]. Higher value corresponds to more professional looking photos. 0 means the image looks very bad, 1 means the image with very high quality.
-     */
-    qualityScore?: number | null;
   }
   /**
    * Response message for the `ImportProductSets` method.  This message is returned by the google.longrunning.Operations.GetOperation method in the returned google.longrunning.Operation.response field.
@@ -3909,7 +3936,7 @@ export namespace vision_v1 {
      */
     name?: string | null;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
+     * Immutable. The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
@@ -4020,28 +4047,11 @@ export namespace vision_v1 {
     value?: string | null;
   }
   /**
-   * Stores enhanced image bytes.
-   */
-  export interface Schema$GoogleCloudVisionV1p4beta1QualityOptimizationResult {
-    /**
-     * Optimized image bytes.
-     */
-    image?: string | null;
-    /**
-     * Mime type of the output image.
-     */
-    mimeType?: string | null;
-    /**
-     * Required optimization type.
-     */
-    qualityOptimizationType?: string | null;
-  }
-  /**
    * A `ReferenceImage` represents a product image and its associated metadata, such as bounding boxes.
    */
   export interface Schema$GoogleCloudVisionV1p4beta1ReferenceImage {
     /**
-     * Bounding polygons around the areas of interest in the reference image. Optional. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
+     * Optional. Bounding polygons around the areas of interest in the reference image. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
      */
     boundingPolys?: Schema$GoogleCloudVisionV1p4beta1BoundingPoly[];
     /**
@@ -4049,7 +4059,7 @@ export namespace vision_v1 {
      */
     name?: string | null;
     /**
-     * The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.  Required.
+     * Required. The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.
      */
     uri?: string | null;
   }
@@ -4062,45 +4072,21 @@ export namespace vision_v1 {
      */
     adult?: string | null;
     /**
-     * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    adultConfidence?: number | null;
-    /**
      * Likelihood that this is a medical image.
      */
     medical?: string | null;
-    /**
-     * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    medicalConfidence?: number | null;
-    /**
-     * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    nsfwConfidence?: number | null;
     /**
      * Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
      */
     racy?: string | null;
     /**
-     * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    racyConfidence?: number | null;
-    /**
      * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
      */
     spoof?: string | null;
     /**
-     * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    spoofConfidence?: number | null;
-    /**
      * Likelihood that this image contains violent content.
      */
     violence?: string | null;
-    /**
-     * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    violenceConfidence?: number | null;
   }
   /**
    * A single symbol representation.
@@ -4307,1049 +4293,6 @@ export namespace vision_v1 {
     symbols?: Schema$GoogleCloudVisionV1p4beta1Symbol[];
   }
   /**
-   * Response to a single file annotation request. A file may contain one or more images, which individually have their own responses.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1AnnotateFileResponse {
-    /**
-     * If set, represents the error message for the failed request. The `responses` field will not be set in this case.
-     */
-    error?: Schema$Status;
-    /**
-     * Information about the file for which this response is generated.
-     */
-    inputConfig?: Schema$GoogleCloudVisionV1p5beta1InputConfig;
-    /**
-     * Individual responses to images found within the file. This field will be empty if the `error` field is set.
-     */
-    responses?: Schema$GoogleCloudVisionV1p5beta1AnnotateImageResponse[];
-    /**
-     * This field gives the total number of pages in the file.
-     */
-    totalPages?: number | null;
-  }
-  /**
-   * Response to an image annotation request.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1AnnotateImageResponse {
-    /**
-     * If present, contextual information is needed to understand where this image comes from.
-     */
-    context?: Schema$GoogleCloudVisionV1p5beta1ImageAnnotationContext;
-    /**
-     * If present, crop hints have completed successfully.
-     */
-    cropHintsAnnotation?: Schema$GoogleCloudVisionV1p5beta1CropHintsAnnotation;
-    /**
-     * If set, represents the error message for the operation. Note that filled-in image annotations are guaranteed to be correct, even when `error` is set.
-     */
-    error?: Schema$Status;
-    /**
-     * If present, face detection has completed successfully.
-     */
-    faceAnnotations?: Schema$GoogleCloudVisionV1p5beta1FaceAnnotation[];
-    /**
-     * If present, text (OCR) detection or document (OCR) text detection has completed successfully. This annotation provides the structural hierarchy for the OCR detected text.
-     */
-    fullTextAnnotation?: Schema$GoogleCloudVisionV1p5beta1TextAnnotation;
-    /**
-     * If present, image properties were extracted successfully.
-     */
-    imagePropertiesAnnotation?: Schema$GoogleCloudVisionV1p5beta1ImageProperties;
-    /**
-     * If present, label detection has completed successfully.
-     */
-    labelAnnotations?: Schema$GoogleCloudVisionV1p5beta1EntityAnnotation[];
-    /**
-     * If present, landmark detection has completed successfully.
-     */
-    landmarkAnnotations?: Schema$GoogleCloudVisionV1p5beta1EntityAnnotation[];
-    /**
-     * If present, localized object detection has completed successfully. This will be sorted descending by confidence score.
-     */
-    localizedObjectAnnotations?: Schema$GoogleCloudVisionV1p5beta1LocalizedObjectAnnotation[];
-    /**
-     * If present, logo detection has completed successfully.
-     */
-    logoAnnotations?: Schema$GoogleCloudVisionV1p5beta1EntityAnnotation[];
-    /**
-     * If present, product search has completed successfully.
-     */
-    productSearchResults?: Schema$GoogleCloudVisionV1p5beta1ProductSearchResults;
-    /**
-     * If present, safe-search annotation has completed successfully.
-     */
-    safeSearchAnnotation?: Schema$GoogleCloudVisionV1p5beta1SafeSearchAnnotation;
-    /**
-     * If present, text (OCR) detection has completed successfully.
-     */
-    textAnnotations?: Schema$GoogleCloudVisionV1p5beta1EntityAnnotation[];
-    /**
-     * If present, web detection has completed successfully.
-     */
-    webDetection?: Schema$GoogleCloudVisionV1p5beta1WebDetection;
-  }
-  /**
-   * The response for a single offline file annotation request.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1AsyncAnnotateFileResponse {
-    /**
-     * The output location and metadata from AsyncAnnotateFileRequest.
-     */
-    outputConfig?: Schema$GoogleCloudVisionV1p5beta1OutputConfig;
-  }
-  /**
-   * Response to an async batch file annotation request.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1AsyncBatchAnnotateFilesResponse {
-    /**
-     * The list of file annotation responses, one for each request in AsyncBatchAnnotateFilesRequest.
-     */
-    responses?: Schema$GoogleCloudVisionV1p5beta1AsyncAnnotateFileResponse[];
-  }
-  /**
-   * Response to an async batch image annotation request.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1AsyncBatchAnnotateImagesResponse {
-    /**
-     * The output location and metadata from AsyncBatchAnnotateImagesRequest.
-     */
-    outputConfig?: Schema$GoogleCloudVisionV1p5beta1OutputConfig;
-  }
-  /**
-   * A list of file annotation responses.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1BatchAnnotateFilesResponse {
-    /**
-     * The list of file annotation responses, each response corresponding to each AnnotateFileRequest in BatchAnnotateFilesRequest.
-     */
-    responses?: Schema$GoogleCloudVisionV1p5beta1AnnotateFileResponse[];
-  }
-  /**
-   * Metadata for the batch operations such as the current state.  This is included in the `metadata` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1BatchOperationMetadata {
-    /**
-     * The time when the batch request is finished and google.longrunning.Operation.done is set to true.
-     */
-    endTime?: string | null;
-    /**
-     * The current state of the batch operation.
-     */
-    state?: string | null;
-    /**
-     * The time when the batch request was submitted to the server.
-     */
-    submitTime?: string | null;
-  }
-  /**
-   * Logical element on the page.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Block {
-    /**
-     * Detected block type (text, image etc) for this block.
-     */
-    blockType?: string | null;
-    /**
-     * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:  * when the text is horizontal it might look like:          0----1         |    |         3----2  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:          2----3         |    |         1----0    and the vertex order will still be (0, 1, 2, 3).
-     */
-    boundingBox?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Confidence of the OCR results on the block. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * Detected pair for KEY_VALUE_PAIR block_type. This detection can be turned off by explicitly setting desired fields in DocumentParsingParams.block_filter.
-     */
-    keyValuePair?: Schema$GoogleCloudVisionV1p5beta1KeyValuePair;
-    /**
-     * All UTF-8 text detected in this block. This field is by default not returned unless specified in TextDetectionParams.block_filter or DocumentParsingParams.block_filter.
-     */
-    mergedText?: string | null;
-    /**
-     * List of paragraphs in this block (if this blocks is of type text).
-     */
-    paragraphs?: Schema$GoogleCloudVisionV1p5beta1Paragraph[];
-    /**
-     * Additional information detected for the block.
-     */
-    property?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationTextProperty;
-    /**
-     * Detected table for TABLE block_type. This detection can be turned off by explicitly setting desired fields in DocumentParsingParams.block_filter.
-     */
-    table?: Schema$GoogleCloudVisionV1p5beta1Table;
-  }
-  /**
-   * A bounding polygon for the detected image annotation.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1BoundingPoly {
-    /**
-     * The bounding polygon normalized vertices.
-     */
-    normalizedVertices?: Schema$GoogleCloudVisionV1p5beta1NormalizedVertex[];
-    /**
-     * The bounding polygon vertices.
-     */
-    vertices?: Schema$GoogleCloudVisionV1p5beta1Vertex[];
-  }
-  /**
-   * Color information consists of RGB channels, score, and the fraction of the image that the color occupies in the image.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ColorInfo {
-    /**
-     * RGB components of the color.
-     */
-    color?: Schema$Color;
-    /**
-     * The fraction of pixels the color occupies in the image. Value in range [0, 1].
-     */
-    pixelFraction?: number | null;
-    /**
-     * Image-specific score for this color. Value in range [0, 1].
-     */
-    score?: number | null;
-  }
-  /**
-   * Single crop hint that is used to generate a new crop when serving an image.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1CropHint {
-    /**
-     * The bounding polygon for the crop region. The coordinates of the bounding box are in the original image&#39;s scale.
-     */
-    boundingPoly?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Confidence of this being a salient region.  Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * Fraction of importance of this salient region with respect to the original image.
-     */
-    importanceFraction?: number | null;
-  }
-  /**
-   * Set of crop hints that are used to generate new crops when serving images.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1CropHintsAnnotation {
-    /**
-     * Crop hint results.
-     */
-    cropHints?: Schema$GoogleCloudVisionV1p5beta1CropHint[];
-  }
-  /**
-   * Set of dominant colors and their corresponding scores.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1DominantColorsAnnotation {
-    /**
-     * RGB color values with their score and pixel fraction.
-     */
-    colors?: Schema$GoogleCloudVisionV1p5beta1ColorInfo[];
-  }
-  /**
-   * Set of detected entity features.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1EntityAnnotation {
-    /**
-     * Image region to which this entity belongs. Not produced for `LABEL_DETECTION` features.
-     */
-    boundingPoly?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * Entity textual description, expressed in its `locale` language.
-     */
-    description?: string | null;
-    /**
-     * The language code for the locale in which the entity textual `description` is expressed.
-     */
-    locale?: string | null;
-    /**
-     * The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks.
-     */
-    locations?: Schema$GoogleCloudVisionV1p5beta1LocationInfo[];
-    /**
-     * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
-     */
-    mid?: string | null;
-    /**
-     * Some entities may have optional user-supplied `Property` (name/value) fields, such a score or string that qualifies the entity.
-     */
-    properties?: Schema$GoogleCloudVisionV1p5beta1Property[];
-    /**
-     * Overall score of the result. Range [0, 1].
-     */
-    score?: number | null;
-    /**
-     * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
-     */
-    topicality?: number | null;
-  }
-  /**
-   * A face annotation object contains the results of face detection.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1FaceAnnotation {
-    /**
-     * Anger likelihood.
-     */
-    angerLikelihood?: string | null;
-    /**
-     * Blurred likelihood.
-     */
-    blurredLikelihood?: string | null;
-    /**
-     * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
-     */
-    boundingPoly?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Detection confidence. Range [0, 1].
-     */
-    detectionConfidence?: number | null;
-    /**
-     * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
-     */
-    fdBoundingPoly?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Headwear likelihood.
-     */
-    headwearLikelihood?: string | null;
-    /**
-     * Joy likelihood.
-     */
-    joyLikelihood?: string | null;
-    /**
-     * Face landmarking confidence. Range [0, 1].
-     */
-    landmarkingConfidence?: number | null;
-    /**
-     * Detected face landmarks.
-     */
-    landmarks?: Schema$GoogleCloudVisionV1p5beta1FaceAnnotationLandmark[];
-    /**
-     * Yaw angle, which indicates the leftward/rightward angle that the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180].
-     */
-    panAngle?: number | null;
-    /**
-     * Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].
-     */
-    rollAngle?: number | null;
-    /**
-     * Sorrow likelihood.
-     */
-    sorrowLikelihood?: string | null;
-    /**
-     * Surprise likelihood.
-     */
-    surpriseLikelihood?: string | null;
-    /**
-     * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
-     */
-    tiltAngle?: number | null;
-    /**
-     * Under-exposed likelihood.
-     */
-    underExposedLikelihood?: string | null;
-  }
-  /**
-   * A face-specific landmark (for example, a face feature).
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1FaceAnnotationLandmark {
-    /**
-     * Face landmark position.
-     */
-    position?: Schema$GoogleCloudVisionV1p5beta1Position;
-    /**
-     * Face landmark type.
-     */
-    type?: string | null;
-  }
-  /**
-   * The Google Cloud Storage location where the output will be written to.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1GcsDestination {
-    /**
-     * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide.  Examples:  *    File Prefix: gs://bucket-name/here/filenameprefix   The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;.  *    Directory Prefix: gs://bucket-name/some/location/   The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified.  If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
-     */
-    uri?: string | null;
-  }
-  /**
-   * The Google Cloud Storage location where the input will be read from.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1GcsSource {
-    /**
-     * Google Cloud Storage URI for the input file. This must only be a Google Cloud Storage object. Wildcards are not currently supported.
-     */
-    uri?: string | null;
-  }
-  /**
-   * If an image was produced from a file (e.g. a PDF), this message gives information about the source of that image.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ImageAnnotationContext {
-    /**
-     * If the file was a PDF or TIFF, this field gives the page number within the file used to produce the image.
-     */
-    pageNumber?: number | null;
-    /**
-     * The URI of the file used to produce the image.
-     */
-    uri?: string | null;
-  }
-  /**
-   * Stores image properties, such as dominant colors.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ImageProperties {
-    /**
-     * If present, dominant colors completed successfully.
-     */
-    dominantColors?: Schema$GoogleCloudVisionV1p5beta1DominantColorsAnnotation;
-  }
-  /**
-   * Response message for the `ImportProductSets` method.  This message is returned by the google.longrunning.Operations.GetOperation method in the returned google.longrunning.Operation.response field.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ImportProductSetsResponse {
-    /**
-     * The list of reference_images that are imported successfully.
-     */
-    referenceImages?: Schema$GoogleCloudVisionV1p5beta1ReferenceImage[];
-    /**
-     * The rpc status for each ImportProductSet request, including both successes and errors.  The number of statuses here matches the number of lines in the csv file, and statuses[i] stores the success or failure status of processing the i-th line of the csv, starting from line 0.
-     */
-    statuses?: Schema$Status[];
-  }
-  /**
-   * The desired input location and metadata.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1InputConfig {
-    /**
-     * File content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.  Currently, this field only works for BatchAnnotateFiles requests. It does not work for AsyncBatchAnnotateFiles requests.
-     */
-    content?: string | null;
-    /**
-     * The Google Cloud Storage location to read the input from.
-     */
-    gcsSource?: Schema$GoogleCloudVisionV1p5beta1GcsSource;
-    /**
-     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
-     */
-    mimeType?: string | null;
-  }
-  /**
-   * Proto for a key value pair.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1KeyValuePair {
-    /**
-     * The key string value.
-     */
-    key?: string | null;
-    /**
-     * Key block of the pair containing the normalized bounding box and key text.
-     */
-    keyBlock?: Schema$GoogleCloudVisionV1p5beta1Block;
-    /**
-     * Optional. The translation of key text if the text is not in English.
-     */
-    normalizedKey?: string | null;
-    /**
-     * Value block of the pair containing the normalized bounding box and value text, including potentially deeper structures within the value text.
-     */
-    valueBlock?: Schema$GoogleCloudVisionV1p5beta1Block;
-    /**
-     * Type of the value. Valid strings are the following:   &quot;generic&quot; - For generic text that is mapped to a value.  &quot;number&quot; - for numeric types  &quot;id&quot; - for generic identifiers.  &quot;currency&quot; - for currency values.  &quot;date&quot; - for dates.  &quot;time&quot; - for time and duration values.  &quot;date_range&quot; - for date ranges.  &quot;address&quot; - for address values (can be long).  &quot;person&quot; - for names of people or other personal identifiers.  &quot;phone&quot; - for phone numbers.
-     */
-    valueType?: string | null;
-  }
-  /**
-   * Set of detected objects with bounding boxes.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1LocalizedObjectAnnotation {
-    /**
-     * Image region to which this object belongs. This must be populated.
-     */
-    boundingPoly?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     */
-    languageCode?: string | null;
-    /**
-     * Object ID that should align with EntityAnnotation mid.
-     */
-    mid?: string | null;
-    /**
-     * Object name, expressed in its `language_code` language.
-     */
-    name?: string | null;
-    /**
-     * Score of the result. Range [0, 1].
-     */
-    score?: number | null;
-  }
-  /**
-   * Detected entity location information.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1LocationInfo {
-    /**
-     * lat/long location coordinates.
-     */
-    latLng?: Schema$LatLng;
-  }
-  /**
-   * A vertex represents a 2D point in the image. NOTE: the normalized vertex coordinates are relative to the original image and range from 0 to 1.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1NormalizedVertex {
-    /**
-     * X coordinate.
-     */
-    x?: number | null;
-    /**
-     * Y coordinate.
-     */
-    y?: number | null;
-  }
-  /**
-   * Contains metadata for the BatchAnnotateImages operation.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1OperationMetadata {
-    /**
-     * The time when the batch request was received.
-     */
-    createTime?: string | null;
-    /**
-     * Current state of the batch operation.
-     */
-    state?: string | null;
-    /**
-     * The time when the operation result was last updated.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * The desired output location and metadata.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1OutputConfig {
-    /**
-     * The max number of response protos to put into each output JSON file on Google Cloud Storage. The valid range is [1, 100]. If not specified, the default value is 20.  For example, for one pdf file with 100 pages, 100 response protos will be generated. If `batch_size` = 20, then 5 json files each containing 20 response protos will be written under the prefix `gcs_destination`.`uri`.  Currently, batch_size only applies to GcsDestination, with potential future support for other output configurations.
-     */
-    batchSize?: number | null;
-    /**
-     * The Google Cloud Storage location to write the output(s) to.
-     */
-    gcsDestination?: Schema$GoogleCloudVisionV1p5beta1GcsDestination;
-  }
-  /**
-   * Detected page from OCR.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Page {
-    /**
-     * List of blocks of text, images etc on this page.
-     */
-    blocks?: Schema$GoogleCloudVisionV1p5beta1Block[];
-    /**
-     * Confidence of the OCR results on the page. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
-     */
-    height?: number | null;
-    /**
-     * All UTF-8 text detected in this page. This field is by default not returned unless specified in TextDetectionParams.page_filter.
-     */
-    mergedText?: string | null;
-    /**
-     * Additional information detected on the page.
-     */
-    property?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationTextProperty;
-    /**
-     * Page width. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
-     */
-    width?: number | null;
-  }
-  /**
-   * Structural unit of text representing a number of words in certain order.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Paragraph {
-    /**
-     * The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertex order will still be (0, 1, 2, 3).
-     */
-    boundingBox?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Confidence of the OCR results for the paragraph. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * All UTF-8 text detected in this paragraph. This field is by default not returned unless specified in TextDetectionParams.paragraph_filter.
-     */
-    mergedText?: string | null;
-    /**
-     * Additional information detected for the paragraph.
-     */
-    property?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationTextProperty;
-    /**
-     * List of all words in this paragraph.
-     */
-    words?: Schema$GoogleCloudVisionV1p5beta1Word[];
-  }
-  /**
-   * A 3D position in the image, used primarily for Face detection landmarks. A valid Position must have both x and y coordinates. The position coordinates are in the same scale as the original image.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Position {
-    /**
-     * X coordinate.
-     */
-    x?: number | null;
-    /**
-     * Y coordinate.
-     */
-    y?: number | null;
-    /**
-     * Z coordinate (or depth).
-     */
-    z?: number | null;
-  }
-  /**
-   * A Product contains ReferenceImages.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Product {
-    /**
-     * User-provided metadata to be stored with this product. Must be at most 4096 characters long.
-     */
-    description?: string | null;
-    /**
-     * The user-provided name for this Product. Must not be empty. Must be at most 4096 characters long.
-     */
-    displayName?: string | null;
-    /**
-     * The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
-     */
-    name?: string | null;
-    /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
-     */
-    productCategory?: string | null;
-    /**
-     * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels.  Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon.  Multiple values can be assigned to the same key. One product may have up to 500 product_labels.  Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
-     */
-    productLabels?: Schema$GoogleCloudVisionV1p5beta1ProductKeyValue[];
-  }
-  /**
-   * A product label represented as a key-value pair.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ProductKeyValue {
-    /**
-     * The key of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
-     */
-    key?: string | null;
-    /**
-     * The value of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
-     */
-    value?: string | null;
-  }
-  /**
-   * Results for a product search request.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ProductSearchResults {
-    /**
-     * Timestamp of the index which provided these results. Products added to the product set and products removed from the product set after this time are not reflected in the current results.
-     */
-    indexTime?: string | null;
-    /**
-     * List of results grouped by products detected in the query image. Each entry corresponds to one bounding polygon in the query image, and contains the matching products specific to that region. There may be duplicate product matches in the union of all the per-product results.
-     */
-    productGroupedResults?: Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsGroupedResult[];
-    /**
-     * List of results, one for each product match.
-     */
-    results?: Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsResult[];
-  }
-  /**
-   * Information about the products similar to a single product in a query image.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsGroupedResult {
-    /**
-     * The bounding polygon around the product detected in the query image.
-     */
-    boundingPoly?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * List of generic predictions for the object in the bounding box.
-     */
-    objectAnnotations?: Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsObjectAnnotation[];
-    /**
-     * List of results, one for each product match.
-     */
-    results?: Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsResult[];
-  }
-  /**
-   * Prediction for what the object in the bounding box is.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsObjectAnnotation {
-    /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     */
-    languageCode?: string | null;
-    /**
-     * Object ID that should align with EntityAnnotation mid.
-     */
-    mid?: string | null;
-    /**
-     * Object name, expressed in its `language_code` language.
-     */
-    name?: string | null;
-    /**
-     * Score of the result. Range [0, 1].
-     */
-    score?: number | null;
-  }
-  /**
-   * Information about a product.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsResult {
-    /**
-     * The resource name of the image from the product that is the closest match to the query.
-     */
-    image?: string | null;
-    /**
-     * The Product.
-     */
-    product?: Schema$GoogleCloudVisionV1p5beta1Product;
-    /**
-     * A confidence level on the match, ranging from 0 (no confidence) to 1 (full confidence).
-     */
-    score?: number | null;
-  }
-  /**
-   * A `Property` consists of a user-supplied name/value pair.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Property {
-    /**
-     * Name of the property.
-     */
-    name?: string | null;
-    /**
-     * Value of numeric properties.
-     */
-    uint64Value?: string | null;
-    /**
-     * Value of the property.
-     */
-    value?: string | null;
-  }
-  /**
-   * A `ReferenceImage` represents a product image and its associated metadata, such as bounding boxes.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ReferenceImage {
-    /**
-     * Bounding polygons around the areas of interest in the reference image. Optional. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
-     */
-    boundingPolys?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly[];
-    /**
-     * The resource name of the reference image.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.  This field is ignored when creating a reference image.
-     */
-    name?: string | null;
-    /**
-     * The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.  Required.
-     */
-    uri?: string | null;
-  }
-  /**
-   * Set of features pertaining to the image, computed by computer vision methods over safe-search verticals (for example, adult, spoof, medical, violence).
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1SafeSearchAnnotation {
-    /**
-     * Represents the adult content likelihood for the image. Adult content may contain elements such as nudity, pornographic images or cartoons, or sexual activities.
-     */
-    adult?: string | null;
-    /**
-     * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    adultConfidence?: number | null;
-    /**
-     * Likelihood that this is a medical image.
-     */
-    medical?: string | null;
-    /**
-     * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    medicalConfidence?: number | null;
-    /**
-     * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    nsfwConfidence?: number | null;
-    /**
-     * Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
-     */
-    racy?: string | null;
-    /**
-     * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    racyConfidence?: number | null;
-    /**
-     * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
-     */
-    spoof?: string | null;
-    /**
-     * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    spoofConfidence?: number | null;
-    /**
-     * Likelihood that this image contains violent content.
-     */
-    violence?: string | null;
-    /**
-     * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    violenceConfidence?: number | null;
-  }
-  /**
-   * A single symbol representation.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Symbol {
-    /**
-     * The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertex order will still be (0, 1, 2, 3).
-     */
-    boundingBox?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Confidence of the OCR results for the symbol. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * Additional information detected for the symbol.
-     */
-    property?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationTextProperty;
-    /**
-     * The actual UTF-8 representation of the symbol.
-     */
-    text?: string | null;
-  }
-  /**
-   * A table representation similar to HTML table structure.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Table {
-    /**
-     * Body rows of the table
-     */
-    bodyRows?: Schema$GoogleCloudVisionV1p5beta1TableTableRow[];
-    /**
-     * Header rows of the table
-     */
-    headerRows?: Schema$GoogleCloudVisionV1p5beta1TableTableRow[];
-  }
-  /**
-   * A cell representation inside of tables.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1TableTableCell {
-    /**
-     * How many columns this cell spans.
-     */
-    colSpan?: number | null;
-    /**
-     * How many rows this cell spans.
-     */
-    rowSpan?: number | null;
-    /**
-     * The merged text value of this cell, omitting any deeper structural information unlike `text_block`. This is useful for simple cells.
-     */
-    text?: string | null;
-    /**
-     * Text block for this cell which also contains the normalized bounding box for the cell and deeper structures within a cell if present.
-     */
-    textBlock?: Schema$GoogleCloudVisionV1p5beta1Block;
-  }
-  /**
-   * A row of table cells.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1TableTableRow {
-    /**
-     * Cells that make up this row.
-     */
-    cells?: Schema$GoogleCloudVisionV1p5beta1TableTableCell[];
-  }
-  /**
-   * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this:     TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1TextAnnotation {
-    /**
-     * List of pages detected by OCR.
-     */
-    pages?: Schema$GoogleCloudVisionV1p5beta1Page[];
-    /**
-     * UTF-8 text detected on the pages.
-     */
-    text?: string | null;
-  }
-  /**
-   * Detected start or end of a structural component.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1TextAnnotationDetectedBreak {
-    /**
-     * True if break prepends the element.
-     */
-    isPrefix?: boolean | null;
-    /**
-     * Detected break type.
-     */
-    type?: string | null;
-  }
-  /**
-   * Detected language for a structural component.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1TextAnnotationDetectedLanguage {
-    /**
-     * Confidence of detected language. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     */
-    languageCode?: string | null;
-  }
-  /**
-   * Additional information detected on the structural component.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1TextAnnotationTextProperty {
-    /**
-     * Detected start or end of a text segment.
-     */
-    detectedBreak?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationDetectedBreak;
-    /**
-     * A list of detected languages together with confidence.
-     */
-    detectedLanguages?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationDetectedLanguage[];
-  }
-  /**
-   * A vertex represents a 2D point in the image. NOTE: the vertex coordinates are in the same scale as the original image.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Vertex {
-    /**
-     * X coordinate.
-     */
-    x?: number | null;
-    /**
-     * Y coordinate.
-     */
-    y?: number | null;
-  }
-  /**
-   * Relevant information for the image from the Internet.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1WebDetection {
-    /**
-     * The service&#39;s best guess as to the topic of the request image. Inferred from similar images on the open web.
-     */
-    bestGuessLabels?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebLabel[];
-    /**
-     * Fully matching images from the Internet. Can include resized copies of the query image.
-     */
-    fullMatchingImages?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebImage[];
-    /**
-     * Web pages containing the matching images from the Internet.
-     */
-    pagesWithMatchingImages?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebPage[];
-    /**
-     * Partial matching images from the Internet. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
-     */
-    partialMatchingImages?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebImage[];
-    /**
-     * The visually similar image results.
-     */
-    visuallySimilarImages?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebImage[];
-    /**
-     * Deduced entities from similar images on the Internet.
-     */
-    webEntities?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebEntity[];
-  }
-  /**
-   * Entity deduced from similar images on the Internet.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1WebDetectionWebEntity {
-    /**
-     * Canonical description of the entity, in English.
-     */
-    description?: string | null;
-    /**
-     * Opaque entity ID.
-     */
-    entityId?: string | null;
-    /**
-     * Overall relevancy score for the entity. Not normalized and not comparable across different image queries.
-     */
-    score?: number | null;
-  }
-  /**
-   * Metadata for online images.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1WebDetectionWebImage {
-    /**
-     * (Deprecated) Overall relevancy score for the image.
-     */
-    score?: number | null;
-    /**
-     * The result image URL.
-     */
-    url?: string | null;
-  }
-  /**
-   * Label to provide extra metadata for the web detection.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1WebDetectionWebLabel {
-    /**
-     * Label for extra metadata.
-     */
-    label?: string | null;
-    /**
-     * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     */
-    languageCode?: string | null;
-  }
-  /**
-   * Metadata for web pages.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1WebDetectionWebPage {
-    /**
-     * Fully matching images on the page. Can include resized copies of the query image.
-     */
-    fullMatchingImages?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebImage[];
-    /**
-     * Title for the web page, may contain HTML markups.
-     */
-    pageTitle?: string | null;
-    /**
-     * Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
-     */
-    partialMatchingImages?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebImage[];
-    /**
-     * (Deprecated) Overall relevancy score for the web page.
-     */
-    score?: number | null;
-    /**
-     * The result web page URL.
-     */
-    url?: string | null;
-  }
-  /**
-   * A word representation.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Word {
-    /**
-     * The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertex order will still be (0, 1, 2, 3).
-     */
-    boundingBox?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Confidence of the OCR results for the word. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * All UTF-8 text detected in this word. This field is by default not returned unless specified in TextDetectionParams.word_filter.
-     */
-    mergedText?: string | null;
-    /**
-     * Additional information detected for the word.
-     */
-    property?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationTextProperty;
-    /**
-     * List of symbols in the word. The order of the symbols follows the natural reading order.
-     */
-    symbols?: Schema$GoogleCloudVisionV1p5beta1Symbol[];
-  }
-  /**
    * Information about the products similar to a single product in a query image.
    */
   export interface Schema$GroupedResult {
@@ -5401,7 +4344,7 @@ export namespace vision_v1 {
      */
     cropHintsParams?: Schema$CropHintsParams;
     /**
-     * List of languages to use for TEXT_DETECTION. In most cases, an empty value yields the best results since it enables automatic language detection. For languages based on the Latin alphabet, setting `language_hints` is not needed. In rare cases, when the language of the text in the image is known, setting a hint will help get better results (although it will be a significant hindrance if the hint is wrong). Text detection returns an error if one or more of the specified languages is not one of the [supported languages](/vision/docs/languages).
+     * List of languages to use for TEXT_DETECTION. In most cases, an empty value yields the best results since it enables automatic language detection. For languages based on the Latin alphabet, setting `language_hints` is not needed. In rare cases, when the language of the text in the image is known, setting a hint will help get better results (although it will be a significant hindrance if the hint is wrong). Text detection returns an error if one or more of the specified languages is not one of the [supported languages](https://cloud.google.com/vision/docs/languages).
      */
     languageHints?: string[] | null;
     /**
@@ -5462,7 +4405,7 @@ export namespace vision_v1 {
    */
   export interface Schema$ImportProductSetsRequest {
     /**
-     * The input content for the list of requests.
+     * Required. The input content for the list of requests.
      */
     inputConfig?: Schema$ImportProductSetsInputConfig;
   }
@@ -5820,7 +4763,7 @@ export namespace vision_v1 {
      */
     name?: string | null;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
+     * Immutable. The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
@@ -5833,7 +4776,7 @@ export namespace vision_v1 {
    */
   export interface Schema$ProductSearchParams {
     /**
-     * The bounding polygon around the area of interest in the image. Optional. If it is not specified, system discretion will be applied.
+     * The bounding polygon around the area of interest in the image. If it is not specified, system discretion will be applied.
      */
     boundingPoly?: Schema$BoundingPoly;
     /**
@@ -5841,7 +4784,7 @@ export namespace vision_v1 {
      */
     filter?: string | null;
     /**
-     * The list of product categories to search in. Currently, we only consider the first category, and either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot; should be specified. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported but will be deprecated. For new products, please use &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot; for better product search accuracy. It is recommended to migrate existing products to these categories as well.
+     * The list of product categories to search in. Currently, we only consider the first category, and either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, &quot;toys-v2&quot;, &quot;packagedgoods-v1&quot;, or &quot;general-v1&quot; should be specified. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported but will be deprecated. For new products, please use &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot; for better product search accuracy. It is recommended to migrate existing products to these categories as well.
      */
     productCategories?: string[] | null;
     /**
@@ -5935,7 +4878,7 @@ export namespace vision_v1 {
    */
   export interface Schema$ReferenceImage {
     /**
-     * Bounding polygons around the areas of interest in the reference image. Optional. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
+     * Optional. Bounding polygons around the areas of interest in the reference image. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
      */
     boundingPolys?: Schema$BoundingPoly[];
     /**
@@ -5943,7 +4886,7 @@ export namespace vision_v1 {
      */
     name?: string | null;
     /**
-     * The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.  Required.
+     * Required. The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.
      */
     uri?: string | null;
   }
@@ -5952,7 +4895,7 @@ export namespace vision_v1 {
    */
   export interface Schema$RemoveProductFromProductSetRequest {
     /**
-     * The resource name for the Product to be removed from this ProductSet.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     * Required. The resource name for the Product to be removed from this ProductSet.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      */
     product?: string | null;
   }
@@ -5982,45 +4925,21 @@ export namespace vision_v1 {
      */
     adult?: string | null;
     /**
-     * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    adultConfidence?: number | null;
-    /**
      * Likelihood that this is a medical image.
      */
     medical?: string | null;
-    /**
-     * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    medicalConfidence?: number | null;
-    /**
-     * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    nsfwConfidence?: number | null;
     /**
      * Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
      */
     racy?: string | null;
     /**
-     * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    racyConfidence?: number | null;
-    /**
      * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
      */
     spoof?: string | null;
     /**
-     * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    spoofConfidence?: number | null;
-    /**
      * Likelihood that this image contains violent content.
      */
     violence?: string | null;
-    /**
-     * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    violenceConfidence?: number | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -6237,65 +5156,76 @@ export namespace vision_v1 {
      * vision.files.annotate
      * @desc Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported.  This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.files.annotate(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.files.annotate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.files.annotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().BatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().BatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     annotate(
+      params: Params$Resource$Files$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    annotate(
       params?: Params$Resource$Files$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchAnnotateFilesResponse>;
+    annotate(
+      params: Params$Resource$Files$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Files$Annotate,
       options:
@@ -6313,12 +5243,20 @@ export namespace vision_v1 {
     annotate(
       paramsOrCallback?:
         | Params$Resource$Files$Annotate
-        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>,
+        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>,
-      callback?: BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
-    ): void | GaxiosPromise<Schema$BatchAnnotateFilesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchAnnotateFilesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6350,7 +5288,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateFilesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchAnnotateFilesResponse>(parameters);
@@ -6361,65 +5299,80 @@ export namespace vision_v1 {
      * vision.files.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.files.asyncBatchAnnotate(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.files.asyncBatchAnnotate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.files.asyncBatchAnnotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asyncBatchAnnotate(
+      params: Params$Resource$Files$Asyncbatchannotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asyncBatchAnnotate(
       params?: Params$Resource$Files$Asyncbatchannotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+      params: Params$Resource$Files$Asyncbatchannotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asyncBatchAnnotate(
       params: Params$Resource$Files$Asyncbatchannotate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -6433,12 +5386,17 @@ export namespace vision_v1 {
     asyncBatchAnnotate(
       paramsOrCallback?:
         | Params$Resource$Files$Asyncbatchannotate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6472,7 +5430,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6481,22 +5442,12 @@ export namespace vision_v1 {
 
   export interface Params$Resource$Files$Annotate extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$BatchAnnotateFilesRequest;
   }
   export interface Params$Resource$Files$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -6513,65 +5464,76 @@ export namespace vision_v1 {
      * vision.images.annotate
      * @desc Run image detection and annotation for a batch of images.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.images.annotate(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.images.annotate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.images.annotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().BatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().BatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     annotate(
+      params: Params$Resource$Images$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    annotate(
       params?: Params$Resource$Images$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchAnnotateImagesResponse>;
+    annotate(
+      params: Params$Resource$Images$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Images$Annotate,
       options:
@@ -6589,12 +5551,20 @@ export namespace vision_v1 {
     annotate(
       paramsOrCallback?:
         | Params$Resource$Images$Annotate
-        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>,
+        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>,
-      callback?: BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
-    ): void | GaxiosPromise<Schema$BatchAnnotateImagesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchAnnotateImagesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6629,7 +5599,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateImagesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchAnnotateImagesResponse>(parameters);
@@ -6640,65 +5610,81 @@ export namespace vision_v1 {
      * vision.images.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of images.  Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).  This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.images.asyncBatchAnnotate(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.images.asyncBatchAnnotate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "outputConfig": {},
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.images.asyncBatchAnnotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AsyncBatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asyncBatchAnnotate(
+      params: Params$Resource$Images$Asyncbatchannotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asyncBatchAnnotate(
       params?: Params$Resource$Images$Asyncbatchannotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+      params: Params$Resource$Images$Asyncbatchannotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asyncBatchAnnotate(
       params: Params$Resource$Images$Asyncbatchannotate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -6712,12 +5698,17 @@ export namespace vision_v1 {
     asyncBatchAnnotate(
       paramsOrCallback?:
         | Params$Resource$Images$Asyncbatchannotate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Images$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6751,7 +5742,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6760,22 +5754,12 @@ export namespace vision_v1 {
 
   export interface Params$Resource$Images$Annotate extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$BatchAnnotateImagesRequest;
   }
   export interface Params$Resource$Images$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -6801,51 +5785,52 @@ export namespace vision_v1 {
      * vision.locations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource.
-     *     name: 'locations/my-location/operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.locations.operations.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.locations.operations.get
      * @memberOf! ()
      *
@@ -6856,9 +5841,18 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Locations$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Locations$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -6872,12 +5866,17 @@ export namespace vision_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Locations$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6908,7 +5907,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6917,11 +5919,6 @@ export namespace vision_v1 {
 
   export interface Params$Resource$Locations$Operations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */
@@ -6938,66 +5935,75 @@ export namespace vision_v1 {
      * vision.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.operations.cancel(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'operations/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.operations.cancel
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -7011,10 +6017,17 @@ export namespace vision_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7045,7 +6058,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -7055,48 +6071,46 @@ export namespace vision_v1 {
      * vision.operations.delete
      * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource to be deleted.
-     *     name: 'operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.operations.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.operations.delete
      * @memberOf! ()
      *
@@ -7107,9 +6121,18 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -7123,10 +6146,17 @@ export namespace vision_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7157,7 +6187,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -7167,51 +6200,52 @@ export namespace vision_v1 {
      * vision.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource.
-     *     name: 'operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.operations.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.operations.get
      * @memberOf! ()
      *
@@ -7222,9 +6256,18 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -7238,12 +6281,17 @@ export namespace vision_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7273,7 +6321,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -7283,64 +6334,55 @@ export namespace vision_v1 {
      * vision.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
      *     // The name of the operation's parent resource.
-     *     name: 'operations',  // TODO: Update placeholder value.
+     *     name: 'operations',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var operationsPage = response['operations'];
-     *     if (!operationsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < operationsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `operationsPage`:
-     *       console.log(JSON.stringify(operationsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       vision.operations.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   vision.operations.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.operations.list
      * @memberOf! ()
      *
@@ -7354,9 +6396,18 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Operations$List,
       options:
@@ -7372,12 +6423,20 @@ export namespace vision_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7407,7 +6466,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
@@ -7416,11 +6478,6 @@ export namespace vision_v1 {
 
   export interface Params$Resource$Operations$Cancel
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -7434,32 +6491,17 @@ export namespace vision_v1 {
   export interface Params$Resource$Operations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -7502,20 +6544,92 @@ export namespace vision_v1 {
     /**
      * vision.projects.files.annotate
      * @desc Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported.  This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.files.annotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.files.annotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().BatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().BatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     annotate(
+      params: Params$Resource$Projects$Files$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    annotate(
       params?: Params$Resource$Projects$Files$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchAnnotateFilesResponse>;
+    annotate(
+      params: Params$Resource$Projects$Files$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Projects$Files$Annotate,
       options:
@@ -7533,12 +6647,20 @@ export namespace vision_v1 {
     annotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Files$Annotate
-        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>,
+        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>,
-      callback?: BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
-    ): void | GaxiosPromise<Schema$BatchAnnotateFilesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchAnnotateFilesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Files$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7574,7 +6696,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateFilesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchAnnotateFilesResponse>(parameters);
@@ -7584,20 +6706,96 @@ export namespace vision_v1 {
     /**
      * vision.projects.files.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.files.asyncBatchAnnotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.files.asyncBatchAnnotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asyncBatchAnnotate(
+      params: Params$Resource$Projects$Files$Asyncbatchannotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asyncBatchAnnotate(
       params?: Params$Resource$Projects$Files$Asyncbatchannotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+      params: Params$Resource$Projects$Files$Asyncbatchannotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Files$Asyncbatchannotate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -7611,12 +6809,17 @@ export namespace vision_v1 {
     asyncBatchAnnotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Files$Asyncbatchannotate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7650,7 +6853,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -7659,11 +6865,6 @@ export namespace vision_v1 {
 
   export interface Params$Resource$Projects$Files$Annotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -7676,11 +6877,6 @@ export namespace vision_v1 {
   }
   export interface Params$Resource$Projects$Files$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -7701,20 +6897,92 @@ export namespace vision_v1 {
     /**
      * vision.projects.images.annotate
      * @desc Run image detection and annotation for a batch of images.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.images.annotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.images.annotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().BatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().BatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     annotate(
+      params: Params$Resource$Projects$Images$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    annotate(
       params?: Params$Resource$Projects$Images$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchAnnotateImagesResponse>;
+    annotate(
+      params: Params$Resource$Projects$Images$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Projects$Images$Annotate,
       options:
@@ -7732,12 +7000,20 @@ export namespace vision_v1 {
     annotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Images$Annotate
-        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>,
+        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>,
-      callback?: BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
-    ): void | GaxiosPromise<Schema$BatchAnnotateImagesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchAnnotateImagesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7773,7 +7049,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateImagesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchAnnotateImagesResponse>(parameters);
@@ -7783,20 +7059,97 @@ export namespace vision_v1 {
     /**
      * vision.projects.images.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of images.  Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).  This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.images.asyncBatchAnnotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "outputConfig": {},
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.images.asyncBatchAnnotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().AsyncBatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asyncBatchAnnotate(
+      params: Params$Resource$Projects$Images$Asyncbatchannotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asyncBatchAnnotate(
       params?: Params$Resource$Projects$Images$Asyncbatchannotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+      params: Params$Resource$Projects$Images$Asyncbatchannotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Images$Asyncbatchannotate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -7810,12 +7163,17 @@ export namespace vision_v1 {
     asyncBatchAnnotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Images$Asyncbatchannotate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Images$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7849,7 +7207,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -7858,11 +7219,6 @@ export namespace vision_v1 {
 
   export interface Params$Resource$Projects$Images$Annotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -7875,11 +7231,6 @@ export namespace vision_v1 {
   }
   export interface Params$Resource$Projects$Images$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -7921,20 +7272,92 @@ export namespace vision_v1 {
     /**
      * vision.projects.locations.files.annotate
      * @desc Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported.  This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.files.annotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.files.annotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().BatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().BatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     annotate(
+      params: Params$Resource$Projects$Locations$Files$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    annotate(
       params?: Params$Resource$Projects$Locations$Files$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchAnnotateFilesResponse>;
+    annotate(
+      params: Params$Resource$Projects$Locations$Files$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Projects$Locations$Files$Annotate,
       options:
@@ -7952,12 +7375,20 @@ export namespace vision_v1 {
     annotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Files$Annotate
-        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>,
+        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>,
-      callback?: BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
-    ): void | GaxiosPromise<Schema$BatchAnnotateFilesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchAnnotateFilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchAnnotateFilesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Files$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7993,7 +7424,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateFilesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchAnnotateFilesResponse>(parameters);
@@ -8003,20 +7434,96 @@ export namespace vision_v1 {
     /**
      * vision.projects.locations.files.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.files.asyncBatchAnnotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.files.asyncBatchAnnotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asyncBatchAnnotate(
+      params: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asyncBatchAnnotate(
       params?: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+      params: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -8030,12 +7537,17 @@ export namespace vision_v1 {
     asyncBatchAnnotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Files$Asyncbatchannotate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8069,7 +7581,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -8078,11 +7593,6 @@ export namespace vision_v1 {
 
   export interface Params$Resource$Projects$Locations$Files$Annotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -8095,11 +7605,6 @@ export namespace vision_v1 {
   }
   export interface Params$Resource$Projects$Locations$Files$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -8120,20 +7625,92 @@ export namespace vision_v1 {
     /**
      * vision.projects.locations.images.annotate
      * @desc Run image detection and annotation for a batch of images.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.images.annotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.images.annotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().BatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().BatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     annotate(
+      params: Params$Resource$Projects$Locations$Images$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    annotate(
       params?: Params$Resource$Projects$Locations$Images$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchAnnotateImagesResponse>;
+    annotate(
+      params: Params$Resource$Projects$Locations$Images$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Projects$Locations$Images$Annotate,
       options:
@@ -8151,12 +7728,20 @@ export namespace vision_v1 {
     annotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Images$Annotate
-        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>,
+        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>,
-      callback?: BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
-    ): void | GaxiosPromise<Schema$BatchAnnotateImagesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchAnnotateImagesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8192,7 +7777,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateImagesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchAnnotateImagesResponse>(parameters);
@@ -8202,20 +7787,97 @@ export namespace vision_v1 {
     /**
      * vision.projects.locations.images.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of images.  Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).  This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.images.asyncBatchAnnotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "outputConfig": {},
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.images.asyncBatchAnnotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().AsyncBatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asyncBatchAnnotate(
+      params: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asyncBatchAnnotate(
       params?: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+      params: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -8229,12 +7891,17 @@ export namespace vision_v1 {
     asyncBatchAnnotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Images$Asyncbatchannotate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Images$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8268,7 +7935,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -8277,11 +7947,6 @@ export namespace vision_v1 {
 
   export interface Params$Resource$Projects$Locations$Images$Annotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -8294,11 +7959,6 @@ export namespace vision_v1 {
   }
   export interface Params$Resource$Projects$Locations$Images$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -8320,51 +7980,52 @@ export namespace vision_v1 {
      * vision.projects.locations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.operations.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.operations.get
      * @memberOf! ()
      *
@@ -8375,9 +8036,18 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -8391,12 +8061,17 @@ export namespace vision_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8427,7 +8102,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -8436,11 +8114,6 @@ export namespace vision_v1 {
 
   export interface Params$Resource$Projects$Locations$Operations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */
@@ -8461,72 +8134,96 @@ export namespace vision_v1 {
      * vision.projects.locations.products.create
      * @desc Creates and returns a new product resource.  Possible errors:  * Returns INVALID_ARGUMENT if display_name is missing or longer than 4096   characters. * Returns INVALID_ARGUMENT if description is longer than 4096 characters. * Returns INVALID_ARGUMENT if product_category is missing or invalid.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The project in which the Product should be created.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.create({
+     *     // Required. The project in which the Product should be created.
+     *     //
      *     // Format is
      *     // `projects/PROJECT_ID/locations/LOC_ID`.
-     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // A user-supplied resource id for this Product. If set, the server will
+     *     // attempt to use this value as the resource id. If it is already in use, an
+     *     // error is returned with code ALREADY_EXISTS. Must be at most 128 characters
+     *     // long. It cannot contain the character `/`.
+     *     productId: 'placeholder-value',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "productCategory": "my_productCategory",
+     *       //   "productLabels": []
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "productCategory": "my_productCategory",
+     *   //   "productLabels": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The project in which the Product should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param {string} params.parent Required. The project in which the Product should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      * @param {string=} params.productId A user-supplied resource id for this Product. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.
-     * @param {().Product} params.resource Request body data
+     * @param {().Product} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Products$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Products$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Product>;
+    create(
+      params: Params$Resource$Projects$Locations$Products$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Products$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Product>,
@@ -8540,10 +8237,17 @@ export namespace vision_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Products$Create
-        | BodyResponseCallback<Schema$Product>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
-      callback?: BodyResponseCallback<Schema$Product>
-    ): void | GaxiosPromise<Schema$Product> {
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8577,7 +8281,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Product>(parameters, callback);
+        createAPIRequest<Schema$Product>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
       }
@@ -8587,63 +8294,71 @@ export namespace vision_v1 {
      * vision.projects.locations.products.delete
      * @desc Permanently deletes a product and its reference images.  Metadata of the product and all its images will be deleted right away, but search queries against ProductSets containing the product may still work until all related caches are refreshed.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Resource name of product to delete.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.delete({
+     *     // Required. Resource name of product to delete.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-     *     name: 'projects/my-project/locations/my-location/products/my-product',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *     name: 'projects/my-project/locations/my-location/products/my-product',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of product to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     * @param {string} params.name Required. Resource name of product to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Products$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Products$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Products$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -8657,10 +8372,17 @@ export namespace vision_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Products$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8691,7 +8413,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -8701,66 +8426,77 @@ export namespace vision_v1 {
      * vision.projects.locations.products.get
      * @desc Gets information associated with a Product.  Possible errors:  * Returns NOT_FOUND if the Product does not exist.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Resource name of the Product to get.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.get({
+     *     // Required. Resource name of the Product to get.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-     *     name: 'projects/my-project/locations/my-location/products/my-product',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     name: 'projects/my-project/locations/my-location/products/my-product',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "productCategory": "my_productCategory",
+     *   //   "productLabels": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the Product to get.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     * @param {string} params.name Required. Resource name of the Product to get.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Products$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Products$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Product>;
+    get(
+      params: Params$Resource$Projects$Locations$Products$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Products$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Product>,
@@ -8774,10 +8510,17 @@ export namespace vision_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Products$Get
-        | BodyResponseCallback<Schema$Product>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
-      callback?: BodyResponseCallback<Schema$Product>
-    ): void | GaxiosPromise<Schema$Product> {
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8808,7 +8551,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Product>(parameters, callback);
+        createAPIRequest<Schema$Product>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
       }
@@ -8818,81 +8564,80 @@ export namespace vision_v1 {
      * vision.projects.locations.products.list
      * @desc Lists products in an unspecified order.  Possible errors:  * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The project OR ProductSet from which Products should be listed.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.list({
+     *     // The maximum number of items to return. Default 10, maximum 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project OR ProductSet from which Products should be listed.
+     *     //
      *     // Format:
      *     // `projects/PROJECT_ID/locations/LOC_ID`
-     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "products": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var productsPage = response['products'];
-     *     if (!productsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < productsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `productsPage`:
-     *       console.log(JSON.stringify(productsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       vision.projects.locations.products.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   vision.projects.locations.products.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
      * @param {string=} params.pageToken The next_page_token returned from a previous List request, if any.
-     * @param {string} params.parent The project OR ProductSet from which Products should be listed.  Format: `projects/PROJECT_ID/locations/LOC_ID`
+     * @param {string} params.parent Required. The project OR ProductSet from which Products should be listed.  Format: `projects/PROJECT_ID/locations/LOC_ID`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Products$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Products$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListProductsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Products$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Products$List,
       options:
@@ -8908,12 +8653,20 @@ export namespace vision_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Products$List
-        | BodyResponseCallback<Schema$ListProductsResponse>,
+        | BodyResponseCallback<Schema$ListProductsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListProductsResponse>,
-      callback?: BodyResponseCallback<Schema$ListProductsResponse>
-    ): void | GaxiosPromise<Schema$ListProductsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProductsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProductsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListProductsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8947,7 +8700,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListProductsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListProductsResponse>(parameters);
       }
@@ -8957,74 +8713,99 @@ export namespace vision_v1 {
      * vision.projects.locations.products.patch
      * @desc Makes changes to a Product resource. Only the `display_name`, `description`, and `labels` fields can be updated right now.  If labels are updated, the change will not be reflected in queries until the next index time.  Possible errors:  * Returns NOT_FOUND if the Product does not exist. * Returns INVALID_ARGUMENT if display_name is present in update_mask but is   missing from the request or longer than 4096 characters. * Returns INVALID_ARGUMENT if description is present in update_mask but is   longer than 4096 characters. * Returns INVALID_ARGUMENT if product_category is present in update_mask.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.patch({
      *     // The resource name of the product.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     *     //
      *     // This field is ignored when creating a product.
-     *     name: 'projects/my-project/locations/my-location/products/my-product',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/locations/my-location/products/my-product',
+     *     // The FieldMask that specifies which fields
+     *     // to update.
+     *     // If update_mask isn't specified, all mutable fields are to be updated.
+     *     // Valid mask paths include `product_labels`, `display_name`, and
+     *     // `description`.
+     *     updateMask: 'placeholder-value',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "productCategory": "my_productCategory",
+     *       //   "productLabels": []
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "productCategory": "my_productCategory",
+     *   //   "productLabels": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
      * @param {string=} params.updateMask The FieldMask that specifies which fields to update. If update_mask isn't specified, all mutable fields are to be updated. Valid mask paths include `product_labels`, `display_name`, and `description`.
-     * @param {().Product} params.resource Request body data
+     * @param {().Product} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Products$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Products$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Product>;
+    patch(
+      params: Params$Resource$Projects$Locations$Products$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Products$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Product>,
@@ -9038,10 +8819,17 @@ export namespace vision_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Products$Patch
-        | BodyResponseCallback<Schema$Product>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
-      callback?: BodyResponseCallback<Schema$Product>
-    ): void | GaxiosPromise<Schema$Product> {
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9072,7 +8860,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Product>(parameters, callback);
+        createAPIRequest<Schema$Product>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
       }
@@ -9081,20 +8872,88 @@ export namespace vision_v1 {
     /**
      * vision.projects.locations.products.purge
      * @desc Asynchronous API to delete all Products in a ProductSet or all Products that are in no ProductSet.  If a Product is a member of the specified ProductSet in addition to other ProductSets, the Product will still be deleted.  It is recommended to not delete the specified ProductSet until after this operation has completed. It is also recommended to not add any of the Products involved in the batch delete to a new ProductSet while this operation is running because those Products may still end up deleted.  It's not possible to undo the PurgeProducts operation. Therefore, it is recommended to keep the csv files used in ImportProductSets (if that was how you originally built the Product Set) before starting PurgeProducts, in case you need to re-import the data after deletion.  If the plan is to purge all of the Products from a ProductSet and then re-use the empty ProductSet to re-import new Products into the empty ProductSet, you must wait until the PurgeProducts operation has finished for that ProductSet.  The google.longrunning.Operation API can be used to keep track of the progress and results of the request. `Operation.metadata` contains `BatchOperationMetadata`. (progress)
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.purge({
+     *     // Required. The project and location in which the Products should be deleted.
+     *     //
+     *     // Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deleteOrphanProducts": false,
+     *       //   "force": false,
+     *       //   "productSetPurgeConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.products.purge
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The project and location in which the Products should be deleted.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param {().PurgeProductsRequest} params.resource Request body data
+     * @param {string} params.parent Required. The project and location in which the Products should be deleted.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param {().PurgeProductsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     purge(
+      params: Params$Resource$Projects$Locations$Products$Purge,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    purge(
       params?: Params$Resource$Projects$Locations$Products$Purge,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    purge(
+      params: Params$Resource$Projects$Locations$Products$Purge,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     purge(
       params: Params$Resource$Projects$Locations$Products$Purge,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -9108,12 +8967,17 @@ export namespace vision_v1 {
     purge(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Products$Purge
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Purge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9147,7 +9011,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -9157,12 +9024,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Products$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The project in which the Product should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * Required. The project in which the Product should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      */
     parent?: string;
     /**
@@ -9178,34 +9040,19 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Products$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Resource name of product to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     * Required. Resource name of product to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Products$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Resource name of the Product to get.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     * Required. Resource name of the Product to get.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Products$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return. Default 10, maximum 100.
      */
@@ -9215,17 +9062,12 @@ export namespace vision_v1 {
      */
     pageToken?: string;
     /**
-     * The project OR ProductSet from which Products should be listed.  Format: `projects/PROJECT_ID/locations/LOC_ID`
+     * Required. The project OR ProductSet from which Products should be listed.  Format: `projects/PROJECT_ID/locations/LOC_ID`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Products$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
      */
@@ -9243,12 +9085,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Products$Purge
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The project and location in which the Products should be deleted.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * Required. The project and location in which the Products should be deleted.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      */
     parent?: string;
 
@@ -9268,72 +9105,92 @@ export namespace vision_v1 {
      * vision.projects.locations.products.referenceImages.create
      * @desc Creates and returns a new ReferenceImage resource.  The `bounding_poly` field is optional. If `bounding_poly` is not specified, the system will try to detect regions of interest in the image that are compatible with the product_category on the parent product. If it is specified, detection is ALWAYS skipped. The system converts polygons into non-rotated rectangles.  Note that the pipeline will resize the image if the image resolution is too large to process (above 50MP).  Possible errors:  * Returns INVALID_ARGUMENT if the image_uri is missing or longer than 4096   characters. * Returns INVALID_ARGUMENT if the product does not exist. * Returns INVALID_ARGUMENT if bounding_poly is not provided, and nothing   compatible with the parent product's product_category is detected. * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Resource name of the product in which to create the reference image.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.referenceImages.create({
+     *     // Required. Resource name of the product in which to create the reference image.
+     *     //
      *     // Format is
      *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-     *     parent: 'projects/my-project/locations/my-location/products/my-product',  // TODO: Update placeholder value.
+     *     parent: 'projects/my-project/locations/my-location/products/my-product',
+     *     // A user-supplied resource id for the ReferenceImage to be added. If set,
+     *     // the server will attempt to use this value as the resource id. If it is
+     *     // already in use, an error is returned with code ALREADY_EXISTS. Must be at
+     *     // most 128 characters long. It cannot contain the character `/`.
+     *     referenceImageId: 'placeholder-value',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "boundingPolys": [],
+     *       //   "name": "my_name",
+     *       //   "uri": "my_uri"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.referenceImages.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boundingPolys": [],
+     *   //   "name": "my_name",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.referenceImages.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Resource name of the product in which to create the reference image.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     * @param {string} params.parent Required. Resource name of the product in which to create the reference image.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      * @param {string=} params.referenceImageId A user-supplied resource id for the ReferenceImage to be added. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.
-     * @param {().ReferenceImage} params.resource Request body data
+     * @param {().ReferenceImage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Products$Referenceimages$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReferenceImage>;
+    create(
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$Create,
       options: MethodOptions | BodyResponseCallback<Schema$ReferenceImage>,
@@ -9347,12 +9204,17 @@ export namespace vision_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Products$Referenceimages$Create
-        | BodyResponseCallback<Schema$ReferenceImage>,
+        | BodyResponseCallback<Schema$ReferenceImage>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReferenceImage>,
-      callback?: BodyResponseCallback<Schema$ReferenceImage>
-    ): void | GaxiosPromise<Schema$ReferenceImage> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReferenceImage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReferenceImage>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ReferenceImage> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Referenceimages$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9386,7 +9248,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ReferenceImage>(parameters, callback);
+        createAPIRequest<Schema$ReferenceImage>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ReferenceImage>(parameters);
       }
@@ -9396,63 +9261,73 @@ export namespace vision_v1 {
      * vision.projects.locations.products.referenceImages.delete
      * @desc Permanently deletes a reference image.  The image metadata will be deleted right away, but search queries against ProductSets containing the image may still work until all related caches are refreshed.  The actual image files are not deleted from Google Cloud Storage.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the reference image to delete.
-     *     // Format is:
-     *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
-     *     name: 'projects/my-project/locations/my-location/products/my-product/referenceImages/my-reference-image',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.referenceImages.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.referenceImages.delete({
+     *     // Required. The resource name of the reference image to delete.
+     *     //
+     *     // Format is:
+     *     //
+     *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
+     *     name:
+     *       'projects/my-project/locations/my-location/products/my-product/referenceImages/my-referenceImage',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.referenceImages.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the reference image to delete.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
+     * @param {string} params.name Required. The resource name of the reference image to delete.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -9466,10 +9341,17 @@ export namespace vision_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Products$Referenceimages$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Referenceimages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9500,7 +9382,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -9510,66 +9395,77 @@ export namespace vision_v1 {
      * vision.projects.locations.products.referenceImages.get
      * @desc Gets information associated with a ReferenceImage.  Possible errors:  * Returns NOT_FOUND if the specified image does not exist.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the ReferenceImage to get.
-     *     // Format is:
-     *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
-     *     name: 'projects/my-project/locations/my-location/products/my-product/referenceImages/my-reference-image',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.products.referenceImages.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.referenceImages.get({
+     *     // Required. The resource name of the ReferenceImage to get.
+     *     //
+     *     // Format is:
+     *     //
+     *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
+     *     name:
+     *       'projects/my-project/locations/my-location/products/my-product/referenceImages/my-referenceImage',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boundingPolys": [],
+     *   //   "name": "my_name",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.referenceImages.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the ReferenceImage to get.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
+     * @param {string} params.name Required. The resource name of the ReferenceImage to get.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReferenceImage>;
+    get(
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ReferenceImage>,
@@ -9583,12 +9479,17 @@ export namespace vision_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Products$Referenceimages$Get
-        | BodyResponseCallback<Schema$ReferenceImage>,
+        | BodyResponseCallback<Schema$ReferenceImage>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReferenceImage>,
-      callback?: BodyResponseCallback<Schema$ReferenceImage>
-    ): void | GaxiosPromise<Schema$ReferenceImage> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReferenceImage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReferenceImage>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ReferenceImage> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Referenceimages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9619,7 +9520,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ReferenceImage>(parameters, callback);
+        createAPIRequest<Schema$ReferenceImage>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ReferenceImage>(parameters);
       }
@@ -9629,81 +9533,84 @@ export namespace vision_v1 {
      * vision.projects.locations.products.referenceImages.list
      * @desc Lists reference images.  Possible errors:  * Returns NOT_FOUND if the parent product does not exist. * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less   than 1.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Resource name of the product containing the reference images.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.products.referenceImages.list({
+     *     // The maximum number of items to return. Default 10, maximum 100.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results to be returned. This is the value
+     *     // of `nextPageToken` returned in a previous reference image list request.
+     *     //
+     *     // Defaults to the first page if not specified.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name of the product containing the reference images.
+     *     //
      *     // Format is
      *     // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-     *     parent: 'projects/my-project/locations/my-location/products/my-product',  // TODO: Update placeholder value.
+     *     parent: 'projects/my-project/locations/my-location/products/my-product',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageSize": 0,
+     *   //   "referenceImages": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var referenceImagesPage = response['referenceImages'];
-     *     if (!referenceImagesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < referenceImagesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `referenceImagesPage`:
-     *       console.log(JSON.stringify(referenceImagesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       vision.projects.locations.products.referenceImages.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   vision.projects.locations.products.referenceImages.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.products.referenceImages.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
      * @param {string=} params.pageToken A token identifying a page of results to be returned. This is the value of `nextPageToken` returned in a previous reference image list request.  Defaults to the first page if not specified.
-     * @param {string} params.parent Resource name of the product containing the reference images.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     * @param {string} params.parent Required. Resource name of the product containing the reference images.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Products$Referenceimages$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListReferenceImagesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$List,
       options:
@@ -9721,12 +9628,20 @@ export namespace vision_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Products$Referenceimages$List
-        | BodyResponseCallback<Schema$ListReferenceImagesResponse>,
+        | BodyResponseCallback<Schema$ListReferenceImagesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListReferenceImagesResponse>,
-      callback?: BodyResponseCallback<Schema$ListReferenceImagesResponse>
-    ): void | GaxiosPromise<Schema$ListReferenceImagesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReferenceImagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReferenceImagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReferenceImagesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Products$Referenceimages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9762,7 +9677,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$ListReferenceImagesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListReferenceImagesResponse>(parameters);
@@ -9773,12 +9688,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Products$Referenceimages$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Resource name of the product in which to create the reference image.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     * Required. Resource name of the product in which to create the reference image.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      */
     parent?: string;
     /**
@@ -9794,34 +9704,19 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Products$Referenceimages$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the reference image to delete.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
+     * Required. The resource name of the reference image to delete.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Products$Referenceimages$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the ReferenceImage to get.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
+     * Required. The resource name of the ReferenceImage to get.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Products$Referenceimages$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return. Default 10, maximum 100.
      */
@@ -9831,7 +9726,7 @@ export namespace vision_v1 {
      */
     pageToken?: string;
     /**
-     * Resource name of the product containing the reference images.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     * Required. Resource name of the product containing the reference images.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      */
     parent?: string;
   }
@@ -9850,68 +9745,80 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.addProduct
      * @desc Adds a Product to the specified ProductSet. If the Product is already present, no change is made.  One Product can be added to at most 100 ProductSets.  Possible errors:  * Returns NOT_FOUND if the Product or the ProductSet doesn't exist.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name for the ProductSet to modify.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.addProduct({
+     *     // Required. The resource name for the ProductSet to modify.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     *     name: 'projects/my-project/locations/my-location/productSets/my-product-set',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/locations/my-location/productSets/my-productSet',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "product": "my_product"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.addProduct(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.addProduct
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param {().AddProductToProductSetRequest} params.resource Request body data
+     * @param {string} params.name Required. The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     * @param {().AddProductToProductSetRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     addProduct(
+      params: Params$Resource$Projects$Locations$Productsets$Addproduct,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addProduct(
       params?: Params$Resource$Projects$Locations$Productsets$Addproduct,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    addProduct(
+      params: Params$Resource$Projects$Locations$Productsets$Addproduct,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addProduct(
       params: Params$Resource$Projects$Locations$Productsets$Addproduct,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -9925,10 +9832,17 @@ export namespace vision_v1 {
     addProduct(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Productsets$Addproduct
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Addproduct;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9962,7 +9876,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -9972,71 +9889,93 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.create
      * @desc Creates and returns a new ProductSet resource.  Possible errors:  * Returns INVALID_ARGUMENT if display_name is missing, or is longer than   4096 characters.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The project in which the ProductSet should be created.
-     *     // Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.create({
+     *     // Required. The project in which the ProductSet should be created.
+     *     //
+     *     // Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // A user-supplied resource id for this ProductSet. If set, the server will
+     *     // attempt to use this value as the resource id. If it is already in use, an
+     *     // error is returned with code ALREADY_EXISTS. Must be at most 128 characters
+     *     // long. It cannot contain the character `/`.
+     *     productSetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "indexError": {},
+     *       //   "indexTime": "my_indexTime",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "indexError": {},
+     *   //   "indexTime": "my_indexTime",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The project in which the ProductSet should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param {string} params.parent Required. The project in which the ProductSet should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      * @param {string=} params.productSetId A user-supplied resource id for this ProductSet. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.
-     * @param {().ProductSet} params.resource Request body data
+     * @param {().ProductSet} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Productsets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Productsets$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ProductSet>;
+    create(
+      params: Params$Resource$Projects$Locations$Productsets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Productsets$Create,
       options: MethodOptions | BodyResponseCallback<Schema$ProductSet>,
@@ -10050,12 +9989,17 @@ export namespace vision_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Productsets$Create
-        | BodyResponseCallback<Schema$ProductSet>,
+        | BodyResponseCallback<Schema$ProductSet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ProductSet>,
-      callback?: BodyResponseCallback<Schema$ProductSet>
-    ): void | GaxiosPromise<Schema$ProductSet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProductSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProductSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ProductSet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10089,7 +10033,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ProductSet>(parameters, callback);
+        createAPIRequest<Schema$ProductSet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ProductSet>(parameters);
       }
@@ -10099,63 +10046,71 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.delete
      * @desc Permanently deletes a ProductSet. Products and ReferenceImages in the ProductSet are not deleted.  The actual image files are not deleted from Google Cloud Storage.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Resource name of the ProductSet to delete.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.delete({
+     *     // Required. Resource name of the ProductSet to delete.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     *     name: 'projects/my-project/locations/my-location/productSets/my-product-set',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *     name: 'projects/my-project/locations/my-location/productSets/my-productSet',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the ProductSet to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     * @param {string} params.name Required. Resource name of the ProductSet to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Productsets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Productsets$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Productsets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Productsets$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -10169,10 +10124,17 @@ export namespace vision_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Productsets$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10203,7 +10165,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -10213,66 +10178,76 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.get
      * @desc Gets information associated with a ProductSet.  Possible errors:  * Returns NOT_FOUND if the ProductSet does not exist.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Resource name of the ProductSet to get.
-     *     // Format is:
-     *     // `projects/PROJECT_ID/locations/LOG_ID/productSets/PRODUCT_SET_ID`
-     *     name: 'projects/my-project/locations/my-location/productSets/my-product-set',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.get({
+     *     // Required. Resource name of the ProductSet to get.
+     *     //
+     *     // Format is:
+     *     // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     *     name: 'projects/my-project/locations/my-location/productSets/my-productSet',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "indexError": {},
+     *   //   "indexTime": "my_indexTime",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the ProductSet to get.  Format is: `projects/PROJECT_ID/locations/LOG_ID/productSets/PRODUCT_SET_ID`
+     * @param {string} params.name Required. Resource name of the ProductSet to get.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Productsets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Productsets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ProductSet>;
+    get(
+      params: Params$Resource$Projects$Locations$Productsets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Productsets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ProductSet>,
@@ -10286,12 +10261,17 @@ export namespace vision_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Productsets$Get
-        | BodyResponseCallback<Schema$ProductSet>,
+        | BodyResponseCallback<Schema$ProductSet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ProductSet>,
-      callback?: BodyResponseCallback<Schema$ProductSet>
-    ): void | GaxiosPromise<Schema$ProductSet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProductSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProductSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ProductSet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10322,7 +10302,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ProductSet>(parameters, callback);
+        createAPIRequest<Schema$ProductSet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ProductSet>(parameters);
       }
@@ -10332,70 +10315,85 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.import
      * @desc Asynchronous API that imports a list of reference images to specified product sets based on a list of image information.  The google.longrunning.Operation API can be used to keep track of the progress and results of the request. `Operation.metadata` contains `BatchOperationMetadata`. (progress) `Operation.response` contains `ImportProductSetsResponse`. (results)  The input source of this method is a csv file on Google Cloud Storage. For the format of the csv file please see ImportProductSetsGcsSource.csv_file_uri.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The project in which the ProductSets should be imported.
-     *     // Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.import(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.import({
+     *     // Required. The project in which the ProductSets should be imported.
+     *     //
+     *     // Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "inputConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.import
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The project in which the ProductSets should be imported.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param {().ImportProductSetsRequest} params.resource Request body data
+     * @param {string} params.parent Required. The project in which the ProductSets should be imported.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param {().ImportProductSetsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     import(
+      params: Params$Resource$Projects$Locations$Productsets$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
       params?: Params$Resource$Projects$Locations$Productsets$Import,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Productsets$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     import(
       params: Params$Resource$Projects$Locations$Productsets$Import,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -10409,12 +10407,17 @@ export namespace vision_v1 {
     import(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Productsets$Import
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10448,7 +10451,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -10458,80 +10464,79 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.list
      * @desc Lists ProductSets in an unspecified order.  Possible errors:  * Returns INVALID_ARGUMENT if page_size is greater than 100, or less   than 1.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The project from which ProductSets should be listed.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.list({
+     *     // The maximum number of items to return. Default 10, maximum 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project from which ProductSets should be listed.
+     *     //
      *     // Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     *     parent: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "productSets": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var productSetsPage = response['productSets'];
-     *     if (!productSetsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < productSetsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `productSetsPage`:
-     *       console.log(JSON.stringify(productSetsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       vision.projects.locations.productSets.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   vision.projects.locations.productSets.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
      * @param {string=} params.pageToken The next_page_token returned from a previous List request, if any.
-     * @param {string} params.parent The project from which ProductSets should be listed.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param {string} params.parent Required. The project from which ProductSets should be listed.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Productsets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Productsets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListProductSetsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Productsets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Productsets$List,
       options:
@@ -10547,12 +10552,20 @@ export namespace vision_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Productsets$List
-        | BodyResponseCallback<Schema$ListProductSetsResponse>,
+        | BodyResponseCallback<Schema$ListProductSetsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListProductSetsResponse>,
-      callback?: BodyResponseCallback<Schema$ListProductSetsResponse>
-    ): void | GaxiosPromise<Schema$ListProductSetsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProductSetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProductSetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListProductSetsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10586,7 +10599,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListProductSetsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListProductSetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListProductSetsResponse>(parameters);
       }
@@ -10596,74 +10612,96 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.patch
      * @desc Makes changes to a ProductSet resource. Only display_name can be updated currently.  Possible errors:  * Returns NOT_FOUND if the ProductSet does not exist. * Returns INVALID_ARGUMENT if display_name is present in update_mask but   missing from the request or longer than 4096 characters.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.patch({
      *     // The resource name of the ProductSet.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
+     *     //
      *     // This field is ignored when creating a ProductSet.
-     *     name: 'projects/my-project/locations/my-location/productSets/my-product-set',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/locations/my-location/productSets/my-productSet',
+     *     // The FieldMask that specifies which fields to
+     *     // update.
+     *     // If update_mask isn't specified, all mutable fields are to be updated.
+     *     // Valid mask path is `display_name`.
+     *     updateMask: 'placeholder-value',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "indexError": {},
+     *       //   "indexTime": "my_indexTime",
+     *       //   "name": "my_name"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "indexError": {},
+     *   //   "indexTime": "my_indexTime",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the ProductSet.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.  This field is ignored when creating a ProductSet.
      * @param {string=} params.updateMask The FieldMask that specifies which fields to update. If update_mask isn't specified, all mutable fields are to be updated. Valid mask path is `display_name`.
-     * @param {().ProductSet} params.resource Request body data
+     * @param {().ProductSet} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Productsets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Productsets$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ProductSet>;
+    patch(
+      params: Params$Resource$Projects$Locations$Productsets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Productsets$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$ProductSet>,
@@ -10677,12 +10715,17 @@ export namespace vision_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Productsets$Patch
-        | BodyResponseCallback<Schema$ProductSet>,
+        | BodyResponseCallback<Schema$ProductSet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ProductSet>,
-      callback?: BodyResponseCallback<Schema$ProductSet>
-    ): void | GaxiosPromise<Schema$ProductSet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProductSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProductSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ProductSet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10713,7 +10756,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ProductSet>(parameters, callback);
+        createAPIRequest<Schema$ProductSet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ProductSet>(parameters);
       }
@@ -10723,68 +10769,80 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.removeProduct
      * @desc Removes a Product from the specified ProductSet.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name for the ProductSet to modify.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.removeProduct({
+     *     // Required. The resource name for the ProductSet to modify.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     *     name: 'projects/my-project/locations/my-location/productSets/my-product-set',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/locations/my-location/productSets/my-productSet',
      *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "product": "my_product"
+     *       // }
      *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.locations.productSets.removeProduct(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.removeProduct
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param {().RemoveProductFromProductSetRequest} params.resource Request body data
+     * @param {string} params.name Required. The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     * @param {().RemoveProductFromProductSetRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     removeProduct(
+      params: Params$Resource$Projects$Locations$Productsets$Removeproduct,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeProduct(
       params?: Params$Resource$Projects$Locations$Productsets$Removeproduct,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    removeProduct(
+      params: Params$Resource$Projects$Locations$Productsets$Removeproduct,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     removeProduct(
       params: Params$Resource$Projects$Locations$Productsets$Removeproduct,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -10798,10 +10856,17 @@ export namespace vision_v1 {
     removeProduct(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Productsets$Removeproduct
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Removeproduct;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10835,7 +10900,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -10845,12 +10913,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Productsets$Addproduct
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     * Required. The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
     name?: string;
 
@@ -10862,12 +10925,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Productsets$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The project in which the ProductSet should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * Required. The project in which the ProductSet should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      */
     parent?: string;
     /**
@@ -10883,36 +10941,21 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Productsets$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Resource name of the ProductSet to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     * Required. Resource name of the ProductSet to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Productsets$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Resource name of the ProductSet to get.  Format is: `projects/PROJECT_ID/locations/LOG_ID/productSets/PRODUCT_SET_ID`
+     * Required. Resource name of the ProductSet to get.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Productsets$Import
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The project in which the ProductSets should be imported.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * Required. The project in which the ProductSets should be imported.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      */
     parent?: string;
 
@@ -10924,11 +10967,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Productsets$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of items to return. Default 10, maximum 100.
      */
     pageSize?: number;
@@ -10937,17 +10975,12 @@ export namespace vision_v1 {
      */
     pageToken?: string;
     /**
-     * The project from which ProductSets should be listed.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * Required. The project from which ProductSets should be listed.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Productsets$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the ProductSet.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.  This field is ignored when creating a ProductSet.
      */
@@ -10965,12 +10998,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Productsets$Removeproduct
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     * Required. The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
     name?: string;
 
@@ -10990,71 +11018,61 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.products.list
      * @desc Lists the Products in a ProductSet, in an unspecified order. If the ProductSet does not exist, the products field of the response will be empty.  Possible errors:  * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ProductSet resource for which to retrieve Products.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.productSets.products.list({
+     *     // Required. The ProductSet resource for which to retrieve Products.
+     *     //
      *     // Format is:
      *     // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     *     name: 'projects/my-project/locations/my-location/productSets/my-product-set',  // TODO: Update placeholder value.
+     *     name: 'projects/my-project/locations/my-location/productSets/my-productSet',
+     *     // The maximum number of items to return. Default 10, maximum 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     auth: authClient,
-     *   };
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "products": []
+     *   // }
+     * }
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var productsPage = response['products'];
-     *     if (!productsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < productsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `productsPage`:
-     *       console.log(JSON.stringify(productsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       vision.projects.locations.productSets.products.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   vision.projects.locations.productSets.products.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.locations.productSets.products.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The ProductSet resource for which to retrieve Products.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     * @param {string} params.name Required. The ProductSet resource for which to retrieve Products.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
      * @param {string=} params.pageToken The next_page_token returned from a previous List request, if any.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11062,9 +11080,18 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Productsets$Products$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Productsets$Products$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListProductsInProductSetResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Productsets$Products$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Productsets$Products$List,
       options:
@@ -11082,12 +11109,20 @@ export namespace vision_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Productsets$Products$List
-        | BodyResponseCallback<Schema$ListProductsInProductSetResponse>,
+        | BodyResponseCallback<Schema$ListProductsInProductSetResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListProductsInProductSetResponse>,
-      callback?: BodyResponseCallback<Schema$ListProductsInProductSetResponse>
-    ): void | GaxiosPromise<Schema$ListProductsInProductSetResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProductsInProductSetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProductsInProductSetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListProductsInProductSetResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Productsets$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11123,7 +11158,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$ListProductsInProductSetResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListProductsInProductSetResponse>(
@@ -11136,12 +11171,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Productsets$Products$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ProductSet resource for which to retrieve Products.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     * Required. The ProductSet resource for which to retrieve Products.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
     name?: string;
     /**
@@ -11164,51 +11194,52 @@ export namespace vision_v1 {
      * vision.projects.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud Vision API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/vision
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var vision = google.vision('v1');
+     * const vision = google.vision('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/operations/my-operation',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   vision.projects.operations.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias vision.projects.operations.get
      * @memberOf! ()
      *
@@ -11219,9 +11250,18 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -11235,12 +11275,17 @@ export namespace vision_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11271,7 +11316,10 @@ export namespace vision_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -11280,11 +11328,6 @@ export namespace vision_v1 {
 
   export interface Params$Resource$Projects$Operations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */

@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace sheets_v4 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace sheets_v4 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -257,6 +267,24 @@ export namespace sheets_v4 {
     properties?: Schema$SheetProperties;
   }
   /**
+   * Adds a slicer to a sheet in the spreadsheet.
+   */
+  export interface Schema$AddSlicerRequest {
+    /**
+     * The slicer that should be added to the spreadsheet, including the position where it should be placed. The slicerId field is optional; if one is not set, an id will be randomly generated. (It is an error to specify the ID of a slicer that already exists.)
+     */
+    slicer?: Schema$Slicer;
+  }
+  /**
+   * The result of adding a slicer to a spreadsheet.
+   */
+  export interface Schema$AddSlicerResponse {
+    /**
+     * The newly added slicer.
+     */
+    slicer?: Schema$Slicer;
+  }
+  /**
    * Adds new cells after the last row with data in a sheet, inserting new rows into the sheet if necessary.
    */
   export interface Schema$AppendCellsRequest {
@@ -363,17 +391,70 @@ export namespace sheets_v4 {
      */
     firstBandColor?: Schema$Color;
     /**
-     * The color of the last row or column. If this field is not set, the last row or column will be filled with either first_band_color or second_band_color, depending on the color of the previous row or column.
+     * The first color that is alternating. (Required) If first_band_color is also set, this field takes precedence.
+     */
+    firstBandColorStyle?: Schema$ColorStyle;
+    /**
+     * The color of the last row or column. If this field is not set, the last row or column is filled with either first_band_color or second_band_color, depending on the color of the previous row or column.
      */
     footerColor?: Schema$Color;
     /**
-     * The color of the first row or column. If this field is set, the first row or column will be filled with this color and the colors will alternate between first_band_color and second_band_color starting from the second row or column. Otherwise, the first row or column will be filled with first_band_color and the colors will proceed to alternate as they normally would.
+     * The color of the last row or column. If this field is not set, the last row or column is filled with either first_band_color or second_band_color, depending on the color of the previous row or column. If footer_color is also set, this field takes precedence.
+     */
+    footerColorStyle?: Schema$ColorStyle;
+    /**
+     * The color of the first row or column. If this field is set, the first row or column is filled with this color and the colors alternate between first_band_color and second_band_color starting from the second row or column. Otherwise, the first row or column is filled with first_band_color and the colors proceed to alternate as they normally would.
      */
     headerColor?: Schema$Color;
+    /**
+     * The color of the first row or column. If this field is set, the first row or column is filled with this color and the colors alternate between first_band_color and second_band_color starting from the second row or column. Otherwise, the first row or column is filled with first_band_color and the colors proceed to alternate as they normally would. If header_color is also set, this field takes precedence.
+     */
+    headerColorStyle?: Schema$ColorStyle;
     /**
      * The second color that is alternating. (Required)
      */
     secondBandColor?: Schema$Color;
+    /**
+     * The second color that is alternating. (Required) If second_band_color is also set, this field takes precedence.
+     */
+    secondBandColorStyle?: Schema$ColorStyle;
+  }
+  /**
+   * Formatting options for baseline value.
+   */
+  export interface Schema$BaselineValueFormat {
+    /**
+     * The comparison type of key value with baseline value.
+     */
+    comparisonType?: string | null;
+    /**
+     * Description which is appended after the baseline value. This field is optional.
+     */
+    description?: string | null;
+    /**
+     * Color to be used, in case baseline value represents a negative change for key value. This field is optional.
+     */
+    negativeColor?: Schema$Color;
+    /**
+     * Color to be used, in case baseline value represents a negative change for key value. This field is optional. If negative_color is also set, this field takes precedence.
+     */
+    negativeColorStyle?: Schema$ColorStyle;
+    /**
+     * Specifies the horizontal text positioning of baseline value. This field is optional. If not specified, default positioning is used.
+     */
+    position?: Schema$TextPosition;
+    /**
+     * Color to be used, in case baseline value represents a positive change for key value. This field is optional.
+     */
+    positiveColor?: Schema$Color;
+    /**
+     * Color to be used, in case baseline value represents a positive change for key value. This field is optional. If positive_color is also set, this field takes precedence.
+     */
+    positiveColorStyle?: Schema$ColorStyle;
+    /**
+     * Text formatting options for baseline value.
+     */
+    textFormat?: Schema$TextFormat;
   }
   /**
    * An axis of the chart. A chart may not have more than one axis per axis position.
@@ -418,9 +499,13 @@ export namespace sheets_v4 {
    */
   export interface Schema$BasicChartSeries {
     /**
-     * The color for elements (i.e. bars, lines, points) associated with this series.  If empty, a default color is used.
+     * The color for elements (such as bars, lines, and points) associated with this series.  If empty, a default color is used.
      */
     color?: Schema$Color;
+    /**
+     * The color for elements (such as bars, lines, and points) associated with this series.  If empty, a default color is used. If color is also set, this field takes precedence.
+     */
+    colorStyle?: Schema$ColorStyle;
     /**
      * The line style of this series. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA or LINE.
      */
@@ -518,7 +603,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchClearValuesByDataFilterResponse {
     /**
-     * The ranges that were cleared, in A1 notation. (If the requests were for an unbounded range or a ranger larger  than the bounds of the sheet, this will be the actual ranges  that were cleared, bounded to the sheet&#39;s limits.)
+     * The ranges that were cleared, in A1 notation. If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet&#39;s limits.
      */
     clearedRanges?: string[] | null;
     /**
@@ -540,7 +625,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchClearValuesResponse {
     /**
-     * The ranges that were cleared, in A1 notation. (If the requests were for an unbounded range or a ranger larger  than the bounds of the sheet, this will be the actual ranges  that were cleared, bounded to the sheet&#39;s limits.)
+     * The ranges that were cleared, in A1 notation. If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet&#39;s limits.
      */
     clearedRanges?: string[] | null;
     /**
@@ -553,7 +638,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchGetValuesByDataFilterRequest {
     /**
-     * The data filters used to match the ranges of values to retrieve.  Ranges that match any of the specified data filters will be included in the response.
+     * The data filters used to match the ranges of values to retrieve. Ranges that match any of the specified data filters are included in the response.
      */
     dataFilters?: Schema$DataFilter[];
     /**
@@ -561,7 +646,7 @@ export namespace sheets_v4 {
      */
     dateTimeRenderOption?: string | null;
     /**
-     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then a request that selects that range and sets `majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas a request that sets `majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
+     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then a request that selects that range and sets `majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas a request that sets `majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      */
     majorDimension?: string | null;
     /**
@@ -608,11 +693,11 @@ export namespace sheets_v4 {
      */
     requests?: Schema$Request[];
     /**
-     * True if grid data should be returned. Meaningful only if if include_spreadsheet_in_response is &#39;true&#39;. This parameter is ignored if a field mask was set in the request.
+     * True if grid data should be returned. Meaningful only if include_spreadsheet_in_response is &#39;true&#39;. This parameter is ignored if a field mask was set in the request.
      */
     responseIncludeGridData?: boolean | null;
     /**
-     * Limits the ranges included in the response spreadsheet. Meaningful only if include_spreadsheet_response is &#39;true&#39;.
+     * Limits the ranges included in the response spreadsheet. Meaningful only if include_spreadsheet_in_response is &#39;true&#39;.
      */
     responseRanges?: string[] | null;
   }
@@ -638,11 +723,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchUpdateValuesByDataFilterRequest {
     /**
-     * The new values to apply to the spreadsheet.  If more than one range is matched by the specified DataFilter the specified values will be applied to all of those ranges.
+     * The new values to apply to the spreadsheet.  If more than one range is matched by the specified DataFilter the specified values are applied to all of those ranges.
      */
     data?: Schema$DataFilterValueRange[];
     /**
-     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. The `updatedData` field within each of the BatchUpdateValuesResponse.responses will contain the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
+     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. The `updatedData` field within each of the BatchUpdateValuesResponse.responses contains the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).
      */
     includeValuesInResponse?: boolean | null;
     /**
@@ -696,7 +781,7 @@ export namespace sheets_v4 {
      */
     data?: Schema$ValueRange[];
     /**
-     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. The `updatedData` field within each of the BatchUpdateValuesResponse.responses will contain the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
+     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. The `updatedData` field within each of the BatchUpdateValuesResponse.responses contains the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).
      */
     includeValuesInResponse?: boolean | null;
     /**
@@ -776,6 +861,10 @@ export namespace sheets_v4 {
      */
     color?: Schema$Color;
     /**
+     * The color of the border. If color is also set, this field takes precedence.
+     */
+    colorStyle?: Schema$ColorStyle;
+    /**
      * The style of the border.
      */
     style?: string | null;
@@ -813,6 +902,10 @@ export namespace sheets_v4 {
      * The bubble border color.
      */
     bubbleBorderColor?: Schema$Color;
+    /**
+     * The bubble border color. If bubble_border_color is also set, this field takes precedence.
+     */
+    bubbleBorderColorStyle?: Schema$ColorStyle;
     /**
      * The data containing the bubble labels.  These do not need to be unique.
      */
@@ -964,6 +1057,10 @@ export namespace sheets_v4 {
      */
     backgroundColor?: Schema$Color;
     /**
+     * The background color of the cell. If background_color is also set, this field takes precedence.
+     */
+    backgroundColorStyle?: Schema$ColorStyle;
+    /**
      * The borders of the cell.
      */
     borders?: Schema$Borders;
@@ -1022,6 +1119,19 @@ export namespace sheets_v4 {
     viewWindowMode?: string | null;
   }
   /**
+   * Custom number formatting options for chart attributes.
+   */
+  export interface Schema$ChartCustomNumberFormatOptions {
+    /**
+     * Custom prefix to be prepended to the chart attribute. This field is optional.
+     */
+    prefix?: string | null;
+    /**
+     * Custom suffix to be appended to the chart attribute. This field is optional.
+     */
+    suffix?: string | null;
+  }
+  /**
    * The data included in a domain or series.
    */
   export interface Schema$ChartData {
@@ -1051,6 +1161,10 @@ export namespace sheets_v4 {
      * The background color of the entire chart. Not applicable to Org charts.
      */
     backgroundColor?: Schema$Color;
+    /**
+     * The background color of the entire chart. Not applicable to Org charts. If background_color is also set, this field takes precedence.
+     */
+    backgroundColorStyle?: Schema$ColorStyle;
     /**
      * A basic chart specification, can be one of many kinds of charts. See BasicChartType for the list of all charts this supports.
      */
@@ -1087,6 +1201,10 @@ export namespace sheets_v4 {
      * A pie chart specification.
      */
     pieChart?: Schema$PieChartSpec;
+    /**
+     * A scorecard chart specification.
+     */
+    scorecardChart?: Schema$ScorecardChartSpec;
     /**
      * The subtitle of the chart.
      */
@@ -1166,6 +1284,19 @@ export namespace sheets_v4 {
      * The amount of red in the color as a value in the interval [0, 1].
      */
     red?: number | null;
+  }
+  /**
+   * A color value.
+   */
+  export interface Schema$ColorStyle {
+    /**
+     * RGB color.
+     */
+    rgbColor?: Schema$Color;
+    /**
+     * Theme color.
+     */
+    themeColor?: string | null;
   }
   /**
    * A rule describing a conditional format.
@@ -1292,7 +1423,7 @@ export namespace sheets_v4 {
      */
     majorDimension?: string | null;
     /**
-     * The data to be written.  If the provided values exceed any of the ranges matched by the data filter then the request will fail.  If the provided values are less than the matched ranges only the specified values will be written, existing values in the matched ranges will remain unaffected.
+     * The data to be written.  If the provided values exceed any of the ranges matched by the data filter then the request fails.  If the provided values are less than the matched ranges only the specified values are written, existing values in the matched ranges remain unaffected.
      */
     values?: any[][] | null;
   }
@@ -1762,13 +1893,29 @@ export namespace sheets_v4 {
    */
   export interface Schema$FilterCriteria {
     /**
-     * A condition that must be true for values to be shown. (This does not override hiddenValues -- if a value is listed there,  it will still be hidden.)
+     * A condition that must be true for values to be shown. (This does not override hidden_values -- if a value is listed there,  it will still be hidden.)
      */
     condition?: Schema$BooleanCondition;
     /**
      * Values that should be hidden.
      */
     hiddenValues?: string[] | null;
+    /**
+     * The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with visible_foreground_color.
+     */
+    visibleBackgroundColor?: Schema$Color;
+    /**
+     * The background fill color to filter by; only cells with this fill color are shown. This field is mutually exclusive with visible_foreground_color, and must be set to an RGB-type color. If visible_background_color is also set, this field takes precedence.
+     */
+    visibleBackgroundColorStyle?: Schema$ColorStyle;
+    /**
+     * The foreground color to filter by; only cells with this foreground color are shown. Mutually exclusive with visible_background_color.
+     */
+    visibleForegroundColor?: Schema$Color;
+    /**
+     * The foreground color to filter by; only cells with this foreground color are shown. This field is mutually exclusive with visible_background_color, and must be set to an RGB-type color. If visible_foreground_color is also set, this field takes precedence.
+     */
+    visibleForegroundColorStyle?: Schema$ColorStyle;
   }
   /**
    * A filter view.
@@ -2046,6 +2193,10 @@ export namespace sheets_v4 {
      */
     barColor?: Schema$Color;
     /**
+     * The color of the column representing this series in each bucket. This field is optional. If bar_color is also set, this field takes precedence.
+     */
+    barColorStyle?: Schema$ColorStyle;
+    /**
      * The data for this histogram series.
      */
     data?: Schema$ChartData;
@@ -2085,6 +2236,10 @@ export namespace sheets_v4 {
      */
     color?: Schema$Color;
     /**
+     * The color this interpolation point should use. If color is also set, this field takes precedence.
+     */
+    colorStyle?: Schema$ColorStyle;
+    /**
      * How the value should be interpreted.
      */
     type?: string | null;
@@ -2105,6 +2260,19 @@ export namespace sheets_v4 {
      * When iterative calculation is enabled, the maximum number of calculation rounds to perform.
      */
     maxIterations?: number | null;
+  }
+  /**
+   * Formatting options for key value.
+   */
+  export interface Schema$KeyValueFormat {
+    /**
+     * Specifies the horizontal text positioning of key value. This field is optional. If not specified, default positioning is used.
+     */
+    position?: Schema$TextPosition;
+    /**
+     * Text formatting options for key value.
+     */
+    textFormat?: Schema$TextFormat;
   }
   /**
    * Properties that describe the style of a line.
@@ -2236,6 +2404,10 @@ export namespace sheets_v4 {
      */
     nodeColor?: Schema$Color;
     /**
+     * The color of the org chart nodes. If node_color is also set, this field takes precedence.
+     */
+    nodeColorStyle?: Schema$ColorStyle;
+    /**
      * The size of the org chart nodes.
      */
     nodeSize?: string | null;
@@ -2247,6 +2419,10 @@ export namespace sheets_v4 {
      * The color of the selected org chart nodes.
      */
     selectedNodeColor?: Schema$Color;
+    /**
+     * The color of the selected org chart nodes. If selected_node_color is also set, this field takes precedence.
+     */
+    selectedNodeColorStyle?: Schema$ColorStyle;
     /**
      * The data containing the tooltip for the corresponding node.  A blank value results in no tooltip being displayed for the node. This field is optional.
      */
@@ -2591,6 +2767,10 @@ export namespace sheets_v4 {
      */
     addSheet?: Schema$AddSheetRequest;
     /**
+     * Adds a slicer.
+     */
+    addSlicer?: Schema$AddSlicerRequest;
+    /**
      * Appends cells after the last row with data in a sheet.
      */
     appendCells?: Schema$AppendCellsRequest;
@@ -2787,6 +2967,10 @@ export namespace sheets_v4 {
      */
     updateSheetProperties?: Schema$UpdateSheetPropertiesRequest;
     /**
+     * Updates a slicer&#39;s specifications.
+     */
+    updateSlicerSpec?: Schema$UpdateSlicerSpecRequest;
+    /**
      * Updates the spreadsheet&#39;s properties.
      */
     updateSpreadsheetProperties?: Schema$UpdateSpreadsheetPropertiesRequest;
@@ -2823,6 +3007,10 @@ export namespace sheets_v4 {
      * A reply from adding a sheet.
      */
     addSheet?: Schema$AddSheetResponse;
+    /**
+     * A reply from adding a slicer.
+     */
+    addSlicer?: Schema$AddSlicerResponse;
     /**
      * A reply from creating a developer metadata entry.
      */
@@ -2882,11 +3070,48 @@ export namespace sheets_v4 {
     values?: Schema$CellData[];
   }
   /**
+   * A scorecard chart. Scorecard charts are used to highlight key performance indicators, known as KPIs, on the spreadsheet. A scorecard chart can represent things like total sales, average cost, or a top selling item. You can specify a single data value, or aggregate over a range of data. Percentage or absolute difference from a baseline value can be highlighted, like changes over time.
+   */
+  export interface Schema$ScorecardChartSpec {
+    /**
+     * The aggregation type for key and baseline chart data in scorecard chart. This field is optional.
+     */
+    aggregateType?: string | null;
+    /**
+     * The data for scorecard baseline value. This field is optional.
+     */
+    baselineValueData?: Schema$ChartData;
+    /**
+     * Formatting options for baseline value. This field is needed only if baseline_value_data is specified.
+     */
+    baselineValueFormat?: Schema$BaselineValueFormat;
+    /**
+     * Custom formatting options for numeric key/baseline values in scorecard chart. This field is used only when number_format_source is set to CUSTOM. This field is optional.
+     */
+    customFormatOptions?: Schema$ChartCustomNumberFormatOptions;
+    /**
+     * The data for scorecard key value.
+     */
+    keyValueData?: Schema$ChartData;
+    /**
+     * Formatting options for key value.
+     */
+    keyValueFormat?: Schema$KeyValueFormat;
+    /**
+     * The number format source used in the scorecard chart. This field is optional.
+     */
+    numberFormatSource?: string | null;
+    /**
+     * Value to scale scorecard key and baseline value. For example, a factor of 10 can be used to divide all values in the chart by 10. This field is optional.
+     */
+    scaleFactor?: number | null;
+  }
+  /**
    * A request to retrieve all developer metadata matching the set of specified criteria.
    */
   export interface Schema$SearchDeveloperMetadataRequest {
     /**
-     * The data filters describing the criteria used to determine which DeveloperMetadata entries to return.  DeveloperMetadata matching any of the specified filters will be included in the response.
+     * The data filters describing the criteria used to determine which DeveloperMetadata entries to return.  DeveloperMetadata matching any of the specified filters are included in the response.
      */
     dataFilters?: Schema$DataFilter[];
   }
@@ -2946,7 +3171,7 @@ export namespace sheets_v4 {
      */
     conditionalFormats?: Schema$ConditionalFormatRule[];
     /**
-     * Data in the grid, if this is a grid sheet. The number of GridData objects returned is dependent on the number of ranges requested on this sheet. For example, if this is representing `Sheet1`, and the spreadsheet was requested with ranges `Sheet1!A1:C10` and `Sheet1!D15:E20`, then the first GridData will have a startRow/startColumn of `0`, while the second one will have `startRow 14` (zero-based row 15), and `startColumn 3` (zero-based column D).
+     * Data in the grid, if this is a grid sheet.  The number of GridData objects returned is dependent on the number of ranges requested on this sheet. For example, if this is representing `Sheet1`, and the spreadsheet was requested with ranges `Sheet1!A1:C10` and `Sheet1!D15:E20`, then the first GridData will have a startRow/startColumn of `0`, while the second one will have `startRow 14` (zero-based row 15), and `startColumn 3` (zero-based column D).
      */
     data?: Schema$GridData[];
     /**
@@ -2973,6 +3198,10 @@ export namespace sheets_v4 {
      * All row groups on this sheet, ordered by increasing range start index, then by group depth.
      */
     rowGroups?: Schema$DimensionGroup[];
+    /**
+     * The slicers on this sheet.
+     */
+    slicers?: Schema$Slicer[];
   }
   /**
    * Properties of a sheet.
@@ -3007,7 +3236,69 @@ export namespace sheets_v4 {
      */
     tabColor?: Schema$Color;
     /**
+     * The color of the tab in the UI. If tab_color is also set, this field takes precedence.
+     */
+    tabColorStyle?: Schema$ColorStyle;
+    /**
      * The name of the sheet.
+     */
+    title?: string | null;
+  }
+  /**
+   * A slicer in a sheet.
+   */
+  export interface Schema$Slicer {
+    /**
+     * The position of the slicer. Note that slicer can be positioned only on existing sheet. Also, width and height of slicer can be automatically adjusted to keep it within permitted limits.
+     */
+    position?: Schema$EmbeddedObjectPosition;
+    /**
+     * The ID of the slicer.
+     */
+    slicerId?: number | null;
+    /**
+     * The specification of the slicer.
+     */
+    spec?: Schema$SlicerSpec;
+  }
+  /**
+   * The specifications of a slicer.
+   */
+  export interface Schema$SlicerSpec {
+    /**
+     * True if the filter should apply to pivot tables. If not set, default to `True`.
+     */
+    applyToPivotTables?: boolean | null;
+    /**
+     * The background color of the slicer.
+     */
+    backgroundColor?: Schema$Color;
+    /**
+     * The background color of the slicer. If background_color is also set, this field takes precedence.
+     */
+    backgroundColorStyle?: Schema$ColorStyle;
+    /**
+     * The column index in the data table on which the filter is applied to.
+     */
+    columnIndex?: number | null;
+    /**
+     * The data range of the slicer.
+     */
+    dataRange?: Schema$GridRange;
+    /**
+     * The filtering criteria of the slicer.
+     */
+    filterCriteria?: Schema$FilterCriteria;
+    /**
+     * The horizontal alignment of title in the slicer. If unspecified, defaults to `LEFT`
+     */
+    horizontalAlignment?: string | null;
+    /**
+     * The text format of title in the slicer.
+     */
+    textFormat?: Schema$TextFormat;
+    /**
+     * The title of the slicer.
      */
     title?: string | null;
   }
@@ -3029,9 +3320,25 @@ export namespace sheets_v4 {
    */
   export interface Schema$SortSpec {
     /**
+     * The background fill color to sort by; cells with this fill color are sorted to the top. Mutually exclusive with foreground_color.
+     */
+    backgroundColor?: Schema$Color;
+    /**
+     * The background fill color to sort by; cells with this fill color are sorted to the top. Mutually exclusive with foreground_color, and must be an RGB-type color. If background_color is also set, this field takes precedence.
+     */
+    backgroundColorStyle?: Schema$ColorStyle;
+    /**
      * The dimension the sort should be applied to.
      */
     dimensionIndex?: number | null;
+    /**
+     * The foreground color to sort by; cells with this foreground color are sorted to the top. Mutually exclusive with background_color.
+     */
+    foregroundColor?: Schema$Color;
+    /**
+     * The foreground color to sort by; cells with this foreground color are sorted to the top. Mutually exclusive with background_color, and must be an RGB-type color. If foreground_color is also set, this field takes precedence.
+     */
+    foregroundColorStyle?: Schema$ColorStyle;
     /**
      * The order data should be sorted.
      */
@@ -3096,13 +3403,17 @@ export namespace sheets_v4 {
      */
     defaultFormat?: Schema$CellFormat;
     /**
-     * Determines whether and how circular references are resolved with iterative calculation.  Absence of this field means that circular references will result in calculation errors.
+     * Determines whether and how circular references are resolved with iterative calculation.  Absence of this field means that circular references result in calculation errors.
      */
     iterativeCalculationSettings?: Schema$IterativeCalculationSettings;
     /**
      * The locale of the spreadsheet in one of the following formats:  * an ISO 639-1 language code such as `en`  * an ISO 639-2 language code such as `fil`, if no 639-1 code exists  * a combination of the ISO language code and country code, such as `en_US`  Note: when updating this field, not all locales/languages are supported.
      */
     locale?: string | null;
+    /**
+     * Theme applied to the spreadsheet.
+     */
+    spreadsheetTheme?: Schema$SpreadsheetTheme;
     /**
      * The time zone of the spreadsheet, in CLDR format such as `America/New_York`. If the time zone isn&#39;t recognized, this may be a custom time zone such as `GMT-07:00`.
      */
@@ -3111,6 +3422,19 @@ export namespace sheets_v4 {
      * The title of the spreadsheet.
      */
     title?: string | null;
+  }
+  /**
+   * Represents spreadsheet theme
+   */
+  export interface Schema$SpreadsheetTheme {
+    /**
+     * / Name of the primary font family.
+     */
+    primaryFontFamily?: string | null;
+    /**
+     * The spreadsheet theme color pairs. To update you must provide all theme color pairs.
+     */
+    themeColors?: Schema$ThemeColorPair[];
   }
   /**
    * The format of a run of text in a cell. Absent values indicate that the field isn&#39;t specified.
@@ -3132,6 +3456,10 @@ export namespace sheets_v4 {
      * The foreground color of the text.
      */
     foregroundColor?: Schema$Color;
+    /**
+     * The foreground color of the text. If foreground_color is also set, this field takes precedence.
+     */
+    foregroundColorStyle?: Schema$ColorStyle;
     /**
      * True if the text is italicized.
      */
@@ -3198,6 +3526,19 @@ export namespace sheets_v4 {
     source?: Schema$GridRange;
   }
   /**
+   * A pair mapping a spreadsheet theme color type to the concrete color it represents.
+   */
+  export interface Schema$ThemeColorPair {
+    /**
+     * The concrete color corresponding to the theme color type.
+     */
+    color?: Schema$ColorStyle;
+    /**
+     * The type of the spreadsheet theme color.
+     */
+    colorType?: string | null;
+  }
+  /**
    * A color scale for a treemap chart.
    */
   export interface Schema$TreemapChartColorScale {
@@ -3206,17 +3547,33 @@ export namespace sheets_v4 {
      */
     maxValueColor?: Schema$Color;
     /**
+     * The background color for cells with a color value greater than or equal to maxValue. Defaults to #109618 if not specified. If max_value_color is also set, this field takes precedence.
+     */
+    maxValueColorStyle?: Schema$ColorStyle;
+    /**
      * The background color for cells with a color value at the midpoint between minValue and maxValue. Defaults to #efe6dc if not specified.
      */
     midValueColor?: Schema$Color;
+    /**
+     * The background color for cells with a color value at the midpoint between minValue and maxValue. Defaults to #efe6dc if not specified. If mid_value_color is also set, this field takes precedence.
+     */
+    midValueColorStyle?: Schema$ColorStyle;
     /**
      * The background color for cells with a color value less than or equal to minValue. Defaults to #dc3912 if not specified.
      */
     minValueColor?: Schema$Color;
     /**
+     * The background color for cells with a color value less than or equal to minValue. Defaults to #dc3912 if not specified. If min_value_color is also set, this field takes precedence.
+     */
+    minValueColorStyle?: Schema$ColorStyle;
+    /**
      * The background color for cells that have no color data associated with them. Defaults to #000000 if not specified.
      */
     noDataColor?: Schema$Color;
+    /**
+     * The background color for cells that have no color data associated with them. Defaults to #000000 if not specified. If no_data_color is also set, this field takes precedence.
+     */
+    noDataColorStyle?: Schema$ColorStyle;
   }
   /**
    * A &lt;a href=&quot;/chart/interactive/docs/gallery/treemap&quot;&gt;Treemap chart&lt;/a&gt;.
@@ -3234,6 +3591,10 @@ export namespace sheets_v4 {
      * The background color for header cells.
      */
     headerColor?: Schema$Color;
+    /**
+     * The background color for header cells. If header_color is also set, this field takes precedence.
+     */
+    headerColorStyle?: Schema$ColorStyle;
     /**
      * True to hide tooltips.
      */
@@ -3555,6 +3916,23 @@ export namespace sheets_v4 {
     properties?: Schema$SheetProperties;
   }
   /**
+   * Updates a slicer&#39;s specifications. (This does not move or resize a slicer. To move or resize a slicer use UpdateEmbeddedObjectPositionRequest.
+   */
+  export interface Schema$UpdateSlicerSpecRequest {
+    /**
+     * The fields that should be updated.  At least one field must be specified. The root `SlicerSpec` is implied and should not be specified. A single &quot;*&quot;` can be used as short-hand for listing every field.
+     */
+    fields?: string | null;
+    /**
+     * The id of the slicer to update.
+     */
+    slicerId?: number | null;
+    /**
+     * The specification to apply to the slicer.
+     */
+    spec?: Schema$SlicerSpec;
+  }
+  /**
    * Updates properties of a spreadsheet.
    */
   export interface Schema$UpdateSpreadsheetPropertiesRequest {
@@ -3650,6 +4028,10 @@ export namespace sheets_v4 {
      * The color of the column.
      */
     color?: Schema$Color;
+    /**
+     * The color of the column. If color is also set, this field takes precedence.
+     */
+    colorStyle?: Schema$ColorStyle;
     /**
      * The label of the column&#39;s legend.
      */
@@ -3762,75 +4144,85 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.batchUpdate
      * @desc Applies one or more updates to the spreadsheet.  Each request is validated before being applied. If any request is not valid then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they are applied. The replies will mirror the requests.  For example, if you applied 4 updates and the 3rd one had a reply, then the response will have 2 empty replies, the actual reply, and another empty reply, in that order.  Due to the collaborative nature of spreadsheets, it is not guaranteed that the spreadsheet will reflect exactly your changes after this completes, however it is guaranteed that the updates in the request will be applied together atomically. Your changes may be altered with respect to collaborator changes. If there are no collaborators, the spreadsheet should reflect your changes.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The spreadsheet to apply the updates to.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // A list of updates to apply to the spreadsheet.
-     *       // Requests will be applied in the order they are specified.
-     *       // If any request is not valid, no requests will be applied.
-     *       requests: [],  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.batchUpdate(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.batchUpdate({
+     *     // The spreadsheet to apply the updates to.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "includeSpreadsheetInResponse": false,
+     *       //   "requests": [],
+     *       //   "responseIncludeGridData": false,
+     *       //   "responseRanges": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "replies": [],
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "updatedSpreadsheet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.batchUpdate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The spreadsheet to apply the updates to.
-     * @param {().BatchUpdateSpreadsheetRequest} params.resource Request body data
+     * @param {().BatchUpdateSpreadsheetRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Spreadsheets$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Spreadsheets$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchUpdateSpreadsheetResponse>;
+    batchUpdate(
+      params: Params$Resource$Spreadsheets$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Spreadsheets$Batchupdate,
       options:
@@ -3848,12 +4240,20 @@ export namespace sheets_v4 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Batchupdate
-        | BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>,
+        | BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>,
-      callback?: BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>
-    ): void | GaxiosPromise<Schema$BatchUpdateSpreadsheetResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdateSpreadsheetResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3888,7 +4288,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdateSpreadsheetResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdateSpreadsheetResponse>(
@@ -3901,66 +4301,86 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.create
      * @desc Creates a spreadsheet, returning the newly created spreadsheet.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.create(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "developerMetadata": [],
+     *       //   "namedRanges": [],
+     *       //   "properties": {},
+     *       //   "sheets": [],
+     *       //   "spreadsheetId": "my_spreadsheetId",
+     *       //   "spreadsheetUrl": "my_spreadsheetUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "developerMetadata": [],
+     *   //   "namedRanges": [],
+     *   //   "properties": {},
+     *   //   "sheets": [],
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "spreadsheetUrl": "my_spreadsheetUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Spreadsheet} params.resource Request body data
+     * @param {().Spreadsheet} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Spreadsheets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Spreadsheets$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Spreadsheet>;
+    create(
+      params: Params$Resource$Spreadsheets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Spreadsheets$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Spreadsheet>,
@@ -3974,12 +4394,17 @@ export namespace sheets_v4 {
     create(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Create
-        | BodyResponseCallback<Schema$Spreadsheet>,
+        | BodyResponseCallback<Schema$Spreadsheet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Spreadsheet>,
-      callback?: BodyResponseCallback<Schema$Spreadsheet>
-    ): void | GaxiosPromise<Schema$Spreadsheet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Spreadsheet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Spreadsheet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Spreadsheet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4010,7 +4435,10 @@ export namespace sheets_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Spreadsheet>(parameters, callback);
+        createAPIRequest<Schema$Spreadsheet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Spreadsheet>(parameters);
       }
@@ -4020,61 +4448,61 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.get
      * @desc Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID.  By default, data within grids will not be returned. You can include grid data one of two ways:  * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP  * Set the includeGridData URL parameter to true.  If a field mask is set, the `includeGridData` parameter is ignored  For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.  To retrieve only subsets of the spreadsheet, use the ranges URL parameter. Multiple ranges can be specified.  Limiting the range will return only the portions of the spreadsheet that intersect the requested ranges. Ranges are specified using A1 notation.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The spreadsheet to request.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *     ],
+     *   });
      *
-     *     // The ranges to retrieve from the spreadsheet.
-     *     ranges: [],  // TODO: Update placeholder value.
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
      *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.get({
      *     // True if grid data should be returned.
      *     // This parameter is ignored if a field mask was set in the request.
-     *     includeGridData: false,  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     includeGridData: 'placeholder-value',
+     *     // The ranges to retrieve from the spreadsheet.
+     *     ranges: 'placeholder-value',
+     *     // The spreadsheet to request.
+     *     spreadsheetId: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "developerMetadata": [],
+     *   //   "namedRanges": [],
+     *   //   "properties": {},
+     *   //   "sheets": [],
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "spreadsheetUrl": "my_spreadsheetUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/drive.readonly'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   //   'https://www.googleapis.com/auth/spreadsheets.readonly'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.get
      * @memberOf! ()
      *
@@ -4087,9 +4515,18 @@ export namespace sheets_v4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Spreadsheets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Spreadsheets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Spreadsheet>;
+    get(
+      params: Params$Resource$Spreadsheets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Spreadsheets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Spreadsheet>,
@@ -4103,12 +4540,17 @@ export namespace sheets_v4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Get
-        | BodyResponseCallback<Schema$Spreadsheet>,
+        | BodyResponseCallback<Schema$Spreadsheet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Spreadsheet>,
-      callback?: BodyResponseCallback<Schema$Spreadsheet>
-    ): void | GaxiosPromise<Schema$Spreadsheet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Spreadsheet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Spreadsheet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Spreadsheet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Spreadsheets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4141,7 +4583,10 @@ export namespace sheets_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Spreadsheet>(parameters, callback);
+        createAPIRequest<Schema$Spreadsheet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Spreadsheet>(parameters);
       }
@@ -4151,78 +4596,86 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.getByDataFilter
      * @desc Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID.  This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified.  Specifying one or more data filters will return the portions of the spreadsheet that intersect ranges matched by any of the filters.  By default, data within grids will not be returned. You can include grid data one of two ways:  * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP  * Set the includeGridData parameter to true.  If a field mask is set, the `includeGridData` parameter is ignored  For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The spreadsheet to request.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // The DataFilters used to select which ranges to retrieve from
-     *       // the spreadsheet.
-     *       dataFilters: [],  // TODO: Update placeholder value.
-     *
-     *       // True if grid data should be returned.
-     *       // This parameter is ignored if a field mask was set in the request.
-     *       includeGridData: false,  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.getByDataFilter(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.getByDataFilter({
+     *     // The spreadsheet to request.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataFilters": [],
+     *       //   "includeGridData": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "developerMetadata": [],
+     *   //   "namedRanges": [],
+     *   //   "properties": {},
+     *   //   "sheets": [],
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "spreadsheetUrl": "my_spreadsheetUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.getByDataFilter
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The spreadsheet to request.
-     * @param {().GetSpreadsheetByDataFilterRequest} params.resource Request body data
+     * @param {().GetSpreadsheetByDataFilterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getByDataFilter(
+      params: Params$Resource$Spreadsheets$Getbydatafilter,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getByDataFilter(
       params?: Params$Resource$Spreadsheets$Getbydatafilter,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Spreadsheet>;
+    getByDataFilter(
+      params: Params$Resource$Spreadsheets$Getbydatafilter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getByDataFilter(
       params: Params$Resource$Spreadsheets$Getbydatafilter,
       options: MethodOptions | BodyResponseCallback<Schema$Spreadsheet>,
@@ -4236,12 +4689,17 @@ export namespace sheets_v4 {
     getByDataFilter(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Getbydatafilter
-        | BodyResponseCallback<Schema$Spreadsheet>,
+        | BodyResponseCallback<Schema$Spreadsheet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Spreadsheet>,
-      callback?: BodyResponseCallback<Schema$Spreadsheet>
-    ): void | GaxiosPromise<Schema$Spreadsheet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Spreadsheet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Spreadsheet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Spreadsheet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Getbydatafilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4274,7 +4732,10 @@ export namespace sheets_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Spreadsheet>(parameters, callback);
+        createAPIRequest<Schema$Spreadsheet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Spreadsheet>(parameters);
       }
@@ -4283,11 +4744,6 @@ export namespace sheets_v4 {
 
   export interface Params$Resource$Spreadsheets$Batchupdate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The spreadsheet to apply the updates to.
      */
@@ -4301,21 +4757,11 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Spreadsheet;
   }
   export interface Params$Resource$Spreadsheets$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * True if grid data should be returned. This parameter is ignored if a field mask was set in the request.
      */
@@ -4331,11 +4777,6 @@ export namespace sheets_v4 {
   }
   export interface Params$Resource$Spreadsheets$Getbydatafilter
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The spreadsheet to request.
      */
@@ -4357,55 +4798,55 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.developerMetadata.get
      * @desc Returns the developer metadata with the specified ID. The caller must specify the spreadsheet ID and the developer metadata's unique metadataId.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to retrieve metadata from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     // The ID of the developer metadata to retrieve.
-     *     metadataId: 0,  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.developerMetadata.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.developerMetadata.get({
+     *     // The ID of the developer metadata to retrieve.
+     *     metadataId: 'placeholder-value',
+     *     // The ID of the spreadsheet to retrieve metadata from.
+     *     spreadsheetId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "location": {},
+     *   //   "metadataId": 0,
+     *   //   "metadataKey": "my_metadataKey",
+     *   //   "metadataValue": "my_metadataValue",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.developerMetadata.get
      * @memberOf! ()
      *
@@ -4417,9 +4858,18 @@ export namespace sheets_v4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Spreadsheets$Developermetadata$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Spreadsheets$Developermetadata$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DeveloperMetadata>;
+    get(
+      params: Params$Resource$Spreadsheets$Developermetadata$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Spreadsheets$Developermetadata$Get,
       options: MethodOptions | BodyResponseCallback<Schema$DeveloperMetadata>,
@@ -4433,12 +4883,20 @@ export namespace sheets_v4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Developermetadata$Get
-        | BodyResponseCallback<Schema$DeveloperMetadata>,
+        | BodyResponseCallback<Schema$DeveloperMetadata>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DeveloperMetadata>,
-      callback?: BodyResponseCallback<Schema$DeveloperMetadata>
-    ): void | GaxiosPromise<Schema$DeveloperMetadata> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeveloperMetadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeveloperMetadata>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DeveloperMetadata>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Developermetadata$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4472,7 +4930,10 @@ export namespace sheets_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DeveloperMetadata>(parameters, callback);
+        createAPIRequest<Schema$DeveloperMetadata>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DeveloperMetadata>(parameters);
       }
@@ -4482,70 +4943,80 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.developerMetadata.search
      * @desc Returns all developer metadata matching the specified DataFilter. If the provided DataFilter represents a DeveloperMetadataLookup object, this will return all DeveloperMetadata entries selected by it. If the DataFilter represents a location in a spreadsheet, this will return all developer metadata associated with locations intersecting that region.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to retrieve metadata from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.developerMetadata.search(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.developerMetadata.search({
+     *     // The ID of the spreadsheet to retrieve metadata from.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataFilters": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "matchedDeveloperMetadata": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.developerMetadata.search
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve metadata from.
-     * @param {().SearchDeveloperMetadataRequest} params.resource Request body data
+     * @param {().SearchDeveloperMetadataRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Spreadsheets$Developermetadata$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Spreadsheets$Developermetadata$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchDeveloperMetadataResponse>;
+    search(
+      params: Params$Resource$Spreadsheets$Developermetadata$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Spreadsheets$Developermetadata$Search,
       options:
@@ -4563,12 +5034,20 @@ export namespace sheets_v4 {
     search(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Developermetadata$Search
-        | BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>,
+        | BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>,
-      callback?: BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>
-    ): void | GaxiosPromise<Schema$SearchDeveloperMetadataResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchDeveloperMetadataResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Developermetadata$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4604,7 +5083,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$SearchDeveloperMetadataResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SearchDeveloperMetadataResponse>(
@@ -4617,11 +5096,6 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Developermetadata$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the developer metadata to retrieve.
      */
     metadataId?: number;
@@ -4632,11 +5106,6 @@ export namespace sheets_v4 {
   }
   export interface Params$Resource$Spreadsheets$Developermetadata$Search
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the spreadsheet to retrieve metadata from.
      */
@@ -4658,77 +5127,91 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.sheets.copyTo
      * @desc Copies a single sheet from a spreadsheet to another spreadsheet. Returns the properties of the newly created sheet.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet containing the sheet to copy.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     // The ID of the sheet to copy.
-     *     sheetId: 0,  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // The ID of the spreadsheet to copy the sheet to.
-     *       destinationSpreadsheetId: '',  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.sheets.copyTo(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.sheets.copyTo({
+     *     // The ID of the sheet to copy.
+     *     sheetId: 'placeholder-value',
+     *     // The ID of the spreadsheet containing the sheet to copy.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destinationSpreadsheetId": "my_destinationSpreadsheetId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gridProperties": {},
+     *   //   "hidden": false,
+     *   //   "index": 0,
+     *   //   "rightToLeft": false,
+     *   //   "sheetId": 0,
+     *   //   "sheetType": "my_sheetType",
+     *   //   "tabColor": {},
+     *   //   "tabColorStyle": {},
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.sheets.copyTo
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {integer} params.sheetId The ID of the sheet to copy.
      * @param {string} params.spreadsheetId The ID of the spreadsheet containing the sheet to copy.
-     * @param {().CopySheetToAnotherSpreadsheetRequest} params.resource Request body data
+     * @param {().CopySheetToAnotherSpreadsheetRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     copyTo(
+      params: Params$Resource$Spreadsheets$Sheets$Copyto,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    copyTo(
       params?: Params$Resource$Spreadsheets$Sheets$Copyto,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SheetProperties>;
+    copyTo(
+      params: Params$Resource$Spreadsheets$Sheets$Copyto,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     copyTo(
       params: Params$Resource$Spreadsheets$Sheets$Copyto,
       options: MethodOptions | BodyResponseCallback<Schema$SheetProperties>,
@@ -4742,12 +5225,17 @@ export namespace sheets_v4 {
     copyTo(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Sheets$Copyto
-        | BodyResponseCallback<Schema$SheetProperties>,
+        | BodyResponseCallback<Schema$SheetProperties>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SheetProperties>,
-      callback?: BodyResponseCallback<Schema$SheetProperties>
-    ): void | GaxiosPromise<Schema$SheetProperties> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SheetProperties>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SheetProperties>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SheetProperties> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Sheets$Copyto;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4781,7 +5269,10 @@ export namespace sheets_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SheetProperties>(parameters, callback);
+        createAPIRequest<Schema$SheetProperties>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SheetProperties>(parameters);
       }
@@ -4790,11 +5281,6 @@ export namespace sheets_v4 {
 
   export interface Params$Resource$Spreadsheets$Sheets$Copyto
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the sheet to copy.
      */
@@ -4820,86 +5306,109 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.append
      * @desc Appends values to a spreadsheet. The input range is used to search for existing data and find a "table" within that range. Values will be appended to the next row of the table, starting with the first column of the table. See the [guide](/sheets/api/guides/values#appending_values) and [sample code](/sheets/api/samples/writing#append_values) for specific details of how tables are detected and data is appended.  The caller must specify the spreadsheet ID, range, and a valueInputOption.  The `valueInputOption` only controls how the input data will be added to the sheet (column-wise or row-wise), it does not influence what cell the data starts being written to.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     // The A1 notation of a range to search for a logical table of data.
-     *     // Values will be appended after the last row of the table.
-     *     range: 'my-range',  // TODO: Update placeholder value.
-     *
-     *     // How the input data should be interpreted.
-     *     valueInputOption: '',  // TODO: Update placeholder value.
-     *
-     *     // How the input data should be inserted.
-     *     insertDataOption: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.append(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.append({
+     *     // Determines if the update response should include the values
+     *     // of the cells that were appended. By default, responses
+     *     // do not include the updated values.
+     *     includeValuesInResponse: 'placeholder-value',
+     *     // How the input data should be inserted.
+     *     insertDataOption: 'placeholder-value',
+     *     // The A1 notation of a range to search for a logical table of data.
+     *     // Values are appended after the last row of the table.
+     *     range: 'placeholder-value',
+     *     // Determines how dates, times, and durations in the response should be
+     *     // rendered. This is ignored if response_value_render_option is
+     *     // FORMATTED_VALUE.
+     *     // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     *     responseDateTimeRenderOption: 'placeholder-value',
+     *     // Determines how values in the response should be rendered.
+     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     responseValueRenderOption: 'placeholder-value',
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *     // How the input data should be interpreted.
+     *     valueInputOption: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "majorDimension": "my_majorDimension",
+     *       //   "range": "my_range",
+     *       //   "values": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "tableRange": "my_tableRange",
+     *   //   "updates": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.append
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.includeValuesInResponse Determines if the update response should include the values of the cells that were appended. By default, responses do not include the updated values.
      * @param {string=} params.insertDataOption How the input data should be inserted.
-     * @param {string} params.range The A1 notation of a range to search for a logical table of data. Values will be appended after the last row of the table.
+     * @param {string} params.range The A1 notation of a range to search for a logical table of data. Values are appended after the last row of the table.
      * @param {string=} params.responseDateTimeRenderOption Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
      * @param {string=} params.responseValueRenderOption Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
      * @param {string=} params.valueInputOption How the input data should be interpreted.
-     * @param {().ValueRange} params.resource Request body data
+     * @param {().ValueRange} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     append(
+      params: Params$Resource$Spreadsheets$Values$Append,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    append(
       params?: Params$Resource$Spreadsheets$Values$Append,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AppendValuesResponse>;
+    append(
+      params: Params$Resource$Spreadsheets$Values$Append,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     append(
       params: Params$Resource$Spreadsheets$Values$Append,
       options:
@@ -4915,12 +5424,20 @@ export namespace sheets_v4 {
     append(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Values$Append
-        | BodyResponseCallback<Schema$AppendValuesResponse>,
+        | BodyResponseCallback<Schema$AppendValuesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AppendValuesResponse>,
-      callback?: BodyResponseCallback<Schema$AppendValuesResponse>
-    ): void | GaxiosPromise<Schema$AppendValuesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AppendValuesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AppendValuesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AppendValuesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Append;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4953,7 +5470,10 @@ export namespace sheets_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AppendValuesResponse>(parameters, callback);
+        createAPIRequest<Schema$AppendValuesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AppendValuesResponse>(parameters);
       }
@@ -4963,73 +5483,81 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.batchClear
      * @desc Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // The ranges to clear, in A1 notation.
-     *       ranges: [],  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.batchClear(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.batchClear({
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ranges": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clearedRanges": [],
+     *   //   "spreadsheetId": "my_spreadsheetId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.batchClear
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {().BatchClearValuesRequest} params.resource Request body data
+     * @param {().BatchClearValuesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchClear(
+      params: Params$Resource$Spreadsheets$Values$Batchclear,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchClear(
       params?: Params$Resource$Spreadsheets$Values$Batchclear,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchClearValuesResponse>;
+    batchClear(
+      params: Params$Resource$Spreadsheets$Values$Batchclear,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchClear(
       params: Params$Resource$Spreadsheets$Values$Batchclear,
       options:
@@ -5047,12 +5575,20 @@ export namespace sheets_v4 {
     batchClear(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Values$Batchclear
-        | BodyResponseCallback<Schema$BatchClearValuesResponse>,
+        | BodyResponseCallback<Schema$BatchClearValuesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchClearValuesResponse>,
-      callback?: BodyResponseCallback<Schema$BatchClearValuesResponse>
-    ): void | GaxiosPromise<Schema$BatchClearValuesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchClearValuesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchClearValuesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchClearValuesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Batchclear;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5085,7 +5621,10 @@ export namespace sheets_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BatchClearValuesResponse>(parameters, callback);
+        createAPIRequest<Schema$BatchClearValuesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BatchClearValuesResponse>(parameters);
       }
@@ -5095,73 +5634,81 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.batchClearByDataFilter
      * @desc Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more DataFilters. Ranges matching any of the specified data filters will be cleared.  Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // The DataFilters used to determine which ranges to clear.
-     *       dataFilters: [],  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.batchClearByDataFilter(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.batchClearByDataFilter({
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataFilters": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clearedRanges": [],
+     *   //   "spreadsheetId": "my_spreadsheetId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.batchClearByDataFilter
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {().BatchClearValuesByDataFilterRequest} params.resource Request body data
+     * @param {().BatchClearValuesByDataFilterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchClearByDataFilter(
+      params: Params$Resource$Spreadsheets$Values$Batchclearbydatafilter,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchClearByDataFilter(
       params?: Params$Resource$Spreadsheets$Values$Batchclearbydatafilter,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchClearValuesByDataFilterResponse>;
+    batchClearByDataFilter(
+      params: Params$Resource$Spreadsheets$Values$Batchclearbydatafilter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchClearByDataFilter(
       params: Params$Resource$Spreadsheets$Values$Batchclearbydatafilter,
       options:
@@ -5185,14 +5732,20 @@ export namespace sheets_v4 {
     batchClearByDataFilter(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Values$Batchclearbydatafilter
-        | BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>,
+        | BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>,
-      callback?: BodyResponseCallback<
-        Schema$BatchClearValuesByDataFilterResponse
-      >
-    ): void | GaxiosPromise<Schema$BatchClearValuesByDataFilterResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchClearValuesByDataFilterResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Batchclearbydatafilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5228,7 +5781,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$BatchClearValuesByDataFilterResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchClearValuesByDataFilterResponse>(
@@ -5241,73 +5794,75 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.batchGet
      * @desc Returns one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to retrieve data from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *     ],
+     *   });
      *
-     *     // The A1 notation of the values to retrieve.
-     *     ranges: [],  // TODO: Update placeholder value.
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
      *
-     *     // How values should be represented in the output.
-     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
-     *     valueRenderOption: '',  // TODO: Update placeholder value.
-     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.batchGet({
      *     // How dates, times, and durations should be represented in the output.
      *     // This is ignored if value_render_option is
      *     // FORMATTED_VALUE.
      *     // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
-     *     dateTimeRenderOption: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.batchGet(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     dateTimeRenderOption: 'placeholder-value',
+     *     // The major dimension that results should use.
+     *     //
+     *     // For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`,
+     *     // then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`,
+     *     // whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns
+     *     // `[[1,3],[2,4]]`.
+     *     majorDimension: 'placeholder-value',
+     *     // The A1 notation of the values to retrieve.
+     *     ranges: 'placeholder-value',
+     *     // The ID of the spreadsheet to retrieve data from.
+     *     spreadsheetId: 'placeholder-value',
+     *     // How values should be represented in the output.
+     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     valueRenderOption: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "valueRanges": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/drive.readonly'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   //   'https://www.googleapis.com/auth/spreadsheets.readonly'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.batchGet
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
-     * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
+     * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      * @param {string=} params.ranges The A1 notation of the values to retrieve.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
      * @param {string=} params.valueRenderOption How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
@@ -5316,9 +5871,18 @@ export namespace sheets_v4 {
      * @return {object} Request object
      */
     batchGet(
+      params: Params$Resource$Spreadsheets$Values$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
       params?: Params$Resource$Spreadsheets$Values$Batchget,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchGetValuesResponse>;
+    batchGet(
+      params: Params$Resource$Spreadsheets$Values$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchGet(
       params: Params$Resource$Spreadsheets$Values$Batchget,
       options:
@@ -5336,12 +5900,20 @@ export namespace sheets_v4 {
     batchGet(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Values$Batchget
-        | BodyResponseCallback<Schema$BatchGetValuesResponse>,
+        | BodyResponseCallback<Schema$BatchGetValuesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetValuesResponse>,
-      callback?: BodyResponseCallback<Schema$BatchGetValuesResponse>
-    ): void | GaxiosPromise<Schema$BatchGetValuesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetValuesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetValuesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetValuesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5374,7 +5946,10 @@ export namespace sheets_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BatchGetValuesResponse>(parameters, callback);
+        createAPIRequest<Schema$BatchGetValuesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BatchGetValuesResponse>(parameters);
       }
@@ -5384,85 +5959,84 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.batchGetByDataFilter
      * @desc Returns one or more ranges of values that match the specified data filters. The caller must specify the spreadsheet ID and one or more DataFilters.  Ranges that match any of the data filters in the request will be returned.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to retrieve data from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // How values should be represented in the output.
-     *       // The default render option is ValueRenderOption.FORMATTED_VALUE.
-     *       valueRenderOption: '',  // TODO: Update placeholder value.
-     *
-     *       // The data filters used to match the ranges of values to retrieve.  Ranges
-     *       // that match any of the specified data filters will be included in the
-     *       // response.
-     *       dataFilters: [],  // TODO: Update placeholder value.
-     *
-     *       // How dates, times, and durations should be represented in the output.
-     *       // This is ignored if value_render_option is
-     *       // FORMATTED_VALUE.
-     *       // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
-     *       dateTimeRenderOption: '',  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.batchGetByDataFilter(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.batchGetByDataFilter({
+     *     // The ID of the spreadsheet to retrieve data from.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataFilters": [],
+     *       //   "dateTimeRenderOption": "my_dateTimeRenderOption",
+     *       //   "majorDimension": "my_majorDimension",
+     *       //   "valueRenderOption": "my_valueRenderOption"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "valueRanges": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.batchGetByDataFilter
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
-     * @param {().BatchGetValuesByDataFilterRequest} params.resource Request body data
+     * @param {().BatchGetValuesByDataFilterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchGetByDataFilter(
+      params: Params$Resource$Spreadsheets$Values$Batchgetbydatafilter,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGetByDataFilter(
       params?: Params$Resource$Spreadsheets$Values$Batchgetbydatafilter,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchGetValuesByDataFilterResponse>;
+    batchGetByDataFilter(
+      params: Params$Resource$Spreadsheets$Values$Batchgetbydatafilter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchGetByDataFilter(
       params: Params$Resource$Spreadsheets$Values$Batchgetbydatafilter,
       options:
@@ -5480,12 +6054,20 @@ export namespace sheets_v4 {
     batchGetByDataFilter(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Values$Batchgetbydatafilter
-        | BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>,
+        | BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>,
-      callback?: BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>
-    ): void | GaxiosPromise<Schema$BatchGetValuesByDataFilterResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetValuesByDataFilterResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Batchgetbydatafilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5521,7 +6103,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$BatchGetValuesByDataFilterResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchGetValuesByDataFilterResponse>(
@@ -5534,76 +6116,89 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.batchUpdate
      * @desc Sets values in one or more ranges of a spreadsheet. The caller must specify the spreadsheet ID, a valueInputOption, and one or more ValueRanges.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // How the input data should be interpreted.
-     *       valueInputOption: '',  // TODO: Update placeholder value.
-     *
-     *       // The new values to apply to the spreadsheet.
-     *       data: [],  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.batchUpdate(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.batchUpdate({
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "data": [],
+     *       //   "includeValuesInResponse": false,
+     *       //   "responseDateTimeRenderOption": "my_responseDateTimeRenderOption",
+     *       //   "responseValueRenderOption": "my_responseValueRenderOption",
+     *       //   "valueInputOption": "my_valueInputOption"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": [],
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "totalUpdatedCells": 0,
+     *   //   "totalUpdatedColumns": 0,
+     *   //   "totalUpdatedRows": 0,
+     *   //   "totalUpdatedSheets": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.batchUpdate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {().BatchUpdateValuesRequest} params.resource Request body data
+     * @param {().BatchUpdateValuesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Spreadsheets$Values$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Spreadsheets$Values$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchUpdateValuesResponse>;
+    batchUpdate(
+      params: Params$Resource$Spreadsheets$Values$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Spreadsheets$Values$Batchupdate,
       options:
@@ -5621,12 +6216,20 @@ export namespace sheets_v4 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Values$Batchupdate
-        | BodyResponseCallback<Schema$BatchUpdateValuesResponse>,
+        | BodyResponseCallback<Schema$BatchUpdateValuesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdateValuesResponse>,
-      callback?: BodyResponseCallback<Schema$BatchUpdateValuesResponse>
-    ): void | GaxiosPromise<Schema$BatchUpdateValuesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateValuesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateValuesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdateValuesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5661,7 +6264,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdateValuesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdateValuesResponse>(parameters);
@@ -5672,78 +6275,89 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.batchUpdateByDataFilter
      * @desc Sets values in one or more ranges of a spreadsheet. The caller must specify the spreadsheet ID, a valueInputOption, and one or more DataFilterValueRanges.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // How the input data should be interpreted.
-     *       valueInputOption: '',  // TODO: Update placeholder value.
-     *
-     *       // The new values to apply to the spreadsheet.  If more than one range is
-     *       // matched by the specified DataFilter the specified values will be
-     *       // applied to all of those ranges.
-     *       data: [],  // TODO: Update placeholder value.
-     *
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.batchUpdateByDataFilter(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.batchUpdateByDataFilter({
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "data": [],
+     *       //   "includeValuesInResponse": false,
+     *       //   "responseDateTimeRenderOption": "my_responseDateTimeRenderOption",
+     *       //   "responseValueRenderOption": "my_responseValueRenderOption",
+     *       //   "valueInputOption": "my_valueInputOption"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": [],
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "totalUpdatedCells": 0,
+     *   //   "totalUpdatedColumns": 0,
+     *   //   "totalUpdatedRows": 0,
+     *   //   "totalUpdatedSheets": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.batchUpdateByDataFilter
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {().BatchUpdateValuesByDataFilterRequest} params.resource Request body data
+     * @param {().BatchUpdateValuesByDataFilterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchUpdateByDataFilter(
+      params: Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdateByDataFilter(
       params?: Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchUpdateValuesByDataFilterResponse>;
+    batchUpdateByDataFilter(
+      params: Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdateByDataFilter(
       params: Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter,
       options:
@@ -5767,14 +6381,20 @@ export namespace sheets_v4 {
     batchUpdateByDataFilter(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter
-        | BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>,
+        | BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>,
-      callback?: BodyResponseCallback<
-        Schema$BatchUpdateValuesByDataFilterResponse
-      >
-    ): void | GaxiosPromise<Schema$BatchUpdateValuesByDataFilterResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdateValuesByDataFilterResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5810,7 +6430,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdateValuesByDataFilterResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdateValuesByDataFilterResponse>(
@@ -5823,74 +6443,82 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.clear
      * @desc Clears values from a spreadsheet. The caller must specify the spreadsheet ID and range. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     // The A1 notation of the values to clear.
-     *     range: 'my-range',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.clear(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.clear({
+     *     // The A1 notation of the values to clear.
+     *     range: 'placeholder-value',
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clearedRange": "my_clearedRange",
+     *   //   "spreadsheetId": "my_spreadsheetId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.clear
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.range The A1 notation of the values to clear.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {().ClearValuesRequest} params.resource Request body data
+     * @param {().ClearValuesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     clear(
+      params: Params$Resource$Spreadsheets$Values$Clear,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    clear(
       params?: Params$Resource$Spreadsheets$Values$Clear,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ClearValuesResponse>;
+    clear(
+      params: Params$Resource$Spreadsheets$Values$Clear,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     clear(
       params: Params$Resource$Spreadsheets$Values$Clear,
       options: MethodOptions | BodyResponseCallback<Schema$ClearValuesResponse>,
@@ -5904,12 +6532,20 @@ export namespace sheets_v4 {
     clear(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Values$Clear
-        | BodyResponseCallback<Schema$ClearValuesResponse>,
+        | BodyResponseCallback<Schema$ClearValuesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ClearValuesResponse>,
-      callback?: BodyResponseCallback<Schema$ClearValuesResponse>
-    ): void | GaxiosPromise<Schema$ClearValuesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ClearValuesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ClearValuesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ClearValuesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Clear;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5942,7 +6578,10 @@ export namespace sheets_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ClearValuesResponse>(parameters, callback);
+        createAPIRequest<Schema$ClearValuesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ClearValuesResponse>(parameters);
       }
@@ -5952,73 +6591,76 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.get
      * @desc Returns a range of values from a spreadsheet. The caller must specify the spreadsheet ID and a range.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to retrieve data from.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *     ],
+     *   });
      *
-     *     // The A1 notation of the values to retrieve.
-     *     range: 'my-range',  // TODO: Update placeholder value.
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
      *
-     *     // How values should be represented in the output.
-     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
-     *     valueRenderOption: '',  // TODO: Update placeholder value.
-     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.get({
      *     // How dates, times, and durations should be represented in the output.
      *     // This is ignored if value_render_option is
      *     // FORMATTED_VALUE.
      *     // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
-     *     dateTimeRenderOption: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     *     dateTimeRenderOption: 'placeholder-value',
+     *     // The major dimension that results should use.
+     *     //
+     *     // For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then
+     *     // requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`,
+     *     // whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns
+     *     // `[[1,3],[2,4]]`.
+     *     majorDimension: 'placeholder-value',
+     *     // The A1 notation of the values to retrieve.
+     *     range: 'placeholder-value',
+     *     // The ID of the spreadsheet to retrieve data from.
+     *     spreadsheetId: 'placeholder-value',
+     *     // How values should be represented in the output.
+     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     valueRenderOption: 'placeholder-value',
      *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "majorDimension": "my_majorDimension",
+     *   //   "range": "my_range",
+     *   //   "values": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/drive.readonly'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   //   'https://www.googleapis.com/auth/spreadsheets.readonly'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
-     * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
+     * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      * @param {string} params.range The A1 notation of the values to retrieve.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
      * @param {string=} params.valueRenderOption How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
@@ -6027,9 +6669,18 @@ export namespace sheets_v4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Spreadsheets$Values$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Spreadsheets$Values$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ValueRange>;
+    get(
+      params: Params$Resource$Spreadsheets$Values$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Spreadsheets$Values$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ValueRange>,
@@ -6043,12 +6694,17 @@ export namespace sheets_v4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Values$Get
-        | BodyResponseCallback<Schema$ValueRange>,
+        | BodyResponseCallback<Schema$ValueRange>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ValueRange>,
-      callback?: BodyResponseCallback<Schema$ValueRange>
-    ): void | GaxiosPromise<Schema$ValueRange> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ValueRange>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ValueRange>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ValueRange> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6081,7 +6737,10 @@ export namespace sheets_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ValueRange>(parameters, callback);
+        createAPIRequest<Schema$ValueRange>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ValueRange>(parameters);
       }
@@ -6091,82 +6750,112 @@ export namespace sheets_v4 {
      * sheets.spreadsheets.values.update
      * @desc Sets values in a range of a spreadsheet. The caller must specify the spreadsheet ID, range, and a valueInputOption.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Sheets API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/sheets
-     * // 2. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sheets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var sheets = google.sheets('v4');
+     * const sheets = google.sheets('v4');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The ID of the spreadsheet to update.
-     *     spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
-     *
-     *     // The A1 notation of the values to update.
-     *     range: 'my-range',  // TODO: Update placeholder value.
-     *
-     *     // How the input data should be interpreted.
-     *     valueInputOption: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   sheets.spreadsheets.values.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sheets.spreadsheets.values.update({
+     *     // Determines if the update response should include the values
+     *     // of the cells that were updated. By default, responses
+     *     // do not include the updated values.
+     *     // If the range to write was larger than the range actually written, the
+     *     // response includes all values in the requested range (excluding trailing
+     *     // empty rows and columns).
+     *     includeValuesInResponse: 'placeholder-value',
+     *     // The A1 notation of the values to update.
+     *     range: 'placeholder-value',
+     *     // Determines how dates, times, and durations in the response should be
+     *     // rendered. This is ignored if response_value_render_option is
+     *     // FORMATTED_VALUE.
+     *     // The default dateTime render option is
+     *     // DateTimeRenderOption.SERIAL_NUMBER.
+     *     responseDateTimeRenderOption: 'placeholder-value',
+     *     // Determines how values in the response should be rendered.
+     *     // The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     responseValueRenderOption: 'placeholder-value',
+     *     // The ID of the spreadsheet to update.
+     *     spreadsheetId: 'placeholder-value',
+     *     // How the input data should be interpreted.
+     *     valueInputOption: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "majorDimension": "my_majorDimension",
+     *       //   "range": "my_range",
+     *       //   "values": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "spreadsheetId": "my_spreadsheetId",
+     *   //   "updatedCells": 0,
+     *   //   "updatedColumns": 0,
+     *   //   "updatedData": {},
+     *   //   "updatedRange": "my_updatedRange",
+     *   //   "updatedRows": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-     *   //
-     *   // Authorize using one of the following scopes:
-     *   //   'https://www.googleapis.com/auth/drive'
-     *   //   'https://www.googleapis.com/auth/drive.file'
-     *   //   'https://www.googleapis.com/auth/spreadsheets'
-     *   var authClient = null;
-     *
-     *   if (authClient == null) {
-     *     console.log('authentication failed');
-     *     return;
-     *   }
-     *   callback(authClient);
-     * }
      * @alias sheets.spreadsheets.values.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.includeValuesInResponse Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
+     * @param {boolean=} params.includeValuesInResponse Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).
      * @param {string} params.range The A1 notation of the values to update.
      * @param {string=} params.responseDateTimeRenderOption Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.
      * @param {string=} params.responseValueRenderOption Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
      * @param {string=} params.valueInputOption How the input data should be interpreted.
-     * @param {().ValueRange} params.resource Request body data
+     * @param {().ValueRange} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Spreadsheets$Values$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Spreadsheets$Values$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UpdateValuesResponse>;
+    update(
+      params: Params$Resource$Spreadsheets$Values$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Spreadsheets$Values$Update,
       options:
@@ -6182,12 +6871,20 @@ export namespace sheets_v4 {
     update(
       paramsOrCallback?:
         | Params$Resource$Spreadsheets$Values$Update
-        | BodyResponseCallback<Schema$UpdateValuesResponse>,
+        | BodyResponseCallback<Schema$UpdateValuesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UpdateValuesResponse>,
-      callback?: BodyResponseCallback<Schema$UpdateValuesResponse>
-    ): void | GaxiosPromise<Schema$UpdateValuesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UpdateValuesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UpdateValuesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UpdateValuesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Spreadsheets$Values$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6220,7 +6917,10 @@ export namespace sheets_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UpdateValuesResponse>(parameters, callback);
+        createAPIRequest<Schema$UpdateValuesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UpdateValuesResponse>(parameters);
       }
@@ -6230,11 +6930,6 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Append
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Determines if the update response should include the values of the cells that were appended. By default, responses do not include the updated values.
      */
     includeValuesInResponse?: boolean;
@@ -6243,7 +6938,7 @@ export namespace sheets_v4 {
      */
     insertDataOption?: string;
     /**
-     * The A1 notation of a range to search for a logical table of data. Values will be appended after the last row of the table.
+     * The A1 notation of a range to search for a logical table of data. Values are appended after the last row of the table.
      */
     range?: string;
     /**
@@ -6271,11 +6966,6 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Batchclear
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the spreadsheet to update.
      */
     spreadsheetId?: string;
@@ -6287,11 +6977,6 @@ export namespace sheets_v4 {
   }
   export interface Params$Resource$Spreadsheets$Values$Batchclearbydatafilter
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the spreadsheet to update.
      */
@@ -6305,16 +6990,11 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Batchget
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
      */
     dateTimeRenderOption?: string;
     /**
-     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
+     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      */
     majorDimension?: string;
     /**
@@ -6333,11 +7013,6 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Batchgetbydatafilter
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the spreadsheet to retrieve data from.
      */
     spreadsheetId?: string;
@@ -6349,11 +7024,6 @@ export namespace sheets_v4 {
   }
   export interface Params$Resource$Spreadsheets$Values$Batchupdate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the spreadsheet to update.
      */
@@ -6367,11 +7037,6 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the spreadsheet to update.
      */
     spreadsheetId?: string;
@@ -6383,11 +7048,6 @@ export namespace sheets_v4 {
   }
   export interface Params$Resource$Spreadsheets$Values$Clear
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The A1 notation of the values to clear.
      */
@@ -6405,16 +7065,11 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
      */
     dateTimeRenderOption?: string;
     /**
-     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
+     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      */
     majorDimension?: string;
     /**
@@ -6433,12 +7088,7 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
+     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).
      */
     includeValuesInResponse?: boolean;
     /**

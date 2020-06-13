@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace poly_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace poly_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -432,6 +442,59 @@ export namespace poly_v1 {
     /**
      * poly.assets.get
      * @desc Returns detailed information about an asset given its name. PRIVATE assets are returned only if  the currently authenticated user (via OAuth token) is the author of the  asset.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/poly.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const poly = google.poly('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await poly.assets.get({
+     *     // Required. An asset's name in the form `assets/{ASSET_ID}`.
+     *     name: 'assets/my-asset',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorName": "my_authorName",
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "formats": [],
+     *   //   "isCurated": false,
+     *   //   "license": "my_license",
+     *   //   "metadata": "my_metadata",
+     *   //   "name": "my_name",
+     *   //   "presentationParams": {},
+     *   //   "remixInfo": {},
+     *   //   "thumbnail": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias poly.assets.get
      * @memberOf! ()
      *
@@ -442,9 +505,18 @@ export namespace poly_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Assets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Assets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Asset>;
+    get(
+      params: Params$Resource$Assets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Assets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Asset>,
@@ -458,10 +530,17 @@ export namespace poly_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Assets$Get
-        | BodyResponseCallback<Schema$Asset>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Asset>,
-      callback?: BodyResponseCallback<Schema$Asset>
-    ): void | GaxiosPromise<Schema$Asset> {
+        | BodyResponseCallback<Schema$Asset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Asset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Asset>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Asset> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -491,7 +570,10 @@ export namespace poly_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Asset>(parameters, callback);
+        createAPIRequest<Schema$Asset>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Asset>(parameters);
       }
@@ -500,6 +582,77 @@ export namespace poly_v1 {
     /**
      * poly.assets.list
      * @desc Lists all public, remixable assets. These are assets with an access level of PUBLIC and published under the CC-By license.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/poly.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const poly = google.poly('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await poly.assets.list({
+     *     // Filter assets based on the specified category. Supported values are:
+     *     // `animals`, `architecture`, `art`, `food`, `nature`, `objects`, `people`,
+     *     // `scenes`, `technology`, and `transport`.
+     *     category: 'placeholder-value',
+     *     // Return only assets that have been curated by the Poly team.
+     *     curated: 'placeholder-value',
+     *     // Return only assets with the matching format. Acceptable values are:
+     *     // `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.
+     *     format: 'placeholder-value',
+     *     // One or more search terms to be matched against all text that Poly has
+     *     // indexed for assets, which includes display_name,
+     *     // description, and tags. Multiple keywords should be
+     *     // separated by spaces.
+     *     keywords: 'placeholder-value',
+     *     // Returns assets that are of the specified complexity or less. Defaults to
+     *     // COMPLEX. For example, a request for
+     *     // MEDIUM assets also includes
+     *     // SIMPLE assets.
+     *     maxComplexity: 'placeholder-value',
+     *     // Specifies an ordering for assets. Acceptable values are:
+     *     // `BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets
+     *     // based on a combination of popularity and other features.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of assets to be returned. This value must be between `1`
+     *     // and `100`. Defaults to `20`.
+     *     pageSize: 'placeholder-value',
+     *     // Specifies a continuation token from a previous search whose results were
+     *     // split into multiple pages. To get the next page, submit the same request
+     *     // specifying the value from
+     *     // next_page_token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assets": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias poly.assets.list
      * @memberOf! ()
      *
@@ -517,9 +670,18 @@ export namespace poly_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Assets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Assets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAssetsResponse>;
+    list(
+      params: Params$Resource$Assets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Assets$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListAssetsResponse>,
@@ -533,12 +695,20 @@ export namespace poly_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Assets$List
-        | BodyResponseCallback<Schema$ListAssetsResponse>,
+        | BodyResponseCallback<Schema$ListAssetsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAssetsResponse>,
-      callback?: BodyResponseCallback<Schema$ListAssetsResponse>
-    ): void | GaxiosPromise<Schema$ListAssetsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAssetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAssetsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -568,7 +738,10 @@ export namespace poly_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListAssetsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListAssetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListAssetsResponse>(parameters);
       }
@@ -577,21 +750,11 @@ export namespace poly_v1 {
 
   export interface Params$Resource$Assets$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. An asset's name in the form `assets/{ASSET_ID}`.
      */
     name?: string;
   }
   export interface Params$Resource$Assets$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Filter assets based on the specified category. Supported values are: `animals`, `architecture`, `art`, `food`, `nature`, `objects`, `people`, `scenes`, `technology`, and `transport`.
      */
@@ -646,6 +809,70 @@ export namespace poly_v1 {
     /**
      * poly.users.assets.list
      * @desc Lists assets authored by the given user. Only the value 'me', representing the currently-authenticated user, is supported. May include assets with an access level of PRIVATE or UNLISTED and assets which are All Rights Reserved for the currently-authenticated user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/poly.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const poly = google.poly('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await poly.users.assets.list({
+     *     // Return only assets with the matching format. Acceptable values are:
+     *     // `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, and `TILT`.
+     *     format: 'placeholder-value',
+     *     // A valid user id. Currently, only the special value 'me', representing the
+     *     // currently-authenticated user is supported. To use 'me', you must pass
+     *     // an OAuth token with the request.
+     *     name: 'users/my-user',
+     *     // Specifies an ordering for assets. Acceptable values are:
+     *     // `BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets
+     *     // based on a combination of popularity and other features.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of assets to be returned. This value must be between `1`
+     *     // and `100`. Defaults to `20`.
+     *     pageSize: 'placeholder-value',
+     *     // Specifies a continuation token from a previous search whose results were
+     *     // split into multiple pages. To get the next page, submit the same request
+     *     // specifying the value from
+     *     // next_page_token.
+     *     pageToken: 'placeholder-value',
+     *     // The visibility of the assets to be returned.
+     *     // Defaults to
+     *     // VISIBILITY_UNSPECIFIED
+     *     // which returns all assets.
+     *     visibility: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0,
+     *   //   "userAssets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias poly.users.assets.list
      * @memberOf! ()
      *
@@ -661,9 +888,18 @@ export namespace poly_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Assets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Assets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListUserAssetsResponse>;
+    list(
+      params: Params$Resource$Users$Assets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Assets$List,
       options:
@@ -679,12 +915,20 @@ export namespace poly_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Assets$List
-        | BodyResponseCallback<Schema$ListUserAssetsResponse>,
+        | BodyResponseCallback<Schema$ListUserAssetsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListUserAssetsResponse>,
-      callback?: BodyResponseCallback<Schema$ListUserAssetsResponse>
-    ): void | GaxiosPromise<Schema$ListUserAssetsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUserAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUserAssetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUserAssetsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -715,7 +959,10 @@ export namespace poly_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListUserAssetsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListUserAssetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListUserAssetsResponse>(parameters);
       }
@@ -724,11 +971,6 @@ export namespace poly_v1 {
 
   export interface Params$Resource$Users$Assets$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, and `TILT`.
      */
@@ -764,6 +1006,65 @@ export namespace poly_v1 {
     /**
      * poly.users.likedassets.list
      * @desc Lists assets that the user has liked. Only the value 'me', representing the currently-authenticated user, is supported. May include assets with an access level of UNLISTED.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/poly.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const poly = google.poly('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await poly.users.likedassets.list({
+     *     // Return only assets with the matching format. Acceptable values are:
+     *     // `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.
+     *     format: 'placeholder-value',
+     *     // A valid user id. Currently, only the special value 'me', representing the
+     *     // currently-authenticated user is supported. To use 'me', you must pass
+     *     // an OAuth token with the request.
+     *     name: 'users/my-user',
+     *     // Specifies an ordering for assets. Acceptable values are:
+     *     // `BEST`, `NEWEST`, `OLDEST`, 'LIKED_TIME'. Defaults to `LIKED_TIME`, which
+     *     // ranks assets based on how recently they were liked.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of assets to be returned. This value must be between `1`
+     *     // and `100`. Defaults to `20`.
+     *     pageSize: 'placeholder-value',
+     *     // Specifies a continuation token from a previous search whose results were
+     *     // split into multiple pages. To get the next page, submit the same request
+     *     // specifying the value from
+     *     // next_page_token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assets": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias poly.users.likedassets.list
      * @memberOf! ()
      *
@@ -778,9 +1079,18 @@ export namespace poly_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Likedassets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Likedassets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLikedAssetsResponse>;
+    list(
+      params: Params$Resource$Users$Likedassets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Likedassets$List,
       options:
@@ -796,12 +1106,20 @@ export namespace poly_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Likedassets$List
-        | BodyResponseCallback<Schema$ListLikedAssetsResponse>,
+        | BodyResponseCallback<Schema$ListLikedAssetsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLikedAssetsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLikedAssetsResponse>
-    ): void | GaxiosPromise<Schema$ListLikedAssetsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLikedAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLikedAssetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLikedAssetsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Likedassets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -835,7 +1153,10 @@ export namespace poly_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLikedAssetsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLikedAssetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLikedAssetsResponse>(parameters);
       }
@@ -844,11 +1165,6 @@ export namespace poly_v1 {
 
   export interface Params$Resource$Users$Likedassets$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.
      */

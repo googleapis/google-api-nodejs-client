@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace domainsrdap_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace domainsrdap_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -241,6 +251,51 @@ export namespace domainsrdap_v1 {
     /**
      * domainsrdap.autnum.get
      * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domainsrdap = google.domainsrdap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await domainsrdap.autnum.get({
+     *     autnumId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": [],
+     *   //   "errorCode": 0,
+     *   //   "jsonResponse": {},
+     *   //   "lang": "my_lang",
+     *   //   "notices": [],
+     *   //   "rdapConformance": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias domainsrdap.autnum.get
      * @memberOf! ()
      *
@@ -251,9 +306,18 @@ export namespace domainsrdap_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Autnum$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Autnum$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RdapResponse>;
+    get(
+      params: Params$Resource$Autnum$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Autnum$Get,
       options: MethodOptions | BodyResponseCallback<Schema$RdapResponse>,
@@ -267,12 +331,17 @@ export namespace domainsrdap_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Autnum$Get
-        | BodyResponseCallback<Schema$RdapResponse>,
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RdapResponse>,
-      callback?: BodyResponseCallback<Schema$RdapResponse>
-    ): void | GaxiosPromise<Schema$RdapResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Autnum$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -305,7 +374,10 @@ export namespace domainsrdap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RdapResponse>(parameters, callback);
+        createAPIRequest<Schema$RdapResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);
       }
@@ -313,11 +385,6 @@ export namespace domainsrdap_v1 {
   }
 
   export interface Params$Resource$Autnum$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -333,6 +400,48 @@ export namespace domainsrdap_v1 {
     /**
      * domainsrdap.domain.get
      * @desc Look up RDAP information for a domain by name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domainsrdap = google.domainsrdap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await domainsrdap.domain.get({
+     *     // Full domain name to look up. Example: "example.com"
+     *     domainName: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias domainsrdap.domain.get
      * @memberOf! ()
      *
@@ -343,9 +452,18 @@ export namespace domainsrdap_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Domain$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Domain$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HttpBody>;
+    get(
+      params: Params$Resource$Domain$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Domain$Get,
       options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
@@ -359,10 +477,17 @@ export namespace domainsrdap_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Domain$Get
-        | BodyResponseCallback<Schema$HttpBody>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
-      callback?: BodyResponseCallback<Schema$HttpBody>
-    ): void | GaxiosPromise<Schema$HttpBody> {
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Domain$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -395,7 +520,10 @@ export namespace domainsrdap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$HttpBody>(parameters, callback);
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
@@ -403,11 +531,6 @@ export namespace domainsrdap_v1 {
   }
 
   export interface Params$Resource$Domain$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Full domain name to look up. Example: "example.com"
      */
@@ -423,6 +546,51 @@ export namespace domainsrdap_v1 {
     /**
      * domainsrdap.entity.get
      * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domainsrdap = google.domainsrdap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await domainsrdap.entity.get({
+     *     entityId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": [],
+     *   //   "errorCode": 0,
+     *   //   "jsonResponse": {},
+     *   //   "lang": "my_lang",
+     *   //   "notices": [],
+     *   //   "rdapConformance": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias domainsrdap.entity.get
      * @memberOf! ()
      *
@@ -433,9 +601,18 @@ export namespace domainsrdap_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Entity$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Entity$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RdapResponse>;
+    get(
+      params: Params$Resource$Entity$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Entity$Get,
       options: MethodOptions | BodyResponseCallback<Schema$RdapResponse>,
@@ -449,12 +626,17 @@ export namespace domainsrdap_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Entity$Get
-        | BodyResponseCallback<Schema$RdapResponse>,
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RdapResponse>,
-      callback?: BodyResponseCallback<Schema$RdapResponse>
-    ): void | GaxiosPromise<Schema$RdapResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entity$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -487,7 +669,10 @@ export namespace domainsrdap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RdapResponse>(parameters, callback);
+        createAPIRequest<Schema$RdapResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);
       }
@@ -495,11 +680,6 @@ export namespace domainsrdap_v1 {
   }
 
   export interface Params$Resource$Entity$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -515,6 +695,53 @@ export namespace domainsrdap_v1 {
     /**
      * domainsrdap.ip.get
      * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domainsrdap = google.domainsrdap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await domainsrdap.ip.get({
+     *     ipId: 'placeholder-value',
+     *
+     *     ipId1: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": [],
+     *   //   "errorCode": 0,
+     *   //   "jsonResponse": {},
+     *   //   "lang": "my_lang",
+     *   //   "notices": [],
+     *   //   "rdapConformance": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias domainsrdap.ip.get
      * @memberOf! ()
      *
@@ -526,9 +753,18 @@ export namespace domainsrdap_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Ip$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Ip$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RdapResponse>;
+    get(
+      params: Params$Resource$Ip$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Ip$Get,
       options: MethodOptions | BodyResponseCallback<Schema$RdapResponse>,
@@ -542,12 +778,17 @@ export namespace domainsrdap_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Ip$Get
-        | BodyResponseCallback<Schema$RdapResponse>,
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RdapResponse>,
-      callback?: BodyResponseCallback<Schema$RdapResponse>
-    ): void | GaxiosPromise<Schema$RdapResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ip$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -580,7 +821,10 @@ export namespace domainsrdap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RdapResponse>(parameters, callback);
+        createAPIRequest<Schema$RdapResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);
       }
@@ -588,11 +832,6 @@ export namespace domainsrdap_v1 {
   }
 
   export interface Params$Resource$Ip$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -612,6 +851,51 @@ export namespace domainsrdap_v1 {
     /**
      * domainsrdap.nameserver.get
      * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domainsrdap = google.domainsrdap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await domainsrdap.nameserver.get({
+     *     nameserverId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": [],
+     *   //   "errorCode": 0,
+     *   //   "jsonResponse": {},
+     *   //   "lang": "my_lang",
+     *   //   "notices": [],
+     *   //   "rdapConformance": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias domainsrdap.nameserver.get
      * @memberOf! ()
      *
@@ -622,9 +906,18 @@ export namespace domainsrdap_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Nameserver$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Nameserver$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RdapResponse>;
+    get(
+      params: Params$Resource$Nameserver$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Nameserver$Get,
       options: MethodOptions | BodyResponseCallback<Schema$RdapResponse>,
@@ -638,12 +931,17 @@ export namespace domainsrdap_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Nameserver$Get
-        | BodyResponseCallback<Schema$RdapResponse>,
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RdapResponse>,
-      callback?: BodyResponseCallback<Schema$RdapResponse>
-    ): void | GaxiosPromise<Schema$RdapResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nameserver$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -676,7 +974,10 @@ export namespace domainsrdap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RdapResponse>(parameters, callback);
+        createAPIRequest<Schema$RdapResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);
       }
@@ -684,11 +985,6 @@ export namespace domainsrdap_v1 {
   }
 
   export interface Params$Resource$Nameserver$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -704,6 +1000,49 @@ export namespace domainsrdap_v1 {
     /**
      * domainsrdap.getDomains
      * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domainsrdap = google.domainsrdap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await domainsrdap.getDomains({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": [],
+     *   //   "errorCode": 0,
+     *   //   "jsonResponse": {},
+     *   //   "lang": "my_lang",
+     *   //   "notices": [],
+     *   //   "rdapConformance": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias domainsrdap.getDomains
      * @memberOf! ()
      *
@@ -713,9 +1052,18 @@ export namespace domainsrdap_v1 {
      * @return {object} Request object
      */
     getDomains(
+      params: Params$Resource$V1$Getdomains,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getDomains(
       params?: Params$Resource$V1$Getdomains,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RdapResponse>;
+    getDomains(
+      params: Params$Resource$V1$Getdomains,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getDomains(
       params: Params$Resource$V1$Getdomains,
       options: MethodOptions | BodyResponseCallback<Schema$RdapResponse>,
@@ -729,12 +1077,17 @@ export namespace domainsrdap_v1 {
     getDomains(
       paramsOrCallback?:
         | Params$Resource$V1$Getdomains
-        | BodyResponseCallback<Schema$RdapResponse>,
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RdapResponse>,
-      callback?: BodyResponseCallback<Schema$RdapResponse>
-    ): void | GaxiosPromise<Schema$RdapResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getdomains;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -764,7 +1117,10 @@ export namespace domainsrdap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RdapResponse>(parameters, callback);
+        createAPIRequest<Schema$RdapResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);
       }
@@ -773,6 +1129,49 @@ export namespace domainsrdap_v1 {
     /**
      * domainsrdap.getEntities
      * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domainsrdap = google.domainsrdap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await domainsrdap.getEntities({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": [],
+     *   //   "errorCode": 0,
+     *   //   "jsonResponse": {},
+     *   //   "lang": "my_lang",
+     *   //   "notices": [],
+     *   //   "rdapConformance": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias domainsrdap.getEntities
      * @memberOf! ()
      *
@@ -782,9 +1181,18 @@ export namespace domainsrdap_v1 {
      * @return {object} Request object
      */
     getEntities(
+      params: Params$Resource$V1$Getentities,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getEntities(
       params?: Params$Resource$V1$Getentities,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RdapResponse>;
+    getEntities(
+      params: Params$Resource$V1$Getentities,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getEntities(
       params: Params$Resource$V1$Getentities,
       options: MethodOptions | BodyResponseCallback<Schema$RdapResponse>,
@@ -798,12 +1206,17 @@ export namespace domainsrdap_v1 {
     getEntities(
       paramsOrCallback?:
         | Params$Resource$V1$Getentities
-        | BodyResponseCallback<Schema$RdapResponse>,
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RdapResponse>,
-      callback?: BodyResponseCallback<Schema$RdapResponse>
-    ): void | GaxiosPromise<Schema$RdapResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getentities;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -833,7 +1246,10 @@ export namespace domainsrdap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RdapResponse>(parameters, callback);
+        createAPIRequest<Schema$RdapResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);
       }
@@ -842,6 +1258,45 @@ export namespace domainsrdap_v1 {
     /**
      * domainsrdap.getHelp
      * @desc Get help information for the RDAP API, including links to documentation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domainsrdap = google.domainsrdap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await domainsrdap.getHelp({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias domainsrdap.getHelp
      * @memberOf! ()
      *
@@ -851,9 +1306,18 @@ export namespace domainsrdap_v1 {
      * @return {object} Request object
      */
     getHelp(
+      params: Params$Resource$V1$Gethelp,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getHelp(
       params?: Params$Resource$V1$Gethelp,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HttpBody>;
+    getHelp(
+      params: Params$Resource$V1$Gethelp,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getHelp(
       params: Params$Resource$V1$Gethelp,
       options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
@@ -867,10 +1331,17 @@ export namespace domainsrdap_v1 {
     getHelp(
       paramsOrCallback?:
         | Params$Resource$V1$Gethelp
-        | BodyResponseCallback<Schema$HttpBody>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
-      callback?: BodyResponseCallback<Schema$HttpBody>
-    ): void | GaxiosPromise<Schema$HttpBody> {
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Gethelp;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -900,7 +1371,10 @@ export namespace domainsrdap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$HttpBody>(parameters, callback);
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
@@ -909,6 +1383,45 @@ export namespace domainsrdap_v1 {
     /**
      * domainsrdap.getIp
      * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domainsrdap = google.domainsrdap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await domainsrdap.getIp({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias domainsrdap.getIp
      * @memberOf! ()
      *
@@ -918,9 +1431,18 @@ export namespace domainsrdap_v1 {
      * @return {object} Request object
      */
     getIp(
+      params: Params$Resource$V1$Getip,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIp(
       params?: Params$Resource$V1$Getip,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HttpBody>;
+    getIp(
+      params: Params$Resource$V1$Getip,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIp(
       params: Params$Resource$V1$Getip,
       options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
@@ -934,10 +1456,17 @@ export namespace domainsrdap_v1 {
     getIp(
       paramsOrCallback?:
         | Params$Resource$V1$Getip
-        | BodyResponseCallback<Schema$HttpBody>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
-      callback?: BodyResponseCallback<Schema$HttpBody>
-    ): void | GaxiosPromise<Schema$HttpBody> {
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getip;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -967,7 +1496,10 @@ export namespace domainsrdap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$HttpBody>(parameters, callback);
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
@@ -976,6 +1508,49 @@ export namespace domainsrdap_v1 {
     /**
      * domainsrdap.getNameservers
      * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domainsrdap = google.domainsrdap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await domainsrdap.getNameservers({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": [],
+     *   //   "errorCode": 0,
+     *   //   "jsonResponse": {},
+     *   //   "lang": "my_lang",
+     *   //   "notices": [],
+     *   //   "rdapConformance": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias domainsrdap.getNameservers
      * @memberOf! ()
      *
@@ -985,9 +1560,18 @@ export namespace domainsrdap_v1 {
      * @return {object} Request object
      */
     getNameservers(
+      params: Params$Resource$V1$Getnameservers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getNameservers(
       params?: Params$Resource$V1$Getnameservers,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RdapResponse>;
+    getNameservers(
+      params: Params$Resource$V1$Getnameservers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getNameservers(
       params: Params$Resource$V1$Getnameservers,
       options: MethodOptions | BodyResponseCallback<Schema$RdapResponse>,
@@ -1001,12 +1585,17 @@ export namespace domainsrdap_v1 {
     getNameservers(
       paramsOrCallback?:
         | Params$Resource$V1$Getnameservers
-        | BodyResponseCallback<Schema$RdapResponse>,
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RdapResponse>,
-      callback?: BodyResponseCallback<Schema$RdapResponse>
-    ): void | GaxiosPromise<Schema$RdapResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RdapResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RdapResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Getnameservers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1037,42 +1626,20 @@ export namespace domainsrdap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RdapResponse>(parameters, callback);
+        createAPIRequest<Schema$RdapResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$V1$Getdomains extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
-  export interface Params$Resource$V1$Getentities extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
-  export interface Params$Resource$V1$Gethelp extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
-  export interface Params$Resource$V1$Getip extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$V1$Getdomains extends StandardParameters {}
+  export interface Params$Resource$V1$Getentities extends StandardParameters {}
+  export interface Params$Resource$V1$Gethelp extends StandardParameters {}
+  export interface Params$Resource$V1$Getip extends StandardParameters {}
   export interface Params$Resource$V1$Getnameservers
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
 }

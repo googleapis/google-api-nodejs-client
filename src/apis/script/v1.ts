@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace script_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace script_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -219,7 +229,7 @@ export namespace script_v1 {
    */
   export interface Schema$ExecuteStreamResponse {
     /**
-     * The result of the execution. TODO (johnlattin): Add debugging and logging.
+     * The result of the execution.
      */
     result?: Schema$ScriptExecutionResult;
   }
@@ -488,7 +498,7 @@ export namespace script_v1 {
     processes?: Schema$GoogleAppsScriptTypeProcess[];
   }
   /**
-   * `ListValue` is a wrapper around a repeated field of values. Based on LustValue at: google3/apps/maestro/api/struct.proto?q=message%5c%20ListValue
+   * `ListValue` is a wrapper around a repeated field of values.
    */
   export interface Schema$ListValue {
     /**
@@ -594,11 +604,11 @@ export namespace script_v1 {
     updateTime?: string | null;
   }
   /**
-   * The result of an execution Based on ScriptExecutionResult at: google3/apps/maestro/api/frontend_execution_common.proto?q=message%5c%20ScriptExecutionResult
+   * The result of an execution.
    */
   export interface Schema$ScriptExecutionResult {
     /**
-     * The returned value of the execution. TODO (johnlattin): Add HtmlResponse TODO (johnlattin): Add ExceptionResponse TODO (johlnattin): Add TextResponse
+     * The returned value of the execution.
      */
     returnValue?: Schema$Value;
   }
@@ -633,7 +643,7 @@ export namespace script_v1 {
     message?: string | null;
   }
   /**
-   * `Struct` represents a structured data value, consisting of fields which map to dynamically typed values. Based on Struct at: google3/apps/maestro/api/struct.proto?q=message%5c%20Struct
+   * `Struct` represents a structured data value, consisting of fields which map to dynamically typed values.
    */
   export interface Schema$Struct {
     /**
@@ -651,7 +661,7 @@ export namespace script_v1 {
     deploymentConfig?: Schema$DeploymentConfig;
   }
   /**
-   * `Value` represents a dynamically typed value which is the outcome of an executed script Based on Value at: google3/apps/maestro/api/struct.proto?q=message%5c%20Value
+   * `Value` represents a dynamically typed value which is the outcome of an executed script.
    */
   export interface Schema$Value {
     /**
@@ -722,6 +732,78 @@ export namespace script_v1 {
     /**
      * script.processes.list
      * @desc List information about processes made by or on behalf of a user, such as process type and current status.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.processes'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.processes.list({
+     *     // The maximum number of returned processes per page of results. Defaults to
+     *     // 50.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This
+     *     // should be set to the value of `nextPageToken` from a previous response.
+     *     pageToken: 'placeholder-value',
+     *     // Optional field used to limit returned processes to those originating from
+     *     // projects with a specific deployment ID.
+     *     'userProcessFilter.deploymentId': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those that completed
+     *     // on or before the given timestamp.
+     *     'userProcessFilter.endTime': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those originating from
+     *     // a script function with the given function name.
+     *     'userProcessFilter.functionName': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those originating from
+     *     // projects with project names containing a specific string.
+     *     'userProcessFilter.projectName': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those originating from
+     *     // projects with a specific script ID.
+     *     'userProcessFilter.scriptId': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those that were
+     *     // started on or after the given timestamp.
+     *     'userProcessFilter.startTime': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those having one of
+     *     // the specified process statuses.
+     *     'userProcessFilter.statuses': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those having one of
+     *     // the specified process types.
+     *     'userProcessFilter.types': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those having one of
+     *     // the specified user access levels.
+     *     'userProcessFilter.userAccessLevels': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "processes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.processes.list
      * @memberOf! ()
      *
@@ -742,9 +824,18 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Processes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Processes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListUserProcessesResponse>;
+    list(
+      params: Params$Resource$Processes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Processes$List,
       options:
@@ -762,12 +853,20 @@ export namespace script_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Processes$List
-        | BodyResponseCallback<Schema$ListUserProcessesResponse>,
+        | BodyResponseCallback<Schema$ListUserProcessesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListUserProcessesResponse>,
-      callback?: BodyResponseCallback<Schema$ListUserProcessesResponse>
-    ): void | GaxiosPromise<Schema$ListUserProcessesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUserProcessesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUserProcessesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUserProcessesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Processes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -799,7 +898,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUserProcessesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListUserProcessesResponse>(parameters);
@@ -809,6 +908,74 @@ export namespace script_v1 {
     /**
      * script.processes.listScriptProcesses
      * @desc List information about a script's executed processes, such as process type and current status.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.processes'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.processes.listScriptProcesses({
+     *     // The maximum number of returned processes per page of results. Defaults to
+     *     // 50.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This
+     *     // should be set to the value of `nextPageToken` from a previous response.
+     *     pageToken: 'placeholder-value',
+     *     // The script ID of the project whose processes are listed.
+     *     scriptId: 'placeholder-value',
+     *     // Optional field used to limit returned processes to those originating from
+     *     // projects with a specific deployment ID.
+     *     'scriptProcessFilter.deploymentId': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those that completed
+     *     // on or before the given timestamp.
+     *     'scriptProcessFilter.endTime': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those originating from
+     *     // a script function with the given function name.
+     *     'scriptProcessFilter.functionName': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those that were
+     *     // started on or after the given timestamp.
+     *     'scriptProcessFilter.startTime': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those having one of
+     *     // the specified process statuses.
+     *     'scriptProcessFilter.statuses': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those having one of
+     *     // the specified process types.
+     *     'scriptProcessFilter.types': 'placeholder-value',
+     *     // Optional field used to limit returned processes to those having one of
+     *     // the specified user access levels.
+     *     'scriptProcessFilter.userAccessLevels': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "processes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.processes.listScriptProcesses
      * @memberOf! ()
      *
@@ -828,9 +995,18 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     listScriptProcesses(
+      params: Params$Resource$Processes$Listscriptprocesses,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listScriptProcesses(
       params?: Params$Resource$Processes$Listscriptprocesses,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListScriptProcessesResponse>;
+    listScriptProcesses(
+      params: Params$Resource$Processes$Listscriptprocesses,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listScriptProcesses(
       params: Params$Resource$Processes$Listscriptprocesses,
       options:
@@ -848,12 +1024,20 @@ export namespace script_v1 {
     listScriptProcesses(
       paramsOrCallback?:
         | Params$Resource$Processes$Listscriptprocesses
-        | BodyResponseCallback<Schema$ListScriptProcessesResponse>,
+        | BodyResponseCallback<Schema$ListScriptProcessesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListScriptProcessesResponse>,
-      callback?: BodyResponseCallback<Schema$ListScriptProcessesResponse>
-    ): void | GaxiosPromise<Schema$ListScriptProcessesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListScriptProcessesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListScriptProcessesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListScriptProcessesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Processes$Listscriptprocesses;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -889,7 +1073,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$ListScriptProcessesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListScriptProcessesResponse>(parameters);
@@ -898,11 +1082,6 @@ export namespace script_v1 {
   }
 
   export interface Params$Resource$Processes$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of returned processes per page of results. Defaults to 50.
      */
@@ -950,11 +1129,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Processes$Listscriptprocesses
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of returned processes per page of results. Defaults to 50.
      */
@@ -1010,19 +1184,80 @@ export namespace script_v1 {
     /**
      * script.projects.create
      * @desc Creates a new, empty script project with no script files and a base manifest file.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.projects'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.projects.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parentId": "my_parentId",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": {},
+     *   //   "lastModifyUser": {},
+     *   //   "parentId": "my_parentId",
+     *   //   "scriptId": "my_scriptId",
+     *   //   "title": "my_title",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().CreateProjectRequest} params.resource Request body data
+     * @param {().CreateProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Project>;
+    create(
+      params: Params$Resource$Projects$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Project>,
@@ -1036,10 +1271,17 @@ export namespace script_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Create
-        | BodyResponseCallback<Schema$Project>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Project>,
-      callback?: BodyResponseCallback<Schema$Project>
-    ): void | GaxiosPromise<Schema$Project> {
+        | BodyResponseCallback<Schema$Project>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Project>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Project>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Project> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1069,7 +1311,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Project>(parameters, callback);
+        createAPIRequest<Schema$Project>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Project>(parameters);
       }
@@ -1078,6 +1323,55 @@ export namespace script_v1 {
     /**
      * script.projects.get
      * @desc Gets a script project's metadata.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/script.projects',
+     *       'https://www.googleapis.com/auth/script.projects.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.projects.get({
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": {},
+     *   //   "lastModifyUser": {},
+     *   //   "parentId": "my_parentId",
+     *   //   "scriptId": "my_scriptId",
+     *   //   "title": "my_title",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.get
      * @memberOf! ()
      *
@@ -1088,9 +1382,18 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Project>;
+    get(
+      params: Params$Resource$Projects$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Project>,
@@ -1104,10 +1407,17 @@ export namespace script_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Get
-        | BodyResponseCallback<Schema$Project>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Project>,
-      callback?: BodyResponseCallback<Schema$Project>
-    ): void | GaxiosPromise<Schema$Project> {
+        | BodyResponseCallback<Schema$Project>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Project>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Project>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Project> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1140,7 +1450,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Project>(parameters, callback);
+        createAPIRequest<Schema$Project>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Project>(parameters);
       }
@@ -1149,6 +1462,53 @@ export namespace script_v1 {
     /**
      * script.projects.getContent
      * @desc Gets the content of the script project, including the code source and metadata for each script file.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/script.projects',
+     *       'https://www.googleapis.com/auth/script.projects.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.projects.getContent({
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *     // The version number of the project to retrieve. If not provided, the
+     *     // project's HEAD version is returned.
+     *     versionNumber: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "scriptId": "my_scriptId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.getContent
      * @memberOf! ()
      *
@@ -1160,9 +1520,18 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     getContent(
+      params: Params$Resource$Projects$Getcontent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getContent(
       params?: Params$Resource$Projects$Getcontent,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Content>;
+    getContent(
+      params: Params$Resource$Projects$Getcontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getContent(
       params: Params$Resource$Projects$Getcontent,
       options: MethodOptions | BodyResponseCallback<Schema$Content>,
@@ -1176,10 +1545,17 @@ export namespace script_v1 {
     getContent(
       paramsOrCallback?:
         | Params$Resource$Projects$Getcontent
-        | BodyResponseCallback<Schema$Content>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Content>,
-      callback?: BodyResponseCallback<Schema$Content>
-    ): void | GaxiosPromise<Schema$Content> {
+        | BodyResponseCallback<Schema$Content>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Content>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Content>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Content> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getcontent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1213,7 +1589,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Content>(parameters, callback);
+        createAPIRequest<Schema$Content>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Content>(parameters);
       }
@@ -1222,6 +1601,52 @@ export namespace script_v1 {
     /**
      * script.projects.getMetrics
      * @desc Get metrics data for scripts, such as number of executions and active users.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.metrics'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.projects.getMetrics({
+     *     // Optional field indicating a specific deployment to retrieve metrics from.
+     *     'metricsFilter.deploymentId': 'placeholder-value',
+     *     // Required field indicating what granularity of metrics are returned.
+     *     metricsGranularity: 'placeholder-value',
+     *     // Required field indicating the script to get metrics for.
+     *     scriptId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeUsers": [],
+     *   //   "failedExecutions": [],
+     *   //   "totalExecutions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.getMetrics
      * @memberOf! ()
      *
@@ -1234,9 +1659,18 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     getMetrics(
+      params: Params$Resource$Projects$Getmetrics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getMetrics(
       params?: Params$Resource$Projects$Getmetrics,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Metrics>;
+    getMetrics(
+      params: Params$Resource$Projects$Getmetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getMetrics(
       params: Params$Resource$Projects$Getmetrics,
       options: MethodOptions | BodyResponseCallback<Schema$Metrics>,
@@ -1250,10 +1684,17 @@ export namespace script_v1 {
     getMetrics(
       paramsOrCallback?:
         | Params$Resource$Projects$Getmetrics
-        | BodyResponseCallback<Schema$Metrics>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Metrics>,
-      callback?: BodyResponseCallback<Schema$Metrics>
-    ): void | GaxiosPromise<Schema$Metrics> {
+        | BodyResponseCallback<Schema$Metrics>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Metrics>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Metrics>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Metrics> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1287,7 +1728,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Metrics>(parameters, callback);
+        createAPIRequest<Schema$Metrics>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Metrics>(parameters);
       }
@@ -1296,20 +1740,79 @@ export namespace script_v1 {
     /**
      * script.projects.updateContent
      * @desc Updates the content of the specified script project. This content is stored as the HEAD version, and is used when the script is executed as a trigger, in the script editor, in add-on preview mode, or as a web app or Apps Script API in development mode. This clears all the existing files in the project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.projects'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.projects.updateContent({
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "files": [],
+     *       //   "scriptId": "my_scriptId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "scriptId": "my_scriptId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.updateContent
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {().Content} params.resource Request body data
+     * @param {().Content} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     updateContent(
+      params: Params$Resource$Projects$Updatecontent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateContent(
       params?: Params$Resource$Projects$Updatecontent,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Content>;
+    updateContent(
+      params: Params$Resource$Projects$Updatecontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateContent(
       params: Params$Resource$Projects$Updatecontent,
       options: MethodOptions | BodyResponseCallback<Schema$Content>,
@@ -1323,10 +1826,17 @@ export namespace script_v1 {
     updateContent(
       paramsOrCallback?:
         | Params$Resource$Projects$Updatecontent
-        | BodyResponseCallback<Schema$Content>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Content>,
-      callback?: BodyResponseCallback<Schema$Content>
-    ): void | GaxiosPromise<Schema$Content> {
+        | BodyResponseCallback<Schema$Content>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Content>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Content>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Content> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updatecontent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1360,7 +1870,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Content>(parameters, callback);
+        createAPIRequest<Schema$Content>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Content>(parameters);
       }
@@ -1369,21 +1882,11 @@ export namespace script_v1 {
 
   export interface Params$Resource$Projects$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$CreateProjectRequest;
   }
   export interface Params$Resource$Projects$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The script project's Drive ID.
      */
@@ -1391,11 +1894,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Projects$Getcontent
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The script project's Drive ID.
      */
@@ -1407,11 +1905,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Projects$Getmetrics
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional field indicating a specific deployment to retrieve metrics from.
      */
@@ -1427,11 +1920,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Projects$Updatecontent
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The script project's Drive ID.
      */
@@ -1452,20 +1940,83 @@ export namespace script_v1 {
     /**
      * script.projects.deployments.create
      * @desc Creates a deployment of an Apps Script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.deployments'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.projects.deployments.create({
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "manifestFileName": "my_manifestFileName",
+     *       //   "scriptId": "my_scriptId",
+     *       //   "versionNumber": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deploymentConfig": {},
+     *   //   "deploymentId": "my_deploymentId",
+     *   //   "entryPoints": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.deployments.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {().DeploymentConfig} params.resource Request body data
+     * @param {().DeploymentConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Deployments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Deployments$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Deployment>;
+    create(
+      params: Params$Resource$Projects$Deployments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Deployments$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Deployment>,
@@ -1479,12 +2030,17 @@ export namespace script_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Deployments$Create
-        | BodyResponseCallback<Schema$Deployment>,
+        | BodyResponseCallback<Schema$Deployment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Deployment>,
-      callback?: BodyResponseCallback<Schema$Deployment>
-    ): void | GaxiosPromise<Schema$Deployment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Deployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Deployment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Deployment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1518,7 +2074,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Deployment>(parameters, callback);
+        createAPIRequest<Schema$Deployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Deployment>(parameters);
       }
@@ -1527,6 +2086,46 @@ export namespace script_v1 {
     /**
      * script.projects.deployments.delete
      * @desc Deletes a deployment of an Apps Script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.deployments'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.projects.deployments.delete({
+     *     // The deployment ID to be undeployed.
+     *     deploymentId: 'placeholder-value',
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.deployments.delete
      * @memberOf! ()
      *
@@ -1538,9 +2137,18 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Deployments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Deployments$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Deployments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Deployments$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1554,10 +2162,17 @@ export namespace script_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Deployments$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1590,7 +2205,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1599,6 +2217,54 @@ export namespace script_v1 {
     /**
      * script.projects.deployments.get
      * @desc Gets a deployment of an Apps Script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/script.deployments',
+     *       'https://www.googleapis.com/auth/script.deployments.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.projects.deployments.get({
+     *     // The deployment ID.
+     *     deploymentId: 'placeholder-value',
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deploymentConfig": {},
+     *   //   "deploymentId": "my_deploymentId",
+     *   //   "entryPoints": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.deployments.get
      * @memberOf! ()
      *
@@ -1610,9 +2276,18 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Deployments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Deployments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Deployment>;
+    get(
+      params: Params$Resource$Projects$Deployments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Deployments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Deployment>,
@@ -1626,12 +2301,17 @@ export namespace script_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Deployments$Get
-        | BodyResponseCallback<Schema$Deployment>,
+        | BodyResponseCallback<Schema$Deployment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Deployment>,
-      callback?: BodyResponseCallback<Schema$Deployment>
-    ): void | GaxiosPromise<Schema$Deployment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Deployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Deployment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Deployment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1664,7 +2344,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Deployment>(parameters, callback);
+        createAPIRequest<Schema$Deployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Deployment>(parameters);
       }
@@ -1673,6 +2356,55 @@ export namespace script_v1 {
     /**
      * script.projects.deployments.list
      * @desc Lists the deployments of an Apps Script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/script.deployments',
+     *       'https://www.googleapis.com/auth/script.deployments.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.projects.deployments.list({
+     *     // The maximum number of deployments on each returned page. Defaults to 50.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This
+     *     // should be set to the value of `nextPageToken` from a previous response.
+     *     pageToken: 'placeholder-value',
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.deployments.list
      * @memberOf! ()
      *
@@ -1685,9 +2417,18 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Deployments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Deployments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDeploymentsResponse>;
+    list(
+      params: Params$Resource$Projects$Deployments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Deployments$List,
       options:
@@ -1703,12 +2444,20 @@ export namespace script_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Deployments$List
-        | BodyResponseCallback<Schema$ListDeploymentsResponse>,
+        | BodyResponseCallback<Schema$ListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDeploymentsResponse>,
-      callback?: BodyResponseCallback<Schema$ListDeploymentsResponse>
-    ): void | GaxiosPromise<Schema$ListDeploymentsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDeploymentsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1742,7 +2491,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDeploymentsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDeploymentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDeploymentsResponse>(parameters);
       }
@@ -1751,21 +2503,83 @@ export namespace script_v1 {
     /**
      * script.projects.deployments.update
      * @desc Updates a deployment of an Apps Script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.deployments'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.projects.deployments.update({
+     *     // The deployment ID for this deployment.
+     *     deploymentId: 'placeholder-value',
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deploymentConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deploymentConfig": {},
+     *   //   "deploymentId": "my_deploymentId",
+     *   //   "entryPoints": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.deployments.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.deploymentId The deployment ID for this deployment.
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {().UpdateDeploymentRequest} params.resource Request body data
+     * @param {().UpdateDeploymentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Deployments$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Deployments$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Deployment>;
+    update(
+      params: Params$Resource$Projects$Deployments$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Deployments$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Deployment>,
@@ -1779,12 +2593,17 @@ export namespace script_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Deployments$Update
-        | BodyResponseCallback<Schema$Deployment>,
+        | BodyResponseCallback<Schema$Deployment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Deployment>,
-      callback?: BodyResponseCallback<Schema$Deployment>
-    ): void | GaxiosPromise<Schema$Deployment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Deployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Deployment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Deployment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deployments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1817,7 +2636,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Deployment>(parameters, callback);
+        createAPIRequest<Schema$Deployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Deployment>(parameters);
       }
@@ -1826,11 +2648,6 @@ export namespace script_v1 {
 
   export interface Params$Resource$Projects$Deployments$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The script project's Drive ID.
      */
@@ -1844,11 +2661,6 @@ export namespace script_v1 {
   export interface Params$Resource$Projects$Deployments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The deployment ID to be undeployed.
      */
     deploymentId?: string;
@@ -1860,11 +2672,6 @@ export namespace script_v1 {
   export interface Params$Resource$Projects$Deployments$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The deployment ID.
      */
     deploymentId?: string;
@@ -1875,11 +2682,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Projects$Deployments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of deployments on each returned page. Defaults to 50.
      */
@@ -1895,11 +2697,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Projects$Deployments$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The deployment ID for this deployment.
      */
@@ -1924,20 +2721,83 @@ export namespace script_v1 {
     /**
      * script.projects.versions.create
      * @desc Creates a new immutable version using the current code, with a unique version number.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/script.projects'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.projects.versions.create({
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "scriptId": "my_scriptId",
+     *       //   "versionNumber": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "scriptId": "my_scriptId",
+     *   //   "versionNumber": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.versions.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {().Version} params.resource Request body data
+     * @param {().Version} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Versions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Versions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Version>;
+    create(
+      params: Params$Resource$Projects$Versions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Versions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Version>,
@@ -1951,10 +2811,17 @@ export namespace script_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Versions$Create
-        | BodyResponseCallback<Schema$Version>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Version>,
-      callback?: BodyResponseCallback<Schema$Version>
-    ): void | GaxiosPromise<Schema$Version> {
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1988,7 +2855,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Version>(parameters, callback);
+        createAPIRequest<Schema$Version>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
       }
@@ -1997,6 +2867,54 @@ export namespace script_v1 {
     /**
      * script.projects.versions.get
      * @desc Gets a version of a script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/script.projects',
+     *       'https://www.googleapis.com/auth/script.projects.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.projects.versions.get({
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *     // The version number.
+     *     versionNumber: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "scriptId": "my_scriptId",
+     *   //   "versionNumber": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.versions.get
      * @memberOf! ()
      *
@@ -2008,9 +2926,18 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Versions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Versions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Version>;
+    get(
+      params: Params$Resource$Projects$Versions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Versions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Version>,
@@ -2024,10 +2951,17 @@ export namespace script_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Versions$Get
-        | BodyResponseCallback<Schema$Version>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Version>,
-      callback?: BodyResponseCallback<Schema$Version>
-    ): void | GaxiosPromise<Schema$Version> {
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2060,7 +2994,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Version>(parameters, callback);
+        createAPIRequest<Schema$Version>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
       }
@@ -2069,6 +3006,55 @@ export namespace script_v1 {
     /**
      * script.projects.versions.list
      * @desc List the versions of a script project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/script.projects',
+     *       'https://www.googleapis.com/auth/script.projects.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.projects.versions.list({
+     *     // The maximum number of versions on each returned page. Defaults to 50.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This
+     *     // should be set to the value of `nextPageToken` from a previous response.
+     *     pageToken: 'placeholder-value',
+     *     // The script project's Drive ID.
+     *     scriptId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "versions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.projects.versions.list
      * @memberOf! ()
      *
@@ -2081,9 +3067,18 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Versions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Versions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Versions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Versions$List,
       options:
@@ -2099,12 +3094,20 @@ export namespace script_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Versions$List
-        | BodyResponseCallback<Schema$ListVersionsResponse>,
+        | BodyResponseCallback<Schema$ListVersionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListVersionsResponse>
-    ): void | GaxiosPromise<Schema$ListVersionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListVersionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2138,7 +3141,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListVersionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListVersionsResponse>(parameters);
       }
@@ -2147,11 +3153,6 @@ export namespace script_v1 {
 
   export interface Params$Resource$Projects$Versions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The script project's Drive ID.
      */
@@ -2165,11 +3166,6 @@ export namespace script_v1 {
   export interface Params$Resource$Projects$Versions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The script project's Drive ID.
      */
     scriptId?: string;
@@ -2180,11 +3176,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Projects$Versions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of versions on each returned page. Defaults to 50.
      */
@@ -2208,20 +3199,96 @@ export namespace script_v1 {
     /**
      * script.scripts.run
      * @desc Runs a function in an Apps Script project. The script project must be deployed for use with the Apps Script API and the calling application must share the same Cloud Platform project.  This method requires authorization with an OAuth 2.0 token that includes at least one of the scopes listed in the [Authorization](#authorization-scopes) section; script projects that do not require authorization cannot be executed through this API. To find the correct scopes to include in the authentication token, open the project in the script editor, then select **File > Project properties** and click the **Scopes** tab.  The error `403, PERMISSION_DENIED: The caller does not have permission` indicates that the Cloud Platform project used to authorize the request is not the same as the one used by the script.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/script.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const script = google.script('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.google.com/calendar/feeds',
+     *       'https://www.google.com/m8/feeds',
+     *       'https://www.googleapis.com/auth/admin.directory.group',
+     *       'https://www.googleapis.com/auth/admin.directory.user',
+     *       'https://www.googleapis.com/auth/documents',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/forms',
+     *       'https://www.googleapis.com/auth/forms.currentonly',
+     *       'https://www.googleapis.com/auth/groups',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await script.scripts.run({
+     *     // The script ID of the script to be executed. To find the script ID, open
+     *     // the project in the script editor and select **File > Project properties**.
+     *     scriptId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "devMode": false,
+     *       //   "function": "my_function",
+     *       //   "parameters": [],
+     *       //   "sessionState": "my_sessionState"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias script.scripts.run
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script ID of the script to be executed. To find the script ID, open the project in the script editor and select **File > Project properties**.
-     * @param {().ExecutionRequest} params.resource Request body data
+     * @param {().ExecutionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     run(
+      params: Params$Resource$Scripts$Run,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    run(
       params?: Params$Resource$Scripts$Run,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    run(
+      params: Params$Resource$Scripts$Run,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     run(
       params: Params$Resource$Scripts$Run,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2235,12 +3302,17 @@ export namespace script_v1 {
     run(
       paramsOrCallback?:
         | Params$Resource$Scripts$Run
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scripts$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2273,7 +3345,10 @@ export namespace script_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2281,11 +3356,6 @@ export namespace script_v1 {
   }
 
   export interface Params$Resource$Scripts$Run extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The script ID of the script to be executed. To find the script ID, open the project in the script editor and select **File > Project properties**.
      */

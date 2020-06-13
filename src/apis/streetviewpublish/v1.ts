@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace streetviewpublish_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace streetviewpublish_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -258,7 +268,7 @@ export namespace streetviewpublish_v1 {
      */
     downloadUrl?: string | null;
     /**
-     * Output only. Status in Google Maps, whether this photo was published or rejected.
+     * Output only. Status in Google Maps, whether this photo was published or rejected. Not currently populated.
      */
     mapsPublishStatus?: string | null;
     /**
@@ -392,7 +402,7 @@ export namespace streetviewpublish_v1 {
      */
     photo?: Schema$Photo;
     /**
-     * Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list.  The following fields are valid:  * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places`   &lt;aside class=&quot;note&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.&lt;/aside&gt;
+     * Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list.  The following fields are valid:  * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places`   &lt;aside class=&quot;note&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.&lt;/aside&gt;
      */
     updateMask?: string | null;
   }
@@ -415,19 +425,95 @@ export namespace streetviewpublish_v1 {
     /**
      * streetviewpublish.photo.create
      * @desc After the client finishes uploading the photo with the returned UploadRef, CreatePhoto publishes the uploaded Photo to Street View on Google Maps.  Currently, the only way to set heading, pitch, and roll in CreatePhoto is through the [Photo Sphere XMP metadata](https://developers.google.com/streetview/spherical-metadata) in the photo bytes. CreatePhoto ignores the  `pose.heading`, `pose.pitch`, `pose.roll`, `pose.altitude`, and `pose.level` fields in Pose.  This method returns the following error codes:  * google.rpc.Code.INVALID_ARGUMENT if the request is malformed or if the uploaded photo is not a 360 photo. * google.rpc.Code.NOT_FOUND if the upload reference does not exist. * google.rpc.Code.RESOURCE_EXHAUSTED if the account has reached the storage limit.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photo.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "captureTime": "my_captureTime",
+     *       //   "connections": [],
+     *       //   "downloadUrl": "my_downloadUrl",
+     *       //   "mapsPublishStatus": "my_mapsPublishStatus",
+     *       //   "photoId": {},
+     *       //   "places": [],
+     *       //   "pose": {},
+     *       //   "shareLink": "my_shareLink",
+     *       //   "thumbnailUrl": "my_thumbnailUrl",
+     *       //   "transferStatus": "my_transferStatus",
+     *       //   "uploadReference": {},
+     *       //   "viewCount": "my_viewCount"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "captureTime": "my_captureTime",
+     *   //   "connections": [],
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "mapsPublishStatus": "my_mapsPublishStatus",
+     *   //   "photoId": {},
+     *   //   "places": [],
+     *   //   "pose": {},
+     *   //   "shareLink": "my_shareLink",
+     *   //   "thumbnailUrl": "my_thumbnailUrl",
+     *   //   "transferStatus": "my_transferStatus",
+     *   //   "uploadReference": {},
+     *   //   "viewCount": "my_viewCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias streetviewpublish.photo.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Photo} params.resource Request body data
+     * @param {().Photo} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Photo$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Photo$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Photo>;
+    create(
+      params: Params$Resource$Photo$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Photo$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Photo>,
@@ -441,10 +527,17 @@ export namespace streetviewpublish_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Photo$Create
-        | BodyResponseCallback<Schema$Photo>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Photo>,
-      callback?: BodyResponseCallback<Schema$Photo>
-    ): void | GaxiosPromise<Schema$Photo> {
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Photo> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -475,7 +568,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Photo>(parameters, callback);
+        createAPIRequest<Schema$Photo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Photo>(parameters);
       }
@@ -484,6 +580,44 @@ export namespace streetviewpublish_v1 {
     /**
      * streetviewpublish.photo.delete
      * @desc Deletes a Photo and its metadata.  This method returns the following error codes:  * google.rpc.Code.PERMISSION_DENIED if the requesting user did not create the requested photo. * google.rpc.Code.NOT_FOUND if the photo ID does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photo.delete({
+     *     // Required. ID of the Photo.
+     *     photoId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias streetviewpublish.photo.delete
      * @memberOf! ()
      *
@@ -494,9 +628,18 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Photo$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Photo$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Photo$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Photo$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -510,10 +653,17 @@ export namespace streetviewpublish_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Photo$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -547,7 +697,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -556,21 +709,90 @@ export namespace streetviewpublish_v1 {
     /**
      * streetviewpublish.photo.get
      * @desc Gets the metadata of the specified Photo.  This method returns the following error codes:  * google.rpc.Code.PERMISSION_DENIED if the requesting user did not create the requested Photo. * google.rpc.Code.NOT_FOUND if the requested Photo does not exist. * google.rpc.Code.UNAVAILABLE if the requested Photo is still being indexed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photo.get({
+     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     *     // information, see
+     *     // http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *     // If language_code is unspecified, the user's language preference for Google
+     *     // services is used.
+     *     languageCode: 'placeholder-value',
+     *     // Required. ID of the Photo.
+     *     photoId: 'placeholder-value',
+     *     // Required. Specifies if a download URL for the photo bytes should be returned in the
+     *     // Photo response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "captureTime": "my_captureTime",
+     *   //   "connections": [],
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "mapsPublishStatus": "my_mapsPublishStatus",
+     *   //   "photoId": {},
+     *   //   "places": [],
+     *   //   "pose": {},
+     *   //   "shareLink": "my_shareLink",
+     *   //   "thumbnailUrl": "my_thumbnailUrl",
+     *   //   "transferStatus": "my_transferStatus",
+     *   //   "uploadReference": {},
+     *   //   "viewCount": "my_viewCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias streetviewpublish.photo.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
      * @param {string} params.photoId Required. ID of the Photo.
-     * @param {string=} params.view Specifies if a download URL for the photo bytes should be returned in the Photo response.
+     * @param {string=} params.view Required. Specifies if a download URL for the photo bytes should be returned in the Photo response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Photo$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Photo$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Photo>;
+    get(
+      params: Params$Resource$Photo$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Photo$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Photo>,
@@ -584,10 +806,17 @@ export namespace streetviewpublish_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Photo$Get
-        | BodyResponseCallback<Schema$Photo>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Photo>,
-      callback?: BodyResponseCallback<Schema$Photo>
-    ): void | GaxiosPromise<Schema$Photo> {
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Photo> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -621,7 +850,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Photo>(parameters, callback);
+        createAPIRequest<Schema$Photo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Photo>(parameters);
       }
@@ -629,20 +861,72 @@ export namespace streetviewpublish_v1 {
 
     /**
      * streetviewpublish.photo.startUpload
-     * @desc Creates an upload session to start uploading photo bytes.  The method uses the upload URL of the returned UploadRef to upload the bytes for the Photo.  In addition to the photo requirements shown in https://support.google.com/maps/answer/7012050?hl=en&ref_topic=6275604, the photo must meet the following requirements:  * Photo Sphere XMP metadata must be included in the photo medadata. See https://developers.google.com/streetview/spherical-metadata for the required fields. * The pixel size of the photo must meet the size requirements listed in https://support.google.com/maps/answer/7012050?hl=en&ref_topic=6275604, and the photo must be a full 360 horizontally.  After the upload completes, the method uses UploadRef with CreatePhoto to create the Photo object entry.
+     * @desc Creates an upload session to start uploading photo bytes.  The method uses the upload URL of the returned UploadRef to upload the bytes for the Photo.  In addition to the photo requirements shown in https://support.google.com/maps/answer/7012050?hl=en&ref_topic=6275604, the photo must meet the following requirements:  * Photo Sphere XMP metadata must be included in the photo metadata. See https://developers.google.com/streetview/spherical-metadata for the required fields. * The pixel size of the photo must meet the size requirements listed in https://support.google.com/maps/answer/7012050?hl=en&ref_topic=6275604, and the photo must be a full 360 horizontally.  After the upload completes, the method uses UploadRef with CreatePhoto to create the Photo object entry.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photo.startUpload({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "uploadUrl": "my_uploadUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias streetviewpublish.photo.startUpload
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Empty} params.resource Request body data
+     * @param {().Empty} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     startUpload(
+      params: Params$Resource$Photo$Startupload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    startUpload(
       params?: Params$Resource$Photo$Startupload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UploadRef>;
+    startUpload(
+      params: Params$Resource$Photo$Startupload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     startUpload(
       params: Params$Resource$Photo$Startupload,
       options: MethodOptions | BodyResponseCallback<Schema$UploadRef>,
@@ -656,12 +940,17 @@ export namespace streetviewpublish_v1 {
     startUpload(
       paramsOrCallback?:
         | Params$Resource$Photo$Startupload
-        | BodyResponseCallback<Schema$UploadRef>,
+        | BodyResponseCallback<Schema$UploadRef>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UploadRef>,
-      callback?: BodyResponseCallback<Schema$UploadRef>
-    ): void | GaxiosPromise<Schema$UploadRef> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadRef>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadRef>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UploadRef> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photo$Startupload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -696,7 +985,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UploadRef>(parameters, callback);
+        createAPIRequest<Schema$UploadRef>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UploadRef>(parameters);
       }
@@ -705,21 +997,127 @@ export namespace streetviewpublish_v1 {
     /**
      * streetviewpublish.photo.update
      * @desc Updates the metadata of a Photo, such as pose, place association, connections, etc. Changing the pixels of a photo is not supported.  Only the fields specified in the updateMask field are used. If `updateMask` is not present, the update applies to all fields.  This method returns the following error codes:  * google.rpc.Code.PERMISSION_DENIED if the requesting user did not create the requested photo. * google.rpc.Code.INVALID_ARGUMENT if the request is malformed. * google.rpc.Code.NOT_FOUND if the requested photo does not exist. * google.rpc.Code.UNAVAILABLE if the requested Photo is still being indexed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photo.update({
+     *     // Required. A unique identifier for a photo.
+     *     id: 'placeholder-value',
+     *     // Required. Mask that identifies fields on the photo metadata to update.
+     *     // If not present, the old Photo
+     *     // metadata is entirely replaced with the
+     *     // new Photo metadata in this request.
+     *     // The update fails if invalid fields are specified. Multiple fields can be
+     *     // specified in a comma-delimited list.
+     *     //
+     *     // The following fields are valid:
+     *     //
+     *     // * `pose.heading`
+     *     // * `pose.latLngPair`
+     *     // * `pose.pitch`
+     *     // * `pose.roll`
+     *     // * `pose.level`
+     *     // * `pose.altitude`
+     *     // * `connections`
+     *     // * `places`
+     *     //
+     *     //
+     *     // <aside class="note"><b>Note:</b> When
+     *     // updateMask
+     *     // contains repeated fields, the entire set of repeated values get replaced
+     *     // with the new contents. For example, if
+     *     // updateMask
+     *     // contains `connections` and `UpdatePhotoRequest.photo.connections` is empty,
+     *     // all connections are removed.</aside>
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "captureTime": "my_captureTime",
+     *       //   "connections": [],
+     *       //   "downloadUrl": "my_downloadUrl",
+     *       //   "mapsPublishStatus": "my_mapsPublishStatus",
+     *       //   "photoId": {},
+     *       //   "places": [],
+     *       //   "pose": {},
+     *       //   "shareLink": "my_shareLink",
+     *       //   "thumbnailUrl": "my_thumbnailUrl",
+     *       //   "transferStatus": "my_transferStatus",
+     *       //   "uploadReference": {},
+     *       //   "viewCount": "my_viewCount"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "captureTime": "my_captureTime",
+     *   //   "connections": [],
+     *   //   "downloadUrl": "my_downloadUrl",
+     *   //   "mapsPublishStatus": "my_mapsPublishStatus",
+     *   //   "photoId": {},
+     *   //   "places": [],
+     *   //   "pose": {},
+     *   //   "shareLink": "my_shareLink",
+     *   //   "thumbnailUrl": "my_thumbnailUrl",
+     *   //   "transferStatus": "my_transferStatus",
+     *   //   "uploadReference": {},
+     *   //   "viewCount": "my_viewCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias streetviewpublish.photo.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Required. A unique identifier for a photo.
-     * @param {string=} params.updateMask Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list.  The following fields are valid:  * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places`   <aside class="note"><b>Note:</b> When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.</aside>
-     * @param {().Photo} params.resource Request body data
+     * @param {string=} params.updateMask Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list.  The following fields are valid:  * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places`   <aside class="note"><b>Note:</b> When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.</aside>
+     * @param {().Photo} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Photo$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Photo$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Photo>;
+    update(
+      params: Params$Resource$Photo$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Photo$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Photo>,
@@ -733,10 +1131,17 @@ export namespace streetviewpublish_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Photo$Update
-        | BodyResponseCallback<Schema$Photo>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Photo>,
-      callback?: BodyResponseCallback<Schema$Photo>
-    ): void | GaxiosPromise<Schema$Photo> {
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Photo> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -767,7 +1172,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Photo>(parameters, callback);
+        createAPIRequest<Schema$Photo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Photo>(parameters);
       }
@@ -776,32 +1184,17 @@ export namespace streetviewpublish_v1 {
 
   export interface Params$Resource$Photo$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Photo;
   }
   export interface Params$Resource$Photo$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. ID of the Photo.
      */
     photoId?: string;
   }
   export interface Params$Resource$Photo$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
      */
@@ -811,17 +1204,12 @@ export namespace streetviewpublish_v1 {
      */
     photoId?: string;
     /**
-     * Specifies if a download URL for the photo bytes should be returned in the Photo response.
+     * Required. Specifies if a download URL for the photo bytes should be returned in the Photo response.
      */
     view?: string;
   }
   export interface Params$Resource$Photo$Startupload
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -829,16 +1217,11 @@ export namespace streetviewpublish_v1 {
   }
   export interface Params$Resource$Photo$Update extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. A unique identifier for a photo.
      */
     id?: string;
     /**
-     * Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list.  The following fields are valid:  * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places`   <aside class="note"><b>Note:</b> When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.</aside>
+     * Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list.  The following fields are valid:  * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places`   <aside class="note"><b>Note:</b> When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.</aside>
      */
     updateMask?: string;
 
@@ -857,19 +1240,73 @@ export namespace streetviewpublish_v1 {
     /**
      * streetviewpublish.photos.batchDelete
      * @desc Deletes a list of Photos and their metadata.  Note that if BatchDeletePhotos fails, either critical fields are missing or there is an authentication error. Even if BatchDeletePhotos succeeds, individual photos in the batch may have failures. These failures are specified in each PhotoResponse.status in BatchDeletePhotosResponse.results. See DeletePhoto for specific failures that can occur per photo.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photos.batchDelete({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "photoIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "status": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias streetviewpublish.photos.batchDelete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().BatchDeletePhotosRequest} params.resource Request body data
+     * @param {().BatchDeletePhotosRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchDelete(
+      params: Params$Resource$Photos$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
       params?: Params$Resource$Photos$Batchdelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchDeletePhotosResponse>;
+    batchDelete(
+      params: Params$Resource$Photos$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchDelete(
       params: Params$Resource$Photos$Batchdelete,
       options:
@@ -887,12 +1324,20 @@ export namespace streetviewpublish_v1 {
     batchDelete(
       paramsOrCallback?:
         | Params$Resource$Photos$Batchdelete
-        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
+        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
-      callback?: BodyResponseCallback<Schema$BatchDeletePhotosResponse>
-    ): void | GaxiosPromise<Schema$BatchDeletePhotosResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchDeletePhotosResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photos$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -929,7 +1374,7 @@ export namespace streetviewpublish_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchDeletePhotosResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchDeletePhotosResponse>(parameters);
@@ -939,21 +1384,81 @@ export namespace streetviewpublish_v1 {
     /**
      * streetviewpublish.photos.batchGet
      * @desc Gets the metadata of the specified Photo batch.  Note that if BatchGetPhotos fails, either critical fields are missing or there is an authentication error. Even if BatchGetPhotos succeeds, individual photos in the batch may have failures. These failures are specified in each PhotoResponse.status in BatchGetPhotosResponse.results. See GetPhoto for specific failures that can occur per photo.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photos.batchGet({
+     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     *     // information, see
+     *     // http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *     // If language_code is unspecified, the user's language preference for Google
+     *     // services is used.
+     *     languageCode: 'placeholder-value',
+     *     // Required. IDs of the Photos. For HTTP
+     *     // GET requests, the URL query parameter should be
+     *     // `photoIds=<id1>&photoIds=<id2>&...`.
+     *     photoIds: 'placeholder-value',
+     *     // Required. Specifies if a download URL for the photo bytes should be returned in the
+     *     // Photo response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias streetviewpublish.photos.batchGet
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
      * @param {string=} params.photoIds Required. IDs of the Photos. For HTTP GET requests, the URL query parameter should be `photoIds=<id1>&photoIds=<id2>&...`.
-     * @param {string=} params.view Specifies if a download URL for the photo bytes should be returned in the Photo response.
+     * @param {string=} params.view Required. Specifies if a download URL for the photo bytes should be returned in the Photo response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchGet(
+      params: Params$Resource$Photos$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
       params?: Params$Resource$Photos$Batchget,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchGetPhotosResponse>;
+    batchGet(
+      params: Params$Resource$Photos$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchGet(
       params: Params$Resource$Photos$Batchget,
       options:
@@ -971,12 +1476,20 @@ export namespace streetviewpublish_v1 {
     batchGet(
       paramsOrCallback?:
         | Params$Resource$Photos$Batchget
-        | BodyResponseCallback<Schema$BatchGetPhotosResponse>,
+        | BodyResponseCallback<Schema$BatchGetPhotosResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetPhotosResponse>,
-      callback?: BodyResponseCallback<Schema$BatchGetPhotosResponse>
-    ): void | GaxiosPromise<Schema$BatchGetPhotosResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetPhotosResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetPhotosResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetPhotosResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photos$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1010,7 +1523,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BatchGetPhotosResponse>(parameters, callback);
+        createAPIRequest<Schema$BatchGetPhotosResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BatchGetPhotosResponse>(parameters);
       }
@@ -1019,19 +1535,73 @@ export namespace streetviewpublish_v1 {
     /**
      * streetviewpublish.photos.batchUpdate
      * @desc Updates the metadata of Photos, such as pose, place association, connections, etc. Changing the pixels of photos is not supported.  Note that if BatchUpdatePhotos fails, either critical fields are missing or there is an authentication error. Even if BatchUpdatePhotos succeeds, individual photos in the batch may have failures. These failures are specified in each PhotoResponse.status in BatchUpdatePhotosResponse.results. See UpdatePhoto for specific failures that can occur per photo.  Only the fields specified in updateMask field are used. If `updateMask` is not present, the update applies to all fields.  The number of UpdatePhotoRequest messages in a BatchUpdatePhotosRequest must not exceed 20.  <aside class="note"><b>Note:</b> To update Pose.altitude, Pose.latLngPair has to be filled as well. Otherwise, the request will fail.</aside>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photos.batchUpdate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "updatePhotoRequests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias streetviewpublish.photos.batchUpdate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().BatchUpdatePhotosRequest} params.resource Request body data
+     * @param {().BatchUpdatePhotosRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Photos$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Photos$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchUpdatePhotosResponse>;
+    batchUpdate(
+      params: Params$Resource$Photos$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Photos$Batchupdate,
       options:
@@ -1049,12 +1619,20 @@ export namespace streetviewpublish_v1 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Photos$Batchupdate
-        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
+        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
-      callback?: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>
-    ): void | GaxiosPromise<Schema$BatchUpdatePhotosResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdatePhotosResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photos$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1091,7 +1669,7 @@ export namespace streetviewpublish_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdatePhotosResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdatePhotosResponse>(parameters);
@@ -1101,23 +1679,96 @@ export namespace streetviewpublish_v1 {
     /**
      * streetviewpublish.photos.list
      * @desc Lists all the Photos that belong to the user.  <aside class="note"><b>Note:</b> Recently created photos that are still being indexed are not returned in the response.</aside>
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photos.list({
+     *     // Required. The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`.
+     *     //
+     *     // The only filter supported at the moment is `placeId`.
+     *     filter: 'placeholder-value',
+     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     *     // information, see
+     *     // http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *     // If language_code is unspecified, the user's language preference for Google
+     *     // services is used.
+     *     languageCode: 'placeholder-value',
+     *     // The maximum number of photos to return.
+     *     // `pageSize` must be non-negative. If `pageSize` is zero or is not provided,
+     *     // the default page size of 100 is used.
+     *     // The number of photos returned in the response may be less than `pageSize`
+     *     // if the number of photos that belong to the user is less than `pageSize`.
+     *     pageSize: 'placeholder-value',
+     *     // The
+     *     // nextPageToken
+     *     // value returned from a previous
+     *     // ListPhotos
+     *     // request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Specifies if a download URL for the photos bytes should be returned in the
+     *     // Photos response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "photos": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias streetviewpublish.photos.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`.  The only filter supported at the moment is `placeId`.
+     * @param {string=} params.filter Required. The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`.  The only filter supported at the moment is `placeId`.
      * @param {string=} params.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
      * @param {integer=} params.pageSize The maximum number of photos to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 is used. The number of photos returned in the response may be less than `pageSize` if the number of photos that belong to the user is less than `pageSize`.
      * @param {string=} params.pageToken The nextPageToken value returned from a previous ListPhotos request, if any.
-     * @param {string=} params.view Specifies if a download URL for the photos bytes should be returned in the Photos response.
+     * @param {string=} params.view Required. Specifies if a download URL for the photos bytes should be returned in the Photos response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Photos$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Photos$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListPhotosResponse>;
+    list(
+      params: Params$Resource$Photos$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Photos$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListPhotosResponse>,
@@ -1131,12 +1782,20 @@ export namespace streetviewpublish_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Photos$List
-        | BodyResponseCallback<Schema$ListPhotosResponse>,
+        | BodyResponseCallback<Schema$ListPhotosResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListPhotosResponse>,
-      callback?: BodyResponseCallback<Schema$ListPhotosResponse>
-    ): void | GaxiosPromise<Schema$ListPhotosResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPhotosResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPhotosResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPhotosResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1167,7 +1826,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListPhotosResponse>(parameters, callback);
+        createAPIRequest<Schema$ListPhotosResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListPhotosResponse>(parameters);
       }
@@ -1177,21 +1839,11 @@ export namespace streetviewpublish_v1 {
   export interface Params$Resource$Photos$Batchdelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$BatchDeletePhotosRequest;
   }
   export interface Params$Resource$Photos$Batchget extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
      */
@@ -1201,17 +1853,12 @@ export namespace streetviewpublish_v1 {
      */
     photoIds?: string[];
     /**
-     * Specifies if a download URL for the photo bytes should be returned in the Photo response.
+     * Required. Specifies if a download URL for the photo bytes should be returned in the Photo response.
      */
     view?: string;
   }
   export interface Params$Resource$Photos$Batchupdate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1219,12 +1866,7 @@ export namespace streetviewpublish_v1 {
   }
   export interface Params$Resource$Photos$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`.  The only filter supported at the moment is `placeId`.
+     * Required. The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`.  The only filter supported at the moment is `placeId`.
      */
     filter?: string;
     /**
@@ -1240,7 +1882,7 @@ export namespace streetviewpublish_v1 {
      */
     pageToken?: string;
     /**
-     * Specifies if a download URL for the photos bytes should be returned in the Photos response.
+     * Required. Specifies if a download URL for the photos bytes should be returned in the Photos response.
      */
     view?: string;
   }

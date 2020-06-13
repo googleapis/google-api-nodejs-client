@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace tagmanager_v2 {
   export interface Options extends GlobalOptions {
@@ -43,9 +42,32 @@ export namespace tagmanager_v2 {
 
   interface StandardParameters {
     /**
-     * Data format for the response.
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -63,19 +85,23 @@ export namespace tagmanager_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
    * Tag Manager API
    *
-   * Accesses Tag Manager accounts and containers.
+   * This API allows clients to access and modify container and tag      configuration.
    *
    * @example
    * const {google} = require('googleapis');
@@ -114,7 +140,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
-     * Account display name.
+     * Account display name. @mutable tagmanager.accounts.create @mutable tagmanager.accounts.update
      */
     name?: string | null;
     /**
@@ -122,7 +148,7 @@ export namespace tagmanager_v2 {
      */
     path?: string | null;
     /**
-     * Whether the account shares data anonymously with Google and others. This flag enables benchmarking by sharing your data in an anonymous form. Google will remove all identifiable information about your website, combine the data with hundreds of other anonymous sites and report aggregate trends in the benchmarking service.
+     * Whether the account shares data anonymously with Google and others. This flag enables benchmarking by sharing your data in an anonymous form. Google will remove all identifiable information about your website, combine the data with hundreds of other anonymous sites and report aggregate trends in the benchmarking service. @mutable tagmanager.accounts.create @mutable tagmanager.accounts.update
      */
     shareData?: boolean | null;
     /**
@@ -135,7 +161,7 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$AccountAccess {
     /**
-     * Whether the user has no access, user access, or admin access to an account.
+     * Whether the user has no access, user access, or admin access to an account. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
      */
     permission?: string | null;
   }
@@ -160,7 +186,53 @@ export namespace tagmanager_v2 {
      */
     path?: string | null;
     /**
-     * Type of built-in variable.
+     * Type of built-in variable. @required.tagmanager.accounts.containers.workspaces.built_in_variable.update @mutable tagmanager.accounts.containers.workspaces.built_in_variable.update
+     */
+    type?: string | null;
+    /**
+     * GTM Workspace ID.
+     */
+    workspaceId?: string | null;
+  }
+  export interface Schema$Client {
+    /**
+     * GTM Account ID.
+     */
+    accountId?: string | null;
+    /**
+     * The Client ID uniquely identifies the GTM client.
+     */
+    clientId?: string | null;
+    /**
+     * GTM Container ID.
+     */
+    containerId?: string | null;
+    /**
+     * The fingerprint of the GTM Client as computed at storage time. This value is recomputed whenever the client is modified.
+     */
+    fingerprint?: string | null;
+    /**
+     * Client display name. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update
+     */
+    name?: string | null;
+    /**
+     * The client&#39;s parameters. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update
+     */
+    parameter?: Schema$Parameter[];
+    /**
+     * GTM client&#39;s API relative path.
+     */
+    path?: string | null;
+    /**
+     * Priority determines relative firing order. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update
+     */
+    priority?: number | null;
+    /**
+     * Auto generated link to the tag manager UI
+     */
+    tagManagerUrl?: string | null;
+    /**
+     * Client type. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update
      */
     type?: string | null;
     /**
@@ -173,11 +245,11 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$Condition {
     /**
-     * A list of named parameters (key/value), depending on the condition&#39;s type. Notes:  - For binary operators, include parameters named arg0 and arg1 for specifying the left and right operands, respectively.  - At this time, the left operand (arg0) must be a reference to a variable.  - For case-insensitive Regex matching, include a boolean parameter named ignore_case that is set to true. If not specified or set to any other value, the matching will be case sensitive.  - To negate an operator, include a boolean parameter named negate boolean parameter that is set to true.
+     * A list of named parameters (key/value), depending on the condition&#39;s type. Notes:&lt;ul&gt; &lt;li&gt;For binary operators, include parameters named &lt;code&gt;arg0&lt;/code&gt; and    &lt;code&gt;arg1&lt;/code&gt; for specifying the left and right operands,    respectively.&lt;/li&gt; &lt;li&gt;At this time, the left operand (&lt;code&gt;arg0&lt;/code&gt;) must be a reference     to a variable.&lt;/li&gt; &lt;li&gt;For case-insensitive Regex matching, include a boolean parameter named     &lt;code&gt;ignore_case&lt;/code&gt; that is set to &lt;code&gt;true&lt;/code&gt;.     If not specified or set to any other value, the matching will be case     sensitive.&lt;/li&gt; &lt;li&gt;To negate an operator, include a boolean parameter named     &lt;code&gt;negate&lt;/code&gt; boolean parameter that is set to &lt;code&gt;true&lt;/code&gt;.     &lt;/li&gt; &lt;/ul&gt; @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     parameter?: Schema$Parameter[];
     /**
-     * The type of operator for this condition.
+     * The type of operator for this condition. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     type?: string | null;
   }
@@ -194,19 +266,19 @@ export namespace tagmanager_v2 {
      */
     containerId?: string | null;
     /**
-     * List of domain names associated with the Container.
+     * List of domain names associated with the Container. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
      */
     domainName?: string[] | null;
     /**
-     * The fingerprint of the GTM Container as computed at storage time. This value is recomputed whenever the account is modified.
+     * The fingerprint of the GTM Container as computed at storage time.  This value is recomputed whenever the account is modified.
      */
     fingerprint?: string | null;
     /**
-     * Container display name.
+     * Container display name. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
      */
     name?: string | null;
     /**
-     * Container Notes.
+     * Container Notes. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
      */
     notes?: string | null;
     /**
@@ -222,7 +294,7 @@ export namespace tagmanager_v2 {
      */
     tagManagerUrl?: string | null;
     /**
-     * List of Usage Contexts for the Container. Valid values include: web, android, or ios.
+     * List of Usage Contexts for the Container. Valid values include: &lt;code&gt;web, android, or ios&lt;/code&gt;. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
      */
     usageContext?: string[] | null;
   }
@@ -231,11 +303,11 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$ContainerAccess {
     /**
-     * GTM Container ID.
+     * GTM Container ID. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
      */
     containerId?: string | null;
     /**
-     * List of Container permissions.
+     * List of Container permissions. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
      */
     permission?: string | null;
   }
@@ -251,6 +323,10 @@ export namespace tagmanager_v2 {
      * The built-in variables in the container that this version was taken from.
      */
     builtInVariable?: Schema$BuiltInVariable[];
+    /**
+     * The clients in the container that this version was taken from.
+     */
+    client?: Schema$Client[];
     /**
      * The container that this version was taken from.
      */
@@ -272,7 +348,7 @@ export namespace tagmanager_v2 {
      */
     deleted?: boolean | null;
     /**
-     * Container version description.
+     * Container version description. @mutable tagmanager.accounts.containers.versions.update
      */
     description?: string | null;
     /**
@@ -284,7 +360,7 @@ export namespace tagmanager_v2 {
      */
     folder?: Schema$Folder[];
     /**
-     * Container version display name.
+     * Container version display name. @mutable tagmanager.accounts.containers.versions.update
      */
     name?: string | null;
     /**
@@ -426,6 +502,10 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
+     * A reference to the Community Template Gallery entry.
+     */
+    galleryReference?: Schema$GalleryReference;
+    /**
      * Custom Template display name.
      */
     name?: string | null;
@@ -490,7 +570,7 @@ export namespace tagmanager_v2 {
     /**
      * The last update time-stamp for the authorization code.
      */
-    authorizationTimestamp?: Schema$Timestamp;
+    authorizationTimestamp?: string | null;
     /**
      * GTM Container ID.
      */
@@ -500,11 +580,11 @@ export namespace tagmanager_v2 {
      */
     containerVersionId?: string | null;
     /**
-     * The environment description. Can be set or changed only on USER type environments.
+     * The environment description. Can be set or changed only on USER type environments. @mutable tagmanager.accounts.containers.environments.create @mutable tagmanager.accounts.containers.environments.update
      */
     description?: string | null;
     /**
-     * Whether or not to enable debug by default for the environment.
+     * Whether or not to enable debug by default for the environment. @mutable tagmanager.accounts.containers.environments.create @mutable tagmanager.accounts.containers.environments.update
      */
     enableDebug?: boolean | null;
     /**
@@ -516,7 +596,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
-     * The environment display name. Can be set or changed only on USER type environments.
+     * The environment display name. Can be set or changed only on USER type environments. @mutable tagmanager.accounts.containers.environments.create @mutable tagmanager.accounts.containers.environments.update
      */
     name?: string | null;
     /**
@@ -532,7 +612,7 @@ export namespace tagmanager_v2 {
      */
     type?: string | null;
     /**
-     * Default preview page url for the environment.
+     * Default preview page url for the environment. @mutable tagmanager.accounts.containers.environments.create @mutable tagmanager.accounts.containers.environments.update
      */
     url?: string | null;
     /**
@@ -561,11 +641,11 @@ export namespace tagmanager_v2 {
      */
     folderId?: string | null;
     /**
-     * Folder display name.
+     * Folder display name. @mutable tagmanager.accounts.containers.workspaces.folders.create @mutable tagmanager.accounts.containers.workspaces.folders.update
      */
     name?: string | null;
     /**
-     * User notes on how to apply this folder in the container.
+     * User notes on how to apply this folder in the container. @mutable tagmanager.accounts.containers.workspaces.folders.create @mutable tagmanager.accounts.containers.workspaces.folders.update
      */
     notes?: string | null;
     /**
@@ -601,6 +681,35 @@ export namespace tagmanager_v2 {
      * The list of variables inside the folder.
      */
     variable?: Schema$Variable[];
+  }
+  /**
+   * Represents the link between a custom template and an entry on the Community Template Gallery site.
+   */
+  export interface Schema$GalleryReference {
+    /**
+     * The name of the host for the community gallery template.
+     */
+    host?: string | null;
+    /**
+     * If a user has manually edited the community  gallery template.
+     */
+    isModified?: boolean | null;
+    /**
+     * The name of the owner for the community gallery template.
+     */
+    owner?: string | null;
+    /**
+     * The name of the repository for the community gallery template.
+     */
+    repository?: string | null;
+    /**
+     * The signature of the community gallery template as computed at import time. This value is recomputed whenever the template is updated from the gallery.
+     */
+    signature?: string | null;
+    /**
+     * The version of the community gallery template.
+     */
+    version?: string | null;
   }
   /**
    * The changes that have occurred in the workspace since the base container version.
@@ -796,23 +905,23 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$Parameter {
     /**
-     * The named key that uniquely identifies a parameter. Required for top-level parameters, as well as map values. Ignored for list values.
+     * The named key that uniquely identifies a parameter.  Required for top-level parameters, as well as map values.  Ignored for list values. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     key?: string | null;
     /**
-     * This list parameter&#39;s parameters (keys will be ignored).
+     * This list parameter&#39;s parameters (keys will be ignored). @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     list?: Schema$Parameter[];
     /**
-     * This map parameter&#39;s parameters (must have keys; keys must be unique).
+     * This map parameter&#39;s parameters (must have keys; keys must be unique). @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     map?: Schema$Parameter[];
     /**
-     * The parameter type. Valid values are:  - boolean: The value represents a boolean, represented as &#39;true&#39; or &#39;false&#39;  - integer: The value represents a 64-bit signed integer value, in base 10  - list: A list of parameters should be specified  - map: A map of parameters should be specified  - template: The value represents any text; this can include variable references (even variable references that might return non-string types)  - trigger_reference: The value represents a trigger, represented as the trigger id
+     * The parameter type.  Valid values are:&lt;ul&gt; &lt;li&gt;&lt;code&gt;boolean&lt;/code&gt;: The value represents a boolean, represented as     &#39;true&#39; or &#39;false&#39;&lt;/li&gt; &lt;li&gt;&lt;code&gt;integer&lt;/code&gt;: The value represents a 64-bit signed integer     value, in base 10&lt;/li&gt; &lt;li&gt;&lt;code&gt;list&lt;/code&gt;: A list of parameters should be specified&lt;/li&gt; &lt;li&gt;&lt;code&gt;map&lt;/code&gt;: A map of parameters should be specified&lt;/li&gt; &lt;li&gt;&lt;code&gt;template&lt;/code&gt;: The value represents any text; this can include     variable references (even variable references that might return     non-string types)&lt;/li&gt; &lt;li&gt;&lt;code&gt;trigger_reference&lt;/code&gt;: The value represents a trigger,     represented as the trigger id&lt;/li&gt; &lt;li&gt;&lt;code&gt;tag_reference&lt;/code&gt;: The value represents a tag, represented as     the tag name&lt;/li&gt; &lt;/ul&gt; @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     type?: string | null;
     /**
-     * A parameter&#39;s value (may contain variable references such as &quot;{{myVariable}}&quot;) as appropriate to the specified type.
+     * A parameter&#39;s value (may contain variable references such as &quot;{{myVariable}}&quot;) as appropriate to the specified type. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     value?: string | null;
   }
@@ -957,11 +1066,11 @@ export namespace tagmanager_v2 {
      */
     accountId?: string | null;
     /**
-     * Blocking rule IDs. If any of the listed rules evaluate to true, the tag will not fire.
+     * Blocking rule IDs. If any of the listed rules evaluate to true, the tag     will not fire. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     blockingRuleId?: string[] | null;
     /**
-     * Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag will not fire.
+     * Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag will not fire. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     blockingTriggerId?: string[] | null;
     /**
@@ -973,27 +1082,35 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
-     * Firing rule IDs. A tag will fire when any of the listed rules are true and all of its blockingRuleIds (if any specified) are false.
+     * Firing rule IDs. A tag will fire when any of the listed rules are true and     all of its &lt;code&gt;blockingRuleIds&lt;/code&gt; (if any specified) are false. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     firingRuleId?: string[] | null;
     /**
-     * Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its blockingTriggerIds (if any specified) are false.
+     * Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its &lt;code&gt;blockingTriggerIds&lt;/code&gt; (if any specified) are false. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     firingTriggerId?: string[] | null;
     /**
-     * If set to true, this tag will only fire in the live environment (e.g. not in preview or debug mode).
+     * If set to true, this tag will only fire in the live environment (e.g. not in preview or debug mode). @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     liveOnly?: boolean | null;
     /**
-     * Tag display name.
+     * A map of key-value pairs of tag metadata to be included in the event data for tag monitoring. Notes:&lt;ul&gt; &lt;li&gt;This parameter must be type &lt;code&gt;MAP&lt;/code&gt;.&lt;/li&gt; &lt;li&gt;Each parameter in the map are type &lt;code&gt;TEMPLATE&lt;/code&gt;, however cannot contain variable references.&lt;/li&gt; &lt;/ul&gt; @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     */
+    monitoringMetadata?: Schema$Parameter;
+    /**
+     * If non-empty, then the tag display name will be included in the monitoring metadata map using the key specified. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     */
+    monitoringMetadataTagNameKey?: string | null;
+    /**
+     * Tag display name. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     name?: string | null;
     /**
-     * User notes on how to apply this tag in the container.
+     * User notes on how to apply this tag in the container. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     notes?: string | null;
     /**
-     * The tag&#39;s parameters.
+     * The tag&#39;s parameters. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     parameter?: Schema$Parameter[];
     /**
@@ -1005,19 +1122,19 @@ export namespace tagmanager_v2 {
      */
     path?: string | null;
     /**
-     * Indicates whether the tag is paused, which prevents the tag from firing.
+     * Indicates whether the tag is paused, which prevents the tag from firing. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     paused?: boolean | null;
     /**
-     * User defined numeric priority of the tag. Tags are fired asynchronously in order of priority. Tags with higher numeric value fire first. A tag&#39;s priority can be a positive or negative value. The default value is 0.
+     * User defined numeric priority of the tag. Tags are fired asynchronously in order of priority. Tags with higher numeric value fire first. A tag&#39;s priority can be a positive or negative value. The default value is 0. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     priority?: Schema$Parameter;
     /**
-     * The end timestamp in milliseconds to schedule a tag.
+     * The end timestamp in milliseconds to schedule a tag. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     scheduleEndMs?: string | null;
     /**
-     * The start timestamp in milliseconds to schedule a tag.
+     * The start timestamp in milliseconds to schedule a tag. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     scheduleStartMs?: string | null;
     /**
@@ -1041,7 +1158,7 @@ export namespace tagmanager_v2 {
      */
     teardownTag?: Schema$TeardownTag[];
     /**
-     * GTM Tag Type.
+     * GTM Tag Type. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
      */
     type?: string | null;
     /**
@@ -1063,19 +1180,6 @@ export namespace tagmanager_v2 {
     tagName?: string | null;
   }
   /**
-   * A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one.  All minutes are 60 seconds long. Leap seconds are &quot;smeared&quot; so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear).  The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.  # Examples  Example 1: Compute Timestamp from POSIX `time()`.  Timestamp timestamp; timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0);  Example 2: Compute Timestamp from POSIX `gettimeofday()`.  struct timeval tv; gettimeofday(&amp;tv, NULL);  Timestamp timestamp; timestamp.set_seconds(tv.tv_sec); timestamp.set_nanos(tv.tv_usec * 1000);  Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.  FILETIME ft; GetSystemTimeAsFileTime(&amp;ft); UINT64 ticks = (((UINT64)ft.dwHighDateTime) &lt;&lt; 32) | ft.dwLowDateTime;  // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z. Timestamp timestamp; timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL)); timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));  Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.  long millis = System.currentTimeMillis();  Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000) .setNanos((int) ((millis % 1000) * 1000000)).build();    Example 5: Compute Timestamp from current time in Python.  timestamp = Timestamp() timestamp.GetCurrentTime()  # JSON Mapping  In JSON format, the Timestamp type is encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the format is &quot;{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z&quot; where {year} is always expressed using four digits while {month}, {day}, {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution), are optional. The &quot;Z&quot; suffix indicates the timezone (&quot;UTC&quot;); the timezone is required. A proto3 JSON serializer should always use UTC (as indicated by &quot;Z&quot;) when printing the Timestamp type and a proto3 JSON parser should be able to accept both UTC and other timezones (as indicated by an offset).  For example, &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01 seconds past 01:30 UTC on January 15, 2017.  In JavaScript, one can convert a Date object to this format using the standard [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString) method. In Python, a standard `datetime.datetime` object can be converted to this format using [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with the time format spec &#39;%Y-%m-%dT%H:%M:%S.%fZ&#39;. Likewise, in Java, one can use the Joda Time&#39;s [`ISODateTimeFormat.dateTime()`]( http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D ) to obtain a formatter capable of generating timestamps in this format.
-   */
-  export interface Schema$Timestamp {
-    /**
-     * Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
-     */
-    nanos?: number | null;
-    /**
-     * Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
-     */
-    seconds?: string | null;
-  }
-  /**
    * Represents a Google Tag Manager Trigger
    */
   export interface Schema$Trigger {
@@ -1084,11 +1188,11 @@ export namespace tagmanager_v2 {
      */
     accountId?: string | null;
     /**
-     * Used in the case of auto event tracking.
+     * Used in the case of auto event tracking. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     autoEventFilter?: Schema$Condition[];
     /**
-     * Whether or not we should only fire tags if the form submit or link click event is not cancelled by some other event handler (e.g. because of validation). Only valid for Form Submission and Link Click triggers.
+     * Whether or not we should only fire tags if the form submit or link click event is not cancelled by some other event handler (e.g. because of validation). Only valid for Form Submission and Link Click triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     checkValidation?: Schema$Parameter;
     /**
@@ -1096,19 +1200,19 @@ export namespace tagmanager_v2 {
      */
     containerId?: string | null;
     /**
-     * A visibility trigger minimum continuous visible time (in milliseconds). Only valid for AMP Visibility trigger.
+     * A visibility trigger minimum continuous visible time (in milliseconds). Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     continuousTimeMinMilliseconds?: Schema$Parameter;
     /**
-     * Used in the case of custom event, which is fired iff all Conditions are true.
+     * Used in the case of custom event, which is fired iff all Conditions are true. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     customEventFilter?: Schema$Condition[];
     /**
-     * Name of the GTM event that is fired. Only valid for Timer triggers.
+     * Name of the GTM event that is fired. Only valid for Timer triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     eventName?: Schema$Parameter;
     /**
-     * The trigger will only fire iff all Conditions are true.
+     * The trigger will only fire iff all Conditions are true. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     filter?: Schema$Condition[];
     /**
@@ -1116,35 +1220,35 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
-     * List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled horizontally. Only valid for AMP scroll triggers.
+     * List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled horizontally. Only valid for AMP scroll triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     horizontalScrollPercentageList?: Schema$Parameter;
     /**
-     * Time between triggering recurring Timer Events (in milliseconds). Only valid for Timer triggers.
+     * Time between triggering recurring Timer Events (in milliseconds). Only valid for Timer triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     interval?: Schema$Parameter;
     /**
-     * Time between Timer Events to fire (in seconds). Only valid for AMP Timer trigger.
+     * Time between Timer Events to fire (in seconds). Only valid for AMP Timer trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     intervalSeconds?: Schema$Parameter;
     /**
-     * Limit of the number of GTM events this Timer Trigger will fire. If no limit is set, we will continue to fire GTM events until the user leaves the page. Only valid for Timer triggers.
+     * Limit of the number of GTM events this Timer Trigger will fire. If no limit is set, we will continue to fire GTM events until the user leaves the page. Only valid for Timer triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     limit?: Schema$Parameter;
     /**
-     * Max time to fire Timer Events (in seconds). Only valid for AMP Timer trigger.
+     * Max time to fire Timer Events (in seconds). Only valid for AMP Timer trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     maxTimerLengthSeconds?: Schema$Parameter;
     /**
-     * Trigger display name.
+     * Trigger display name. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     name?: string | null;
     /**
-     * User notes on how to apply this trigger in the container.
+     * User notes on how to apply this trigger in the container. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     notes?: string | null;
     /**
-     * Additional parameters.
+     * Additional parameters. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     parameter?: Schema$Parameter[];
     /**
@@ -1156,7 +1260,7 @@ export namespace tagmanager_v2 {
      */
     path?: string | null;
     /**
-     * A click trigger CSS selector (i.e. &quot;a&quot;, &quot;button&quot; etc.). Only valid for AMP Click trigger.
+     * A click trigger CSS selector (i.e. &quot;a&quot;, &quot;button&quot; etc.). Only valid for AMP Click trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     selector?: Schema$Parameter;
     /**
@@ -1164,7 +1268,7 @@ export namespace tagmanager_v2 {
      */
     tagManagerUrl?: string | null;
     /**
-     * A visibility trigger minimum total visible time (in milliseconds). Only valid for AMP Visibility trigger.
+     * A visibility trigger minimum total visible time (in milliseconds). Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     totalTimeMinMilliseconds?: Schema$Parameter;
     /**
@@ -1172,35 +1276,35 @@ export namespace tagmanager_v2 {
      */
     triggerId?: string | null;
     /**
-     * Defines the data layer event that causes this trigger.
+     * Defines the data layer event that causes this trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     type?: string | null;
     /**
-     * Globally unique id of the trigger that auto-generates this (a Form Submit, Link Click or Timer listener) if any. Used to make incompatible auto-events work together with trigger filtering based on trigger ids. This value is populated during output generation since the tags implied by triggers don&#39;t exist until then. Only valid for Form Submit, Link Click and Timer triggers.
+     * Globally unique id of the trigger that auto-generates this (a Form Submit, Link Click or Timer listener) if any. Used to make incompatible auto-events work together with trigger filtering based on trigger ids. This value is populated during output generation since the tags implied by triggers don&#39;t exist until then. Only valid for Form Submit, Link Click and Timer triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     uniqueTriggerId?: Schema$Parameter;
     /**
-     * List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled vertically. Only valid for AMP scroll triggers.
+     * List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled vertically. Only valid for AMP scroll triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     verticalScrollPercentageList?: Schema$Parameter;
     /**
-     * A visibility trigger CSS selector (i.e. &quot;#id&quot;). Only valid for AMP Visibility trigger.
+     * A visibility trigger CSS selector (i.e. &quot;#id&quot;). Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     visibilitySelector?: Schema$Parameter;
     /**
-     * A visibility trigger maximum percent visibility. Only valid for AMP Visibility trigger.
+     * A visibility trigger maximum percent visibility. Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     visiblePercentageMax?: Schema$Parameter;
     /**
-     * A visibility trigger minimum percent visibility. Only valid for AMP Visibility trigger.
+     * A visibility trigger minimum percent visibility. Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     visiblePercentageMin?: Schema$Parameter;
     /**
-     * Whether or not we should delay the form submissions or link opening until all of the tags have fired (by preventing the default action and later simulating the default action). Only valid for Form Submission and Link Click triggers.
+     * Whether or not we should delay the form submissions or link opening until all of the tags have fired (by preventing the default action and later simulating the default action). Only valid for Form Submission and Link Click triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     waitForTags?: Schema$Parameter;
     /**
-     * How long to wait (in milliseconds) for tags to fire when &#39;waits_for_tags&#39; above evaluates to true. Only valid for Form Submission and Link Click triggers.
+     * How long to wait (in milliseconds) for tags to fire when &#39;waits_for_tags&#39; above evaluates to &lt;code&gt;true&lt;/code&gt;.  Only valid for Form Submission and Link Click triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update
      */
     waitForTagsTimeout?: Schema$Parameter;
     /**
@@ -1213,7 +1317,7 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$UserPermission {
     /**
-     * GTM Account access permissions.
+     * GTM Account access permissions. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
      */
     accountAccess?: Schema$AccountAccess;
     /**
@@ -1221,11 +1325,11 @@ export namespace tagmanager_v2 {
      */
     accountId?: string | null;
     /**
-     * GTM Container access permissions.
+     * GTM Container access permissions. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
      */
     containerAccess?: Schema$ContainerAccess[];
     /**
-     * User&#39;s email address.
+     * User&#39;s email address. @mutable tagmanager.accounts.permissions.create
      */
     emailAddress?: string | null;
     /**
@@ -1246,11 +1350,11 @@ export namespace tagmanager_v2 {
      */
     containerId?: string | null;
     /**
-     * For mobile containers only: A list of trigger IDs for disabling conditional variables; the variable is enabled if one of the enabling trigger is true while all the disabling trigger are false. Treated as an unordered set.
+     * For mobile containers only: A list of trigger IDs for disabling conditional variables; the variable is enabled if one of the enabling trigger is true while all the disabling trigger are false. Treated as an unordered set. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
      */
     disablingTriggerId?: string[] | null;
     /**
-     * For mobile containers only: A list of trigger IDs for enabling conditional variables; the variable is enabled if one of the enabling triggers is true while all the disabling triggers are false. Treated as an unordered set.
+     * For mobile containers only: A list of trigger IDs for enabling conditional variables; the variable is enabled if one of the enabling triggers is true while all the disabling triggers are false. Treated as an unordered set. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
      */
     enablingTriggerId?: string[] | null;
     /**
@@ -1262,15 +1366,15 @@ export namespace tagmanager_v2 {
      */
     formatValue?: Schema$VariableFormatValue;
     /**
-     * Variable display name.
+     * Variable display name. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
      */
     name?: string | null;
     /**
-     * User notes on how to apply this variable in the container.
+     * User notes on how to apply this variable in the container. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
      */
     notes?: string | null;
     /**
-     * The variable&#39;s parameters.
+     * The variable&#39;s parameters. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
      */
     parameter?: Schema$Parameter[];
     /**
@@ -1282,11 +1386,11 @@ export namespace tagmanager_v2 {
      */
     path?: string | null;
     /**
-     * The end timestamp in milliseconds to schedule a variable.
+     * The end timestamp in milliseconds to schedule a variable. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
      */
     scheduleEndMs?: string | null;
     /**
-     * The start timestamp in milliseconds to schedule a variable.
+     * The start timestamp in milliseconds to schedule a variable. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
      */
     scheduleStartMs?: string | null;
     /**
@@ -1294,7 +1398,7 @@ export namespace tagmanager_v2 {
      */
     tagManagerUrl?: string | null;
     /**
-     * GTM Variable Type.
+     * GTM Variable Type. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update
      */
     type?: string | null;
     /**
@@ -1341,7 +1445,7 @@ export namespace tagmanager_v2 {
      */
     containerId?: string | null;
     /**
-     * Workspace description.
+     * Workspace description. @mutable tagmanager.accounts.containers.workspaces.create @mutable tagmanager.accounts.containers.workspaces.update
      */
     description?: string | null;
     /**
@@ -1349,7 +1453,7 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string | null;
     /**
-     * Workspace display name.
+     * Workspace display name. @mutable tagmanager.accounts.containers.workspaces.create @mutable tagmanager.accounts.containers.workspaces.update
      */
     name?: string | null;
     /**
@@ -1473,6 +1577,56 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.get
      * @desc Gets a GTM Account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.manage.accounts',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.get({
+     *     // GTM Accounts's API relative path.
+     *     // Example: accounts/{account_id}
+     *     path: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "shareData": false,
+     *   //   "tagManagerUrl": "my_tagManagerUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.get
      * @memberOf! ()
      *
@@ -1483,9 +1637,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Account>;
+    get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Account>,
@@ -1499,10 +1662,17 @@ export namespace tagmanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Get
-        | BodyResponseCallback<Schema$Account>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback?: BodyResponseCallback<Schema$Account>
-    ): void | GaxiosPromise<Schema$Account> {
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1535,7 +1705,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Account>(parameters, callback);
+        createAPIRequest<Schema$Account>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
       }
@@ -1544,19 +1717,73 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.list
      * @desc Lists all GTM Accounts that a user has access to.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.manage.accounts',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "account": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.list
      * @memberOf! ()
      *
-     * @param {object=} params Parameters for request
+     * @param {object} params Parameters for request
      * @param {string=} params.pageToken Continuation token for fetching the next page of results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAccountsResponse>;
+    list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$List,
       options:
@@ -1572,12 +1799,20 @@ export namespace tagmanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$List
-        | BodyResponseCallback<Schema$ListAccountsResponse>,
+        | BodyResponseCallback<Schema$ListAccountsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAccountsResponse>,
-      callback?: BodyResponseCallback<Schema$ListAccountsResponse>
-    ): void | GaxiosPromise<Schema$ListAccountsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAccountsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1610,7 +1845,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListAccountsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListAccountsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListAccountsResponse>(parameters);
       }
@@ -1619,21 +1857,92 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.update
      * @desc Updates a GTM Account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.accounts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.update({
+     *     // When provided, this fingerprint must match the fingerprint of the account
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Accounts's API relative path.
+     *     // Example: accounts/{account_id}
+     *     path: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "shareData": false,
+     *       //   "tagManagerUrl": "my_tagManagerUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "shareData": false,
+     *   //   "tagManagerUrl": "my_tagManagerUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the account in storage.
      * @param {string} params.path GTM Accounts's API relative path. Example: accounts/{account_id}
-     * @param {().Account} params.resource Request body data
+     * @param {().Account} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Account>;
+    update(
+      params: Params$Resource$Accounts$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Account>,
@@ -1647,10 +1956,17 @@ export namespace tagmanager_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Update
-        | BodyResponseCallback<Schema$Account>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback?: BodyResponseCallback<Schema$Account>
-    ): void | GaxiosPromise<Schema$Account> {
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1683,7 +1999,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Account>(parameters, callback);
+        createAPIRequest<Schema$Account>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
       }
@@ -1692,32 +2011,17 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Accounts's API relative path. Example: accounts/{account_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Continuation token for fetching the next page of results.
      */
     pageToken?: string;
   }
   export interface Params$Resource$Accounts$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the account in storage.
      */
@@ -1756,20 +2060,96 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.create
      * @desc Creates a Container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.create({
+     *     // GTM Account's API relative path.
+     *     // Example: accounts/{account_id}.
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "domainName": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "path": "my_path",
+     *       //   "publicId": "my_publicId",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "usageContext": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "domainName": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "publicId": "my_publicId",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "usageContext": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Account's API relative path. Example: accounts/{account_id}.
-     * @param {().Container} params.resource Request body data
+     * @param {().Container} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Container>;
+    create(
+      params: Params$Resource$Accounts$Containers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Container>,
@@ -1783,12 +2163,17 @@ export namespace tagmanager_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Create
-        | BodyResponseCallback<Schema$Container>,
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Container>,
-      callback?: BodyResponseCallback<Schema$Container>
-    ): void | GaxiosPromise<Schema$Container> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Container> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1822,7 +2207,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Container>(parameters, callback);
+        createAPIRequest<Schema$Container>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Container>(parameters);
       }
@@ -1831,6 +2219,42 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.delete
      * @desc Deletes a Container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.delete.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.delete({
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     path: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.delete
      * @memberOf! ()
      *
@@ -1841,9 +2265,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1857,10 +2290,15 @@ export namespace tagmanager_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1894,7 +2332,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1903,6 +2344,59 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.get
      * @desc Gets a Container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.get({
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     path: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "domainName": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "publicId": "my_publicId",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "usageContext": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.get
      * @memberOf! ()
      *
@@ -1913,9 +2407,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Container>;
+    get(
+      params: Params$Resource$Accounts$Containers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Container>,
@@ -1929,12 +2432,17 @@ export namespace tagmanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Get
-        | BodyResponseCallback<Schema$Container>,
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Container>,
-      callback?: BodyResponseCallback<Schema$Container>
-    ): void | GaxiosPromise<Schema$Container> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Container> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1968,7 +2476,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Container>(parameters, callback);
+        createAPIRequest<Schema$Container>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Container>(parameters);
       }
@@ -1977,6 +2488,53 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.list
      * @desc Lists all Containers that belongs to a GTM Account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Accounts's API relative path.
+     *     // Example: accounts/{account_id}.
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "container": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.list
      * @memberOf! ()
      *
@@ -1988,9 +2546,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListContainersResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$List,
       options:
@@ -2006,12 +2573,20 @@ export namespace tagmanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$List
-        | BodyResponseCallback<Schema$ListContainersResponse>,
+        | BodyResponseCallback<Schema$ListContainersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListContainersResponse>,
-      callback?: BodyResponseCallback<Schema$ListContainersResponse>
-    ): void | GaxiosPromise<Schema$ListContainersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListContainersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListContainersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListContainersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2045,7 +2620,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListContainersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListContainersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListContainersResponse>(parameters);
       }
@@ -2054,21 +2632,100 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.update
      * @desc Updates a Container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.update({
+     *     // When provided, this fingerprint must match the fingerprint of the
+     *     // container in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     path: 'accounts/my-account/containers/my-container',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "domainName": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "path": "my_path",
+     *       //   "publicId": "my_publicId",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "usageContext": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "domainName": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "publicId": "my_publicId",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "usageContext": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container in storage.
      * @param {string} params.path GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
-     * @param {().Container} params.resource Request body data
+     * @param {().Container} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Container>;
+    update(
+      params: Params$Resource$Accounts$Containers$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Container>,
@@ -2082,12 +2739,17 @@ export namespace tagmanager_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Update
-        | BodyResponseCallback<Schema$Container>,
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Container>,
-      callback?: BodyResponseCallback<Schema$Container>
-    ): void | GaxiosPromise<Schema$Container> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Container> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2121,7 +2783,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Container>(parameters, callback);
+        createAPIRequest<Schema$Container>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Container>(parameters);
       }
@@ -2130,11 +2795,6 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$Containers$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Account's API relative path. Example: accounts/{account_id}.
      */
@@ -2148,11 +2808,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     path?: string;
@@ -2160,22 +2815,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -2187,11 +2832,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the container in storage.
      */
@@ -2216,20 +2856,106 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.environments.create
      * @desc Creates a GTM Environment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.environments.create({
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "authorizationCode": "my_authorizationCode",
+     *       //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *       //   "containerId": "my_containerId",
+     *       //   "containerVersionId": "my_containerVersionId",
+     *       //   "description": "my_description",
+     *       //   "enableDebug": false,
+     *       //   "environmentId": "my_environmentId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "type": "my_type",
+     *       //   "url": "my_url",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "authorizationCode": "my_authorizationCode",
+     *   //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "description": "my_description",
+     *   //   "enableDebug": false,
+     *   //   "environmentId": "my_environmentId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.environments.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
-     * @param {().Environment} params.resource Request body data
+     * @param {().Environment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Environments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Environments$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Environment>;
+    create(
+      params: Params$Resource$Accounts$Containers$Environments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Environments$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Environment>,
@@ -2243,12 +2969,17 @@ export namespace tagmanager_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Environments$Create
-        | BodyResponseCallback<Schema$Environment>,
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Environment>,
-      callback?: BodyResponseCallback<Schema$Environment>
-    ): void | GaxiosPromise<Schema$Environment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2282,7 +3013,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
+        createAPIRequest<Schema$Environment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
       }
@@ -2291,6 +3025,44 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.environments.delete
      * @desc Deletes a GTM Environment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.environments.delete({
+     *     // GTM Environment's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/environments/{environment_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/environments/my-environment',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.environments.delete
      * @memberOf! ()
      *
@@ -2301,9 +3073,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Environments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Environments$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Environments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Environments$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2317,10 +3098,15 @@ export namespace tagmanager_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Environments$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2354,7 +3140,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2363,6 +3152,66 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.environments.get
      * @desc Gets a GTM Environment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.environments.get({
+     *     // GTM Environment's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/environments/{environment_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/environments/my-environment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "authorizationCode": "my_authorizationCode",
+     *   //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "description": "my_description",
+     *   //   "enableDebug": false,
+     *   //   "environmentId": "my_environmentId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.environments.get
      * @memberOf! ()
      *
@@ -2373,9 +3222,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Environments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Environments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Environment>;
+    get(
+      params: Params$Resource$Accounts$Containers$Environments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Environments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Environment>,
@@ -2389,12 +3247,17 @@ export namespace tagmanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Environments$Get
-        | BodyResponseCallback<Schema$Environment>,
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Environment>,
-      callback?: BodyResponseCallback<Schema$Environment>
-    ): void | GaxiosPromise<Schema$Environment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2428,7 +3291,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
+        createAPIRequest<Schema$Environment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
       }
@@ -2437,6 +3303,53 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.environments.list
      * @desc Lists all GTM Environments of a GTM Container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.environments.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "environment": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.environments.list
      * @memberOf! ()
      *
@@ -2448,9 +3361,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Environments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Environments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListEnvironmentsResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Environments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Environments$List,
       options:
@@ -2466,12 +3388,20 @@ export namespace tagmanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Environments$List
-        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
-      callback?: BodyResponseCallback<Schema$ListEnvironmentsResponse>
-    ): void | GaxiosPromise<Schema$ListEnvironmentsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEnvironmentsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2505,7 +3435,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListEnvironmentsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListEnvironmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListEnvironmentsResponse>(parameters);
       }
@@ -2514,20 +3447,108 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.environments.reauthorize
      * @desc Re-generates the authorization code for a GTM Environment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.publish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.environments.reauthorize({
+     *     // GTM Environment's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/environments/{environment_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "authorizationCode": "my_authorizationCode",
+     *       //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *       //   "containerId": "my_containerId",
+     *       //   "containerVersionId": "my_containerVersionId",
+     *       //   "description": "my_description",
+     *       //   "enableDebug": false,
+     *       //   "environmentId": "my_environmentId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "type": "my_type",
+     *       //   "url": "my_url",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "authorizationCode": "my_authorizationCode",
+     *   //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "description": "my_description",
+     *   //   "enableDebug": false,
+     *   //   "environmentId": "my_environmentId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.environments.reauthorize
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.path GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
-     * @param {().Environment} params.resource Request body data
+     * @param {().Environment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     reauthorize(
+      params: Params$Resource$Accounts$Containers$Environments$Reauthorize,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reauthorize(
       params?: Params$Resource$Accounts$Containers$Environments$Reauthorize,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Environment>;
+    reauthorize(
+      params: Params$Resource$Accounts$Containers$Environments$Reauthorize,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reauthorize(
       params: Params$Resource$Accounts$Containers$Environments$Reauthorize,
       options: MethodOptions | BodyResponseCallback<Schema$Environment>,
@@ -2541,12 +3562,17 @@ export namespace tagmanager_v2 {
     reauthorize(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Environments$Reauthorize
-        | BodyResponseCallback<Schema$Environment>,
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Environment>,
-      callback?: BodyResponseCallback<Schema$Environment>
-    ): void | GaxiosPromise<Schema$Environment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$Reauthorize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2580,7 +3606,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
+        createAPIRequest<Schema$Environment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
       }
@@ -2589,21 +3618,112 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.environments.update
      * @desc Updates a GTM Environment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.environments.update({
+     *     // When provided, this fingerprint must match the fingerprint of the
+     *     // environment in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Environment's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/environments/{environment_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "authorizationCode": "my_authorizationCode",
+     *       //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *       //   "containerId": "my_containerId",
+     *       //   "containerVersionId": "my_containerVersionId",
+     *       //   "description": "my_description",
+     *       //   "enableDebug": false,
+     *       //   "environmentId": "my_environmentId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "type": "my_type",
+     *       //   "url": "my_url",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "authorizationCode": "my_authorizationCode",
+     *   //   "authorizationTimestamp": "my_authorizationTimestamp",
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "description": "my_description",
+     *   //   "enableDebug": false,
+     *   //   "environmentId": "my_environmentId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.environments.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
      * @param {string} params.path GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
-     * @param {().Environment} params.resource Request body data
+     * @param {().Environment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Environments$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Environments$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Environment>;
+    update(
+      params: Params$Resource$Accounts$Containers$Environments$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Environments$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Environment>,
@@ -2617,12 +3737,17 @@ export namespace tagmanager_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Environments$Update
-        | BodyResponseCallback<Schema$Environment>,
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Environment>,
-      callback?: BodyResponseCallback<Schema$Environment>
-    ): void | GaxiosPromise<Schema$Environment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2656,7 +3781,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
+        createAPIRequest<Schema$Environment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
       }
@@ -2665,11 +3793,6 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$Containers$Environments$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
@@ -2683,11 +3806,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Environments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
     path?: string;
@@ -2695,22 +3813,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Environments$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Environments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -2723,11 +3831,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Environments$Reauthorize
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
     path?: string;
@@ -2739,11 +3842,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Environments$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the environment in storage.
      */
@@ -2768,6 +3866,45 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.delete
      * @desc Deletes a Container Version.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.delete({
+     *     // GTM ContainerVersion's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     *     path: 'accounts/my-account/containers/my-container/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.delete
      * @memberOf! ()
      *
@@ -2778,9 +3915,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Versions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Versions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Versions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Versions$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2794,10 +3940,15 @@ export namespace tagmanager_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2831,7 +3982,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2840,20 +3994,95 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.get
      * @desc Gets a Container Version.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.get({
+     *     // The GTM ContainerVersion ID. Specify <code>published</code> to retrieve
+     *     // the currently published version.
+     *     containerVersionId: 'placeholder-value',
+     *     // GTM ContainerVersion's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     *     path: 'accounts/my-account/containers/my-container/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "builtInVariable": [],
+     *   //   "client": [],
+     *   //   "container": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "customTemplate": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folder": [],
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tag": [],
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "trigger": [],
+     *   //   "variable": [],
+     *   //   "zone": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.containerVersionId The GTM ContainerVersion ID. Specify published to retrieve the currently published version.
+     * @param {string=} params.containerVersionId The GTM ContainerVersion ID. Specify <code>published</code> to retrieve the currently published version.
      * @param {string} params.path GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Versions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Versions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ContainerVersion>;
+    get(
+      params: Params$Resource$Accounts$Containers$Versions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Versions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
@@ -2867,12 +4096,17 @@ export namespace tagmanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Get
-        | BodyResponseCallback<Schema$ContainerVersion>,
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ContainerVersion>,
-      callback?: BodyResponseCallback<Schema$ContainerVersion>
-    ): void | GaxiosPromise<Schema$ContainerVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ContainerVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2906,7 +4140,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ContainerVersion>(parameters, callback);
+        createAPIRequest<Schema$ContainerVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
       }
@@ -2915,6 +4152,67 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.live
      * @desc Gets the live (i.e. published) container version
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.live({
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "builtInVariable": [],
+     *   //   "client": [],
+     *   //   "container": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "customTemplate": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folder": [],
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tag": [],
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "trigger": [],
+     *   //   "variable": [],
+     *   //   "zone": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.live
      * @memberOf! ()
      *
@@ -2925,9 +4223,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     live(
+      params: Params$Resource$Accounts$Containers$Versions$Live,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    live(
       params?: Params$Resource$Accounts$Containers$Versions$Live,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ContainerVersion>;
+    live(
+      params: Params$Resource$Accounts$Containers$Versions$Live,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     live(
       params: Params$Resource$Accounts$Containers$Versions$Live,
       options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
@@ -2941,12 +4248,17 @@ export namespace tagmanager_v2 {
     live(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Live
-        | BodyResponseCallback<Schema$ContainerVersion>,
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ContainerVersion>,
-      callback?: BodyResponseCallback<Schema$ContainerVersion>
-    ): void | GaxiosPromise<Schema$ContainerVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ContainerVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Live;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2980,7 +4292,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ContainerVersion>(parameters, callback);
+        createAPIRequest<Schema$ContainerVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
       }
@@ -2989,6 +4304,52 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.publish
      * @desc Publishes a Container Version.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.publish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.publish({
+     *     // When provided, this fingerprint must match the fingerprint of the
+     *     // container version in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM ContainerVersion's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     *     path: 'accounts/my-account/containers/my-container/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "compilerError": false,
+     *   //   "containerVersion": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.publish
      * @memberOf! ()
      *
@@ -3000,9 +4361,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     publish(
+      params: Params$Resource$Accounts$Containers$Versions$Publish,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    publish(
       params?: Params$Resource$Accounts$Containers$Versions$Publish,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PublishContainerVersionResponse>;
+    publish(
+      params: Params$Resource$Accounts$Containers$Versions$Publish,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     publish(
       params: Params$Resource$Accounts$Containers$Versions$Publish,
       options:
@@ -3020,12 +4390,20 @@ export namespace tagmanager_v2 {
     publish(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Publish
-        | BodyResponseCallback<Schema$PublishContainerVersionResponse>,
+        | BodyResponseCallback<Schema$PublishContainerVersionResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PublishContainerVersionResponse>,
-      callback?: BodyResponseCallback<Schema$PublishContainerVersionResponse>
-    ): void | GaxiosPromise<Schema$PublishContainerVersionResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PublishContainerVersionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PublishContainerVersionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PublishContainerVersionResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3061,7 +4439,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$PublishContainerVersionResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PublishContainerVersionResponse>(
@@ -3073,6 +4451,65 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.set_latest
      * @desc Sets the latest version used for synchronization of workspaces when detecting conflicts and errors.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.set_latest({
+     *     // GTM ContainerVersion's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     *     path: 'accounts/my-account/containers/my-container/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "builtInVariable": [],
+     *   //   "client": [],
+     *   //   "container": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "customTemplate": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folder": [],
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tag": [],
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "trigger": [],
+     *   //   "variable": [],
+     *   //   "zone": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.set_latest
      * @memberOf! ()
      *
@@ -3083,9 +4520,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     set_latest(
+      params: Params$Resource$Accounts$Containers$Versions$Set_latest,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    set_latest(
       params?: Params$Resource$Accounts$Containers$Versions$Set_latest,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ContainerVersion>;
+    set_latest(
+      params: Params$Resource$Accounts$Containers$Versions$Set_latest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     set_latest(
       params: Params$Resource$Accounts$Containers$Versions$Set_latest,
       options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
@@ -3099,12 +4545,17 @@ export namespace tagmanager_v2 {
     set_latest(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Set_latest
-        | BodyResponseCallback<Schema$ContainerVersion>,
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ContainerVersion>,
-      callback?: BodyResponseCallback<Schema$ContainerVersion>
-    ): void | GaxiosPromise<Schema$ContainerVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ContainerVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Set_latest;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3138,7 +4589,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ContainerVersion>(parameters, callback);
+        createAPIRequest<Schema$ContainerVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
       }
@@ -3147,6 +4601,67 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.undelete
      * @desc Undeletes a Container Version.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.undelete({
+     *     // GTM ContainerVersion's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     *     path: 'accounts/my-account/containers/my-container/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "builtInVariable": [],
+     *   //   "client": [],
+     *   //   "container": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "customTemplate": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folder": [],
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tag": [],
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "trigger": [],
+     *   //   "variable": [],
+     *   //   "zone": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.undelete
      * @memberOf! ()
      *
@@ -3157,9 +4672,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     undelete(
+      params: Params$Resource$Accounts$Containers$Versions$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
       params?: Params$Resource$Accounts$Containers$Versions$Undelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ContainerVersion>;
+    undelete(
+      params: Params$Resource$Accounts$Containers$Versions$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     undelete(
       params: Params$Resource$Accounts$Containers$Versions$Undelete,
       options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
@@ -3173,12 +4697,17 @@ export namespace tagmanager_v2 {
     undelete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Undelete
-        | BodyResponseCallback<Schema$ContainerVersion>,
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ContainerVersion>,
-      callback?: BodyResponseCallback<Schema$ContainerVersion>
-    ): void | GaxiosPromise<Schema$ContainerVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ContainerVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3212,7 +4741,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ContainerVersion>(parameters, callback);
+        createAPIRequest<Schema$ContainerVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
       }
@@ -3221,21 +4753,119 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.versions.update
      * @desc Updates a Container Version.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.versions.update({
+     *     // When provided, this fingerprint must match the fingerprint of the
+     *     // container version in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM ContainerVersion's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/versions/{version_id}
+     *     path: 'accounts/my-account/containers/my-container/versions/my-version',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "builtInVariable": [],
+     *       //   "client": [],
+     *       //   "container": {},
+     *       //   "containerId": "my_containerId",
+     *       //   "containerVersionId": "my_containerVersionId",
+     *       //   "customTemplate": [],
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "folder": [],
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tag": [],
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "trigger": [],
+     *       //   "variable": [],
+     *       //   "zone": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "builtInVariable": [],
+     *   //   "client": [],
+     *   //   "container": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "customTemplate": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folder": [],
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tag": [],
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "trigger": [],
+     *   //   "variable": [],
+     *   //   "zone": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.versions.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
      * @param {string} params.path GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
-     * @param {().ContainerVersion} params.resource Request body data
+     * @param {().ContainerVersion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Versions$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Versions$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ContainerVersion>;
+    update(
+      params: Params$Resource$Accounts$Containers$Versions$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Versions$Update,
       options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
@@ -3249,12 +4879,17 @@ export namespace tagmanager_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Update
-        | BodyResponseCallback<Schema$ContainerVersion>,
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ContainerVersion>,
-      callback?: BodyResponseCallback<Schema$ContainerVersion>
-    ): void | GaxiosPromise<Schema$ContainerVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ContainerVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3288,7 +4923,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ContainerVersion>(parameters, callback);
+        createAPIRequest<Schema$ContainerVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
       }
@@ -3298,11 +4936,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Versions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
     path?: string;
@@ -3310,12 +4943,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Versions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The GTM ContainerVersion ID. Specify published to retrieve the currently published version.
+     * The GTM ContainerVersion ID. Specify <code>published</code> to retrieve the currently published version.
      */
     containerVersionId?: string;
     /**
@@ -3326,22 +4954,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Versions$Live
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Publish
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the container version in storage.
      */
@@ -3354,11 +4972,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Versions$Set_latest
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
     path?: string;
@@ -3366,22 +4979,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Versions$Undelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the container version in storage.
      */
@@ -3406,6 +5009,62 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.version_headers.latest
      * @desc Gets the latest container version header
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.version_headers.latest({
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "containerVersionId": "my_containerVersionId",
+     *   //   "deleted": false,
+     *   //   "name": "my_name",
+     *   //   "numCustomTemplates": "my_numCustomTemplates",
+     *   //   "numMacros": "my_numMacros",
+     *   //   "numRules": "my_numRules",
+     *   //   "numTags": "my_numTags",
+     *   //   "numTriggers": "my_numTriggers",
+     *   //   "numVariables": "my_numVariables",
+     *   //   "numZones": "my_numZones",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.version_headers.latest
      * @memberOf! ()
      *
@@ -3416,9 +5075,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     latest(
+      params: Params$Resource$Accounts$Containers$Version_headers$Latest,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    latest(
       params?: Params$Resource$Accounts$Containers$Version_headers$Latest,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ContainerVersionHeader>;
+    latest(
+      params: Params$Resource$Accounts$Containers$Version_headers$Latest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     latest(
       params: Params$Resource$Accounts$Containers$Version_headers$Latest,
       options:
@@ -3434,12 +5102,20 @@ export namespace tagmanager_v2 {
     latest(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Version_headers$Latest
-        | BodyResponseCallback<Schema$ContainerVersionHeader>,
+        | BodyResponseCallback<Schema$ContainerVersionHeader>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ContainerVersionHeader>,
-      callback?: BodyResponseCallback<Schema$ContainerVersionHeader>
-    ): void | GaxiosPromise<Schema$ContainerVersionHeader> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ContainerVersionHeader>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ContainerVersionHeader>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ContainerVersionHeader>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Version_headers$Latest;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3472,7 +5148,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ContainerVersionHeader>(parameters, callback);
+        createAPIRequest<Schema$ContainerVersionHeader>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ContainerVersionHeader>(parameters);
       }
@@ -3481,6 +5160,56 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.version_headers.list
      * @desc Lists all Container Versions of a GTM Container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.version_headers.list({
+     *     // Also retrieve deleted (archived) versions when true.
+     *     includeDeleted: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "containerVersionHeader": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.version_headers.list
      * @memberOf! ()
      *
@@ -3493,9 +5222,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Version_headers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Version_headers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListContainerVersionsResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Version_headers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Version_headers$List,
       options:
@@ -3513,12 +5251,20 @@ export namespace tagmanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Version_headers$List
-        | BodyResponseCallback<Schema$ListContainerVersionsResponse>,
+        | BodyResponseCallback<Schema$ListContainerVersionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListContainerVersionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListContainerVersionsResponse>
-    ): void | GaxiosPromise<Schema$ListContainerVersionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListContainerVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListContainerVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListContainerVersionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Version_headers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3554,7 +5300,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListContainerVersionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListContainerVersionsResponse>(
@@ -3567,22 +5313,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Version_headers$Latest
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Version_headers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Also retrieve deleted (archived) versions when true.
      */
@@ -3634,20 +5370,92 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.create
      * @desc Creates a Workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.create({
+     *     // GTM parent Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM parent Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
-     * @param {().Workspace} params.resource Request body data
+     * @param {().Workspace} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Workspaces$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Workspace>;
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Workspaces$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Workspace>,
@@ -3661,12 +5469,17 @@ export namespace tagmanager_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Create
-        | BodyResponseCallback<Schema$Workspace>,
+        | BodyResponseCallback<Schema$Workspace>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Workspace>,
-      callback?: BodyResponseCallback<Schema$Workspace>
-    ): void | GaxiosPromise<Schema$Workspace> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Workspace>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Workspace>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Workspace> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3700,7 +5513,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Workspace>(parameters, callback);
+        createAPIRequest<Schema$Workspace>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Workspace>(parameters);
       }
@@ -3709,20 +5525,85 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.create_version
      * @desc Creates a Container Version from the entities present in the workspace, deletes the workspace, and sets the base container version to the newly created version.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.create_version({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "compilerError": false,
+     *   //   "containerVersion": {},
+     *   //   "newWorkspacePath": "my_newWorkspacePath",
+     *   //   "syncStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.create_version
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.path GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().CreateContainerVersionRequestVersionOptions} params.resource Request body data
+     * @param {().CreateContainerVersionRequestVersionOptions} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create_version(
+      params: Params$Resource$Accounts$Containers$Workspaces$Create_version,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create_version(
       params?: Params$Resource$Accounts$Containers$Workspaces$Create_version,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CreateContainerVersionResponse>;
+    create_version(
+      params: Params$Resource$Accounts$Containers$Workspaces$Create_version,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create_version(
       params: Params$Resource$Accounts$Containers$Workspaces$Create_version,
       options:
@@ -3740,12 +5621,20 @@ export namespace tagmanager_v2 {
     create_version(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Create_version
-        | BodyResponseCallback<Schema$CreateContainerVersionResponse>,
+        | BodyResponseCallback<Schema$CreateContainerVersionResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CreateContainerVersionResponse>,
-      callback?: BodyResponseCallback<Schema$CreateContainerVersionResponse>
-    ): void | GaxiosPromise<Schema$CreateContainerVersionResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreateContainerVersionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreateContainerVersionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CreateContainerVersionResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Create_version;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3781,7 +5670,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$CreateContainerVersionResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$CreateContainerVersionResponse>(
@@ -3793,6 +5682,43 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.delete
      * @desc Deletes a Workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.delete.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.delete({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.delete
      * @memberOf! ()
      *
@@ -3803,9 +5729,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Workspaces$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Workspaces$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3819,10 +5754,15 @@ export namespace tagmanager_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3856,7 +5796,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3865,6 +5808,58 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.get
      * @desc Gets a Workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.get({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.get
      * @memberOf! ()
      *
@@ -3875,9 +5870,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Workspaces$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Workspace>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Workspaces$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Workspace>,
@@ -3891,12 +5895,17 @@ export namespace tagmanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Get
-        | BodyResponseCallback<Schema$Workspace>,
+        | BodyResponseCallback<Schema$Workspace>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Workspace>,
-      callback?: BodyResponseCallback<Schema$Workspace>
-    ): void | GaxiosPromise<Schema$Workspace> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Workspace>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Workspace>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Workspace> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3930,7 +5939,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Workspace>(parameters, callback);
+        createAPIRequest<Schema$Workspace>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Workspace>(parameters);
       }
@@ -3939,6 +5951,52 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.getStatus
      * @desc Finds conflicting and modified entities in the workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.getStatus({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mergeConflict": [],
+     *   //   "workspaceChange": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.getStatus
      * @memberOf! ()
      *
@@ -3949,9 +6007,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     getStatus(
+      params: Params$Resource$Accounts$Containers$Workspaces$Getstatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getStatus(
       params?: Params$Resource$Accounts$Containers$Workspaces$Getstatus,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetWorkspaceStatusResponse>;
+    getStatus(
+      params: Params$Resource$Accounts$Containers$Workspaces$Getstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getStatus(
       params: Params$Resource$Accounts$Containers$Workspaces$Getstatus,
       options:
@@ -3969,12 +6036,20 @@ export namespace tagmanager_v2 {
     getStatus(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Getstatus
-        | BodyResponseCallback<Schema$GetWorkspaceStatusResponse>,
+        | BodyResponseCallback<Schema$GetWorkspaceStatusResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetWorkspaceStatusResponse>,
-      callback?: BodyResponseCallback<Schema$GetWorkspaceStatusResponse>
-    ): void | GaxiosPromise<Schema$GetWorkspaceStatusResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetWorkspaceStatusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetWorkspaceStatusResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetWorkspaceStatusResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Getstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4010,7 +6085,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$GetWorkspaceStatusResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GetWorkspaceStatusResponse>(parameters);
@@ -4020,6 +6095,53 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.list
      * @desc Lists all Workspaces that belong to a GTM Container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM parent Container's API relative path.
+     *     // Example: accounts/{account_id}/containers/{container_id}
+     *     parent: 'accounts/my-account/containers/my-container',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "workspace": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.list
      * @memberOf! ()
      *
@@ -4031,9 +6153,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Workspaces$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Workspaces$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListWorkspacesResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Workspaces$List,
       options:
@@ -4049,12 +6180,20 @@ export namespace tagmanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$List
-        | BodyResponseCallback<Schema$ListWorkspacesResponse>,
+        | BodyResponseCallback<Schema$ListWorkspacesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkspacesResponse>,
-      callback?: BodyResponseCallback<Schema$ListWorkspacesResponse>
-    ): void | GaxiosPromise<Schema$ListWorkspacesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkspacesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkspacesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWorkspacesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4088,7 +6227,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListWorkspacesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListWorkspacesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListWorkspacesResponse>(parameters);
       }
@@ -4097,6 +6239,52 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.quick_preview
      * @desc Quick previews a workspace by creating a fake container version from all entities in the provided workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.quick_preview({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "compilerError": false,
+     *   //   "containerVersion": {},
+     *   //   "syncStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.quick_preview
      * @memberOf! ()
      *
@@ -4107,9 +6295,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     quick_preview(
+      params: Params$Resource$Accounts$Containers$Workspaces$Quick_preview,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    quick_preview(
       params?: Params$Resource$Accounts$Containers$Workspaces$Quick_preview,
       options?: MethodOptions
     ): GaxiosPromise<Schema$QuickPreviewResponse>;
+    quick_preview(
+      params: Params$Resource$Accounts$Containers$Workspaces$Quick_preview,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     quick_preview(
       params: Params$Resource$Accounts$Containers$Workspaces$Quick_preview,
       options:
@@ -4127,12 +6324,20 @@ export namespace tagmanager_v2 {
     quick_preview(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Quick_preview
-        | BodyResponseCallback<Schema$QuickPreviewResponse>,
+        | BodyResponseCallback<Schema$QuickPreviewResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$QuickPreviewResponse>,
-      callback?: BodyResponseCallback<Schema$QuickPreviewResponse>
-    ): void | GaxiosPromise<Schema$QuickPreviewResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QuickPreviewResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QuickPreviewResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$QuickPreviewResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Quick_preview;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4166,7 +6371,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$QuickPreviewResponse>(parameters, callback);
+        createAPIRequest<Schema$QuickPreviewResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$QuickPreviewResponse>(parameters);
       }
@@ -4175,21 +6383,82 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.resolve_conflict
      * @desc Resolves a merge conflict for a workspace entity by updating it to the resolved entity passed in the request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.resolve_conflict({
+     *     // When provided, this fingerprint must match the fingerprint of the
+     *     // entity_in_workspace in the merge conflict.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "changeStatus": "my_changeStatus",
+     *       //   "folder": {},
+     *       //   "tag": {},
+     *       //   "trigger": {},
+     *       //   "variable": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.resolve_conflict
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the entity_in_workspace in the merge conflict.
      * @param {string} params.path GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Entity} params.resource Request body data
+     * @param {().Entity} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     resolve_conflict(
+      params: Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resolve_conflict(
       params?: Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    resolve_conflict(
+      params: Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resolve_conflict(
       params: Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4203,10 +6472,15 @@ export namespace tagmanager_v2 {
     resolve_conflict(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4240,7 +6514,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4249,6 +6526,49 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.sync
      * @desc Syncs a workspace to the latest container version by updating all unmodified workspace entities and displaying conflicts for modified entities.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.sync({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mergeConflict": [],
+     *   //   "syncStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.sync
      * @memberOf! ()
      *
@@ -4259,9 +6579,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     sync(
+      params: Params$Resource$Accounts$Containers$Workspaces$Sync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    sync(
       params?: Params$Resource$Accounts$Containers$Workspaces$Sync,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SyncWorkspaceResponse>;
+    sync(
+      params: Params$Resource$Accounts$Containers$Workspaces$Sync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     sync(
       params: Params$Resource$Accounts$Containers$Workspaces$Sync,
       options:
@@ -4277,12 +6606,20 @@ export namespace tagmanager_v2 {
     sync(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Sync
-        | BodyResponseCallback<Schema$SyncWorkspaceResponse>,
+        | BodyResponseCallback<Schema$SyncWorkspaceResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SyncWorkspaceResponse>,
-      callback?: BodyResponseCallback<Schema$SyncWorkspaceResponse>
-    ): void | GaxiosPromise<Schema$SyncWorkspaceResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SyncWorkspaceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SyncWorkspaceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SyncWorkspaceResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Sync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4316,7 +6653,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SyncWorkspaceResponse>(parameters, callback);
+        createAPIRequest<Schema$SyncWorkspaceResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SyncWorkspaceResponse>(parameters);
       }
@@ -4325,21 +6665,97 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.update
      * @desc Updates a Workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.update({
+     *     // When provided, this fingerprint must match the fingerprint of the
+     *     // workspace in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the workspace in storage.
      * @param {string} params.path GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Workspace} params.resource Request body data
+     * @param {().Workspace} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Workspaces$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Workspace>;
+    update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Workspaces$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Workspace>,
@@ -4353,12 +6769,17 @@ export namespace tagmanager_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Update
-        | BodyResponseCallback<Schema$Workspace>,
+        | BodyResponseCallback<Schema$Workspace>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Workspace>,
-      callback?: BodyResponseCallback<Schema$Workspace>
-    ): void | GaxiosPromise<Schema$Workspace> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Workspace>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Workspace>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Workspace> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4392,7 +6813,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Workspace>(parameters, callback);
+        createAPIRequest<Schema$Workspace>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Workspace>(parameters);
       }
@@ -4401,11 +6825,6 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM parent Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
@@ -4419,11 +6838,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Create_version
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
@@ -4436,22 +6850,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
@@ -4460,22 +6864,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Getstatus
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -4488,22 +6882,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Quick_preview
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the entity_in_workspace in the merge conflict.
      */
@@ -4521,22 +6905,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Sync
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the workspace in storage.
      */
@@ -4561,6 +6935,53 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.create
      * @desc Creates one or more GTM Built-In Variables.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.create(
+     *     {
+     *       // GTM Workspace's API relative path.
+     *       // Example:
+     *       // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *       parent:
+     *         'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *       // The types of built-in variables to enable.
+     *       type: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "builtInVariable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.built_in_variables.create
      * @memberOf! ()
      *
@@ -4572,9 +6993,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CreateBuiltInVariableResponse>;
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create,
       options:
@@ -4592,12 +7022,20 @@ export namespace tagmanager_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create
-        | BodyResponseCallback<Schema$CreateBuiltInVariableResponse>,
+        | BodyResponseCallback<Schema$CreateBuiltInVariableResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CreateBuiltInVariableResponse>,
-      callback?: BodyResponseCallback<Schema$CreateBuiltInVariableResponse>
-    ): void | GaxiosPromise<Schema$CreateBuiltInVariableResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreateBuiltInVariableResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreateBuiltInVariableResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CreateBuiltInVariableResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4632,7 +7070,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$CreateBuiltInVariableResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$CreateBuiltInVariableResponse>(
@@ -4644,6 +7082,48 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.delete
      * @desc Deletes one or more GTM Built-In Variables.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.delete(
+     *     {
+     *       // GTM BuiltInVariable's API relative path.
+     *       // Example:
+     *       // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
+     *       path:
+     *         'accounts/my-account/containers/my-container/workspaces/my-workspace/built_in_variables',
+     *       // The types of built-in variables to delete.
+     *       type: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.built_in_variables.delete
      * @memberOf! ()
      *
@@ -4655,9 +7135,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4671,10 +7160,15 @@ export namespace tagmanager_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4708,7 +7202,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4717,6 +7214,57 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.list
      * @desc Lists all the enabled Built-In Variables of a GTM Container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.list(
+     *     {
+     *       // Continuation token for fetching the next page of results.
+     *       pageToken: 'placeholder-value',
+     *       // GTM Workspace's API relative path.
+     *       // Example:
+     *       // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *       parent:
+     *         'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "builtInVariable": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.built_in_variables.list
      * @memberOf! ()
      *
@@ -4728,9 +7276,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListEnabledBuiltInVariablesResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List,
       options:
@@ -4748,14 +7305,20 @@ export namespace tagmanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List
-        | BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>,
+        | BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>,
-      callback?: BodyResponseCallback<
-        Schema$ListEnabledBuiltInVariablesResponse
-      >
-    ): void | GaxiosPromise<Schema$ListEnabledBuiltInVariablesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEnabledBuiltInVariablesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4790,7 +7353,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListEnabledBuiltInVariablesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListEnabledBuiltInVariablesResponse>(
@@ -4802,6 +7365,53 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.revert
      * @desc Reverts changes to a GTM Built-In Variables in a GTM Workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.revert(
+     *     {
+     *       // GTM BuiltInVariable's API relative path.
+     *       // Example:
+     *       // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
+     *       path:
+     *         'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *       // The type of built-in variable to revert.
+     *       type: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.built_in_variables.revert
      * @memberOf! ()
      *
@@ -4813,9 +7423,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    revert(
       params?: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RevertBuiltInVariableResponse>;
+    revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     revert(
       params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert,
       options:
@@ -4833,12 +7452,20 @@ export namespace tagmanager_v2 {
     revert(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert
-        | BodyResponseCallback<Schema$RevertBuiltInVariableResponse>,
+        | BodyResponseCallback<Schema$RevertBuiltInVariableResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RevertBuiltInVariableResponse>,
-      callback?: BodyResponseCallback<Schema$RevertBuiltInVariableResponse>
-    ): void | GaxiosPromise<Schema$RevertBuiltInVariableResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RevertBuiltInVariableResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RevertBuiltInVariableResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RevertBuiltInVariableResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4873,7 +7500,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$RevertBuiltInVariableResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$RevertBuiltInVariableResponse>(
@@ -4886,11 +7513,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
@@ -4901,11 +7523,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM BuiltInVariable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
      */
@@ -4918,11 +7535,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Continuation token for fetching the next page of results.
      */
     pageToken?: string;
@@ -4933,11 +7545,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM BuiltInVariable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
      */
@@ -4957,20 +7564,96 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.create
      * @desc Creates a GTM Folder.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.create({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "folderId": "my_folderId",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folderId": "my_folderId",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Folder} params.resource Request body data
+     * @param {().Folder} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Folder>;
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Workspaces$Folders$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Folder>,
@@ -4984,10 +7667,17 @@ export namespace tagmanager_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Folders$Create
-        | BodyResponseCallback<Schema$Folder>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
-      callback?: BodyResponseCallback<Schema$Folder>
-    ): void | GaxiosPromise<Schema$Folder> {
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5021,7 +7711,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Folder>(parameters, callback);
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
       }
@@ -5030,6 +7723,44 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.delete
      * @desc Deletes a GTM Folder.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.delete({
+     *     // GTM Folder's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.delete
      * @memberOf! ()
      *
@@ -5040,9 +7771,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Workspaces$Folders$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -5056,10 +7796,15 @@ export namespace tagmanager_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Folders$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5093,7 +7838,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -5102,6 +7850,57 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.entities
      * @desc List all entities in a GTM Folder.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.entities({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Folder's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tag": [],
+     *   //   "trigger": [],
+     *   //   "variable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.entities
      * @memberOf! ()
      *
@@ -5113,9 +7912,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     entities(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Entities,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    entities(
       params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Entities,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FolderEntities>;
+    entities(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Entities,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     entities(
       params: Params$Resource$Accounts$Containers$Workspaces$Folders$Entities,
       options: MethodOptions | BodyResponseCallback<Schema$FolderEntities>,
@@ -5129,12 +7937,17 @@ export namespace tagmanager_v2 {
     entities(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Folders$Entities
-        | BodyResponseCallback<Schema$FolderEntities>,
+        | BodyResponseCallback<Schema$FolderEntities>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FolderEntities>,
-      callback?: BodyResponseCallback<Schema$FolderEntities>
-    ): void | GaxiosPromise<Schema$FolderEntities> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FolderEntities>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FolderEntities>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FolderEntities> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Entities;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5168,7 +7981,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FolderEntities>(parameters, callback);
+        createAPIRequest<Schema$FolderEntities>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FolderEntities>(parameters);
       }
@@ -5177,6 +7993,60 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.get
      * @desc Gets a GTM Folder.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.get({
+     *     // GTM Folder's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folderId": "my_folderId",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.get
      * @memberOf! ()
      *
@@ -5187,9 +8057,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Folder>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Workspaces$Folders$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Folder>,
@@ -5203,10 +8082,17 @@ export namespace tagmanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Folders$Get
-        | BodyResponseCallback<Schema$Folder>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
-      callback?: BodyResponseCallback<Schema$Folder>
-    ): void | GaxiosPromise<Schema$Folder> {
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5240,7 +8126,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Folder>(parameters, callback);
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
       }
@@ -5249,6 +8138,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.list
      * @desc Lists all GTM Folders of a Container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "folder": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.list
      * @memberOf! ()
      *
@@ -5260,9 +8198,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Workspaces$Folders$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListFoldersResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Workspaces$Folders$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListFoldersResponse>,
@@ -5276,12 +8223,20 @@ export namespace tagmanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Folders$List
-        | BodyResponseCallback<Schema$ListFoldersResponse>,
+        | BodyResponseCallback<Schema$ListFoldersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListFoldersResponse>,
-      callback?: BodyResponseCallback<Schema$ListFoldersResponse>
-    ): void | GaxiosPromise<Schema$ListFoldersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFoldersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFoldersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFoldersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5315,7 +8270,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListFoldersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListFoldersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListFoldersResponse>(parameters);
       }
@@ -5324,6 +8282,68 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder
      * @desc Moves entities to a GTM Folder.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder(
+     *     {
+     *       // GTM Folder's API relative path.
+     *       // Example:
+     *       // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     *       path:
+     *         'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *       // The tags to be moved to the folder.
+     *       tagId: 'placeholder-value',
+     *       // The triggers to be moved to the folder.
+     *       triggerId: 'placeholder-value',
+     *       // The variables to be moved to the folder.
+     *       variableId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "accountId": "my_accountId",
+     *         //   "containerId": "my_containerId",
+     *         //   "fingerprint": "my_fingerprint",
+     *         //   "folderId": "my_folderId",
+     *         //   "name": "my_name",
+     *         //   "notes": "my_notes",
+     *         //   "path": "my_path",
+     *         //   "tagManagerUrl": "my_tagManagerUrl",
+     *         //   "workspaceId": "my_workspaceId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder
      * @memberOf! ()
      *
@@ -5332,15 +8352,24 @@ export namespace tagmanager_v2 {
      * @param {string=} params.tagId The tags to be moved to the folder.
      * @param {string=} params.triggerId The triggers to be moved to the folder.
      * @param {string=} params.variableId The variables to be moved to the folder.
-     * @param {().Folder} params.resource Request body data
+     * @param {().Folder} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     move_entities_to_folder(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    move_entities_to_folder(
       params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    move_entities_to_folder(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     move_entities_to_folder(
       params: Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -5354,10 +8383,15 @@ export namespace tagmanager_v2 {
     move_entities_to_folder(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5390,7 +8424,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -5399,6 +8436,52 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.revert
      * @desc Reverts changes to a GTM Folder in a GTM Workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.revert({
+     *     // When provided, this fingerprint must match the fingerprint of the tag
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Folder's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "folder": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.revert
      * @memberOf! ()
      *
@@ -5410,9 +8493,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Revert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    revert(
       params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Revert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RevertFolderResponse>;
+    revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Revert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     revert(
       params: Params$Resource$Accounts$Containers$Workspaces$Folders$Revert,
       options:
@@ -5428,12 +8520,20 @@ export namespace tagmanager_v2 {
     revert(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Folders$Revert
-        | BodyResponseCallback<Schema$RevertFolderResponse>,
+        | BodyResponseCallback<Schema$RevertFolderResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RevertFolderResponse>,
-      callback?: BodyResponseCallback<Schema$RevertFolderResponse>
-    ): void | GaxiosPromise<Schema$RevertFolderResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RevertFolderResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RevertFolderResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RevertFolderResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5467,7 +8567,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RevertFolderResponse>(parameters, callback);
+        createAPIRequest<Schema$RevertFolderResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RevertFolderResponse>(parameters);
       }
@@ -5476,21 +8579,100 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.folders.update
      * @desc Updates a GTM Folder.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.folders.update({
+     *     // When provided, this fingerprint must match the fingerprint of the folder in
+     *     // storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Folder's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "folderId": "my_folderId",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "folderId": "my_folderId",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.folders.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the folder in storage.
      * @param {string} params.path GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
-     * @param {().Folder} params.resource Request body data
+     * @param {().Folder} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Folder>;
+    update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Workspaces$Folders$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Folder>,
@@ -5504,10 +8686,17 @@ export namespace tagmanager_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Folders$Update
-        | BodyResponseCallback<Schema$Folder>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
-      callback?: BodyResponseCallback<Schema$Folder>
-    ): void | GaxiosPromise<Schema$Folder> {
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5541,7 +8730,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Folder>(parameters, callback);
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
       }
@@ -5550,11 +8742,6 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
@@ -5568,22 +8755,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Entities
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -5596,22 +8773,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -5623,11 +8790,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
@@ -5653,11 +8815,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Revert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * When provided, this fingerprint must match the fingerprint of the tag in storage.
      */
     fingerprint?: string;
@@ -5668,11 +8825,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the folder in storage.
      */
@@ -5697,20 +8849,130 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.tags.create
      * @desc Creates a GTM Tag.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.tags.create({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "blockingRuleId": [],
+     *       //   "blockingTriggerId": [],
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "firingRuleId": [],
+     *       //   "firingTriggerId": [],
+     *       //   "liveOnly": false,
+     *       //   "monitoringMetadata": {},
+     *       //   "monitoringMetadataTagNameKey": "my_monitoringMetadataTagNameKey",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "parameter": [],
+     *       //   "parentFolderId": "my_parentFolderId",
+     *       //   "path": "my_path",
+     *       //   "paused": false,
+     *       //   "priority": {},
+     *       //   "scheduleEndMs": "my_scheduleEndMs",
+     *       //   "scheduleStartMs": "my_scheduleStartMs",
+     *       //   "setupTag": [],
+     *       //   "tagFiringOption": "my_tagFiringOption",
+     *       //   "tagId": "my_tagId",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "teardownTag": [],
+     *       //   "type": "my_type",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "blockingRuleId": [],
+     *   //   "blockingTriggerId": [],
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "firingRuleId": [],
+     *   //   "firingTriggerId": [],
+     *   //   "liveOnly": false,
+     *   //   "monitoringMetadata": {},
+     *   //   "monitoringMetadataTagNameKey": "my_monitoringMetadataTagNameKey",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "paused": false,
+     *   //   "priority": {},
+     *   //   "scheduleEndMs": "my_scheduleEndMs",
+     *   //   "scheduleStartMs": "my_scheduleStartMs",
+     *   //   "setupTag": [],
+     *   //   "tagFiringOption": "my_tagFiringOption",
+     *   //   "tagId": "my_tagId",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "teardownTag": [],
+     *   //   "type": "my_type",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.tags.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Tag} params.resource Request body data
+     * @param {().Tag} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Tag>;
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Workspaces$Tags$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Tag>,
@@ -5724,10 +8986,17 @@ export namespace tagmanager_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Tags$Create
-        | BodyResponseCallback<Schema$Tag>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Tag>,
-      callback?: BodyResponseCallback<Schema$Tag>
-    ): void | GaxiosPromise<Schema$Tag> {
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Tag> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Tags$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5761,7 +9030,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Tag>(parameters, callback);
+        createAPIRequest<Schema$Tag>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
       }
@@ -5770,6 +9042,44 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.tags.delete
      * @desc Deletes a GTM Tag.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.tags.delete({
+     *     // GTM Tag's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.tags.delete
      * @memberOf! ()
      *
@@ -5780,9 +9090,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Workspaces$Tags$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -5796,10 +9115,15 @@ export namespace tagmanager_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Tags$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Tags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5833,7 +9157,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -5842,6 +9169,77 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.tags.get
      * @desc Gets a GTM Tag.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.tags.get({
+     *     // GTM Tag's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "blockingRuleId": [],
+     *   //   "blockingTriggerId": [],
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "firingRuleId": [],
+     *   //   "firingTriggerId": [],
+     *   //   "liveOnly": false,
+     *   //   "monitoringMetadata": {},
+     *   //   "monitoringMetadataTagNameKey": "my_monitoringMetadataTagNameKey",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "paused": false,
+     *   //   "priority": {},
+     *   //   "scheduleEndMs": "my_scheduleEndMs",
+     *   //   "scheduleStartMs": "my_scheduleStartMs",
+     *   //   "setupTag": [],
+     *   //   "tagFiringOption": "my_tagFiringOption",
+     *   //   "tagId": "my_tagId",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "teardownTag": [],
+     *   //   "type": "my_type",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.tags.get
      * @memberOf! ()
      *
@@ -5852,9 +9250,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Tag>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Workspaces$Tags$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Tag>,
@@ -5868,10 +9275,17 @@ export namespace tagmanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Tags$Get
-        | BodyResponseCallback<Schema$Tag>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Tag>,
-      callback?: BodyResponseCallback<Schema$Tag>
-    ): void | GaxiosPromise<Schema$Tag> {
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Tag> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Tags$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5905,7 +9319,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Tag>(parameters, callback);
+        createAPIRequest<Schema$Tag>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
       }
@@ -5914,6 +9331,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.tags.list
      * @desc Lists all GTM Tags of a Container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.tags.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tag": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.tags.list
      * @memberOf! ()
      *
@@ -5925,9 +9391,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Workspaces$Tags$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTagsResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Workspaces$Tags$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListTagsResponse>,
@@ -5941,12 +9416,17 @@ export namespace tagmanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Tags$List
-        | BodyResponseCallback<Schema$ListTagsResponse>,
+        | BodyResponseCallback<Schema$ListTagsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTagsResponse>,
-      callback?: BodyResponseCallback<Schema$ListTagsResponse>
-    ): void | GaxiosPromise<Schema$ListTagsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTagsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListTagsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Tags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5980,7 +9460,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTagsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTagsResponse>(parameters);
       }
@@ -5989,6 +9472,52 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.tags.revert
      * @desc Reverts changes to a GTM Tag in a GTM Workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.tags.revert({
+     *     // When provided, this fingerprint must match the fingerprint of thetag
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Tag's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "tag": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.tags.revert
      * @memberOf! ()
      *
@@ -6000,9 +9529,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Revert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    revert(
       params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Revert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RevertTagResponse>;
+    revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Revert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     revert(
       params: Params$Resource$Accounts$Containers$Workspaces$Tags$Revert,
       options: MethodOptions | BodyResponseCallback<Schema$RevertTagResponse>,
@@ -6016,12 +9554,20 @@ export namespace tagmanager_v2 {
     revert(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Tags$Revert
-        | BodyResponseCallback<Schema$RevertTagResponse>,
+        | BodyResponseCallback<Schema$RevertTagResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RevertTagResponse>,
-      callback?: BodyResponseCallback<Schema$RevertTagResponse>
-    ): void | GaxiosPromise<Schema$RevertTagResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RevertTagResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RevertTagResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RevertTagResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Tags$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6055,7 +9601,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RevertTagResponse>(parameters, callback);
+        createAPIRequest<Schema$RevertTagResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RevertTagResponse>(parameters);
       }
@@ -6064,21 +9613,134 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.tags.update
      * @desc Updates a GTM Tag.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.tags.update({
+     *     // When provided, this fingerprint must match the fingerprint of the tag in
+     *     // storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Tag's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "blockingRuleId": [],
+     *       //   "blockingTriggerId": [],
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "firingRuleId": [],
+     *       //   "firingTriggerId": [],
+     *       //   "liveOnly": false,
+     *       //   "monitoringMetadata": {},
+     *       //   "monitoringMetadataTagNameKey": "my_monitoringMetadataTagNameKey",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "parameter": [],
+     *       //   "parentFolderId": "my_parentFolderId",
+     *       //   "path": "my_path",
+     *       //   "paused": false,
+     *       //   "priority": {},
+     *       //   "scheduleEndMs": "my_scheduleEndMs",
+     *       //   "scheduleStartMs": "my_scheduleStartMs",
+     *       //   "setupTag": [],
+     *       //   "tagFiringOption": "my_tagFiringOption",
+     *       //   "tagId": "my_tagId",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "teardownTag": [],
+     *       //   "type": "my_type",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "blockingRuleId": [],
+     *   //   "blockingTriggerId": [],
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "firingRuleId": [],
+     *   //   "firingTriggerId": [],
+     *   //   "liveOnly": false,
+     *   //   "monitoringMetadata": {},
+     *   //   "monitoringMetadataTagNameKey": "my_monitoringMetadataTagNameKey",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "paused": false,
+     *   //   "priority": {},
+     *   //   "scheduleEndMs": "my_scheduleEndMs",
+     *   //   "scheduleStartMs": "my_scheduleStartMs",
+     *   //   "setupTag": [],
+     *   //   "tagFiringOption": "my_tagFiringOption",
+     *   //   "tagId": "my_tagId",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "teardownTag": [],
+     *   //   "type": "my_type",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.tags.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the tag in storage.
      * @param {string} params.path GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
-     * @param {().Tag} params.resource Request body data
+     * @param {().Tag} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Tag>;
+    update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Workspaces$Tags$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Tag>,
@@ -6092,10 +9754,17 @@ export namespace tagmanager_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Tags$Update
-        | BodyResponseCallback<Schema$Tag>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Tag>,
-      callback?: BodyResponseCallback<Schema$Tag>
-    ): void | GaxiosPromise<Schema$Tag> {
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Tag> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Tags$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6129,7 +9798,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Tag>(parameters, callback);
+        createAPIRequest<Schema$Tag>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
       }
@@ -6138,11 +9810,6 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
@@ -6156,11 +9823,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
      */
     path?: string;
@@ -6168,22 +9830,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -6196,11 +9848,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Revert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * When provided, this fingerprint must match the fingerprint of thetag in storage.
      */
     fingerprint?: string;
@@ -6211,11 +9858,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the tag in storage.
      */
@@ -6240,20 +9882,98 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.templates.create
      * @desc Creates a GTM Custom Template.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.templates.create({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "galleryReference": {},
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "templateData": "my_templateData",
+     *       //   "templateId": "my_templateId",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "galleryReference": {},
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "templateData": "my_templateData",
+     *   //   "templateId": "my_templateId",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.templates.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().CustomTemplate} params.resource Request body data
+     * @param {().CustomTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Workspaces$Templates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomTemplate>;
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Workspaces$Templates$Create,
       options: MethodOptions | BodyResponseCallback<Schema$CustomTemplate>,
@@ -6267,12 +9987,17 @@ export namespace tagmanager_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Templates$Create
-        | BodyResponseCallback<Schema$CustomTemplate>,
+        | BodyResponseCallback<Schema$CustomTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomTemplate>,
-      callback?: BodyResponseCallback<Schema$CustomTemplate>
-    ): void | GaxiosPromise<Schema$CustomTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomTemplate>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomTemplate> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Templates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6306,7 +10031,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomTemplate>(parameters, callback);
+        createAPIRequest<Schema$CustomTemplate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomTemplate>(parameters);
       }
@@ -6315,6 +10043,44 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.templates.delete
      * @desc Deletes a GTM Template.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.templates.delete({
+     *     // GTM Custom Template's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.templates.delete
      * @memberOf! ()
      *
@@ -6325,9 +10091,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Workspaces$Templates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Workspaces$Templates$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -6341,10 +10116,15 @@ export namespace tagmanager_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Templates$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Templates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6378,7 +10158,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -6387,6 +10170,61 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.templates.get
      * @desc Gets a GTM Template.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.templates.get({
+     *     // GTM Custom Template's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "galleryReference": {},
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "templateData": "my_templateData",
+     *   //   "templateId": "my_templateId",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.templates.get
      * @memberOf! ()
      *
@@ -6397,9 +10235,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Workspaces$Templates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomTemplate>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Workspaces$Templates$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CustomTemplate>,
@@ -6413,12 +10260,17 @@ export namespace tagmanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Templates$Get
-        | BodyResponseCallback<Schema$CustomTemplate>,
+        | BodyResponseCallback<Schema$CustomTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomTemplate>,
-      callback?: BodyResponseCallback<Schema$CustomTemplate>
-    ): void | GaxiosPromise<Schema$CustomTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomTemplate>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomTemplate> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Templates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6452,7 +10304,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomTemplate>(parameters, callback);
+        createAPIRequest<Schema$CustomTemplate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomTemplate>(parameters);
       }
@@ -6461,6 +10316,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.templates.list
      * @desc Lists all GTM Templates of a GTM container workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.templates.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "template": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.templates.list
      * @memberOf! ()
      *
@@ -6472,9 +10376,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Workspaces$Templates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTemplatesResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Workspaces$Templates$List,
       options:
@@ -6490,12 +10403,20 @@ export namespace tagmanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Templates$List
-        | BodyResponseCallback<Schema$ListTemplatesResponse>,
+        | BodyResponseCallback<Schema$ListTemplatesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTemplatesResponse>,
-      callback?: BodyResponseCallback<Schema$ListTemplatesResponse>
-    ): void | GaxiosPromise<Schema$ListTemplatesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTemplatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTemplatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTemplatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Templates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6529,7 +10450,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTemplatesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTemplatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTemplatesResponse>(parameters);
       }
@@ -6538,6 +10462,52 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.templates.revert
      * @desc Reverts changes to a GTM Template in a GTM Workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.templates.revert({
+     *     // When provided, this fingerprint must match the fingerprint of the template
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Custom Template's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "template": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.templates.revert
      * @memberOf! ()
      *
@@ -6549,9 +10519,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Revert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    revert(
       params?: Params$Resource$Accounts$Containers$Workspaces$Templates$Revert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RevertTemplateResponse>;
+    revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Revert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     revert(
       params: Params$Resource$Accounts$Containers$Workspaces$Templates$Revert,
       options:
@@ -6567,12 +10546,20 @@ export namespace tagmanager_v2 {
     revert(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Templates$Revert
-        | BodyResponseCallback<Schema$RevertTemplateResponse>,
+        | BodyResponseCallback<Schema$RevertTemplateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RevertTemplateResponse>,
-      callback?: BodyResponseCallback<Schema$RevertTemplateResponse>
-    ): void | GaxiosPromise<Schema$RevertTemplateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RevertTemplateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RevertTemplateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RevertTemplateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Templates$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6606,7 +10593,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RevertTemplateResponse>(parameters, callback);
+        createAPIRequest<Schema$RevertTemplateResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RevertTemplateResponse>(parameters);
       }
@@ -6615,21 +10605,102 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.templates.update
      * @desc Updates a GTM Template.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.templates.update({
+     *     // When provided, this fingerprint must match the fingerprint of the templates
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Custom Template's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "galleryReference": {},
+     *       //   "name": "my_name",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "templateData": "my_templateData",
+     *       //   "templateId": "my_templateId",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "galleryReference": {},
+     *   //   "name": "my_name",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "templateData": "my_templateData",
+     *   //   "templateId": "my_templateId",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.templates.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the templates in storage.
      * @param {string} params.path GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
-     * @param {().CustomTemplate} params.resource Request body data
+     * @param {().CustomTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Workspaces$Templates$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomTemplate>;
+    update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Templates$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Workspaces$Templates$Update,
       options: MethodOptions | BodyResponseCallback<Schema$CustomTemplate>,
@@ -6643,12 +10714,17 @@ export namespace tagmanager_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Templates$Update
-        | BodyResponseCallback<Schema$CustomTemplate>,
+        | BodyResponseCallback<Schema$CustomTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomTemplate>,
-      callback?: BodyResponseCallback<Schema$CustomTemplate>
-    ): void | GaxiosPromise<Schema$CustomTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomTemplate>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomTemplate> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Templates$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6682,7 +10758,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomTemplate>(parameters, callback);
+        createAPIRequest<Schema$CustomTemplate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomTemplate>(parameters);
       }
@@ -6691,11 +10770,6 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
@@ -6709,11 +10783,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
      */
     path?: string;
@@ -6721,22 +10790,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -6749,11 +10808,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Revert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * When provided, this fingerprint must match the fingerprint of the template in storage.
      */
     fingerprint?: string;
@@ -6764,11 +10818,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the templates in storage.
      */
@@ -6793,20 +10842,142 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.triggers.create
      * @desc Creates a GTM Trigger.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.triggers.create({
+     *     // GTM Workspaces's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "autoEventFilter": [],
+     *       //   "checkValidation": {},
+     *       //   "containerId": "my_containerId",
+     *       //   "continuousTimeMinMilliseconds": {},
+     *       //   "customEventFilter": [],
+     *       //   "eventName": {},
+     *       //   "filter": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "horizontalScrollPercentageList": {},
+     *       //   "interval": {},
+     *       //   "intervalSeconds": {},
+     *       //   "limit": {},
+     *       //   "maxTimerLengthSeconds": {},
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "parameter": [],
+     *       //   "parentFolderId": "my_parentFolderId",
+     *       //   "path": "my_path",
+     *       //   "selector": {},
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "totalTimeMinMilliseconds": {},
+     *       //   "triggerId": "my_triggerId",
+     *       //   "type": "my_type",
+     *       //   "uniqueTriggerId": {},
+     *       //   "verticalScrollPercentageList": {},
+     *       //   "visibilitySelector": {},
+     *       //   "visiblePercentageMax": {},
+     *       //   "visiblePercentageMin": {},
+     *       //   "waitForTags": {},
+     *       //   "waitForTagsTimeout": {},
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "autoEventFilter": [],
+     *   //   "checkValidation": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "continuousTimeMinMilliseconds": {},
+     *   //   "customEventFilter": [],
+     *   //   "eventName": {},
+     *   //   "filter": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "horizontalScrollPercentageList": {},
+     *   //   "interval": {},
+     *   //   "intervalSeconds": {},
+     *   //   "limit": {},
+     *   //   "maxTimerLengthSeconds": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "selector": {},
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "totalTimeMinMilliseconds": {},
+     *   //   "triggerId": "my_triggerId",
+     *   //   "type": "my_type",
+     *   //   "uniqueTriggerId": {},
+     *   //   "verticalScrollPercentageList": {},
+     *   //   "visibilitySelector": {},
+     *   //   "visiblePercentageMax": {},
+     *   //   "visiblePercentageMin": {},
+     *   //   "waitForTags": {},
+     *   //   "waitForTagsTimeout": {},
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.triggers.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Workspaces's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Trigger} params.resource Request body data
+     * @param {().Trigger} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Trigger>;
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Trigger>,
@@ -6820,10 +10991,17 @@ export namespace tagmanager_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Triggers$Create
-        | BodyResponseCallback<Schema$Trigger>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Trigger>,
-      callback?: BodyResponseCallback<Schema$Trigger>
-    ): void | GaxiosPromise<Schema$Trigger> {
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Trigger> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Triggers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6857,7 +11035,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Trigger>(parameters, callback);
+        createAPIRequest<Schema$Trigger>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
       }
@@ -6866,6 +11047,44 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.triggers.delete
      * @desc Deletes a GTM Trigger.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.triggers.delete({
+     *     // GTM Trigger's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.triggers.delete
      * @memberOf! ()
      *
@@ -6876,9 +11095,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -6892,10 +11120,15 @@ export namespace tagmanager_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6929,7 +11162,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -6938,6 +11174,83 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.triggers.get
      * @desc Gets a GTM Trigger.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.triggers.get({
+     *     // GTM Trigger's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "autoEventFilter": [],
+     *   //   "checkValidation": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "continuousTimeMinMilliseconds": {},
+     *   //   "customEventFilter": [],
+     *   //   "eventName": {},
+     *   //   "filter": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "horizontalScrollPercentageList": {},
+     *   //   "interval": {},
+     *   //   "intervalSeconds": {},
+     *   //   "limit": {},
+     *   //   "maxTimerLengthSeconds": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "selector": {},
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "totalTimeMinMilliseconds": {},
+     *   //   "triggerId": "my_triggerId",
+     *   //   "type": "my_type",
+     *   //   "uniqueTriggerId": {},
+     *   //   "verticalScrollPercentageList": {},
+     *   //   "visibilitySelector": {},
+     *   //   "visiblePercentageMax": {},
+     *   //   "visiblePercentageMin": {},
+     *   //   "waitForTags": {},
+     *   //   "waitForTagsTimeout": {},
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.triggers.get
      * @memberOf! ()
      *
@@ -6948,9 +11261,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Trigger>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Trigger>,
@@ -6964,10 +11286,17 @@ export namespace tagmanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Triggers$Get
-        | BodyResponseCallback<Schema$Trigger>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Trigger>,
-      callback?: BodyResponseCallback<Schema$Trigger>
-    ): void | GaxiosPromise<Schema$Trigger> {
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Trigger> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Triggers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7001,7 +11330,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Trigger>(parameters, callback);
+        createAPIRequest<Schema$Trigger>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
       }
@@ -7010,6 +11342,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.triggers.list
      * @desc Lists all GTM Triggers of a Container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.triggers.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Workspaces's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "trigger": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.triggers.list
      * @memberOf! ()
      *
@@ -7021,9 +11402,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTriggersResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Workspaces$Triggers$List,
       options:
@@ -7039,12 +11429,20 @@ export namespace tagmanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Triggers$List
-        | BodyResponseCallback<Schema$ListTriggersResponse>,
+        | BodyResponseCallback<Schema$ListTriggersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTriggersResponse>,
-      callback?: BodyResponseCallback<Schema$ListTriggersResponse>
-    ): void | GaxiosPromise<Schema$ListTriggersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTriggersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTriggersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTriggersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Triggers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7078,7 +11476,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTriggersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTriggersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTriggersResponse>(parameters);
       }
@@ -7087,6 +11488,52 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.triggers.revert
      * @desc Reverts changes to a GTM Trigger in a GTM Workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.triggers.revert({
+     *     // When provided, this fingerprint must match the fingerprint of the trigger
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Trigger's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "trigger": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.triggers.revert
      * @memberOf! ()
      *
@@ -7098,9 +11545,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    revert(
       params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RevertTriggerResponse>;
+    revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     revert(
       params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert,
       options:
@@ -7116,12 +11572,20 @@ export namespace tagmanager_v2 {
     revert(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert
-        | BodyResponseCallback<Schema$RevertTriggerResponse>,
+        | BodyResponseCallback<Schema$RevertTriggerResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RevertTriggerResponse>,
-      callback?: BodyResponseCallback<Schema$RevertTriggerResponse>
-    ): void | GaxiosPromise<Schema$RevertTriggerResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RevertTriggerResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RevertTriggerResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RevertTriggerResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7155,7 +11619,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RevertTriggerResponse>(parameters, callback);
+        createAPIRequest<Schema$RevertTriggerResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RevertTriggerResponse>(parameters);
       }
@@ -7164,21 +11631,146 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.triggers.update
      * @desc Updates a GTM Trigger.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.triggers.update({
+     *     // When provided, this fingerprint must match the fingerprint of the trigger
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Trigger's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "autoEventFilter": [],
+     *       //   "checkValidation": {},
+     *       //   "containerId": "my_containerId",
+     *       //   "continuousTimeMinMilliseconds": {},
+     *       //   "customEventFilter": [],
+     *       //   "eventName": {},
+     *       //   "filter": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "horizontalScrollPercentageList": {},
+     *       //   "interval": {},
+     *       //   "intervalSeconds": {},
+     *       //   "limit": {},
+     *       //   "maxTimerLengthSeconds": {},
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "parameter": [],
+     *       //   "parentFolderId": "my_parentFolderId",
+     *       //   "path": "my_path",
+     *       //   "selector": {},
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "totalTimeMinMilliseconds": {},
+     *       //   "triggerId": "my_triggerId",
+     *       //   "type": "my_type",
+     *       //   "uniqueTriggerId": {},
+     *       //   "verticalScrollPercentageList": {},
+     *       //   "visibilitySelector": {},
+     *       //   "visiblePercentageMax": {},
+     *       //   "visiblePercentageMin": {},
+     *       //   "waitForTags": {},
+     *       //   "waitForTagsTimeout": {},
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "autoEventFilter": [],
+     *   //   "checkValidation": {},
+     *   //   "containerId": "my_containerId",
+     *   //   "continuousTimeMinMilliseconds": {},
+     *   //   "customEventFilter": [],
+     *   //   "eventName": {},
+     *   //   "filter": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "horizontalScrollPercentageList": {},
+     *   //   "interval": {},
+     *   //   "intervalSeconds": {},
+     *   //   "limit": {},
+     *   //   "maxTimerLengthSeconds": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "selector": {},
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "totalTimeMinMilliseconds": {},
+     *   //   "triggerId": "my_triggerId",
+     *   //   "type": "my_type",
+     *   //   "uniqueTriggerId": {},
+     *   //   "verticalScrollPercentageList": {},
+     *   //   "visibilitySelector": {},
+     *   //   "visiblePercentageMax": {},
+     *   //   "visiblePercentageMin": {},
+     *   //   "waitForTags": {},
+     *   //   "waitForTagsTimeout": {},
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.triggers.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the trigger in storage.
      * @param {string} params.path GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
-     * @param {().Trigger} params.resource Request body data
+     * @param {().Trigger} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Trigger>;
+    update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Trigger>,
@@ -7192,10 +11784,17 @@ export namespace tagmanager_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Triggers$Update
-        | BodyResponseCallback<Schema$Trigger>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Trigger>,
-      callback?: BodyResponseCallback<Schema$Trigger>
-    ): void | GaxiosPromise<Schema$Trigger> {
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Trigger> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Triggers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7229,7 +11828,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Trigger>(parameters, callback);
+        createAPIRequest<Schema$Trigger>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
       }
@@ -7238,11 +11840,6 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Workspaces's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
@@ -7256,11 +11853,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
      */
     path?: string;
@@ -7268,22 +11860,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -7296,11 +11878,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * When provided, this fingerprint must match the fingerprint of the trigger in storage.
      */
     fingerprint?: string;
@@ -7311,11 +11888,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the trigger in storage.
      */
@@ -7340,20 +11912,112 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.variables.create
      * @desc Creates a GTM Variable.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.variables.create({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "disablingTriggerId": [],
+     *       //   "enablingTriggerId": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "formatValue": {},
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "parameter": [],
+     *       //   "parentFolderId": "my_parentFolderId",
+     *       //   "path": "my_path",
+     *       //   "scheduleEndMs": "my_scheduleEndMs",
+     *       //   "scheduleStartMs": "my_scheduleStartMs",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "type": "my_type",
+     *       //   "variableId": "my_variableId",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "disablingTriggerId": [],
+     *   //   "enablingTriggerId": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "formatValue": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "scheduleEndMs": "my_scheduleEndMs",
+     *   //   "scheduleStartMs": "my_scheduleStartMs",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "variableId": "my_variableId",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.variables.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Variable} params.resource Request body data
+     * @param {().Variable} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Workspaces$Variables$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Variable>;
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Workspaces$Variables$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Variable>,
@@ -7367,10 +12031,17 @@ export namespace tagmanager_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Variables$Create
-        | BodyResponseCallback<Schema$Variable>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variable>,
-      callback?: BodyResponseCallback<Schema$Variable>
-    ): void | GaxiosPromise<Schema$Variable> {
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Variable> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Variables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7404,7 +12075,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Variable>(parameters, callback);
+        createAPIRequest<Schema$Variable>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
       }
@@ -7413,6 +12087,44 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.variables.delete
      * @desc Deletes a GTM Variable.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.variables.delete({
+     *     // GTM Variable's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.variables.delete
      * @memberOf! ()
      *
@@ -7423,9 +12135,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Workspaces$Variables$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Workspaces$Variables$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -7439,10 +12160,15 @@ export namespace tagmanager_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Variables$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Variables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7476,7 +12202,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -7485,6 +12214,68 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.variables.get
      * @desc Gets a GTM Variable.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.variables.get({
+     *     // GTM Variable's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "disablingTriggerId": [],
+     *   //   "enablingTriggerId": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "formatValue": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "scheduleEndMs": "my_scheduleEndMs",
+     *   //   "scheduleStartMs": "my_scheduleStartMs",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "variableId": "my_variableId",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.variables.get
      * @memberOf! ()
      *
@@ -7495,9 +12286,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Workspaces$Variables$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Variable>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Workspaces$Variables$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Variable>,
@@ -7511,10 +12311,17 @@ export namespace tagmanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Variables$Get
-        | BodyResponseCallback<Schema$Variable>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variable>,
-      callback?: BodyResponseCallback<Schema$Variable>
-    ): void | GaxiosPromise<Schema$Variable> {
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Variable> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Variables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7548,7 +12355,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Variable>(parameters, callback);
+        createAPIRequest<Schema$Variable>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
       }
@@ -7557,6 +12367,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.variables.list
      * @desc Lists all GTM Variables of a Container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.variables.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "variable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.variables.list
      * @memberOf! ()
      *
@@ -7568,9 +12427,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Workspaces$Variables$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListVariablesResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Workspaces$Variables$List,
       options:
@@ -7586,12 +12454,20 @@ export namespace tagmanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Variables$List
-        | BodyResponseCallback<Schema$ListVariablesResponse>,
+        | BodyResponseCallback<Schema$ListVariablesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListVariablesResponse>,
-      callback?: BodyResponseCallback<Schema$ListVariablesResponse>
-    ): void | GaxiosPromise<Schema$ListVariablesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVariablesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVariablesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListVariablesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Variables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7625,7 +12501,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListVariablesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListVariablesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListVariablesResponse>(parameters);
       }
@@ -7634,6 +12513,52 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.variables.revert
      * @desc Reverts changes to a GTM Variable in a GTM Workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.variables.revert({
+     *     // When provided, this fingerprint must match the fingerprint of the variable
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Variable's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "variable": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.variables.revert
      * @memberOf! ()
      *
@@ -7645,9 +12570,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Revert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    revert(
       params?: Params$Resource$Accounts$Containers$Workspaces$Variables$Revert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RevertVariableResponse>;
+    revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Revert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     revert(
       params: Params$Resource$Accounts$Containers$Workspaces$Variables$Revert,
       options:
@@ -7663,12 +12597,20 @@ export namespace tagmanager_v2 {
     revert(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Variables$Revert
-        | BodyResponseCallback<Schema$RevertVariableResponse>,
+        | BodyResponseCallback<Schema$RevertVariableResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RevertVariableResponse>,
-      callback?: BodyResponseCallback<Schema$RevertVariableResponse>
-    ): void | GaxiosPromise<Schema$RevertVariableResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RevertVariableResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RevertVariableResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RevertVariableResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Variables$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7702,7 +12644,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RevertVariableResponse>(parameters, callback);
+        createAPIRequest<Schema$RevertVariableResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RevertVariableResponse>(parameters);
       }
@@ -7711,21 +12656,116 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.variables.update
      * @desc Updates a GTM Variable.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.variables.update({
+     *     // When provided, this fingerprint must match the fingerprint of the variable
+     *     // in storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Variable's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "containerId": "my_containerId",
+     *       //   "disablingTriggerId": [],
+     *       //   "enablingTriggerId": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "formatValue": {},
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "parameter": [],
+     *       //   "parentFolderId": "my_parentFolderId",
+     *       //   "path": "my_path",
+     *       //   "scheduleEndMs": "my_scheduleEndMs",
+     *       //   "scheduleStartMs": "my_scheduleStartMs",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "type": "my_type",
+     *       //   "variableId": "my_variableId",
+     *       //   "workspaceId": "my_workspaceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "disablingTriggerId": [],
+     *   //   "enablingTriggerId": [],
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "formatValue": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "scheduleEndMs": "my_scheduleEndMs",
+     *   //   "scheduleStartMs": "my_scheduleStartMs",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "type": "my_type",
+     *   //   "variableId": "my_variableId",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.variables.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the variable in storage.
      * @param {string} params.path GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
-     * @param {().Variable} params.resource Request body data
+     * @param {().Variable} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Workspaces$Variables$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Variable>;
+    update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Workspaces$Variables$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Variable>,
@@ -7739,10 +12779,17 @@ export namespace tagmanager_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Variables$Update
-        | BodyResponseCallback<Schema$Variable>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variable>,
-      callback?: BodyResponseCallback<Schema$Variable>
-    ): void | GaxiosPromise<Schema$Variable> {
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Variable> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Variables$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7776,7 +12823,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Variable>(parameters, callback);
+        createAPIRequest<Schema$Variable>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
       }
@@ -7785,11 +12835,6 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
@@ -7803,11 +12848,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
      */
     path?: string;
@@ -7815,22 +12855,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -7843,11 +12873,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Revert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * When provided, this fingerprint must match the fingerprint of the variable in storage.
      */
     fingerprint?: string;
@@ -7858,11 +12883,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the variable in storage.
      */
@@ -7887,20 +12907,102 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.zones.create
      * @desc Creates a GTM Zone.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.zones.create({
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "boundary": {},
+     *       //   "childContainer": [],
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "typeRestriction": {},
+     *       //   "workspaceId": "my_workspaceId",
+     *       //   "zoneId": "my_zoneId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "boundary": {},
+     *   //   "childContainer": [],
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "typeRestriction": {},
+     *   //   "workspaceId": "my_workspaceId",
+     *   //   "zoneId": "my_zoneId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.zones.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Zone} params.resource Request body data
+     * @param {().Zone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Zone>;
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Workspaces$Zones$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Zone>,
@@ -7914,10 +13016,17 @@ export namespace tagmanager_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Zones$Create
-        | BodyResponseCallback<Schema$Zone>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Zone>,
-      callback?: BodyResponseCallback<Schema$Zone>
-    ): void | GaxiosPromise<Schema$Zone> {
+        | BodyResponseCallback<Schema$Zone>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Zone>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Zone>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Zone> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Zones$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7951,7 +13060,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Zone>(parameters, callback);
+        createAPIRequest<Schema$Zone>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Zone>(parameters);
       }
@@ -7960,6 +13072,44 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.zones.delete
      * @desc Deletes a GTM Zone.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.zones.delete({
+     *     // GTM Zone's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.zones.delete
      * @memberOf! ()
      *
@@ -7970,9 +13120,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Workspaces$Zones$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -7986,10 +13145,15 @@ export namespace tagmanager_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Zones$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Zones$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8023,7 +13187,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -8032,6 +13199,63 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.zones.get
      * @desc Gets a GTM Zone.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.zones.get({
+     *     // GTM Zone's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "boundary": {},
+     *   //   "childContainer": [],
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "typeRestriction": {},
+     *   //   "workspaceId": "my_workspaceId",
+     *   //   "zoneId": "my_zoneId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.zones.get
      * @memberOf! ()
      *
@@ -8042,9 +13266,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Zone>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Workspaces$Zones$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Zone>,
@@ -8058,10 +13291,17 @@ export namespace tagmanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Zones$Get
-        | BodyResponseCallback<Schema$Zone>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Zone>,
-      callback?: BodyResponseCallback<Schema$Zone>
-    ): void | GaxiosPromise<Schema$Zone> {
+        | BodyResponseCallback<Schema$Zone>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Zone>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Zone>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Zone> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Zones$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8095,7 +13335,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Zone>(parameters, callback);
+        createAPIRequest<Schema$Zone>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Zone>(parameters);
       }
@@ -8104,6 +13347,55 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.zones.list
      * @desc Lists all GTM Zones of a GTM container workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.zones.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Workspace's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     *     parent:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "zone": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.zones.list
      * @memberOf! ()
      *
@@ -8115,9 +13407,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Workspaces$Zones$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListZonesResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Workspaces$Zones$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListZonesResponse>,
@@ -8131,12 +13432,20 @@ export namespace tagmanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Zones$List
-        | BodyResponseCallback<Schema$ListZonesResponse>,
+        | BodyResponseCallback<Schema$ListZonesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListZonesResponse>,
-      callback?: BodyResponseCallback<Schema$ListZonesResponse>
-    ): void | GaxiosPromise<Schema$ListZonesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListZonesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListZonesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListZonesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Zones$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8170,7 +13479,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListZonesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListZonesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListZonesResponse>(parameters);
       }
@@ -8179,6 +13491,52 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.zones.revert
      * @desc Reverts changes to a GTM Zone in a GTM Workspace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.zones.revert({
+     *     // When provided, this fingerprint must match the fingerprint of the zone in
+     *     // storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Zone's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "zone": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.zones.revert
      * @memberOf! ()
      *
@@ -8190,9 +13548,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Revert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    revert(
       params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Revert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RevertZoneResponse>;
+    revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Revert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     revert(
       params: Params$Resource$Accounts$Containers$Workspaces$Zones$Revert,
       options: MethodOptions | BodyResponseCallback<Schema$RevertZoneResponse>,
@@ -8206,12 +13573,20 @@ export namespace tagmanager_v2 {
     revert(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Zones$Revert
-        | BodyResponseCallback<Schema$RevertZoneResponse>,
+        | BodyResponseCallback<Schema$RevertZoneResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RevertZoneResponse>,
-      callback?: BodyResponseCallback<Schema$RevertZoneResponse>
-    ): void | GaxiosPromise<Schema$RevertZoneResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RevertZoneResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RevertZoneResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RevertZoneResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Zones$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8245,7 +13620,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RevertZoneResponse>(parameters, callback);
+        createAPIRequest<Schema$RevertZoneResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RevertZoneResponse>(parameters);
       }
@@ -8254,21 +13632,106 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.containers.workspaces.zones.update
      * @desc Updates a GTM Zone.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.containers.workspaces.zones.update({
+     *     // When provided, this fingerprint must match the fingerprint of the zone in
+     *     // storage.
+     *     fingerprint: 'placeholder-value',
+     *     // GTM Zone's API relative path.
+     *     // Example:
+     *     // accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     *     path:
+     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "boundary": {},
+     *       //   "childContainer": [],
+     *       //   "containerId": "my_containerId",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "path": "my_path",
+     *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "typeRestriction": {},
+     *       //   "workspaceId": "my_workspaceId",
+     *       //   "zoneId": "my_zoneId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "boundary": {},
+     *   //   "childContainer": [],
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "typeRestriction": {},
+     *   //   "workspaceId": "my_workspaceId",
+     *   //   "zoneId": "my_zoneId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.containers.workspaces.zones.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the zone in storage.
      * @param {string} params.path GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
-     * @param {().Zone} params.resource Request body data
+     * @param {().Zone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Zone>;
+    update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Workspaces$Zones$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Zone>,
@@ -8282,10 +13745,17 @@ export namespace tagmanager_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Workspaces$Zones$Update
-        | BodyResponseCallback<Schema$Zone>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Zone>,
-      callback?: BodyResponseCallback<Schema$Zone>
-    ): void | GaxiosPromise<Schema$Zone> {
+        | BodyResponseCallback<Schema$Zone>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Zone>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Zone>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Zone> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Workspaces$Zones$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8319,7 +13789,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Zone>(parameters, callback);
+        createAPIRequest<Schema$Zone>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Zone>(parameters);
       }
@@ -8328,11 +13801,6 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
@@ -8346,11 +13814,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
      */
     path?: string;
@@ -8358,22 +13821,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -8386,11 +13839,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Revert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * When provided, this fingerprint must match the fingerprint of the zone in storage.
      */
     fingerprint?: string;
@@ -8401,11 +13849,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the zone in storage.
      */
@@ -8430,20 +13873,86 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.user_permissions.create
      * @desc Creates a user's Account & Container access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.user_permissions.create({
+     *     // GTM Account's API relative path.
+     *     // Example: accounts/{account_id}
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountAccess": {},
+     *       //   "accountId": "my_accountId",
+     *       //   "containerAccess": [],
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "path": "my_path"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountAccess": {},
+     *   //   "accountId": "my_accountId",
+     *   //   "containerAccess": [],
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.user_permissions.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Account's API relative path. Example: accounts/{account_id}
-     * @param {().UserPermission} params.resource Request body data
+     * @param {().UserPermission} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$User_permissions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$User_permissions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UserPermission>;
+    create(
+      params: Params$Resource$Accounts$User_permissions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$User_permissions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$UserPermission>,
@@ -8457,12 +13966,17 @@ export namespace tagmanager_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$User_permissions$Create
-        | BodyResponseCallback<Schema$UserPermission>,
+        | BodyResponseCallback<Schema$UserPermission>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UserPermission>,
-      callback?: BodyResponseCallback<Schema$UserPermission>
-    ): void | GaxiosPromise<Schema$UserPermission> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserPermission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserPermission>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UserPermission> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$User_permissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8495,7 +14009,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UserPermission>(parameters, callback);
+        createAPIRequest<Schema$UserPermission>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UserPermission>(parameters);
       }
@@ -8504,6 +14021,42 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.user_permissions.delete
      * @desc Removes a user from the account, revoking access to it and all of its containers.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.user_permissions.delete({
+     *     // GTM UserPermission's API relative path.
+     *     // Example: accounts/{account_id}/user_permissions/{user_permission_id}
+     *     path: 'accounts/my-account/user_permissions/my-user_permission',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.user_permissions.delete
      * @memberOf! ()
      *
@@ -8514,9 +14067,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$User_permissions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$User_permissions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$User_permissions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$User_permissions$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -8530,10 +14092,15 @@ export namespace tagmanager_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$User_permissions$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$User_permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8567,7 +14134,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -8576,6 +14146,51 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.user_permissions.get
      * @desc Gets a user's Account & Container access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.user_permissions.get({
+     *     // GTM UserPermission's API relative path.
+     *     // Example: accounts/{account_id}/user_permissions/{user_permission_id}
+     *     path: 'accounts/my-account/user_permissions/my-user_permission',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountAccess": {},
+     *   //   "accountId": "my_accountId",
+     *   //   "containerAccess": [],
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.user_permissions.get
      * @memberOf! ()
      *
@@ -8586,9 +14201,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$User_permissions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$User_permissions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UserPermission>;
+    get(
+      params: Params$Resource$Accounts$User_permissions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$User_permissions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$UserPermission>,
@@ -8602,12 +14226,17 @@ export namespace tagmanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$User_permissions$Get
-        | BodyResponseCallback<Schema$UserPermission>,
+        | BodyResponseCallback<Schema$UserPermission>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UserPermission>,
-      callback?: BodyResponseCallback<Schema$UserPermission>
-    ): void | GaxiosPromise<Schema$UserPermission> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserPermission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserPermission>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UserPermission> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$User_permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8641,7 +14270,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UserPermission>(parameters, callback);
+        createAPIRequest<Schema$UserPermission>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UserPermission>(parameters);
       }
@@ -8650,6 +14282,50 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.user_permissions.list
      * @desc List all users that have access to the account along with Account and Container user access granted to each of them.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.user_permissions.list({
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // GTM Accounts's API relative path.
+     *     // Example: accounts/{account_id}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userPermission": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.user_permissions.list
      * @memberOf! ()
      *
@@ -8661,9 +14337,18 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$User_permissions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$User_permissions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListUserPermissionsResponse>;
+    list(
+      params: Params$Resource$Accounts$User_permissions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$User_permissions$List,
       options:
@@ -8681,12 +14366,20 @@ export namespace tagmanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$User_permissions$List
-        | BodyResponseCallback<Schema$ListUserPermissionsResponse>,
+        | BodyResponseCallback<Schema$ListUserPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListUserPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListUserPermissionsResponse>
-    ): void | GaxiosPromise<Schema$ListUserPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUserPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUserPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUserPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$User_permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8721,7 +14414,7 @@ export namespace tagmanager_v2 {
       if (callback) {
         createAPIRequest<Schema$ListUserPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListUserPermissionsResponse>(parameters);
@@ -8731,20 +14424,86 @@ export namespace tagmanager_v2 {
     /**
      * tagmanager.accounts.user_permissions.update
      * @desc Updates a user's Account & Container access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tagmanager.accounts.user_permissions.update({
+     *     // GTM UserPermission's API relative path.
+     *     // Example: accounts/{account_id}/user_permissions/{user_permission_id}
+     *     path: 'accounts/my-account/user_permissions/my-user_permission',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountAccess": {},
+     *       //   "accountId": "my_accountId",
+     *       //   "containerAccess": [],
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "path": "my_path"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountAccess": {},
+     *   //   "accountId": "my_accountId",
+     *   //   "containerAccess": [],
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias tagmanager.accounts.user_permissions.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.path GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}
-     * @param {().UserPermission} params.resource Request body data
+     * @param {().UserPermission} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$User_permissions$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$User_permissions$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UserPermission>;
+    update(
+      params: Params$Resource$Accounts$User_permissions$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$User_permissions$Update,
       options: MethodOptions | BodyResponseCallback<Schema$UserPermission>,
@@ -8758,12 +14517,17 @@ export namespace tagmanager_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$User_permissions$Update
-        | BodyResponseCallback<Schema$UserPermission>,
+        | BodyResponseCallback<Schema$UserPermission>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UserPermission>,
-      callback?: BodyResponseCallback<Schema$UserPermission>
-    ): void | GaxiosPromise<Schema$UserPermission> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserPermission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserPermission>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UserPermission> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$User_permissions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8797,7 +14561,10 @@ export namespace tagmanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UserPermission>(parameters, callback);
+        createAPIRequest<Schema$UserPermission>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UserPermission>(parameters);
       }
@@ -8806,11 +14573,6 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$User_permissions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Account's API relative path. Example: accounts/{account_id}
      */
@@ -8824,11 +14586,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$User_permissions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}
      */
     path?: string;
@@ -8836,22 +14593,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$User_permissions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$User_permissions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -8863,11 +14610,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$User_permissions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}
      */

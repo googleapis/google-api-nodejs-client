@@ -31,11 +31,6 @@
     {% if r.methods %}
       {% for mname, m in r.methods|dictsort %}
         export interface Params${{ClassName}}${{ mname|camelify|capitalize }} extends StandardParameters {
-          /**
-           * Auth client or API Key for the request
-           */
-          auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
           {% if m.parameters %}
             {% for pname, p in m.parameters|dictsort %}
               /**
@@ -45,11 +40,16 @@
             {% endfor %}
           {% endif %}
 
-           {% if m.request %}
+          {% if m.request %}
             /**
               * Request body metadata
               */
             requestBody?: Schema${{ m.request.$ref }};
+          {% elif m.supportsMediaUpload and m.mediaUpload.protocols.simple.multipart %}
+            /**
+              * Request body metadata
+              */
+            requestBody?: {};
           {% endif %}
 
           {% if m.supportsMediaUpload %}

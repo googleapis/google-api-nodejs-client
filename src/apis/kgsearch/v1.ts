@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace kgsearch_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace kgsearch_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -144,6 +154,65 @@ export namespace kgsearch_v1 {
     /**
      * kgsearch.entities.search
      * @desc Searches Knowledge Graph for entities that match the constraints. A list of matched entities will be returned in response, which will be in JSON-LD format and compatible with http://schema.org
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/kgsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const kgsearch = google.kgsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await kgsearch.entities.search({
+     *     // The list of entity id to be used for search instead of query string.
+     *     // To specify multiple ids in the HTTP request, repeat the parameter in the
+     *     // URL as in ...?ids=A&ids=B
+     *     ids: 'placeholder-value',
+     *     // Enables indenting of json results.
+     *     indent: 'placeholder-value',
+     *     // The list of language codes (defined in ISO 693) to run the query with,
+     *     // e.g. 'en'.
+     *     languages: 'placeholder-value',
+     *     // Limits the number of entities to be returned.
+     *     limit: 'placeholder-value',
+     *     // Enables prefix match against names and aliases of entities
+     *     prefix: 'placeholder-value',
+     *     // The literal query string for search.
+     *     query: 'placeholder-value',
+     *     // Restricts returned entities with these types, e.g. Person
+     *     // (as defined in http://schema.org/Person). If multiple types are specified,
+     *     // returned entities will contain one or more of these types.
+     *     types: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "@context": {},
+     *   //   "@type": {},
+     *   //   "itemListElement": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias kgsearch.entities.search
      * @memberOf! ()
      *
@@ -160,9 +229,18 @@ export namespace kgsearch_v1 {
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Entities$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Entities$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchResponse>;
+    search(
+      params: Params$Resource$Entities$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Entities$Search,
       options: MethodOptions | BodyResponseCallback<Schema$SearchResponse>,
@@ -176,12 +254,17 @@ export namespace kgsearch_v1 {
     search(
       paramsOrCallback?:
         | Params$Resource$Entities$Search
-        | BodyResponseCallback<Schema$SearchResponse>,
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchResponse>,
-      callback?: BodyResponseCallback<Schema$SearchResponse>
-    ): void | GaxiosPromise<Schema$SearchResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SearchResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entities$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -214,7 +297,10 @@ export namespace kgsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SearchResponse>(parameters, callback);
+        createAPIRequest<Schema$SearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SearchResponse>(parameters);
       }
@@ -222,11 +308,6 @@ export namespace kgsearch_v1 {
   }
 
   export interface Params$Resource$Entities$Search extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The list of entity id to be used for search instead of query string. To specify multiple ids in the HTTP request, repeat the parameter in the URL as in ...?ids=A&ids=B
      */

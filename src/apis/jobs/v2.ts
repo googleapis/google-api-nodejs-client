@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace jobs_v2 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace jobs_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1220,6 +1230,15 @@ export namespace jobs_v2 {
     searchTextSnippet?: string | null;
   }
   /**
+   * Message representing input to a Mendel server for debug forcing. See go/mendel-debug-forcing for more details. Next ID: 2
+   */
+  export interface Schema$MendelDebugInput {
+    /**
+     * When a request spans multiple servers, a MendelDebugInput may travel with the request and take effect in all the servers. This field is a map of namespaces to NamespacedMendelDebugInput protos. In a single server, up to two NamespacedMendelDebugInput protos are applied: 1. NamespacedMendelDebugInput with the global namespace (key == &quot;&quot;). 2. NamespacedMendelDebugInput with the server&#39;s namespace. When both NamespacedMendelDebugInput protos are present, they are merged. See go/mendel-debug-forcing for more details.
+     */
+    namespacedDebugInput?: {[key: string]: Schema$NamespacedDebugInput} | null;
+  }
+  /**
    * Represents an amount of money with its currency type.
    */
   export interface Schema$Money {
@@ -1235,6 +1254,67 @@ export namespace jobs_v2 {
      * The whole units of the amount. For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+  /**
+   * Next ID: 15
+   */
+  export interface Schema$NamespacedDebugInput {
+    /**
+     * Set of experiment names to be absolutely forced. These experiments will be forced without evaluating the conditions.
+     */
+    absolutelyForcedExpNames?: string[] | null;
+    /**
+     * Set of experiment ids to be absolutely forced. These ids will be forced without evaluating the conditions.
+     */
+    absolutelyForcedExps?: number[] | null;
+    /**
+     * Set of experiment tags to be absolutely forced. The experiments with these tags will be forced without evaluating the conditions.
+     */
+    absolutelyForcedExpTags?: string[] | null;
+    /**
+     * Set of experiment names to be conditionally forced. These experiments will be forced only if their conditions and their parent domain&#39;s conditions are true.
+     */
+    conditionallyForcedExpNames?: string[] | null;
+    /**
+     * Set of experiment ids to be conditionally forced. These ids will be forced only if their conditions and their parent domain&#39;s conditions are true.
+     */
+    conditionallyForcedExps?: number[] | null;
+    /**
+     * Set of experiment tags to be conditionally forced. The experiments with these tags will be forced only if their conditions and their parent domain&#39;s conditions are true.
+     */
+    conditionallyForcedExpTags?: string[] | null;
+    /**
+     * If true, disable automatic enrollment selection (at all diversion points). Automatic enrollment selection means experiment selection process based on the experiment&#39;s automatic enrollment condition. This does not disable selection of forced experiments.
+     */
+    disableAutomaticEnrollmentSelection?: boolean | null;
+    /**
+     * Set of experiment names to be disabled. If an experiment is disabled, it is never selected nor forced. If an aggregate experiment is disabled, its partitions are disabled together. If an experiment with an enrollment is disabled, the enrollment is disabled together. If a name corresponds to a domain, the domain itself and all descendant experiments and domains are disabled together.
+     */
+    disableExpNames?: string[] | null;
+    /**
+     * Set of experiment ids to be disabled. If an experiment is disabled, it is never selected nor forced. If an aggregate experiment is disabled, its partitions are disabled together. If an experiment with an enrollment is disabled, the enrollment is disabled together. If an ID corresponds to a domain, the domain itself and all descendant experiments and domains are disabled together.
+     */
+    disableExps?: number[] | null;
+    /**
+     * Set of experiment tags to be disabled. All experiments that are tagged with one or more of these tags are disabled. If an experiment is disabled, it is never selected nor forced. If an aggregate experiment is disabled, its partitions are disabled together. If an experiment with an enrollment is disabled, the enrollment is disabled together.
+     */
+    disableExpTags?: string[] | null;
+    /**
+     * If true, disable manual enrollment selection (at all diversion points). Manual enrollment selection means experiment selection process based on the request&#39;s manual enrollment states (a.k.a. opt-in experiments). This does not disable selection of forced experiments.
+     */
+    disableManualEnrollmentSelection?: boolean | null;
+    /**
+     * If true, disable organic experiment selection (at all diversion points). Organic selection means experiment selection process based on traffic allocation and diversion condition evaluation. This does not disable selection of forced experiments.  This is useful in cases when it is not known whether experiment selection behavior is responsible for a error or breakage. Disabling organic selection may help to isolate the cause of a given problem.
+     */
+    disableOrganicSelection?: boolean | null;
+    /**
+     * Flags to force in a particular experiment state. Map from flag name to flag value.
+     */
+    forcedFlags?: {[key: string]: string} | null;
+    /**
+     * Rollouts to force in a particular experiment state. Map from rollout name to rollout value.
+     */
+    forcedRollouts?: {[key: string]: boolean} | null;
   }
   /**
    * Input only.  Use this field to specify bucketing option for the histogram search response.
@@ -1518,19 +1598,110 @@ export namespace jobs_v2 {
     /**
      * jobs.companies.create
      * @desc Creates a new company entity.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.companies.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "careerPageLink": "my_careerPageLink",
+     *       //   "companyInfoSources": [],
+     *       //   "companySize": "my_companySize",
+     *       //   "disableLocationOptimization": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "distributorBillingCompanyId": "my_distributorBillingCompanyId",
+     *       //   "distributorCompanyId": "my_distributorCompanyId",
+     *       //   "eeoText": "my_eeoText",
+     *       //   "hiringAgency": false,
+     *       //   "hqLocation": "my_hqLocation",
+     *       //   "imageUrl": "my_imageUrl",
+     *       //   "keywordSearchableCustomAttributes": [],
+     *       //   "keywordSearchableCustomFields": [],
+     *       //   "name": "my_name",
+     *       //   "structuredCompanyHqLocation": {},
+     *       //   "suspended": false,
+     *       //   "title": "my_title",
+     *       //   "website": "my_website"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "careerPageLink": "my_careerPageLink",
+     *   //   "companyInfoSources": [],
+     *   //   "companySize": "my_companySize",
+     *   //   "disableLocationOptimization": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "distributorBillingCompanyId": "my_distributorBillingCompanyId",
+     *   //   "distributorCompanyId": "my_distributorCompanyId",
+     *   //   "eeoText": "my_eeoText",
+     *   //   "hiringAgency": false,
+     *   //   "hqLocation": "my_hqLocation",
+     *   //   "imageUrl": "my_imageUrl",
+     *   //   "keywordSearchableCustomAttributes": [],
+     *   //   "keywordSearchableCustomFields": [],
+     *   //   "name": "my_name",
+     *   //   "structuredCompanyHqLocation": {},
+     *   //   "suspended": false,
+     *   //   "title": "my_title",
+     *   //   "website": "my_website"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.companies.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Company} params.resource Request body data
+     * @param {().Company} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Companies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Companies$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Company>;
+    create(
+      params: Params$Resource$Companies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Companies$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Company>,
@@ -1544,10 +1715,17 @@ export namespace jobs_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Companies$Create
-        | BodyResponseCallback<Schema$Company>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Company>,
-      callback?: BodyResponseCallback<Schema$Company>
-    ): void | GaxiosPromise<Schema$Company> {
+        | BodyResponseCallback<Schema$Company>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Company>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Company>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Company> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1577,7 +1755,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Company>(parameters, callback);
+        createAPIRequest<Schema$Company>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Company>(parameters);
       }
@@ -1586,6 +1767,48 @@ export namespace jobs_v2 {
     /**
      * jobs.companies.delete
      * @desc Deletes the specified company.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.companies.delete({
+     *     // Required. The resource name of the company to be deleted,
+     *     // such as, "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
+     *     name: 'companies/my-companie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.companies.delete
      * @memberOf! ()
      *
@@ -1596,9 +1819,18 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Companies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Companies$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Companies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Companies$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1612,10 +1844,17 @@ export namespace jobs_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Companies$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1645,7 +1884,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1654,6 +1896,67 @@ export namespace jobs_v2 {
     /**
      * jobs.companies.get
      * @desc Retrieves the specified company.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.companies.get({
+     *     // Required. Resource name of the company to retrieve,
+     *     // such as "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
+     *     name: 'companies/my-companie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "careerPageLink": "my_careerPageLink",
+     *   //   "companyInfoSources": [],
+     *   //   "companySize": "my_companySize",
+     *   //   "disableLocationOptimization": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "distributorBillingCompanyId": "my_distributorBillingCompanyId",
+     *   //   "distributorCompanyId": "my_distributorCompanyId",
+     *   //   "eeoText": "my_eeoText",
+     *   //   "hiringAgency": false,
+     *   //   "hqLocation": "my_hqLocation",
+     *   //   "imageUrl": "my_imageUrl",
+     *   //   "keywordSearchableCustomAttributes": [],
+     *   //   "keywordSearchableCustomFields": [],
+     *   //   "name": "my_name",
+     *   //   "structuredCompanyHqLocation": {},
+     *   //   "suspended": false,
+     *   //   "title": "my_title",
+     *   //   "website": "my_website"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.companies.get
      * @memberOf! ()
      *
@@ -1664,9 +1967,18 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Companies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Companies$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Company>;
+    get(
+      params: Params$Resource$Companies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Companies$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Company>,
@@ -1680,10 +1992,17 @@ export namespace jobs_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Companies$Get
-        | BodyResponseCallback<Schema$Company>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Company>,
-      callback?: BodyResponseCallback<Schema$Company>
-    ): void | GaxiosPromise<Schema$Company> {
+        | BodyResponseCallback<Schema$Company>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Company>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Company>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Company> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1713,7 +2032,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Company>(parameters, callback);
+        createAPIRequest<Schema$Company>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Company>(parameters);
       }
@@ -1722,6 +2044,61 @@ export namespace jobs_v2 {
     /**
      * jobs.companies.list
      * @desc Lists all companies associated with a Cloud Talent Solution account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.companies.list({
+     *     // Optional. Set to true if the companies request must have open jobs.
+     *     //
+     *     // Defaults to false.
+     *     //
+     *     // If true, at most page_size of companies are fetched, among which
+     *     // only those with open jobs are returned.
+     *     mustHaveOpenJobs: 'placeholder-value',
+     *     // Optional. The maximum number of companies to be returned, at most 100.
+     *     // Default is 100 if a non-positive number is provided.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The starting indicator from which to return results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "companies": [],
+     *   //   "metadata": {},
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.companies.list
      * @memberOf! ()
      *
@@ -1734,9 +2111,18 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Companies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Companies$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCompaniesResponse>;
+    list(
+      params: Params$Resource$Companies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Companies$List,
       options:
@@ -1752,12 +2138,20 @@ export namespace jobs_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Companies$List
-        | BodyResponseCallback<Schema$ListCompaniesResponse>,
+        | BodyResponseCallback<Schema$ListCompaniesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListCompaniesResponse>,
-      callback?: BodyResponseCallback<Schema$ListCompaniesResponse>
-    ): void | GaxiosPromise<Schema$ListCompaniesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCompaniesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCompaniesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCompaniesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1787,7 +2181,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListCompaniesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListCompaniesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListCompaniesResponse>(parameters);
       }
@@ -1796,21 +2193,141 @@ export namespace jobs_v2 {
     /**
      * jobs.companies.patch
      * @desc Updates the specified company. Company names can't be updated. To update a company name, delete the company and all jobs associated with it, and only then re-create them.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.companies.patch({
+     *     // Required during company update.
+     *     //
+     *     // The resource name for a company. This is generated by the service when a
+     *     // company is created, for example,
+     *     // "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
+     *     name: 'companies/my-companie',
+     *     // Optional but strongly recommended to be provided for the best service
+     *     // experience.
+     *     //
+     *     // If update_company_fields is provided, only the specified fields in
+     *     // company are updated. Otherwise all the fields are updated.
+     *     //
+     *     // A field mask to specify the company fields to update. Valid values are:
+     *     //
+     *     // * displayName
+     *     // * website
+     *     // * imageUrl
+     *     // * companySize
+     *     // * distributorBillingCompanyId
+     *     // * companyInfoSources
+     *     // * careerPageLink
+     *     // * hiringAgency
+     *     // * hqLocation
+     *     // * eeoText
+     *     // * keywordSearchableCustomAttributes
+     *     // * title (deprecated)
+     *     // * keywordSearchableCustomFields (deprecated)
+     *     updateCompanyFields: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "careerPageLink": "my_careerPageLink",
+     *       //   "companyInfoSources": [],
+     *       //   "companySize": "my_companySize",
+     *       //   "disableLocationOptimization": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "distributorBillingCompanyId": "my_distributorBillingCompanyId",
+     *       //   "distributorCompanyId": "my_distributorCompanyId",
+     *       //   "eeoText": "my_eeoText",
+     *       //   "hiringAgency": false,
+     *       //   "hqLocation": "my_hqLocation",
+     *       //   "imageUrl": "my_imageUrl",
+     *       //   "keywordSearchableCustomAttributes": [],
+     *       //   "keywordSearchableCustomFields": [],
+     *       //   "name": "my_name",
+     *       //   "structuredCompanyHqLocation": {},
+     *       //   "suspended": false,
+     *       //   "title": "my_title",
+     *       //   "website": "my_website"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "careerPageLink": "my_careerPageLink",
+     *   //   "companyInfoSources": [],
+     *   //   "companySize": "my_companySize",
+     *   //   "disableLocationOptimization": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "distributorBillingCompanyId": "my_distributorBillingCompanyId",
+     *   //   "distributorCompanyId": "my_distributorCompanyId",
+     *   //   "eeoText": "my_eeoText",
+     *   //   "hiringAgency": false,
+     *   //   "hqLocation": "my_hqLocation",
+     *   //   "imageUrl": "my_imageUrl",
+     *   //   "keywordSearchableCustomAttributes": [],
+     *   //   "keywordSearchableCustomFields": [],
+     *   //   "name": "my_name",
+     *   //   "structuredCompanyHqLocation": {},
+     *   //   "suspended": false,
+     *   //   "title": "my_title",
+     *   //   "website": "my_website"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.companies.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required during company update.  The resource name for a company. This is generated by the service when a company is created, for example, "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
      * @param {string=} params.updateCompanyFields Optional but strongly recommended to be provided for the best service experience.  If update_company_fields is provided, only the specified fields in company are updated. Otherwise all the fields are updated.  A field mask to specify the company fields to update. Valid values are:  * displayName * website * imageUrl * companySize * distributorBillingCompanyId * companyInfoSources * careerPageLink * hiringAgency * hqLocation * eeoText * keywordSearchableCustomAttributes * title (deprecated) * keywordSearchableCustomFields (deprecated)
-     * @param {().Company} params.resource Request body data
+     * @param {().Company} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Companies$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Companies$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Company>;
+    patch(
+      params: Params$Resource$Companies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Companies$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Company>,
@@ -1824,10 +2341,17 @@ export namespace jobs_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Companies$Patch
-        | BodyResponseCallback<Schema$Company>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Company>,
-      callback?: BodyResponseCallback<Schema$Company>
-    ): void | GaxiosPromise<Schema$Company> {
+        | BodyResponseCallback<Schema$Company>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Company>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Company>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Company> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1857,7 +2381,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Company>(parameters, callback);
+        createAPIRequest<Schema$Company>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Company>(parameters);
       }
@@ -1866,21 +2393,11 @@ export namespace jobs_v2 {
 
   export interface Params$Resource$Companies$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Company;
   }
   export interface Params$Resource$Companies$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the company to be deleted, such as, "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
      */
@@ -1888,21 +2405,11 @@ export namespace jobs_v2 {
   }
   export interface Params$Resource$Companies$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the company to retrieve, such as "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
      */
     name?: string;
   }
   export interface Params$Resource$Companies$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Set to true if the companies request must have open jobs.  Defaults to false.  If true, at most page_size of companies are fetched, among which only those with open jobs are returned.
      */
@@ -1917,11 +2424,6 @@ export namespace jobs_v2 {
     pageToken?: string;
   }
   export interface Params$Resource$Companies$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required during company update.  The resource name for a company. This is generated by the service when a company is created, for example, "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
      */
@@ -1946,6 +2448,83 @@ export namespace jobs_v2 {
     /**
      * jobs.companies.jobs.list
      * @desc Deprecated. Use ListJobs instead.  Lists all jobs associated with a company.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.companies.jobs.list({
+     *     // Required. The resource name of the company that owns the jobs to be listed,
+     *     // such as, "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
+     *     companyName: 'companies/my-companie',
+     *     // Optional. If set to `true`, only job ID, job requisition ID and language code will be
+     *     // returned.
+     *     //
+     *     // A typical use is to synchronize job repositories.
+     *     //
+     *     // Defaults to false.
+     *     idsOnly: 'placeholder-value',
+     *     // Deprecated. Please DO NOT use this field except for small companies.
+     *     // Suggest counting jobs page by page instead.
+     *     //
+     *     // Optional.
+     *     //
+     *     // Set to true if the total number of open jobs is to be returned.
+     *     //
+     *     // Defaults to false.
+     *     includeJobsCount: 'placeholder-value',
+     *     // Optional. The requisition ID, also known as posting ID, assigned by the company
+     *     // to the job.
+     *     //
+     *     // The maximum number of allowable characters is 225.
+     *     jobRequisitionId: 'placeholder-value',
+     *     // Optional. The maximum number of jobs to be returned per page of results.
+     *     //
+     *     // If ids_only is set to true, the maximum allowed page size
+     *     // is 1000. Otherwise, the maximum allowed page size is 100.
+     *     //
+     *     // Default is 100 if empty or a number < 1 is specified.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The starting point of a query result.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobs": [],
+     *   //   "metadata": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.companies.jobs.list
      * @memberOf! ()
      *
@@ -1961,9 +2540,18 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Companies$Jobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Companies$Jobs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCompanyJobsResponse>;
+    list(
+      params: Params$Resource$Companies$Jobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Companies$Jobs$List,
       options:
@@ -1979,12 +2567,20 @@ export namespace jobs_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Companies$Jobs$List
-        | BodyResponseCallback<Schema$ListCompanyJobsResponse>,
+        | BodyResponseCallback<Schema$ListCompanyJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListCompanyJobsResponse>,
-      callback?: BodyResponseCallback<Schema$ListCompanyJobsResponse>
-    ): void | GaxiosPromise<Schema$ListCompanyJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCompanyJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCompanyJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCompanyJobsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Companies$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2018,7 +2614,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListCompanyJobsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListCompanyJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListCompanyJobsResponse>(parameters);
       }
@@ -2027,11 +2626,6 @@ export namespace jobs_v2 {
 
   export interface Params$Resource$Companies$Jobs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the company that owns the jobs to be listed, such as, "companies/0000aaaa-1111-bbbb-2222-cccc3333dddd".
      */
@@ -2067,19 +2661,74 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.batchDelete
      * @desc Deletes a list of Job postings by filter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.batchDelete({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.batchDelete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().BatchDeleteJobsRequest} params.resource Request body data
+     * @param {().BatchDeleteJobsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchDelete(
+      params: Params$Resource$Jobs$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
       params?: Params$Resource$Jobs$Batchdelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    batchDelete(
+      params: Params$Resource$Jobs$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchDelete(
       params: Params$Resource$Jobs$Batchdelete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2093,10 +2742,17 @@ export namespace jobs_v2 {
     batchDelete(
       paramsOrCallback?:
         | Params$Resource$Jobs$Batchdelete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2129,7 +2785,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2138,19 +2797,115 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.create
      * @desc Creates a new job.  Typically, the job becomes searchable within 10 seconds, but it may take up to 5 minutes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableStreetAddressResolution": false,
+     *       //   "job": {},
+     *       //   "processingOptions": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationEmailList": [],
+     *   //   "applicationInstruction": "my_applicationInstruction",
+     *   //   "applicationUrls": [],
+     *   //   "benefits": [],
+     *   //   "companyDisplayName": "my_companyDisplayName",
+     *   //   "companyName": "my_companyName",
+     *   //   "companyTitle": "my_companyTitle",
+     *   //   "compensationInfo": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customAttributes": {},
+     *   //   "department": "my_department",
+     *   //   "description": "my_description",
+     *   //   "distributorCompanyId": "my_distributorCompanyId",
+     *   //   "educationLevels": [],
+     *   //   "employmentTypes": [],
+     *   //   "endDate": {},
+     *   //   "expireTime": "my_expireTime",
+     *   //   "expiryDate": {},
+     *   //   "extendedCompensationInfo": {},
+     *   //   "filterableCustomFields": {},
+     *   //   "incentives": "my_incentives",
+     *   //   "jobLocations": [],
+     *   //   "jobTitle": "my_jobTitle",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "level": "my_level",
+     *   //   "locations": [],
+     *   //   "name": "my_name",
+     *   //   "promotionValue": 0,
+     *   //   "publishDate": {},
+     *   //   "qualifications": "my_qualifications",
+     *   //   "referenceUrl": "my_referenceUrl",
+     *   //   "region": "my_region",
+     *   //   "requisitionId": "my_requisitionId",
+     *   //   "responsibilities": "my_responsibilities",
+     *   //   "startDate": {},
+     *   //   "unindexedCustomFields": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().CreateJobRequest} params.resource Request body data
+     * @param {().CreateJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Jobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Jobs$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    create(
+      params: Params$Resource$Jobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Jobs$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -2164,10 +2919,17 @@ export namespace jobs_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Jobs$Create
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2197,7 +2959,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -2206,6 +2971,55 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.delete
      * @desc Deletes the specified job.  Typically, the job becomes unsearchable within 10 seconds, but it may take up to 5 minutes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.delete({
+     *     // Deprecated. This field is not working anymore.
+     *     //
+     *     // Optional.
+     *     //
+     *     // If set to true, this call waits for all processing steps to complete
+     *     // before the job is cleaned up. Otherwise, the call returns while some
+     *     // steps are still taking place asynchronously, hence faster.
+     *     disableFastProcess: 'placeholder-value',
+     *     // Required. The resource name of the job to be deleted, such as "jobs/11111111".
+     *     name: 'jobs/my-job',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.delete
      * @memberOf! ()
      *
@@ -2217,9 +3031,18 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Jobs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Jobs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Jobs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Jobs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2233,10 +3056,17 @@ export namespace jobs_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Jobs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2266,7 +3096,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2275,19 +3108,75 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.deleteByFilter
      * @desc Deprecated. Use BatchDeleteJobs instead.  Deletes the specified job by filter. You can specify whether to synchronously wait for validation, indexing, and general processing to be completed before the response is returned.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.deleteByFilter({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableFastProcess": false,
+     *       //   "filter": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.deleteByFilter
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().DeleteJobsByFilterRequest} params.resource Request body data
+     * @param {().DeleteJobsByFilterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     deleteByFilter(
+      params: Params$Resource$Jobs$Deletebyfilter,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteByFilter(
       params?: Params$Resource$Jobs$Deletebyfilter,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    deleteByFilter(
+      params: Params$Resource$Jobs$Deletebyfilter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteByFilter(
       params: Params$Resource$Jobs$Deletebyfilter,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2301,10 +3190,17 @@ export namespace jobs_v2 {
     deleteByFilter(
       paramsOrCallback?:
         | Params$Resource$Jobs$Deletebyfilter
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Jobs$Deletebyfilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2338,7 +3234,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2347,6 +3246,86 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.get
      * @desc Retrieves the specified job, whose status is OPEN or recently EXPIRED within the last 90 days.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.get({
+     *     // Required. The resource name of the job to retrieve, such as "jobs/11111111".
+     *     name: 'jobs/my-job',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationEmailList": [],
+     *   //   "applicationInstruction": "my_applicationInstruction",
+     *   //   "applicationUrls": [],
+     *   //   "benefits": [],
+     *   //   "companyDisplayName": "my_companyDisplayName",
+     *   //   "companyName": "my_companyName",
+     *   //   "companyTitle": "my_companyTitle",
+     *   //   "compensationInfo": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customAttributes": {},
+     *   //   "department": "my_department",
+     *   //   "description": "my_description",
+     *   //   "distributorCompanyId": "my_distributorCompanyId",
+     *   //   "educationLevels": [],
+     *   //   "employmentTypes": [],
+     *   //   "endDate": {},
+     *   //   "expireTime": "my_expireTime",
+     *   //   "expiryDate": {},
+     *   //   "extendedCompensationInfo": {},
+     *   //   "filterableCustomFields": {},
+     *   //   "incentives": "my_incentives",
+     *   //   "jobLocations": [],
+     *   //   "jobTitle": "my_jobTitle",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "level": "my_level",
+     *   //   "locations": [],
+     *   //   "name": "my_name",
+     *   //   "promotionValue": 0,
+     *   //   "publishDate": {},
+     *   //   "qualifications": "my_qualifications",
+     *   //   "referenceUrl": "my_referenceUrl",
+     *   //   "region": "my_region",
+     *   //   "requisitionId": "my_requisitionId",
+     *   //   "responsibilities": "my_responsibilities",
+     *   //   "startDate": {},
+     *   //   "unindexedCustomFields": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.get
      * @memberOf! ()
      *
@@ -2357,9 +3336,18 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Jobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Jobs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    get(
+      params: Params$Resource$Jobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Jobs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -2373,10 +3361,17 @@ export namespace jobs_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Jobs$Get
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2406,7 +3401,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -2415,19 +3413,81 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.histogram
      * @desc Deprecated. Use SearchJobsRequest.histogram_facets instead to make a single call with both search and histogram.  Retrieves a histogram for the given GetHistogramRequest. This call provides a structured count of jobs that match against the search query, grouped by specified facets.  This call constrains the visibility of jobs present in the database, and only counts jobs the caller has permission to search against.  For example, use this call to generate the number of jobs in the U.S. by state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.histogram({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowBroadening": false,
+     *       //   "filters": {},
+     *       //   "query": {},
+     *       //   "requestMetadata": {},
+     *       //   "searchTypes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metadata": {},
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.histogram
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GetHistogramRequest} params.resource Request body data
+     * @param {().GetHistogramRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     histogram(
+      params: Params$Resource$Jobs$Histogram,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    histogram(
       params?: Params$Resource$Jobs$Histogram,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetHistogramResponse>;
+    histogram(
+      params: Params$Resource$Jobs$Histogram,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     histogram(
       params: Params$Resource$Jobs$Histogram,
       options:
@@ -2445,12 +3505,20 @@ export namespace jobs_v2 {
     histogram(
       paramsOrCallback?:
         | Params$Resource$Jobs$Histogram
-        | BodyResponseCallback<Schema$GetHistogramResponse>,
+        | BodyResponseCallback<Schema$GetHistogramResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetHistogramResponse>,
-      callback?: BodyResponseCallback<Schema$GetHistogramResponse>
-    ): void | GaxiosPromise<Schema$GetHistogramResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetHistogramResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetHistogramResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetHistogramResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Histogram;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2480,7 +3548,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetHistogramResponse>(parameters, callback);
+        createAPIRequest<Schema$GetHistogramResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetHistogramResponse>(parameters);
       }
@@ -2489,6 +3560,79 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.list
      * @desc Lists jobs by filter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.list({
+     *     // Required. The filter string specifies the jobs to be enumerated.
+     *     //
+     *     // Supported operator: =, AND
+     *     //
+     *     // The fields eligible for filtering are:
+     *     //
+     *     // * `companyName` (Required)
+     *     // * `requisitionId` (Optional)
+     *     //
+     *     // Sample Query:
+     *     //
+     *     // * companyName = "companies/123"
+     *     // * companyName = "companies/123" AND requisitionId = "req-1"
+     *     filter: 'placeholder-value',
+     *     // Optional. If set to `true`, only Job.name, Job.requisition_id and
+     *     // Job.language_code will be returned.
+     *     //
+     *     // A typical use case is to synchronize job repositories.
+     *     //
+     *     // Defaults to false.
+     *     idsOnly: 'placeholder-value',
+     *     // Optional. The maximum number of jobs to be returned per page of results.
+     *     //
+     *     // If ids_only is set to true, the maximum allowed page size
+     *     // is 1000. Otherwise, the maximum allowed page size is 100.
+     *     //
+     *     // Default is 100 if empty or a number < 1 is specified.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The starting point of a query result.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobs": [],
+     *   //   "metadata": {},
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.list
      * @memberOf! ()
      *
@@ -2502,9 +3646,18 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Jobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Jobs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListJobsResponse>;
+    list(
+      params: Params$Resource$Jobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Jobs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListJobsResponse>,
@@ -2518,12 +3671,17 @@ export namespace jobs_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Jobs$List
-        | BodyResponseCallback<Schema$ListJobsResponse>,
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListJobsResponse>,
-      callback?: BodyResponseCallback<Schema$ListJobsResponse>
-    ): void | GaxiosPromise<Schema$ListJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListJobsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2553,7 +3711,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
       }
@@ -2562,20 +3723,124 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.patch
      * @desc Updates specified job.  Typically, updated contents become visible in search results within 10 seconds, but it may take up to 5 minutes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.patch({
+     *     // Required during job update.
+     *     //
+     *     // Resource name assigned to a job by the API, for example, "/jobs/foo". Use
+     *     // of this field in job queries and API calls is preferred over the use of
+     *     // requisition_id since this value is unique.
+     *     name: 'jobs/my-job',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableStreetAddressResolution": false,
+     *       //   "job": {},
+     *       //   "processingOptions": {},
+     *       //   "updateJobFields": "my_updateJobFields"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationEmailList": [],
+     *   //   "applicationInstruction": "my_applicationInstruction",
+     *   //   "applicationUrls": [],
+     *   //   "benefits": [],
+     *   //   "companyDisplayName": "my_companyDisplayName",
+     *   //   "companyName": "my_companyName",
+     *   //   "companyTitle": "my_companyTitle",
+     *   //   "compensationInfo": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customAttributes": {},
+     *   //   "department": "my_department",
+     *   //   "description": "my_description",
+     *   //   "distributorCompanyId": "my_distributorCompanyId",
+     *   //   "educationLevels": [],
+     *   //   "employmentTypes": [],
+     *   //   "endDate": {},
+     *   //   "expireTime": "my_expireTime",
+     *   //   "expiryDate": {},
+     *   //   "extendedCompensationInfo": {},
+     *   //   "filterableCustomFields": {},
+     *   //   "incentives": "my_incentives",
+     *   //   "jobLocations": [],
+     *   //   "jobTitle": "my_jobTitle",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "level": "my_level",
+     *   //   "locations": [],
+     *   //   "name": "my_name",
+     *   //   "promotionValue": 0,
+     *   //   "publishDate": {},
+     *   //   "qualifications": "my_qualifications",
+     *   //   "referenceUrl": "my_referenceUrl",
+     *   //   "region": "my_region",
+     *   //   "requisitionId": "my_requisitionId",
+     *   //   "responsibilities": "my_responsibilities",
+     *   //   "startDate": {},
+     *   //   "unindexedCustomFields": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required during job update.  Resource name assigned to a job by the API, for example, "/jobs/foo". Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
-     * @param {().UpdateJobRequest} params.resource Request body data
+     * @param {().UpdateJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Jobs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Jobs$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    patch(
+      params: Params$Resource$Jobs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Jobs$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -2589,10 +3854,17 @@ export namespace jobs_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Jobs$Patch
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2622,7 +3894,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -2631,19 +3906,99 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.search
      * @desc Searches for jobs using the provided SearchJobsRequest.  This call constrains the visibility of jobs present in the database, and only returns jobs that the caller has permission to search against.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.search({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableRelevanceThresholding": false,
+     *       //   "enableBroadening": false,
+     *       //   "enablePreciseResultSize": false,
+     *       //   "filters": {},
+     *       //   "histogramFacets": {},
+     *       //   "jobView": "my_jobView",
+     *       //   "mode": "my_mode",
+     *       //   "offset": 0,
+     *       //   "orderBy": "my_orderBy",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "query": {},
+     *       //   "requestMetadata": {},
+     *       //   "sortBy": "my_sortBy"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedCommuteFilter": {},
+     *   //   "appliedJobLocationFilters": [],
+     *   //   "estimatedTotalSize": "my_estimatedTotalSize",
+     *   //   "histogramResults": {},
+     *   //   "jobView": "my_jobView",
+     *   //   "matchingJobs": [],
+     *   //   "metadata": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "numJobsFromBroadenedQuery": 0,
+     *   //   "spellResult": {},
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.search
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SearchJobsRequest} params.resource Request body data
+     * @param {().SearchJobsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Jobs$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Jobs$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchJobsResponse>;
+    search(
+      params: Params$Resource$Jobs$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Jobs$Search,
       options: MethodOptions | BodyResponseCallback<Schema$SearchJobsResponse>,
@@ -2657,12 +4012,20 @@ export namespace jobs_v2 {
     search(
       paramsOrCallback?:
         | Params$Resource$Jobs$Search
-        | BodyResponseCallback<Schema$SearchJobsResponse>,
+        | BodyResponseCallback<Schema$SearchJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchJobsResponse>,
-      callback?: BodyResponseCallback<Schema$SearchJobsResponse>
-    ): void | GaxiosPromise<Schema$SearchJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchJobsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2692,7 +4055,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SearchJobsResponse>(parameters, callback);
+        createAPIRequest<Schema$SearchJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SearchJobsResponse>(parameters);
       }
@@ -2701,19 +4067,99 @@ export namespace jobs_v2 {
     /**
      * jobs.jobs.searchForAlert
      * @desc Searches for jobs using the provided SearchJobsRequest.  This API call is intended for the use case of targeting passive job seekers (for example, job seekers who have signed up to receive email alerts about potential job opportunities), and has different algorithmic adjustments that are targeted to passive job seekers.  This call constrains the visibility of jobs present in the database, and only returns jobs the caller has permission to search against.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.jobs.searchForAlert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableRelevanceThresholding": false,
+     *       //   "enableBroadening": false,
+     *       //   "enablePreciseResultSize": false,
+     *       //   "filters": {},
+     *       //   "histogramFacets": {},
+     *       //   "jobView": "my_jobView",
+     *       //   "mode": "my_mode",
+     *       //   "offset": 0,
+     *       //   "orderBy": "my_orderBy",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "query": {},
+     *       //   "requestMetadata": {},
+     *       //   "sortBy": "my_sortBy"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedCommuteFilter": {},
+     *   //   "appliedJobLocationFilters": [],
+     *   //   "estimatedTotalSize": "my_estimatedTotalSize",
+     *   //   "histogramResults": {},
+     *   //   "jobView": "my_jobView",
+     *   //   "matchingJobs": [],
+     *   //   "metadata": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "numJobsFromBroadenedQuery": 0,
+     *   //   "spellResult": {},
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.jobs.searchForAlert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SearchJobsRequest} params.resource Request body data
+     * @param {().SearchJobsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     searchForAlert(
+      params: Params$Resource$Jobs$Searchforalert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchForAlert(
       params?: Params$Resource$Jobs$Searchforalert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchJobsResponse>;
+    searchForAlert(
+      params: Params$Resource$Jobs$Searchforalert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     searchForAlert(
       params: Params$Resource$Jobs$Searchforalert,
       options: MethodOptions | BodyResponseCallback<Schema$SearchJobsResponse>,
@@ -2729,12 +4175,20 @@ export namespace jobs_v2 {
     searchForAlert(
       paramsOrCallback?:
         | Params$Resource$Jobs$Searchforalert
-        | BodyResponseCallback<Schema$SearchJobsResponse>,
+        | BodyResponseCallback<Schema$SearchJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchJobsResponse>,
-      callback?: BodyResponseCallback<Schema$SearchJobsResponse>
-    ): void | GaxiosPromise<Schema$SearchJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchJobsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Jobs$Searchforalert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2768,7 +4222,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SearchJobsResponse>(parameters, callback);
+        createAPIRequest<Schema$SearchJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SearchJobsResponse>(parameters);
       }
@@ -2777,32 +4234,17 @@ export namespace jobs_v2 {
 
   export interface Params$Resource$Jobs$Batchdelete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$BatchDeleteJobsRequest;
   }
   export interface Params$Resource$Jobs$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$CreateJobRequest;
   }
   export interface Params$Resource$Jobs$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. This field is not working anymore.  Optional.  If set to true, this call waits for all processing steps to complete before the job is cleaned up. Otherwise, the call returns while some steps are still taking place asynchronously, hence faster.
      */
@@ -2815,21 +4257,11 @@ export namespace jobs_v2 {
   export interface Params$Resource$Jobs$Deletebyfilter
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$DeleteJobsByFilterRequest;
   }
   export interface Params$Resource$Jobs$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the job to retrieve, such as "jobs/11111111".
      */
@@ -2837,21 +4269,11 @@ export namespace jobs_v2 {
   }
   export interface Params$Resource$Jobs$Histogram extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$GetHistogramRequest;
   }
   export interface Params$Resource$Jobs$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The filter string specifies the jobs to be enumerated.  Supported operator: =, AND  The fields eligible for filtering are:  * `companyName` (Required) * `requisitionId` (Optional)  Sample Query:  * companyName = "companies/123" * companyName = "companies/123" AND requisitionId = "req-1"
      */
@@ -2871,11 +4293,6 @@ export namespace jobs_v2 {
   }
   export interface Params$Resource$Jobs$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required during job update.  Resource name assigned to a job by the API, for example, "/jobs/foo". Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
      */
     name?: string;
@@ -2887,22 +4304,12 @@ export namespace jobs_v2 {
   }
   export interface Params$Resource$Jobs$Search extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SearchJobsRequest;
   }
   export interface Params$Resource$Jobs$Searchforalert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -2918,6 +4325,75 @@ export namespace jobs_v2 {
     /**
      * jobs.complete
      * @desc Completes the specified prefix with job keyword suggestions. Intended for use by a job search auto-complete search box.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const jobs = google.jobs('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/jobs',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await jobs.complete({
+     *     // Optional. If provided, restricts completion to the specified company.
+     *     companyName: 'placeholder-value',
+     *     // Required. The language of the query. This is
+     *     // the BCP-47 language code, such as "en-US" or "sr-Latn".
+     *     // For more information, see
+     *     // [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
+     *     //
+     *     // For CompletionType.JOB_TITLE type, only open jobs with same
+     *     // language_code are returned.
+     *     //
+     *     // For CompletionType.COMPANY_NAME type,
+     *     // only companies having open jobs with same language_code are
+     *     // returned.
+     *     //
+     *     // For CompletionType.COMBINED type, only open jobs with same
+     *     // language_code or companies having open jobs with same
+     *     // language_code are returned.
+     *     languageCode: 'placeholder-value',
+     *     // Required. Completion result count.
+     *     // The maximum allowed page size is 10.
+     *     pageSize: 'placeholder-value',
+     *     // Required. The query used to generate suggestions.
+     *     query: 'placeholder-value',
+     *     // Optional. The scope of the completion. The defaults is CompletionScope.PUBLIC.
+     *     scope: 'placeholder-value',
+     *     // Optional. The completion topic. The default is CompletionType.COMBINED.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completionResults": [],
+     *   //   "metadata": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias jobs.complete
      * @memberOf! ()
      *
@@ -2933,9 +4409,18 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     complete(
+      params: Params$Resource$V2$Complete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    complete(
       params?: Params$Resource$V2$Complete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CompleteQueryResponse>;
+    complete(
+      params: Params$Resource$V2$Complete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     complete(
       params: Params$Resource$V2$Complete,
       options:
@@ -2953,12 +4438,20 @@ export namespace jobs_v2 {
     complete(
       paramsOrCallback?:
         | Params$Resource$V2$Complete
-        | BodyResponseCallback<Schema$CompleteQueryResponse>,
+        | BodyResponseCallback<Schema$CompleteQueryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CompleteQueryResponse>,
-      callback?: BodyResponseCallback<Schema$CompleteQueryResponse>
-    ): void | GaxiosPromise<Schema$CompleteQueryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CompleteQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CompleteQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CompleteQueryResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$V2$Complete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2988,7 +4481,10 @@ export namespace jobs_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CompleteQueryResponse>(parameters, callback);
+        createAPIRequest<Schema$CompleteQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CompleteQueryResponse>(parameters);
       }
@@ -2996,11 +4492,6 @@ export namespace jobs_v2 {
   }
 
   export interface Params$Resource$V2$Complete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. If provided, restricts completion to the specified company.
      */

@@ -5,11 +5,25 @@ These samples allow you to list, download, and upload files from Google Drive.
 ## Running the samples
 
 ### **Note: Node.js version 8 or greater is required to run samples.**
-Set the following values in `oauth2.keys.json` (up one directory):
+Set the following values in `oauth2.keys.json` (up one directory) under the `web` key:
 
+* `redirect_uris`
 * `client_id`
 * `project_id`
 * `client_secret`
+
+Your file should look like this:
+
+```json
+{
+  "web" : {
+    "redirect_uris": ["http://localhost:3000/oauth2callback"],
+    "client_id": "<YOUR_CLIENT_ID>",
+    "client_secret": "<YOUR_CLIENT_SECRET>",
+    "project_id": "<YOUR_PROJECT_ID>"
+  }
+}
+```
 
 __Run the `quickstart.js` sample:__
 

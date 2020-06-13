@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace factchecktools_v1alpha1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace factchecktools_v1alpha1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -351,6 +361,69 @@ export namespace factchecktools_v1alpha1 {
     /**
      * factchecktools.claims.search
      * @desc Search through fact-checked claims.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/factchecktools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const factchecktools = google.factchecktools('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await factchecktools.claims.search({
+     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". Can be used to
+     *     // restrict results by language, though we do not currently consider the
+     *     // region.
+     *     languageCode: 'placeholder-value',
+     *     // The maximum age of the returned search results, in days.
+     *     // Age is determined by either claim date or review date, whichever is newer.
+     *     maxAgeDays: 'placeholder-value',
+     *     // An integer that specifies the current offset (that is, starting result
+     *     // location) in search results. This field is only considered if `page_token`
+     *     // is unset. For example, 0 means to return results starting from the first
+     *     // matching result, and 10 means to return from the 11th result.
+     *     offset: 'placeholder-value',
+     *     // The pagination size. We will return up to that many results. Defaults to
+     *     // 10 if not set.
+     *     pageSize: 'placeholder-value',
+     *     // The pagination token. You may provide the `next_page_token` returned from a
+     *     // previous List request, if any, in order to get the next page. All other
+     *     // fields must have the same values as in the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // Textual query string. Required unless `review_publisher_site_filter` is
+     *     // specified.
+     *     query: 'placeholder-value',
+     *     // The review publisher site to filter results by, e.g. nytimes.com.
+     *     reviewPublisherSiteFilter: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "claims": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias factchecktools.claims.search
      * @memberOf! ()
      *
@@ -367,11 +440,20 @@ export namespace factchecktools_v1alpha1 {
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Claims$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Claims$Search,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse
     >;
+    search(
+      params: Params$Resource$Claims$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Claims$Search,
       options:
@@ -399,18 +481,26 @@ export namespace factchecktools_v1alpha1 {
         | Params$Resource$Claims$Search
         | BodyResponseCallback<
             Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Claims$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -446,7 +536,7 @@ export namespace factchecktools_v1alpha1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse
@@ -456,11 +546,6 @@ export namespace factchecktools_v1alpha1 {
   }
 
   export interface Params$Resource$Claims$Search extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The BCP-47 language code, such as "en-US" or "sr-Latn". Can be used to restrict results by language, though we do not currently consider the region.
      */
@@ -500,21 +585,85 @@ export namespace factchecktools_v1alpha1 {
     /**
      * factchecktools.pages.create
      * @desc Create `ClaimReview` markup on a page.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/factchecktools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const factchecktools = google.factchecktools('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await factchecktools.pages.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "claimReviewAuthor": {},
+     *       //   "claimReviewMarkups": [],
+     *       //   "name": "my_name",
+     *       //   "pageUrl": "my_pageUrl",
+     *       //   "publishDate": "my_publishDate",
+     *       //   "versionId": "my_versionId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "claimReviewAuthor": {},
+     *   //   "claimReviewMarkups": [],
+     *   //   "name": "my_name",
+     *   //   "pageUrl": "my_pageUrl",
+     *   //   "publishDate": "my_publishDate",
+     *   //   "versionId": "my_versionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias factchecktools.pages.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage} params.resource Request body data
+     * @param {().GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    create(
+      params: Params$Resource$Pages$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
     create(
       params?: Params$Resource$Pages$Create,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
     >;
+    create(
+      params: Params$Resource$Pages$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Pages$Create,
       options:
@@ -542,18 +691,26 @@ export namespace factchecktools_v1alpha1 {
         | Params$Resource$Pages$Create
         | BodyResponseCallback<
             Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -586,7 +743,7 @@ export namespace factchecktools_v1alpha1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
@@ -597,6 +754,44 @@ export namespace factchecktools_v1alpha1 {
     /**
      * factchecktools.pages.delete
      * @desc Delete all `ClaimReview` markup on a page.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/factchecktools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const factchecktools = google.factchecktools('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await factchecktools.pages.delete({
+     *     // The name of the resource to delete, in the form of `pages/{page_id}`.
+     *     name: 'pages/my-page',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias factchecktools.pages.delete
      * @memberOf! ()
      *
@@ -607,9 +802,18 @@ export namespace factchecktools_v1alpha1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Pages$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Pages$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Pages$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Pages$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -623,12 +827,20 @@ export namespace factchecktools_v1alpha1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Pages$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -659,7 +871,10 @@ export namespace factchecktools_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -668,6 +883,51 @@ export namespace factchecktools_v1alpha1 {
     /**
      * factchecktools.pages.get
      * @desc Get all `ClaimReview` markup on a page.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/factchecktools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const factchecktools = google.factchecktools('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await factchecktools.pages.get({
+     *     // The name of the resource to get, in the form of `pages/{page_id}`.
+     *     name: 'pages/my-page',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "claimReviewAuthor": {},
+     *   //   "claimReviewMarkups": [],
+     *   //   "name": "my_name",
+     *   //   "pageUrl": "my_pageUrl",
+     *   //   "publishDate": "my_publishDate",
+     *   //   "versionId": "my_versionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias factchecktools.pages.get
      * @memberOf! ()
      *
@@ -678,11 +938,20 @@ export namespace factchecktools_v1alpha1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Pages$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Pages$Get,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
     >;
+    get(
+      params: Params$Resource$Pages$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Pages$Get,
       options:
@@ -710,18 +979,26 @@ export namespace factchecktools_v1alpha1 {
         | Params$Resource$Pages$Get
         | BodyResponseCallback<
             Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -754,7 +1031,7 @@ export namespace factchecktools_v1alpha1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
@@ -765,6 +1042,66 @@ export namespace factchecktools_v1alpha1 {
     /**
      * factchecktools.pages.list
      * @desc List the `ClaimReview` markup pages for a specific URL or for an organization.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/factchecktools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const factchecktools = google.factchecktools('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await factchecktools.pages.list({
+     *     // An integer that specifies the current offset (that is, starting result
+     *     // location) in search results. This field is only considered if `page_token`
+     *     // is unset, and if the request is not for a specific URL. For example, 0
+     *     // means to return results starting from the first matching result, and 10
+     *     // means to return from the 11th result.
+     *     offset: 'placeholder-value',
+     *     // The organization for which we want to fetch markups for. For instance,
+     *     // "site.com". Cannot be specified along with an URL.
+     *     organization: 'placeholder-value',
+     *     // The pagination size. We will return up to that many results. Defaults to
+     *     // 10 if not set. Has no effect if a URL is requested.
+     *     pageSize: 'placeholder-value',
+     *     // The pagination token. You may provide the `next_page_token` returned from a
+     *     // previous List request, if any, in order to get the next page. All other
+     *     // fields must have the same values as in the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // The URL from which to get `ClaimReview` markup. There will be at most one
+     *     // result. If markup is associated with a more canonical version of the URL
+     *     // provided, we will return that URL instead. Cannot be specified along with
+     *     // an organization.
+     *     url: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "claimReviewMarkupPages": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias factchecktools.pages.list
      * @memberOf! ()
      *
@@ -779,11 +1116,20 @@ export namespace factchecktools_v1alpha1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Pages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Pages$List,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse
     >;
+    list(
+      params: Params$Resource$Pages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Pages$List,
       options:
@@ -811,18 +1157,26 @@ export namespace factchecktools_v1alpha1 {
         | Params$Resource$Pages$List
         | BodyResponseCallback<
             Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -855,7 +1209,7 @@ export namespace factchecktools_v1alpha1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse
@@ -866,22 +1220,91 @@ export namespace factchecktools_v1alpha1 {
     /**
      * factchecktools.pages.update
      * @desc Update for all `ClaimReview` markup on a page  Note that this is a full update. To retain the existing `ClaimReview` markup on a page, first perform a Get operation, then modify the returned markup, and finally call Update with the entire `ClaimReview` markup as the body.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/factchecktools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const factchecktools = google.factchecktools('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await factchecktools.pages.update({
+     *     // The name of this `ClaimReview` markup page resource, in the form of
+     *     // `pages/{page_id}`. Except for update requests, this field is output-only
+     *     // and should not be set by the user.
+     *     name: 'pages/my-page',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "claimReviewAuthor": {},
+     *       //   "claimReviewMarkups": [],
+     *       //   "name": "my_name",
+     *       //   "pageUrl": "my_pageUrl",
+     *       //   "publishDate": "my_publishDate",
+     *       //   "versionId": "my_versionId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "claimReviewAuthor": {},
+     *   //   "claimReviewMarkups": [],
+     *   //   "name": "my_name",
+     *   //   "pageUrl": "my_pageUrl",
+     *   //   "publishDate": "my_publishDate",
+     *   //   "versionId": "my_versionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias factchecktools.pages.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user.
-     * @param {().GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage} params.resource Request body data
+     * @param {().GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    update(
+      params: Params$Resource$Pages$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
     update(
       params?: Params$Resource$Pages$Update,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
     >;
+    update(
+      params: Params$Resource$Pages$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Pages$Update,
       options:
@@ -909,18 +1332,26 @@ export namespace factchecktools_v1alpha1 {
         | Params$Resource$Pages$Update
         | BodyResponseCallback<
             Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -953,7 +1384,7 @@ export namespace factchecktools_v1alpha1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
@@ -964,21 +1395,11 @@ export namespace factchecktools_v1alpha1 {
 
   export interface Params$Resource$Pages$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage;
   }
   export interface Params$Resource$Pages$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the resource to delete, in the form of `pages/{page_id}`.
      */
@@ -986,21 +1407,11 @@ export namespace factchecktools_v1alpha1 {
   }
   export interface Params$Resource$Pages$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the resource to get, in the form of `pages/{page_id}`.
      */
     name?: string;
   }
   export interface Params$Resource$Pages$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset, and if the request is not for a specific URL. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result.
      */
@@ -1023,11 +1434,6 @@ export namespace factchecktools_v1alpha1 {
     url?: string;
   }
   export interface Params$Resource$Pages$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user.
      */

@@ -4,6 +4,164 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [52.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v52.0.0...v52.1.0) (2020-06-03)
+
+
+### Features
+
+* support GoogleAuth parameter ([#2210](https://www.github.com/googleapis/google-api-nodejs-client/issues/2210)) ([b08ef52](https://www.github.com/googleapis/google-api-nodejs-client/commit/b08ef52eb5db13067d8b5c52452d51208b7733cd))
+
+
+### Bug Fixes
+
+* ensure params are not deleted from global options ([#2190](https://www.github.com/googleapis/google-api-nodejs-client/issues/2190)) ([787e296](https://www.github.com/googleapis/google-api-nodejs-client/commit/787e296773f1d7daa655b4294cea41ecd1476ceb))
+* **deps:** update dependency googleapis to v52 ([#2213](https://www.github.com/googleapis/google-api-nodejs-client/issues/2213)) ([78ff014](https://www.github.com/googleapis/google-api-nodejs-client/commit/78ff01482a67ca4385d80042eaf80ee756106edd))
+
+## [52.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v51.0.0...v52.0.0) (2020-06-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* run the generator (#2104)
+
+### Features
+
+* run the generator ([#2104](https://www.github.com/googleapis/google-api-nodejs-client/issues/2104)) ([dca679d](https://www.github.com/googleapis/google-api-nodejs-client/commit/dca679d1cf41154b093c5c2217892733ee8047dd)), closes [/github.com/googleapis/google-api-nodejs-client/pull/2104/files#diff-aa33c994c0faf2308b6f3b52e9774a95](https://www.github.com/googleapis//github.com/googleapis/google-api-nodejs-client/pull/2104/files/issues/diff-aa33c994c0faf2308b6f3b52e9774a95) [/github.com/googleapis/google-api-nodejs-client/pull/2104/files#diff-7a149e24d8a857d58df585d4560b602bL785](https://www.github.com/googleapis//github.com/googleapis/google-api-nodejs-client/pull/2104/files/issues/diff-7a149e24d8a857d58df585d4560b602bL785) [/github.com/googleapis/google-api-nodejs-client/pull/2104/files#diff-fb190556a259ff0d91cd366665703b05](https://www.github.com/googleapis//github.com/googleapis/google-api-nodejs-client/pull/2104/files/issues/diff-fb190556a259ff0d91cd366665703b05)
+* run the generator ([#2122](https://www.github.com/googleapis/google-api-nodejs-client/issues/2122)) ([7b306a8](https://www.github.com/googleapis/google-api-nodejs-client/commit/7b306a8871fd1a7fac014375f6b7d14876fffb86))
+* run the generator ([#2197](https://www.github.com/googleapis/google-api-nodejs-client/issues/2197)) ([9ae8d42](https://www.github.com/googleapis/google-api-nodejs-client/commit/9ae8d4215b491f4a5b3b16346f7a88b53bf0f2ce))
+
+
+### Bug Fixes
+
+* run the generator ([#2109](https://www.github.com/googleapis/google-api-nodejs-client/issues/2109)) ([c12710a](https://www.github.com/googleapis/google-api-nodejs-client/commit/c12710ab45f65dc2533edb52b2e91e5cc328e677))
+* **types:** augment types to manage response streams ([#2188](https://www.github.com/googleapis/google-api-nodejs-client/issues/2188)) ([46ac8ba](https://www.github.com/googleapis/google-api-nodejs-client/commit/46ac8ba712daff9fe617be00b5df61ce9552b26e))
+
+## [51.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v50.0.0...v51.0.0) (2020-05-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* run the generator (#2096)
+
+### Features
+
+* generate samples ([#2056](https://www.github.com/googleapis/google-api-nodejs-client/issues/2056)) ([ea599ac](https://www.github.com/googleapis/google-api-nodejs-client/commit/ea599acb1a5adfdfe4efefdf701f19cc07963b70))
+* run the generator ([#2096](https://www.github.com/googleapis/google-api-nodejs-client/issues/2096)) ([a89ca06](https://www.github.com/googleapis/google-api-nodejs-client/commit/a89ca0677d79c3dd0376459de77bdad3118d3f44))
+
+## [50.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v49.0.0...v50.0.0) (2020-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to gts@2 (#2062)
+* run the generator (#2053)
+
+### Features
+
+* add Blunderbussconfig ([#2065](https://www.github.com/googleapis/google-api-nodejs-client/issues/2065)) ([e293188](https://www.github.com/googleapis/google-api-nodejs-client/commit/e293188add17f32c2d11fa06df917f2374f84ac4))
+* run the generator ([#2053](https://www.github.com/googleapis/google-api-nodejs-client/issues/2053)) ([1124249](https://www.github.com/googleapis/google-api-nodejs-client/commit/1124249d4c7efc3fe52d48f3f489715db2acd6b9))
+* run the generator ([#2081](https://www.github.com/googleapis/google-api-nodejs-client/issues/2081)) ([0c06d1c](https://www.github.com/googleapis/google-api-nodejs-client/commit/0c06d1cc8eea8a0a937436d571d14a9a462647ff))
+
+
+### Bug Fixes
+
+* **deps:** update dependency uuid to v8 ([#2069](https://www.github.com/googleapis/google-api-nodejs-client/issues/2069)) ([8f2454c](https://www.github.com/googleapis/google-api-nodejs-client/commit/8f2454c06d4e1de087482e5e6f84c2d11603f868))
+
+
+### Build System
+
+* upgrade to gts@2 ([#2062](https://www.github.com/googleapis/google-api-nodejs-client/issues/2062)) ([0b8d04c](https://www.github.com/googleapis/google-api-nodejs-client/commit/0b8d04cbb87f7b7f779de035ef02e18f66c12f18))
+
+## [49.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v48.0.0...v49.0.0) (2020-04-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* regenerate the API (#2028)
+* **dep:** deprecate node 8 (#2021)
+
+### Features
+
+* regenerate the API ([#2028](https://www.github.com/googleapis/google-api-nodejs-client/issues/2028)) ([fea414a](https://www.github.com/googleapis/google-api-nodejs-client/commit/fea414a450e5702f71c84f40b3e1ab8981ab997e))
+
+
+### Bug Fixes
+
+* apache license URL ([#468](https://www.github.com/googleapis/google-api-nodejs-client/issues/468)) ([#2017](https://www.github.com/googleapis/google-api-nodejs-client/issues/2017)) ([05090da](https://www.github.com/googleapis/google-api-nodejs-client/commit/05090da6fd417af1a53be83b5d5e59c89ed48e7e))
+* **deps:** update common and auth ([#2038](https://www.github.com/googleapis/google-api-nodejs-client/issues/2038)) ([73d284b](https://www.github.com/googleapis/google-api-nodejs-client/commit/73d284be28a7fdbd6c1b43adc6eee765ea4cad73))
+
+
+### Miscellaneous Chores
+
+* **dep:** deprecate node 8 ([#2021](https://www.github.com/googleapis/google-api-nodejs-client/issues/2021)) ([48a4f05](https://www.github.com/googleapis/google-api-nodejs-client/commit/48a4f051ecb42c592540716284fa6d00d4a9d375))
+
+## [48.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v47.0.0...v48.0.0) (2020-03-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* removes toolresults_v1.
+* regenerate all APIs (#1978)
+
+### Features
+
+* regenerate all APIs ([#1978](https://www.github.com/googleapis/google-api-nodejs-client/issues/1978)) ([f0d4913](https://www.github.com/googleapis/google-api-nodejs-client/commit/f0d49136eaa12838a74a56aa45e08fa870278ae5))
+* run the generator (adds: displayvideo, gamesConfiguration, managedidentities, networkmanagement) ([#1989](https://www.github.com/googleapis/google-api-nodejs-client/issues/1989)) ([8bcb212](https://www.github.com/googleapis/google-api-nodejs-client/commit/8bcb212fbab43a1e3214da4712b4c3363d1b1285))
+
+
+### Bug Fixes
+
+* **deps:** update dependency uuid to v7 ([#1970](https://www.github.com/googleapis/google-api-nodejs-client/issues/1970)) ([fdf096e](https://www.github.com/googleapis/google-api-nodejs-client/commit/fdf096ee80c87a98b7d20666a2e38996228fbaf1))
+* allow an empty requestBody to be provided for APIs that support multipart post ([#1988](https://www.github.com/googleapis/google-api-nodejs-client/issues/1988)) ([074f641](https://www.github.com/googleapis/google-api-nodejs-client/commit/074f6417754930cbcbf5589bbcb88549b9f430a9))
+
+## [47.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v46.0.0...v47.0.0) (2020-01-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* run the generator (#1935)
+
+### Features
+
+* run the generator ([#1935](https://www.github.com/googleapis/google-api-nodejs-client/issues/1935)) ([e5d8c08](https://www.github.com/googleapis/google-api-nodejs-client/commit/e5d8c083365892a35d6e620e15b90999e117deea))
+
+## [46.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v45.0.0...v46.0.0) (2019-12-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* run the generator (#1892)
+
+### Features
+
+* run the generator ([#1892](https://www.github.com/googleapis/google-api-nodejs-client/issues/1892)) ([e3e3714](https://www.github.com/googleapis/google-api-nodejs-client/commit/e3e3714d206bc341e2fda5ec323cdabd3f678450))
+
+
+### Bug Fixes
+
+* **deps:** pin TypeScript below 3.7.0 ([#1897](https://www.github.com/googleapis/google-api-nodejs-client/issues/1897)) ([5cdc823](https://www.github.com/googleapis/google-api-nodejs-client/commit/5cdc823b52ea5b2fae52dbc0ec0040e42d054fc9))
+* **docs:** add jsdoc-region-tag plugin ([#1879](https://www.github.com/googleapis/google-api-nodejs-client/issues/1879)) ([36635c7](https://www.github.com/googleapis/google-api-nodejs-client/commit/36635c752fae99161d02a0dc8631c57ff0814151))
+* **docs:** bloggerId should be a string ([#1896](https://www.github.com/googleapis/google-api-nodejs-client/issues/1896)) ([a3e9285](https://www.github.com/googleapis/google-api-nodejs-client/commit/a3e9285f5a1b76fcd330d194dc22adbd42adff71))
+* **docs:** change JSDoc from `.resource` to `.requestBody` ([#1864](https://www.github.com/googleapis/google-api-nodejs-client/issues/1864)) ([8803e77](https://www.github.com/googleapis/google-api-nodejs-client/commit/8803e7700a0799c484defc776afd04ef26d50e91))
+
+## [45.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v44.0.0...v45.0.0) (2019-11-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* run the generator (#1873)
+
+### Features
+
+* run the generator ([#1873](https://www.github.com/googleapis/google-api-nodejs-client/issues/1873)) ([8e45b55](https://www.github.com/googleapis/google-api-nodejs-client/commit/8e45b55152874d4b4b93e1a29604ca03dc887d6e))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis to v44 ([#1854](https://www.github.com/googleapis/google-api-nodejs-client/issues/1854)) ([c9b253c](https://www.github.com/googleapis/google-api-nodejs-client/commit/c9b253cf5fad4b4ecdaeecd31e3041bf1e16427e))
+* **deps:** update dependency open to v7 ([#1858](https://www.github.com/googleapis/google-api-nodejs-client/issues/1858)) ([34c95dc](https://www.github.com/googleapis/google-api-nodejs-client/commit/34c95dc795ef316dd89b96f83e80579dbea1b4c3))
+
 ## [44.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v43.0.0...v44.0.0) (2019-10-12)
 
 

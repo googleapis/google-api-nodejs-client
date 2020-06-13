@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2018 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,15 +13,20 @@
 
 'use strict';
 
+const path = require('path');
 const {google} = require('googleapis');
-const sampleClient = require('../sampleclient');
+const {authenticate} = require('@google-cloud/local-auth');
 
-const blogger = google.blogger({
-  version: 'v3',
-  auth: sampleClient.oAuth2Client,
-});
+const blogger = google.blogger('v3');
 
 async function runSample() {
+  // Obtain user credentials to use for the request
+  const auth = await authenticate({
+    keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
+    scopes: 'https://www.googleapis.com/auth/blogger',
+  });
+  google.options({auth});
+
   const res = await blogger.posts.insert({
     blogId: '4340475495955554224',
     requestBody: {
@@ -35,14 +40,6 @@ async function runSample() {
 }
 
 if (module === require.main) {
-  const scopes = ['https://www.googleapis.com/auth/blogger'];
-  sampleClient
-    .authenticate(scopes)
-    .then(runSample)
-    .catch(console.error);
+  runSample().catch(console.error);
 }
-
-module.exports = {
-  runSample,
-  client: sampleClient.oAuth2Client,
-};
+module.exports = runSample;

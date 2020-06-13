@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace cloudkms_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace cloudkms_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -125,6 +135,10 @@ export namespace cloudkms_v1 {
      * Required. The data encrypted with the named CryptoKeyVersion&#39;s public key using OAEP.
      */
     ciphertext?: string | null;
+    /**
+     * Optional. An optional CRC32C checksum of the AsymmetricDecryptRequest.ciphertext. If specified, KeyManagementService will verify the integrity of the received AsymmetricDecryptRequest.ciphertext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(AsymmetricDecryptRequest.ciphertext) is equal to AsymmetricDecryptRequest.ciphertext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    ciphertextCrc32c?: string | null;
   }
   /**
    * Response message for KeyManagementService.AsymmetricDecrypt.
@@ -134,6 +148,14 @@ export namespace cloudkms_v1 {
      * The decrypted data originally encrypted with the matching public key.
      */
     plaintext?: string | null;
+    /**
+     * Integrity verification field. A CRC32C checksum of the returned AsymmetricDecryptResponse.plaintext. An integrity check of AsymmetricDecryptResponse.plaintext can be performed by computing the CRC32C checksum of AsymmetricDecryptResponse.plaintext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    plaintextCrc32c?: string | null;
+    /**
+     * Integrity verification field. A flag indicating whether AsymmetricDecryptRequest.ciphertext_crc32c was received by KeyManagementService and used for the integrity verification of the ciphertext. A false value of this field indicates either that AsymmetricDecryptRequest.ciphertext_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set AsymmetricDecryptRequest.ciphertext_crc32c but this field is still false, discard the response and perform a limited number of retries.  NOTE: This field is in Beta.
+     */
+    verifiedCiphertextCrc32c?: boolean | null;
   }
   /**
    * Request message for KeyManagementService.AsymmetricSign.
@@ -143,15 +165,31 @@ export namespace cloudkms_v1 {
      * Required. The digest of the data to sign. The digest must be produced with the same digest algorithm as specified by the key version&#39;s algorithm.
      */
     digest?: Schema$Digest;
+    /**
+     * Optional. An optional CRC32C checksum of the AsymmetricSignRequest.digest. If specified, KeyManagementService will verify the integrity of the received AsymmetricSignRequest.digest using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(AsymmetricSignRequest.digest) is equal to AsymmetricSignRequest.digest_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    digestCrc32c?: string | null;
   }
   /**
    * Response message for KeyManagementService.AsymmetricSign.
    */
   export interface Schema$AsymmetricSignResponse {
     /**
+     * The resource name of the CryptoKeyVersion used for signing. Check this field to verify that the intended resource was used for signing.  NOTE: This field is in Beta.
+     */
+    name?: string | null;
+    /**
      * The created signature.
      */
     signature?: string | null;
+    /**
+     * Integrity verification field. A CRC32C checksum of the returned AsymmetricSignResponse.signature. An integrity check of AsymmetricSignResponse.signature can be performed by computing the CRC32C checksum of AsymmetricSignResponse.signature and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    signatureCrc32c?: string | null;
+    /**
+     * Integrity verification field. A flag indicating whether AsymmetricSignRequest.digest_crc32c was received by KeyManagementService and used for the integrity verification of the digest. A false value of this field indicates either that AsymmetricSignRequest.digest_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set AsymmetricSignRequest.digest_crc32c but this field is still false, discard the response and perform a limited number of retries.  NOTE: This field is in Beta.
+     */
+    verifiedDigestCrc32c?: boolean | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
@@ -184,11 +222,11 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -197,7 +235,7 @@ export namespace cloudkms_v1 {
     role?: string | null;
   }
   /**
-   * A CryptoKey represents a logical key that can be used for cryptographic operations.  A CryptoKey is made up of one or more versions, which represent the actual key material used in cryptographic operations.
+   * A CryptoKey represents a logical key that can be used for cryptographic operations.  A CryptoKey is made up of zero or more versions, which represent the actual key material used in cryptographic operations.
    */
   export interface Schema$CryptoKey {
     /**
@@ -217,11 +255,11 @@ export namespace cloudkms_v1 {
      */
     nextRotationTime?: string | null;
     /**
-     * Output only. A copy of the &quot;primary&quot; CryptoKeyVersion that will be used by Encrypt when this CryptoKey is given in EncryptRequest.name.  The CryptoKey&#39;s primary version can be updated via UpdateCryptoKeyPrimaryVersion.  All keys with purpose ENCRYPT_DECRYPT have a primary. For other keys, this field will be omitted.
+     * Output only. A copy of the &quot;primary&quot; CryptoKeyVersion that will be used by Encrypt when this CryptoKey is given in EncryptRequest.name.  The CryptoKey&#39;s primary version can be updated via UpdateCryptoKeyPrimaryVersion.  Keys with purpose ENCRYPT_DECRYPT may have a primary. For other keys, this field will be omitted.
      */
     primary?: Schema$CryptoKeyVersion;
     /**
-     * The immutable purpose of this CryptoKey.
+     * Immutable. The immutable purpose of this CryptoKey.
      */
     purpose?: string | null;
     /**
@@ -257,6 +295,10 @@ export namespace cloudkms_v1 {
      * Output only. The time this CryptoKeyVersion&#39;s key material is scheduled for destruction. Only present if state is DESTROY_SCHEDULED.
      */
     destroyTime?: string | null;
+    /**
+     * ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level.
+     */
+    externalProtectionLevelOptions?: Schema$ExternalProtectionLevelOptions;
     /**
      * Output only. The time this CryptoKeyVersion&#39;s key material was generated.
      */
@@ -304,13 +346,21 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$DecryptRequest {
     /**
-     * Optional data that must match the data originally supplied in EncryptRequest.additional_authenticated_data.
+     * Optional. Optional data that must match the data originally supplied in EncryptRequest.additional_authenticated_data.
      */
     additionalAuthenticatedData?: string | null;
+    /**
+     * Optional. An optional CRC32C checksum of the DecryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received DecryptRequest.additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(DecryptRequest.additional_authenticated_data) is equal to DecryptRequest.additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    additionalAuthenticatedDataCrc32c?: string | null;
     /**
      * Required. The encrypted data originally returned in EncryptResponse.ciphertext.
      */
     ciphertext?: string | null;
+    /**
+     * Optional. An optional CRC32C checksum of the DecryptRequest.ciphertext. If specified, KeyManagementService will verify the integrity of the received DecryptRequest.ciphertext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(DecryptRequest.ciphertext) is equal to DecryptRequest.ciphertext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    ciphertextCrc32c?: string | null;
   }
   /**
    * Response message for KeyManagementService.Decrypt.
@@ -320,6 +370,10 @@ export namespace cloudkms_v1 {
      * The decrypted data originally supplied in EncryptRequest.plaintext.
      */
     plaintext?: string | null;
+    /**
+     * Integrity verification field. A CRC32C checksum of the returned DecryptResponse.plaintext. An integrity check of DecryptResponse.plaintext can be performed by computing the CRC32C checksum of DecryptResponse.plaintext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: receiving this response message indicates that KeyManagementService is able to successfully decrypt the ciphertext. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    plaintextCrc32c?: string | null;
   }
   /**
    * Request message for KeyManagementService.DestroyCryptoKeyVersion.
@@ -347,13 +401,21 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$EncryptRequest {
     /**
-     * Optional data that, if specified, must also be provided during decryption through DecryptRequest.additional_authenticated_data.  The maximum size depends on the key version&#39;s protection_level. For SOFTWARE keys, the AAD must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.
+     * Optional. Optional data that, if specified, must also be provided during decryption through DecryptRequest.additional_authenticated_data.  The maximum size depends on the key version&#39;s protection_level. For SOFTWARE keys, the AAD must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.
      */
     additionalAuthenticatedData?: string | null;
+    /**
+     * Optional. An optional CRC32C checksum of the EncryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received EncryptRequest.additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(EncryptRequest.additional_authenticated_data) is equal to EncryptRequest.additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    additionalAuthenticatedDataCrc32c?: string | null;
     /**
      * Required. The data to encrypt. Must be no larger than 64KiB.  The maximum size depends on the key version&#39;s protection_level. For SOFTWARE keys, the plaintext must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.
      */
     plaintext?: string | null;
+    /**
+     * Optional. An optional CRC32C checksum of the EncryptRequest.plaintext. If specified, KeyManagementService will verify the integrity of the received EncryptRequest.plaintext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(EncryptRequest.plaintext) is equal to EncryptRequest.plaintext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    plaintextCrc32c?: string | null;
   }
   /**
    * Response message for KeyManagementService.Encrypt.
@@ -364,30 +426,51 @@ export namespace cloudkms_v1 {
      */
     ciphertext?: string | null;
     /**
+     * Integrity verification field. A CRC32C checksum of the returned EncryptResponse.ciphertext. An integrity check of EncryptResponse.ciphertext can be performed by computing the CRC32C checksum of EncryptResponse.ciphertext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    ciphertextCrc32c?: string | null;
+    /**
      * The resource name of the CryptoKeyVersion used in encryption. Check this field to verify that the intended resource was used for encryption.
      */
     name?: string | null;
+    /**
+     * Integrity verification field. A flag indicating whether EncryptRequest.additional_authenticated_data_crc32c was received by KeyManagementService and used for the integrity verification of the AAD. A false value of this field indicates either that EncryptRequest.additional_authenticated_data_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set EncryptRequest.additional_authenticated_data_crc32c but this field is still false, discard the response and perform a limited number of retries.  NOTE: This field is in Beta.
+     */
+    verifiedAdditionalAuthenticatedDataCrc32c?: boolean | null;
+    /**
+     * Integrity verification field. A flag indicating whether EncryptRequest.plaintext_crc32c was received by KeyManagementService and used for the integrity verification of the plaintext. A false value of this field indicates either that EncryptRequest.plaintext_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set EncryptRequest.plaintext_crc32c but this field is still false, discard the response and perform a limited number of retries.  NOTE: This field is in Beta.
+     */
+    verifiedPlaintextCrc32c?: boolean | null;
   }
   /**
-   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level.
+   */
+  export interface Schema$ExternalProtectionLevelOptions {
+    /**
+     * The URI for an external resource that this CryptoKeyVersion represents.
+     */
+    externalKeyUri?: string | null;
   }
   /**
    * Request message for KeyManagementService.ImportCryptoKeyVersion.
@@ -402,7 +485,7 @@ export namespace cloudkms_v1 {
      */
     importJob?: string | null;
     /**
-     * Wrapped key material produced with RSA_OAEP_3072_SHA1_AES_256 or RSA_OAEP_4096_SHA1_AES_256.  This field contains the concatenation of two wrapped keys: &lt;ol&gt;   &lt;li&gt;An ephemeral AES-256 wrapping key wrapped with the       public_key using RSAES-OAEP with SHA-1,       MGF1 with SHA-1, and an empty label.   &lt;/li&gt;   &lt;li&gt;The key to be imported, wrapped with the ephemeral AES-256 key       using AES-KWP (RFC 5649).   &lt;/li&gt; &lt;/ol&gt;  This format is the same as the format produced by PKCS#11 mechanism CKM_RSA_AES_KEY_WRAP.
+     * Wrapped key material produced with RSA_OAEP_3072_SHA1_AES_256 or RSA_OAEP_4096_SHA1_AES_256.  This field contains the concatenation of two wrapped keys: &lt;ol&gt;   &lt;li&gt;An ephemeral AES-256 wrapping key wrapped with the       public_key using RSAES-OAEP with SHA-1,       MGF1 with SHA-1, and an empty label.   &lt;/li&gt;   &lt;li&gt;The key to be imported, wrapped with the ephemeral AES-256 key       using AES-KWP (RFC 5649).   &lt;/li&gt; &lt;/ol&gt;  If importing symmetric key material, it is expected that the unwrapped key contains plain bytes. If importing asymmetric key material, it is expected that the unwrapped key is in PKCS#8-encoded DER format (the PrivateKeyInfo structure from RFC 5208).  This format is the same as the format produced by PKCS#11 mechanism CKM_RSA_AES_KEY_WRAP.
      */
     rsaAesWrappedKey?: string | null;
   }
@@ -431,7 +514,7 @@ export namespace cloudkms_v1 {
      */
     generateTime?: string | null;
     /**
-     * Required and immutable. The wrapping method to be used for incoming key material.
+     * Required. Immutable. The wrapping method to be used for incoming key material.
      */
     importMethod?: string | null;
     /**
@@ -439,7 +522,7 @@ export namespace cloudkms_v1 {
      */
     name?: string | null;
     /**
-     * Required and immutable. The protection level of the ImportJob. This must match the protection_level of the version_template on the CryptoKey you attempt to import into.
+     * Required. Immutable. The protection level of the ImportJob. This must match the protection_level of the version_template on the CryptoKey you attempt to import into.
      */
     protectionLevel?: string | null;
     /**
@@ -588,12 +671,16 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$LocationMetadata {
     /**
+     * Indicates whether CryptoKeys with protection_level EXTERNAL can be created in this location.
+     */
+    ekmAvailable?: boolean | null;
+    /**
      * Indicates whether CryptoKeys with protection_level HSM can be created in this location.
      */
     hsmAvailable?: boolean | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -601,15 +688,15 @@ export namespace cloudkms_v1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Deprecated.
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -622,9 +709,17 @@ export namespace cloudkms_v1 {
      */
     algorithm?: string | null;
     /**
+     * The name of the CryptoKeyVersion public key. Provided here for verification.  NOTE: This field is in Beta.
+     */
+    name?: string | null;
+    /**
      * The public key, encoded in PEM format. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13).
      */
     pem?: string | null;
+    /**
+     * Integrity verification field. A CRC32C checksum of the returned PublicKey.pem. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    pemCrc32c?: string | null;
   }
   /**
    * Request message for KeyManagementService.RestoreCryptoKeyVersion.
@@ -639,7 +734,7 @@ export namespace cloudkms_v1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
@@ -666,7 +761,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$UpdateCryptoKeyPrimaryVersionRequest {
     /**
-     * The id of the child CryptoKeyVersion to use as primary.
+     * Required. The id of the child CryptoKeyVersion to use as primary.
      */
     cryptoKeyVersionId?: string | null;
   }
@@ -700,6 +795,53 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.get
      * @desc Gets information about a location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.get
      * @memberOf! ()
      *
@@ -710,9 +852,18 @@ export namespace cloudkms_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Location>,
@@ -726,10 +877,17 @@ export namespace cloudkms_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Get
-        | BodyResponseCallback<Schema$Location>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback?: BodyResponseCallback<Schema$Location>
-    ): void | GaxiosPromise<Schema$Location> {
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -760,7 +918,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Location>(parameters, callback);
+        createAPIRequest<Schema$Location>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
       }
@@ -769,6 +930,56 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.list
      * @desc Lists information about the supported locations for this service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.list
      * @memberOf! ()
      *
@@ -782,9 +993,18 @@ export namespace cloudkms_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLocationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
@@ -800,12 +1020,20 @@ export namespace cloudkms_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$List
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLocationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -839,7 +1067,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
@@ -849,22 +1080,12 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name for the location.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -900,21 +1121,87 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.create
      * @desc Create a new KeyRing in a given Project and Location.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.create({
+     *     // Required. It must be unique within a location and match the regular
+     *     // expression `[a-zA-Z0-9_-]{1,63}`
+     *     keyRingId: 'placeholder-value',
+     *     // Required. The resource name of the location associated with the
+     *     // KeyRings, in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.keyRingId Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      * @param {string} params.parent Required. The resource name of the location associated with the KeyRings, in the format `projects/x/locations/x`.
-     * @param {().KeyRing} params.resource Request body data
+     * @param {().KeyRing} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Keyrings$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Keyrings$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$KeyRing>;
+    create(
+      params: Params$Resource$Projects$Locations$Keyrings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Create,
       options: MethodOptions | BodyResponseCallback<Schema$KeyRing>,
@@ -928,10 +1215,17 @@ export namespace cloudkms_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Create
-        | BodyResponseCallback<Schema$KeyRing>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$KeyRing>,
-      callback?: BodyResponseCallback<Schema$KeyRing>
-    ): void | GaxiosPromise<Schema$KeyRing> {
+        | BodyResponseCallback<Schema$KeyRing>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$KeyRing>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$KeyRing>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$KeyRing> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -965,7 +1259,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$KeyRing>(parameters, callback);
+        createAPIRequest<Schema$KeyRing>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$KeyRing>(parameters);
       }
@@ -974,19 +1271,72 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.get
      * @desc Returns metadata for a given KeyRing.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.get({
+     *     // Required. The name of the KeyRing to get.
+     *     name: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the KeyRing to get.
+     * @param {string} params.name Required. The name of the KeyRing to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Keyrings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Keyrings$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$KeyRing>;
+    get(
+      params: Params$Resource$Projects$Locations$Keyrings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Get,
       options: MethodOptions | BodyResponseCallback<Schema$KeyRing>,
@@ -1000,10 +1350,17 @@ export namespace cloudkms_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Get
-        | BodyResponseCallback<Schema$KeyRing>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$KeyRing>,
-      callback?: BodyResponseCallback<Schema$KeyRing>
-    ): void | GaxiosPromise<Schema$KeyRing> {
+        | BodyResponseCallback<Schema$KeyRing>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$KeyRing>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$KeyRing>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$KeyRing> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1034,7 +1391,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$KeyRing>(parameters, callback);
+        createAPIRequest<Schema$KeyRing>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$KeyRing>(parameters);
       }
@@ -1043,20 +1403,89 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.getIamPolicy({
+     *     // Optional. The policy format version to be returned.
+     *     //
+     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+     *     // rejected.
+     *     //
+     *     // Requests for policies with any conditional bindings must specify version 3.
+     *     // Policies without any conditional bindings may specify any valid value or
+     *     // leave the field unset.
+     *     //
+     *     // To learn which resources support conditions in their IAM policies, see the
+     *     // [IAM
+     *     // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.getIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1070,10 +1499,17 @@ export namespace cloudkms_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1107,7 +1543,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -1116,23 +1555,96 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.list
      * @desc Lists KeyRings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.list({
+     *     // Optional. Only include resources that match the filter in the response. For
+     *     // more information, see
+     *     // [Sorting and filtering list
+     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     filter: 'placeholder-value',
+     *     // Optional. Specify how the results should be sorted. If not specified, the
+     *     // results will be sorted in the default order.  For more information, see
+     *     // [Sorting and filtering list
+     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Optional limit on the number of KeyRings to include in the
+     *     // response.  Further KeyRings can subsequently be obtained by
+     *     // including the ListKeyRingsResponse.next_page_token in a subsequent
+     *     // request.  If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Optional pagination token, returned earlier via
+     *     // ListKeyRingsResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the location associated with the
+     *     // KeyRings, in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyRings": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order.  For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
-     * @param {integer=} params.pageSize Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
-     * @param {string=} params.pageToken Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.
+     * @param {integer=} params.pageSize Optional. Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
+     * @param {string=} params.pageToken Optional. Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.
      * @param {string} params.parent Required. The resource name of the location associated with the KeyRings, in the format `projects/x/locations/x`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Keyrings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Keyrings$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListKeyRingsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Keyrings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Keyrings$List,
       options:
@@ -1148,12 +1660,20 @@ export namespace cloudkms_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$List
-        | BodyResponseCallback<Schema$ListKeyRingsResponse>,
+        | BodyResponseCallback<Schema$ListKeyRingsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListKeyRingsResponse>,
-      callback?: BodyResponseCallback<Schema$ListKeyRingsResponse>
-    ): void | GaxiosPromise<Schema$ListKeyRingsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListKeyRingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListKeyRingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListKeyRingsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1187,7 +1707,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListKeyRingsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListKeyRingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListKeyRingsResponse>(parameters);
       }
@@ -1195,21 +1718,86 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.setIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1223,10 +1811,17 @@ export namespace cloudkms_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1260,7 +1855,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -1268,21 +1866,82 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.testIamPermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
       options:
@@ -1300,12 +1959,20 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1341,7 +2008,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1351,11 +2018,6 @@ export namespace cloudkms_v1 {
 
   export interface Params$Resource$Projects$Locations$Keyrings$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      */
@@ -1373,24 +2035,14 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the KeyRing to get.
+     * Required. The name of the KeyRing to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -1401,11 +2053,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
     filter?: string;
@@ -1414,11 +2061,11 @@ export namespace cloudkms_v1 {
      */
     orderBy?: string;
     /**
-     * Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.
+     * Optional. Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.
      */
     pageToken?: string;
     /**
@@ -1428,11 +2075,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Setiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
@@ -1445,11 +2087,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -1474,6 +2111,81 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.create
      * @desc Create a new CryptoKey within a KeyRing.  CryptoKey.purpose and CryptoKey.version_template.algorithm are required.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.create({
+     *     // Required. It must be unique within a KeyRing and match the regular
+     *     // expression `[a-zA-Z0-9_-]{1,63}`
+     *     cryptoKeyId: 'placeholder-value',
+     *     // Required. The name of the KeyRing associated with the
+     *     // CryptoKeys.
+     *     parent: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *     // If set to true, the request will create a CryptoKey without any
+     *     // CryptoKeyVersions. You must manually call
+     *     // CreateCryptoKeyVersion or
+     *     // ImportCryptoKeyVersion
+     *     // before you can use this CryptoKey.
+     *     skipInitialVersionCreation: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "nextRotationTime": "my_nextRotationTime",
+     *       //   "primary": {},
+     *       //   "purpose": "my_purpose",
+     *       //   "rotationPeriod": "my_rotationPeriod",
+     *       //   "versionTemplate": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "nextRotationTime": "my_nextRotationTime",
+     *   //   "primary": {},
+     *   //   "purpose": "my_purpose",
+     *   //   "rotationPeriod": "my_rotationPeriod",
+     *   //   "versionTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.create
      * @memberOf! ()
      *
@@ -1481,15 +2193,24 @@ export namespace cloudkms_v1 {
      * @param {string=} params.cryptoKeyId Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      * @param {string} params.parent Required. The name of the KeyRing associated with the CryptoKeys.
      * @param {boolean=} params.skipInitialVersionCreation If set to true, the request will create a CryptoKey without any CryptoKeyVersions. You must manually call CreateCryptoKeyVersion or ImportCryptoKeyVersion before you can use this CryptoKey.
-     * @param {().CryptoKey} params.resource Request body data
+     * @param {().CryptoKey} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CryptoKey>;
+    create(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
       options: MethodOptions | BodyResponseCallback<Schema$CryptoKey>,
@@ -1503,12 +2224,17 @@ export namespace cloudkms_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create
-        | BodyResponseCallback<Schema$CryptoKey>,
+        | BodyResponseCallback<Schema$CryptoKey>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CryptoKey>,
-      callback?: BodyResponseCallback<Schema$CryptoKey>
-    ): void | GaxiosPromise<Schema$CryptoKey> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CryptoKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CryptoKey>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CryptoKey> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1542,7 +2268,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CryptoKey>(parameters, callback);
+        createAPIRequest<Schema$CryptoKey>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CryptoKey>(parameters);
       }
@@ -1551,20 +2280,86 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.decrypt
      * @desc Decrypts data that was protected by Encrypt. The CryptoKey.purpose must be ENCRYPT_DECRYPT.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.decrypt({
+     *     // Required. The resource name of the CryptoKey to use for decryption.
+     *     // The server will choose the appropriate version.
+     *     name:
+     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalAuthenticatedData": "my_additionalAuthenticatedData",
+     *       //   "additionalAuthenticatedDataCrc32c": "my_additionalAuthenticatedDataCrc32c",
+     *       //   "ciphertext": "my_ciphertext",
+     *       //   "ciphertextCrc32c": "my_ciphertextCrc32c"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "plaintext": "my_plaintext",
+     *   //   "plaintextCrc32c": "my_plaintextCrc32c"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.decrypt
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the CryptoKey to use for decryption. The server will choose the appropriate version.
-     * @param {().DecryptRequest} params.resource Request body data
+     * @param {().DecryptRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     decrypt(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    decrypt(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DecryptResponse>;
+    decrypt(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     decrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
       options: MethodOptions | BodyResponseCallback<Schema$DecryptResponse>,
@@ -1578,12 +2373,17 @@ export namespace cloudkms_v1 {
     decrypt(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt
-        | BodyResponseCallback<Schema$DecryptResponse>,
+        | BodyResponseCallback<Schema$DecryptResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DecryptResponse>,
-      callback?: BodyResponseCallback<Schema$DecryptResponse>
-    ): void | GaxiosPromise<Schema$DecryptResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DecryptResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DecryptResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DecryptResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1617,7 +2417,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DecryptResponse>(parameters, callback);
+        createAPIRequest<Schema$DecryptResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DecryptResponse>(parameters);
       }
@@ -1626,20 +2429,92 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.encrypt
      * @desc Encrypts data, so that it can only be recovered by a call to Decrypt. The CryptoKey.purpose must be ENCRYPT_DECRYPT.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.encrypt({
+     *     // Required. The resource name of the CryptoKey or CryptoKeyVersion
+     *     // to use for encryption.
+     *     //
+     *     // If a CryptoKey is specified, the server will use its
+     *     // primary version.
+     *     name:
+     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalAuthenticatedData": "my_additionalAuthenticatedData",
+     *       //   "additionalAuthenticatedDataCrc32c": "my_additionalAuthenticatedDataCrc32c",
+     *       //   "plaintext": "my_plaintext",
+     *       //   "plaintextCrc32c": "my_plaintextCrc32c"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ciphertext": "my_ciphertext",
+     *   //   "ciphertextCrc32c": "my_ciphertextCrc32c",
+     *   //   "name": "my_name",
+     *   //   "verifiedAdditionalAuthenticatedDataCrc32c": false,
+     *   //   "verifiedPlaintextCrc32c": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.encrypt
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption.  If a CryptoKey is specified, the server will use its primary version.
-     * @param {().EncryptRequest} params.resource Request body data
+     * @param {().EncryptRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     encrypt(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    encrypt(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EncryptResponse>;
+    encrypt(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     encrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
       options: MethodOptions | BodyResponseCallback<Schema$EncryptResponse>,
@@ -1653,12 +2528,17 @@ export namespace cloudkms_v1 {
     encrypt(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt
-        | BodyResponseCallback<Schema$EncryptResponse>,
+        | BodyResponseCallback<Schema$EncryptResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EncryptResponse>,
-      callback?: BodyResponseCallback<Schema$EncryptResponse>
-    ): void | GaxiosPromise<Schema$EncryptResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EncryptResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EncryptResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EncryptResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1692,7 +2572,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EncryptResponse>(parameters, callback);
+        createAPIRequest<Schema$EncryptResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EncryptResponse>(parameters);
       }
@@ -1701,19 +2584,79 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.get
      * @desc Returns metadata for a given CryptoKey, as well as its primary CryptoKeyVersion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.get({
+     *     // Required. The name of the CryptoKey to get.
+     *     name:
+     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "nextRotationTime": "my_nextRotationTime",
+     *   //   "primary": {},
+     *   //   "purpose": "my_purpose",
+     *   //   "rotationPeriod": "my_rotationPeriod",
+     *   //   "versionTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the CryptoKey to get.
+     * @param {string} params.name Required. The name of the CryptoKey to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CryptoKey>;
+    get(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CryptoKey>,
@@ -1727,12 +2670,17 @@ export namespace cloudkms_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get
-        | BodyResponseCallback<Schema$CryptoKey>,
+        | BodyResponseCallback<Schema$CryptoKey>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CryptoKey>,
-      callback?: BodyResponseCallback<Schema$CryptoKey>
-    ): void | GaxiosPromise<Schema$CryptoKey> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CryptoKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CryptoKey>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CryptoKey> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1763,7 +2711,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CryptoKey>(parameters, callback);
+        createAPIRequest<Schema$CryptoKey>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CryptoKey>(parameters);
       }
@@ -1772,20 +2723,92 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy(
+     *     {
+     *       // Optional. The policy format version to be returned.
+     *       //
+     *       // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+     *       // rejected.
+     *       //
+     *       // Requests for policies with any conditional bindings must specify version 3.
+     *       // Policies without any conditional bindings may specify any valid value or
+     *       // leave the field unset.
+     *       //
+     *       // To learn which resources support conditions in their IAM policies, see the
+     *       // [IAM
+     *       // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1799,10 +2822,17 @@ export namespace cloudkms_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1836,7 +2866,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -1845,14 +2878,80 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.list
      * @desc Lists CryptoKeys.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.list({
+     *     // Optional. Only include resources that match the filter in the response. For
+     *     // more information, see
+     *     // [Sorting and filtering list
+     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     filter: 'placeholder-value',
+     *     // Optional. Specify how the results should be sorted. If not specified, the
+     *     // results will be sorted in the default order. For more information, see
+     *     // [Sorting and filtering list
+     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Optional limit on the number of CryptoKeys to include in the
+     *     // response.  Further CryptoKeys can subsequently be obtained by
+     *     // including the ListCryptoKeysResponse.next_page_token in a subsequent
+     *     // request.  If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Optional pagination token, returned earlier via
+     *     // ListCryptoKeysResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the KeyRing to list, in the format
+     *     // `projects/x/locations/x/keyRings/x`.
+     *     parent: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *     // The fields of the primary version to include in the response.
+     *     versionView: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cryptoKeys": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
-     * @param {integer=} params.pageSize Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
-     * @param {string=} params.pageToken Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.
+     * @param {integer=} params.pageSize Optional. Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
+     * @param {string=} params.pageToken Optional. Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.
      * @param {string} params.parent Required. The resource name of the KeyRing to list, in the format `projects/x/locations/x/keyRings/x`.
      * @param {string=} params.versionView The fields of the primary version to include in the response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1860,9 +2959,18 @@ export namespace cloudkms_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCryptoKeysResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
       options:
@@ -1878,12 +2986,20 @@ export namespace cloudkms_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List
-        | BodyResponseCallback<Schema$ListCryptoKeysResponse>,
+        | BodyResponseCallback<Schema$ListCryptoKeysResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListCryptoKeysResponse>,
-      callback?: BodyResponseCallback<Schema$ListCryptoKeysResponse>
-    ): void | GaxiosPromise<Schema$ListCryptoKeysResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCryptoKeysResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCryptoKeysResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCryptoKeysResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1917,7 +3033,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListCryptoKeysResponse>(parameters, callback);
+        createAPIRequest<Schema$ListCryptoKeysResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListCryptoKeysResponse>(parameters);
       }
@@ -1926,21 +3045,99 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.patch
      * @desc Update a CryptoKey.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.patch({
+     *     // Output only. The resource name for this CryptoKey in the format
+     *     // `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     *     name:
+     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *     // Required. List of fields to be updated in this request.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "nextRotationTime": "my_nextRotationTime",
+     *       //   "primary": {},
+     *       //   "purpose": "my_purpose",
+     *       //   "rotationPeriod": "my_rotationPeriod",
+     *       //   "versionTemplate": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "nextRotationTime": "my_nextRotationTime",
+     *   //   "primary": {},
+     *   //   "purpose": "my_purpose",
+     *   //   "rotationPeriod": "my_rotationPeriod",
+     *   //   "versionTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name for this CryptoKey in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
-     * @param {string=} params.updateMask Required list of fields to be updated in this request.
-     * @param {().CryptoKey} params.resource Request body data
+     * @param {string=} params.updateMask Required. List of fields to be updated in this request.
+     * @param {().CryptoKey} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CryptoKey>;
+    patch(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$CryptoKey>,
@@ -1954,12 +3151,17 @@ export namespace cloudkms_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch
-        | BodyResponseCallback<Schema$CryptoKey>,
+        | BodyResponseCallback<Schema$CryptoKey>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CryptoKey>,
-      callback?: BodyResponseCallback<Schema$CryptoKey>
-    ): void | GaxiosPromise<Schema$CryptoKey> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CryptoKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CryptoKey>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CryptoKey> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1990,7 +3192,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CryptoKey>(parameters, callback);
+        createAPIRequest<Schema$CryptoKey>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CryptoKey>(parameters);
       }
@@ -1998,21 +3203,89 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being specified.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -2026,10 +3299,17 @@ export namespace cloudkms_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2063,7 +3343,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -2071,21 +3354,85 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
       options:
@@ -2103,12 +3450,20 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2144,7 +3499,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2154,20 +3509,90 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion
      * @desc Update the version of a CryptoKey that will be used in Encrypt.  Returns an error if called on an asymmetric key.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion(
+     *     {
+     *       // Required. The resource name of the CryptoKey to update.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "cryptoKeyVersionId": "my_cryptoKeyVersionId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "nextRotationTime": "my_nextRotationTime",
+     *   //   "primary": {},
+     *   //   "purpose": "my_purpose",
+     *   //   "rotationPeriod": "my_rotationPeriod",
+     *   //   "versionTemplate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the CryptoKey to update.
-     * @param {().UpdateCryptoKeyPrimaryVersionRequest} params.resource Request body data
+     * @param {string} params.name Required. The resource name of the CryptoKey to update.
+     * @param {().UpdateCryptoKeyPrimaryVersionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     updatePrimaryVersion(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updatePrimaryVersion(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CryptoKey>;
+    updatePrimaryVersion(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updatePrimaryVersion(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
       options: MethodOptions | BodyResponseCallback<Schema$CryptoKey>,
@@ -2183,12 +3608,17 @@ export namespace cloudkms_v1 {
     updatePrimaryVersion(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion
-        | BodyResponseCallback<Schema$CryptoKey>,
+        | BodyResponseCallback<Schema$CryptoKey>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CryptoKey>,
-      callback?: BodyResponseCallback<Schema$CryptoKey>
-    ): void | GaxiosPromise<Schema$CryptoKey> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CryptoKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CryptoKey>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CryptoKey> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2222,7 +3652,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CryptoKey>(parameters, callback);
+        createAPIRequest<Schema$CryptoKey>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CryptoKey>(parameters);
       }
@@ -2231,11 +3664,6 @@ export namespace cloudkms_v1 {
 
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      */
@@ -2257,11 +3685,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the CryptoKey to use for decryption. The server will choose the appropriate version.
      */
     name?: string;
@@ -2273,11 +3696,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption.  If a CryptoKey is specified, the server will use its primary version.
      */
@@ -2291,24 +3709,14 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the CryptoKey to get.
+     * Required. The name of the CryptoKey to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -2319,11 +3727,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
     filter?: string;
@@ -2332,11 +3735,11 @@ export namespace cloudkms_v1 {
      */
     orderBy?: string;
     /**
-     * Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.
+     * Optional. Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.
      */
     pageToken?: string;
     /**
@@ -2351,16 +3754,11 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only. The resource name for this CryptoKey in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
     name?: string;
     /**
-     * Required list of fields to be updated in this request.
+     * Required. List of fields to be updated in this request.
      */
     updateMask?: string;
 
@@ -2371,11 +3769,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
@@ -2389,11 +3782,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2406,12 +3794,7 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the CryptoKey to update.
+     * Required. The resource name of the CryptoKey to update.
      */
     name?: string;
 
@@ -2430,20 +3813,87 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt
      * @desc Decrypts data that was encrypted with a public key retrieved from GetPublicKey corresponding to a CryptoKeyVersion with CryptoKey.purpose ASYMMETRIC_DECRYPT.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt(
+     *     {
+     *       // Required. The resource name of the CryptoKeyVersion to use for
+     *       // decryption.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "ciphertext": "my_ciphertext",
+     *         //   "ciphertextCrc32c": "my_ciphertextCrc32c"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "plaintext": "my_plaintext",
+     *   //   "plaintextCrc32c": "my_plaintextCrc32c",
+     *   //   "verifiedCiphertextCrc32c": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the CryptoKeyVersion to use for decryption.
-     * @param {().AsymmetricDecryptRequest} params.resource Request body data
+     * @param {().AsymmetricDecryptRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asymmetricDecrypt(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asymmetricDecrypt(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AsymmetricDecryptResponse>;
+    asymmetricDecrypt(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asymmetricDecrypt(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
       options:
@@ -2461,12 +3911,20 @@ export namespace cloudkms_v1 {
     asymmetricDecrypt(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt
-        | BodyResponseCallback<Schema$AsymmetricDecryptResponse>,
+        | BodyResponseCallback<Schema$AsymmetricDecryptResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AsymmetricDecryptResponse>,
-      callback?: BodyResponseCallback<Schema$AsymmetricDecryptResponse>
-    ): void | GaxiosPromise<Schema$AsymmetricDecryptResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AsymmetricDecryptResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AsymmetricDecryptResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AsymmetricDecryptResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2502,7 +3960,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$AsymmetricDecryptResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AsymmetricDecryptResponse>(parameters);
@@ -2512,20 +3970,87 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign
      * @desc Signs data using a CryptoKeyVersion with CryptoKey.purpose ASYMMETRIC_SIGN, producing a signature that can be verified with the public key retrieved from GetPublicKey.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign(
+     *     {
+     *       // Required. The resource name of the CryptoKeyVersion to use for signing.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "digest": {},
+     *         //   "digestCrc32c": "my_digestCrc32c"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "signature": "my_signature",
+     *   //   "signatureCrc32c": "my_signatureCrc32c",
+     *   //   "verifiedDigestCrc32c": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the CryptoKeyVersion to use for signing.
-     * @param {().AsymmetricSignRequest} params.resource Request body data
+     * @param {().AsymmetricSignRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asymmetricSign(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asymmetricSign(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AsymmetricSignResponse>;
+    asymmetricSign(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asymmetricSign(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
       options:
@@ -2543,12 +4068,20 @@ export namespace cloudkms_v1 {
     asymmetricSign(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign
-        | BodyResponseCallback<Schema$AsymmetricSignResponse>,
+        | BodyResponseCallback<Schema$AsymmetricSignResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AsymmetricSignResponse>,
-      callback?: BodyResponseCallback<Schema$AsymmetricSignResponse>
-    ): void | GaxiosPromise<Schema$AsymmetricSignResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AsymmetricSignResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AsymmetricSignResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AsymmetricSignResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2582,7 +4115,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AsymmetricSignResponse>(parameters, callback);
+        createAPIRequest<Schema$AsymmetricSignResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AsymmetricSignResponse>(parameters);
       }
@@ -2591,20 +4127,108 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
      * @desc Create a new CryptoKeyVersion in a CryptoKey.  The server will assign the next sequential id. If unset, state will be set to ENABLED.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create(
+     *     {
+     *       // Required. The name of the CryptoKey associated with
+     *       // the CryptoKeyVersions.
+     *       parent:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "algorithm": "my_algorithm",
+     *         //   "attestation": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "destroyEventTime": "my_destroyEventTime",
+     *         //   "destroyTime": "my_destroyTime",
+     *         //   "externalProtectionLevelOptions": {},
+     *         //   "generateTime": "my_generateTime",
+     *         //   "importFailureReason": "my_importFailureReason",
+     *         //   "importJob": "my_importJob",
+     *         //   "importTime": "my_importTime",
+     *         //   "name": "my_name",
+     *         //   "protectionLevel": "my_protectionLevel",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyEventTime": "my_destroyEventTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalProtectionLevelOptions": {},
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importFailureReason": "my_importFailureReason",
+     *   //   "importJob": "my_importJob",
+     *   //   "importTime": "my_importTime",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The name of the CryptoKey associated with the CryptoKeyVersions.
-     * @param {().CryptoKeyVersion} params.resource Request body data
+     * @param {().CryptoKeyVersion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CryptoKeyVersion>;
+    create(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$CryptoKeyVersion>,
@@ -2618,12 +4242,17 @@ export namespace cloudkms_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create
-        | BodyResponseCallback<Schema$CryptoKeyVersion>,
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CryptoKeyVersion>,
-      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>
-    ): void | GaxiosPromise<Schema$CryptoKeyVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CryptoKeyVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2657,7 +4286,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
+        createAPIRequest<Schema$CryptoKeyVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
       }
@@ -2666,20 +4298,93 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy
      * @desc Schedule a CryptoKeyVersion for destruction.  Upon calling this method, CryptoKeyVersion.state will be set to DESTROY_SCHEDULED and destroy_time will be set to a time 24 hours in the future, at which point the state will be changed to DESTROYED, and the key material will be irrevocably destroyed.  Before the destroy_time is reached, RestoreCryptoKeyVersion may be called to reverse the process.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy(
+     *     {
+     *       // Required. The resource name of the CryptoKeyVersion to destroy.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyEventTime": "my_destroyEventTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalProtectionLevelOptions": {},
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importFailureReason": "my_importFailureReason",
+     *   //   "importJob": "my_importJob",
+     *   //   "importTime": "my_importTime",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the CryptoKeyVersion to destroy.
-     * @param {().DestroyCryptoKeyVersionRequest} params.resource Request body data
+     * @param {string} params.name Required. The resource name of the CryptoKeyVersion to destroy.
+     * @param {().DestroyCryptoKeyVersionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     destroy(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    destroy(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CryptoKeyVersion>;
+    destroy(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     destroy(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
       options: MethodOptions | BodyResponseCallback<Schema$CryptoKeyVersion>,
@@ -2693,12 +4398,17 @@ export namespace cloudkms_v1 {
     destroy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy
-        | BodyResponseCallback<Schema$CryptoKeyVersion>,
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CryptoKeyVersion>,
-      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>
-    ): void | GaxiosPromise<Schema$CryptoKeyVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CryptoKeyVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2732,7 +4442,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
+        createAPIRequest<Schema$CryptoKeyVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
       }
@@ -2741,19 +4454,86 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get
      * @desc Returns metadata for a given CryptoKeyVersion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get(
+     *     {
+     *       // Required. The name of the CryptoKeyVersion to get.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyEventTime": "my_destroyEventTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalProtectionLevelOptions": {},
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importFailureReason": "my_importFailureReason",
+     *   //   "importJob": "my_importJob",
+     *   //   "importTime": "my_importTime",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the CryptoKeyVersion to get.
+     * @param {string} params.name Required. The name of the CryptoKeyVersion to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CryptoKeyVersion>;
+    get(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CryptoKeyVersion>,
@@ -2767,12 +4547,17 @@ export namespace cloudkms_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get
-        | BodyResponseCallback<Schema$CryptoKeyVersion>,
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CryptoKeyVersion>,
-      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>
-    ): void | GaxiosPromise<Schema$CryptoKeyVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CryptoKeyVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2803,7 +4588,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
+        createAPIRequest<Schema$CryptoKeyVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
       }
@@ -2812,19 +4600,78 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey
      * @desc Returns the public key for the given CryptoKeyVersion. The CryptoKey.purpose must be ASYMMETRIC_SIGN or ASYMMETRIC_DECRYPT.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey(
+     *     {
+     *       // Required. The name of the CryptoKeyVersion public key to
+     *       // get.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "name": "my_name",
+     *   //   "pem": "my_pem",
+     *   //   "pemCrc32c": "my_pemCrc32c"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the CryptoKeyVersion public key to get.
+     * @param {string} params.name Required. The name of the CryptoKeyVersion public key to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getPublicKey(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getPublicKey(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PublicKey>;
+    getPublicKey(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getPublicKey(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
       options: MethodOptions | BodyResponseCallback<Schema$PublicKey>,
@@ -2838,12 +4685,17 @@ export namespace cloudkms_v1 {
     getPublicKey(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey
-        | BodyResponseCallback<Schema$PublicKey>,
+        | BodyResponseCallback<Schema$PublicKey>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PublicKey>,
-      callback?: BodyResponseCallback<Schema$PublicKey>
-    ): void | GaxiosPromise<Schema$PublicKey> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PublicKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PublicKey>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PublicKey> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2877,7 +4729,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PublicKey>(parameters, callback);
+        createAPIRequest<Schema$PublicKey>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PublicKey>(parameters);
       }
@@ -2886,20 +4741,98 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import
      * @desc Imports a new CryptoKeyVersion into an existing CryptoKey using the wrapped key material provided in the request.  The version ID will be assigned the next sequential id within the CryptoKey.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import(
+     *     {
+     *       // Required. The name of the CryptoKey to
+     *       // be imported into.
+     *       parent:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "algorithm": "my_algorithm",
+     *         //   "importJob": "my_importJob",
+     *         //   "rsaAesWrappedKey": "my_rsaAesWrappedKey"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyEventTime": "my_destroyEventTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalProtectionLevelOptions": {},
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importFailureReason": "my_importFailureReason",
+     *   //   "importJob": "my_importJob",
+     *   //   "importTime": "my_importTime",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The name of the CryptoKey to be imported into.
-     * @param {().ImportCryptoKeyVersionRequest} params.resource Request body data
+     * @param {().ImportCryptoKeyVersionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     import(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CryptoKeyVersion>;
+    import(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     import(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import,
       options: MethodOptions | BodyResponseCallback<Schema$CryptoKeyVersion>,
@@ -2913,12 +4846,17 @@ export namespace cloudkms_v1 {
     import(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import
-        | BodyResponseCallback<Schema$CryptoKeyVersion>,
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CryptoKeyVersion>,
-      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>
-    ): void | GaxiosPromise<Schema$CryptoKeyVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CryptoKeyVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2952,7 +4890,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
+        createAPIRequest<Schema$CryptoKeyVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
       }
@@ -2961,14 +4902,84 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list
      * @desc Lists CryptoKeyVersions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list(
+     *     {
+     *       // Optional. Only include resources that match the filter in the response. For
+     *       // more information, see
+     *       // [Sorting and filtering list
+     *       // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *       filter: 'placeholder-value',
+     *       // Optional. Specify how the results should be sorted. If not specified, the
+     *       // results will be sorted in the default order. For more information, see
+     *       // [Sorting and filtering list
+     *       // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *       orderBy: 'placeholder-value',
+     *       // Optional. Optional limit on the number of CryptoKeyVersions to
+     *       // include in the response. Further CryptoKeyVersions can
+     *       // subsequently be obtained by including the
+     *       // ListCryptoKeyVersionsResponse.next_page_token in a subsequent request.
+     *       // If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Optional pagination token, returned earlier via
+     *       // ListCryptoKeyVersionsResponse.next_page_token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name of the CryptoKey to list, in the format
+     *       // `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *       // The fields to include in the response.
+     *       view: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cryptoKeyVersions": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
-     * @param {integer=} params.pageSize Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
-     * @param {string=} params.pageToken Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
+     * @param {integer=} params.pageSize Optional. Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     * @param {string=} params.pageToken Optional. Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
      * @param {string} params.parent Required. The resource name of the CryptoKey to list, in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      * @param {string=} params.view The fields to include in the response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2976,9 +4987,18 @@ export namespace cloudkms_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCryptoKeyVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
       options:
@@ -2996,12 +5016,20 @@ export namespace cloudkms_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List
-        | BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>,
+        | BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>
-    ): void | GaxiosPromise<Schema$ListCryptoKeyVersionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCryptoKeyVersionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3037,7 +5065,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCryptoKeyVersionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListCryptoKeyVersionsResponse>(
@@ -3049,21 +5077,111 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch
      * @desc Update a CryptoKeyVersion's metadata.  state may be changed between ENABLED and DISABLED using this method. See DestroyCryptoKeyVersion and RestoreCryptoKeyVersion to move between other states.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch(
+     *     {
+     *       // Output only. The resource name for this CryptoKeyVersion in the format
+     *       // `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *       // Required. List of fields to be updated in this request.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "algorithm": "my_algorithm",
+     *         //   "attestation": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "destroyEventTime": "my_destroyEventTime",
+     *         //   "destroyTime": "my_destroyTime",
+     *         //   "externalProtectionLevelOptions": {},
+     *         //   "generateTime": "my_generateTime",
+     *         //   "importFailureReason": "my_importFailureReason",
+     *         //   "importJob": "my_importJob",
+     *         //   "importTime": "my_importTime",
+     *         //   "name": "my_name",
+     *         //   "protectionLevel": "my_protectionLevel",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyEventTime": "my_destroyEventTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalProtectionLevelOptions": {},
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importFailureReason": "my_importFailureReason",
+     *   //   "importJob": "my_importJob",
+     *   //   "importTime": "my_importTime",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
-     * @param {string=} params.updateMask Required list of fields to be updated in this request.
-     * @param {().CryptoKeyVersion} params.resource Request body data
+     * @param {string=} params.updateMask Required. List of fields to be updated in this request.
+     * @param {().CryptoKeyVersion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CryptoKeyVersion>;
+    patch(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$CryptoKeyVersion>,
@@ -3077,12 +5195,17 @@ export namespace cloudkms_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch
-        | BodyResponseCallback<Schema$CryptoKeyVersion>,
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CryptoKeyVersion>,
-      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>
-    ): void | GaxiosPromise<Schema$CryptoKeyVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CryptoKeyVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3113,7 +5236,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
+        createAPIRequest<Schema$CryptoKeyVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
       }
@@ -3122,20 +5248,93 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore
      * @desc Restore a CryptoKeyVersion in the DESTROY_SCHEDULED state.  Upon restoration of the CryptoKeyVersion, state will be set to DISABLED, and destroy_time will be cleared.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore(
+     *     {
+     *       // Required. The resource name of the CryptoKeyVersion to restore.
+     *       name:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "destroyEventTime": "my_destroyEventTime",
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalProtectionLevelOptions": {},
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importFailureReason": "my_importFailureReason",
+     *   //   "importJob": "my_importJob",
+     *   //   "importTime": "my_importTime",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the CryptoKeyVersion to restore.
-     * @param {().RestoreCryptoKeyVersionRequest} params.resource Request body data
+     * @param {string} params.name Required. The resource name of the CryptoKeyVersion to restore.
+     * @param {().RestoreCryptoKeyVersionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     restore(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
       params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CryptoKeyVersion>;
+    restore(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     restore(
       params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
       options: MethodOptions | BodyResponseCallback<Schema$CryptoKeyVersion>,
@@ -3149,12 +5348,17 @@ export namespace cloudkms_v1 {
     restore(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore
-        | BodyResponseCallback<Schema$CryptoKeyVersion>,
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CryptoKeyVersion>,
-      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>
-    ): void | GaxiosPromise<Schema$CryptoKeyVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CryptoKeyVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CryptoKeyVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3188,7 +5392,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
+        createAPIRequest<Schema$CryptoKeyVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
       }
@@ -3197,11 +5404,6 @@ export namespace cloudkms_v1 {
 
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the CryptoKeyVersion to use for decryption.
      */
@@ -3215,11 +5417,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the CryptoKeyVersion to use for signing.
      */
     name?: string;
@@ -3231,11 +5428,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the CryptoKey associated with the CryptoKeyVersions.
      */
@@ -3249,12 +5441,7 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the CryptoKeyVersion to destroy.
+     * Required. The resource name of the CryptoKeyVersion to destroy.
      */
     name?: string;
 
@@ -3266,34 +5453,19 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the CryptoKeyVersion to get.
+     * Required. The name of the CryptoKeyVersion to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the CryptoKeyVersion public key to get.
+     * Required. The name of the CryptoKeyVersion public key to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the CryptoKey to be imported into.
      */
@@ -3307,11 +5479,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
     filter?: string;
@@ -3320,11 +5487,11 @@ export namespace cloudkms_v1 {
      */
     orderBy?: string;
     /**
-     * Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
+     * Optional. Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
      */
     pageToken?: string;
     /**
@@ -3339,16 +5506,11 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
      */
     name?: string;
     /**
-     * Required list of fields to be updated in this request.
+     * Required. List of fields to be updated in this request.
      */
     updateMask?: string;
 
@@ -3360,12 +5522,7 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the CryptoKeyVersion to restore.
+     * Required. The resource name of the CryptoKeyVersion to restore.
      */
     name?: string;
 
@@ -3384,21 +5541,103 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.importJobs.create
      * @desc Create a new ImportJob within a KeyRing.  ImportJob.import_method is required.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.importJobs.create({
+     *     // Required. It must be unique within a KeyRing and match the regular
+     *     // expression `[a-zA-Z0-9_-]{1,63}`
+     *     importJobId: 'placeholder-value',
+     *     // Required. The name of the KeyRing associated with the
+     *     // ImportJobs.
+     *     parent: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attestation": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "expireEventTime": "my_expireEventTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "generateTime": "my_generateTime",
+     *       //   "importMethod": "my_importMethod",
+     *       //   "name": "my_name",
+     *       //   "protectionLevel": "my_protectionLevel",
+     *       //   "publicKey": {},
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "expireEventTime": "my_expireEventTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importMethod": "my_importMethod",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "publicKey": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.importJobs.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.importJobId Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      * @param {string} params.parent Required. The name of the KeyRing associated with the ImportJobs.
-     * @param {().ImportJob} params.resource Request body data
+     * @param {().ImportJob} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ImportJob>;
+    create(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Create,
       options: MethodOptions | BodyResponseCallback<Schema$ImportJob>,
@@ -3412,12 +5651,17 @@ export namespace cloudkms_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Importjobs$Create
-        | BodyResponseCallback<Schema$ImportJob>,
+        | BodyResponseCallback<Schema$ImportJob>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ImportJob>,
-      callback?: BodyResponseCallback<Schema$ImportJob>
-    ): void | GaxiosPromise<Schema$ImportJob> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImportJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImportJob>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ImportJob> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3451,7 +5695,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ImportJob>(parameters, callback);
+        createAPIRequest<Schema$ImportJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ImportJob>(parameters);
       }
@@ -3460,19 +5707,81 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.importJobs.get
      * @desc Returns metadata for a given ImportJob.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.importJobs.get({
+     *     // Required. The name of the ImportJob to get.
+     *     name:
+     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestation": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "expireEventTime": "my_expireEventTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "generateTime": "my_generateTime",
+     *   //   "importMethod": "my_importMethod",
+     *   //   "name": "my_name",
+     *   //   "protectionLevel": "my_protectionLevel",
+     *   //   "publicKey": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.importJobs.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the ImportJob to get.
+     * @param {string} params.name Required. The name of the ImportJob to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ImportJob>;
+    get(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ImportJob>,
@@ -3486,12 +5795,17 @@ export namespace cloudkms_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Importjobs$Get
-        | BodyResponseCallback<Schema$ImportJob>,
+        | BodyResponseCallback<Schema$ImportJob>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ImportJob>,
-      callback?: BodyResponseCallback<Schema$ImportJob>
-    ): void | GaxiosPromise<Schema$ImportJob> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImportJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImportJob>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ImportJob> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3522,7 +5836,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ImportJob>(parameters, callback);
+        createAPIRequest<Schema$ImportJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ImportJob>(parameters);
       }
@@ -3531,20 +5848,92 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.importJobs.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.importJobs.getIamPolicy(
+     *     {
+     *       // Optional. The policy format version to be returned.
+     *       //
+     *       // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+     *       // rejected.
+     *       //
+     *       // Requests for policies with any conditional bindings must specify version 3.
+     *       // Policies without any conditional bindings may specify any valid value or
+     *       // leave the field unset.
+     *       //
+     *       // To learn which resources support conditions in their IAM policies, see the
+     *       // [IAM
+     *       // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.importJobs.getIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -3558,10 +5947,17 @@ export namespace cloudkms_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3595,7 +5991,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -3604,23 +6003,96 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.importJobs.list
      * @desc Lists ImportJobs.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.importJobs.list({
+     *     // Optional. Only include resources that match the filter in the response. For
+     *     // more information, see
+     *     // [Sorting and filtering list
+     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     filter: 'placeholder-value',
+     *     // Optional. Specify how the results should be sorted. If not specified, the
+     *     // results will be sorted in the default order. For more information, see
+     *     // [Sorting and filtering list
+     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Optional limit on the number of ImportJobs to include in the
+     *     // response. Further ImportJobs can subsequently be obtained by
+     *     // including the ListImportJobsResponse.next_page_token in a subsequent
+     *     // request. If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Optional pagination token, returned earlier via
+     *     // ListImportJobsResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the KeyRing to list, in the format
+     *     // `projects/x/locations/x/keyRings/x`.
+     *     parent: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "importJobs": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.importJobs.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
-     * @param {integer=} params.pageSize Optional limit on the number of ImportJobs to include in the response. Further ImportJobs can subsequently be obtained by including the ListImportJobsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
-     * @param {string=} params.pageToken Optional pagination token, returned earlier via ListImportJobsResponse.next_page_token.
+     * @param {integer=} params.pageSize Optional. Optional limit on the number of ImportJobs to include in the response. Further ImportJobs can subsequently be obtained by including the ListImportJobsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     * @param {string=} params.pageToken Optional. Optional pagination token, returned earlier via ListImportJobsResponse.next_page_token.
      * @param {string} params.parent Required. The resource name of the KeyRing to list, in the format `projects/x/locations/x/keyRings/x`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListImportJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$List,
       options:
@@ -3636,12 +6108,20 @@ export namespace cloudkms_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Importjobs$List
-        | BodyResponseCallback<Schema$ListImportJobsResponse>,
+        | BodyResponseCallback<Schema$ListImportJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListImportJobsResponse>,
-      callback?: BodyResponseCallback<Schema$ListImportJobsResponse>
-    ): void | GaxiosPromise<Schema$ListImportJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListImportJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListImportJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListImportJobsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3675,7 +6155,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListImportJobsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListImportJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListImportJobsResponse>(parameters);
       }
@@ -3683,21 +6166,89 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.importJobs.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.importJobs.setIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being specified.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.importJobs.setIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -3711,10 +6262,17 @@ export namespace cloudkms_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3748,7 +6306,10 @@ export namespace cloudkms_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -3756,21 +6317,85 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.importJobs.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.importJobs.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudkms.projects.locations.keyRings.importJobs.testIamPermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
       options:
@@ -3788,12 +6413,20 @@ export namespace cloudkms_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3829,7 +6462,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -3839,11 +6472,6 @@ export namespace cloudkms_v1 {
 
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      */
@@ -3861,24 +6489,14 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the ImportJob to get.
+     * Required. The name of the ImportJob to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -3889,11 +6507,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
     filter?: string;
@@ -3902,11 +6515,11 @@ export namespace cloudkms_v1 {
      */
     orderBy?: string;
     /**
-     * Optional limit on the number of ImportJobs to include in the response. Further ImportJobs can subsequently be obtained by including the ListImportJobsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of ImportJobs to include in the response. Further ImportJobs can subsequently be obtained by including the ListImportJobsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional pagination token, returned earlier via ListImportJobsResponse.next_page_token.
+     * Optional. Optional pagination token, returned earlier via ListImportJobsResponse.next_page_token.
      */
     pageToken?: string;
     /**
@@ -3916,11 +6529,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
@@ -3933,11 +6541,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */

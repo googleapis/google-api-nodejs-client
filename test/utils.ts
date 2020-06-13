@@ -1,4 +1,4 @@
-// Copyright 2016, Google, Inc.
+// Copyright 2016 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -12,41 +12,53 @@
 // limitations under the License.
 
 import {GaxiosResponse} from 'gaxios';
-import * as url from 'url';
+import {URL} from 'url';
 import {GoogleApis} from '../src';
+import {readFileSync} from 'fs';
+import * as path from 'path';
+import * as nock from 'nock';
+
+export const rootHost = 'https://www.googleapis.com';
+export const rootPrefix = '/discovery/v1/apis';
 
 export abstract class Utils {
   static getQs(res: GaxiosResponse) {
-    const query = url.parse(res.config.url!).query;
-    return query ? query.toString() : null;
+    let query = new URL(res.config.url!).search;
+    if (query.startsWith('?')) {
+      query = query.slice(1);
+    }
+    return query || null;
   }
 
   static getPath(res: GaxiosResponse) {
-    return url.parse(res.config.url!).path!;
+    return new URL(res.config.url!).pathname!;
   }
 
   static getDiscoveryUrl(name: string, version: string) {
-    return (
-      'https://www.googleapis.com/discovery/v1/apis/' +
-      name +
-      '/' +
-      version +
-      '/rest'
+    return `${rootHost}${rootPrefix}/${name}/${version}/rest`;
+  }
+
+  static getDiscoveryFixture(name: string): string {
+    return JSON.parse(
+      readFileSync(
+        path.resolve(process.cwd(), `./test/fixtures/discovery/${name}.json`),
+        'utf8'
+      )
     );
   }
 
-  // tslint:disable-next-line no-any
-  static loadApi<T = any>(
+  static loadApi<T>(
     google: GoogleApis,
     name: string,
     version: string,
     options = {}
   ) {
-    return (google.discoverAPI(
-      Utils.getDiscoveryUrl(name, version),
-      options
-      // tslint:disable-next-line no-any
-    ) as any) as T;
+    const url = Utils.getDiscoveryUrl(name, version);
+    const filePath = `./discovery/${name}-${version}.json`;
+    nock('https://www.googleapis.com')
+      .get(`${rootPrefix}/${name}/${version}/rest`)
+      .replyWithFile(200, filePath);
+    return google.discoverAPI<T>(url, options);
   }
 
   static readonly noop = () => undefined;

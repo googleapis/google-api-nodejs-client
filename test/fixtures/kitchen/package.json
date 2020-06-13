@@ -3,13 +3,9 @@
   "version": "1.0.0",
   "description": "An app we're using to test the library. ",
   "scripts": {
-    "check": "gts check",
-    "clean": "gts clean",
     "compile": "tsc -p .",
-    "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
-    "posttest": "npm run check",
     "start": "node build/src/index.js"
   },
   "license": "Apache-2.0",
@@ -17,8 +13,8 @@
     "googleapis": "file:./googleapis.tgz"
   },
   "devDependencies": {
-    "@types/node": "^8.0.53",
-    "typescript": "~3.1.0",
-    "gts": "^0.5.1"
+    "@types/node": "^13.13.4",
+    "typescript": "~3.8.3",
+    "gts": "^2.0.0"
   }
 }

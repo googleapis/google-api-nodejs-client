@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace blogger_v2 {
   export interface Options extends GlobalOptions {
@@ -43,9 +42,32 @@ export namespace blogger_v2 {
 
   interface StandardParameters {
     /**
-     * Data format for the response.
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -63,19 +85,23 @@ export namespace blogger_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
-   * Blogger API
+   * Blogger API v3
    *
-   * API for access to the data within Blogger.
+   * The Blogger API provides access to posts, comments and pages of a     Blogger blog.
    *
    * @example
    * const {google} = require('googleapis');
@@ -111,6 +137,10 @@ export namespace blogger_v2 {
 
   export interface Schema$Blog {
     /**
+     * The JSON custom meta-data for the Blog.
+     */
+    customMetaData?: string | null;
+    /**
      * The description of this blog. This is displayed underneath the title.
      */
     description?: string | null;
@@ -119,7 +149,7 @@ export namespace blogger_v2 {
      */
     id?: string | null;
     /**
-     * The kind of this entry. Always blogger#blog
+     * The kind of this entry. Always blogger#blog.
      */
     kind?: string | null;
     /**
@@ -137,7 +167,11 @@ export namespace blogger_v2 {
     /**
      * The container of posts in this blog.
      */
-    posts?: {selfLink?: string; totalItems?: number} | null;
+    posts?: {
+      items?: Schema$Post[];
+      selfLink?: string;
+      totalItems?: number;
+    } | null;
     /**
      * RFC 3339 date-time when this blog was published.
      */
@@ -146,6 +180,10 @@ export namespace blogger_v2 {
      * The API REST URL to fetch this resource from.
      */
     selfLink?: string | null;
+    /**
+     * The status of the blog.
+     */
+    status?: string | null;
     /**
      * RFC 3339 date-time when this blog was last updated.
      */
@@ -157,11 +195,55 @@ export namespace blogger_v2 {
   }
   export interface Schema$BlogList {
     /**
+     * Admin level list of blog per-user information.
+     */
+    blogUserInfos?: Schema$BlogUserInfo[];
+    /**
      * The list of Blogs this user has Authorship or Admin rights over.
      */
     items?: Schema$Blog[];
     /**
-     * The kind of this entity. Always blogger#blogList
+     * The kind of this entity. Always blogger#blogList.
+     */
+    kind?: string | null;
+  }
+  export interface Schema$BlogPerUserInfo {
+    /**
+     * ID of the Blog resource.
+     */
+    blogId?: string | null;
+    /**
+     * True if the user has Admin level access to the blog.
+     */
+    hasAdminAccess?: boolean | null;
+    /**
+     * The kind of this entity. Always blogger#blogPerUserInfo.
+     */
+    kind?: string | null;
+    /**
+     * The Photo Album Key for the user when adding photos to the blog.
+     */
+    photosAlbumKey?: string | null;
+    /**
+     * Access permissions that the user has for the blog (ADMIN, AUTHOR, or READER).
+     */
+    role?: string | null;
+    /**
+     * ID of the User.
+     */
+    userId?: string | null;
+  }
+  export interface Schema$BlogUserInfo {
+    /**
+     * The Blog resource.
+     */
+    blog?: Schema$Blog;
+    /**
+     * Information about a User for the Blog.
+     */
+    blog_user_info?: Schema$BlogPerUserInfo;
+    /**
+     * The kind of this entity. Always blogger#blogUserInfo.
      */
     kind?: string | null;
   }
@@ -192,7 +274,7 @@ export namespace blogger_v2 {
      */
     inReplyTo?: {id?: string} | null;
     /**
-     * The kind of this entry. Always blogger#comment
+     * The kind of this entry. Always blogger#comment.
      */
     kind?: string | null;
     /**
@@ -208,17 +290,25 @@ export namespace blogger_v2 {
      */
     selfLink?: string | null;
     /**
+     * The status of the comment (only populated for admin users).
+     */
+    status?: string | null;
+    /**
      * RFC 3339 date-time when this comment was last updated.
      */
     updated?: string | null;
   }
   export interface Schema$CommentList {
     /**
+     * Etag of the response.
+     */
+    etag?: string | null;
+    /**
      * The List of Comments for a Post.
      */
     items?: Schema$Comment[];
     /**
-     * The kind of this entry. Always blogger#commentList
+     * The kind of this entry. Always blogger#commentList.
      */
     kind?: string | null;
     /**
@@ -249,11 +339,15 @@ export namespace blogger_v2 {
      */
     content?: string | null;
     /**
+     * Etag of the resource.
+     */
+    etag?: string | null;
+    /**
      * The identifier for this resource.
      */
     id?: string | null;
     /**
-     * The kind of this entity. Always blogger#page
+     * The kind of this entity. Always blogger#page.
      */
     kind?: string | null;
     /**
@@ -264,6 +358,10 @@ export namespace blogger_v2 {
      * The API REST URL to fetch this resource from.
      */
     selfLink?: string | null;
+    /**
+     * The status of the page for admin resources (either LIVE or DRAFT).
+     */
+    status?: string | null;
     /**
      * The title of this entity. This is the name displayed in the Admin user interface.
      */
@@ -279,13 +377,21 @@ export namespace blogger_v2 {
   }
   export interface Schema$PageList {
     /**
+     * Etag of the response.
+     */
+    etag?: string | null;
+    /**
      * The list of Pages for a Blog.
      */
     items?: Schema$Page[];
     /**
-     * The kind of this entity. Always blogger#pageList
+     * The kind of this entity. Always blogger#pageList.
      */
     kind?: string | null;
+    /**
+     * Pagination token to fetch the next page, if one exists.
+     */
+    nextPageToken?: string | null;
   }
   export interface Schema$Post {
     /**
@@ -306,11 +412,23 @@ export namespace blogger_v2 {
      */
     content?: string | null;
     /**
+     * The JSON meta-data for the Post.
+     */
+    customMetaData?: string | null;
+    /**
+     * Etag of the resource.
+     */
+    etag?: string | null;
+    /**
      * The identifier of this Post.
      */
     id?: string | null;
     /**
-     * The kind of this entity. Always blogger#post
+     * Display image for the Post.
+     */
+    images?: Array<{url?: string}> | null;
+    /**
+     * The kind of this entity. Always blogger#post.
      */
     kind?: string | null;
     /**
@@ -318,21 +436,46 @@ export namespace blogger_v2 {
      */
     labels?: string[] | null;
     /**
+     * The location for geotagged posts.
+     */
+    location?: {
+      lat?: number;
+      lng?: number;
+      name?: string;
+      span?: string;
+    } | null;
+    /**
      * RFC 3339 date-time when this Post was published.
      */
     published?: string | null;
     /**
+     * Comment control and display setting for readers of this post.
+     */
+    readerComments?: string | null;
+    /**
      * The container of comments on this Post.
      */
-    replies?: {selfLink?: string; totalItems?: string} | null;
+    replies?: {
+      items?: Schema$Comment[];
+      selfLink?: string;
+      totalItems?: string;
+    } | null;
     /**
      * The API REST URL to fetch this resource from.
      */
     selfLink?: string | null;
     /**
+     * Status of the post. Only set for admin-level requests.
+     */
+    status?: string | null;
+    /**
      * The title of the Post.
      */
     title?: string | null;
+    /**
+     * The title link URL, similar to atom&#39;s related link.
+     */
+    titleLink?: string | null;
     /**
      * RFC 3339 date-time when this Post was last updated.
      */
@@ -344,11 +487,15 @@ export namespace blogger_v2 {
   }
   export interface Schema$PostList {
     /**
+     * Etag of the response.
+     */
+    etag?: string | null;
+    /**
      * The list of Posts for this Blog.
      */
     items?: Schema$Post[];
     /**
-     * The kind of this entity. Always blogger#postList
+     * The kind of this entity. Always blogger#postList.
      */
     kind?: string | null;
     /**
@@ -382,7 +529,7 @@ export namespace blogger_v2 {
      */
     id?: string | null;
     /**
-     * The kind of this entity. Always blogger#user
+     * The kind of this entity. Always blogger#user.
      */
     kind?: string | null;
     /**
@@ -407,20 +554,80 @@ export namespace blogger_v2 {
 
     /**
      * blogger.blogs.get
-     * @desc Gets one blog by id.
+     * @desc Gets a blog by id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.blogs.get({
+     *     blogId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": {},
+     *   //   "name": "my_name",
+     *   //   "pages": {},
+     *   //   "posts": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias blogger.blogs.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.blogId The ID of the blog to get.
+     * @param {string} params.blogId
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Blogs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Blogs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Blog>;
+    get(
+      params: Params$Resource$Blogs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Blogs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Blog>,
@@ -434,10 +641,17 @@ export namespace blogger_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Blogs$Get
-        | BodyResponseCallback<Schema$Blog>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Blog>,
-      callback?: BodyResponseCallback<Schema$Blog>
-    ): void | GaxiosPromise<Schema$Blog> {
+        | BodyResponseCallback<Schema$Blog>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Blog>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Blog>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Blog> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blogs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -452,14 +666,11 @@ export namespace blogger_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/blogger/v2/blogs/{blogId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2/blogs/{blogId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -470,23 +681,158 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Blog>(parameters, callback);
+        createAPIRequest<Schema$Blog>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Blog>(parameters);
+      }
+    }
+
+    /**
+     * blogger.blogs.list
+     * @desc Lists blogs by user id, possibly filtered.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.blogs.list({
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blogUserInfos": [],
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias blogger.blogs.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.userId
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Blogs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Blogs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BlogList>;
+    list(
+      params: Params$Resource$Blogs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Blogs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$BlogList>,
+      callback: BodyResponseCallback<Schema$BlogList>
+    ): void;
+    list(
+      params: Params$Resource$Blogs$List,
+      callback: BodyResponseCallback<Schema$BlogList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$BlogList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Blogs$List
+        | BodyResponseCallback<Schema$BlogList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BlogList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BlogList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BlogList> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Blogs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Blogs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/users/{userId}/blogs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BlogList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$BlogList>(parameters);
       }
     }
   }
 
   export interface Params$Resource$Blogs$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the blog to get.
+     *
      */
     blogId?: string;
+  }
+  export interface Params$Resource$Blogs$List extends StandardParameters {
+    /**
+     *
+     */
+    userId?: string;
   }
 
   export class Resource$Comments {
@@ -497,22 +843,84 @@ export namespace blogger_v2 {
 
     /**
      * blogger.comments.get
-     * @desc Gets one comment by id.
+     * @desc Gets a comment by blog id, post id and comment id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     commentId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "id": "my_id",
+     *   //   "inReplyTo": {},
+     *   //   "kind": "my_kind",
+     *   //   "post": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias blogger.comments.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.blogId ID of the blog to containing the comment.
-     * @param {string} params.commentId The ID of the comment to get.
-     * @param {string} params.postId ID of the post to fetch posts from.
+     * @param {string} params.blogId
+     * @param {string} params.commentId
+     * @param {string} params.postId
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Comments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Comments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Comment>;
+    get(
+      params: Params$Resource$Comments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Comments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Comment>,
@@ -526,10 +934,17 @@ export namespace blogger_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Comments$Get
-        | BodyResponseCallback<Schema$Comment>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
-      callback?: BodyResponseCallback<Schema$Comment>
-    ): void | GaxiosPromise<Schema$Comment> {
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -544,13 +959,12 @@ export namespace blogger_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/blogger/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}'
+              rootUrl + '/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -562,7 +976,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Comment>(parameters, callback);
+        createAPIRequest<Schema$Comment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
       }
@@ -570,25 +987,87 @@ export namespace blogger_v2 {
 
     /**
      * blogger.comments.list
-     * @desc Retrieves the comments for a blog, possibly filtered.
+     * @desc Lists comments.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.list({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     maxResults: 'placeholder-value',
+     *
+     *     pageToken: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     startDate: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias blogger.comments.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.blogId ID of the blog to fetch comments from.
-     * @param {boolean=} params.fetchBodies Whether the body content of the comments is included.
-     * @param {integer=} params.maxResults Maximum number of comments to include in the result.
-     * @param {string=} params.pageToken Continuation token if request is paged.
-     * @param {string} params.postId ID of the post to fetch posts from.
-     * @param {string=} params.startDate Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
+     * @param {string} params.blogId
+     * @param {boolean=} params.fetchBodies
+     * @param {integer=} params.maxResults
+     * @param {string=} params.pageToken
+     * @param {string} params.postId
+     * @param {string=} params.startDate
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Comments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Comments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CommentList>;
+    list(
+      params: Params$Resource$Comments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Comments$List,
       options: MethodOptions | BodyResponseCallback<Schema$CommentList>,
@@ -602,12 +1081,17 @@ export namespace blogger_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Comments$List
-        | BodyResponseCallback<Schema$CommentList>,
+        | BodyResponseCallback<Schema$CommentList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CommentList>,
-      callback?: BodyResponseCallback<Schema$CommentList>
-    ): void | GaxiosPromise<Schema$CommentList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommentList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommentList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CommentList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -622,12 +1106,12 @@ export namespace blogger_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}/comments'
+              rootUrl + '/v2/blogs/{blogId}/posts/{postId}/comments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -639,7 +1123,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CommentList>(parameters, callback);
+        createAPIRequest<Schema$CommentList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CommentList>(parameters);
       }
@@ -648,51 +1135,41 @@ export namespace blogger_v2 {
 
   export interface Params$Resource$Comments$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the blog to containing the comment.
+     *
      */
     blogId?: string;
     /**
-     * The ID of the comment to get.
+     *
      */
     commentId?: string;
     /**
-     * ID of the post to fetch posts from.
+     *
      */
     postId?: string;
   }
   export interface Params$Resource$Comments$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the blog to fetch comments from.
+     *
      */
     blogId?: string;
     /**
-     * Whether the body content of the comments is included.
+     *
      */
     fetchBodies?: boolean;
     /**
-     * Maximum number of comments to include in the result.
+     *
      */
     maxResults?: number;
     /**
-     * Continuation token if request is paged.
+     *
      */
     pageToken?: string;
     /**
-     * ID of the post to fetch posts from.
+     *
      */
     postId?: string;
     /**
-     * Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
+     *
      */
     startDate?: string;
   }
@@ -705,21 +1182,82 @@ export namespace blogger_v2 {
 
     /**
      * blogger.pages.get
-     * @desc Gets one blog page by id.
+     * @desc Gets a page by blog id and page id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     pageId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias blogger.pages.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.blogId ID of the blog containing the page.
-     * @param {string} params.pageId The ID of the page to get.
+     * @param {string} params.blogId
+     * @param {string} params.pageId
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Pages$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Pages$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Page>;
+    get(
+      params: Params$Resource$Pages$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Pages$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Page>,
@@ -733,10 +1271,17 @@ export namespace blogger_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Pages$Get
-        | BodyResponseCallback<Schema$Page>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Page>,
-      callback?: BodyResponseCallback<Schema$Page>
-    ): void | GaxiosPromise<Schema$Page> {
+        | BodyResponseCallback<Schema$Page>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Page>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Page>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Page> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -751,13 +1296,14 @@ export namespace blogger_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/blogger/v2/blogs/{blogId}/pages/{pageId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/blogs/{blogId}/pages/{pageId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
@@ -768,7 +1314,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Page>(parameters, callback);
+        createAPIRequest<Schema$Page>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
       }
@@ -776,21 +1325,74 @@ export namespace blogger_v2 {
 
     /**
      * blogger.pages.list
-     * @desc Retrieves pages for a blog, possibly filtered.
+     * @desc Lists pages.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.list({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias blogger.pages.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.blogId ID of the blog to fetch pages from.
-     * @param {boolean=} params.fetchBodies Whether to retrieve the Page bodies.
+     * @param {string} params.blogId
+     * @param {boolean=} params.fetchBodies
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Pages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Pages$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PageList>;
+    list(
+      params: Params$Resource$Pages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Pages$List,
       options: MethodOptions | BodyResponseCallback<Schema$PageList>,
@@ -804,10 +1406,17 @@ export namespace blogger_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Pages$List
-        | BodyResponseCallback<Schema$PageList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$PageList>,
-      callback?: BodyResponseCallback<Schema$PageList>
-    ): void | GaxiosPromise<Schema$PageList> {
+        | BodyResponseCallback<Schema$PageList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PageList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PageList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PageList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -822,11 +1431,11 @@ export namespace blogger_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages').replace(
+            url: (rootUrl + '/v2/blogs/{blogId}/pages').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -840,7 +1449,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PageList>(parameters, callback);
+        createAPIRequest<Schema$PageList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PageList>(parameters);
       }
@@ -849,31 +1461,21 @@ export namespace blogger_v2 {
 
   export interface Params$Resource$Pages$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the blog containing the page.
+     *
      */
     blogId?: string;
     /**
-     * The ID of the page to get.
+     *
      */
     pageId?: string;
   }
   export interface Params$Resource$Pages$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the blog to fetch pages from.
+     *
      */
     blogId?: string;
     /**
-     * Whether to retrieve the Page bodies.
+     *
      */
     fetchBodies?: boolean;
   }
@@ -886,21 +1488,89 @@ export namespace blogger_v2 {
 
     /**
      * blogger.posts.get
-     * @desc Get a post by id.
+     * @desc Gets a post by blog id and post id
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias blogger.posts.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.blogId ID of the blog to fetch the post from.
-     * @param {string} params.postId The ID of the post
+     * @param {string} params.blogId
+     * @param {string} params.postId
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Posts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Posts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Post>;
+    get(
+      params: Params$Resource$Posts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Posts$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Post>,
@@ -914,10 +1584,17 @@ export namespace blogger_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Posts$Get
-        | BodyResponseCallback<Schema$Post>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Post>,
-      callback?: BodyResponseCallback<Schema$Post>
-    ): void | GaxiosPromise<Schema$Post> {
+        | BodyResponseCallback<Schema$Post>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Post>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Post>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Post> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -932,13 +1609,14 @@ export namespace blogger_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/blogs/{blogId}/posts/{postId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
@@ -949,7 +1627,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Post>(parameters, callback);
+        createAPIRequest<Schema$Post>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
       }
@@ -957,24 +1638,84 @@ export namespace blogger_v2 {
 
     /**
      * blogger.posts.list
-     * @desc Retrieves a list of posts, possibly filtered.
+     * @desc Lists posts.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.list({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     maxResults: 'placeholder-value',
+     *
+     *     pageToken: 'placeholder-value',
+     *
+     *     startDate: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias blogger.posts.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.blogId ID of the blog to fetch posts from.
-     * @param {boolean=} params.fetchBodies Whether the body content of posts is included.
-     * @param {integer=} params.maxResults Maximum number of posts to fetch.
-     * @param {string=} params.pageToken Continuation token if the request is paged.
-     * @param {string=} params.startDate Earliest post date to fetch, a date-time with RFC 3339 formatting.
+     * @param {string} params.blogId
+     * @param {boolean=} params.fetchBodies
+     * @param {integer=} params.maxResults
+     * @param {string=} params.pageToken
+     * @param {string=} params.startDate
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Posts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Posts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PostList>;
+    list(
+      params: Params$Resource$Posts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Posts$List,
       options: MethodOptions | BodyResponseCallback<Schema$PostList>,
@@ -988,10 +1729,17 @@ export namespace blogger_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Posts$List
-        | BodyResponseCallback<Schema$PostList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$PostList>,
-      callback?: BodyResponseCallback<Schema$PostList>
-    ): void | GaxiosPromise<Schema$PostList> {
+        | BodyResponseCallback<Schema$PostList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PostList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PostList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PostList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1006,11 +1754,11 @@ export namespace blogger_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts').replace(
+            url: (rootUrl + '/v2/blogs/{blogId}/posts').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1024,7 +1772,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PostList>(parameters, callback);
+        createAPIRequest<Schema$PostList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PostList>(parameters);
       }
@@ -1033,71 +1784,115 @@ export namespace blogger_v2 {
 
   export interface Params$Resource$Posts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the blog to fetch the post from.
+     *
      */
     blogId?: string;
     /**
-     * The ID of the post
+     *
      */
     postId?: string;
   }
   export interface Params$Resource$Posts$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the blog to fetch posts from.
+     *
      */
     blogId?: string;
     /**
-     * Whether the body content of posts is included.
+     *
      */
     fetchBodies?: boolean;
     /**
-     * Maximum number of posts to fetch.
+     *
      */
     maxResults?: number;
     /**
-     * Continuation token if the request is paged.
+     *
      */
     pageToken?: string;
     /**
-     * Earliest post date to fetch, a date-time with RFC 3339 formatting.
+     *
      */
     startDate?: string;
   }
 
   export class Resource$Users {
     context: APIRequestContext;
-    blogs: Resource$Users$Blogs;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.blogs = new Resource$Users$Blogs(this.context);
     }
 
     /**
      * blogger.users.get
-     * @desc Gets one user by id.
+     * @desc Gets a user by user id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.users.get({
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "about": "my_about",
+     *   //   "blogs": {},
+     *   //   "created": "my_created",
+     *   //   "displayName": "my_displayName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias blogger.users.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The ID of the user to get.
+     * @param {string} params.userId
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$User>;
+    get(
+      params: Params$Resource$Users$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Get,
       options: MethodOptions | BodyResponseCallback<Schema$User>,
@@ -1111,10 +1906,17 @@ export namespace blogger_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Get
-        | BodyResponseCallback<Schema$User>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$User>,
-      callback?: BodyResponseCallback<Schema$User>
-    ): void | GaxiosPromise<Schema$User> {
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1129,14 +1931,11 @@ export namespace blogger_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://blogger.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/blogger/v2/users/{userId}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v2/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1147,7 +1946,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$User>(parameters, callback);
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$User>(parameters);
       }
@@ -1156,102 +1958,7 @@ export namespace blogger_v2 {
 
   export interface Params$Resource$Users$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the user to get.
-     */
-    userId?: string;
-  }
-
-  export class Resource$Users$Blogs {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * blogger.users.blogs.list
-     * @desc Retrieves a list of blogs, possibly filtered.
-     * @alias blogger.users.blogs.list
-     * @memberOf! ()
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId ID of the user whose blogs are to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params?: Params$Resource$Users$Blogs$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$BlogList>;
-    list(
-      params: Params$Resource$Users$Blogs$List,
-      options: MethodOptions | BodyResponseCallback<Schema$BlogList>,
-      callback: BodyResponseCallback<Schema$BlogList>
-    ): void;
-    list(
-      params: Params$Resource$Users$Blogs$List,
-      callback: BodyResponseCallback<Schema$BlogList>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$BlogList>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Users$Blogs$List
-        | BodyResponseCallback<Schema$BlogList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$BlogList>,
-      callback?: BodyResponseCallback<Schema$BlogList>
-    ): void | GaxiosPromise<Schema$BlogList> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Users$Blogs$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Users$Blogs$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/blogger/v2/users/{userId}/blogs').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['userId'],
-        pathParams: ['userId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BlogList>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$BlogList>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Users$Blogs$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the user whose blogs are to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
      */
     userId?: string;
   }

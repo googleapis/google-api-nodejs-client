@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace analytics_v3 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace analytics_v3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -2518,6 +2528,89 @@ export namespace analytics_v3 {
     /**
      * analytics.data.ga.get
      * @desc Returns Analytics data for a view (profile).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.data.ga.get({
+     *     // A comma-separated list of Analytics dimensions. E.g., 'ga:browser,ga:city'.
+     *     dimensions: '(ga:.+)?',
+     *     // End date for fetching Analytics data. Request can should specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
+     *     'end-date': '[0-9]{4}-[0-9]{2}-[0-9]{2}|today|yesterday|[0-9]+(daysAgo)',
+     *     // A comma-separated list of dimension or metric filters to be applied to Analytics data.
+     *     filters: 'ga:.+',
+     *     // Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     *     ids: 'ga:[0-9]+',
+     *     // The response will include empty rows if this parameter is set to true, the default is true
+     *     'include-empty-rows': 'placeholder-value',
+     *     // The maximum number of entries to include in this feed.
+     *     'max-results': 'placeholder-value',
+     *     // A comma-separated list of Analytics metrics. E.g., 'ga:sessions,ga:pageviews'. At least one metric must be specified.
+     *     metrics: 'ga:.+',
+     *     // The selected format for the response. Default format is JSON.
+     *     output: 'placeholder-value',
+     *     // The desired sampling level.
+     *     samplingLevel: 'placeholder-value',
+     *     // An Analytics segment to be applied to data.
+     *     segment: 'placeholder-value',
+     *     // A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
+     *     sort: '(-)?ga:.+',
+     *     // Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+     *     'start-date': '[0-9]{4}-[0-9]{2}-[0-9]{2}|today|yesterday|[0-9]+(daysAgo)',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columnHeaders": [],
+     *   //   "containsSampledData": false,
+     *   //   "dataLastRefreshed": "my_dataLastRefreshed",
+     *   //   "dataTable": {},
+     *   //   "id": "my_id",
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "profileInfo": {},
+     *   //   "query": {},
+     *   //   "rows": [],
+     *   //   "sampleSize": "my_sampleSize",
+     *   //   "sampleSpace": "my_sampleSpace",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "totalResults": 0,
+     *   //   "totalsForAllResults": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.data.ga.get
      * @memberOf! ()
      *
@@ -2540,9 +2633,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Data$Ga$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Data$Ga$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GaData>;
+    get(
+      params: Params$Resource$Data$Ga$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Data$Ga$Get,
       options: MethodOptions | BodyResponseCallback<Schema$GaData>,
@@ -2556,10 +2658,17 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Data$Ga$Get
-        | BodyResponseCallback<Schema$GaData>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$GaData>,
-      callback?: BodyResponseCallback<Schema$GaData>
-    ): void | GaxiosPromise<Schema$GaData> {
+        | BodyResponseCallback<Schema$GaData>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GaData>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GaData>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$GaData> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Data$Ga$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2592,7 +2701,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GaData>(parameters, callback);
+        createAPIRequest<Schema$GaData>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GaData>(parameters);
       }
@@ -2600,11 +2712,6 @@ export namespace analytics_v3 {
   }
 
   export interface Params$Resource$Data$Ga$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A comma-separated list of Analytics dimensions. E.g., 'ga:browser,ga:city'.
      */
@@ -2668,6 +2775,81 @@ export namespace analytics_v3 {
     /**
      * analytics.data.mcf.get
      * @desc Returns Analytics Multi-Channel Funnels data for a view (profile).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.data.mcf.get({
+     *     // A comma-separated list of Multi-Channel Funnels dimensions. E.g., 'mcf:source,mcf:medium'.
+     *     dimensions: '(mcf:.+)?',
+     *     // End date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+     *     'end-date': '[0-9]{4}-[0-9]{2}-[0-9]{2}|today|yesterday|[0-9]+(daysAgo)',
+     *     // A comma-separated list of dimension or metric filters to be applied to the Analytics data.
+     *     filters: 'mcf:.+',
+     *     // Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     *     ids: 'ga:[0-9]+',
+     *     // The maximum number of entries to include in this feed.
+     *     'max-results': 'placeholder-value',
+     *     // A comma-separated list of Multi-Channel Funnels metrics. E.g., 'mcf:totalConversions,mcf:totalConversionValue'. At least one metric must be specified.
+     *     metrics: 'mcf:.+',
+     *     // The desired sampling level.
+     *     samplingLevel: 'placeholder-value',
+     *     // A comma-separated list of dimensions or metrics that determine the sort order for the Analytics data.
+     *     sort: '(-)?mcf:.+',
+     *     // Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+     *     'start-date': '[0-9]{4}-[0-9]{2}-[0-9]{2}|today|yesterday|[0-9]+(daysAgo)',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columnHeaders": [],
+     *   //   "containsSampledData": false,
+     *   //   "id": "my_id",
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "profileInfo": {},
+     *   //   "query": {},
+     *   //   "rows": [],
+     *   //   "sampleSize": "my_sampleSize",
+     *   //   "sampleSpace": "my_sampleSpace",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "totalResults": 0,
+     *   //   "totalsForAllResults": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.data.mcf.get
      * @memberOf! ()
      *
@@ -2687,9 +2869,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Data$Mcf$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Data$Mcf$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$McfData>;
+    get(
+      params: Params$Resource$Data$Mcf$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Data$Mcf$Get,
       options: MethodOptions | BodyResponseCallback<Schema$McfData>,
@@ -2703,10 +2894,17 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Data$Mcf$Get
-        | BodyResponseCallback<Schema$McfData>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$McfData>,
-      callback?: BodyResponseCallback<Schema$McfData>
-    ): void | GaxiosPromise<Schema$McfData> {
+        | BodyResponseCallback<Schema$McfData>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$McfData>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$McfData>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$McfData> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Data$Mcf$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2739,7 +2937,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$McfData>(parameters, callback);
+        createAPIRequest<Schema$McfData>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$McfData>(parameters);
       }
@@ -2747,11 +2948,6 @@ export namespace analytics_v3 {
   }
 
   export interface Params$Resource$Data$Mcf$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A comma-separated list of Multi-Channel Funnels dimensions. E.g., 'mcf:source,mcf:medium'.
      */
@@ -2803,6 +2999,67 @@ export namespace analytics_v3 {
     /**
      * analytics.data.realtime.get
      * @desc Returns real time data for a view (profile).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.data.realtime.get({
+     *     // A comma-separated list of real time dimensions. E.g., 'rt:medium,rt:city'.
+     *     dimensions: '(ga:.+)|(rt:.+)',
+     *     // A comma-separated list of dimension or metric filters to be applied to real time data.
+     *     filters: '(ga:.+)|(rt:.+)',
+     *     // Unique table ID for retrieving real time data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     *     ids: 'ga:[0-9]+',
+     *     // The maximum number of entries to include in this feed.
+     *     'max-results': 'placeholder-value',
+     *     // A comma-separated list of real time metrics. E.g., 'rt:activeUsers'. At least one metric must be specified.
+     *     metrics: '(ga:.+)|(rt:.+)',
+     *     // A comma-separated list of dimensions or metrics that determine the sort order for real time data.
+     *     sort: '(-)?((ga:.+)|(rt:.+))',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columnHeaders": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileInfo": {},
+     *   //   "query": {},
+     *   //   "rows": [],
+     *   //   "selfLink": "my_selfLink",
+     *   //   "totalResults": 0,
+     *   //   "totalsForAllResults": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.data.realtime.get
      * @memberOf! ()
      *
@@ -2818,9 +3075,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Data$Realtime$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Data$Realtime$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RealtimeData>;
+    get(
+      params: Params$Resource$Data$Realtime$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Data$Realtime$Get,
       options: MethodOptions | BodyResponseCallback<Schema$RealtimeData>,
@@ -2834,12 +3100,17 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Data$Realtime$Get
-        | BodyResponseCallback<Schema$RealtimeData>,
+        | BodyResponseCallback<Schema$RealtimeData>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RealtimeData>,
-      callback?: BodyResponseCallback<Schema$RealtimeData>
-    ): void | GaxiosPromise<Schema$RealtimeData> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RealtimeData>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RealtimeData>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RealtimeData> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Data$Realtime$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2873,7 +3144,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RealtimeData>(parameters, callback);
+        createAPIRequest<Schema$RealtimeData>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RealtimeData>(parameters);
       }
@@ -2882,11 +3156,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Data$Realtime$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A comma-separated list of real time dimensions. E.g., 'rt:medium,rt:city'.
      */
@@ -2989,6 +3258,59 @@ export namespace analytics_v3 {
     /**
      * analytics.management.accounts.list
      * @desc Lists all accounts to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accounts.list({
+     *     // The maximum number of accounts to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.accounts.list
      * @memberOf! ()
      *
@@ -3000,9 +3322,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Accounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Accounts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Accounts>;
+    list(
+      params: Params$Resource$Management$Accounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Accounts$List,
       options: MethodOptions | BodyResponseCallback<Schema$Accounts>,
@@ -3016,10 +3347,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Accounts$List
-        | BodyResponseCallback<Schema$Accounts>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Accounts>,
-      callback?: BodyResponseCallback<Schema$Accounts>
-    ): void | GaxiosPromise<Schema$Accounts> {
+        | BodyResponseCallback<Schema$Accounts>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Accounts>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Accounts>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Accounts> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3053,7 +3391,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Accounts>(parameters, callback);
+        createAPIRequest<Schema$Accounts>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Accounts>(parameters);
       }
@@ -3062,11 +3403,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Accounts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of accounts to include in this response.
      */
@@ -3086,6 +3422,58 @@ export namespace analytics_v3 {
     /**
      * analytics.management.accountSummaries.list
      * @desc Lists account summaries (lightweight tree comprised of accounts/properties/profiles) to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountSummaries.list({
+     *     // The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.accountSummaries.list
      * @memberOf! ()
      *
@@ -3097,9 +3485,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Accountsummaries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Accountsummaries$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccountSummaries>;
+    list(
+      params: Params$Resource$Management$Accountsummaries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Accountsummaries$List,
       options: MethodOptions | BodyResponseCallback<Schema$AccountSummaries>,
@@ -3113,12 +3510,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Accountsummaries$List
-        | BodyResponseCallback<Schema$AccountSummaries>,
+        | BodyResponseCallback<Schema$AccountSummaries>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccountSummaries>,
-      callback?: BodyResponseCallback<Schema$AccountSummaries>
-    ): void | GaxiosPromise<Schema$AccountSummaries> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountSummaries>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountSummaries>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AccountSummaries> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Accountsummaries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3151,7 +3553,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccountSummaries>(parameters, callback);
+        createAPIRequest<Schema$AccountSummaries>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccountSummaries>(parameters);
       }
@@ -3160,11 +3565,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Accountsummaries$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
      */
@@ -3184,6 +3584,43 @@ export namespace analytics_v3 {
     /**
      * analytics.management.accountUserLinks.delete
      * @desc Removes a user from the given account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountUserLinks.delete({
+     *     // Account ID to delete the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to delete the user link for.
+     *     linkId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.accountUserLinks.delete
      * @memberOf! ()
      *
@@ -3195,9 +3632,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Management$Accountuserlinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Management$Accountuserlinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Management$Accountuserlinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Management$Accountuserlinks$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3211,10 +3657,15 @@ export namespace analytics_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Management$Accountuserlinks$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Accountuserlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3248,7 +3699,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3257,20 +3711,87 @@ export namespace analytics_v3 {
     /**
      * analytics.management.accountUserLinks.insert
      * @desc Adds a new user to the given account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountUserLinks.insert({
+     *     // Account ID to create the user link for.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.accountUserLinks.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to create the user link for.
-     * @param {().EntityUserLink} params.resource Request body data
+     * @param {().EntityUserLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Accountuserlinks$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Accountuserlinks$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityUserLink>;
+    insert(
+      params: Params$Resource$Management$Accountuserlinks$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Accountuserlinks$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$EntityUserLink>,
@@ -3284,12 +3805,17 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Accountuserlinks$Insert
-        | BodyResponseCallback<Schema$EntityUserLink>,
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityUserLink>,
-      callback?: BodyResponseCallback<Schema$EntityUserLink>
-    ): void | GaxiosPromise<Schema$EntityUserLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EntityUserLink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Accountuserlinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3323,7 +3849,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityUserLink>(parameters, callback);
+        createAPIRequest<Schema$EntityUserLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
       }
@@ -3332,6 +3861,59 @@ export namespace analytics_v3 {
     /**
      * analytics.management.accountUserLinks.list
      * @desc Lists account-user links for a given account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountUserLinks.list({
+     *     // Account ID to retrieve the user links for.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of account-user links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first account-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.accountUserLinks.list
      * @memberOf! ()
      *
@@ -3344,9 +3926,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Accountuserlinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Accountuserlinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityUserLinks>;
+    list(
+      params: Params$Resource$Management$Accountuserlinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Accountuserlinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$EntityUserLinks>,
@@ -3360,12 +3951,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Accountuserlinks$List
-        | BodyResponseCallback<Schema$EntityUserLinks>,
+        | BodyResponseCallback<Schema$EntityUserLinks>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityUserLinks>,
-      callback?: BodyResponseCallback<Schema$EntityUserLinks>
-    ): void | GaxiosPromise<Schema$EntityUserLinks> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityUserLinks>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityUserLinks>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EntityUserLinks> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Accountuserlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3399,7 +3995,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
+        createAPIRequest<Schema$EntityUserLinks>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityUserLinks>(parameters);
       }
@@ -3408,21 +4007,90 @@ export namespace analytics_v3 {
     /**
      * analytics.management.accountUserLinks.update
      * @desc Updates permissions for an existing user on the given account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.accountUserLinks.update({
+     *     // Account ID to update the account-user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to update the account-user link for.
+     *     linkId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.accountUserLinks.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to update the account-user link for.
      * @param {string} params.linkId Link ID to update the account-user link for.
-     * @param {().EntityUserLink} params.resource Request body data
+     * @param {().EntityUserLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Management$Accountuserlinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Management$Accountuserlinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityUserLink>;
+    update(
+      params: Params$Resource$Management$Accountuserlinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Management$Accountuserlinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$EntityUserLink>,
@@ -3436,12 +4104,17 @@ export namespace analytics_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Management$Accountuserlinks$Update
-        | BodyResponseCallback<Schema$EntityUserLink>,
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityUserLink>,
-      callback?: BodyResponseCallback<Schema$EntityUserLink>
-    ): void | GaxiosPromise<Schema$EntityUserLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EntityUserLink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Accountuserlinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3475,7 +4148,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityUserLink>(parameters, callback);
+        createAPIRequest<Schema$EntityUserLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
       }
@@ -3484,11 +4160,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Accountuserlinks$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to delete the user link for.
      */
@@ -3501,11 +4172,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Accountuserlinks$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to create the user link for.
      */
     accountId?: string;
@@ -3517,11 +4183,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Accountuserlinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve the user links for.
      */
@@ -3537,11 +4198,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Accountuserlinks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to update the account-user link for.
      */
@@ -3566,19 +4222,81 @@ export namespace analytics_v3 {
     /**
      * analytics.management.clientId.hashClientId
      * @desc Hashes the given Client ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.clientId.hashClientId({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientId": "my_clientId",
+     *       //   "kind": "my_kind",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientId": "my_clientId",
+     *   //   "hashedClientId": "my_hashedClientId",
+     *   //   "kind": "my_kind",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.clientId.hashClientId
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().HashClientIdRequest} params.resource Request body data
+     * @param {().HashClientIdRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     hashClientId(
+      params: Params$Resource$Management$Clientid$Hashclientid,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    hashClientId(
       params?: Params$Resource$Management$Clientid$Hashclientid,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HashClientIdResponse>;
+    hashClientId(
+      params: Params$Resource$Management$Clientid$Hashclientid,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     hashClientId(
       params: Params$Resource$Management$Clientid$Hashclientid,
       options:
@@ -3596,12 +4314,20 @@ export namespace analytics_v3 {
     hashClientId(
       paramsOrCallback?:
         | Params$Resource$Management$Clientid$Hashclientid
-        | BodyResponseCallback<Schema$HashClientIdResponse>,
+        | BodyResponseCallback<Schema$HashClientIdResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$HashClientIdResponse>,
-      callback?: BodyResponseCallback<Schema$HashClientIdResponse>
-    ): void | GaxiosPromise<Schema$HashClientIdResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HashClientIdResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HashClientIdResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$HashClientIdResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Clientid$Hashclientid;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3634,7 +4360,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$HashClientIdResponse>(parameters, callback);
+        createAPIRequest<Schema$HashClientIdResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$HashClientIdResponse>(parameters);
       }
@@ -3643,11 +4372,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Clientid$Hashclientid
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -3663,6 +4387,63 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customDataSources.list
      * @desc List custom data sources to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDataSources.list({
+     *     // Account Id for the custom data sources to retrieve.
+     *     accountId: 'd+',
+     *     // The maximum number of custom data sources to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property Id for the custom data sources to retrieve.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customDataSources.list
      * @memberOf! ()
      *
@@ -3676,9 +4457,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Customdatasources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Customdatasources$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomDataSources>;
+    list(
+      params: Params$Resource$Management$Customdatasources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Customdatasources$List,
       options: MethodOptions | BodyResponseCallback<Schema$CustomDataSources>,
@@ -3692,12 +4482,20 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Customdatasources$List
-        | BodyResponseCallback<Schema$CustomDataSources>,
+        | BodyResponseCallback<Schema$CustomDataSources>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomDataSources>,
-      callback?: BodyResponseCallback<Schema$CustomDataSources>
-    ): void | GaxiosPromise<Schema$CustomDataSources> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomDataSources>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomDataSources>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CustomDataSources>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Customdatasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3731,7 +4529,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomDataSources>(parameters, callback);
+        createAPIRequest<Schema$CustomDataSources>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomDataSources>(parameters);
       }
@@ -3740,11 +4541,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Customdatasources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account Id for the custom data sources to retrieve.
      */
@@ -3772,6 +4568,64 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customDimensions.get
      * @desc Get a custom dimension to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.get({
+     *     // Account ID for the custom dimension to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the custom dimension to retrieve.
+     *     customDimensionId: 'placeholder-value',
+     *     // Web property ID for the custom dimension to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customDimensions.get
      * @memberOf! ()
      *
@@ -3784,9 +4638,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Management$Customdimensions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Management$Customdimensions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomDimension>;
+    get(
+      params: Params$Resource$Management$Customdimensions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Management$Customdimensions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CustomDimension>,
@@ -3800,12 +4663,17 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Management$Customdimensions$Get
-        | BodyResponseCallback<Schema$CustomDimension>,
+        | BodyResponseCallback<Schema$CustomDimension>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomDimension>,
-      callback?: BodyResponseCallback<Schema$CustomDimension>
-    ): void | GaxiosPromise<Schema$CustomDimension> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomDimension>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomDimension>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomDimension> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Customdimensions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3839,7 +4707,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomDimension>(parameters, callback);
+        createAPIRequest<Schema$CustomDimension>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomDimension>(parameters);
       }
@@ -3848,21 +4719,102 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customDimensions.insert
      * @desc Create a new custom dimension.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.insert({
+     *     // Account ID for the custom dimension to create.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID for the custom dimension to create.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customDimensions.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID for the custom dimension to create.
      * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
-     * @param {().CustomDimension} params.resource Request body data
+     * @param {().CustomDimension} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Customdimensions$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Customdimensions$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomDimension>;
+    insert(
+      params: Params$Resource$Management$Customdimensions$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Customdimensions$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$CustomDimension>,
@@ -3876,12 +4828,17 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Customdimensions$Insert
-        | BodyResponseCallback<Schema$CustomDimension>,
+        | BodyResponseCallback<Schema$CustomDimension>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomDimension>,
-      callback?: BodyResponseCallback<Schema$CustomDimension>
-    ): void | GaxiosPromise<Schema$CustomDimension> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomDimension>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomDimension>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomDimension> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Customdimensions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3915,7 +4872,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomDimension>(parameters, callback);
+        createAPIRequest<Schema$CustomDimension>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomDimension>(parameters);
       }
@@ -3924,6 +4884,62 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customDimensions.list
      * @desc Lists custom dimensions to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.list({
+     *     // Account ID for the custom dimensions to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of custom dimensions to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID for the custom dimensions to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customDimensions.list
      * @memberOf! ()
      *
@@ -3937,9 +4953,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Customdimensions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Customdimensions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomDimensions>;
+    list(
+      params: Params$Resource$Management$Customdimensions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Customdimensions$List,
       options: MethodOptions | BodyResponseCallback<Schema$CustomDimensions>,
@@ -3953,12 +4978,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Customdimensions$List
-        | BodyResponseCallback<Schema$CustomDimensions>,
+        | BodyResponseCallback<Schema$CustomDimensions>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomDimensions>,
-      callback?: BodyResponseCallback<Schema$CustomDimensions>
-    ): void | GaxiosPromise<Schema$CustomDimensions> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomDimensions>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomDimensions>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomDimensions> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Customdimensions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3992,7 +5022,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomDimensions>(parameters, callback);
+        createAPIRequest<Schema$CustomDimensions>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomDimensions>(parameters);
       }
@@ -4001,6 +5034,82 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customDimensions.patch
      * @desc Updates an existing custom dimension. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.patch({
+     *     // Account ID for the custom dimension to update.
+     *     accountId: 'placeholder-value',
+     *     // Custom dimension ID for the custom dimension to update.
+     *     customDimensionId: 'placeholder-value',
+     *     // Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
+     *     ignoreCustomDataSourceLinks: 'placeholder-value',
+     *     // Web property ID for the custom dimension to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customDimensions.patch
      * @memberOf! ()
      *
@@ -4009,15 +5118,24 @@ export namespace analytics_v3 {
      * @param {string} params.customDimensionId Custom dimension ID for the custom dimension to update.
      * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
      * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
-     * @param {().CustomDimension} params.resource Request body data
+     * @param {().CustomDimension} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Management$Customdimensions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Management$Customdimensions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomDimension>;
+    patch(
+      params: Params$Resource$Management$Customdimensions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Management$Customdimensions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$CustomDimension>,
@@ -4031,12 +5149,17 @@ export namespace analytics_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Management$Customdimensions$Patch
-        | BodyResponseCallback<Schema$CustomDimension>,
+        | BodyResponseCallback<Schema$CustomDimension>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomDimension>,
-      callback?: BodyResponseCallback<Schema$CustomDimension>
-    ): void | GaxiosPromise<Schema$CustomDimension> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomDimension>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomDimension>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomDimension> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Customdimensions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4070,7 +5193,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomDimension>(parameters, callback);
+        createAPIRequest<Schema$CustomDimension>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomDimension>(parameters);
       }
@@ -4079,6 +5205,82 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customDimensions.update
      * @desc Updates an existing custom dimension.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customDimensions.update({
+     *     // Account ID for the custom dimension to update.
+     *     accountId: 'placeholder-value',
+     *     // Custom dimension ID for the custom dimension to update.
+     *     customDimensionId: 'placeholder-value',
+     *     // Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
+     *     ignoreCustomDataSourceLinks: 'placeholder-value',
+     *     // Web property ID for the custom dimension to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customDimensions.update
      * @memberOf! ()
      *
@@ -4087,15 +5289,24 @@ export namespace analytics_v3 {
      * @param {string} params.customDimensionId Custom dimension ID for the custom dimension to update.
      * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
      * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
-     * @param {().CustomDimension} params.resource Request body data
+     * @param {().CustomDimension} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Management$Customdimensions$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Management$Customdimensions$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomDimension>;
+    update(
+      params: Params$Resource$Management$Customdimensions$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Management$Customdimensions$Update,
       options: MethodOptions | BodyResponseCallback<Schema$CustomDimension>,
@@ -4109,12 +5320,17 @@ export namespace analytics_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Management$Customdimensions$Update
-        | BodyResponseCallback<Schema$CustomDimension>,
+        | BodyResponseCallback<Schema$CustomDimension>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomDimension>,
-      callback?: BodyResponseCallback<Schema$CustomDimension>
-    ): void | GaxiosPromise<Schema$CustomDimension> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomDimension>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomDimension>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomDimension> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Customdimensions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4148,7 +5364,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomDimension>(parameters, callback);
+        createAPIRequest<Schema$CustomDimension>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomDimension>(parameters);
       }
@@ -4157,11 +5376,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Customdimensions$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom dimension to retrieve.
      */
@@ -4178,11 +5392,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Customdimensions$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID for the custom dimension to create.
      */
     accountId?: string;
@@ -4198,11 +5407,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Customdimensions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom dimensions to retrieve.
      */
@@ -4222,11 +5426,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Customdimensions$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom dimension to update.
      */
@@ -4251,11 +5450,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Customdimensions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom dimension to update.
      */
@@ -4288,6 +5482,67 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customMetrics.get
      * @desc Get a custom metric to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.get({
+     *     // Account ID for the custom metric to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the custom metric to retrieve.
+     *     customMetricId: 'placeholder-value',
+     *     // Web property ID for the custom metric to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "max_value": "my_max_value",
+     *   //   "min_value": "my_min_value",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customMetrics.get
      * @memberOf! ()
      *
@@ -4300,9 +5555,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Management$Custommetrics$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Management$Custommetrics$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomMetric>;
+    get(
+      params: Params$Resource$Management$Custommetrics$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Management$Custommetrics$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CustomMetric>,
@@ -4316,12 +5580,17 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Management$Custommetrics$Get
-        | BodyResponseCallback<Schema$CustomMetric>,
+        | BodyResponseCallback<Schema$CustomMetric>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomMetric>,
-      callback?: BodyResponseCallback<Schema$CustomMetric>
-    ): void | GaxiosPromise<Schema$CustomMetric> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomMetric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomMetric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomMetric> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Custommetrics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4355,7 +5624,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomMetric>(parameters, callback);
+        createAPIRequest<Schema$CustomMetric>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomMetric>(parameters);
       }
@@ -4364,21 +5636,108 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customMetrics.insert
      * @desc Create a new custom metric.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.insert({
+     *     // Account ID for the custom metric to create.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID for the custom dimension to create.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "max_value": "my_max_value",
+     *       //   "min_value": "my_min_value",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "max_value": "my_max_value",
+     *   //   "min_value": "my_min_value",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customMetrics.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID for the custom metric to create.
      * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
-     * @param {().CustomMetric} params.resource Request body data
+     * @param {().CustomMetric} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Custommetrics$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Custommetrics$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomMetric>;
+    insert(
+      params: Params$Resource$Management$Custommetrics$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Custommetrics$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$CustomMetric>,
@@ -4392,12 +5751,17 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Custommetrics$Insert
-        | BodyResponseCallback<Schema$CustomMetric>,
+        | BodyResponseCallback<Schema$CustomMetric>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomMetric>,
-      callback?: BodyResponseCallback<Schema$CustomMetric>
-    ): void | GaxiosPromise<Schema$CustomMetric> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomMetric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomMetric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomMetric> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Custommetrics$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4431,7 +5795,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomMetric>(parameters, callback);
+        createAPIRequest<Schema$CustomMetric>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomMetric>(parameters);
       }
@@ -4440,6 +5807,62 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customMetrics.list
      * @desc Lists custom metrics to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.list({
+     *     // Account ID for the custom metrics to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of custom metrics to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID for the custom metrics to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customMetrics.list
      * @memberOf! ()
      *
@@ -4453,9 +5876,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Custommetrics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Custommetrics$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomMetrics>;
+    list(
+      params: Params$Resource$Management$Custommetrics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Custommetrics$List,
       options: MethodOptions | BodyResponseCallback<Schema$CustomMetrics>,
@@ -4469,12 +5901,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Custommetrics$List
-        | BodyResponseCallback<Schema$CustomMetrics>,
+        | BodyResponseCallback<Schema$CustomMetrics>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomMetrics>,
-      callback?: BodyResponseCallback<Schema$CustomMetrics>
-    ): void | GaxiosPromise<Schema$CustomMetrics> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomMetrics>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomMetrics>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomMetrics> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Custommetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4508,7 +5945,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomMetrics>(parameters, callback);
+        createAPIRequest<Schema$CustomMetrics>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomMetrics>(parameters);
       }
@@ -4517,6 +5957,88 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customMetrics.patch
      * @desc Updates an existing custom metric. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.patch({
+     *     // Account ID for the custom metric to update.
+     *     accountId: 'placeholder-value',
+     *     // Custom metric ID for the custom metric to update.
+     *     customMetricId: 'placeholder-value',
+     *     // Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
+     *     ignoreCustomDataSourceLinks: 'placeholder-value',
+     *     // Web property ID for the custom metric to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "max_value": "my_max_value",
+     *       //   "min_value": "my_min_value",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "max_value": "my_max_value",
+     *   //   "min_value": "my_min_value",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customMetrics.patch
      * @memberOf! ()
      *
@@ -4525,15 +6047,24 @@ export namespace analytics_v3 {
      * @param {string} params.customMetricId Custom metric ID for the custom metric to update.
      * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
      * @param {string} params.webPropertyId Web property ID for the custom metric to update.
-     * @param {().CustomMetric} params.resource Request body data
+     * @param {().CustomMetric} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Management$Custommetrics$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Management$Custommetrics$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomMetric>;
+    patch(
+      params: Params$Resource$Management$Custommetrics$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Management$Custommetrics$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$CustomMetric>,
@@ -4547,12 +6078,17 @@ export namespace analytics_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Management$Custommetrics$Patch
-        | BodyResponseCallback<Schema$CustomMetric>,
+        | BodyResponseCallback<Schema$CustomMetric>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomMetric>,
-      callback?: BodyResponseCallback<Schema$CustomMetric>
-    ): void | GaxiosPromise<Schema$CustomMetric> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomMetric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomMetric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomMetric> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Custommetrics$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4586,7 +6122,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomMetric>(parameters, callback);
+        createAPIRequest<Schema$CustomMetric>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomMetric>(parameters);
       }
@@ -4595,6 +6134,88 @@ export namespace analytics_v3 {
     /**
      * analytics.management.customMetrics.update
      * @desc Updates an existing custom metric.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.customMetrics.update({
+     *     // Account ID for the custom metric to update.
+     *     accountId: 'placeholder-value',
+     *     // Custom metric ID for the custom metric to update.
+     *     customMetricId: 'placeholder-value',
+     *     // Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
+     *     ignoreCustomDataSourceLinks: 'placeholder-value',
+     *     // Web property ID for the custom metric to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "id": "my_id",
+     *       //   "index": 0,
+     *       //   "kind": "my_kind",
+     *       //   "max_value": "my_max_value",
+     *       //   "min_value": "my_min_value",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "scope": "my_scope",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "id": "my_id",
+     *   //   "index": 0,
+     *   //   "kind": "my_kind",
+     *   //   "max_value": "my_max_value",
+     *   //   "min_value": "my_min_value",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "scope": "my_scope",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.customMetrics.update
      * @memberOf! ()
      *
@@ -4603,15 +6224,24 @@ export namespace analytics_v3 {
      * @param {string} params.customMetricId Custom metric ID for the custom metric to update.
      * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
      * @param {string} params.webPropertyId Web property ID for the custom metric to update.
-     * @param {().CustomMetric} params.resource Request body data
+     * @param {().CustomMetric} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Management$Custommetrics$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Management$Custommetrics$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomMetric>;
+    update(
+      params: Params$Resource$Management$Custommetrics$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Management$Custommetrics$Update,
       options: MethodOptions | BodyResponseCallback<Schema$CustomMetric>,
@@ -4625,12 +6255,17 @@ export namespace analytics_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Management$Custommetrics$Update
-        | BodyResponseCallback<Schema$CustomMetric>,
+        | BodyResponseCallback<Schema$CustomMetric>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomMetric>,
-      callback?: BodyResponseCallback<Schema$CustomMetric>
-    ): void | GaxiosPromise<Schema$CustomMetric> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomMetric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomMetric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomMetric> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Custommetrics$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4664,7 +6299,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomMetric>(parameters, callback);
+        createAPIRequest<Schema$CustomMetric>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomMetric>(parameters);
       }
@@ -4673,11 +6311,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Custommetrics$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom metric to retrieve.
      */
@@ -4694,11 +6327,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Custommetrics$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID for the custom metric to create.
      */
     accountId?: string;
@@ -4714,11 +6342,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Custommetrics$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom metrics to retrieve.
      */
@@ -4738,11 +6361,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Custommetrics$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom metric to update.
      */
@@ -4767,11 +6385,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Custommetrics$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom metric to update.
      */
@@ -4804,6 +6417,50 @@ export namespace analytics_v3 {
     /**
      * analytics.management.experiments.delete
      * @desc Delete an experiment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.delete({
+     *     // Account ID to which the experiment belongs
+     *     accountId: 'placeholder-value',
+     *     // ID of the experiment to delete
+     *     experimentId: 'placeholder-value',
+     *     // View (Profile) ID to which the experiment belongs
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to which the experiment belongs
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.experiments.delete
      * @memberOf! ()
      *
@@ -4817,9 +6474,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Management$Experiments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Management$Experiments$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Management$Experiments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Management$Experiments$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4833,10 +6499,15 @@ export namespace analytics_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Management$Experiments$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Experiments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4875,7 +6546,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4884,6 +6558,83 @@ export namespace analytics_v3 {
     /**
      * analytics.management.experiments.get
      * @desc Returns an experiment to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.get({
+     *     // Account ID to retrieve the experiment for.
+     *     accountId: 'placeholder-value',
+     *     // Experiment ID to retrieve the experiment for.
+     *     experimentId: 'placeholder-value',
+     *     // View (Profile) ID to retrieve the experiment for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to retrieve the experiment for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "editableInGaUi": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "equalWeighting": false,
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "minimumExperimentLengthInDays": 0,
+     *   //   "name": "my_name",
+     *   //   "objectiveMetric": "my_objectiveMetric",
+     *   //   "optimizationType": "my_optimizationType",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *   //   "rewriteVariationUrlsAsOriginal": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servingFramework": "my_servingFramework",
+     *   //   "snippet": "my_snippet",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "trafficCoverage": {},
+     *   //   "updated": "my_updated",
+     *   //   "variations": [],
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "winnerConfidenceLevel": {},
+     *   //   "winnerFound": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.experiments.get
      * @memberOf! ()
      *
@@ -4897,9 +6648,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Management$Experiments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Management$Experiments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Experiment>;
+    get(
+      params: Params$Resource$Management$Experiments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Management$Experiments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Experiment>,
@@ -4913,12 +6673,17 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Management$Experiments$Get
-        | BodyResponseCallback<Schema$Experiment>,
+        | BodyResponseCallback<Schema$Experiment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Experiment>,
-      callback?: BodyResponseCallback<Schema$Experiment>
-    ): void | GaxiosPromise<Schema$Experiment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Experiment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Experiment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Experiment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Experiments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4957,7 +6722,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Experiment>(parameters, callback);
+        createAPIRequest<Schema$Experiment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Experiment>(parameters);
       }
@@ -4966,6 +6734,115 @@ export namespace analytics_v3 {
     /**
      * analytics.management.experiments.insert
      * @desc Create a new experiment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.insert({
+     *     // Account ID to create the experiment for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to create the experiment for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to create the experiment for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "editableInGaUi": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "equalWeighting": false,
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "minimumExperimentLengthInDays": 0,
+     *       //   "name": "my_name",
+     *       //   "objectiveMetric": "my_objectiveMetric",
+     *       //   "optimizationType": "my_optimizationType",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *       //   "rewriteVariationUrlsAsOriginal": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "servingFramework": "my_servingFramework",
+     *       //   "snippet": "my_snippet",
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status",
+     *       //   "trafficCoverage": {},
+     *       //   "updated": "my_updated",
+     *       //   "variations": [],
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "winnerConfidenceLevel": {},
+     *       //   "winnerFound": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "editableInGaUi": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "equalWeighting": false,
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "minimumExperimentLengthInDays": 0,
+     *   //   "name": "my_name",
+     *   //   "objectiveMetric": "my_objectiveMetric",
+     *   //   "optimizationType": "my_optimizationType",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *   //   "rewriteVariationUrlsAsOriginal": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servingFramework": "my_servingFramework",
+     *   //   "snippet": "my_snippet",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "trafficCoverage": {},
+     *   //   "updated": "my_updated",
+     *   //   "variations": [],
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "winnerConfidenceLevel": {},
+     *   //   "winnerFound": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.experiments.insert
      * @memberOf! ()
      *
@@ -4973,15 +6850,24 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to create the experiment for.
      * @param {string} params.profileId View (Profile) ID to create the experiment for.
      * @param {string} params.webPropertyId Web property ID to create the experiment for.
-     * @param {().Experiment} params.resource Request body data
+     * @param {().Experiment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Experiments$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Experiments$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Experiment>;
+    insert(
+      params: Params$Resource$Management$Experiments$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Experiments$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Experiment>,
@@ -4995,12 +6881,17 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Experiments$Insert
-        | BodyResponseCallback<Schema$Experiment>,
+        | BodyResponseCallback<Schema$Experiment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Experiment>,
-      callback?: BodyResponseCallback<Schema$Experiment>
-    ): void | GaxiosPromise<Schema$Experiment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Experiment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Experiment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Experiment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Experiments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5034,7 +6925,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Experiment>(parameters, callback);
+        createAPIRequest<Schema$Experiment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Experiment>(parameters);
       }
@@ -5043,6 +6937,65 @@ export namespace analytics_v3 {
     /**
      * analytics.management.experiments.list
      * @desc Lists experiments to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.list({
+     *     // Account ID to retrieve experiments for.
+     *     accountId: 'd+',
+     *     // The maximum number of experiments to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // View (Profile) ID to retrieve experiments for.
+     *     profileId: 'd+',
+     *     // An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID to retrieve experiments for.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.experiments.list
      * @memberOf! ()
      *
@@ -5057,9 +7010,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Experiments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Experiments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Experiments>;
+    list(
+      params: Params$Resource$Management$Experiments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Experiments$List,
       options: MethodOptions | BodyResponseCallback<Schema$Experiments>,
@@ -5073,12 +7035,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Experiments$List
-        | BodyResponseCallback<Schema$Experiments>,
+        | BodyResponseCallback<Schema$Experiments>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Experiments>,
-      callback?: BodyResponseCallback<Schema$Experiments>
-    ): void | GaxiosPromise<Schema$Experiments> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Experiments>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Experiments>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Experiments> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Experiments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5112,7 +7079,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Experiments>(parameters, callback);
+        createAPIRequest<Schema$Experiments>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Experiments>(parameters);
       }
@@ -5121,6 +7091,117 @@ export namespace analytics_v3 {
     /**
      * analytics.management.experiments.patch
      * @desc Update an existing experiment. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.patch({
+     *     // Account ID of the experiment to update.
+     *     accountId: 'placeholder-value',
+     *     // Experiment ID of the experiment to update.
+     *     experimentId: 'placeholder-value',
+     *     // View (Profile) ID of the experiment to update.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID of the experiment to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "editableInGaUi": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "equalWeighting": false,
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "minimumExperimentLengthInDays": 0,
+     *       //   "name": "my_name",
+     *       //   "objectiveMetric": "my_objectiveMetric",
+     *       //   "optimizationType": "my_optimizationType",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *       //   "rewriteVariationUrlsAsOriginal": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "servingFramework": "my_servingFramework",
+     *       //   "snippet": "my_snippet",
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status",
+     *       //   "trafficCoverage": {},
+     *       //   "updated": "my_updated",
+     *       //   "variations": [],
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "winnerConfidenceLevel": {},
+     *       //   "winnerFound": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "editableInGaUi": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "equalWeighting": false,
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "minimumExperimentLengthInDays": 0,
+     *   //   "name": "my_name",
+     *   //   "objectiveMetric": "my_objectiveMetric",
+     *   //   "optimizationType": "my_optimizationType",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *   //   "rewriteVariationUrlsAsOriginal": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servingFramework": "my_servingFramework",
+     *   //   "snippet": "my_snippet",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "trafficCoverage": {},
+     *   //   "updated": "my_updated",
+     *   //   "variations": [],
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "winnerConfidenceLevel": {},
+     *   //   "winnerFound": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.experiments.patch
      * @memberOf! ()
      *
@@ -5129,15 +7210,24 @@ export namespace analytics_v3 {
      * @param {string} params.experimentId Experiment ID of the experiment to update.
      * @param {string} params.profileId View (Profile) ID of the experiment to update.
      * @param {string} params.webPropertyId Web property ID of the experiment to update.
-     * @param {().Experiment} params.resource Request body data
+     * @param {().Experiment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Management$Experiments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Management$Experiments$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Experiment>;
+    patch(
+      params: Params$Resource$Management$Experiments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Management$Experiments$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Experiment>,
@@ -5151,12 +7241,17 @@ export namespace analytics_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Management$Experiments$Patch
-        | BodyResponseCallback<Schema$Experiment>,
+        | BodyResponseCallback<Schema$Experiment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Experiment>,
-      callback?: BodyResponseCallback<Schema$Experiment>
-    ): void | GaxiosPromise<Schema$Experiment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Experiment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Experiment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Experiment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Experiments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5195,7 +7290,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Experiment>(parameters, callback);
+        createAPIRequest<Schema$Experiment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Experiment>(parameters);
       }
@@ -5204,6 +7302,117 @@ export namespace analytics_v3 {
     /**
      * analytics.management.experiments.update
      * @desc Update an existing experiment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.experiments.update({
+     *     // Account ID of the experiment to update.
+     *     accountId: 'placeholder-value',
+     *     // Experiment ID of the experiment to update.
+     *     experimentId: 'placeholder-value',
+     *     // View (Profile) ID of the experiment to update.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID of the experiment to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "editableInGaUi": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "equalWeighting": false,
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "minimumExperimentLengthInDays": 0,
+     *       //   "name": "my_name",
+     *       //   "objectiveMetric": "my_objectiveMetric",
+     *       //   "optimizationType": "my_optimizationType",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *       //   "rewriteVariationUrlsAsOriginal": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "servingFramework": "my_servingFramework",
+     *       //   "snippet": "my_snippet",
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status",
+     *       //   "trafficCoverage": {},
+     *       //   "updated": "my_updated",
+     *       //   "variations": [],
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "winnerConfidenceLevel": {},
+     *       //   "winnerFound": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "editableInGaUi": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "equalWeighting": false,
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "minimumExperimentLengthInDays": 0,
+     *   //   "name": "my_name",
+     *   //   "objectiveMetric": "my_objectiveMetric",
+     *   //   "optimizationType": "my_optimizationType",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "reasonExperimentEnded": "my_reasonExperimentEnded",
+     *   //   "rewriteVariationUrlsAsOriginal": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servingFramework": "my_servingFramework",
+     *   //   "snippet": "my_snippet",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "trafficCoverage": {},
+     *   //   "updated": "my_updated",
+     *   //   "variations": [],
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "winnerConfidenceLevel": {},
+     *   //   "winnerFound": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.experiments.update
      * @memberOf! ()
      *
@@ -5212,15 +7421,24 @@ export namespace analytics_v3 {
      * @param {string} params.experimentId Experiment ID of the experiment to update.
      * @param {string} params.profileId View (Profile) ID of the experiment to update.
      * @param {string} params.webPropertyId Web property ID of the experiment to update.
-     * @param {().Experiment} params.resource Request body data
+     * @param {().Experiment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Management$Experiments$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Management$Experiments$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Experiment>;
+    update(
+      params: Params$Resource$Management$Experiments$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Management$Experiments$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Experiment>,
@@ -5234,12 +7452,17 @@ export namespace analytics_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Management$Experiments$Update
-        | BodyResponseCallback<Schema$Experiment>,
+        | BodyResponseCallback<Schema$Experiment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Experiment>,
-      callback?: BodyResponseCallback<Schema$Experiment>
-    ): void | GaxiosPromise<Schema$Experiment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Experiment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Experiment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Experiment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Experiments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5278,7 +7501,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Experiment>(parameters, callback);
+        createAPIRequest<Schema$Experiment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Experiment>(parameters);
       }
@@ -5287,11 +7513,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Experiments$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to which the experiment belongs
      */
@@ -5312,11 +7533,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Experiments$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to retrieve the experiment for.
      */
     accountId?: string;
@@ -5335,11 +7551,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Experiments$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to create the experiment for.
      */
@@ -5360,11 +7571,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Experiments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve experiments for.
      */
@@ -5389,11 +7595,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Experiments$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the experiment to update.
      */
     accountId?: string;
@@ -5417,11 +7618,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Experiments$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the experiment to update.
      */
@@ -5454,6 +7650,62 @@ export namespace analytics_v3 {
     /**
      * analytics.management.filters.delete
      * @desc Delete a filter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.delete({
+     *     // Account ID to delete the filter for.
+     *     accountId: 'placeholder-value',
+     *     // ID of the filter to be deleted.
+     *     filterId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.filters.delete
      * @memberOf! ()
      *
@@ -5465,9 +7717,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Management$Filters$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Management$Filters$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Filter>;
+    delete(
+      params: Params$Resource$Management$Filters$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Management$Filters$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Filter>,
@@ -5481,10 +7742,17 @@ export namespace analytics_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Management$Filters$Delete
-        | BodyResponseCallback<Schema$Filter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
-      callback?: BodyResponseCallback<Schema$Filter>
-    ): void | GaxiosPromise<Schema$Filter> {
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Filter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Filters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5518,7 +7786,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Filter>(parameters, callback);
+        createAPIRequest<Schema$Filter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
       }
@@ -5527,6 +7798,65 @@ export namespace analytics_v3 {
     /**
      * analytics.management.filters.get
      * @desc Returns filters to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.get({
+     *     // Account ID to retrieve filters for.
+     *     accountId: 'placeholder-value',
+     *     // Filter ID to retrieve filters for.
+     *     filterId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.filters.get
      * @memberOf! ()
      *
@@ -5538,9 +7868,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Management$Filters$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Management$Filters$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Filter>;
+    get(
+      params: Params$Resource$Management$Filters$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Management$Filters$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Filter>,
@@ -5554,10 +7893,17 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Management$Filters$Get
-        | BodyResponseCallback<Schema$Filter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
-      callback?: BodyResponseCallback<Schema$Filter>
-    ): void | GaxiosPromise<Schema$Filter> {
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Filter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Filters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5591,7 +7937,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Filter>(parameters, callback);
+        createAPIRequest<Schema$Filter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
       }
@@ -5600,20 +7949,105 @@ export namespace analytics_v3 {
     /**
      * analytics.management.filters.insert
      * @desc Create a new filter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.insert({
+     *     // Account ID to create filter for.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advancedDetails": {},
+     *       //   "created": "my_created",
+     *       //   "excludeDetails": {},
+     *       //   "id": "my_id",
+     *       //   "includeDetails": {},
+     *       //   "kind": "my_kind",
+     *       //   "lowercaseDetails": {},
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "searchAndReplaceDetails": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "uppercaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.filters.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to create filter for.
-     * @param {().Filter} params.resource Request body data
+     * @param {().Filter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Filters$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Filters$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Filter>;
+    insert(
+      params: Params$Resource$Management$Filters$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Filters$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Filter>,
@@ -5627,10 +8061,17 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Filters$Insert
-        | BodyResponseCallback<Schema$Filter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
-      callback?: BodyResponseCallback<Schema$Filter>
-    ): void | GaxiosPromise<Schema$Filter> {
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Filter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Filters$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5663,7 +8104,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Filter>(parameters, callback);
+        createAPIRequest<Schema$Filter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
       }
@@ -5672,6 +8116,60 @@ export namespace analytics_v3 {
     /**
      * analytics.management.filters.list
      * @desc Lists all filters for an account
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.list({
+     *     // Account ID to retrieve filters for.
+     *     accountId: 'd+',
+     *     // The maximum number of filters to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.filters.list
      * @memberOf! ()
      *
@@ -5684,9 +8182,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Filters$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Filters$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Filters>;
+    list(
+      params: Params$Resource$Management$Filters$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Filters$List,
       options: MethodOptions | BodyResponseCallback<Schema$Filters>,
@@ -5700,10 +8207,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Filters$List
-        | BodyResponseCallback<Schema$Filters>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filters>,
-      callback?: BodyResponseCallback<Schema$Filters>
-    ): void | GaxiosPromise<Schema$Filters> {
+        | BodyResponseCallback<Schema$Filters>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Filters>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Filters>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Filters> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Filters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5736,7 +8250,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Filters>(parameters, callback);
+        createAPIRequest<Schema$Filters>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Filters>(parameters);
       }
@@ -5745,21 +8262,108 @@ export namespace analytics_v3 {
     /**
      * analytics.management.filters.patch
      * @desc Updates an existing filter. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.patch({
+     *     // Account ID to which the filter belongs.
+     *     accountId: 'placeholder-value',
+     *     // ID of the filter to be updated.
+     *     filterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advancedDetails": {},
+     *       //   "created": "my_created",
+     *       //   "excludeDetails": {},
+     *       //   "id": "my_id",
+     *       //   "includeDetails": {},
+     *       //   "kind": "my_kind",
+     *       //   "lowercaseDetails": {},
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "searchAndReplaceDetails": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "uppercaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.filters.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to which the filter belongs.
      * @param {string} params.filterId ID of the filter to be updated.
-     * @param {().Filter} params.resource Request body data
+     * @param {().Filter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Management$Filters$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Management$Filters$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Filter>;
+    patch(
+      params: Params$Resource$Management$Filters$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Management$Filters$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Filter>,
@@ -5773,10 +8377,17 @@ export namespace analytics_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Management$Filters$Patch
-        | BodyResponseCallback<Schema$Filter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
-      callback?: BodyResponseCallback<Schema$Filter>
-    ): void | GaxiosPromise<Schema$Filter> {
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Filter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Filters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5810,7 +8421,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Filter>(parameters, callback);
+        createAPIRequest<Schema$Filter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
       }
@@ -5819,21 +8433,108 @@ export namespace analytics_v3 {
     /**
      * analytics.management.filters.update
      * @desc Updates an existing filter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.filters.update({
+     *     // Account ID to which the filter belongs.
+     *     accountId: 'placeholder-value',
+     *     // ID of the filter to be updated.
+     *     filterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advancedDetails": {},
+     *       //   "created": "my_created",
+     *       //   "excludeDetails": {},
+     *       //   "id": "my_id",
+     *       //   "includeDetails": {},
+     *       //   "kind": "my_kind",
+     *       //   "lowercaseDetails": {},
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "searchAndReplaceDetails": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "uppercaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advancedDetails": {},
+     *   //   "created": "my_created",
+     *   //   "excludeDetails": {},
+     *   //   "id": "my_id",
+     *   //   "includeDetails": {},
+     *   //   "kind": "my_kind",
+     *   //   "lowercaseDetails": {},
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "searchAndReplaceDetails": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "uppercaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.filters.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to which the filter belongs.
      * @param {string} params.filterId ID of the filter to be updated.
-     * @param {().Filter} params.resource Request body data
+     * @param {().Filter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Management$Filters$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Management$Filters$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Filter>;
+    update(
+      params: Params$Resource$Management$Filters$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Management$Filters$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Filter>,
@@ -5847,10 +8548,17 @@ export namespace analytics_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Management$Filters$Update
-        | BodyResponseCallback<Schema$Filter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
-      callback?: BodyResponseCallback<Schema$Filter>
-    ): void | GaxiosPromise<Schema$Filter> {
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Filter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Filters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5884,7 +8592,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Filter>(parameters, callback);
+        createAPIRequest<Schema$Filter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
       }
@@ -5893,11 +8604,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Filters$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to delete the filter for.
      */
@@ -5910,11 +8616,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Filters$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to retrieve filters for.
      */
     accountId?: string;
@@ -5925,11 +8626,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Filters$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to create filter for.
      */
@@ -5942,11 +8638,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Filters$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve filters for.
      */
@@ -5963,11 +8654,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Filters$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to which the filter belongs.
      */
     accountId?: string;
@@ -5983,11 +8669,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Filters$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to which the filter belongs.
      */
@@ -6012,6 +8693,72 @@ export namespace analytics_v3 {
     /**
      * analytics.management.goals.get
      * @desc Gets a goal to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.get({
+     *     // Account ID to retrieve the goal for.
+     *     accountId: 'placeholder-value',
+     *     // Goal ID to retrieve the goal for.
+     *     goalId: 'placeholder-value',
+     *     // View (Profile) ID to retrieve the goal for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to retrieve the goal for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "eventDetails": {},
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "urlDestinationDetails": {},
+     *   //   "value": {},
+     *   //   "visitNumPagesDetails": {},
+     *   //   "visitTimeOnSiteDetails": {},
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.goals.get
      * @memberOf! ()
      *
@@ -6025,9 +8772,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Management$Goals$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Management$Goals$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Goal>;
+    get(
+      params: Params$Resource$Management$Goals$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Management$Goals$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Goal>,
@@ -6041,10 +8797,17 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Management$Goals$Get
-        | BodyResponseCallback<Schema$Goal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Goal>,
-      callback?: BodyResponseCallback<Schema$Goal>
-    ): void | GaxiosPromise<Schema$Goal> {
+        | BodyResponseCallback<Schema$Goal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Goal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Goal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Goal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Goals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6078,7 +8841,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Goal>(parameters, callback);
+        createAPIRequest<Schema$Goal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Goal>(parameters);
       }
@@ -6087,6 +8853,92 @@ export namespace analytics_v3 {
     /**
      * analytics.management.goals.insert
      * @desc Create a new goal.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.insert({
+     *     // Account ID to create the goal for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to create the goal for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to create the goal for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "eventDetails": {},
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "urlDestinationDetails": {},
+     *       //   "value": {},
+     *       //   "visitNumPagesDetails": {},
+     *       //   "visitTimeOnSiteDetails": {},
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "eventDetails": {},
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "urlDestinationDetails": {},
+     *   //   "value": {},
+     *   //   "visitNumPagesDetails": {},
+     *   //   "visitTimeOnSiteDetails": {},
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.goals.insert
      * @memberOf! ()
      *
@@ -6094,15 +8946,24 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to create the goal for.
      * @param {string} params.profileId View (Profile) ID to create the goal for.
      * @param {string} params.webPropertyId Web property ID to create the goal for.
-     * @param {().Goal} params.resource Request body data
+     * @param {().Goal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Goals$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Goals$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Goal>;
+    insert(
+      params: Params$Resource$Management$Goals$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Goals$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Goal>,
@@ -6116,10 +8977,17 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Goals$Insert
-        | BodyResponseCallback<Schema$Goal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Goal>,
-      callback?: BodyResponseCallback<Schema$Goal>
-    ): void | GaxiosPromise<Schema$Goal> {
+        | BodyResponseCallback<Schema$Goal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Goal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Goal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Goal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Goals$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6153,7 +9021,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Goal>(parameters, callback);
+        createAPIRequest<Schema$Goal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Goal>(parameters);
       }
@@ -6162,6 +9033,65 @@ export namespace analytics_v3 {
     /**
      * analytics.management.goals.list
      * @desc Lists goals to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.list({
+     *     // Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of goals to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
+     *     profileId: 'placeholder-value',
+     *     // An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.goals.list
      * @memberOf! ()
      *
@@ -6176,9 +9106,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Goals$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Goals$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Goals>;
+    list(
+      params: Params$Resource$Management$Goals$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Goals$List,
       options: MethodOptions | BodyResponseCallback<Schema$Goals>,
@@ -6192,10 +9131,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Goals$List
-        | BodyResponseCallback<Schema$Goals>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Goals>,
-      callback?: BodyResponseCallback<Schema$Goals>
-    ): void | GaxiosPromise<Schema$Goals> {
+        | BodyResponseCallback<Schema$Goals>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Goals>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Goals>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Goals> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Goals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6229,7 +9175,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Goals>(parameters, callback);
+        createAPIRequest<Schema$Goals>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Goals>(parameters);
       }
@@ -6238,6 +9187,94 @@ export namespace analytics_v3 {
     /**
      * analytics.management.goals.patch
      * @desc Updates an existing goal. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.patch({
+     *     // Account ID to update the goal.
+     *     accountId: 'placeholder-value',
+     *     // Index of the goal to be updated.
+     *     goalId: 'placeholder-value',
+     *     // View (Profile) ID to update the goal.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to update the goal.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "eventDetails": {},
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "urlDestinationDetails": {},
+     *       //   "value": {},
+     *       //   "visitNumPagesDetails": {},
+     *       //   "visitTimeOnSiteDetails": {},
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "eventDetails": {},
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "urlDestinationDetails": {},
+     *   //   "value": {},
+     *   //   "visitNumPagesDetails": {},
+     *   //   "visitTimeOnSiteDetails": {},
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.goals.patch
      * @memberOf! ()
      *
@@ -6246,15 +9283,24 @@ export namespace analytics_v3 {
      * @param {string} params.goalId Index of the goal to be updated.
      * @param {string} params.profileId View (Profile) ID to update the goal.
      * @param {string} params.webPropertyId Web property ID to update the goal.
-     * @param {().Goal} params.resource Request body data
+     * @param {().Goal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Management$Goals$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Management$Goals$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Goal>;
+    patch(
+      params: Params$Resource$Management$Goals$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Management$Goals$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Goal>,
@@ -6268,10 +9314,17 @@ export namespace analytics_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Management$Goals$Patch
-        | BodyResponseCallback<Schema$Goal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Goal>,
-      callback?: BodyResponseCallback<Schema$Goal>
-    ): void | GaxiosPromise<Schema$Goal> {
+        | BodyResponseCallback<Schema$Goal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Goal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Goal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Goal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Goals$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6305,7 +9358,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Goal>(parameters, callback);
+        createAPIRequest<Schema$Goal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Goal>(parameters);
       }
@@ -6314,6 +9370,94 @@ export namespace analytics_v3 {
     /**
      * analytics.management.goals.update
      * @desc Updates an existing goal.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.goals.update({
+     *     // Account ID to update the goal.
+     *     accountId: 'placeholder-value',
+     *     // Index of the goal to be updated.
+     *     goalId: 'placeholder-value',
+     *     // View (Profile) ID to update the goal.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to update the goal.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "created": "my_created",
+     *       //   "eventDetails": {},
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "profileId": "my_profileId",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "urlDestinationDetails": {},
+     *       //   "value": {},
+     *       //   "visitNumPagesDetails": {},
+     *       //   "visitTimeOnSiteDetails": {},
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "created": "my_created",
+     *   //   "eventDetails": {},
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "profileId": "my_profileId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "urlDestinationDetails": {},
+     *   //   "value": {},
+     *   //   "visitNumPagesDetails": {},
+     *   //   "visitTimeOnSiteDetails": {},
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.goals.update
      * @memberOf! ()
      *
@@ -6322,15 +9466,24 @@ export namespace analytics_v3 {
      * @param {string} params.goalId Index of the goal to be updated.
      * @param {string} params.profileId View (Profile) ID to update the goal.
      * @param {string} params.webPropertyId Web property ID to update the goal.
-     * @param {().Goal} params.resource Request body data
+     * @param {().Goal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Management$Goals$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Management$Goals$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Goal>;
+    update(
+      params: Params$Resource$Management$Goals$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Management$Goals$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Goal>,
@@ -6344,10 +9497,17 @@ export namespace analytics_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Management$Goals$Update
-        | BodyResponseCallback<Schema$Goal>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Goal>,
-      callback?: BodyResponseCallback<Schema$Goal>
-    ): void | GaxiosPromise<Schema$Goal> {
+        | BodyResponseCallback<Schema$Goal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Goal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Goal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Goal> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Goals$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6381,7 +9541,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Goal>(parameters, callback);
+        createAPIRequest<Schema$Goal>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Goal>(parameters);
       }
@@ -6390,11 +9553,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Goals$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve the goal for.
      */
@@ -6415,11 +9573,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Goals$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to create the goal for.
      */
     accountId?: string;
@@ -6439,11 +9592,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Goals$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
      */
@@ -6468,11 +9616,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Goals$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to update the goal.
      */
     accountId?: string;
@@ -6496,11 +9639,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Goals$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to update the goal.
      */
@@ -6533,6 +9671,47 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileFilterLinks.delete
      * @desc Delete a profile filter link.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.delete({
+     *     // Account ID to which the profile filter link belongs.
+     *     accountId: 'd+',
+     *     // ID of the profile filter link to delete.
+     *     linkId: 'd+:d+',
+     *     // Profile ID to which the filter link belongs.
+     *     profileId: 'd+',
+     *     // Web property Id to which the profile filter link belongs.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileFilterLinks.delete
      * @memberOf! ()
      *
@@ -6546,9 +9725,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Management$Profilefilterlinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Management$Profilefilterlinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Management$Profilefilterlinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Management$Profilefilterlinks$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -6562,10 +9750,15 @@ export namespace analytics_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Management$Profilefilterlinks$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profilefilterlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6599,7 +9792,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -6608,6 +9804,60 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileFilterLinks.get
      * @desc Returns a single profile filter link.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.get({
+     *     // Account ID to retrieve profile filter link for.
+     *     accountId: 'd+',
+     *     // ID of the profile filter link.
+     *     linkId: 'd+:d+',
+     *     // Profile ID to retrieve filter link for.
+     *     profileId: 'd+',
+     *     // Web property Id to retrieve profile filter link for.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterRef": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileRef": {},
+     *   //   "rank": 0,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileFilterLinks.get
      * @memberOf! ()
      *
@@ -6621,9 +9871,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Management$Profilefilterlinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Management$Profilefilterlinks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ProfileFilterLink>;
+    get(
+      params: Params$Resource$Management$Profilefilterlinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Management$Profilefilterlinks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ProfileFilterLink>,
@@ -6637,12 +9896,20 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Management$Profilefilterlinks$Get
-        | BodyResponseCallback<Schema$ProfileFilterLink>,
+        | BodyResponseCallback<Schema$ProfileFilterLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ProfileFilterLink>,
-      callback?: BodyResponseCallback<Schema$ProfileFilterLink>
-    ): void | GaxiosPromise<Schema$ProfileFilterLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProfileFilterLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProfileFilterLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ProfileFilterLink>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profilefilterlinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6676,7 +9943,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
+        createAPIRequest<Schema$ProfileFilterLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ProfileFilterLink>(parameters);
       }
@@ -6685,6 +9955,68 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileFilterLinks.insert
      * @desc Create a new profile filter link.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.insert({
+     *     // Account ID to create profile filter link for.
+     *     accountId: 'd+',
+     *     // Profile ID to create filter link for.
+     *     profileId: 'd+',
+     *     // Web property Id to create profile filter link for.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filterRef": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "profileRef": {},
+     *       //   "rank": 0,
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterRef": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileRef": {},
+     *   //   "rank": 0,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileFilterLinks.insert
      * @memberOf! ()
      *
@@ -6692,15 +10024,24 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to create profile filter link for.
      * @param {string} params.profileId Profile ID to create filter link for.
      * @param {string} params.webPropertyId Web property Id to create profile filter link for.
-     * @param {().ProfileFilterLink} params.resource Request body data
+     * @param {().ProfileFilterLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Profilefilterlinks$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Profilefilterlinks$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ProfileFilterLink>;
+    insert(
+      params: Params$Resource$Management$Profilefilterlinks$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Profilefilterlinks$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$ProfileFilterLink>,
@@ -6714,12 +10055,20 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Profilefilterlinks$Insert
-        | BodyResponseCallback<Schema$ProfileFilterLink>,
+        | BodyResponseCallback<Schema$ProfileFilterLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ProfileFilterLink>,
-      callback?: BodyResponseCallback<Schema$ProfileFilterLink>
-    ): void | GaxiosPromise<Schema$ProfileFilterLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProfileFilterLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProfileFilterLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ProfileFilterLink>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profilefilterlinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6753,7 +10102,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
+        createAPIRequest<Schema$ProfileFilterLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ProfileFilterLink>(parameters);
       }
@@ -6762,6 +10114,64 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileFilterLinks.list
      * @desc Lists all profile filter links for a profile.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.list({
+     *     // Account ID to retrieve profile filter links for.
+     *     accountId: 'd+',
+     *     // The maximum number of profile filter links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // Profile ID to retrieve filter links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
+     *     profileId: 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property Id for profile filter links for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileFilterLinks.list
      * @memberOf! ()
      *
@@ -6776,9 +10186,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Profilefilterlinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Profilefilterlinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ProfileFilterLinks>;
+    list(
+      params: Params$Resource$Management$Profilefilterlinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Profilefilterlinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$ProfileFilterLinks>,
@@ -6792,12 +10211,20 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Profilefilterlinks$List
-        | BodyResponseCallback<Schema$ProfileFilterLinks>,
+        | BodyResponseCallback<Schema$ProfileFilterLinks>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ProfileFilterLinks>,
-      callback?: BodyResponseCallback<Schema$ProfileFilterLinks>
-    ): void | GaxiosPromise<Schema$ProfileFilterLinks> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProfileFilterLinks>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProfileFilterLinks>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ProfileFilterLinks>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profilefilterlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6831,7 +10258,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ProfileFilterLinks>(parameters, callback);
+        createAPIRequest<Schema$ProfileFilterLinks>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ProfileFilterLinks>(parameters);
       }
@@ -6840,6 +10270,70 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileFilterLinks.patch
      * @desc Update an existing profile filter link. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.patch({
+     *     // Account ID to which profile filter link belongs.
+     *     accountId: 'd+',
+     *     // ID of the profile filter link to be updated.
+     *     linkId: 'd+:d+',
+     *     // Profile ID to which filter link belongs
+     *     profileId: 'd+',
+     *     // Web property Id to which profile filter link belongs
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filterRef": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "profileRef": {},
+     *       //   "rank": 0,
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterRef": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileRef": {},
+     *   //   "rank": 0,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileFilterLinks.patch
      * @memberOf! ()
      *
@@ -6848,15 +10342,24 @@ export namespace analytics_v3 {
      * @param {string} params.linkId ID of the profile filter link to be updated.
      * @param {string} params.profileId Profile ID to which filter link belongs
      * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
-     * @param {().ProfileFilterLink} params.resource Request body data
+     * @param {().ProfileFilterLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Management$Profilefilterlinks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Management$Profilefilterlinks$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ProfileFilterLink>;
+    patch(
+      params: Params$Resource$Management$Profilefilterlinks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Management$Profilefilterlinks$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$ProfileFilterLink>,
@@ -6870,12 +10373,20 @@ export namespace analytics_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Management$Profilefilterlinks$Patch
-        | BodyResponseCallback<Schema$ProfileFilterLink>,
+        | BodyResponseCallback<Schema$ProfileFilterLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ProfileFilterLink>,
-      callback?: BodyResponseCallback<Schema$ProfileFilterLink>
-    ): void | GaxiosPromise<Schema$ProfileFilterLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProfileFilterLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProfileFilterLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ProfileFilterLink>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profilefilterlinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6909,7 +10420,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
+        createAPIRequest<Schema$ProfileFilterLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ProfileFilterLink>(parameters);
       }
@@ -6918,6 +10432,70 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileFilterLinks.update
      * @desc Update an existing profile filter link.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileFilterLinks.update({
+     *     // Account ID to which profile filter link belongs.
+     *     accountId: 'd+',
+     *     // ID of the profile filter link to be updated.
+     *     linkId: 'd+:d+',
+     *     // Profile ID to which filter link belongs
+     *     profileId: 'd+',
+     *     // Web property Id to which profile filter link belongs
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filterRef": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "profileRef": {},
+     *       //   "rank": 0,
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filterRef": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profileRef": {},
+     *   //   "rank": 0,
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileFilterLinks.update
      * @memberOf! ()
      *
@@ -6926,15 +10504,24 @@ export namespace analytics_v3 {
      * @param {string} params.linkId ID of the profile filter link to be updated.
      * @param {string} params.profileId Profile ID to which filter link belongs
      * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
-     * @param {().ProfileFilterLink} params.resource Request body data
+     * @param {().ProfileFilterLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Management$Profilefilterlinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Management$Profilefilterlinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ProfileFilterLink>;
+    update(
+      params: Params$Resource$Management$Profilefilterlinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Management$Profilefilterlinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$ProfileFilterLink>,
@@ -6948,12 +10535,20 @@ export namespace analytics_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Management$Profilefilterlinks$Update
-        | BodyResponseCallback<Schema$ProfileFilterLink>,
+        | BodyResponseCallback<Schema$ProfileFilterLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ProfileFilterLink>,
-      callback?: BodyResponseCallback<Schema$ProfileFilterLink>
-    ): void | GaxiosPromise<Schema$ProfileFilterLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProfileFilterLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProfileFilterLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ProfileFilterLink>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profilefilterlinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6987,7 +10582,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
+        createAPIRequest<Schema$ProfileFilterLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ProfileFilterLink>(parameters);
       }
@@ -6996,11 +10594,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Profilefilterlinks$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to which the profile filter link belongs.
      */
@@ -7021,11 +10614,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Profilefilterlinks$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to retrieve profile filter link for.
      */
     accountId?: string;
@@ -7044,11 +10632,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profilefilterlinks$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to create profile filter link for.
      */
@@ -7069,11 +10652,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profilefilterlinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve profile filter links for.
      */
@@ -7098,11 +10676,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Profilefilterlinks$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to which profile filter link belongs.
      */
     accountId?: string;
@@ -7126,11 +10699,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profilefilterlinks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to which profile filter link belongs.
      */
@@ -7163,6 +10731,45 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profiles.delete
      * @desc Deletes a view (profile).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.delete({
+     *     // Account ID to delete the view (profile) for.
+     *     accountId: 'placeholder-value',
+     *     // ID of the view (profile) to be deleted.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to delete the view (profile) for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profiles.delete
      * @memberOf! ()
      *
@@ -7175,9 +10782,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Management$Profiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Management$Profiles$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Management$Profiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Management$Profiles$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -7191,10 +10807,15 @@ export namespace analytics_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Management$Profiles$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profiles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7228,7 +10849,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -7237,6 +10861,78 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profiles.get
      * @desc Gets a view (profile) to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.get({
+     *     // Account ID to retrieve the view (profile) for.
+     *     accountId: '[0-9]+',
+     *     // View (Profile) ID to retrieve the view (profile) for.
+     *     profileId: '[0-9]+',
+     *     // Web property ID to retrieve the view (profile) for.
+     *     webPropertyId: 'UA-[0-9]+-[0-9]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "botFilteringEnabled": false,
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "currency": "my_currency",
+     *   //   "defaultPage": "my_defaultPage",
+     *   //   "eCommerceTracking": false,
+     *   //   "enhancedECommerceTracking": false,
+     *   //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *   //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *   //   "starred": false,
+     *   //   "stripSiteSearchCategoryParameters": false,
+     *   //   "stripSiteSearchQueryParameters": false,
+     *   //   "timezone": "my_timezone",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profiles.get
      * @memberOf! ()
      *
@@ -7249,9 +10945,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Management$Profiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Management$Profiles$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Profile>;
+    get(
+      params: Params$Resource$Management$Profiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Management$Profiles$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Profile>,
@@ -7265,10 +10970,17 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Management$Profiles$Get
-        | BodyResponseCallback<Schema$Profile>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
-      callback?: BodyResponseCallback<Schema$Profile>
-    ): void | GaxiosPromise<Schema$Profile> {
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7302,7 +11014,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Profile>(parameters, callback);
+        createAPIRequest<Schema$Profile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
       }
@@ -7311,21 +11026,130 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profiles.insert
      * @desc Create a new view (profile).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.insert({
+     *     // Account ID to create the view (profile) for.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID to create the view (profile) for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "botFilteringEnabled": false,
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "currency": "my_currency",
+     *       //   "defaultPage": "my_defaultPage",
+     *       //   "eCommerceTracking": false,
+     *       //   "enhancedECommerceTracking": false,
+     *       //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *       //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *       //   "starred": false,
+     *       //   "stripSiteSearchCategoryParameters": false,
+     *       //   "stripSiteSearchQueryParameters": false,
+     *       //   "timezone": "my_timezone",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "botFilteringEnabled": false,
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "currency": "my_currency",
+     *   //   "defaultPage": "my_defaultPage",
+     *   //   "eCommerceTracking": false,
+     *   //   "enhancedECommerceTracking": false,
+     *   //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *   //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *   //   "starred": false,
+     *   //   "stripSiteSearchCategoryParameters": false,
+     *   //   "stripSiteSearchQueryParameters": false,
+     *   //   "timezone": "my_timezone",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profiles.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to create the view (profile) for.
      * @param {string} params.webPropertyId Web property ID to create the view (profile) for.
-     * @param {().Profile} params.resource Request body data
+     * @param {().Profile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Profiles$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Profiles$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Profile>;
+    insert(
+      params: Params$Resource$Management$Profiles$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Profiles$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Profile>,
@@ -7339,10 +11163,17 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Profiles$Insert
-        | BodyResponseCallback<Schema$Profile>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
-      callback?: BodyResponseCallback<Schema$Profile>
-    ): void | GaxiosPromise<Schema$Profile> {
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profiles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7376,7 +11207,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Profile>(parameters, callback);
+        createAPIRequest<Schema$Profile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
       }
@@ -7385,6 +11219,63 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profiles.list
      * @desc Lists views (profiles) to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.list({
+     *     // Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of views (profiles) to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profiles.list
      * @memberOf! ()
      *
@@ -7398,9 +11289,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Profiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Profiles$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Profiles>;
+    list(
+      params: Params$Resource$Management$Profiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Profiles$List,
       options: MethodOptions | BodyResponseCallback<Schema$Profiles>,
@@ -7414,10 +11314,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Profiles$List
-        | BodyResponseCallback<Schema$Profiles>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profiles>,
-      callback?: BodyResponseCallback<Schema$Profiles>
-    ): void | GaxiosPromise<Schema$Profiles> {
+        | BodyResponseCallback<Schema$Profiles>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Profiles>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Profiles>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Profiles> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7451,7 +11358,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Profiles>(parameters, callback);
+        createAPIRequest<Schema$Profiles>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Profiles>(parameters);
       }
@@ -7460,6 +11370,108 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profiles.patch
      * @desc Updates an existing view (profile). This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.patch({
+     *     // Account ID to which the view (profile) belongs
+     *     accountId: 'placeholder-value',
+     *     // ID of the view (profile) to be updated.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to which the view (profile) belongs
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "botFilteringEnabled": false,
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "currency": "my_currency",
+     *       //   "defaultPage": "my_defaultPage",
+     *       //   "eCommerceTracking": false,
+     *       //   "enhancedECommerceTracking": false,
+     *       //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *       //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *       //   "starred": false,
+     *       //   "stripSiteSearchCategoryParameters": false,
+     *       //   "stripSiteSearchQueryParameters": false,
+     *       //   "timezone": "my_timezone",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "botFilteringEnabled": false,
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "currency": "my_currency",
+     *   //   "defaultPage": "my_defaultPage",
+     *   //   "eCommerceTracking": false,
+     *   //   "enhancedECommerceTracking": false,
+     *   //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *   //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *   //   "starred": false,
+     *   //   "stripSiteSearchCategoryParameters": false,
+     *   //   "stripSiteSearchQueryParameters": false,
+     *   //   "timezone": "my_timezone",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profiles.patch
      * @memberOf! ()
      *
@@ -7467,15 +11479,24 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to which the view (profile) belongs
      * @param {string} params.profileId ID of the view (profile) to be updated.
      * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
-     * @param {().Profile} params.resource Request body data
+     * @param {().Profile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Management$Profiles$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Management$Profiles$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Profile>;
+    patch(
+      params: Params$Resource$Management$Profiles$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Management$Profiles$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Profile>,
@@ -7489,10 +11510,17 @@ export namespace analytics_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Management$Profiles$Patch
-        | BodyResponseCallback<Schema$Profile>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
-      callback?: BodyResponseCallback<Schema$Profile>
-    ): void | GaxiosPromise<Schema$Profile> {
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7526,7 +11554,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Profile>(parameters, callback);
+        createAPIRequest<Schema$Profile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
       }
@@ -7535,6 +11566,108 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profiles.update
      * @desc Updates an existing view (profile).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profiles.update({
+     *     // Account ID to which the view (profile) belongs
+     *     accountId: 'placeholder-value',
+     *     // ID of the view (profile) to be updated.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to which the view (profile) belongs
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "botFilteringEnabled": false,
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "currency": "my_currency",
+     *       //   "defaultPage": "my_defaultPage",
+     *       //   "eCommerceTracking": false,
+     *       //   "enhancedECommerceTracking": false,
+     *       //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *       //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *       //   "starred": false,
+     *       //   "stripSiteSearchCategoryParameters": false,
+     *       //   "stripSiteSearchQueryParameters": false,
+     *       //   "timezone": "my_timezone",
+     *       //   "type": "my_type",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "botFilteringEnabled": false,
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "currency": "my_currency",
+     *   //   "defaultPage": "my_defaultPage",
+     *   //   "eCommerceTracking": false,
+     *   //   "enhancedECommerceTracking": false,
+     *   //   "excludeQueryParameters": "my_excludeQueryParameters",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "siteSearchCategoryParameters": "my_siteSearchCategoryParameters",
+     *   //   "siteSearchQueryParameters": "my_siteSearchQueryParameters",
+     *   //   "starred": false,
+     *   //   "stripSiteSearchCategoryParameters": false,
+     *   //   "stripSiteSearchQueryParameters": false,
+     *   //   "timezone": "my_timezone",
+     *   //   "type": "my_type",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profiles.update
      * @memberOf! ()
      *
@@ -7542,15 +11675,24 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to which the view (profile) belongs
      * @param {string} params.profileId ID of the view (profile) to be updated.
      * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
-     * @param {().Profile} params.resource Request body data
+     * @param {().Profile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Management$Profiles$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Management$Profiles$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Profile>;
+    update(
+      params: Params$Resource$Management$Profiles$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Management$Profiles$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Profile>,
@@ -7564,10 +11706,17 @@ export namespace analytics_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Management$Profiles$Update
-        | BodyResponseCallback<Schema$Profile>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
-      callback?: BodyResponseCallback<Schema$Profile>
-    ): void | GaxiosPromise<Schema$Profile> {
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profiles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7601,7 +11750,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Profile>(parameters, callback);
+        createAPIRequest<Schema$Profile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
       }
@@ -7610,11 +11762,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Profiles$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to delete the view (profile) for.
      */
@@ -7631,11 +11778,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Profiles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to retrieve the view (profile) for.
      */
     accountId?: string;
@@ -7650,11 +11792,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profiles$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to create the view (profile) for.
      */
@@ -7671,11 +11808,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profiles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
      */
@@ -7696,11 +11828,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Profiles$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to which the view (profile) belongs
      */
     accountId?: string;
@@ -7720,11 +11847,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profiles$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to which the view (profile) belongs
      */
@@ -7753,6 +11875,47 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileUserLinks.delete
      * @desc Removes a user from the given view (profile).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileUserLinks.delete({
+     *     // Account ID to delete the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to delete the user link for.
+     *     linkId: 'placeholder-value',
+     *     // View (Profile) ID to delete the user link for.
+     *     profileId: 'placeholder-value',
+     *     // Web Property ID to delete the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileUserLinks.delete
      * @memberOf! ()
      *
@@ -7766,9 +11929,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Management$Profileuserlinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Management$Profileuserlinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Management$Profileuserlinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Management$Profileuserlinks$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -7782,10 +11954,15 @@ export namespace analytics_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Management$Profileuserlinks$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profileuserlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7819,7 +11996,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -7828,6 +12008,68 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileUserLinks.insert
      * @desc Adds a new user to the given view (profile).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileUserLinks.insert({
+     *     // Account ID to create the user link for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to create the user link for.
+     *     profileId: 'placeholder-value',
+     *     // Web Property ID to create the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileUserLinks.insert
      * @memberOf! ()
      *
@@ -7835,15 +12077,24 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to create the user link for.
      * @param {string} params.profileId View (Profile) ID to create the user link for.
      * @param {string} params.webPropertyId Web Property ID to create the user link for.
-     * @param {().EntityUserLink} params.resource Request body data
+     * @param {().EntityUserLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Profileuserlinks$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Profileuserlinks$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityUserLink>;
+    insert(
+      params: Params$Resource$Management$Profileuserlinks$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Profileuserlinks$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$EntityUserLink>,
@@ -7857,12 +12108,17 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Profileuserlinks$Insert
-        | BodyResponseCallback<Schema$EntityUserLink>,
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityUserLink>,
-      callback?: BodyResponseCallback<Schema$EntityUserLink>
-    ): void | GaxiosPromise<Schema$EntityUserLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EntityUserLink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profileuserlinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7896,7 +12152,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityUserLink>(parameters, callback);
+        createAPIRequest<Schema$EntityUserLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
       }
@@ -7905,6 +12164,63 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileUserLinks.list
      * @desc Lists profile-user links for a given view (profile).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileUserLinks.list({
+     *     // Account ID which the given view (profile) belongs to.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of profile-user links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // View (Profile) ID to retrieve the profile-user links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
+     *     profileId: 'placeholder-value',
+     *     // An index of the first profile-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web Property ID which the given view (profile) belongs to. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileUserLinks.list
      * @memberOf! ()
      *
@@ -7919,9 +12235,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Profileuserlinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Profileuserlinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityUserLinks>;
+    list(
+      params: Params$Resource$Management$Profileuserlinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Profileuserlinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$EntityUserLinks>,
@@ -7935,12 +12260,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Profileuserlinks$List
-        | BodyResponseCallback<Schema$EntityUserLinks>,
+        | BodyResponseCallback<Schema$EntityUserLinks>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityUserLinks>,
-      callback?: BodyResponseCallback<Schema$EntityUserLinks>
-    ): void | GaxiosPromise<Schema$EntityUserLinks> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityUserLinks>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityUserLinks>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EntityUserLinks> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profileuserlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7974,7 +12304,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
+        createAPIRequest<Schema$EntityUserLinks>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityUserLinks>(parameters);
       }
@@ -7983,6 +12316,70 @@ export namespace analytics_v3 {
     /**
      * analytics.management.profileUserLinks.update
      * @desc Updates permissions for an existing user on the given view (profile).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.profileUserLinks.update({
+     *     // Account ID to update the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to update the user link for.
+     *     linkId: 'placeholder-value',
+     *     // View (Profile ID) to update the user link for.
+     *     profileId: 'placeholder-value',
+     *     // Web Property ID to update the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.profileUserLinks.update
      * @memberOf! ()
      *
@@ -7991,15 +12388,24 @@ export namespace analytics_v3 {
      * @param {string} params.linkId Link ID to update the user link for.
      * @param {string} params.profileId View (Profile ID) to update the user link for.
      * @param {string} params.webPropertyId Web Property ID to update the user link for.
-     * @param {().EntityUserLink} params.resource Request body data
+     * @param {().EntityUserLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Management$Profileuserlinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Management$Profileuserlinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityUserLink>;
+    update(
+      params: Params$Resource$Management$Profileuserlinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Management$Profileuserlinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$EntityUserLink>,
@@ -8013,12 +12419,17 @@ export namespace analytics_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Management$Profileuserlinks$Update
-        | BodyResponseCallback<Schema$EntityUserLink>,
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityUserLink>,
-      callback?: BodyResponseCallback<Schema$EntityUserLink>
-    ): void | GaxiosPromise<Schema$EntityUserLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EntityUserLink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Profileuserlinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8052,7 +12463,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityUserLink>(parameters, callback);
+        createAPIRequest<Schema$EntityUserLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
       }
@@ -8061,11 +12475,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Profileuserlinks$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to delete the user link for.
      */
@@ -8086,11 +12495,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Profileuserlinks$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to create the user link for.
      */
     accountId?: string;
@@ -8110,11 +12514,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profileuserlinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID which the given view (profile) belongs to.
      */
@@ -8138,11 +12537,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profileuserlinks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to update the user link for.
      */
@@ -8175,6 +12569,45 @@ export namespace analytics_v3 {
     /**
      * analytics.management.remarketingAudience.delete
      * @desc Delete a remarketing audience.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.delete({
+     *     // Account ID to which the remarketing audience belongs.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the remarketing audience to delete.
+     *     remarketingAudienceId: 'placeholder-value',
+     *     // Web property ID to which the remarketing audience belongs.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.remarketingAudience.delete
      * @memberOf! ()
      *
@@ -8187,9 +12620,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Management$Remarketingaudience$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Management$Remarketingaudience$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Management$Remarketingaudience$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Management$Remarketingaudience$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -8203,10 +12645,15 @@ export namespace analytics_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Management$Remarketingaudience$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Remarketingaudience$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8240,7 +12687,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -8249,6 +12699,66 @@ export namespace analytics_v3 {
     /**
      * analytics.management.remarketingAudience.get
      * @desc Gets a remarketing audience to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.get({
+     *     // The account ID of the remarketing audience to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the remarketing audience to retrieve.
+     *     remarketingAudienceId: 'placeholder-value',
+     *     // The web property ID of the remarketing audience to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "audienceDefinition": {},
+     *   //   "audienceType": "my_audienceType",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "linkedAdAccounts": [],
+     *   //   "linkedViews": [],
+     *   //   "name": "my_name",
+     *   //   "stateBasedAudienceDefinition": {},
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.remarketingAudience.get
      * @memberOf! ()
      *
@@ -8261,9 +12771,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Management$Remarketingaudience$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Management$Remarketingaudience$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RemarketingAudience>;
+    get(
+      params: Params$Resource$Management$Remarketingaudience$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Management$Remarketingaudience$Get,
       options: MethodOptions | BodyResponseCallback<Schema$RemarketingAudience>,
@@ -8277,12 +12796,20 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Management$Remarketingaudience$Get
-        | BodyResponseCallback<Schema$RemarketingAudience>,
+        | BodyResponseCallback<Schema$RemarketingAudience>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RemarketingAudience>,
-      callback?: BodyResponseCallback<Schema$RemarketingAudience>
-    ): void | GaxiosPromise<Schema$RemarketingAudience> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemarketingAudience>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemarketingAudience>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RemarketingAudience>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Remarketingaudience$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8316,7 +12843,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
+        createAPIRequest<Schema$RemarketingAudience>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RemarketingAudience>(parameters);
       }
@@ -8325,21 +12855,106 @@ export namespace analytics_v3 {
     /**
      * analytics.management.remarketingAudience.insert
      * @desc Creates a new remarketing audience.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.insert({
+     *     // The account ID for which to create the remarketing audience.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID for which to create the remarketing audience.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "audienceDefinition": {},
+     *       //   "audienceType": "my_audienceType",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "linkedAdAccounts": [],
+     *       //   "linkedViews": [],
+     *       //   "name": "my_name",
+     *       //   "stateBasedAudienceDefinition": {},
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "audienceDefinition": {},
+     *   //   "audienceType": "my_audienceType",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "linkedAdAccounts": [],
+     *   //   "linkedViews": [],
+     *   //   "name": "my_name",
+     *   //   "stateBasedAudienceDefinition": {},
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.remarketingAudience.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account ID for which to create the remarketing audience.
      * @param {string} params.webPropertyId Web property ID for which to create the remarketing audience.
-     * @param {().RemarketingAudience} params.resource Request body data
+     * @param {().RemarketingAudience} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Remarketingaudience$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Remarketingaudience$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RemarketingAudience>;
+    insert(
+      params: Params$Resource$Management$Remarketingaudience$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Remarketingaudience$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$RemarketingAudience>,
@@ -8353,12 +12968,20 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Remarketingaudience$Insert
-        | BodyResponseCallback<Schema$RemarketingAudience>,
+        | BodyResponseCallback<Schema$RemarketingAudience>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RemarketingAudience>,
-      callback?: BodyResponseCallback<Schema$RemarketingAudience>
-    ): void | GaxiosPromise<Schema$RemarketingAudience> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemarketingAudience>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemarketingAudience>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RemarketingAudience>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Remarketingaudience$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8392,7 +13015,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
+        createAPIRequest<Schema$RemarketingAudience>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RemarketingAudience>(parameters);
       }
@@ -8401,6 +13027,64 @@ export namespace analytics_v3 {
     /**
      * analytics.management.remarketingAudience.list
      * @desc Lists remarketing audiences to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.list({
+     *     // The account ID of the remarketing audiences to retrieve.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of remarketing audiences to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *
+     *     type: 'placeholder-value',
+     *     // The web property ID of the remarketing audiences to retrieve.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.remarketingAudience.list
      * @memberOf! ()
      *
@@ -8415,9 +13099,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Remarketingaudience$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Remarketingaudience$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RemarketingAudiences>;
+    list(
+      params: Params$Resource$Management$Remarketingaudience$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Remarketingaudience$List,
       options:
@@ -8433,12 +13126,20 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Remarketingaudience$List
-        | BodyResponseCallback<Schema$RemarketingAudiences>,
+        | BodyResponseCallback<Schema$RemarketingAudiences>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RemarketingAudiences>,
-      callback?: BodyResponseCallback<Schema$RemarketingAudiences>
-    ): void | GaxiosPromise<Schema$RemarketingAudiences> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemarketingAudiences>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemarketingAudiences>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RemarketingAudiences>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Remarketingaudience$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8472,7 +13173,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RemarketingAudiences>(parameters, callback);
+        createAPIRequest<Schema$RemarketingAudiences>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RemarketingAudiences>(parameters);
       }
@@ -8481,6 +13185,84 @@ export namespace analytics_v3 {
     /**
      * analytics.management.remarketingAudience.patch
      * @desc Updates an existing remarketing audience. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.patch({
+     *     // The account ID of the remarketing audience to update.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the remarketing audience to update.
+     *     remarketingAudienceId: 'placeholder-value',
+     *     // The web property ID of the remarketing audience to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "audienceDefinition": {},
+     *       //   "audienceType": "my_audienceType",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "linkedAdAccounts": [],
+     *       //   "linkedViews": [],
+     *       //   "name": "my_name",
+     *       //   "stateBasedAudienceDefinition": {},
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "audienceDefinition": {},
+     *   //   "audienceType": "my_audienceType",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "linkedAdAccounts": [],
+     *   //   "linkedViews": [],
+     *   //   "name": "my_name",
+     *   //   "stateBasedAudienceDefinition": {},
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.remarketingAudience.patch
      * @memberOf! ()
      *
@@ -8488,15 +13270,24 @@ export namespace analytics_v3 {
      * @param {string} params.accountId The account ID of the remarketing audience to update.
      * @param {string} params.remarketingAudienceId The ID of the remarketing audience to update.
      * @param {string} params.webPropertyId The web property ID of the remarketing audience to update.
-     * @param {().RemarketingAudience} params.resource Request body data
+     * @param {().RemarketingAudience} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Management$Remarketingaudience$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Management$Remarketingaudience$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RemarketingAudience>;
+    patch(
+      params: Params$Resource$Management$Remarketingaudience$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Management$Remarketingaudience$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$RemarketingAudience>,
@@ -8510,12 +13301,20 @@ export namespace analytics_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Management$Remarketingaudience$Patch
-        | BodyResponseCallback<Schema$RemarketingAudience>,
+        | BodyResponseCallback<Schema$RemarketingAudience>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RemarketingAudience>,
-      callback?: BodyResponseCallback<Schema$RemarketingAudience>
-    ): void | GaxiosPromise<Schema$RemarketingAudience> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemarketingAudience>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemarketingAudience>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RemarketingAudience>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Remarketingaudience$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8549,7 +13348,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
+        createAPIRequest<Schema$RemarketingAudience>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RemarketingAudience>(parameters);
       }
@@ -8558,6 +13360,84 @@ export namespace analytics_v3 {
     /**
      * analytics.management.remarketingAudience.update
      * @desc Updates an existing remarketing audience.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.remarketingAudience.update({
+     *     // The account ID of the remarketing audience to update.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the remarketing audience to update.
+     *     remarketingAudienceId: 'placeholder-value',
+     *     // The web property ID of the remarketing audience to update.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "audienceDefinition": {},
+     *       //   "audienceType": "my_audienceType",
+     *       //   "created": "my_created",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "linkedAdAccounts": [],
+     *       //   "linkedViews": [],
+     *       //   "name": "my_name",
+     *       //   "stateBasedAudienceDefinition": {},
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "audienceDefinition": {},
+     *   //   "audienceType": "my_audienceType",
+     *   //   "created": "my_created",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "linkedAdAccounts": [],
+     *   //   "linkedViews": [],
+     *   //   "name": "my_name",
+     *   //   "stateBasedAudienceDefinition": {},
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.remarketingAudience.update
      * @memberOf! ()
      *
@@ -8565,15 +13445,24 @@ export namespace analytics_v3 {
      * @param {string} params.accountId The account ID of the remarketing audience to update.
      * @param {string} params.remarketingAudienceId The ID of the remarketing audience to update.
      * @param {string} params.webPropertyId The web property ID of the remarketing audience to update.
-     * @param {().RemarketingAudience} params.resource Request body data
+     * @param {().RemarketingAudience} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Management$Remarketingaudience$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Management$Remarketingaudience$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RemarketingAudience>;
+    update(
+      params: Params$Resource$Management$Remarketingaudience$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Management$Remarketingaudience$Update,
       options: MethodOptions | BodyResponseCallback<Schema$RemarketingAudience>,
@@ -8587,12 +13476,20 @@ export namespace analytics_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Management$Remarketingaudience$Update
-        | BodyResponseCallback<Schema$RemarketingAudience>,
+        | BodyResponseCallback<Schema$RemarketingAudience>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RemarketingAudience>,
-      callback?: BodyResponseCallback<Schema$RemarketingAudience>
-    ): void | GaxiosPromise<Schema$RemarketingAudience> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemarketingAudience>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemarketingAudience>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RemarketingAudience>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Remarketingaudience$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8626,7 +13523,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
+        createAPIRequest<Schema$RemarketingAudience>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RemarketingAudience>(parameters);
       }
@@ -8635,11 +13535,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Remarketingaudience$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to which the remarketing audience belongs.
      */
@@ -8656,11 +13551,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Remarketingaudience$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account ID of the remarketing audience to retrieve.
      */
     accountId?: string;
@@ -8675,11 +13565,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Remarketingaudience$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account ID for which to create the remarketing audience.
      */
@@ -8696,11 +13581,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Remarketingaudience$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account ID of the remarketing audiences to retrieve.
      */
@@ -8725,11 +13605,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Remarketingaudience$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account ID of the remarketing audience to update.
      */
     accountId?: string;
@@ -8749,11 +13624,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Remarketingaudience$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account ID of the remarketing audience to update.
      */
@@ -8782,6 +13652,59 @@ export namespace analytics_v3 {
     /**
      * analytics.management.segments.list
      * @desc Lists segments to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.segments.list({
+     *     // The maximum number of segments to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.segments.list
      * @memberOf! ()
      *
@@ -8793,9 +13716,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Segments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Segments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Segments>;
+    list(
+      params: Params$Resource$Management$Segments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Segments$List,
       options: MethodOptions | BodyResponseCallback<Schema$Segments>,
@@ -8809,10 +13741,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Segments$List
-        | BodyResponseCallback<Schema$Segments>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Segments>,
-      callback?: BodyResponseCallback<Schema$Segments>
-    ): void | GaxiosPromise<Schema$Segments> {
+        | BodyResponseCallback<Schema$Segments>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Segments>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Segments>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Segments> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Segments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8846,7 +13785,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Segments>(parameters, callback);
+        createAPIRequest<Schema$Segments>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Segments>(parameters);
       }
@@ -8855,11 +13797,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Segments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of segments to include in this response.
      */
@@ -8879,6 +13816,47 @@ export namespace analytics_v3 {
     /**
      * analytics.management.unsampledReports.delete
      * @desc Deletes an unsampled report.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.unsampledReports.delete({
+     *     // Account ID to delete the unsampled report for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to delete the unsampled report for.
+     *     profileId: 'placeholder-value',
+     *     // ID of the unsampled report to be deleted.
+     *     unsampledReportId: 'placeholder-value',
+     *     // Web property ID to delete the unsampled reports for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.unsampledReports.delete
      * @memberOf! ()
      *
@@ -8892,9 +13870,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Management$Unsampledreports$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Management$Unsampledreports$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Management$Unsampledreports$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Management$Unsampledreports$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -8908,10 +13895,15 @@ export namespace analytics_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Management$Unsampledreports$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Unsampledreports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8955,7 +13947,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -8964,6 +13959,74 @@ export namespace analytics_v3 {
     /**
      * analytics.management.unsampledReports.get
      * @desc Returns a single unsampled report.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.unsampledReports.get({
+     *     // Account ID to retrieve unsampled report for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to retrieve unsampled report for.
+     *     profileId: 'placeholder-value',
+     *     // ID of the unsampled report to retrieve.
+     *     unsampledReportId: 'placeholder-value',
+     *     // Web property ID to retrieve unsampled reports for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "cloudStorageDownloadDetails": {},
+     *   //   "created": "my_created",
+     *   //   "dimensions": "my_dimensions",
+     *   //   "downloadType": "my_downloadType",
+     *   //   "driveDownloadDetails": {},
+     *   //   "end-date": "my_end-date",
+     *   //   "filters": "my_filters",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "metrics": "my_metrics",
+     *   //   "profileId": "my_profileId",
+     *   //   "segment": "my_segment",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "start-date": "my_start-date",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.unsampledReports.get
      * @memberOf! ()
      *
@@ -8977,9 +14040,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Management$Unsampledreports$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Management$Unsampledreports$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UnsampledReport>;
+    get(
+      params: Params$Resource$Management$Unsampledreports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Management$Unsampledreports$Get,
       options: MethodOptions | BodyResponseCallback<Schema$UnsampledReport>,
@@ -8993,12 +14065,17 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Management$Unsampledreports$Get
-        | BodyResponseCallback<Schema$UnsampledReport>,
+        | BodyResponseCallback<Schema$UnsampledReport>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UnsampledReport>,
-      callback?: BodyResponseCallback<Schema$UnsampledReport>
-    ): void | GaxiosPromise<Schema$UnsampledReport> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UnsampledReport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UnsampledReport>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UnsampledReport> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Unsampledreports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9042,7 +14119,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UnsampledReport>(parameters, callback);
+        createAPIRequest<Schema$UnsampledReport>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UnsampledReport>(parameters);
       }
@@ -9051,6 +14131,97 @@ export namespace analytics_v3 {
     /**
      * analytics.management.unsampledReports.insert
      * @desc Create a new unsampled report.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.unsampledReports.insert({
+     *     // Account ID to create the unsampled report for.
+     *     accountId: 'placeholder-value',
+     *     // View (Profile) ID to create the unsampled report for.
+     *     profileId: 'placeholder-value',
+     *     // Web property ID to create the unsampled report for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "cloudStorageDownloadDetails": {},
+     *       //   "created": "my_created",
+     *       //   "dimensions": "my_dimensions",
+     *       //   "downloadType": "my_downloadType",
+     *       //   "driveDownloadDetails": {},
+     *       //   "end-date": "my_end-date",
+     *       //   "filters": "my_filters",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "metrics": "my_metrics",
+     *       //   "profileId": "my_profileId",
+     *       //   "segment": "my_segment",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "start-date": "my_start-date",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "cloudStorageDownloadDetails": {},
+     *   //   "created": "my_created",
+     *   //   "dimensions": "my_dimensions",
+     *   //   "downloadType": "my_downloadType",
+     *   //   "driveDownloadDetails": {},
+     *   //   "end-date": "my_end-date",
+     *   //   "filters": "my_filters",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "metrics": "my_metrics",
+     *   //   "profileId": "my_profileId",
+     *   //   "segment": "my_segment",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "start-date": "my_start-date",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.unsampledReports.insert
      * @memberOf! ()
      *
@@ -9058,15 +14229,24 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to create the unsampled report for.
      * @param {string} params.profileId View (Profile) ID to create the unsampled report for.
      * @param {string} params.webPropertyId Web property ID to create the unsampled report for.
-     * @param {().UnsampledReport} params.resource Request body data
+     * @param {().UnsampledReport} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Unsampledreports$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Unsampledreports$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UnsampledReport>;
+    insert(
+      params: Params$Resource$Management$Unsampledreports$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Unsampledreports$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$UnsampledReport>,
@@ -9080,12 +14260,17 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Unsampledreports$Insert
-        | BodyResponseCallback<Schema$UnsampledReport>,
+        | BodyResponseCallback<Schema$UnsampledReport>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UnsampledReport>,
-      callback?: BodyResponseCallback<Schema$UnsampledReport>
-    ): void | GaxiosPromise<Schema$UnsampledReport> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UnsampledReport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UnsampledReport>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UnsampledReport> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Unsampledreports$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9119,7 +14304,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UnsampledReport>(parameters, callback);
+        createAPIRequest<Schema$UnsampledReport>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UnsampledReport>(parameters);
       }
@@ -9128,6 +14316,65 @@ export namespace analytics_v3 {
     /**
      * analytics.management.unsampledReports.list
      * @desc Lists unsampled reports to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.unsampledReports.list({
+     *     // Account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of unsampled reports to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // View (Profile) ID to retrieve unsampled reports for. Must be a specific view (profile) ID, ~all is not supported.
+     *     profileId: 'placeholder-value',
+     *     // An index of the first unsampled report to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID to retrieve unsampled reports for. Must be a specific web property ID, ~all is not supported.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.unsampledReports.list
      * @memberOf! ()
      *
@@ -9142,9 +14389,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Unsampledreports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Unsampledreports$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UnsampledReports>;
+    list(
+      params: Params$Resource$Management$Unsampledreports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Unsampledreports$List,
       options: MethodOptions | BodyResponseCallback<Schema$UnsampledReports>,
@@ -9158,12 +14414,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Unsampledreports$List
-        | BodyResponseCallback<Schema$UnsampledReports>,
+        | BodyResponseCallback<Schema$UnsampledReports>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UnsampledReports>,
-      callback?: BodyResponseCallback<Schema$UnsampledReports>
-    ): void | GaxiosPromise<Schema$UnsampledReports> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UnsampledReports>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UnsampledReports>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UnsampledReports> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Unsampledreports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9197,7 +14458,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UnsampledReports>(parameters, callback);
+        createAPIRequest<Schema$UnsampledReports>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UnsampledReports>(parameters);
       }
@@ -9206,11 +14470,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Unsampledreports$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to delete the unsampled report for.
      */
@@ -9231,11 +14490,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Unsampledreports$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to retrieve unsampled report for.
      */
     accountId?: string;
@@ -9254,11 +14508,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Unsampledreports$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to create the unsampled report for.
      */
@@ -9279,11 +14528,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Unsampledreports$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.
      */
@@ -9315,6 +14559,56 @@ export namespace analytics_v3 {
     /**
      * analytics.management.uploads.deleteUploadData
      * @desc Delete data associated with a previous upload.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.uploads.deleteUploadData({
+     *     // Account Id for the uploads to be deleted.
+     *     accountId: 'd+',
+     *     // Custom data source Id for the uploads to be deleted.
+     *     customDataSourceId: '.{22}',
+     *     // Web property Id for the uploads to be deleted.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customDataImportUids": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.uploads.deleteUploadData
      * @memberOf! ()
      *
@@ -9322,15 +14616,24 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account Id for the uploads to be deleted.
      * @param {string} params.customDataSourceId Custom data source Id for the uploads to be deleted.
      * @param {string} params.webPropertyId Web property Id for the uploads to be deleted.
-     * @param {().AnalyticsDataimportDeleteUploadDataRequest} params.resource Request body data
+     * @param {().AnalyticsDataimportDeleteUploadDataRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     deleteUploadData(
+      params: Params$Resource$Management$Uploads$Deleteuploaddata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteUploadData(
       params?: Params$Resource$Management$Uploads$Deleteuploaddata,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    deleteUploadData(
+      params: Params$Resource$Management$Uploads$Deleteuploaddata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteUploadData(
       params: Params$Resource$Management$Uploads$Deleteuploaddata,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -9344,10 +14647,15 @@ export namespace analytics_v3 {
     deleteUploadData(
       paramsOrCallback?:
         | Params$Resource$Management$Uploads$Deleteuploaddata
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Uploads$Deleteuploaddata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9381,7 +14689,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -9390,6 +14701,62 @@ export namespace analytics_v3 {
     /**
      * analytics.management.uploads.get
      * @desc List uploads to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.uploads.get({
+     *     // Account Id for the upload to retrieve.
+     *     accountId: 'd+',
+     *     // Custom data source Id for upload to retrieve.
+     *     customDataSourceId: '.{22}',
+     *     // Upload Id to retrieve.
+     *     uploadId: '.{22}',
+     *     // Web property Id for the upload to retrieve.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "customDataSourceId": "my_customDataSourceId",
+     *   //   "errors": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "status": "my_status",
+     *   //   "uploadTime": "my_uploadTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.uploads.get
      * @memberOf! ()
      *
@@ -9403,9 +14770,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Management$Uploads$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Management$Uploads$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Upload>;
+    get(
+      params: Params$Resource$Management$Uploads$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Management$Uploads$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Upload>,
@@ -9419,10 +14795,17 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Management$Uploads$Get
-        | BodyResponseCallback<Schema$Upload>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Upload>,
-      callback?: BodyResponseCallback<Schema$Upload>
-    ): void | GaxiosPromise<Schema$Upload> {
+        | BodyResponseCallback<Schema$Upload>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Upload>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Upload>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Upload> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Uploads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9466,7 +14849,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Upload>(parameters, callback);
+        createAPIRequest<Schema$Upload>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Upload>(parameters);
       }
@@ -9475,6 +14861,64 @@ export namespace analytics_v3 {
     /**
      * analytics.management.uploads.list
      * @desc List uploads to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.uploads.list({
+     *     // Account Id for the uploads to retrieve.
+     *     accountId: 'd+',
+     *     // Custom data source Id for uploads to retrieve.
+     *     customDataSourceId: '.{22}',
+     *     // The maximum number of uploads to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // A 1-based index of the first upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property Id for the uploads to retrieve.
+     *     webPropertyId: 'UA-(d+)-(d+)',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.uploads.list
      * @memberOf! ()
      *
@@ -9489,9 +14933,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Uploads$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Uploads$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Uploads>;
+    list(
+      params: Params$Resource$Management$Uploads$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Uploads$List,
       options: MethodOptions | BodyResponseCallback<Schema$Uploads>,
@@ -9505,10 +14958,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Uploads$List
-        | BodyResponseCallback<Schema$Uploads>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Uploads>,
-      callback?: BodyResponseCallback<Schema$Uploads>
-    ): void | GaxiosPromise<Schema$Uploads> {
+        | BodyResponseCallback<Schema$Uploads>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Uploads>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Uploads>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Uploads> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Uploads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9542,7 +15002,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Uploads>(parameters, callback);
+        createAPIRequest<Schema$Uploads>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Uploads>(parameters);
       }
@@ -9551,6 +15014,67 @@ export namespace analytics_v3 {
     /**
      * analytics.management.uploads.uploadData
      * @desc Upload data for a custom data source.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.uploads.uploadData({
+     *     // Account Id associated with the upload.
+     *     accountId: 'd+',
+     *     // Custom data source Id to which the data being uploaded belongs.
+     *     customDataSourceId: 'placeholder-value',
+     *     // Web property UA-string associated with the upload.
+     *     webPropertyId: 'UA-d+-d+',
+     *
+     *     requestBody: {
+     *       // request body parameters
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "customDataSourceId": "my_customDataSourceId",
+     *   //   "errors": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "status": "my_status",
+     *   //   "uploadTime": "my_uploadTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.uploads.uploadData
      * @memberOf! ()
      *
@@ -9566,9 +15090,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     uploadData(
+      params: Params$Resource$Management$Uploads$Uploaddata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    uploadData(
       params?: Params$Resource$Management$Uploads$Uploaddata,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Upload>;
+    uploadData(
+      params: Params$Resource$Management$Uploads$Uploaddata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     uploadData(
       params: Params$Resource$Management$Uploads$Uploaddata,
       options: MethodOptions | BodyResponseCallback<Schema$Upload>,
@@ -9582,10 +15115,17 @@ export namespace analytics_v3 {
     uploadData(
       paramsOrCallback?:
         | Params$Resource$Management$Uploads$Uploaddata
-        | BodyResponseCallback<Schema$Upload>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Upload>,
-      callback?: BodyResponseCallback<Schema$Upload>
-    ): void | GaxiosPromise<Schema$Upload> {
+        | BodyResponseCallback<Schema$Upload>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Upload>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Upload>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Upload> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Uploads$Uploaddata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9623,7 +15163,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Upload>(parameters, callback);
+        createAPIRequest<Schema$Upload>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Upload>(parameters);
       }
@@ -9632,11 +15175,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Uploads$Deleteuploaddata
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account Id for the uploads to be deleted.
      */
@@ -9658,11 +15196,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Uploads$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account Id for the upload to retrieve.
      */
     accountId?: string;
@@ -9681,11 +15214,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Uploads$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account Id for the uploads to retrieve.
      */
@@ -9710,11 +15238,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Uploads$Uploaddata
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account Id associated with the upload.
      */
     accountId?: string;
@@ -9726,6 +15249,11 @@ export namespace analytics_v3 {
      * Web property UA-string associated with the upload.
      */
     webPropertyId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: {};
 
     /**
      * Media metadata
@@ -9752,6 +15280,69 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webproperties.get
      * @desc Gets a web property to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.get({
+     *     // Account ID to retrieve the web property for.
+     *     accountId: '[0-9]+',
+     *     // ID to retrieve the web property for.
+     *     webPropertyId: 'UA-[0-9]+-[0-9]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "dataRetentionResetOnNewActivity": false,
+     *   //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *   //   "defaultProfileId": "my_defaultProfileId",
+     *   //   "id": "my_id",
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "profileCount": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "starred": false,
+     *   //   "updated": "my_updated",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webproperties.get
      * @memberOf! ()
      *
@@ -9763,9 +15354,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Management$Webproperties$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Management$Webproperties$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Webproperty>;
+    get(
+      params: Params$Resource$Management$Webproperties$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Management$Webproperties$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Webproperty>,
@@ -9779,12 +15379,17 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Management$Webproperties$Get
-        | BodyResponseCallback<Schema$Webproperty>,
+        | BodyResponseCallback<Schema$Webproperty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Webproperty>,
-      callback?: BodyResponseCallback<Schema$Webproperty>
-    ): void | GaxiosPromise<Schema$Webproperty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Webproperty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Webproperty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Webproperty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webproperties$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9818,7 +15423,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Webproperty>(parameters, callback);
+        createAPIRequest<Schema$Webproperty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Webproperty>(parameters);
       }
@@ -9827,20 +15435,113 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webproperties.insert
      * @desc Create a new property if the account has fewer than 20 properties. Web properties are visible in the Google Analytics interface only if they have at least one profile.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.insert({
+     *     // Account ID to create the web property for.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "dataRetentionResetOnNewActivity": false,
+     *       //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *       //   "defaultProfileId": "my_defaultProfileId",
+     *       //   "id": "my_id",
+     *       //   "industryVertical": "my_industryVertical",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "level": "my_level",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "profileCount": 0,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "starred": false,
+     *       //   "updated": "my_updated",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "dataRetentionResetOnNewActivity": false,
+     *   //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *   //   "defaultProfileId": "my_defaultProfileId",
+     *   //   "id": "my_id",
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "profileCount": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "starred": false,
+     *   //   "updated": "my_updated",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webproperties.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to create the web property for.
-     * @param {().Webproperty} params.resource Request body data
+     * @param {().Webproperty} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Webproperties$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Webproperties$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Webproperty>;
+    insert(
+      params: Params$Resource$Management$Webproperties$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Webproperties$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Webproperty>,
@@ -9854,12 +15555,17 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Webproperties$Insert
-        | BodyResponseCallback<Schema$Webproperty>,
+        | BodyResponseCallback<Schema$Webproperty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Webproperty>,
-      callback?: BodyResponseCallback<Schema$Webproperty>
-    ): void | GaxiosPromise<Schema$Webproperty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Webproperty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Webproperty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Webproperty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webproperties$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9893,7 +15599,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Webproperty>(parameters, callback);
+        createAPIRequest<Schema$Webproperty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Webproperty>(parameters);
       }
@@ -9902,6 +15611,61 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webproperties.list
      * @desc Lists web properties to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.list({
+     *     // Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of web properties to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0,
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webproperties.list
      * @memberOf! ()
      *
@@ -9914,9 +15678,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Webproperties$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Webproperties$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Webproperties>;
+    list(
+      params: Params$Resource$Management$Webproperties$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Webproperties$List,
       options: MethodOptions | BodyResponseCallback<Schema$Webproperties>,
@@ -9930,12 +15703,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Webproperties$List
-        | BodyResponseCallback<Schema$Webproperties>,
+        | BodyResponseCallback<Schema$Webproperties>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Webproperties>,
-      callback?: BodyResponseCallback<Schema$Webproperties>
-    ): void | GaxiosPromise<Schema$Webproperties> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Webproperties>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Webproperties>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Webproperties> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webproperties$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9969,7 +15747,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Webproperties>(parameters, callback);
+        createAPIRequest<Schema$Webproperties>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Webproperties>(parameters);
       }
@@ -9978,21 +15759,116 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webproperties.patch
      * @desc Updates an existing web property. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.patch({
+     *     // Account ID to which the web property belongs
+     *     accountId: 'placeholder-value',
+     *     // Web property ID
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "dataRetentionResetOnNewActivity": false,
+     *       //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *       //   "defaultProfileId": "my_defaultProfileId",
+     *       //   "id": "my_id",
+     *       //   "industryVertical": "my_industryVertical",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "level": "my_level",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "profileCount": 0,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "starred": false,
+     *       //   "updated": "my_updated",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "dataRetentionResetOnNewActivity": false,
+     *   //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *   //   "defaultProfileId": "my_defaultProfileId",
+     *   //   "id": "my_id",
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "profileCount": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "starred": false,
+     *   //   "updated": "my_updated",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webproperties.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to which the web property belongs
      * @param {string} params.webPropertyId Web property ID
-     * @param {().Webproperty} params.resource Request body data
+     * @param {().Webproperty} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Management$Webproperties$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Management$Webproperties$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Webproperty>;
+    patch(
+      params: Params$Resource$Management$Webproperties$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Management$Webproperties$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Webproperty>,
@@ -10006,12 +15882,17 @@ export namespace analytics_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Management$Webproperties$Patch
-        | BodyResponseCallback<Schema$Webproperty>,
+        | BodyResponseCallback<Schema$Webproperty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Webproperty>,
-      callback?: BodyResponseCallback<Schema$Webproperty>
-    ): void | GaxiosPromise<Schema$Webproperty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Webproperty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Webproperty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Webproperty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webproperties$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10045,7 +15926,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Webproperty>(parameters, callback);
+        createAPIRequest<Schema$Webproperty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Webproperty>(parameters);
       }
@@ -10054,21 +15938,116 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webproperties.update
      * @desc Updates an existing web property.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webproperties.update({
+     *     // Account ID to which the web property belongs
+     *     accountId: 'placeholder-value',
+     *     // Web property ID
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "childLink": {},
+     *       //   "created": "my_created",
+     *       //   "dataRetentionResetOnNewActivity": false,
+     *       //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *       //   "defaultProfileId": "my_defaultProfileId",
+     *       //   "id": "my_id",
+     *       //   "industryVertical": "my_industryVertical",
+     *       //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *       //   "kind": "my_kind",
+     *       //   "level": "my_level",
+     *       //   "name": "my_name",
+     *       //   "parentLink": {},
+     *       //   "permissions": {},
+     *       //   "profileCount": 0,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "starred": false,
+     *       //   "updated": "my_updated",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "childLink": {},
+     *   //   "created": "my_created",
+     *   //   "dataRetentionResetOnNewActivity": false,
+     *   //   "dataRetentionTtl": "my_dataRetentionTtl",
+     *   //   "defaultProfileId": "my_defaultProfileId",
+     *   //   "id": "my_id",
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "internalWebPropertyId": "my_internalWebPropertyId",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "parentLink": {},
+     *   //   "permissions": {},
+     *   //   "profileCount": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "starred": false,
+     *   //   "updated": "my_updated",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webproperties.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to which the web property belongs
      * @param {string} params.webPropertyId Web property ID
-     * @param {().Webproperty} params.resource Request body data
+     * @param {().Webproperty} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Management$Webproperties$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Management$Webproperties$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Webproperty>;
+    update(
+      params: Params$Resource$Management$Webproperties$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Management$Webproperties$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Webproperty>,
@@ -10082,12 +16061,17 @@ export namespace analytics_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Management$Webproperties$Update
-        | BodyResponseCallback<Schema$Webproperty>,
+        | BodyResponseCallback<Schema$Webproperty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Webproperty>,
-      callback?: BodyResponseCallback<Schema$Webproperty>
-    ): void | GaxiosPromise<Schema$Webproperty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Webproperty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Webproperty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Webproperty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webproperties$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10121,7 +16105,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Webproperty>(parameters, callback);
+        createAPIRequest<Schema$Webproperty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Webproperty>(parameters);
       }
@@ -10130,11 +16117,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Webproperties$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve the web property for.
      */
@@ -10147,11 +16129,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Webproperties$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to create the web property for.
      */
     accountId?: string;
@@ -10163,11 +16140,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webproperties$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
      */
@@ -10184,11 +16156,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Webproperties$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to which the web property belongs
      */
     accountId?: string;
@@ -10204,11 +16171,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webproperties$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to which the web property belongs
      */
@@ -10233,6 +16195,45 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webPropertyAdWordsLinks.delete
      * @desc Deletes a web property-Google Ads link.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.delete({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Web property Google Ads link ID.
+     *     webPropertyAdWordsLinkId: 'placeholder-value',
+     *     // Web property ID to delete the Google Ads link for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webPropertyAdWordsLinks.delete
      * @memberOf! ()
      *
@@ -10245,9 +16246,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Management$Webpropertyadwordslinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Management$Webpropertyadwordslinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Management$Webpropertyadwordslinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Management$Webpropertyadwordslinks$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -10261,10 +16271,15 @@ export namespace analytics_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Management$Webpropertyadwordslinks$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webpropertyadwordslinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10302,7 +16317,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -10311,6 +16329,59 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webPropertyAdWordsLinks.get
      * @desc Returns a web property-Google Ads link to which the user has access.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.get({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Web property-Google Ads link ID.
+     *     webPropertyAdWordsLinkId: 'placeholder-value',
+     *     // Web property ID to retrieve the Google Ads link for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsAccounts": [],
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "profileIds": [],
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webPropertyAdWordsLinks.get
      * @memberOf! ()
      *
@@ -10323,9 +16394,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Management$Webpropertyadwordslinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Management$Webpropertyadwordslinks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityAdWordsLink>;
+    get(
+      params: Params$Resource$Management$Webpropertyadwordslinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Management$Webpropertyadwordslinks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$EntityAdWordsLink>,
@@ -10339,12 +16419,20 @@ export namespace analytics_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Management$Webpropertyadwordslinks$Get
-        | BodyResponseCallback<Schema$EntityAdWordsLink>,
+        | BodyResponseCallback<Schema$EntityAdWordsLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityAdWordsLink>,
-      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>
-    ): void | GaxiosPromise<Schema$EntityAdWordsLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityAdWordsLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityAdWordsLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EntityAdWordsLink>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webpropertyadwordslinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10382,7 +16470,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
+        createAPIRequest<Schema$EntityAdWordsLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
       }
@@ -10391,21 +16482,92 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webPropertyAdWordsLinks.insert
      * @desc Creates a webProperty-Google Ads link.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.insert({
+     *     // ID of the Google Analytics account to create the link for.
+     *     accountId: 'placeholder-value',
+     *     // Web property ID to create the link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adWordsAccounts": [],
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "profileIds": [],
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsAccounts": [],
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "profileIds": [],
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webPropertyAdWordsLinks.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId ID of the Google Analytics account to create the link for.
      * @param {string} params.webPropertyId Web property ID to create the link for.
-     * @param {().EntityAdWordsLink} params.resource Request body data
+     * @param {().EntityAdWordsLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Webpropertyadwordslinks$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Webpropertyadwordslinks$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityAdWordsLink>;
+    insert(
+      params: Params$Resource$Management$Webpropertyadwordslinks$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Webpropertyadwordslinks$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$EntityAdWordsLink>,
@@ -10419,12 +16581,20 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Webpropertyadwordslinks$Insert
-        | BodyResponseCallback<Schema$EntityAdWordsLink>,
+        | BodyResponseCallback<Schema$EntityAdWordsLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityAdWordsLink>,
-      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>
-    ): void | GaxiosPromise<Schema$EntityAdWordsLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityAdWordsLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityAdWordsLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EntityAdWordsLink>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webpropertyadwordslinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10458,7 +16628,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
+        createAPIRequest<Schema$EntityAdWordsLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
       }
@@ -10467,6 +16640,61 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webPropertyAdWordsLinks.list
      * @desc Lists webProperty-Google Ads links for a given web property.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.list({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'd+',
+     *     // The maximum number of webProperty-Google Ads links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first webProperty-Google Ads link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web property ID to retrieve the Google Ads links for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webPropertyAdWordsLinks.list
      * @memberOf! ()
      *
@@ -10480,9 +16708,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Webpropertyadwordslinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Webpropertyadwordslinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityAdWordsLinks>;
+    list(
+      params: Params$Resource$Management$Webpropertyadwordslinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Webpropertyadwordslinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$EntityAdWordsLinks>,
@@ -10496,12 +16733,20 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Webpropertyadwordslinks$List
-        | BodyResponseCallback<Schema$EntityAdWordsLinks>,
+        | BodyResponseCallback<Schema$EntityAdWordsLinks>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityAdWordsLinks>,
-      callback?: BodyResponseCallback<Schema$EntityAdWordsLinks>
-    ): void | GaxiosPromise<Schema$EntityAdWordsLinks> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityAdWordsLinks>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityAdWordsLinks>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EntityAdWordsLinks>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webpropertyadwordslinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10535,7 +16780,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityAdWordsLinks>(parameters, callback);
+        createAPIRequest<Schema$EntityAdWordsLinks>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityAdWordsLinks>(parameters);
       }
@@ -10544,6 +16792,70 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webPropertyAdWordsLinks.patch
      * @desc Updates an existing webProperty-Google Ads link. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.patch({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Web property-Google Ads link ID.
+     *     webPropertyAdWordsLinkId: 'placeholder-value',
+     *     // Web property ID to retrieve the Google Ads link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adWordsAccounts": [],
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "profileIds": [],
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsAccounts": [],
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "profileIds": [],
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webPropertyAdWordsLinks.patch
      * @memberOf! ()
      *
@@ -10551,15 +16863,24 @@ export namespace analytics_v3 {
      * @param {string} params.accountId ID of the account which the given web property belongs to.
      * @param {string} params.webPropertyAdWordsLinkId Web property-Google Ads link ID.
      * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads link for.
-     * @param {().EntityAdWordsLink} params.resource Request body data
+     * @param {().EntityAdWordsLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Management$Webpropertyadwordslinks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Management$Webpropertyadwordslinks$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityAdWordsLink>;
+    patch(
+      params: Params$Resource$Management$Webpropertyadwordslinks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Management$Webpropertyadwordslinks$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$EntityAdWordsLink>,
@@ -10573,12 +16894,20 @@ export namespace analytics_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Management$Webpropertyadwordslinks$Patch
-        | BodyResponseCallback<Schema$EntityAdWordsLink>,
+        | BodyResponseCallback<Schema$EntityAdWordsLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityAdWordsLink>,
-      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>
-    ): void | GaxiosPromise<Schema$EntityAdWordsLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityAdWordsLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityAdWordsLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EntityAdWordsLink>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webpropertyadwordslinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10616,7 +16945,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
+        createAPIRequest<Schema$EntityAdWordsLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
       }
@@ -10625,6 +16957,70 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webPropertyAdWordsLinks.update
      * @desc Updates an existing webProperty-Google Ads link.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webPropertyAdWordsLinks.update({
+     *     // ID of the account which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Web property-Google Ads link ID.
+     *     webPropertyAdWordsLinkId: 'placeholder-value',
+     *     // Web property ID to retrieve the Google Ads link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adWordsAccounts": [],
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "profileIds": [],
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsAccounts": [],
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "profileIds": [],
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webPropertyAdWordsLinks.update
      * @memberOf! ()
      *
@@ -10632,15 +17028,24 @@ export namespace analytics_v3 {
      * @param {string} params.accountId ID of the account which the given web property belongs to.
      * @param {string} params.webPropertyAdWordsLinkId Web property-Google Ads link ID.
      * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads link for.
-     * @param {().EntityAdWordsLink} params.resource Request body data
+     * @param {().EntityAdWordsLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Management$Webpropertyadwordslinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Management$Webpropertyadwordslinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityAdWordsLink>;
+    update(
+      params: Params$Resource$Management$Webpropertyadwordslinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Management$Webpropertyadwordslinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$EntityAdWordsLink>,
@@ -10654,12 +17059,20 @@ export namespace analytics_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Management$Webpropertyadwordslinks$Update
-        | BodyResponseCallback<Schema$EntityAdWordsLink>,
+        | BodyResponseCallback<Schema$EntityAdWordsLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityAdWordsLink>,
-      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>
-    ): void | GaxiosPromise<Schema$EntityAdWordsLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityAdWordsLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityAdWordsLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EntityAdWordsLink>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webpropertyadwordslinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10697,7 +17110,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
+        createAPIRequest<Schema$EntityAdWordsLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
       }
@@ -10706,11 +17122,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Webpropertyadwordslinks$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ID of the account which the given web property belongs to.
      */
@@ -10727,11 +17138,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Webpropertyadwordslinks$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ID of the account which the given web property belongs to.
      */
     accountId?: string;
@@ -10746,11 +17152,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ID of the Google Analytics account to create the link for.
      */
@@ -10767,11 +17168,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ID of the account which the given web property belongs to.
      */
@@ -10792,11 +17188,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Webpropertyadwordslinks$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ID of the account which the given web property belongs to.
      */
     accountId?: string;
@@ -10816,11 +17207,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ID of the account which the given web property belongs to.
      */
@@ -10849,6 +17235,45 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webpropertyUserLinks.delete
      * @desc Removes a user from the given web property.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webpropertyUserLinks.delete({
+     *     // Account ID to delete the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to delete the user link for.
+     *     linkId: 'placeholder-value',
+     *     // Web Property ID to delete the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webpropertyUserLinks.delete
      * @memberOf! ()
      *
@@ -10861,9 +17286,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Management$Webpropertyuserlinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Management$Webpropertyuserlinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Management$Webpropertyuserlinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Management$Webpropertyuserlinks$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -10877,10 +17311,15 @@ export namespace analytics_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Management$Webpropertyuserlinks$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webpropertyuserlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10914,7 +17353,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -10923,21 +17365,90 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webpropertyUserLinks.insert
      * @desc Adds a new user to the given web property.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webpropertyUserLinks.insert({
+     *     // Account ID to create the user link for.
+     *     accountId: 'placeholder-value',
+     *     // Web Property ID to create the user link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webpropertyUserLinks.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to create the user link for.
      * @param {string} params.webPropertyId Web Property ID to create the user link for.
-     * @param {().EntityUserLink} params.resource Request body data
+     * @param {().EntityUserLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Management$Webpropertyuserlinks$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Management$Webpropertyuserlinks$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityUserLink>;
+    insert(
+      params: Params$Resource$Management$Webpropertyuserlinks$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Management$Webpropertyuserlinks$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$EntityUserLink>,
@@ -10951,12 +17462,17 @@ export namespace analytics_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Management$Webpropertyuserlinks$Insert
-        | BodyResponseCallback<Schema$EntityUserLink>,
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityUserLink>,
-      callback?: BodyResponseCallback<Schema$EntityUserLink>
-    ): void | GaxiosPromise<Schema$EntityUserLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EntityUserLink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webpropertyuserlinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10990,7 +17506,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityUserLink>(parameters, callback);
+        createAPIRequest<Schema$EntityUserLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
       }
@@ -10999,6 +17518,61 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webpropertyUserLinks.list
      * @desc Lists webProperty-user links for a given web property.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webpropertyUserLinks.list({
+     *     // Account ID which the given web property belongs to.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of webProperty-user Links to include in this response.
+     *     'max-results': 'placeholder-value',
+     *     // An index of the first webProperty-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     *     'start-index': 'placeholder-value',
+     *     // Web Property ID for the webProperty-user links to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+     *     webPropertyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "itemsPerPage": 0,
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "previousLink": "my_previousLink",
+     *   //   "startIndex": 0,
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webpropertyUserLinks.list
      * @memberOf! ()
      *
@@ -11012,9 +17586,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Management$Webpropertyuserlinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Management$Webpropertyuserlinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityUserLinks>;
+    list(
+      params: Params$Resource$Management$Webpropertyuserlinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Management$Webpropertyuserlinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$EntityUserLinks>,
@@ -11028,12 +17611,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Management$Webpropertyuserlinks$List
-        | BodyResponseCallback<Schema$EntityUserLinks>,
+        | BodyResponseCallback<Schema$EntityUserLinks>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityUserLinks>,
-      callback?: BodyResponseCallback<Schema$EntityUserLinks>
-    ): void | GaxiosPromise<Schema$EntityUserLinks> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityUserLinks>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityUserLinks>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EntityUserLinks> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webpropertyuserlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11067,7 +17655,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
+        createAPIRequest<Schema$EntityUserLinks>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityUserLinks>(parameters);
       }
@@ -11076,6 +17667,68 @@ export namespace analytics_v3 {
     /**
      * analytics.management.webpropertyUserLinks.update
      * @desc Updates permissions for an existing user on the given web property.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.management.webpropertyUserLinks.update({
+     *     // Account ID to update the account-user link for.
+     *     accountId: 'placeholder-value',
+     *     // Link ID to update the account-user link for.
+     *     linkId: 'placeholder-value',
+     *     // Web property ID to update the account-user link for.
+     *     webPropertyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entity": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "permissions": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "userRef": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entity": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "permissions": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "userRef": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.management.webpropertyUserLinks.update
      * @memberOf! ()
      *
@@ -11083,15 +17736,24 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to update the account-user link for.
      * @param {string} params.linkId Link ID to update the account-user link for.
      * @param {string} params.webPropertyId Web property ID to update the account-user link for.
-     * @param {().EntityUserLink} params.resource Request body data
+     * @param {().EntityUserLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Management$Webpropertyuserlinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Management$Webpropertyuserlinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EntityUserLink>;
+    update(
+      params: Params$Resource$Management$Webpropertyuserlinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Management$Webpropertyuserlinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$EntityUserLink>,
@@ -11105,12 +17767,17 @@ export namespace analytics_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Management$Webpropertyuserlinks$Update
-        | BodyResponseCallback<Schema$EntityUserLink>,
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EntityUserLink>,
-      callback?: BodyResponseCallback<Schema$EntityUserLink>
-    ): void | GaxiosPromise<Schema$EntityUserLink> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityUserLink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EntityUserLink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Management$Webpropertyuserlinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11144,7 +17811,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EntityUserLink>(parameters, callback);
+        createAPIRequest<Schema$EntityUserLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
       }
@@ -11153,11 +17823,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Webpropertyuserlinks$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to delete the user link for.
      */
@@ -11174,11 +17839,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Webpropertyuserlinks$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to create the user link for.
      */
     accountId?: string;
@@ -11194,11 +17854,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webpropertyuserlinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID which the given web property belongs to.
      */
@@ -11218,11 +17873,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webpropertyuserlinks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to update the account-user link for.
      */
@@ -11260,6 +17910,54 @@ export namespace analytics_v3 {
     /**
      * analytics.metadata.columns.list
      * @desc Lists all columns for a report type
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.metadata.columns.list({
+     *     // Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core Reporting API
+     *     reportType: 'ga',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeNames": [],
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "totalResults": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.metadata.columns.list
      * @memberOf! ()
      *
@@ -11270,9 +17968,18 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Metadata$Columns$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Metadata$Columns$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Columns>;
+    list(
+      params: Params$Resource$Metadata$Columns$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Metadata$Columns$List,
       options: MethodOptions | BodyResponseCallback<Schema$Columns>,
@@ -11286,10 +17993,17 @@ export namespace analytics_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Metadata$Columns$List
-        | BodyResponseCallback<Schema$Columns>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Columns>,
-      callback?: BodyResponseCallback<Schema$Columns>
-    ): void | GaxiosPromise<Schema$Columns> {
+        | BodyResponseCallback<Schema$Columns>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Columns>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Columns>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Columns> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Metadata$Columns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11322,7 +18036,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Columns>(parameters, callback);
+        createAPIRequest<Schema$Columns>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Columns>(parameters);
       }
@@ -11331,11 +18048,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Metadata$Columns$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core Reporting API
      */
@@ -11351,19 +18063,83 @@ export namespace analytics_v3 {
     /**
      * analytics.provisioning.createAccountTicket
      * @desc Creates an account ticket.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.provision'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.provisioning.createAccountTicket({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "account": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "profile": {},
+     *       //   "redirectUri": "my_redirectUri",
+     *       //   "webproperty": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "account": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "profile": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "webproperty": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.provisioning.createAccountTicket
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AccountTicket} params.resource Request body data
+     * @param {().AccountTicket} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     createAccountTicket(
+      params: Params$Resource$Provisioning$Createaccountticket,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createAccountTicket(
       params?: Params$Resource$Provisioning$Createaccountticket,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccountTicket>;
+    createAccountTicket(
+      params: Params$Resource$Provisioning$Createaccountticket,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     createAccountTicket(
       params: Params$Resource$Provisioning$Createaccountticket,
       options: MethodOptions | BodyResponseCallback<Schema$AccountTicket>,
@@ -11379,12 +18155,17 @@ export namespace analytics_v3 {
     createAccountTicket(
       paramsOrCallback?:
         | Params$Resource$Provisioning$Createaccountticket
-        | BodyResponseCallback<Schema$AccountTicket>,
+        | BodyResponseCallback<Schema$AccountTicket>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccountTicket>,
-      callback?: BodyResponseCallback<Schema$AccountTicket>
-    ): void | GaxiosPromise<Schema$AccountTicket> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountTicket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountTicket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AccountTicket> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Provisioning$Createaccountticket;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11417,7 +18198,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccountTicket>(parameters, callback);
+        createAPIRequest<Schema$AccountTicket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccountTicket>(parameters);
       }
@@ -11426,19 +18210,81 @@ export namespace analytics_v3 {
     /**
      * analytics.provisioning.createAccountTree
      * @desc Provision account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.provision'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.provisioning.createAccountTree({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountName": "my_accountName",
+     *       //   "kind": "my_kind",
+     *       //   "profileName": "my_profileName",
+     *       //   "timezone": "my_timezone",
+     *       //   "webpropertyName": "my_webpropertyName",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "account": {},
+     *   //   "kind": "my_kind",
+     *   //   "profile": {},
+     *   //   "webproperty": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.provisioning.createAccountTree
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AccountTreeRequest} params.resource Request body data
+     * @param {().AccountTreeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     createAccountTree(
+      params: Params$Resource$Provisioning$Createaccounttree,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createAccountTree(
       params?: Params$Resource$Provisioning$Createaccounttree,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccountTreeResponse>;
+    createAccountTree(
+      params: Params$Resource$Provisioning$Createaccounttree,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     createAccountTree(
       params: Params$Resource$Provisioning$Createaccounttree,
       options: MethodOptions | BodyResponseCallback<Schema$AccountTreeResponse>,
@@ -11454,12 +18300,20 @@ export namespace analytics_v3 {
     createAccountTree(
       paramsOrCallback?:
         | Params$Resource$Provisioning$Createaccounttree
-        | BodyResponseCallback<Schema$AccountTreeResponse>,
+        | BodyResponseCallback<Schema$AccountTreeResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccountTreeResponse>,
-      callback?: BodyResponseCallback<Schema$AccountTreeResponse>
-    ): void | GaxiosPromise<Schema$AccountTreeResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountTreeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountTreeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccountTreeResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Provisioning$Createaccounttree;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11492,7 +18346,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccountTreeResponse>(parameters, callback);
+        createAPIRequest<Schema$AccountTreeResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccountTreeResponse>(parameters);
       }
@@ -11502,22 +18359,12 @@ export namespace analytics_v3 {
   export interface Params$Resource$Provisioning$Createaccountticket
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AccountTicket;
   }
   export interface Params$Resource$Provisioning$Createaccounttree
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -11544,19 +18391,83 @@ export namespace analytics_v3 {
     /**
      * analytics.userDeletion.userDeletionRequest.upsert
      * @desc Insert or update a user deletion requests.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analytics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analytics = google.analytics('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.user.deletion'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analytics.userDeletion.userDeletionRequest.upsert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deletionRequestTime": "my_deletionRequestTime",
+     *       //   "firebaseProjectId": "my_firebaseProjectId",
+     *       //   "id": {},
+     *       //   "kind": "my_kind",
+     *       //   "propertyId": "my_propertyId",
+     *       //   "webPropertyId": "my_webPropertyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deletionRequestTime": "my_deletionRequestTime",
+     *   //   "firebaseProjectId": "my_firebaseProjectId",
+     *   //   "id": {},
+     *   //   "kind": "my_kind",
+     *   //   "propertyId": "my_propertyId",
+     *   //   "webPropertyId": "my_webPropertyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias analytics.userDeletion.userDeletionRequest.upsert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().UserDeletionRequest} params.resource Request body data
+     * @param {().UserDeletionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     upsert(
+      params: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upsert(
       params?: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UserDeletionRequest>;
+    upsert(
+      params: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     upsert(
       params: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
       options: MethodOptions | BodyResponseCallback<Schema$UserDeletionRequest>,
@@ -11570,12 +18481,20 @@ export namespace analytics_v3 {
     upsert(
       paramsOrCallback?:
         | Params$Resource$Userdeletion$Userdeletionrequest$Upsert
-        | BodyResponseCallback<Schema$UserDeletionRequest>,
+        | BodyResponseCallback<Schema$UserDeletionRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UserDeletionRequest>,
-      callback?: BodyResponseCallback<Schema$UserDeletionRequest>
-    ): void | GaxiosPromise<Schema$UserDeletionRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserDeletionRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserDeletionRequest>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UserDeletionRequest>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userdeletion$Userdeletionrequest$Upsert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11608,7 +18527,10 @@ export namespace analytics_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UserDeletionRequest>(parameters, callback);
+        createAPIRequest<Schema$UserDeletionRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UserDeletionRequest>(parameters);
       }
@@ -11617,11 +18539,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Userdeletion$Userdeletionrequest$Upsert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

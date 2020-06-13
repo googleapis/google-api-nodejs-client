@@ -1,0 +1,3804 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/androidpublisher": {
+          "description": "View and manage your Google Play Developer account"
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://www.googleapis.com/",
+  "batchPath": "batch/androidpublisher",
+  "canonicalName": "Android Publisher",
+  "description": "Lets Android application developers access their Google Play accounts.",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://developers.google.com/android-publisher",
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "androidpublisher:v3",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
+  "name": "androidpublisher",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "edits": {
+      "methods": {
+        "commit": {
+          "description": "Commits an app edit.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}:commit",
+          "httpMethod": "POST",
+          "id": "androidpublisher.edits.commit",
+          "parameterOrder": [
+            "packageName",
+            "editId"
+          ],
+          "parameters": {
+            "editId": {
+              "description": "Identifier of the edit.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}:commit",
+          "response": {
+            "$ref": "AppEdit"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "delete": {
+          "description": "Deletes an app edit.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}",
+          "httpMethod": "DELETE",
+          "id": "androidpublisher.edits.delete",
+          "parameterOrder": [
+            "packageName",
+            "editId"
+          ],
+          "parameters": {
+            "editId": {
+              "description": "Identifier of the edit.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}",
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "get": {
+          "description": "Gets an app edit.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}",
+          "httpMethod": "GET",
+          "id": "androidpublisher.edits.get",
+          "parameterOrder": [
+            "packageName",
+            "editId"
+          ],
+          "parameters": {
+            "editId": {
+              "description": "Identifier of the edit.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}",
+          "response": {
+            "$ref": "AppEdit"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "insert": {
+          "description": "Creates a new edit for an app.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/edits",
+          "httpMethod": "POST",
+          "id": "androidpublisher.edits.insert",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/edits",
+          "request": {
+            "$ref": "AppEdit"
+          },
+          "response": {
+            "$ref": "AppEdit"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "validate": {
+          "description": "Validates an app edit.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}:validate",
+          "httpMethod": "POST",
+          "id": "androidpublisher.edits.validate",
+          "parameterOrder": [
+            "packageName",
+            "editId"
+          ],
+          "parameters": {
+            "editId": {
+              "description": "Identifier of the edit.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}:validate",
+          "response": {
+            "$ref": "AppEdit"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        }
+      },
+      "resources": {
+        "apks": {
+          "methods": {
+            "addexternallyhosted": {
+              "description": "Creates a new APK without uploading the APK itself to Google Play, instead\nhosting the APK at a specified URL. This function is only available to\norganizations using Managed Play whose application is configured to\nrestrict distribution to the organizations.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/externallyHosted",
+              "httpMethod": "POST",
+              "id": "androidpublisher.edits.apks.addexternallyhosted",
+              "parameterOrder": [
+                "packageName",
+                "editId"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/externallyHosted",
+              "request": {
+                "$ref": "ApksAddExternallyHostedRequest"
+              },
+              "response": {
+                "$ref": "ApksAddExternallyHostedResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "list": {
+              "description": "Lists all current APKs of the app and edit.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks",
+              "httpMethod": "GET",
+              "id": "androidpublisher.edits.apks.list",
+              "parameterOrder": [
+                "packageName",
+                "editId"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks",
+              "response": {
+                "$ref": "ApksListResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "upload": {
+              "description": "Uploads an APK and adds to the current edit.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks",
+              "httpMethod": "POST",
+              "id": "androidpublisher.edits.apks.upload",
+              "mediaUpload": {
+                "accept": [
+                  "application/octet-stream",
+                  "application/vnd.android.package-archive"
+                ],
+                "maxSize": "10737418240",
+                "protocols": {
+                  "simple": {
+                    "multipart": true,
+                    "path": "/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks"
+                  }
+                }
+              },
+              "parameterOrder": [
+                "packageName",
+                "editId"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks",
+              "response": {
+                "$ref": "Apk"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ],
+              "supportsMediaUpload": true
+            }
+          }
+        },
+        "bundles": {
+          "methods": {
+            "list": {
+              "description": "Lists all current Android App Bundles of the app and edit.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles",
+              "httpMethod": "GET",
+              "id": "androidpublisher.edits.bundles.list",
+              "parameterOrder": [
+                "packageName",
+                "editId"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles",
+              "response": {
+                "$ref": "BundlesListResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "upload": {
+              "description": "Uploads a new Android App Bundle to this edit.\nIf you are using the Google API client libraries, please increase the\ntimeout of the http request before calling this endpoint\n(a timeout of 2 minutes is recommended).\nSee [Timeouts and\nErrors](https://developers.google.com/api-client-library/java/google-api-java-client/errors)\nfor an example in java.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles",
+              "httpMethod": "POST",
+              "id": "androidpublisher.edits.bundles.upload",
+              "mediaUpload": {
+                "accept": [
+                  "application/octet-stream"
+                ],
+                "maxSize": "10737418240",
+                "protocols": {
+                  "simple": {
+                    "multipart": true,
+                    "path": "/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles"
+                  }
+                }
+              },
+              "parameterOrder": [
+                "packageName",
+                "editId"
+              ],
+              "parameters": {
+                "ackBundleInstallationWarning": {
+                  "description": "Must be set to true if the bundle installation may trigger a warning on\nuser devices (for example, if installation size may be over a threshold,\ntypically 100 MB).",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles",
+              "response": {
+                "$ref": "Bundle"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ],
+              "supportsMediaUpload": true
+            }
+          }
+        },
+        "deobfuscationfiles": {
+          "methods": {
+            "upload": {
+              "description": "Uploads a new deobfuscation file and attaches to the specified APK.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}",
+              "httpMethod": "POST",
+              "id": "androidpublisher.edits.deobfuscationfiles.upload",
+              "mediaUpload": {
+                "accept": [
+                  "application/octet-stream"
+                ],
+                "maxSize": "31457280",
+                "protocols": {
+                  "simple": {
+                    "multipart": true,
+                    "path": "/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}"
+                  }
+                }
+              },
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "apkVersionCode",
+                "deobfuscationFileType"
+              ],
+              "parameters": {
+                "apkVersionCode": {
+                  "description": "The version code of the APK whose Deobfuscation File is being\nuploaded.",
+                  "format": "int32",
+                  "location": "path",
+                  "required": true,
+                  "type": "integer"
+                },
+                "deobfuscationFileType": {
+                  "description": "The type of the deobfuscation file.",
+                  "enum": [
+                    "deobfuscationFileTypeUnspecified",
+                    "proguard",
+                    "nativeCode"
+                  ],
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "editId": {
+                  "description": "Unique identifier for this edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Unique identifier for the Android app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}",
+              "response": {
+                "$ref": "DeobfuscationFilesUploadResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ],
+              "supportsMediaUpload": true
+            }
+          }
+        },
+        "details": {
+          "methods": {
+            "get": {
+              "description": "Gets details of an app.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/details",
+              "httpMethod": "GET",
+              "id": "androidpublisher.edits.details.get",
+              "parameterOrder": [
+                "packageName",
+                "editId"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/details",
+              "response": {
+                "$ref": "AppDetails"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "patch": {
+              "description": "Patches details of an app.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/details",
+              "httpMethod": "PATCH",
+              "id": "androidpublisher.edits.details.patch",
+              "parameterOrder": [
+                "packageName",
+                "editId"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/details",
+              "request": {
+                "$ref": "AppDetails"
+              },
+              "response": {
+                "$ref": "AppDetails"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "update": {
+              "description": "Updates details of an app.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/details",
+              "httpMethod": "PUT",
+              "id": "androidpublisher.edits.details.update",
+              "parameterOrder": [
+                "packageName",
+                "editId"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/details",
+              "request": {
+                "$ref": "AppDetails"
+              },
+              "response": {
+                "$ref": "AppDetails"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            }
+          }
+        },
+        "expansionfiles": {
+          "methods": {
+            "get": {
+              "description": "Fetches the expansion file configuration for the specified APK.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}",
+              "httpMethod": "GET",
+              "id": "androidpublisher.edits.expansionfiles.get",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "apkVersionCode",
+                "expansionFileType"
+              ],
+              "parameters": {
+                "apkVersionCode": {
+                  "description": "The version code of the APK whose expansion file configuration is being\nread or modified.",
+                  "format": "int32",
+                  "location": "path",
+                  "required": true,
+                  "type": "integer"
+                },
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "expansionFileType": {
+                  "description": "The file type of the file configuration which is being read or modified.",
+                  "enum": [
+                    "expansionFileTypeUnspecified",
+                    "main",
+                    "patch"
+                  ],
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}",
+              "response": {
+                "$ref": "ExpansionFile"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "patch": {
+              "description": "Patches the APK's expansion file configuration to reference another APK's\nexpansion file.\nTo add a new expansion file use the Upload method.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}",
+              "httpMethod": "PATCH",
+              "id": "androidpublisher.edits.expansionfiles.patch",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "apkVersionCode",
+                "expansionFileType"
+              ],
+              "parameters": {
+                "apkVersionCode": {
+                  "description": "The version code of the APK whose expansion file configuration is being\nread or modified.",
+                  "format": "int32",
+                  "location": "path",
+                  "required": true,
+                  "type": "integer"
+                },
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "expansionFileType": {
+                  "description": "The file type of the expansion file configuration which is being updated.",
+                  "enum": [
+                    "expansionFileTypeUnspecified",
+                    "main",
+                    "patch"
+                  ],
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}",
+              "request": {
+                "$ref": "ExpansionFile"
+              },
+              "response": {
+                "$ref": "ExpansionFile"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "update": {
+              "description": "Updates the APK's expansion file configuration to reference another APK's\nexpansion file.\nTo add a new expansion file use the Upload method.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}",
+              "httpMethod": "PUT",
+              "id": "androidpublisher.edits.expansionfiles.update",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "apkVersionCode",
+                "expansionFileType"
+              ],
+              "parameters": {
+                "apkVersionCode": {
+                  "description": "The version code of the APK whose expansion file configuration is being\nread or modified.",
+                  "format": "int32",
+                  "location": "path",
+                  "required": true,
+                  "type": "integer"
+                },
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "expansionFileType": {
+                  "description": "The file type of the file configuration which is being read or modified.",
+                  "enum": [
+                    "expansionFileTypeUnspecified",
+                    "main",
+                    "patch"
+                  ],
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}",
+              "request": {
+                "$ref": "ExpansionFile"
+              },
+              "response": {
+                "$ref": "ExpansionFile"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "upload": {
+              "description": "Uploads a new expansion file and attaches to the specified APK.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}",
+              "httpMethod": "POST",
+              "id": "androidpublisher.edits.expansionfiles.upload",
+              "mediaUpload": {
+                "accept": [
+                  "application/octet-stream"
+                ],
+                "maxSize": "2147483648",
+                "protocols": {
+                  "simple": {
+                    "multipart": true,
+                    "path": "/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}"
+                  }
+                }
+              },
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "apkVersionCode",
+                "expansionFileType"
+              ],
+              "parameters": {
+                "apkVersionCode": {
+                  "description": "The version code of the APK whose expansion file configuration is being\nread or modified.",
+                  "format": "int32",
+                  "location": "path",
+                  "required": true,
+                  "type": "integer"
+                },
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "expansionFileType": {
+                  "description": "The file type of the expansion file configuration which is being updated.",
+                  "enum": [
+                    "expansionFileTypeUnspecified",
+                    "main",
+                    "patch"
+                  ],
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}",
+              "response": {
+                "$ref": "ExpansionFilesUploadResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ],
+              "supportsMediaUpload": true
+            }
+          }
+        },
+        "images": {
+          "methods": {
+            "delete": {
+              "description": "Deletes the image (specified by id) from the edit.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}",
+              "httpMethod": "DELETE",
+              "id": "androidpublisher.edits.images.delete",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "language",
+                "imageType",
+                "imageId"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "imageId": {
+                  "description": "Unique identifier an image within the set of images attached to this edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "imageType": {
+                  "description": "Type of the Image.",
+                  "enum": [
+                    "appImageTypeUnspecified",
+                    "phoneScreenshots",
+                    "sevenInchScreenshots",
+                    "tenInchScreenshots",
+                    "tvScreenshots",
+                    "wearScreenshots",
+                    "icon",
+                    "featureGraphic",
+                    "promoGraphic",
+                    "tvBanner"
+                  ],
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "language": {
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}",
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "deleteall": {
+              "description": "Deletes all images for the specified language and image type.\nReturns an empty response if no images are found.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}",
+              "httpMethod": "DELETE",
+              "id": "androidpublisher.edits.images.deleteall",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "language",
+                "imageType"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "imageType": {
+                  "description": "Type of the Image.\nProviding an image type that refers to no images is a no-op.",
+                  "enum": [
+                    "appImageTypeUnspecified",
+                    "phoneScreenshots",
+                    "sevenInchScreenshots",
+                    "tenInchScreenshots",
+                    "tvScreenshots",
+                    "wearScreenshots",
+                    "icon",
+                    "featureGraphic",
+                    "promoGraphic",
+                    "tvBanner"
+                  ],
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "language": {
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).\nProviding a language that is not supported by the App is a no-op.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}",
+              "response": {
+                "$ref": "ImagesDeleteAllResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "list": {
+              "description": "Lists all images. The response may be empty.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}",
+              "httpMethod": "GET",
+              "id": "androidpublisher.edits.images.list",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "language",
+                "imageType"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "imageType": {
+                  "description": "Type of the Image. Providing an image type that refers to no images will\nreturn an empty response.",
+                  "enum": [
+                    "appImageTypeUnspecified",
+                    "phoneScreenshots",
+                    "sevenInchScreenshots",
+                    "tenInchScreenshots",
+                    "tvScreenshots",
+                    "wearScreenshots",
+                    "icon",
+                    "featureGraphic",
+                    "promoGraphic",
+                    "tvBanner"
+                  ],
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "language": {
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).\nThere must be a store listing for the specified language.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}",
+              "response": {
+                "$ref": "ImagesListResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "upload": {
+              "description": "Uploads an image of the specified language and image type, and adds to the\nedit.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}",
+              "httpMethod": "POST",
+              "id": "androidpublisher.edits.images.upload",
+              "mediaUpload": {
+                "accept": [
+                  "image/*"
+                ],
+                "maxSize": "15728640",
+                "protocols": {
+                  "simple": {
+                    "multipart": true,
+                    "path": "/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}"
+                  }
+                }
+              },
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "language",
+                "imageType"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "imageType": {
+                  "description": "Type of the Image.",
+                  "enum": [
+                    "appImageTypeUnspecified",
+                    "phoneScreenshots",
+                    "sevenInchScreenshots",
+                    "tenInchScreenshots",
+                    "tvScreenshots",
+                    "wearScreenshots",
+                    "icon",
+                    "featureGraphic",
+                    "promoGraphic",
+                    "tvBanner"
+                  ],
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "language": {
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).\nProviding a language that is not supported by the App is a no-op.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}",
+              "response": {
+                "$ref": "ImagesUploadResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ],
+              "supportsMediaUpload": true
+            }
+          }
+        },
+        "listings": {
+          "methods": {
+            "delete": {
+              "description": "Deletes a localized store listing.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}",
+              "httpMethod": "DELETE",
+              "id": "androidpublisher.edits.listings.delete",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "language"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "language": {
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}",
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "deleteall": {
+              "description": "Deletes all store listings.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings",
+              "httpMethod": "DELETE",
+              "id": "androidpublisher.edits.listings.deleteall",
+              "parameterOrder": [
+                "packageName",
+                "editId"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings",
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "get": {
+              "description": "Gets a localized store listing.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}",
+              "httpMethod": "GET",
+              "id": "androidpublisher.edits.listings.get",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "language"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "language": {
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}",
+              "response": {
+                "$ref": "Listing"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "list": {
+              "description": "Lists all localized store listings.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings",
+              "httpMethod": "GET",
+              "id": "androidpublisher.edits.listings.list",
+              "parameterOrder": [
+                "packageName",
+                "editId"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings",
+              "response": {
+                "$ref": "ListingsListResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "patch": {
+              "description": "Patches a localized store listing.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}",
+              "httpMethod": "PATCH",
+              "id": "androidpublisher.edits.listings.patch",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "language"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "language": {
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}",
+              "request": {
+                "$ref": "Listing"
+              },
+              "response": {
+                "$ref": "Listing"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "update": {
+              "description": "Creates or updates a localized store listing.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}",
+              "httpMethod": "PUT",
+              "id": "androidpublisher.edits.listings.update",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "language"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "language": {
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}",
+              "request": {
+                "$ref": "Listing"
+              },
+              "response": {
+                "$ref": "Listing"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            }
+          }
+        },
+        "testers": {
+          "methods": {
+            "get": {
+              "description": "Gets testers.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}",
+              "httpMethod": "GET",
+              "id": "androidpublisher.edits.testers.get",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "track"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "track": {
+                  "description": "The track to read from.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}",
+              "response": {
+                "$ref": "Testers"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "patch": {
+              "description": "Patches testers.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}",
+              "httpMethod": "PATCH",
+              "id": "androidpublisher.edits.testers.patch",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "track"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "track": {
+                  "description": "The track to update.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}",
+              "request": {
+                "$ref": "Testers"
+              },
+              "response": {
+                "$ref": "Testers"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "update": {
+              "description": "Updates testers.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}",
+              "httpMethod": "PUT",
+              "id": "androidpublisher.edits.testers.update",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "track"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "track": {
+                  "description": "The track to update.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}",
+              "request": {
+                "$ref": "Testers"
+              },
+              "response": {
+                "$ref": "Testers"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            }
+          }
+        },
+        "tracks": {
+          "methods": {
+            "get": {
+              "description": "Gets a track.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}",
+              "httpMethod": "GET",
+              "id": "androidpublisher.edits.tracks.get",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "track"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "track": {
+                  "description": "Identifier of the track.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}",
+              "response": {
+                "$ref": "Track"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "list": {
+              "description": "Lists all tracks.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks",
+              "httpMethod": "GET",
+              "id": "androidpublisher.edits.tracks.list",
+              "parameterOrder": [
+                "packageName",
+                "editId"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks",
+              "response": {
+                "$ref": "TracksListResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "patch": {
+              "description": "Patches a track.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}",
+              "httpMethod": "PATCH",
+              "id": "androidpublisher.edits.tracks.patch",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "track"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "track": {
+                  "description": "Identifier of the track.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}",
+              "request": {
+                "$ref": "Track"
+              },
+              "response": {
+                "$ref": "Track"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "update": {
+              "description": "Updates a track.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}",
+              "httpMethod": "PUT",
+              "id": "androidpublisher.edits.tracks.update",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "track"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "track": {
+                  "description": "Identifier of the track.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}",
+              "request": {
+                "$ref": "Track"
+              },
+              "response": {
+                "$ref": "Track"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "inappproducts": {
+      "methods": {
+        "delete": {
+          "description": "Deletes an in-app product (i.e. a managed product or a subscriptions).",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
+          "httpMethod": "DELETE",
+          "id": "androidpublisher.inappproducts.delete",
+          "parameterOrder": [
+            "packageName",
+            "sku"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "sku": {
+              "description": "Unique identifier for the in-app product.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "get": {
+          "description": "Gets an in-app product, which can be a managed product or a subscription.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
+          "httpMethod": "GET",
+          "id": "androidpublisher.inappproducts.get",
+          "parameterOrder": [
+            "packageName",
+            "sku"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "sku": {
+              "description": "Unique identifier for the in-app product.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
+          "response": {
+            "$ref": "InAppProduct"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "insert": {
+          "description": "Creates an in-app product (i.e. a managed product or a subscriptions).",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts",
+          "httpMethod": "POST",
+          "id": "androidpublisher.inappproducts.insert",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "autoConvertMissingPrices": {
+              "description": "If true the prices for all regions targeted by the parent app that don't\nhave a price specified for this in-app product will be auto converted to\nthe target currency based on the default price. Defaults to false.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/inappproducts",
+          "request": {
+            "$ref": "InAppProduct"
+          },
+          "response": {
+            "$ref": "InAppProduct"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "list": {
+          "description": "Lists all in-app products - both managed products and subscriptions.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts",
+          "httpMethod": "GET",
+          "id": "androidpublisher.inappproducts.list",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "maxResults": {
+              "description": "How many results the list operation should return.",
+              "format": "uint32",
+              "location": "query",
+              "type": "integer"
+            },
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "startIndex": {
+              "description": "The index of the first element to return.",
+              "format": "uint32",
+              "location": "query",
+              "type": "integer"
+            },
+            "token": {
+              "description": "Pagination token. If empty, list starts at the first product.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/inappproducts",
+          "response": {
+            "$ref": "InappproductsListResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "patch": {
+          "description": "Patches an in-app product (i.e. a managed product or a subscriptions).",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
+          "httpMethod": "PATCH",
+          "id": "androidpublisher.inappproducts.patch",
+          "parameterOrder": [
+            "packageName",
+            "sku"
+          ],
+          "parameters": {
+            "autoConvertMissingPrices": {
+              "description": "If true the prices for all regions targeted by the parent app that don't\nhave a price specified for this in-app product will be auto converted to\nthe target currency based on the default price. Defaults to false.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "sku": {
+              "description": "Unique identifier for the in-app product.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
+          "request": {
+            "$ref": "InAppProduct"
+          },
+          "response": {
+            "$ref": "InAppProduct"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "update": {
+          "description": "Updates an in-app product (i.e. a managed product or a subscriptions).",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
+          "httpMethod": "PUT",
+          "id": "androidpublisher.inappproducts.update",
+          "parameterOrder": [
+            "packageName",
+            "sku"
+          ],
+          "parameters": {
+            "autoConvertMissingPrices": {
+              "description": "If true the prices for all regions targeted by the parent app that don't\nhave a price specified for this in-app product will be auto converted to\nthe target currency based on the default price. Defaults to false.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "sku": {
+              "description": "Unique identifier for the in-app product.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
+          "request": {
+            "$ref": "InAppProduct"
+          },
+          "response": {
+            "$ref": "InAppProduct"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        }
+      }
+    },
+    "internalappsharingartifacts": {
+      "methods": {
+        "uploadapk": {
+          "description": "Uploads an APK to internal app sharing.\nIf you are using the Google API client libraries, please increase the\ntimeout of the http request before calling this endpoint\n(a timeout of 2 minutes is recommended).\n\nSee [Timeouts and\nErrors](https://developers.google.com/api-client-library/java/google-api-java-client/errors)\nfor an example in java.",
+          "flatPath": "androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/apk",
+          "httpMethod": "POST",
+          "id": "androidpublisher.internalappsharingartifacts.uploadapk",
+          "mediaUpload": {
+            "accept": [
+              "application/octet-stream",
+              "application/vnd.android.package-archive"
+            ],
+            "maxSize": "1073741824",
+            "protocols": {
+              "simple": {
+                "multipart": true,
+                "path": "/upload/androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/apk"
+              }
+            }
+          },
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/apk",
+          "response": {
+            "$ref": "InternalAppSharingArtifact"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ],
+          "supportsMediaUpload": true
+        },
+        "uploadbundle": {
+          "description": "Uploads an app bundle to internal app sharing.\nIf you are using the Google API client libraries, please increase the\ntimeout of the http request before calling this endpoint\n(a timeout of 2 minutes is recommended).\n\nSee [Timeouts and\nErrors](https://developers.google.com/api-client-library/java/google-api-java-client/errors)\nfor an example in java.",
+          "flatPath": "androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/bundle",
+          "httpMethod": "POST",
+          "id": "androidpublisher.internalappsharingartifacts.uploadbundle",
+          "mediaUpload": {
+            "accept": [
+              "application/octet-stream"
+            ],
+            "maxSize": "10737418240",
+            "protocols": {
+              "simple": {
+                "multipart": true,
+                "path": "/upload/androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/bundle"
+              }
+            }
+          },
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/bundle",
+          "response": {
+            "$ref": "InternalAppSharingArtifact"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ],
+          "supportsMediaUpload": true
+        }
+      }
+    },
+    "orders": {
+      "methods": {
+        "refund": {
+          "description": "Refund a user's subscription or in-app purchase order.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/orders/{orderId}:refund",
+          "httpMethod": "POST",
+          "id": "androidpublisher.orders.refund",
+          "parameterOrder": [
+            "packageName",
+            "orderId"
+          ],
+          "parameters": {
+            "orderId": {
+              "description": "The order ID provided to the user when the subscription or in-app order was\npurchased.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "packageName": {
+              "description": "The package name of the application for which this subscription or in-app\nitem was purchased (for example, 'com.some.thing').",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "revoke": {
+              "description": "Whether to revoke the purchased item. If set to true, access to the\nsubscription or in-app item will be terminated immediately. If the item is\na recurring subscription, all future payments will also be terminated.\nConsumed in-app items need to be handled by developer's app. (optional).",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/orders/{orderId}:refund",
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        }
+      }
+    },
+    "purchases": {
+      "resources": {
+        "products": {
+          "methods": {
+            "acknowledge": {
+              "description": "Acknowledges a purchase of an inapp item.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}:acknowledge",
+              "httpMethod": "POST",
+              "id": "androidpublisher.purchases.products.acknowledge",
+              "parameterOrder": [
+                "packageName",
+                "productId",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "The package name of the application the inapp product was sold in (for\nexample, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "productId": {
+                  "description": "The inapp product SKU (for example, 'com.some.thing.inapp1').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "The token provided to the user's device when the inapp product was\npurchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}:acknowledge",
+              "request": {
+                "$ref": "ProductPurchasesAcknowledgeRequest"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "get": {
+              "description": "Checks the purchase and consumption status of an inapp item.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}",
+              "httpMethod": "GET",
+              "id": "androidpublisher.purchases.products.get",
+              "parameterOrder": [
+                "packageName",
+                "productId",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "The package name of the application the inapp product was sold in (for\nexample, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "productId": {
+                  "description": "The inapp product SKU (for example, 'com.some.thing.inapp1').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "The token provided to the user's device when the inapp product was\npurchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}",
+              "response": {
+                "$ref": "ProductPurchase"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            }
+          }
+        },
+        "subscriptions": {
+          "methods": {
+            "acknowledge": {
+              "description": "Acknowledges a subscription purchase.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:acknowledge",
+              "httpMethod": "POST",
+              "id": "androidpublisher.purchases.subscriptions.acknowledge",
+              "parameterOrder": [
+                "packageName",
+                "subscriptionId",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "The package name of the application for which this subscription was\npurchased (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "subscriptionId": {
+                  "description": "The purchased subscription ID (for example, 'monthly001').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "The token provided to the user's device when the subscription was\npurchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:acknowledge",
+              "request": {
+                "$ref": "SubscriptionPurchasesAcknowledgeRequest"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "cancel": {
+              "description": "Cancels a user's subscription purchase. The subscription remains valid\nuntil its expiration time.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel",
+              "httpMethod": "POST",
+              "id": "androidpublisher.purchases.subscriptions.cancel",
+              "parameterOrder": [
+                "packageName",
+                "subscriptionId",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "The package name of the application for which this subscription was\npurchased (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "subscriptionId": {
+                  "description": "The purchased subscription ID (for example, 'monthly001').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "The token provided to the user's device when the subscription was\npurchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel",
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "defer": {
+              "description": "Defers a user's subscription purchase until a specified future expiration\ntime.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer",
+              "httpMethod": "POST",
+              "id": "androidpublisher.purchases.subscriptions.defer",
+              "parameterOrder": [
+                "packageName",
+                "subscriptionId",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "The package name of the application for which this subscription was\npurchased (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "subscriptionId": {
+                  "description": "The purchased subscription ID (for example, 'monthly001').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "The token provided to the user's device when the subscription was\npurchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer",
+              "request": {
+                "$ref": "SubscriptionPurchasesDeferRequest"
+              },
+              "response": {
+                "$ref": "SubscriptionPurchasesDeferResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "get": {
+              "description": "Checks whether a user's subscription purchase is valid and returns its\nexpiry time.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}",
+              "httpMethod": "GET",
+              "id": "androidpublisher.purchases.subscriptions.get",
+              "parameterOrder": [
+                "packageName",
+                "subscriptionId",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "The package name of the application for which this subscription was\npurchased (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "subscriptionId": {
+                  "description": "The purchased subscription ID (for example, 'monthly001').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "The token provided to the user's device when the subscription was\npurchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}",
+              "response": {
+                "$ref": "SubscriptionPurchase"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "refund": {
+              "description": "Refunds a user's subscription purchase, but the subscription remains valid\nuntil its expiration time and it will continue to recur.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund",
+              "httpMethod": "POST",
+              "id": "androidpublisher.purchases.subscriptions.refund",
+              "parameterOrder": [
+                "packageName",
+                "subscriptionId",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "The package name of the application for which this subscription was\npurchased (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "subscriptionId": {
+                  "description": "\"The purchased subscription ID (for example, 'monthly001').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "The token provided to the user's device when the subscription was\npurchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund",
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "revoke": {
+              "description": "Refunds and immediately revokes a user's subscription purchase. Access to\nthe subscription will be terminated immediately and it will stop recurring.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke",
+              "httpMethod": "POST",
+              "id": "androidpublisher.purchases.subscriptions.revoke",
+              "parameterOrder": [
+                "packageName",
+                "subscriptionId",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "The package name of the application for which this subscription was\npurchased (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "subscriptionId": {
+                  "description": "The purchased subscription ID (for example, 'monthly001').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "The token provided to the user's device when the subscription was\npurchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke",
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            }
+          }
+        },
+        "voidedpurchases": {
+          "methods": {
+            "list": {
+              "description": "Lists the purchases that were canceled, refunded or charged-back.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/voidedpurchases",
+              "httpMethod": "GET",
+              "id": "androidpublisher.purchases.voidedpurchases.list",
+              "parameterOrder": [
+                "packageName"
+              ],
+              "parameters": {
+                "endTime": {
+                  "description": "The time, in milliseconds since the Epoch, of the newest voided purchase\nthat you want to see in the response. The value of this parameter cannot\nbe greater than the current time and is ignored if a pagination token is\nset. Default value is current time.\nNote: This filter is applied on the time at which the record is seen as\nvoided by our systems and not the actual voided time returned in the\nresponse.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                },
+                "maxResults": {
+                  "description": "Defines how many results the list operation should return.\nThe default number depends on the resource collection.",
+                  "format": "uint32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "packageName": {
+                  "description": "The package name of the application for which voided purchases need to be\nreturned (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "startIndex": {
+                  "description": "Defines the index of the first element to return.\nThis can only be used if indexed paging is enabled.",
+                  "format": "uint32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "startTime": {
+                  "description": "The time, in milliseconds since the Epoch, of the oldest voided purchase\nthat you want to see in the response. The value of this parameter cannot\nbe older than 30 days and is ignored if a pagination token is set.\nDefault value is current time minus 30 days.\nNote: This filter is applied on the time at which the record is seen as\nvoided by our systems and not the actual voided time returned in the\nresponse.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                },
+                "token": {
+                  "description": "Defines the token of the page to return, usually taken from\nTokenPagination.\nThis can only be used if token paging is enabled.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "The type of voided purchases that you want to see in the response.\nPossible values are:\n0. Only voided in-app product purchases will be returned in the\n   response. This is the default value.\n1. Both voided in-app purchases and voided subscription purchases\n   will be returned in the response.\n\nNote: Before requesting to receive voided subscription purchases, you\nmust switch to use orderId in the response which uniquely identifies\none-time purchases and subscriptions. Otherwise, you will receive multiple\nsubscription orders with the same PurchaseToken, because subscription\nrenewal orders share the same PurchaseToken.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/voidedpurchases",
+              "response": {
+                "$ref": "VoidedPurchasesListResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "reviews": {
+      "methods": {
+        "get": {
+          "description": "Gets a single review.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/reviews/{reviewId}",
+          "httpMethod": "GET",
+          "id": "androidpublisher.reviews.get",
+          "parameterOrder": [
+            "packageName",
+            "reviewId"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "reviewId": {
+              "description": "Unique identifier for a review.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "translationLanguage": {
+              "description": "Language localization code.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/reviews/{reviewId}",
+          "response": {
+            "$ref": "Review"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "list": {
+          "description": "Lists all reviews.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/reviews",
+          "httpMethod": "GET",
+          "id": "androidpublisher.reviews.list",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "maxResults": {
+              "description": "How many results the list operation should return.",
+              "format": "uint32",
+              "location": "query",
+              "type": "integer"
+            },
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "startIndex": {
+              "description": "The index of the first element to return.",
+              "format": "uint32",
+              "location": "query",
+              "type": "integer"
+            },
+            "token": {
+              "description": "Pagination token. If empty, list starts at the first review.",
+              "location": "query",
+              "type": "string"
+            },
+            "translationLanguage": {
+              "description": "Language localization code.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/reviews",
+          "response": {
+            "$ref": "ReviewsListResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "reply": {
+          "description": "Replies to a single review, or updates an existing reply.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/reviews/{reviewId}:reply",
+          "httpMethod": "POST",
+          "id": "androidpublisher.reviews.reply",
+          "parameterOrder": [
+            "packageName",
+            "reviewId"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "reviewId": {
+              "description": "Unique identifier for a review.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/reviews/{reviewId}:reply",
+          "request": {
+            "$ref": "ReviewsReplyRequest"
+          },
+          "response": {
+            "$ref": "ReviewsReplyResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        }
+      }
+    }
+  },
+  "revision": "20200607",
+  "rootUrl": "https://www.googleapis.com/",
+  "schemas": {
+    "Apk": {
+      "description": "Information about an APK. The resource for ApksService.",
+      "id": "Apk",
+      "properties": {
+        "binary": {
+          "$ref": "ApkBinary",
+          "description": "Information about the binary payload of this APK."
+        },
+        "versionCode": {
+          "description": "The version code of the APK, as specified in the manifest file.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ApkBinary": {
+      "description": "Represents the binary payload of an APK.",
+      "id": "ApkBinary",
+      "properties": {
+        "sha1": {
+          "description": "A sha1 hash of the APK payload, encoded as a hex string and matching the\noutput of the sha1sum command.",
+          "type": "string"
+        },
+        "sha256": {
+          "description": "A sha256 hash of the APK payload, encoded as a hex string and matching\nthe output of the sha256sum command.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApksAddExternallyHostedRequest": {
+      "description": "Request to create a new externally hosted APK.",
+      "id": "ApksAddExternallyHostedRequest",
+      "properties": {
+        "externallyHostedApk": {
+          "$ref": "ExternallyHostedApk",
+          "description": "The definition of the externally-hosted APK and where it is located."
+        }
+      },
+      "type": "object"
+    },
+    "ApksAddExternallyHostedResponse": {
+      "description": "Response for creating a new externally hosted APK.",
+      "id": "ApksAddExternallyHostedResponse",
+      "properties": {
+        "externallyHostedApk": {
+          "$ref": "ExternallyHostedApk",
+          "description": "The definition of the externally-hosted APK and where it is located."
+        }
+      },
+      "type": "object"
+    },
+    "ApksListResponse": {
+      "description": "Response listing all APKs.",
+      "id": "ApksListResponse",
+      "properties": {
+        "apks": {
+          "description": "All APKs.",
+          "items": {
+            "$ref": "Apk"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "description": "The kind of this response (\"androidpublisher#apksListResponse\").",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppDetails": {
+      "description": "The app details. The resource for DetailsService.",
+      "id": "AppDetails",
+      "properties": {
+        "contactEmail": {
+          "description": "The user-visible support email for this app.",
+          "type": "string"
+        },
+        "contactPhone": {
+          "description": "The user-visible support telephone number for this app.",
+          "type": "string"
+        },
+        "contactWebsite": {
+          "description": "The user-visible website for this app.",
+          "type": "string"
+        },
+        "defaultLanguage": {
+          "description": "Default language code, in BCP 47 format (eg \"en-US\").",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppEdit": {
+      "description": "An app edit. The resource for EditsService.",
+      "id": "AppEdit",
+      "properties": {
+        "expiryTimeSeconds": {
+          "description": "Output only. The time (as seconds since Epoch) at which the edit will expire and\nwill be no longer valid for use.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. Identifier of the edit. Can be used in subsequent API calls.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Bundle": {
+      "description": "Information about a bundle. The resource for BundlesService.",
+      "id": "Bundle",
+      "properties": {
+        "sha1": {
+          "description": "A sha1 hash of the upload payload, encoded as a hex string and matching\nthe output of the sha1sum command.",
+          "type": "string"
+        },
+        "sha256": {
+          "description": "A sha256 hash of the upload payload, encoded as a hex string and matching\nthe output of the sha256sum command.",
+          "type": "string"
+        },
+        "versionCode": {
+          "description": "The version code of the Android App Bundle, as specified in the Android App\nBundle's base module APK manifest file.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "BundlesListResponse": {
+      "description": "Response listing all bundles.",
+      "id": "BundlesListResponse",
+      "properties": {
+        "bundles": {
+          "description": "All bundles.",
+          "items": {
+            "$ref": "Bundle"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "description": "The kind of this response (\"androidpublisher#bundlesListResponse\").",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Comment": {
+      "description": "An entry of conversation between user and developer.",
+      "id": "Comment",
+      "properties": {
+        "developerComment": {
+          "$ref": "DeveloperComment",
+          "description": "A comment from a developer."
+        },
+        "userComment": {
+          "$ref": "UserComment",
+          "description": "A comment from a user."
+        }
+      },
+      "type": "object"
+    },
+    "CountryTargeting": {
+      "description": "Country targeting specification.",
+      "id": "CountryTargeting",
+      "properties": {
+        "countries": {
+          "description": "Countries to target, specified as two letter [CLDR\ncodes](https://unicode.org/cldr/charts/latest/supplemental/territory_containment_un_m_49.html).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includeRestOfWorld": {
+          "description": "Include \"rest of world\" as well as explicitly targeted countries.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DeobfuscationFile": {
+      "description": "Represents a deobfuscation file.",
+      "id": "DeobfuscationFile",
+      "properties": {
+        "symbolType": {
+          "description": "The type of the deobfuscation file.",
+          "enum": [
+            "deobfuscationFileTypeUnspecified",
+            "proguard",
+            "nativeCode"
+          ],
+          "enumDescriptions": [
+            "Unspecified deobfuscation file type.",
+            "Proguard deobfuscation file type.",
+            "Native debugging symbols file type."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeobfuscationFilesUploadResponse": {
+      "description": "Responses for the upload.",
+      "id": "DeobfuscationFilesUploadResponse",
+      "properties": {
+        "deobfuscationFile": {
+          "$ref": "DeobfuscationFile",
+          "description": "The uploaded Deobfuscation File configuration."
+        }
+      },
+      "type": "object"
+    },
+    "DeveloperComment": {
+      "description": "Developer entry from conversation between user and developer.",
+      "id": "DeveloperComment",
+      "properties": {
+        "lastModified": {
+          "$ref": "Timestamp",
+          "description": "The last time at which this comment was updated."
+        },
+        "text": {
+          "description": "The content of the comment, i.e. reply body.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeviceMetadata": {
+      "description": "Characteristics of the user's device.",
+      "id": "DeviceMetadata",
+      "properties": {
+        "cpuMake": {
+          "description": "Device CPU make, e.g. \"Qualcomm\"",
+          "type": "string"
+        },
+        "cpuModel": {
+          "description": "Device CPU model, e.g. \"MSM8974\"",
+          "type": "string"
+        },
+        "deviceClass": {
+          "description": "Device class (e.g. tablet)",
+          "type": "string"
+        },
+        "glEsVersion": {
+          "description": "OpenGL version",
+          "format": "int32",
+          "type": "integer"
+        },
+        "manufacturer": {
+          "description": "Device manufacturer (e.g. Motorola)",
+          "type": "string"
+        },
+        "nativePlatform": {
+          "description": "Comma separated list of native platforms (e.g. \"arm\", \"arm7\")",
+          "type": "string"
+        },
+        "productName": {
+          "description": "Device model name (e.g. Droid)",
+          "type": "string"
+        },
+        "ramMb": {
+          "description": "Device RAM in Megabytes, e.g. \"2048\"",
+          "format": "int32",
+          "type": "integer"
+        },
+        "screenDensityDpi": {
+          "description": "Screen density in DPI",
+          "format": "int32",
+          "type": "integer"
+        },
+        "screenHeightPx": {
+          "description": "Screen height in pixels",
+          "format": "int32",
+          "type": "integer"
+        },
+        "screenWidthPx": {
+          "description": "Screen width in pixels",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ExpansionFile": {
+      "description": "An expansion file. The resource for ExpansionFilesService.",
+      "id": "ExpansionFile",
+      "properties": {
+        "fileSize": {
+          "description": "If set, this field indicates that this APK has an expansion file uploaded\nto it: this APK does not reference another APK's expansion file.\nThe field's value is the size of the uploaded expansion file in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "referencesVersion": {
+          "description": "If set, this APK's expansion file references another APK's expansion file.\nThe file_size field will not be set.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ExpansionFilesUploadResponse": {
+      "description": "Response for uploading an expansion file.",
+      "id": "ExpansionFilesUploadResponse",
+      "properties": {
+        "expansionFile": {
+          "$ref": "ExpansionFile",
+          "description": "The uploaded expansion file configuration."
+        }
+      },
+      "type": "object"
+    },
+    "ExternallyHostedApk": {
+      "description": "Defines an APK available for this application that is hosted externally\nand not uploaded to Google Play.\nThis function is only available to organizations using Managed Play whose\napplication is configured to restrict distribution to the organizations.",
+      "id": "ExternallyHostedApk",
+      "properties": {
+        "applicationLabel": {
+          "description": "The application label.",
+          "type": "string"
+        },
+        "certificateBase64s": {
+          "description": "A certificate (or array of certificates if a certificate-chain is used)\nused to sign this APK, represented as a base64 encoded byte array.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "externallyHostedUrl": {
+          "description": "The URL at which the APK is hosted. This must be an https URL.",
+          "type": "string"
+        },
+        "fileSha1Base64": {
+          "description": "The sha1 checksum of this APK, represented as a base64 encoded byte\narray.",
+          "type": "string"
+        },
+        "fileSha256Base64": {
+          "description": "The sha256 checksum of this APK, represented as a base64 encoded byte\narray.",
+          "type": "string"
+        },
+        "fileSize": {
+          "description": "The file size in bytes of this APK.",
+          "format": "int64",
+          "type": "string"
+        },
+        "iconBase64": {
+          "description": "The icon image from the APK, as a base64 encoded byte array.",
+          "type": "string"
+        },
+        "maximumSdk": {
+          "description": "The maximum SDK supported by this APK (optional).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minimumSdk": {
+          "description": "The minimum SDK targeted by this APK.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nativeCodes": {
+          "description": "The native code environments supported by this APK (optional).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "packageName": {
+          "description": "The package name.",
+          "type": "string"
+        },
+        "usesFeatures": {
+          "description": "The features required by this APK (optional).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "usesPermissions": {
+          "description": "The permissions requested by this APK.",
+          "items": {
+            "$ref": "UsesPermission"
+          },
+          "type": "array"
+        },
+        "versionCode": {
+          "description": "The version code of this APK.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "versionName": {
+          "description": "The version name of this APK.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Image": {
+      "description": "An uploaded image. The resource for ImagesService.",
+      "id": "Image",
+      "properties": {
+        "id": {
+          "description": "A unique id representing this image.",
+          "type": "string"
+        },
+        "sha1": {
+          "description": "A sha1 hash of the image.",
+          "type": "string"
+        },
+        "sha256": {
+          "description": "A sha256 hash of the image.",
+          "type": "string"
+        },
+        "url": {
+          "description": "A URL that will serve a preview of the image.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImagesDeleteAllResponse": {
+      "description": "Response for deleting all images.",
+      "id": "ImagesDeleteAllResponse",
+      "properties": {
+        "deleted": {
+          "description": "The deleted images.",
+          "items": {
+            "$ref": "Image"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ImagesListResponse": {
+      "description": "Response listing all images.",
+      "id": "ImagesListResponse",
+      "properties": {
+        "images": {
+          "description": "All listed Images.",
+          "items": {
+            "$ref": "Image"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ImagesUploadResponse": {
+      "description": "Response for uploading an image.",
+      "id": "ImagesUploadResponse",
+      "properties": {
+        "image": {
+          "$ref": "Image",
+          "description": "The uploaded image."
+        }
+      },
+      "type": "object"
+    },
+    "InAppProduct": {
+      "description": "An in-app product. The resource for InappproductsService.",
+      "id": "InAppProduct",
+      "properties": {
+        "defaultLanguage": {
+          "description": "Default language of the localized data, as defined by BCP-47. e.g. \"en-US\".",
+          "type": "string"
+        },
+        "defaultPrice": {
+          "$ref": "Price",
+          "description": "Default price. Cannot be zero, as in-app products are never free.\nAlways in the developer's Checkout merchant currency."
+        },
+        "gracePeriod": {
+          "description": "Grace period of the subscription, specified in ISO 8601 format. Allows\ndevelopers to give their subscribers a grace period when the payment\nfor the new recurrence period is declined.\nAcceptable values are P0D (zero days), P3D (three days), P7D (seven days),\nP14D (14 days), and P30D (30 days).",
+          "type": "string"
+        },
+        "listings": {
+          "additionalProperties": {
+            "$ref": "InAppProductListing"
+          },
+          "description": "List of localized title and description data. Map key is the language of\nthe localized data, as defined by BCP-47, e.g. \"en-US\".",
+          "type": "object"
+        },
+        "packageName": {
+          "description": "Package name of the parent app.",
+          "type": "string"
+        },
+        "prices": {
+          "additionalProperties": {
+            "$ref": "Price"
+          },
+          "description": "Prices per buyer region. None of these can be zero, as in-app products are\nnever free. Map key is region code, as defined by ISO 3166-2.",
+          "type": "object"
+        },
+        "purchaseType": {
+          "description": "The type of the product, e.g. a recurring subscription.",
+          "enum": [
+            "purchaseTypeUnspecified",
+            "managedUser",
+            "subscription"
+          ],
+          "enumDescriptions": [
+            "Unspecified purchase type.",
+            "The default product type - one time purchase.",
+            "In-app product with a recurring period."
+          ],
+          "type": "string"
+        },
+        "sku": {
+          "description": "Stock-keeping-unit (SKU) of the product, unique within an app.",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of the product, e.g. whether it's active.",
+          "enum": [
+            "statusUnspecified",
+            "active",
+            "inactive"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "The product is published and active in the store.",
+            "The product is not published and therefore inactive in the store."
+          ],
+          "type": "string"
+        },
+        "subscriptionPeriod": {
+          "description": "Subscription period, specified in ISO 8601 format. Acceptable values are\nP1W (one week), P1M (one month), P3M (three months), P6M (six months),\nand P1Y (one year).",
+          "type": "string"
+        },
+        "trialPeriod": {
+          "description": "Trial period, specified in ISO 8601 format. Acceptable values are anything\nbetween P7D (seven days) and P999D (999 days).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InAppProductListing": {
+      "description": "Store listing of a single in-app product.",
+      "id": "InAppProductListing",
+      "properties": {
+        "benefits": {
+          "description": "Localized entitlement benefits for a subscription.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description for the store listing.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title for the store listing.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InappproductsListResponse": {
+      "description": "Response listing all in-app products.",
+      "id": "InappproductsListResponse",
+      "properties": {
+        "inappproduct": {
+          "description": "All in-app products.",
+          "items": {
+            "$ref": "InAppProduct"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "description": "The kind of this response (\"androidpublisher#inappproductsListResponse\").",
+          "type": "string"
+        },
+        "pageInfo": {
+          "$ref": "PageInfo",
+          "description": "Information about the current page."
+        },
+        "tokenPagination": {
+          "$ref": "TokenPagination",
+          "description": "Pagination token, to handle a number of products that is over one page."
+        }
+      },
+      "type": "object"
+    },
+    "InternalAppSharingArtifact": {
+      "description": "An artifact resource which gets created when uploading an APK or Android\nApp Bundle through internal app sharing.",
+      "id": "InternalAppSharingArtifact",
+      "properties": {
+        "certificateFingerprint": {
+          "description": "The sha256 fingerprint of the certificate used to sign the generated\nartifact.",
+          "type": "string"
+        },
+        "downloadUrl": {
+          "description": "The download URL generated for the uploaded artifact.\nUsers that are authorized to download can follow the link to the Play\nStore app to install it.",
+          "type": "string"
+        },
+        "sha256": {
+          "description": "The sha256 hash of the artifact represented as a lowercase hexadecimal\nnumber, matching the output of the sha256sum command.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IntroductoryPriceInfo": {
+      "description": "Contains the introductory price information for a subscription.",
+      "id": "IntroductoryPriceInfo",
+      "properties": {
+        "introductoryPriceAmountMicros": {
+          "description": "Introductory price of the subscription, not including tax.\nThe currency is the same as price_currency_code. Price is\nexpressed in micro-units, where 1,000,000 micro-units represents one unit\nof the currency. For example, if the subscription price is €1.99,\nprice_amount_micros is 1990000.",
+          "format": "int64",
+          "type": "string"
+        },
+        "introductoryPriceCurrencyCode": {
+          "description": "ISO 4217 currency code for the introductory subscription price.\nFor example, if the price is specified in British pounds sterling,\nprice_currency_code is \"GBP\".",
+          "type": "string"
+        },
+        "introductoryPriceCycles": {
+          "description": "The number of billing period to offer introductory pricing.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "introductoryPricePeriod": {
+          "description": "Introductory price period, specified in ISO 8601 format.\nCommon values are (but not limited to) \"P1W\" (one\nweek), \"P1M\" (one month), \"P3M\" (three months), \"P6M\" (six months),\nand \"P1Y\" (one year).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Listing": {
+      "description": "A localized store listing. The resource for ListingsService.",
+      "id": "Listing",
+      "properties": {
+        "fullDescription": {
+          "description": "Full description of the app.",
+          "type": "string"
+        },
+        "language": {
+          "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+          "type": "string"
+        },
+        "shortDescription": {
+          "description": "Short description of the app.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Localized title of the app.",
+          "type": "string"
+        },
+        "video": {
+          "description": "URL of a promotional YouTube video for the app.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListingsListResponse": {
+      "description": "Response listing all localized listings.",
+      "id": "ListingsListResponse",
+      "properties": {
+        "kind": {
+          "description": "The kind of this response (\"androidpublisher#listingsListResponse\").",
+          "type": "string"
+        },
+        "listings": {
+          "description": "All localized listings.",
+          "items": {
+            "$ref": "Listing"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LocalizedText": {
+      "description": "Release notes specification, i.e. language and text.",
+      "id": "LocalizedText",
+      "properties": {
+        "language": {
+          "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+          "type": "string"
+        },
+        "text": {
+          "description": "The text in the given language.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PageInfo": {
+      "description": "Information about the current page.\n\nList operations that supports paging return only one \"page\" of results. This\nprotocol buffer message describes the page that has been returned.",
+      "id": "PageInfo",
+      "properties": {
+        "resultPerPage": {
+          "description": "Maximum number of results returned in one page.\n! The number of results included in the API response.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startIndex": {
+          "description": "Index of the first result returned in the current page.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalResults": {
+          "description": "Total number of results available on the backend\n! The total number of results in the result set.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Price": {
+      "description": "Definition of a price, i.e. currency and units.",
+      "id": "Price",
+      "properties": {
+        "currency": {
+          "description": "3 letter Currency code, as defined by ISO 4217.\nSee java/com/google/common/money/CurrencyCode.java",
+          "type": "string"
+        },
+        "priceMicros": {
+          "description": "Price in 1/million of the currency base unit, represented as a string.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProductPurchase": {
+      "description": "A ProductPurchase resource indicates the status of a user's inapp\nproduct purchase.",
+      "id": "ProductPurchase",
+      "properties": {
+        "acknowledgementState": {
+          "description": "The acknowledgement state of the inapp product. Possible values are:\n0. Yet to be acknowledged\n1. Acknowledged",
+          "format": "int32",
+          "type": "integer"
+        },
+        "consumptionState": {
+          "description": "The consumption state of the inapp product. Possible values are:\n0. Yet to be consumed\n1. Consumed",
+          "format": "int32",
+          "type": "integer"
+        },
+        "developerPayload": {
+          "description": "A developer-specified string that contains supplemental\ninformation about an order.",
+          "type": "string"
+        },
+        "kind": {
+          "description": "This kind represents an inappPurchase object in the androidpublisher\nservice.",
+          "type": "string"
+        },
+        "obfuscatedExternalAccountId": {
+          "description": "An obfuscated version of the id that is uniquely associated with the\nuser's account in your app. Only present if specified using\nhttps://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid\nwhen the purchase was made.",
+          "type": "string"
+        },
+        "obfuscatedExternalProfileId": {
+          "description": "An obfuscated version of the id that is uniquely associated with the\nuser's profile in your app. Only present if specified using\nhttps://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid\nwhen the purchase was made.",
+          "type": "string"
+        },
+        "orderId": {
+          "description": "The order id associated with the purchase of the inapp product.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "The inapp product SKU.",
+          "type": "string"
+        },
+        "purchaseState": {
+          "description": "The purchase state of the order. Possible values are:\n0. Purchased\n1. Canceled\n2. Pending",
+          "format": "int32",
+          "type": "integer"
+        },
+        "purchaseTimeMillis": {
+          "description": "The time the product was purchased, in milliseconds since the\nepoch (Jan 1, 1970).",
+          "format": "int64",
+          "type": "string"
+        },
+        "purchaseToken": {
+          "description": "The purchase token generated to identify this purchase.",
+          "type": "string"
+        },
+        "purchaseType": {
+          "description": "The type of purchase of the inapp product. This field is only set if\nthis purchase was not made using the standard in-app billing flow.\nPossible values are:\n0. Test (i.e. purchased from a license testing account)\n1. Promo (i.e. purchased using a promo code)\n2. Rewarded (i.e. from watching a video ad instead of paying)",
+          "format": "int32",
+          "type": "integer"
+        },
+        "quantity": {
+          "description": "The quantity associated with the purchase of the inapp product.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ProductPurchasesAcknowledgeRequest": {
+      "description": "Request for the product.purchases.acknowledge API.",
+      "id": "ProductPurchasesAcknowledgeRequest",
+      "properties": {
+        "developerPayload": {
+          "description": "Payload to attach to the purchase.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Review": {
+      "description": "An Android app review.",
+      "id": "Review",
+      "properties": {
+        "authorName": {
+          "description": "The name of the user who wrote the review.",
+          "type": "string"
+        },
+        "comments": {
+          "description": "A repeated field containing comments for the review.",
+          "items": {
+            "$ref": "Comment"
+          },
+          "type": "array"
+        },
+        "reviewId": {
+          "description": "Unique identifier for this review.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReviewReplyResult": {
+      "description": "The result of replying/updating a reply to review.",
+      "id": "ReviewReplyResult",
+      "properties": {
+        "lastEdited": {
+          "$ref": "Timestamp",
+          "description": "The time at which the reply took effect."
+        },
+        "replyText": {
+          "description": "The reply text that was applied.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReviewsListResponse": {
+      "description": "Response listing reviews.",
+      "id": "ReviewsListResponse",
+      "properties": {
+        "pageInfo": {
+          "$ref": "PageInfo",
+          "description": "Information about the current page."
+        },
+        "reviews": {
+          "description": "List of reviews.",
+          "items": {
+            "$ref": "Review"
+          },
+          "type": "array"
+        },
+        "tokenPagination": {
+          "$ref": "TokenPagination",
+          "description": "Pagination token, to handle a number of products that is over one page."
+        }
+      },
+      "type": "object"
+    },
+    "ReviewsReplyRequest": {
+      "description": "Request to reply to review or update existing reply.",
+      "id": "ReviewsReplyRequest",
+      "properties": {
+        "replyText": {
+          "description": "The text to set as the reply. Replies of more than approximately 350\ncharacters will be rejected. HTML tags will be stripped.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReviewsReplyResponse": {
+      "description": "Response on status of replying to a review.",
+      "id": "ReviewsReplyResponse",
+      "properties": {
+        "result": {
+          "$ref": "ReviewReplyResult",
+          "description": "The result of replying/updating a reply to review."
+        }
+      },
+      "type": "object"
+    },
+    "SubscriptionCancelSurveyResult": {
+      "description": "Information provided by the user when they complete the subscription\ncancellation flow (cancellation reason survey).",
+      "id": "SubscriptionCancelSurveyResult",
+      "properties": {
+        "cancelSurveyReason": {
+          "description": "The cancellation reason the user chose in the survey.\nPossible values are:\n0. Other\n1. I don't use this service enough\n2. Technical issues\n3. Cost-related reasons\n4. I found a better app",
+          "format": "int32",
+          "type": "integer"
+        },
+        "userInputCancelReason": {
+          "description": "The customized input cancel reason from the user. Only present when\ncancelReason is 0.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SubscriptionDeferralInfo": {
+      "description": "A SubscriptionDeferralInfo contains the data needed to defer a\nsubscription purchase to a future expiry time.",
+      "id": "SubscriptionDeferralInfo",
+      "properties": {
+        "desiredExpiryTimeMillis": {
+          "description": "The desired next expiry time to assign to the subscription, in\nmilliseconds since the Epoch. The given time must be later/greater\nthan the current expiry time for the subscription.",
+          "format": "int64",
+          "type": "string"
+        },
+        "expectedExpiryTimeMillis": {
+          "description": "The expected expiry time for the subscription.  If the current\nexpiry time for the subscription is not the value specified\nhere, the deferral will not occur.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SubscriptionPriceChange": {
+      "description": "Contains the price change information for a subscription that can be used to\ncontrol the user journey for the price change in the app. This can be in the\nform of seeking confirmation from the user or tailoring the experience for a\nsuccessful conversion.",
+      "id": "SubscriptionPriceChange",
+      "properties": {
+        "newPrice": {
+          "$ref": "Price",
+          "description": "The new price the subscription will renew with if the price change is\naccepted by the user."
+        },
+        "state": {
+          "description": "The current state of the price change. Possible values are:\n0. Outstanding: State for a pending price change waiting for the user to\n    agree. In this state, you can optionally seek confirmation from the\n    user using the In-App API.\n1. Accepted: State for an accepted price change that the subscription\n    will renew with unless it's canceled. The price change takes effect on\n    a future date when the subscription renews. Note that the change might\n    not occur when the subscription is renewed next.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SubscriptionPurchase": {
+      "description": "A SubscriptionPurchase resource indicates the status of a user's\nsubscription purchase.",
+      "id": "SubscriptionPurchase",
+      "properties": {
+        "acknowledgementState": {
+          "description": "The acknowledgement state of the subscription product. Possible values\nare:\n0. Yet to be acknowledged\n1. Acknowledged",
+          "format": "int32",
+          "type": "integer"
+        },
+        "autoRenewing": {
+          "description": "Whether the subscription will automatically be renewed when it\nreaches its current expiry time.",
+          "type": "boolean"
+        },
+        "autoResumeTimeMillis": {
+          "description": "Time at which the subscription will be automatically resumed, in\nmilliseconds since the Epoch. Only present if the user has requested to\npause the subscription.",
+          "format": "int64",
+          "type": "string"
+        },
+        "cancelReason": {
+          "description": "The reason why a subscription was canceled or is not auto-renewing.\nPossible values are:\n0. User canceled the subscription\n1. Subscription was canceled by the system,\n      for example because of a billing problem\n2. Subscription was replaced with a new subscription\n3. Subscription was canceled by the developer",
+          "format": "int32",
+          "type": "integer"
+        },
+        "cancelSurveyResult": {
+          "$ref": "SubscriptionCancelSurveyResult",
+          "description": "Information provided by the user when they complete the subscription\ncancellation flow (cancellation reason survey)."
+        },
+        "countryCode": {
+          "description": "ISO 3166-1 alpha-2 billing country/region code of the user at the time\nthe subscription was granted.",
+          "type": "string"
+        },
+        "developerPayload": {
+          "description": "A developer-specified string that contains supplemental\ninformation about an order.",
+          "type": "string"
+        },
+        "emailAddress": {
+          "description": "The email address of the user when the subscription was purchased.\nOnly present for purchases made with 'Subscribe with Google'.",
+          "type": "string"
+        },
+        "expiryTimeMillis": {
+          "description": "Time at which the subscription will expire, in milliseconds\nsince the Epoch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "externalAccountId": {
+          "description": "User account identifier in the third-party service.\nOnly present if account linking happened as part of the subscription\npurchase flow.",
+          "type": "string"
+        },
+        "familyName": {
+          "description": "The family name of the user when the subscription was purchased.\nOnly present for purchases made with 'Subscribe with Google'.",
+          "type": "string"
+        },
+        "givenName": {
+          "description": "The given name of the user when the subscription was purchased.\nOnly present for purchases made with 'Subscribe with Google'.",
+          "type": "string"
+        },
+        "introductoryPriceInfo": {
+          "$ref": "IntroductoryPriceInfo",
+          "description": "Introductory price information of the subscription. This is only present\nwhen the subscription was purchased with an introductory price.\n\nThis field does not indicate the subscription is currently in introductory\nprice period."
+        },
+        "kind": {
+          "description": "This kind represents a subscriptionPurchase object in the androidpublisher\nservice.",
+          "type": "string"
+        },
+        "linkedPurchaseToken": {
+          "description": "The purchase token of the originating purchase if this subscription\nis one of the following:\n0. Re-signup of a canceled but non-lapsed subscription\n1. Upgrade/downgrade from a previous subscription\n\nFor example, suppose a user originally signs up and you receive\npurchase token X, then the user cancels and goes through the\nresignup flow (before their subscription lapses) and you receive\npurchase token Y, and finally the user upgrades their subscription\nand you receive purchase token Z. If you call this API with purchase\ntoken Z, this field will be set to Y. If you call this API with\npurchase token Y, this field will be set to X. If you call this API\nwith purchase token X, this field will not be set.",
+          "type": "string"
+        },
+        "obfuscatedExternalAccountId": {
+          "description": "An obfuscated version of the id that is uniquely associated with the\nuser's account in your app. Present for the following purchases:\n  * If account linking happened as part of the subscription purchase flow.\n  * It was specified using\n    https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid\n    when the purchase was made.",
+          "type": "string"
+        },
+        "obfuscatedExternalProfileId": {
+          "description": "An obfuscated version of the id that is uniquely associated with the\nuser's profile in your app. Only present if specified using\nhttps://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid\nwhen the purchase was made.",
+          "type": "string"
+        },
+        "orderId": {
+          "description": "The order id of the latest recurring order associated with\nthe purchase of the subscription.",
+          "type": "string"
+        },
+        "paymentState": {
+          "description": "The payment state of the subscription. Possible values are:\n0. Payment pending\n1. Payment received\n2. Free trial\n3. Pending deferred upgrade/downgrade",
+          "format": "int32",
+          "type": "integer"
+        },
+        "priceAmountMicros": {
+          "description": "Price of the subscription, not including tax. Price is expressed\nin micro-units, where 1,000,000 micro-units represents one unit of\nthe currency. For example, if the subscription price is &euro;1.99,\nprice_amount_micros is 1990000.",
+          "format": "int64",
+          "type": "string"
+        },
+        "priceChange": {
+          "$ref": "SubscriptionPriceChange",
+          "description": "The latest price change information available. This is present only when\nthere is an upcoming price change for the subscription yet to be applied.\n\nOnce the subscription renews with the new price or the subscription is\ncanceled, no price change information will be returned."
+        },
+        "priceCurrencyCode": {
+          "description": "ISO 4217 currency code for the subscription price. For example,\nif the price is specified in British pounds sterling,\nprice_currency_code is \"GBP\".",
+          "type": "string"
+        },
+        "profileId": {
+          "description": "The Google profile id of the user when the subscription was purchased.\nOnly present for purchases made with 'Subscribe with Google'.",
+          "type": "string"
+        },
+        "profileName": {
+          "description": "The profile name of the user when the subscription was purchased.\nOnly present for purchases made with 'Subscribe with Google'.",
+          "type": "string"
+        },
+        "promotionCode": {
+          "description": "The promotion code applied on this purchase. This field is only set if\na vanity code promotion is applied when the subscription was purchased.",
+          "type": "string"
+        },
+        "promotionType": {
+          "description": "The type of promotion applied on this purchase. This field is only set if\na promotion is applied when the subscription was purchased. Possible\nvalues are:\n0. One time code\n1. Vanity code",
+          "format": "int32",
+          "type": "integer"
+        },
+        "purchaseType": {
+          "description": "The type of purchase of the subscription. This field is only set if\nthis purchase was not made using the standard in-app billing flow.\nPossible values are:\n0. Test (i.e. purchased from a license testing account)\n1. Promo (i.e. purchased using a promo code)",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startTimeMillis": {
+          "description": "Time at which the subscription was granted, in milliseconds\nsince the Epoch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "userCancellationTimeMillis": {
+          "description": "The time at which the subscription was canceled by the user, in\nmilliseconds since the epoch. Only present if cancelReason is 0.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SubscriptionPurchasesAcknowledgeRequest": {
+      "description": "Request for the purchases.subscriptions.acknowledge API.",
+      "id": "SubscriptionPurchasesAcknowledgeRequest",
+      "properties": {
+        "developerPayload": {
+          "description": "Payload to attach to the purchase.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SubscriptionPurchasesDeferRequest": {
+      "description": "Request for the purchases.subscriptions.defer API.",
+      "id": "SubscriptionPurchasesDeferRequest",
+      "properties": {
+        "deferralInfo": {
+          "$ref": "SubscriptionDeferralInfo",
+          "description": "The information about the new desired expiry time for the subscription."
+        }
+      },
+      "type": "object"
+    },
+    "SubscriptionPurchasesDeferResponse": {
+      "description": "Response for the purchases.subscriptions.defer API.",
+      "id": "SubscriptionPurchasesDeferResponse",
+      "properties": {
+        "newExpiryTimeMillis": {
+          "description": "The new expiry time for the subscription in milliseconds since the Epoch.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Testers": {
+      "description": "The testers of an app. The resource for TestersService.",
+      "id": "Testers",
+      "properties": {
+        "googleGroups": {
+          "description": "All testing Google Groups, as email addresses.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Timestamp": {
+      "description": "A Timestamp represents a point in time independent of any time zone or local\ncalendar, encoded as a count of seconds and fractions of seconds at\nnanosecond resolution. The count is relative to an epoch at UTC midnight on\nJanuary 1, 1970.",
+      "id": "Timestamp",
+      "properties": {
+        "nanos": {
+          "description": "Non-negative fractions of a second at nanosecond resolution.\nMust be from 0 to 999,999,999 inclusive.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Represents seconds of UTC time since Unix epoch.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TokenPagination": {
+      "description": "Pagination information returned by a List operation when token pagination\nis enabled.\n\nList operations that supports paging return only one \"page\" of results. This\nprotocol buffer message describes the page that has been returned.\n\nWhen using token pagination, clients should use the next/previous token\nto get another page of the result. The presence or absence of next/previous\ntoken indicates whether a next/previous page is available and provides a\nmean of accessing this page. ListRequest.page_token should be set to either\nnext_page_token or previous_page_token to access another page.",
+      "id": "TokenPagination",
+      "properties": {
+        "nextPageToken": {
+          "description": "Tokens to pass to the standard list field 'page_token'. Whenever available,\ntokens are preferred over manipulating start_index.",
+          "type": "string"
+        },
+        "previousPageToken": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Track": {
+      "description": "A track configuration. The resource for TracksService.",
+      "id": "Track",
+      "properties": {
+        "releases": {
+          "description": "In a read request, represents all active releases in the track.\nIn an update request, represents desired changes.",
+          "items": {
+            "$ref": "TrackRelease"
+          },
+          "type": "array"
+        },
+        "track": {
+          "description": "Identifier of the track.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TrackRelease": {
+      "description": "A release within a track.",
+      "id": "TrackRelease",
+      "properties": {
+        "countryTargeting": {
+          "$ref": "CountryTargeting",
+          "description": "Restricts a release to a specific set of countries."
+        },
+        "inAppUpdatePriority": {
+          "description": "In-app update priority of the release. All newly added APKs in the\nrelease will be considered at this priority. Can take values in the range\n[0, 5], with 5 the highest priority. Defaults to 0.\nin_app_update_priority can not be updated once the release is rolled out.\nSee https://developer.android.com/guide/playcore/in-app-updates.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "The release name. Not required to be unique. If not set, the name is\ngenerated from the APK's version_name. If the release contains multiple\nAPKs, the name is generated from the date.",
+          "type": "string"
+        },
+        "releaseNotes": {
+          "description": "A description of what is new in this release.",
+          "items": {
+            "$ref": "LocalizedText"
+          },
+          "type": "array"
+        },
+        "status": {
+          "description": "The status of the release.",
+          "enum": [
+            "statusUnspecified",
+            "draft",
+            "inProgress",
+            "halted",
+            "completed"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "The release's APKs are not being served to users.",
+            "The release's APKs are being served to a fraction of users, determined by\n'user_fraction'.",
+            "The release's APKs will no longer be served to users. Users who already\nhave these APKs are unaffected.",
+            "The release will have no further changes. Its APKs are being served to\nall users, unless they are eligible to APKs of a more recent release."
+          ],
+          "type": "string"
+        },
+        "userFraction": {
+          "description": "Fraction of users who are eligible for a staged release. 0 < fraction < 1.\nCan only be set when status is \"inProgress\" or \"halted\".",
+          "format": "double",
+          "type": "number"
+        },
+        "versionCodes": {
+          "description": "Version codes of all APKs in the release. Must include version codes to\nretain from previous releases.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TracksListResponse": {
+      "description": "Response listing all tracks.",
+      "id": "TracksListResponse",
+      "properties": {
+        "kind": {
+          "description": "The kind of this response (\"androidpublisher#tracksListResponse\").",
+          "type": "string"
+        },
+        "tracks": {
+          "description": "All tracks.",
+          "items": {
+            "$ref": "Track"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UserComment": {
+      "description": "User entry from conversation between user and developer.",
+      "id": "UserComment",
+      "properties": {
+        "androidOsVersion": {
+          "description": "Integer Android SDK version of the user's device at the time the\nreview was written, e.g. 23 is Marshmallow. May be absent.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "appVersionCode": {
+          "description": "Integer version code of the app as installed at the time the\nreview was written. May be absent.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "appVersionName": {
+          "description": "String version name of the app as installed at the time the\nreview was written. May be absent.",
+          "type": "string"
+        },
+        "device": {
+          "description": "Codename for the reviewer's device, e.g. klte, flounder. May be absent.",
+          "type": "string"
+        },
+        "deviceMetadata": {
+          "$ref": "DeviceMetadata",
+          "description": "Information about the characteristics of the user's device."
+        },
+        "lastModified": {
+          "$ref": "Timestamp",
+          "description": "The last time at which this comment was updated."
+        },
+        "originalText": {
+          "description": "Untranslated text of the review, where the review was translated.\nIf the review was not translated this is left blank.",
+          "type": "string"
+        },
+        "reviewerLanguage": {
+          "description": "Language code for the reviewer. This is taken from the device\nsettings so is not guaranteed to match the language the review\nis written in. May be absent.",
+          "type": "string"
+        },
+        "starRating": {
+          "description": "The star rating associated with the review, from 1 to 5.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "text": {
+          "description": "The content of the comment, i.e. review body. In some cases\nusers have been able to write a review with separate title and\nbody; in those cases the title and body are concatenated and\nseparated by a tab character.",
+          "type": "string"
+        },
+        "thumbsDownCount": {
+          "description": "Number of users who have given this review a thumbs down.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "thumbsUpCount": {
+          "description": "Number of users who have given this review a thumbs up.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "UsesPermission": {
+      "description": "A permission used by this APK.",
+      "id": "UsesPermission",
+      "properties": {
+        "maxSdkVersion": {
+          "description": "Optionally, the maximum SDK version for which the permission is\nrequired.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "The name of the permission requested.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VoidedPurchase": {
+      "description": "A VoidedPurchase resource indicates a purchase that was either\ncanceled/refunded/charged-back.",
+      "id": "VoidedPurchase",
+      "properties": {
+        "kind": {
+          "description": "This kind represents a voided purchase object in the androidpublisher\nservice.",
+          "type": "string"
+        },
+        "orderId": {
+          "description": "The order id which uniquely identifies a one-time purchase, subscription\npurchase, or subscription renewal.",
+          "type": "string"
+        },
+        "purchaseTimeMillis": {
+          "description": "The time at which the purchase was made, in milliseconds since the\nepoch (Jan 1, 1970).",
+          "format": "int64",
+          "type": "string"
+        },
+        "purchaseToken": {
+          "description": "The token which uniquely identifies a one-time purchase or subscription.\nTo uniquely identify subscription renewals use order_id (available\nstarting from version 3 of the API).",
+          "type": "string"
+        },
+        "voidedReason": {
+          "description": "The reason why the purchase was voided, possible values are:\n0. Other\n1. Remorse\n2. Not_received\n3. Defective\n4. Accidental_purchase\n5. Fraud\n6. Friendly_fraud\n7. Chargeback",
+          "format": "int32",
+          "type": "integer"
+        },
+        "voidedSource": {
+          "description": "The initiator of voided purchase, possible values are:\n0. User\n1. Developer\n2. Google",
+          "format": "int32",
+          "type": "integer"
+        },
+        "voidedTimeMillis": {
+          "description": "The time at which the purchase was canceled/refunded/charged-back,\nin milliseconds since the epoch (Jan 1, 1970).",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VoidedPurchasesListResponse": {
+      "description": "Response for the voidedpurchases.list API.",
+      "id": "VoidedPurchasesListResponse",
+      "properties": {
+        "pageInfo": {
+          "$ref": "PageInfo",
+          "description": "General pagination information."
+        },
+        "tokenPagination": {
+          "$ref": "TokenPagination",
+          "description": "Pagination information for token pagination."
+        },
+        "voidedPurchases": {
+          "items": {
+            "$ref": "VoidedPurchase"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Google Play Android Developer API",
+  "version": "v3"
+}

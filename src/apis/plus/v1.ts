@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace plus_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace plus_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -599,6 +609,68 @@ export namespace plus_v1 {
     /**
      * plus.activities.get
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/plus.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await plus.activities.get({
+     *     // The ID of the activity to get.
+     *     activityId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": {},
+     *   //   "actor": {},
+     *   //   "address": "my_address",
+     *   //   "annotation": "my_annotation",
+     *   //   "crosspostSource": "my_crosspostSource",
+     *   //   "etag": "my_etag",
+     *   //   "geocode": "my_geocode",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": {},
+     *   //   "object": {},
+     *   //   "placeId": "my_placeId",
+     *   //   "placeName": "my_placeName",
+     *   //   "provider": {},
+     *   //   "published": "my_published",
+     *   //   "radius": "my_radius",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url",
+     *   //   "verb": "my_verb"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.activities.get
      * @memberOf! ()
      *
@@ -609,9 +681,18 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Activities$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Activities$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Activity>;
+    get(
+      params: Params$Resource$Activities$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Activities$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Activity>,
@@ -625,10 +706,17 @@ export namespace plus_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Activities$Get
-        | BodyResponseCallback<Schema$Activity>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Activity>,
-      callback?: BodyResponseCallback<Schema$Activity>
-    ): void | GaxiosPromise<Schema$Activity> {
+        | BodyResponseCallback<Schema$Activity>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Activity>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Activity>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Activity> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -661,7 +749,10 @@ export namespace plus_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Activity>(parameters, callback);
+        createAPIRequest<Schema$Activity>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Activity>(parameters);
       }
@@ -670,6 +761,63 @@ export namespace plus_v1 {
     /**
      * plus.activities.list
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/plus.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await plus.activities.list({
+     *     // The collection of activities to list.
+     *     collection: 'placeholder-value',
+     *     // The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.activities.list
      * @memberOf! ()
      *
@@ -683,9 +831,18 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Activities$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Activities$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ActivityFeed>;
+    list(
+      params: Params$Resource$Activities$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Activities$List,
       options: MethodOptions | BodyResponseCallback<Schema$ActivityFeed>,
@@ -699,12 +856,17 @@ export namespace plus_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Activities$List
-        | BodyResponseCallback<Schema$ActivityFeed>,
+        | BodyResponseCallback<Schema$ActivityFeed>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ActivityFeed>,
-      callback?: BodyResponseCallback<Schema$ActivityFeed>
-    ): void | GaxiosPromise<Schema$ActivityFeed> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ActivityFeed>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ActivityFeed>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ActivityFeed> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -736,7 +898,10 @@ export namespace plus_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ActivityFeed>(parameters, callback);
+        createAPIRequest<Schema$ActivityFeed>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ActivityFeed>(parameters);
       }
@@ -745,6 +910,65 @@ export namespace plus_v1 {
     /**
      * plus.activities.search
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/plus.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await plus.activities.search({
+     *     // Specify the preferred language to search with. See search language codes for available values.
+     *     language: 'placeholder-value',
+     *     // The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // Specifies how to order search results.
+     *     orderBy: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
+     *     pageToken: 'placeholder-value',
+     *     // Full-text search query string.
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.activities.search
      * @memberOf! ()
      *
@@ -759,9 +983,18 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Activities$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Activities$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ActivityFeed>;
+    search(
+      params: Params$Resource$Activities$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Activities$Search,
       options: MethodOptions | BodyResponseCallback<Schema$ActivityFeed>,
@@ -775,12 +1008,17 @@ export namespace plus_v1 {
     search(
       paramsOrCallback?:
         | Params$Resource$Activities$Search
-        | BodyResponseCallback<Schema$ActivityFeed>,
+        | BodyResponseCallback<Schema$ActivityFeed>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ActivityFeed>,
-      callback?: BodyResponseCallback<Schema$ActivityFeed>
-    ): void | GaxiosPromise<Schema$ActivityFeed> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ActivityFeed>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ActivityFeed>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ActivityFeed> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Activities$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -814,7 +1052,10 @@ export namespace plus_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ActivityFeed>(parameters, callback);
+        createAPIRequest<Schema$ActivityFeed>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ActivityFeed>(parameters);
       }
@@ -823,21 +1064,11 @@ export namespace plus_v1 {
 
   export interface Params$Resource$Activities$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the activity to get.
      */
     activityId?: string;
   }
   export interface Params$Resource$Activities$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The collection of activities to list.
      */
@@ -857,11 +1088,6 @@ export namespace plus_v1 {
   }
   export interface Params$Resource$Activities$Search
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Specify the preferred language to search with. See search language codes for available values.
      */
@@ -893,6 +1119,59 @@ export namespace plus_v1 {
     /**
      * plus.comments.get
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/plus.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await plus.comments.get({
+     *     // The ID of the comment to get.
+     *     commentId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actor": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "inReplyTo": [],
+     *   //   "kind": "my_kind",
+     *   //   "object": {},
+     *   //   "plusoners": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updated": "my_updated",
+     *   //   "verb": "my_verb"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.comments.get
      * @memberOf! ()
      *
@@ -903,9 +1182,18 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Comments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Comments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Comment>;
+    get(
+      params: Params$Resource$Comments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Comments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Comment>,
@@ -919,10 +1207,17 @@ export namespace plus_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Comments$Get
-        | BodyResponseCallback<Schema$Comment>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
-      callback?: BodyResponseCallback<Schema$Comment>
-    ): void | GaxiosPromise<Schema$Comment> {
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -955,7 +1250,10 @@ export namespace plus_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Comment>(parameters, callback);
+        createAPIRequest<Schema$Comment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
       }
@@ -964,6 +1262,62 @@ export namespace plus_v1 {
     /**
      * plus.comments.list
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/plus.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await plus.comments.list({
+     *     // The ID of the activity to get comments for.
+     *     activityId: 'placeholder-value',
+     *     // The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // The order in which to sort the list of comments.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextLink": "my_nextLink",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.comments.list
      * @memberOf! ()
      *
@@ -977,9 +1331,18 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Comments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Comments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CommentFeed>;
+    list(
+      params: Params$Resource$Comments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Comments$List,
       options: MethodOptions | BodyResponseCallback<Schema$CommentFeed>,
@@ -993,12 +1356,17 @@ export namespace plus_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Comments$List
-        | BodyResponseCallback<Schema$CommentFeed>,
+        | BodyResponseCallback<Schema$CommentFeed>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CommentFeed>,
-      callback?: BodyResponseCallback<Schema$CommentFeed>
-    ): void | GaxiosPromise<Schema$CommentFeed> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommentFeed>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommentFeed>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CommentFeed> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1030,7 +1398,10 @@ export namespace plus_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CommentFeed>(parameters, callback);
+        createAPIRequest<Schema$CommentFeed>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CommentFeed>(parameters);
       }
@@ -1039,21 +1410,11 @@ export namespace plus_v1 {
 
   export interface Params$Resource$Comments$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the comment to get.
      */
     commentId?: string;
   }
   export interface Params$Resource$Comments$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the activity to get comments for.
      */
@@ -1081,6 +1442,80 @@ export namespace plus_v1 {
     /**
      * plus.people.get
      * @desc Get a person's profile. If your app uses scope https://www.googleapis.com/auth/plus.login, this method is guaranteed to return ageRange and language.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/plus.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *       'https://www.googleapis.com/auth/userinfo.profile',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await plus.people.get({
+     *     // The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aboutMe": "my_aboutMe",
+     *   //   "ageRange": {},
+     *   //   "birthday": "my_birthday",
+     *   //   "braggingRights": "my_braggingRights",
+     *   //   "circledByCount": 0,
+     *   //   "cover": {},
+     *   //   "currentLocation": "my_currentLocation",
+     *   //   "displayName": "my_displayName",
+     *   //   "domain": "my_domain",
+     *   //   "emails": [],
+     *   //   "etag": "my_etag",
+     *   //   "gender": "my_gender",
+     *   //   "id": "my_id",
+     *   //   "image": {},
+     *   //   "isPlusUser": false,
+     *   //   "kind": "my_kind",
+     *   //   "language": "my_language",
+     *   //   "name": {},
+     *   //   "nickname": "my_nickname",
+     *   //   "objectType": "my_objectType",
+     *   //   "occupation": "my_occupation",
+     *   //   "organizations": [],
+     *   //   "placesLived": [],
+     *   //   "plusOneCount": 0,
+     *   //   "relationshipStatus": "my_relationshipStatus",
+     *   //   "skills": "my_skills",
+     *   //   "tagline": "my_tagline",
+     *   //   "url": "my_url",
+     *   //   "urls": [],
+     *   //   "verified": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.people.get
      * @memberOf! ()
      *
@@ -1091,9 +1526,18 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$People$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$People$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Person>;
+    get(
+      params: Params$Resource$People$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$People$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Person>,
@@ -1107,10 +1551,17 @@ export namespace plus_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$People$Get
-        | BodyResponseCallback<Schema$Person>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Person>,
-      callback?: BodyResponseCallback<Schema$Person>
-    ): void | GaxiosPromise<Schema$Person> {
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Person> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1143,7 +1594,10 @@ export namespace plus_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Person>(parameters, callback);
+        createAPIRequest<Schema$Person>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Person>(parameters);
       }
@@ -1152,6 +1606,63 @@ export namespace plus_v1 {
     /**
      * plus.people.list
      * @desc List all of the people in the specified collection.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/plus.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await plus.people.list({
+     *     // The collection of people to list.
+     *     collection: 'placeholder-value',
+     *     // The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The order to return people in.
+     *     orderBy: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "totalItems": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.people.list
      * @memberOf! ()
      *
@@ -1166,9 +1677,18 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$People$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$People$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PeopleFeed>;
+    list(
+      params: Params$Resource$People$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$People$List,
       options: MethodOptions | BodyResponseCallback<Schema$PeopleFeed>,
@@ -1182,12 +1702,17 @@ export namespace plus_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$People$List
-        | BodyResponseCallback<Schema$PeopleFeed>,
+        | BodyResponseCallback<Schema$PeopleFeed>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PeopleFeed>,
-      callback?: BodyResponseCallback<Schema$PeopleFeed>
-    ): void | GaxiosPromise<Schema$PeopleFeed> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PeopleFeed>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PeopleFeed>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PeopleFeed> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1219,7 +1744,10 @@ export namespace plus_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PeopleFeed>(parameters, callback);
+        createAPIRequest<Schema$PeopleFeed>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PeopleFeed>(parameters);
       }
@@ -1228,6 +1756,61 @@ export namespace plus_v1 {
     /**
      * plus.people.listByActivity
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/plus.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await plus.people.listByActivity({
+     *     // The ID of the activity to get the list of people for.
+     *     activityId: 'placeholder-value',
+     *     // The collection of people to list.
+     *     collection: 'placeholder-value',
+     *     // The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "totalItems": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.people.listByActivity
      * @memberOf! ()
      *
@@ -1241,9 +1824,18 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     listByActivity(
+      params: Params$Resource$People$Listbyactivity,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listByActivity(
       params?: Params$Resource$People$Listbyactivity,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PeopleFeed>;
+    listByActivity(
+      params: Params$Resource$People$Listbyactivity,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listByActivity(
       params: Params$Resource$People$Listbyactivity,
       options: MethodOptions | BodyResponseCallback<Schema$PeopleFeed>,
@@ -1257,12 +1849,17 @@ export namespace plus_v1 {
     listByActivity(
       paramsOrCallback?:
         | Params$Resource$People$Listbyactivity
-        | BodyResponseCallback<Schema$PeopleFeed>,
+        | BodyResponseCallback<Schema$PeopleFeed>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PeopleFeed>,
-      callback?: BodyResponseCallback<Schema$PeopleFeed>
-    ): void | GaxiosPromise<Schema$PeopleFeed> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PeopleFeed>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PeopleFeed>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PeopleFeed> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Listbyactivity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1295,7 +1892,10 @@ export namespace plus_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PeopleFeed>(parameters, callback);
+        createAPIRequest<Schema$PeopleFeed>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PeopleFeed>(parameters);
       }
@@ -1304,6 +1904,61 @@ export namespace plus_v1 {
     /**
      * plus.people.search
      * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/plus.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const plus = google.plus('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/plus.login',
+     *       'https://www.googleapis.com/auth/plus.me',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await plus.people.search({
+     *     // Specify the preferred language to search with. See search language codes for available values.
+     *     language: 'placeholder-value',
+     *     // The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
+     *     pageToken: 'placeholder-value',
+     *     // Specify a query string for full text search of public text in all profiles.
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "totalItems": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias plus.people.search
      * @memberOf! ()
      *
@@ -1317,9 +1972,18 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$People$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$People$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PeopleFeed>;
+    search(
+      params: Params$Resource$People$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$People$Search,
       options: MethodOptions | BodyResponseCallback<Schema$PeopleFeed>,
@@ -1333,12 +1997,17 @@ export namespace plus_v1 {
     search(
       paramsOrCallback?:
         | Params$Resource$People$Search
-        | BodyResponseCallback<Schema$PeopleFeed>,
+        | BodyResponseCallback<Schema$PeopleFeed>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PeopleFeed>,
-      callback?: BodyResponseCallback<Schema$PeopleFeed>
-    ): void | GaxiosPromise<Schema$PeopleFeed> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PeopleFeed>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PeopleFeed>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PeopleFeed> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1368,7 +2037,10 @@ export namespace plus_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PeopleFeed>(parameters, callback);
+        createAPIRequest<Schema$PeopleFeed>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PeopleFeed>(parameters);
       }
@@ -1377,21 +2049,11 @@ export namespace plus_v1 {
 
   export interface Params$Resource$People$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$People$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The collection of people to list.
      */
@@ -1416,11 +2078,6 @@ export namespace plus_v1 {
   export interface Params$Resource$People$Listbyactivity
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the activity to get the list of people for.
      */
     activityId?: string;
@@ -1438,11 +2095,6 @@ export namespace plus_v1 {
     pageToken?: string;
   }
   export interface Params$Resource$People$Search extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Specify the preferred language to search with. See search language codes for available values.
      */

@@ -1,4 +1,4 @@
-// Copyright 2013-2016, Google, Inc.
+// Copyright 2013 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -12,9 +12,11 @@
 // limitations under the License.
 
 import * as assert from 'assert';
+import {describe, it, before, beforeEach, afterEach} from 'mocha';
+import {execSync} from 'child_process';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
-import {GoogleApis} from '../src';
+import {GoogleApis, blogger_v3, oauth2_v2} from '../src';
 import {Utils} from './utils';
 
 function createNock(qs?: string) {
@@ -25,26 +27,28 @@ function createNock(qs?: string) {
 }
 
 describe('Clients', () => {
-  let localPlus: APIEndpoint, remotePlus: APIEndpoint;
-  let localOauth2: APIEndpoint, remoteOauth2: APIEndpoint;
+  let localBlogger: blogger_v3.Blogger;
+  let remoteBlogger: blogger_v3.Blogger;
+  let localOauth2: oauth2_v2.Oauth2;
+  let remoteOauth2: oauth2_v2.Oauth2;
 
   before(async () => {
-    nock.cleanAll();
-    const google = new GoogleApis();
-    nock.enableNetConnect();
-    [remotePlus, remoteOauth2] = await Promise.all([
-      Utils.loadApi(google, 'plus', 'v1'),
-      Utils.loadApi(google, 'oauth2', 'v2'),
-    ]);
     nock.disableNetConnect();
+    const google = new GoogleApis();
+    [remoteBlogger, remoteOauth2] = await Promise.all([
+      Utils.loadApi<blogger_v3.Blogger>(google, 'blogger', 'v3'),
+      Utils.loadApi<oauth2_v2.Oauth2>(google, 'oauth2', 'v2'),
+    ]);
   });
 
   beforeEach(() => {
-    nock.cleanAll();
-    nock.disableNetConnect();
     const google = new GoogleApis();
-    localPlus = google.plus('v1');
+    localBlogger = google.blogger('v3');
     localOauth2 = google.oauth2('v2');
+  });
+
+  afterEach(() => {
+    nock.cleanAll();
   });
 
   it('should load API versions with a dot in the name', async () => {
@@ -54,14 +58,10 @@ describe('Clients', () => {
   });
 
   it('should create request helpers according to resource on discovery API response', () => {
-    let plus = localPlus;
-    assert.strictEqual(typeof plus.people.get, 'function');
-    assert.strictEqual(typeof plus.activities.search, 'function');
-    assert.strictEqual(typeof plus.comments.list, 'function');
-    plus = remotePlus;
-    assert.strictEqual(typeof plus.people.get, 'function');
-    assert.strictEqual(typeof plus.activities.search, 'function');
-    assert.strictEqual(typeof plus.comments.list, 'function');
+    let blogger = localBlogger;
+    assert.strictEqual(typeof blogger.pages.list, 'function');
+    blogger = remoteBlogger;
+    assert.strictEqual(typeof blogger.pages.list, 'function');
   });
 
   it('should be able to gen top level methods', () => {
@@ -108,14 +108,13 @@ describe('Clients', () => {
       -1,
       'Default param in query'
     );
-    nock.enableNetConnect();
     const datastore2 = await Utils.loadApi(google, 'datastore', 'v1', {
       params: {myParam: '123'},
     });
     nock.disableNetConnect();
     createNock('myParam=123');
     const res2 =
-      // tslint:disable-next-line no-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       await (datastore2 as any).projects.lookup({
         projectId: 'test-project-id',
       });
@@ -136,7 +135,7 @@ describe('Clients', () => {
     // Override the default datasetId param for this particular API call
     createNock('myParam=456');
     const res = await datastore.projects.lookup(
-      // tslint:disable-next-line no-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       {projectId: 'test-project-id', myParam: '456'} as any
     );
     // If the default param handling is broken, query might be undefined, thus
@@ -148,14 +147,13 @@ describe('Clients', () => {
       -1,
       'Default param not found in query'
     );
-    nock.enableNetConnect();
     const datastore2 = await Utils.loadApi(google, 'datastore', 'v1', {
       params: {myParam: '123'},
     });
     nock.disableNetConnect();
     // Override the default datasetId param for this particular API call
     createNock('myParam=456');
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const res2 = await (datastore2 as any).projects.lookup({
       projectId: 'test-project-id',
       myParam: '456',
@@ -194,8 +192,6 @@ describe('Clients', () => {
       -1,
       'Default param not found in query'
     );
-
-    nock.enableNetConnect();
     const datastore2 = await Utils.loadApi(google, 'datastore', 'v1', {
       params: {
         projectId: 'test-project-id', // We must set this here - it is a
@@ -208,7 +204,7 @@ describe('Clients', () => {
 
     // No params given - only callback
     createNock('myParam=123');
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const res3 = await (datastore2 as any).projects.lookup();
     // If the default param handling is broken, req or query might be
     // undefined, thus concealing the assertion message with some
@@ -221,8 +217,7 @@ describe('Clients', () => {
     );
   });
 
-  after(() => {
-    nock.cleanAll();
-    nock.enableNetConnect();
+  it('should pass eslint for a given client', () => {
+    execSync('npx eslint --no-ignore src/apis/youtube/*.ts');
   });
 });

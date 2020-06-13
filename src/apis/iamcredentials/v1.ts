@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace iamcredentials_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace iamcredentials_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -127,7 +137,7 @@ export namespace iamcredentials_v1 {
      */
     lifetime?: string | null;
     /**
-     * Code to identify the scopes to be included in the OAuth 2.0 access token. See https://developers.google.com/identity/protocols/googlescopes for more information. At least one value required.
+     * Required. Code to identify the scopes to be included in the OAuth 2.0 access token. See https://developers.google.com/identity/protocols/googlescopes for more information. At least one value required.
      */
     scope?: string[] | null;
   }
@@ -143,7 +153,7 @@ export namespace iamcredentials_v1 {
   }
   export interface Schema$GenerateIdTokenRequest {
     /**
-     * The audience for the token, such as the API or account that this token grants access to.
+     * Required. The audience for the token, such as the API or account that this token grants access to.
      */
     audience?: string | null;
     /**
@@ -167,17 +177,17 @@ export namespace iamcredentials_v1 {
      */
     delegates?: string[] | null;
     /**
-     * The bytes to sign.
+     * Required. The bytes to sign.
      */
     payload?: string | null;
   }
   export interface Schema$SignBlobResponse {
     /**
-     * The ID of the key used to sign the blob.
+     * The ID of the key used to sign the blob. The key used for signing will remain valid for at least 12 hours after the blob is signed. To verify the signature, you can retrieve the public key in several formats from the following endpoints:  - RSA public key wrapped in an X.509 v3 certificate: `https://www.googleapis.com/service_accounts/v1/metadata/x509/{ACCOUNT_EMAIL}` - Raw key in JSON format: `https://www.googleapis.com/service_accounts/v1/metadata/raw/{ACCOUNT_EMAIL}` - JSON Web Key (JWK): `https://www.googleapis.com/service_accounts/v1/metadata/jwk/{ACCOUNT_EMAIL}`
      */
     keyId?: string | null;
     /**
-     * The signed blob.
+     * The signature for the blob. Does not include the original blob.  After the key pair referenced by the `key_id` response field expires, Google no longer exposes the public key that can be used to verify the blob. As a result, the receiver can no longer verify the signature.
      */
     signedBlob?: string | null;
   }
@@ -187,17 +197,17 @@ export namespace iamcredentials_v1 {
      */
     delegates?: string[] | null;
     /**
-     * The JWT payload to sign: a JSON object that contains a JWT Claims Set.
+     * Required. The JWT payload to sign. Must be a serialized JSON object that contains a JWT Claim Set. For example: `{&quot;sub&quot;: &quot;user@example.com&quot;, &quot;iat&quot;: 313435}`  If the claim set contains an `exp` claim, it must be an integer timestamp that is not in the past and at most 12 hours in the future.
      */
     payload?: string | null;
   }
   export interface Schema$SignJwtResponse {
     /**
-     * The ID of the key used to sign the JWT.
+     * The ID of the key used to sign the JWT. The key used for signing will remain valid for at least 12 hours after the JWT is signed. To verify the signature, you can retrieve the public key in several formats from the following endpoints:  - RSA public key wrapped in an X.509 v3 certificate: `https://www.googleapis.com/service_accounts/v1/metadata/x509/{ACCOUNT_EMAIL}` - Raw key in JSON format: `https://www.googleapis.com/service_accounts/v1/metadata/raw/{ACCOUNT_EMAIL}` - JSON Web Key (JWK): `https://www.googleapis.com/service_accounts/v1/metadata/jwk/{ACCOUNT_EMAIL}`
      */
     keyId?: string | null;
     /**
-     * The signed JWT.
+     * The signed JWT. Contains the automatically generated header; the client-supplied payload; and the signature, which is generated using the key referenced by the `kid` field in the header.  After the key pair referenced by the `key_id` response field expires, Google no longer exposes the public key that can be used to verify the JWT. As a result, the receiver can no longer verify the signature.
      */
     signedJwt?: string | null;
   }
@@ -222,20 +232,85 @@ export namespace iamcredentials_v1 {
     /**
      * iamcredentials.projects.serviceAccounts.generateAccessToken
      * @desc Generates an OAuth 2.0 access token for a service account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iamcredentials = google.iamcredentials('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iamcredentials.projects.serviceAccounts.generateAccessToken(
+     *     {
+     *       // Required. The resource name of the service account for which the credentials
+     *       // are requested, in the following format:
+     *       // `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *       // character is required; replacing it with a project ID is invalid.
+     *       name: 'projects/my-project/serviceAccounts/my-serviceAccount',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "delegates": [],
+     *         //   "lifetime": "my_lifetime",
+     *         //   "scope": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessToken": "my_accessToken",
+     *   //   "expireTime": "my_expireTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias iamcredentials.projects.serviceAccounts.generateAccessToken
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
-     * @param {().GenerateAccessTokenRequest} params.resource Request body data
+     * @param {string} params.name Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * @param {().GenerateAccessTokenRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     generateAccessToken(
+      params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateAccessToken(
       params?: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GenerateAccessTokenResponse>;
+    generateAccessToken(
+      params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generateAccessToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
       options:
@@ -253,12 +328,20 @@ export namespace iamcredentials_v1 {
     generateAccessToken(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Generateaccesstoken
-        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>,
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>,
-      callback?: BodyResponseCallback<Schema$GenerateAccessTokenResponse>
-    ): void | GaxiosPromise<Schema$GenerateAccessTokenResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateAccessTokenResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Generateaccesstoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -295,7 +378,7 @@ export namespace iamcredentials_v1 {
       if (callback) {
         createAPIRequest<Schema$GenerateAccessTokenResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GenerateAccessTokenResponse>(parameters);
@@ -305,20 +388,82 @@ export namespace iamcredentials_v1 {
     /**
      * iamcredentials.projects.serviceAccounts.generateIdToken
      * @desc Generates an OpenID Connect ID token for a service account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iamcredentials = google.iamcredentials('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iamcredentials.projects.serviceAccounts.generateIdToken({
+     *     // Required. The resource name of the service account for which the credentials
+     *     // are requested, in the following format:
+     *     // `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *     // character is required; replacing it with a project ID is invalid.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "audience": "my_audience",
+     *       //   "delegates": [],
+     *       //   "includeEmail": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias iamcredentials.projects.serviceAccounts.generateIdToken
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
-     * @param {().GenerateIdTokenRequest} params.resource Request body data
+     * @param {string} params.name Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * @param {().GenerateIdTokenRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     generateIdToken(
+      params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateIdToken(
       params?: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GenerateIdTokenResponse>;
+    generateIdToken(
+      params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generateIdToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
       options:
@@ -336,12 +481,20 @@ export namespace iamcredentials_v1 {
     generateIdToken(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Generateidtoken
-        | BodyResponseCallback<Schema$GenerateIdTokenResponse>,
+        | BodyResponseCallback<Schema$GenerateIdTokenResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GenerateIdTokenResponse>,
-      callback?: BodyResponseCallback<Schema$GenerateIdTokenResponse>
-    ): void | GaxiosPromise<Schema$GenerateIdTokenResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateIdTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateIdTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateIdTokenResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Generateidtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -376,7 +529,10 @@ export namespace iamcredentials_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GenerateIdTokenResponse>(parameters, callback);
+        createAPIRequest<Schema$GenerateIdTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GenerateIdTokenResponse>(parameters);
       }
@@ -385,20 +541,82 @@ export namespace iamcredentials_v1 {
     /**
      * iamcredentials.projects.serviceAccounts.signBlob
      * @desc Signs a blob using a service account's system-managed private key.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iamcredentials = google.iamcredentials('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iamcredentials.projects.serviceAccounts.signBlob({
+     *     // Required. The resource name of the service account for which the credentials
+     *     // are requested, in the following format:
+     *     // `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *     // character is required; replacing it with a project ID is invalid.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegates": [],
+     *       //   "payload": "my_payload"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyId": "my_keyId",
+     *   //   "signedBlob": "my_signedBlob"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias iamcredentials.projects.serviceAccounts.signBlob
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
-     * @param {().SignBlobRequest} params.resource Request body data
+     * @param {string} params.name Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * @param {().SignBlobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     signBlob(
+      params: Params$Resource$Projects$Serviceaccounts$Signblob,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    signBlob(
       params?: Params$Resource$Projects$Serviceaccounts$Signblob,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SignBlobResponse>;
+    signBlob(
+      params: Params$Resource$Projects$Serviceaccounts$Signblob,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     signBlob(
       params: Params$Resource$Projects$Serviceaccounts$Signblob,
       options: MethodOptions | BodyResponseCallback<Schema$SignBlobResponse>,
@@ -412,12 +630,17 @@ export namespace iamcredentials_v1 {
     signBlob(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Signblob
-        | BodyResponseCallback<Schema$SignBlobResponse>,
+        | BodyResponseCallback<Schema$SignBlobResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SignBlobResponse>,
-      callback?: BodyResponseCallback<Schema$SignBlobResponse>
-    ): void | GaxiosPromise<Schema$SignBlobResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SignBlobResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SignBlobResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SignBlobResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Signblob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -452,7 +675,10 @@ export namespace iamcredentials_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SignBlobResponse>(parameters, callback);
+        createAPIRequest<Schema$SignBlobResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SignBlobResponse>(parameters);
       }
@@ -461,20 +687,82 @@ export namespace iamcredentials_v1 {
     /**
      * iamcredentials.projects.serviceAccounts.signJwt
      * @desc Signs a JWT using a service account's system-managed private key.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iamcredentials = google.iamcredentials('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iamcredentials.projects.serviceAccounts.signJwt({
+     *     // Required. The resource name of the service account for which the credentials
+     *     // are requested, in the following format:
+     *     // `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *     // character is required; replacing it with a project ID is invalid.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegates": [],
+     *       //   "payload": "my_payload"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyId": "my_keyId",
+     *   //   "signedJwt": "my_signedJwt"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias iamcredentials.projects.serviceAccounts.signJwt
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
-     * @param {().SignJwtRequest} params.resource Request body data
+     * @param {string} params.name Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * @param {().SignJwtRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     signJwt(
+      params: Params$Resource$Projects$Serviceaccounts$Signjwt,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    signJwt(
       params?: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SignJwtResponse>;
+    signJwt(
+      params: Params$Resource$Projects$Serviceaccounts$Signjwt,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     signJwt(
       params: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options: MethodOptions | BodyResponseCallback<Schema$SignJwtResponse>,
@@ -488,12 +776,17 @@ export namespace iamcredentials_v1 {
     signJwt(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Signjwt
-        | BodyResponseCallback<Schema$SignJwtResponse>,
+        | BodyResponseCallback<Schema$SignJwtResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SignJwtResponse>,
-      callback?: BodyResponseCallback<Schema$SignJwtResponse>
-    ): void | GaxiosPromise<Schema$SignJwtResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SignJwtResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SignJwtResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SignJwtResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Signjwt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -528,7 +821,10 @@ export namespace iamcredentials_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SignJwtResponse>(parameters, callback);
+        createAPIRequest<Schema$SignJwtResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SignJwtResponse>(parameters);
       }
@@ -538,12 +834,7 @@ export namespace iamcredentials_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Generateaccesstoken
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
 
@@ -555,12 +846,7 @@ export namespace iamcredentials_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Generateidtoken
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
 
@@ -572,12 +858,7 @@ export namespace iamcredentials_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Signblob
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
 
@@ -589,12 +870,7 @@ export namespace iamcredentials_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Signjwt
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
 

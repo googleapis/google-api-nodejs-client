@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace adsense_v1_4 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace adsense_v1_4 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -634,6 +644,57 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.get
      * @desc Get information about the selected AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.get({
+     *     // Account to get information about.
+     *     accountId: 'placeholder-value',
+     *     // Whether the tree of sub accounts should be returned.
+     *     tree: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creation_time": "my_creation_time",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "premium": false,
+     *   //   "subAccounts": [],
+     *   //   "timezone": "my_timezone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.get
      * @memberOf! ()
      *
@@ -645,9 +706,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Account>;
+    get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Account>,
@@ -661,10 +731,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Get
-        | BodyResponseCallback<Schema$Account>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback?: BodyResponseCallback<Schema$Account>
-    ): void | GaxiosPromise<Schema$Account> {
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -697,7 +774,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Account>(parameters, callback);
+        createAPIRequest<Schema$Account>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
       }
@@ -706,6 +786,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.list
      * @desc List all accounts available to this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.list({
+     *     // The maximum number of accounts to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.list
      * @memberOf! ()
      *
@@ -717,9 +845,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Accounts>;
+    list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$List,
       options: MethodOptions | BodyResponseCallback<Schema$Accounts>,
@@ -733,10 +870,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$List
-        | BodyResponseCallback<Schema$Accounts>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Accounts>,
-      callback?: BodyResponseCallback<Schema$Accounts>
-    ): void | GaxiosPromise<Schema$Accounts> {
+        | BodyResponseCallback<Schema$Accounts>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Accounts>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Accounts>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Accounts> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -769,7 +913,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Accounts>(parameters, callback);
+        createAPIRequest<Schema$Accounts>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Accounts>(parameters);
       }
@@ -777,11 +924,6 @@ export namespace adsense_v1_4 {
   }
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account to get information about.
      */
@@ -792,11 +934,6 @@ export namespace adsense_v1_4 {
     tree?: boolean;
   }
   export interface Params$Resource$Accounts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of accounts to include in the response, used for paging.
      */
@@ -816,6 +953,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.adclients.getAdCode
      * @desc Get Auto ad code for a given ad client.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.getAdCode({
+     *     // Account which contains the ad client.
+     *     accountId: 'placeholder-value',
+     *     // Ad client to get the code for.
+     *     adClientId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adCode": "my_adCode",
+     *   //   "ampBody": "my_ampBody",
+     *   //   "ampHead": "my_ampHead",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.adclients.getAdCode
      * @memberOf! ()
      *
@@ -827,9 +1012,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     getAdCode(
+      params: Params$Resource$Accounts$Adclients$Getadcode,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAdCode(
       params?: Params$Resource$Accounts$Adclients$Getadcode,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdCode>;
+    getAdCode(
+      params: Params$Resource$Accounts$Adclients$Getadcode,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAdCode(
       params: Params$Resource$Accounts$Adclients$Getadcode,
       options: MethodOptions | BodyResponseCallback<Schema$AdCode>,
@@ -843,10 +1037,17 @@ export namespace adsense_v1_4 {
     getAdCode(
       paramsOrCallback?:
         | Params$Resource$Accounts$Adclients$Getadcode
-        | BodyResponseCallback<Schema$AdCode>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdCode>,
-      callback?: BodyResponseCallback<Schema$AdCode>
-    ): void | GaxiosPromise<Schema$AdCode> {
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdCode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Getadcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -880,7 +1081,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdCode>(parameters, callback);
+        createAPIRequest<Schema$AdCode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdCode>(parameters);
       }
@@ -889,6 +1093,56 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.adclients.list
      * @desc List all ad clients in the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.list({
+     *     // Account for which to list ad clients.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of ad clients to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.adclients.list
      * @memberOf! ()
      *
@@ -901,9 +1155,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Adclients$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Adclients$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdClients>;
+    list(
+      params: Params$Resource$Accounts$Adclients$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Adclients$List,
       options: MethodOptions | BodyResponseCallback<Schema$AdClients>,
@@ -917,12 +1180,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Adclients$List
-        | BodyResponseCallback<Schema$AdClients>,
+        | BodyResponseCallback<Schema$AdClients>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AdClients>,
-      callback?: BodyResponseCallback<Schema$AdClients>
-    ): void | GaxiosPromise<Schema$AdClients> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdClients>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdClients>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdClients> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -955,7 +1223,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdClients>(parameters, callback);
+        createAPIRequest<Schema$AdClients>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdClients>(parameters);
       }
@@ -964,11 +1235,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Accounts$Adclients$Getadcode
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account which contains the ad client.
      */
@@ -980,11 +1246,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Accounts$Adclients$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account for which to list ad clients.
      */
@@ -1012,6 +1273,62 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.adunits.get
      * @desc Gets the specified ad unit in the specified ad client for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adunits.get({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client for which to get the ad unit.
+     *     adClientId: 'placeholder-value',
+     *     // Ad unit to retrieve.
+     *     adUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": "my_code",
+     *   //   "contentAdsSettings": {},
+     *   //   "customStyle": {},
+     *   //   "feedAdsSettings": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "mobileContentAdsSettings": {},
+     *   //   "name": "my_name",
+     *   //   "savedStyleId": "my_savedStyleId",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.adunits.get
      * @memberOf! ()
      *
@@ -1024,9 +1341,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Adunits$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Adunits$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdUnit>;
+    get(
+      params: Params$Resource$Accounts$Adunits$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Adunits$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
@@ -1040,10 +1366,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Adunits$Get
-        | BodyResponseCallback<Schema$AdUnit>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
-      callback?: BodyResponseCallback<Schema$AdUnit>
-    ): void | GaxiosPromise<Schema$AdUnit> {
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnit> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adunits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1077,7 +1410,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdUnit>(parameters, callback);
+        createAPIRequest<Schema$AdUnit>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdUnit>(parameters);
       }
@@ -1086,6 +1422,56 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.adunits.getAdCode
      * @desc Get ad code for the specified ad unit.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adunits.getAdCode({
+     *     // Account which contains the ad client.
+     *     accountId: 'placeholder-value',
+     *     // Ad client with contains the ad unit.
+     *     adClientId: 'placeholder-value',
+     *     // Ad unit to get the code for.
+     *     adUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adCode": "my_adCode",
+     *   //   "ampBody": "my_ampBody",
+     *   //   "ampHead": "my_ampHead",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.adunits.getAdCode
      * @memberOf! ()
      *
@@ -1098,9 +1484,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     getAdCode(
+      params: Params$Resource$Accounts$Adunits$Getadcode,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAdCode(
       params?: Params$Resource$Accounts$Adunits$Getadcode,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdCode>;
+    getAdCode(
+      params: Params$Resource$Accounts$Adunits$Getadcode,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAdCode(
       params: Params$Resource$Accounts$Adunits$Getadcode,
       options: MethodOptions | BodyResponseCallback<Schema$AdCode>,
@@ -1114,10 +1509,17 @@ export namespace adsense_v1_4 {
     getAdCode(
       paramsOrCallback?:
         | Params$Resource$Accounts$Adunits$Getadcode
-        | BodyResponseCallback<Schema$AdCode>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdCode>,
-      callback?: BodyResponseCallback<Schema$AdCode>
-    ): void | GaxiosPromise<Schema$AdCode> {
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdCode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adunits$Getadcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1151,7 +1553,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdCode>(parameters, callback);
+        createAPIRequest<Schema$AdCode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdCode>(parameters);
       }
@@ -1160,6 +1565,60 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.adunits.list
      * @desc List all ad units in the specified ad client for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adunits.list({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client for which to list ad units.
+     *     adClientId: 'placeholder-value',
+     *     // Whether to include inactive ad units. Default: true.
+     *     includeInactive: 'placeholder-value',
+     *     // The maximum number of ad units to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.adunits.list
      * @memberOf! ()
      *
@@ -1174,9 +1633,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Adunits$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Adunits$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdUnits>;
+    list(
+      params: Params$Resource$Accounts$Adunits$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Adunits$List,
       options: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
@@ -1190,10 +1658,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Adunits$List
-        | BodyResponseCallback<Schema$AdUnits>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
-      callback?: BodyResponseCallback<Schema$AdUnits>
-    ): void | GaxiosPromise<Schema$AdUnits> {
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnits> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1227,7 +1702,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdUnits>(parameters, callback);
+        createAPIRequest<Schema$AdUnits>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdUnits>(parameters);
       }
@@ -1236,11 +1714,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Accounts$Adunits$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account to which the ad client belongs.
      */
@@ -1257,11 +1730,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Adunits$Getadcode
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account which contains the ad client.
      */
     accountId?: string;
@@ -1276,11 +1744,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Accounts$Adunits$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account to which the ad client belongs.
      */
@@ -1312,6 +1775,60 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.adunits.customchannels.list
      * @desc List all custom channels which the specified ad unit belongs to.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adunits.customchannels.list({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client which contains the ad unit.
+     *     adClientId: 'placeholder-value',
+     *     // Ad unit for which to list custom channels.
+     *     adUnitId: 'placeholder-value',
+     *     // The maximum number of custom channels to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.adunits.customchannels.list
      * @memberOf! ()
      *
@@ -1326,9 +1843,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Adunits$Customchannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Adunits$Customchannels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomChannels>;
+    list(
+      params: Params$Resource$Accounts$Adunits$Customchannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Adunits$Customchannels$List,
       options: MethodOptions | BodyResponseCallback<Schema$CustomChannels>,
@@ -1342,12 +1868,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Adunits$Customchannels$List
-        | BodyResponseCallback<Schema$CustomChannels>,
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomChannels>,
-      callback?: BodyResponseCallback<Schema$CustomChannels>
-    ): void | GaxiosPromise<Schema$CustomChannels> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannels> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adunits$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1381,7 +1912,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomChannels>(parameters, callback);
+        createAPIRequest<Schema$CustomChannels>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomChannels>(parameters);
       }
@@ -1390,11 +1924,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Accounts$Adunits$Customchannels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account to which the ad client belongs.
      */
@@ -1426,6 +1955,43 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.alerts.delete
      * @desc Dismiss (delete) the specified alert from the specified publisher AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.alerts.delete({
+     *     // Account which contains the ad unit.
+     *     accountId: 'placeholder-value',
+     *     // Alert to delete.
+     *     alertId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.alerts.delete
      * @memberOf! ()
      *
@@ -1437,9 +2003,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Alerts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Alerts$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Alerts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Alerts$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1453,10 +2028,15 @@ export namespace adsense_v1_4 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Alerts$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Alerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1489,7 +2069,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1498,6 +2081,52 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.alerts.list
      * @desc List the alerts for the specified AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.alerts.list({
+     *     // Account for which to retrieve the alerts.
+     *     accountId: 'placeholder-value',
+     *     // The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
+     *     locale: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.alerts.list
      * @memberOf! ()
      *
@@ -1509,9 +2138,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Alerts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Alerts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Alerts>;
+    list(
+      params: Params$Resource$Accounts$Alerts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Alerts$List,
       options: MethodOptions | BodyResponseCallback<Schema$Alerts>,
@@ -1525,10 +2163,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Alerts$List
-        | BodyResponseCallback<Schema$Alerts>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Alerts>,
-      callback?: BodyResponseCallback<Schema$Alerts>
-    ): void | GaxiosPromise<Schema$Alerts> {
+        | BodyResponseCallback<Schema$Alerts>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Alerts>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Alerts>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Alerts> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Alerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1561,7 +2206,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Alerts>(parameters, callback);
+        createAPIRequest<Schema$Alerts>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Alerts>(parameters);
       }
@@ -1570,11 +2218,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Accounts$Alerts$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account which contains the ad unit.
      */
@@ -1586,11 +2229,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Accounts$Alerts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account for which to retrieve the alerts.
      */
@@ -1612,6 +2250,57 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.customchannels.get
      * @desc Get the specified custom channel from the specified ad client for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.customchannels.get({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client which contains the custom channel.
+     *     adClientId: 'placeholder-value',
+     *     // Custom channel to retrieve.
+     *     customChannelId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": "my_code",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "targetingInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.customchannels.get
      * @memberOf! ()
      *
@@ -1624,9 +2313,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Customchannels$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Customchannels$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomChannel>;
+    get(
+      params: Params$Resource$Accounts$Customchannels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Customchannels$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CustomChannel>,
@@ -1640,12 +2338,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Customchannels$Get
-        | BodyResponseCallback<Schema$CustomChannel>,
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomChannel>,
-      callback?: BodyResponseCallback<Schema$CustomChannel>
-    ): void | GaxiosPromise<Schema$CustomChannel> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Customchannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1679,7 +2382,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomChannel>(parameters, callback);
+        createAPIRequest<Schema$CustomChannel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomChannel>(parameters);
       }
@@ -1688,6 +2394,58 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.customchannels.list
      * @desc List all custom channels in the specified ad client for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.customchannels.list({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client for which to list custom channels.
+     *     adClientId: 'placeholder-value',
+     *     // The maximum number of custom channels to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.customchannels.list
      * @memberOf! ()
      *
@@ -1701,9 +2459,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Customchannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Customchannels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomChannels>;
+    list(
+      params: Params$Resource$Accounts$Customchannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Customchannels$List,
       options: MethodOptions | BodyResponseCallback<Schema$CustomChannels>,
@@ -1717,12 +2484,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Customchannels$List
-        | BodyResponseCallback<Schema$CustomChannels>,
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomChannels>,
-      callback?: BodyResponseCallback<Schema$CustomChannels>
-    ): void | GaxiosPromise<Schema$CustomChannels> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannels> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1756,7 +2528,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomChannels>(parameters, callback);
+        createAPIRequest<Schema$CustomChannels>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomChannels>(parameters);
       }
@@ -1765,11 +2540,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Accounts$Customchannels$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account to which the ad client belongs.
      */
@@ -1785,11 +2555,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Accounts$Customchannels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account to which the ad client belongs.
      */
@@ -1817,6 +2582,62 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.customchannels.adunits.list
      * @desc List all ad units in the specified custom channel.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.customchannels.adunits.list({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client which contains the custom channel.
+     *     adClientId: 'placeholder-value',
+     *     // Custom channel for which to list ad units.
+     *     customChannelId: 'placeholder-value',
+     *     // Whether to include inactive ad units. Default: true.
+     *     includeInactive: 'placeholder-value',
+     *     // The maximum number of ad units to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.customchannels.adunits.list
      * @memberOf! ()
      *
@@ -1832,9 +2653,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Customchannels$Adunits$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Customchannels$Adunits$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdUnits>;
+    list(
+      params: Params$Resource$Accounts$Customchannels$Adunits$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Customchannels$Adunits$List,
       options: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
@@ -1848,10 +2678,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Customchannels$Adunits$List
-        | BodyResponseCallback<Schema$AdUnits>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
-      callback?: BodyResponseCallback<Schema$AdUnits>
-    ): void | GaxiosPromise<Schema$AdUnits> {
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnits> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Customchannels$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1885,7 +2722,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdUnits>(parameters, callback);
+        createAPIRequest<Schema$AdUnits>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdUnits>(parameters);
       }
@@ -1894,11 +2734,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Accounts$Customchannels$Adunits$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account to which the ad client belongs.
      */
@@ -1934,6 +2769,50 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.payments.list
      * @desc List the payments for the specified AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.payments.list({
+     *     // Account for which to retrieve the payments.
+     *     accountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.payments.list
      * @memberOf! ()
      *
@@ -1944,9 +2823,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Payments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Payments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Payments>;
+    list(
+      params: Params$Resource$Accounts$Payments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Payments$List,
       options: MethodOptions | BodyResponseCallback<Schema$Payments>,
@@ -1960,10 +2848,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Payments$List
-        | BodyResponseCallback<Schema$Payments>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Payments>,
-      callback?: BodyResponseCallback<Schema$Payments>
-    ): void | GaxiosPromise<Schema$Payments> {
+        | BodyResponseCallback<Schema$Payments>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Payments>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Payments>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Payments> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Payments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1996,7 +2891,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Payments>(parameters, callback);
+        createAPIRequest<Schema$Payments>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Payments>(parameters);
       }
@@ -2005,11 +2903,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Accounts$Payments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account for which to retrieve the payments.
      */
@@ -2027,6 +2920,81 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.reports.generate
      * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.reports.generate({
+     *     // Account upon which to report.
+     *     accountId: 'placeholder-value',
+     *     // Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
+     *     currency: '[a-zA-Z]+',
+     *     // Dimensions to base the report on.
+     *     dimension: '[a-zA-Z_]+',
+     *     // End of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     *     endDate:
+     *       'd{4}-d{2}-d{2}|(today|startOfMonth|startOfYear)(([-+]d+[dwmy]){0,3}?)|(latest-(d{2})-(d{2})(-d+y)?)|(latest-latest-(d{2})(-d+m)?)',
+     *     // Filters to be run on the report.
+     *     filter: '[a-zA-Z_]+(==|=@).+',
+     *     // Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     *     locale: '[a-zA-Z_]+',
+     *     // The maximum number of rows of report data to return.
+     *     maxResults: 'placeholder-value',
+     *     // Numeric columns to include in the report.
+     *     metric: '[a-zA-Z_]+',
+     *     // The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
+     *     sort: '(+|-)?[a-zA-Z_]+',
+     *     // Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     *     startDate:
+     *       'd{4}-d{2}-d{2}|(today|startOfMonth|startOfYear)(([-+]d+[dwmy]){0,3}?)|(latest-(d{2})-(d{2})(-d+y)?)|(latest-latest-(d{2})(-d+m)?)',
+     *     // Index of the first row of report data to return.
+     *     startIndex: 'placeholder-value',
+     *     // Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
+     *     useTimezoneReporting: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averages": [],
+     *   //   "endDate": "my_endDate",
+     *   //   "headers": [],
+     *   //   "kind": "my_kind",
+     *   //   "rows": [],
+     *   //   "startDate": "my_startDate",
+     *   //   "totalMatchedRows": "my_totalMatchedRows",
+     *   //   "totals": [],
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.reports.generate
      * @memberOf! ()
      *
@@ -2048,9 +3016,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     generate(
+      params: Params$Resource$Accounts$Reports$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
       params?: Params$Resource$Accounts$Reports$Generate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdsenseReportsGenerateResponse>;
+    generate(
+      params: Params$Resource$Accounts$Reports$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generate(
       params: Params$Resource$Accounts$Reports$Generate,
       options:
@@ -2068,12 +3045,20 @@ export namespace adsense_v1_4 {
     generate(
       paramsOrCallback?:
         | Params$Resource$Accounts$Reports$Generate
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
-      callback?: BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
-    ): void | GaxiosPromise<Schema$AdsenseReportsGenerateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdsenseReportsGenerateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2108,7 +3093,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -2120,11 +3105,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Accounts$Reports$Generate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account upon which to report.
      */
@@ -2184,6 +3164,65 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.reports.saved.generate
      * @desc Generate an AdSense report based on the saved report ID sent in the query parameters.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.reports.saved.generate({
+     *     // Account to which the saved reports belong.
+     *     accountId: 'placeholder-value',
+     *     // Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     *     locale: '[a-zA-Z_]+',
+     *     // The maximum number of rows of report data to return.
+     *     maxResults: 'placeholder-value',
+     *     // The saved report to retrieve.
+     *     savedReportId: 'placeholder-value',
+     *     // Index of the first row of report data to return.
+     *     startIndex: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averages": [],
+     *   //   "endDate": "my_endDate",
+     *   //   "headers": [],
+     *   //   "kind": "my_kind",
+     *   //   "rows": [],
+     *   //   "startDate": "my_startDate",
+     *   //   "totalMatchedRows": "my_totalMatchedRows",
+     *   //   "totals": [],
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.reports.saved.generate
      * @memberOf! ()
      *
@@ -2198,9 +3237,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     generate(
+      params: Params$Resource$Accounts$Reports$Saved$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
       params?: Params$Resource$Accounts$Reports$Saved$Generate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdsenseReportsGenerateResponse>;
+    generate(
+      params: Params$Resource$Accounts$Reports$Saved$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generate(
       params: Params$Resource$Accounts$Reports$Saved$Generate,
       options:
@@ -2218,12 +3266,20 @@ export namespace adsense_v1_4 {
     generate(
       paramsOrCallback?:
         | Params$Resource$Accounts$Reports$Saved$Generate
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
-      callback?: BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
-    ): void | GaxiosPromise<Schema$AdsenseReportsGenerateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdsenseReportsGenerateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Saved$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2259,7 +3315,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -2271,6 +3327,56 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.reports.saved.list
      * @desc List all saved reports in the specified AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.reports.saved.list({
+     *     // Account to which the saved reports belong.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of saved reports to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.reports.saved.list
      * @memberOf! ()
      *
@@ -2283,9 +3389,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Reports$Saved$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Reports$Saved$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedReports>;
+    list(
+      params: Params$Resource$Accounts$Reports$Saved$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Reports$Saved$List,
       options: MethodOptions | BodyResponseCallback<Schema$SavedReports>,
@@ -2299,12 +3414,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Reports$Saved$List
-        | BodyResponseCallback<Schema$SavedReports>,
+        | BodyResponseCallback<Schema$SavedReports>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedReports>,
-      callback?: BodyResponseCallback<Schema$SavedReports>
-    ): void | GaxiosPromise<Schema$SavedReports> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedReports>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedReports>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedReports> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Saved$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2337,7 +3457,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedReports>(parameters, callback);
+        createAPIRequest<Schema$SavedReports>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedReports>(parameters);
       }
@@ -2346,11 +3469,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Accounts$Reports$Saved$Generate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account to which the saved reports belong.
      */
@@ -2375,11 +3493,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Reports$Saved$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account to which the saved reports belong.
      */
     accountId?: string;
@@ -2402,6 +3515,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.savedadstyles.get
      * @desc List a specific saved ad style for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.savedadstyles.get({
+     *     // Account for which to get the saved ad style.
+     *     accountId: 'placeholder-value',
+     *     // Saved ad style to retrieve.
+     *     savedAdStyleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adStyle": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.savedadstyles.get
      * @memberOf! ()
      *
@@ -2413,9 +3574,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Savedadstyles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Savedadstyles$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedAdStyle>;
+    get(
+      params: Params$Resource$Accounts$Savedadstyles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Savedadstyles$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SavedAdStyle>,
@@ -2429,12 +3599,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Savedadstyles$Get
-        | BodyResponseCallback<Schema$SavedAdStyle>,
+        | BodyResponseCallback<Schema$SavedAdStyle>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedAdStyle>,
-      callback?: BodyResponseCallback<Schema$SavedAdStyle>
-    ): void | GaxiosPromise<Schema$SavedAdStyle> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedAdStyle>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedAdStyle>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedAdStyle> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Savedadstyles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2468,7 +3643,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedAdStyle>(parameters, callback);
+        createAPIRequest<Schema$SavedAdStyle>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedAdStyle>(parameters);
       }
@@ -2477,6 +3655,56 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.savedadstyles.list
      * @desc List all saved ad styles in the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.savedadstyles.list({
+     *     // Account for which to list saved ad styles.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of saved ad styles to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.savedadstyles.list
      * @memberOf! ()
      *
@@ -2489,9 +3717,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Savedadstyles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Savedadstyles$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedAdStyles>;
+    list(
+      params: Params$Resource$Accounts$Savedadstyles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Savedadstyles$List,
       options: MethodOptions | BodyResponseCallback<Schema$SavedAdStyles>,
@@ -2505,12 +3742,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Savedadstyles$List
-        | BodyResponseCallback<Schema$SavedAdStyles>,
+        | BodyResponseCallback<Schema$SavedAdStyles>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedAdStyles>,
-      callback?: BodyResponseCallback<Schema$SavedAdStyles>
-    ): void | GaxiosPromise<Schema$SavedAdStyles> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedAdStyles>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedAdStyles>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedAdStyles> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Savedadstyles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2543,7 +3785,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedAdStyles>(parameters, callback);
+        createAPIRequest<Schema$SavedAdStyles>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedAdStyles>(parameters);
       }
@@ -2552,11 +3797,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Accounts$Savedadstyles$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account for which to get the saved ad style.
      */
@@ -2568,11 +3808,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Accounts$Savedadstyles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account for which to list saved ad styles.
      */
@@ -2596,6 +3831,58 @@ export namespace adsense_v1_4 {
     /**
      * adsense.accounts.urlchannels.list
      * @desc List all URL channels in the specified ad client for the specified account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.urlchannels.list({
+     *     // Account to which the ad client belongs.
+     *     accountId: 'placeholder-value',
+     *     // Ad client for which to list URL channels.
+     *     adClientId: 'placeholder-value',
+     *     // The maximum number of URL channels to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.accounts.urlchannels.list
      * @memberOf! ()
      *
@@ -2609,9 +3896,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Urlchannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Urlchannels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UrlChannels>;
+    list(
+      params: Params$Resource$Accounts$Urlchannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Urlchannels$List,
       options: MethodOptions | BodyResponseCallback<Schema$UrlChannels>,
@@ -2625,12 +3921,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Urlchannels$List
-        | BodyResponseCallback<Schema$UrlChannels>,
+        | BodyResponseCallback<Schema$UrlChannels>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UrlChannels>,
-      callback?: BodyResponseCallback<Schema$UrlChannels>
-    ): void | GaxiosPromise<Schema$UrlChannels> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UrlChannels>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UrlChannels>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UrlChannels> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Urlchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2664,7 +3965,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UrlChannels>(parameters, callback);
+        createAPIRequest<Schema$UrlChannels>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UrlChannels>(parameters);
       }
@@ -2673,11 +3977,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Accounts$Urlchannels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account to which the ad client belongs.
      */
@@ -2705,6 +4004,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.adclients.list
      * @desc List all ad clients in this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.adclients.list({
+     *     // The maximum number of ad clients to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.adclients.list
      * @memberOf! ()
      *
@@ -2716,9 +4063,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Adclients$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Adclients$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdClients>;
+    list(
+      params: Params$Resource$Adclients$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Adclients$List,
       options: MethodOptions | BodyResponseCallback<Schema$AdClients>,
@@ -2732,12 +4088,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Adclients$List
-        | BodyResponseCallback<Schema$AdClients>,
+        | BodyResponseCallback<Schema$AdClients>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AdClients>,
-      callback?: BodyResponseCallback<Schema$AdClients>
-    ): void | GaxiosPromise<Schema$AdClients> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdClients>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdClients>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdClients> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Adclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2770,7 +4131,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdClients>(parameters, callback);
+        createAPIRequest<Schema$AdClients>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdClients>(parameters);
       }
@@ -2778,11 +4142,6 @@ export namespace adsense_v1_4 {
   }
 
   export interface Params$Resource$Adclients$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of ad clients to include in the response, used for paging.
      */
@@ -2804,6 +4163,60 @@ export namespace adsense_v1_4 {
     /**
      * adsense.adunits.get
      * @desc Gets the specified ad unit in the specified ad client.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.adunits.get({
+     *     // Ad client for which to get the ad unit.
+     *     adClientId: 'placeholder-value',
+     *     // Ad unit to retrieve.
+     *     adUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": "my_code",
+     *   //   "contentAdsSettings": {},
+     *   //   "customStyle": {},
+     *   //   "feedAdsSettings": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "mobileContentAdsSettings": {},
+     *   //   "name": "my_name",
+     *   //   "savedStyleId": "my_savedStyleId",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.adunits.get
      * @memberOf! ()
      *
@@ -2815,9 +4228,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Adunits$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Adunits$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdUnit>;
+    get(
+      params: Params$Resource$Adunits$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Adunits$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
@@ -2831,10 +4253,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Adunits$Get
-        | BodyResponseCallback<Schema$AdUnit>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
-      callback?: BodyResponseCallback<Schema$AdUnit>
-    ): void | GaxiosPromise<Schema$AdUnit> {
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnit> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Adunits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2867,7 +4296,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdUnit>(parameters, callback);
+        createAPIRequest<Schema$AdUnit>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdUnit>(parameters);
       }
@@ -2876,6 +4308,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.adunits.getAdCode
      * @desc Get ad code for the specified ad unit.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.adunits.getAdCode({
+     *     // Ad client with contains the ad unit.
+     *     adClientId: 'placeholder-value',
+     *     // Ad unit to get the code for.
+     *     adUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adCode": "my_adCode",
+     *   //   "ampBody": "my_ampBody",
+     *   //   "ampHead": "my_ampHead",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.adunits.getAdCode
      * @memberOf! ()
      *
@@ -2887,9 +4367,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     getAdCode(
+      params: Params$Resource$Adunits$Getadcode,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAdCode(
       params?: Params$Resource$Adunits$Getadcode,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdCode>;
+    getAdCode(
+      params: Params$Resource$Adunits$Getadcode,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAdCode(
       params: Params$Resource$Adunits$Getadcode,
       options: MethodOptions | BodyResponseCallback<Schema$AdCode>,
@@ -2903,10 +4392,17 @@ export namespace adsense_v1_4 {
     getAdCode(
       paramsOrCallback?:
         | Params$Resource$Adunits$Getadcode
-        | BodyResponseCallback<Schema$AdCode>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdCode>,
-      callback?: BodyResponseCallback<Schema$AdCode>
-    ): void | GaxiosPromise<Schema$AdCode> {
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdCode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Adunits$Getadcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2940,7 +4436,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdCode>(parameters, callback);
+        createAPIRequest<Schema$AdCode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdCode>(parameters);
       }
@@ -2949,6 +4448,58 @@ export namespace adsense_v1_4 {
     /**
      * adsense.adunits.list
      * @desc List all ad units in the specified ad client for this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.adunits.list({
+     *     // Ad client for which to list ad units.
+     *     adClientId: 'placeholder-value',
+     *     // Whether to include inactive ad units. Default: true.
+     *     includeInactive: 'placeholder-value',
+     *     // The maximum number of ad units to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.adunits.list
      * @memberOf! ()
      *
@@ -2962,9 +4513,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Adunits$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Adunits$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdUnits>;
+    list(
+      params: Params$Resource$Adunits$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Adunits$List,
       options: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
@@ -2978,10 +4538,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Adunits$List
-        | BodyResponseCallback<Schema$AdUnits>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
-      callback?: BodyResponseCallback<Schema$AdUnits>
-    ): void | GaxiosPromise<Schema$AdUnits> {
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnits> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3013,7 +4580,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdUnits>(parameters, callback);
+        createAPIRequest<Schema$AdUnits>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdUnits>(parameters);
       }
@@ -3021,11 +4591,6 @@ export namespace adsense_v1_4 {
   }
 
   export interface Params$Resource$Adunits$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client for which to get the ad unit.
      */
@@ -3038,11 +4603,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Adunits$Getadcode
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad client with contains the ad unit.
      */
     adClientId?: string;
@@ -3052,11 +4612,6 @@ export namespace adsense_v1_4 {
     adUnitId?: string;
   }
   export interface Params$Resource$Adunits$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client for which to list ad units.
      */
@@ -3084,6 +4639,58 @@ export namespace adsense_v1_4 {
     /**
      * adsense.adunits.customchannels.list
      * @desc List all custom channels which the specified ad unit belongs to.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.adunits.customchannels.list({
+     *     // Ad client which contains the ad unit.
+     *     adClientId: 'placeholder-value',
+     *     // Ad unit for which to list custom channels.
+     *     adUnitId: 'placeholder-value',
+     *     // The maximum number of custom channels to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.adunits.customchannels.list
      * @memberOf! ()
      *
@@ -3097,9 +4704,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Adunits$Customchannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Adunits$Customchannels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomChannels>;
+    list(
+      params: Params$Resource$Adunits$Customchannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Adunits$Customchannels$List,
       options: MethodOptions | BodyResponseCallback<Schema$CustomChannels>,
@@ -3113,12 +4729,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Adunits$Customchannels$List
-        | BodyResponseCallback<Schema$CustomChannels>,
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomChannels>,
-      callback?: BodyResponseCallback<Schema$CustomChannels>
-    ): void | GaxiosPromise<Schema$CustomChannels> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannels> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Adunits$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3152,7 +4773,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomChannels>(parameters, callback);
+        createAPIRequest<Schema$CustomChannels>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomChannels>(parameters);
       }
@@ -3161,11 +4785,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Adunits$Customchannels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client which contains the ad unit.
      */
@@ -3193,6 +4812,41 @@ export namespace adsense_v1_4 {
     /**
      * adsense.alerts.delete
      * @desc Dismiss (delete) the specified alert from the publisher's AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.alerts.delete({
+     *     // Alert to delete.
+     *     alertId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.alerts.delete
      * @memberOf! ()
      *
@@ -3203,9 +4857,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Alerts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Alerts$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Alerts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Alerts$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3219,10 +4882,15 @@ export namespace adsense_v1_4 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Alerts$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3255,7 +4923,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3264,6 +4935,50 @@ export namespace adsense_v1_4 {
     /**
      * adsense.alerts.list
      * @desc List the alerts for this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.alerts.list({
+     *     // The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
+     *     locale: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.alerts.list
      * @memberOf! ()
      *
@@ -3274,9 +4989,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Alerts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Alerts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Alerts>;
+    list(
+      params: Params$Resource$Alerts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Alerts$List,
       options: MethodOptions | BodyResponseCallback<Schema$Alerts>,
@@ -3290,10 +5014,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Alerts$List
-        | BodyResponseCallback<Schema$Alerts>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Alerts>,
-      callback?: BodyResponseCallback<Schema$Alerts>
-    ): void | GaxiosPromise<Schema$Alerts> {
+        | BodyResponseCallback<Schema$Alerts>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Alerts>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Alerts>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Alerts> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3326,7 +5057,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Alerts>(parameters, callback);
+        createAPIRequest<Schema$Alerts>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Alerts>(parameters);
       }
@@ -3335,21 +5069,11 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Alerts$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Alert to delete.
      */
     alertId?: string;
   }
   export interface Params$Resource$Alerts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
      */
@@ -3367,6 +5091,55 @@ export namespace adsense_v1_4 {
     /**
      * adsense.customchannels.get
      * @desc Get the specified custom channel from the specified ad client.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.customchannels.get({
+     *     // Ad client which contains the custom channel.
+     *     adClientId: 'placeholder-value',
+     *     // Custom channel to retrieve.
+     *     customChannelId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": "my_code",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "targetingInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.customchannels.get
      * @memberOf! ()
      *
@@ -3378,9 +5151,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Customchannels$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Customchannels$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomChannel>;
+    get(
+      params: Params$Resource$Customchannels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Customchannels$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CustomChannel>,
@@ -3394,12 +5176,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Customchannels$Get
-        | BodyResponseCallback<Schema$CustomChannel>,
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomChannel>,
-      callback?: BodyResponseCallback<Schema$CustomChannel>
-    ): void | GaxiosPromise<Schema$CustomChannel> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customchannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3433,7 +5220,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomChannel>(parameters, callback);
+        createAPIRequest<Schema$CustomChannel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomChannel>(parameters);
       }
@@ -3442,6 +5232,56 @@ export namespace adsense_v1_4 {
     /**
      * adsense.customchannels.list
      * @desc List all custom channels in the specified ad client for this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.customchannels.list({
+     *     // Ad client for which to list custom channels.
+     *     adClientId: 'placeholder-value',
+     *     // The maximum number of custom channels to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.customchannels.list
      * @memberOf! ()
      *
@@ -3454,9 +5294,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customchannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customchannels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomChannels>;
+    list(
+      params: Params$Resource$Customchannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customchannels$List,
       options: MethodOptions | BodyResponseCallback<Schema$CustomChannels>,
@@ -3470,12 +5319,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customchannels$List
-        | BodyResponseCallback<Schema$CustomChannels>,
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomChannels>,
-      callback?: BodyResponseCallback<Schema$CustomChannels>
-    ): void | GaxiosPromise<Schema$CustomChannels> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannels> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3508,7 +5362,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomChannels>(parameters, callback);
+        createAPIRequest<Schema$CustomChannels>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomChannels>(parameters);
       }
@@ -3517,11 +5374,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Customchannels$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client which contains the custom channel.
      */
@@ -3533,11 +5385,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Customchannels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client for which to list custom channels.
      */
@@ -3561,6 +5408,60 @@ export namespace adsense_v1_4 {
     /**
      * adsense.customchannels.adunits.list
      * @desc List all ad units in the specified custom channel.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.customchannels.adunits.list({
+     *     // Ad client which contains the custom channel.
+     *     adClientId: 'placeholder-value',
+     *     // Custom channel for which to list ad units.
+     *     customChannelId: 'placeholder-value',
+     *     // Whether to include inactive ad units. Default: true.
+     *     includeInactive: 'placeholder-value',
+     *     // The maximum number of ad units to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.customchannels.adunits.list
      * @memberOf! ()
      *
@@ -3575,9 +5476,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customchannels$Adunits$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customchannels$Adunits$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdUnits>;
+    list(
+      params: Params$Resource$Customchannels$Adunits$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customchannels$Adunits$List,
       options: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
@@ -3591,10 +5501,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customchannels$Adunits$List
-        | BodyResponseCallback<Schema$AdUnits>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
-      callback?: BodyResponseCallback<Schema$AdUnits>
-    ): void | GaxiosPromise<Schema$AdUnits> {
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnits> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customchannels$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3628,7 +5545,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdUnits>(parameters, callback);
+        createAPIRequest<Schema$AdUnits>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdUnits>(parameters);
       }
@@ -3637,11 +5557,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Customchannels$Adunits$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client which contains the custom channel.
      */
@@ -3684,6 +5599,47 @@ export namespace adsense_v1_4 {
     /**
      * adsense.metadata.dimensions.list
      * @desc List the metadata for the dimensions available to this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.metadata.dimensions.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.metadata.dimensions.list
      * @memberOf! ()
      *
@@ -3693,9 +5649,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Metadata$Dimensions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Metadata$Dimensions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Metadata>;
+    list(
+      params: Params$Resource$Metadata$Dimensions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Metadata$Dimensions$List,
       options: MethodOptions | BodyResponseCallback<Schema$Metadata>,
@@ -3709,10 +5674,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Metadata$Dimensions$List
-        | BodyResponseCallback<Schema$Metadata>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Metadata>,
-      callback?: BodyResponseCallback<Schema$Metadata>
-    ): void | GaxiosPromise<Schema$Metadata> {
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Metadata> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Metadata$Dimensions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3746,7 +5718,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Metadata>(parameters, callback);
+        createAPIRequest<Schema$Metadata>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Metadata>(parameters);
       }
@@ -3754,12 +5729,7 @@ export namespace adsense_v1_4 {
   }
 
   export interface Params$Resource$Metadata$Dimensions$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
 
   export class Resource$Metadata$Metrics {
     context: APIRequestContext;
@@ -3770,6 +5740,47 @@ export namespace adsense_v1_4 {
     /**
      * adsense.metadata.metrics.list
      * @desc List the metadata for the metrics available to this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.metadata.metrics.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.metadata.metrics.list
      * @memberOf! ()
      *
@@ -3779,9 +5790,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Metadata$Metrics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Metadata$Metrics$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Metadata>;
+    list(
+      params: Params$Resource$Metadata$Metrics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Metadata$Metrics$List,
       options: MethodOptions | BodyResponseCallback<Schema$Metadata>,
@@ -3795,10 +5815,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Metadata$Metrics$List
-        | BodyResponseCallback<Schema$Metadata>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Metadata>,
-      callback?: BodyResponseCallback<Schema$Metadata>
-    ): void | GaxiosPromise<Schema$Metadata> {
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Metadata> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Metadata$Metrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3832,7 +5859,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Metadata>(parameters, callback);
+        createAPIRequest<Schema$Metadata>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Metadata>(parameters);
       }
@@ -3840,12 +5870,7 @@ export namespace adsense_v1_4 {
   }
 
   export interface Params$Resource$Metadata$Metrics$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
 
   export class Resource$Payments {
     context: APIRequestContext;
@@ -3856,6 +5881,47 @@ export namespace adsense_v1_4 {
     /**
      * adsense.payments.list
      * @desc List the payments for this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.payments.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.payments.list
      * @memberOf! ()
      *
@@ -3865,9 +5931,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Payments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Payments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Payments>;
+    list(
+      params: Params$Resource$Payments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Payments$List,
       options: MethodOptions | BodyResponseCallback<Schema$Payments>,
@@ -3881,10 +5956,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Payments$List
-        | BodyResponseCallback<Schema$Payments>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Payments>,
-      callback?: BodyResponseCallback<Schema$Payments>
-    ): void | GaxiosPromise<Schema$Payments> {
+        | BodyResponseCallback<Schema$Payments>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Payments>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Payments>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Payments> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Payments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3917,19 +5999,17 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Payments>(parameters, callback);
+        createAPIRequest<Schema$Payments>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Payments>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Payments$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Payments$List extends StandardParameters {}
 
   export class Resource$Reports {
     context: APIRequestContext;
@@ -3942,6 +6022,81 @@ export namespace adsense_v1_4 {
     /**
      * adsense.reports.generate
      * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.reports.generate({
+     *     // Accounts upon which to report.
+     *     accountId: 'placeholder-value',
+     *     // Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
+     *     currency: '[a-zA-Z]+',
+     *     // Dimensions to base the report on.
+     *     dimension: '[a-zA-Z_]+',
+     *     // End of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     *     endDate:
+     *       'd{4}-d{2}-d{2}|(today|startOfMonth|startOfYear)(([-+]d+[dwmy]){0,3}?)|(latest-(d{2})-(d{2})(-d+y)?)|(latest-latest-(d{2})(-d+m)?)',
+     *     // Filters to be run on the report.
+     *     filter: '[a-zA-Z_]+(==|=@).+',
+     *     // Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     *     locale: '[a-zA-Z_]+',
+     *     // The maximum number of rows of report data to return.
+     *     maxResults: 'placeholder-value',
+     *     // Numeric columns to include in the report.
+     *     metric: '[a-zA-Z_]+',
+     *     // The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
+     *     sort: '(+|-)?[a-zA-Z_]+',
+     *     // Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     *     startDate:
+     *       'd{4}-d{2}-d{2}|(today|startOfMonth|startOfYear)(([-+]d+[dwmy]){0,3}?)|(latest-(d{2})-(d{2})(-d+y)?)|(latest-latest-(d{2})(-d+m)?)',
+     *     // Index of the first row of report data to return.
+     *     startIndex: 'placeholder-value',
+     *     // Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
+     *     useTimezoneReporting: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averages": [],
+     *   //   "endDate": "my_endDate",
+     *   //   "headers": [],
+     *   //   "kind": "my_kind",
+     *   //   "rows": [],
+     *   //   "startDate": "my_startDate",
+     *   //   "totalMatchedRows": "my_totalMatchedRows",
+     *   //   "totals": [],
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.reports.generate
      * @memberOf! ()
      *
@@ -3963,9 +6118,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     generate(
+      params: Params$Resource$Reports$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
       params?: Params$Resource$Reports$Generate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdsenseReportsGenerateResponse>;
+    generate(
+      params: Params$Resource$Reports$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generate(
       params: Params$Resource$Reports$Generate,
       options:
@@ -3983,12 +6147,20 @@ export namespace adsense_v1_4 {
     generate(
       paramsOrCallback?:
         | Params$Resource$Reports$Generate
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
-      callback?: BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
-    ): void | GaxiosPromise<Schema$AdsenseReportsGenerateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdsenseReportsGenerateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4023,7 +6195,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -4034,11 +6206,6 @@ export namespace adsense_v1_4 {
   }
 
   export interface Params$Resource$Reports$Generate extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Accounts upon which to report.
      */
@@ -4098,6 +6265,63 @@ export namespace adsense_v1_4 {
     /**
      * adsense.reports.saved.generate
      * @desc Generate an AdSense report based on the saved report ID sent in the query parameters.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.reports.saved.generate({
+     *     // Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     *     locale: '[a-zA-Z_]+',
+     *     // The maximum number of rows of report data to return.
+     *     maxResults: 'placeholder-value',
+     *     // The saved report to retrieve.
+     *     savedReportId: 'placeholder-value',
+     *     // Index of the first row of report data to return.
+     *     startIndex: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averages": [],
+     *   //   "endDate": "my_endDate",
+     *   //   "headers": [],
+     *   //   "kind": "my_kind",
+     *   //   "rows": [],
+     *   //   "startDate": "my_startDate",
+     *   //   "totalMatchedRows": "my_totalMatchedRows",
+     *   //   "totals": [],
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.reports.saved.generate
      * @memberOf! ()
      *
@@ -4111,9 +6335,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     generate(
+      params: Params$Resource$Reports$Saved$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
       params?: Params$Resource$Reports$Saved$Generate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdsenseReportsGenerateResponse>;
+    generate(
+      params: Params$Resource$Reports$Saved$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generate(
       params: Params$Resource$Reports$Saved$Generate,
       options:
@@ -4131,12 +6364,20 @@ export namespace adsense_v1_4 {
     generate(
       paramsOrCallback?:
         | Params$Resource$Reports$Saved$Generate
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
-      callback?: BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
-    ): void | GaxiosPromise<Schema$AdsenseReportsGenerateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdsenseReportsGenerateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Saved$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4172,7 +6413,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -4184,6 +6425,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.reports.saved.list
      * @desc List all saved reports in this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.reports.saved.list({
+     *     // The maximum number of saved reports to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.reports.saved.list
      * @memberOf! ()
      *
@@ -4195,9 +6484,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Reports$Saved$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Reports$Saved$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedReports>;
+    list(
+      params: Params$Resource$Reports$Saved$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Reports$Saved$List,
       options: MethodOptions | BodyResponseCallback<Schema$SavedReports>,
@@ -4211,12 +6509,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Reports$Saved$List
-        | BodyResponseCallback<Schema$SavedReports>,
+        | BodyResponseCallback<Schema$SavedReports>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedReports>,
-      callback?: BodyResponseCallback<Schema$SavedReports>
-    ): void | GaxiosPromise<Schema$SavedReports> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedReports>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedReports>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedReports> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Saved$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4250,7 +6553,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedReports>(parameters, callback);
+        createAPIRequest<Schema$SavedReports>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedReports>(parameters);
       }
@@ -4259,11 +6565,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Reports$Saved$Generate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
      */
@@ -4284,11 +6585,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Reports$Saved$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of saved reports to include in the response, used for paging.
      */
     maxResults?: number;
@@ -4307,6 +6603,52 @@ export namespace adsense_v1_4 {
     /**
      * adsense.savedadstyles.get
      * @desc Get a specific saved ad style from the user's account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.savedadstyles.get({
+     *     // Saved ad style to retrieve.
+     *     savedAdStyleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adStyle": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.savedadstyles.get
      * @memberOf! ()
      *
@@ -4317,9 +6659,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Savedadstyles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Savedadstyles$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedAdStyle>;
+    get(
+      params: Params$Resource$Savedadstyles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Savedadstyles$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SavedAdStyle>,
@@ -4333,12 +6684,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Savedadstyles$Get
-        | BodyResponseCallback<Schema$SavedAdStyle>,
+        | BodyResponseCallback<Schema$SavedAdStyle>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedAdStyle>,
-      callback?: BodyResponseCallback<Schema$SavedAdStyle>
-    ): void | GaxiosPromise<Schema$SavedAdStyle> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedAdStyle>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedAdStyle>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedAdStyle> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Savedadstyles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4371,7 +6727,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedAdStyle>(parameters, callback);
+        createAPIRequest<Schema$SavedAdStyle>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedAdStyle>(parameters);
       }
@@ -4380,6 +6739,54 @@ export namespace adsense_v1_4 {
     /**
      * adsense.savedadstyles.list
      * @desc List all saved ad styles in the user's account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.savedadstyles.list({
+     *     // The maximum number of saved ad styles to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.savedadstyles.list
      * @memberOf! ()
      *
@@ -4391,9 +6798,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Savedadstyles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Savedadstyles$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedAdStyles>;
+    list(
+      params: Params$Resource$Savedadstyles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Savedadstyles$List,
       options: MethodOptions | BodyResponseCallback<Schema$SavedAdStyles>,
@@ -4407,12 +6823,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Savedadstyles$List
-        | BodyResponseCallback<Schema$SavedAdStyles>,
+        | BodyResponseCallback<Schema$SavedAdStyles>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedAdStyles>,
-      callback?: BodyResponseCallback<Schema$SavedAdStyles>
-    ): void | GaxiosPromise<Schema$SavedAdStyles> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedAdStyles>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedAdStyles>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedAdStyles> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Savedadstyles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4446,7 +6867,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedAdStyles>(parameters, callback);
+        createAPIRequest<Schema$SavedAdStyles>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedAdStyles>(parameters);
       }
@@ -4456,22 +6880,12 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Savedadstyles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Saved ad style to retrieve.
      */
     savedAdStyleId?: string;
   }
   export interface Params$Resource$Savedadstyles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of saved ad styles to include in the response, used for paging.
      */
@@ -4491,6 +6905,56 @@ export namespace adsense_v1_4 {
     /**
      * adsense.urlchannels.list
      * @desc List all URL channels in the specified ad client for this AdSense account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v1.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.urlchannels.list({
+     *     // Ad client for which to list URL channels.
+     *     adClientId: 'placeholder-value',
+     *     // The maximum number of URL channels to include in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adsense.urlchannels.list
      * @memberOf! ()
      *
@@ -4503,9 +6967,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Urlchannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Urlchannels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UrlChannels>;
+    list(
+      params: Params$Resource$Urlchannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Urlchannels$List,
       options: MethodOptions | BodyResponseCallback<Schema$UrlChannels>,
@@ -4519,12 +6992,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Urlchannels$List
-        | BodyResponseCallback<Schema$UrlChannels>,
+        | BodyResponseCallback<Schema$UrlChannels>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UrlChannels>,
-      callback?: BodyResponseCallback<Schema$UrlChannels>
-    ): void | GaxiosPromise<Schema$UrlChannels> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UrlChannels>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UrlChannels>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UrlChannels> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Urlchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4556,7 +7034,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UrlChannels>(parameters, callback);
+        createAPIRequest<Schema$UrlChannels>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UrlChannels>(parameters);
       }
@@ -4564,11 +7045,6 @@ export namespace adsense_v1_4 {
   }
 
   export interface Params$Resource$Urlchannels$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client for which to list URL channels.
      */

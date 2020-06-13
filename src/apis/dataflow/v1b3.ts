@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace dataflow_v1b3 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace dataflow_v1b3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -173,6 +183,23 @@ export namespace dataflow_v1b3 {
     position?: Schema$Position;
   }
   /**
+   * Job information for templates.
+   */
+  export interface Schema$Artifact {
+    /**
+     * Container image path set for flex Template.
+     */
+    containerSpec?: Schema$ContainerSpec;
+    /**
+     * job_graph_gcs_path set for legacy Template.
+     */
+    jobGraphGcsPath?: string | null;
+    /**
+     * Metadata set for legacy Template.
+     */
+    metadata?: Schema$TemplateMetadata;
+  }
+  /**
    * A structured message reporting an autoscaling decision made by the Dataflow service.
    */
   export interface Schema$AutoscalingEvent {
@@ -253,6 +280,15 @@ export namespace dataflow_v1b3 {
     tableId?: string | null;
   }
   /**
+   * Commit will add a new TemplateVersion to an existing template.
+   */
+  export interface Schema$CommitTemplateVersionRequest {
+    /**
+     * TemplateVersion obejct to create.
+     */
+    templateVersion?: Schema$TemplateVersion;
+  }
+  /**
    * Description of an interstitial value between transforms in an execution stage.
    */
   export interface Schema$ComponentSource {
@@ -327,6 +363,23 @@ export namespace dataflow_v1b3 {
      * Position within the inner source.
      */
     position?: Schema$Position;
+  }
+  /**
+   * Container Spec.
+   */
+  export interface Schema$ContainerSpec {
+    /**
+     * Name of the docker container image. E.g., gcr.io/project/some-image
+     */
+    image?: string | null;
+    /**
+     * Metadata describing a template including description and validation rules.
+     */
+    metadata?: Schema$TemplateMetadata;
+    /**
+     * Required. SDK info of the Flex Template.
+     */
+    sdkInfo?: Schema$SDKInfo;
   }
   /**
    * CounterMetadata includes all static non-name non-value counter attributes.
@@ -515,6 +568,15 @@ export namespace dataflow_v1b3 {
     parameters?: {[key: string]: string} | null;
   }
   /**
+   * Creates a new Template with TemplateVersions.
+   */
+  export interface Schema$CreateTemplateVersionRequest {
+    /**
+     * The TemplateVersion object to create.
+     */
+    templateVersion?: Schema$TemplateVersion;
+  }
+  /**
    * Identifies the location of a custom souce.
    */
   export interface Schema$CustomSourceLocation {
@@ -549,6 +611,10 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string | null;
   }
+  /**
+   * Response from deleting a snapshot.
+   */
+  export interface Schema$DeleteSnapshotResponse {}
   /**
    * Specification of one of the bundles produced as a result of splitting a Source (e.g. when executing a SourceSplitRequest, or when splitting an active task using WorkItemStatus.dynamic_source_split), relative to the source being split.
    */
@@ -675,6 +741,10 @@ export namespace dataflow_v1b3 {
     residual?: Schema$DerivedSource;
   }
   /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   */
+  export interface Schema$Empty {}
+  /**
    * Describes the environment in which a Dataflow Job runs.
    */
   export interface Schema$Environment {
@@ -726,6 +796,14 @@ export namespace dataflow_v1b3 {
      * The worker pools. At least one &quot;harness&quot; worker pool must be specified in order for the job to have workers.
      */
     workerPools?: Schema$WorkerPool[];
+    /**
+     * The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1&quot;. Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane&#39;s region.
+     */
+    workerRegion?: string | null;
+    /**
+     * The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1-a&quot;. Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane&#39;s region is chosen based on available capacity.
+     */
+    workerZone?: string | null;
   }
   /**
    * A message describing the state of a particular execution stage.
@@ -861,9 +939,17 @@ export namespace dataflow_v1b3 {
      */
     metadata?: Schema$TemplateMetadata;
     /**
+     * Describes the runtime metadata with SDKInfo and available parameters.
+     */
+    runtimeMetadata?: Schema$RuntimeMetadata;
+    /**
      * The status of the get template request. Any problems with the request will be indicated in the error_details.
      */
     status?: Schema$Status;
+    /**
+     * Template Type.
+     */
+    templateType?: string | null;
   }
   /**
    * Histogram of value counts for a distribution.  Buckets have an inclusive lower bound and exclusive upper bound and use &quot;1,2,5 bucketing&quot;: The first bucket range is from [0,1) and all subsequent bucket boundaries are powers of ten multiplied by 1, 2, or 5. Thus, bucket boundaries are 0, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, ... Negative values are not supported.
@@ -1201,6 +1287,49 @@ export namespace dataflow_v1b3 {
     start?: string | null;
   }
   /**
+   * Launch FlexTemplate Parameter.
+   */
+  export interface Schema$LaunchFlexTemplateParameter {
+    /**
+     * Spec about the container image to launch.
+     */
+    containerSpec?: Schema$ContainerSpec;
+    /**
+     * Gcs path to a file with json serialized ContainerSpec as content.
+     */
+    containerSpecGcsPath?: string | null;
+    /**
+     * Required. The job name to use for the created job.
+     */
+    jobName?: string | null;
+    /**
+     * The parameters for FlexTemplate. Ex. {&quot;num_workers&quot;:&quot;5&quot;}
+     */
+    parameters?: {[key: string]: string} | null;
+  }
+  /**
+   * A request to launch a Cloud Dataflow job from a FlexTemplate.
+   */
+  export interface Schema$LaunchFlexTemplateRequest {
+    /**
+     * Required. Parameter to launch a job form Flex Template.
+     */
+    launchParameter?: Schema$LaunchFlexTemplateParameter;
+    /**
+     * If true, the request is validated but not actually executed. Defaults to false.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * Response to the request to launch a job from Flex Template.
+   */
+  export interface Schema$LaunchFlexTemplateResponse {
+    /**
+     * The job that was launched, if the request was not a dry run and the job was successfully launched.
+     */
+    job?: Schema$Job;
+  }
+  /**
    * Parameters to provide to the template being launched.
    */
   export interface Schema$LaunchTemplateParameters {
@@ -1298,7 +1427,7 @@ export namespace dataflow_v1b3 {
     nextPageToken?: string | null;
   }
   /**
-   * Response to a request to list Cloud Dataflow jobs.  This may be a partial response, depending on the page size in the ListJobsRequest.
+   * Response to a request to list Cloud Dataflow jobs in a project. This might be a partial response, depending on the page size in the ListJobsRequest. However, if the project does not have any jobs, an instance of ListJobsResponse is not returned and the requests&#39;s response body is empty {}.
    */
   export interface Schema$ListJobsResponse {
     /**
@@ -1313,6 +1442,28 @@ export namespace dataflow_v1b3 {
      * Set if there may be more results than fit in this response.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * List of snapshots.
+   */
+  export interface Schema$ListSnapshotsResponse {
+    /**
+     * Returned snapshots.
+     */
+    snapshots?: Schema$Snapshot[];
+  }
+  /**
+   * Respond a list of TemplateVersions.
+   */
+  export interface Schema$ListTemplateVersionsResponse {
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of TemplateVersions.
+     */
+    templateVersions?: Schema$TemplateVersion[];
   }
   /**
    * MapTask consists of an ordered set of instructions, each of which describes one particular low-level operation for the worker to perform in order to accomplish the MapTask&#39;s WorkItem.  Each instruction must appear in the list before any instructions which depends on its output.
@@ -1334,6 +1485,27 @@ export namespace dataflow_v1b3 {
      * System-defined name of this MapTask. Unique across the workflow.
      */
     systemName?: string | null;
+  }
+  /**
+   * Information about the memory usage of a worker or a container within a worker.
+   */
+  export interface Schema$MemInfo {
+    /**
+     * Instantenous memory limit in bytes.
+     */
+    currentLimitBytes?: string | null;
+    /**
+     * Instantenous memory (RSS) size in bytes.
+     */
+    currentRssBytes?: string | null;
+    /**
+     * Timestamp of the measurement.
+     */
+    timestamp?: string | null;
+    /**
+     * Total memory (RSS) usage since start up in GB * ms.
+     */
+    totalGbMs?: string | null;
   }
   /**
    * The metric short id is returned to the user alongside an offset into ReportWorkItemStatusRequest
@@ -1413,6 +1585,54 @@ export namespace dataflow_v1b3 {
      * Timestamp associated with the metric value. Optional when workers are reporting work progress; it will be filled in responses from the metrics API.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Either add the label to TemplateVersion or remove it from the TemplateVersion.
+   */
+  export interface Schema$ModifyTemplateVersionLabelRequest {
+    /**
+     * The label key for update.
+     */
+    key?: string | null;
+    /**
+     * Requests for add label to TemplateVersion or remove label from TemplateVersion.
+     */
+    op?: string | null;
+    /**
+     * The label value for update.
+     */
+    value?: string | null;
+  }
+  /**
+   * Respond the labels in the TemplateVersion.
+   */
+  export interface Schema$ModifyTemplateVersionLabelResponse {
+    /**
+     * All the label in the TemplateVersion.
+     */
+    labels?: {[key: string]: string} | null;
+  }
+  /**
+   * Add a tag to the current TemplateVersion. If tag exist in another TemplateVersion in the Template, remove the tag before add it to the current TemplateVersion. If remove_only set, remove the tag from the current TemplateVersion.
+   */
+  export interface Schema$ModifyTemplateVersionTagRequest {
+    /**
+     * The flag that indicates if the request is only for remove tag from TemplateVersion.
+     */
+    removeOnly?: boolean | null;
+    /**
+     * The tag for update.
+     */
+    tag?: string | null;
+  }
+  /**
+   * Respond the current tags in the TemplateVersion.
+   */
+  export interface Schema$ModifyTemplateVersionTagResponse {
+    /**
+     * All the tags in the TemplateVersion.
+     */
+    tags?: string[] | null;
   }
   /**
    * Describes mounted data disk.
@@ -1532,6 +1752,10 @@ export namespace dataflow_v1b3 {
      * Required. The name of the parameter.
      */
     name?: string | null;
+    /**
+     * Optional. The type of the parameter. Used for selecting input picker.
+     */
+    paramType?: string | null;
     /**
      * Optional. Regexes that the parameter must match.
      */
@@ -1684,6 +1908,32 @@ export namespace dataflow_v1b3 {
     withAttributes?: boolean | null;
   }
   /**
+   * Represents a Pubsub snapshot.
+   */
+  export interface Schema$PubsubSnapshotMetadata {
+    /**
+     * The expire time of the Pubsub snapshot.
+     */
+    expireTime?: string | null;
+    /**
+     * The name of the Pubsub snapshot.
+     */
+    snapshotName?: string | null;
+    /**
+     * The name of the Pubsub topic.
+     */
+    topicName?: string | null;
+  }
+  /**
+   * Information about a validated query.
+   */
+  export interface Schema$QueryInfo {
+    /**
+     * Includes an entry for each satisfied QueryProperty.
+     */
+    queryProperty?: string[] | null;
+  }
+  /**
    * An instruction that reads records. Takes no inputs, produces one output.
    */
   export interface Schema$ReadInstruction {
@@ -1748,9 +1998,17 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$ResourceUtilizationReport {
     /**
+     * Per container information. Key: container name.
+     */
+    containers?: {[key: string]: Schema$ResourceUtilizationReport} | null;
+    /**
      * CPU utilization samples.
      */
     cpuTime?: Schema$CPUTime[];
+    /**
+     * Memory utilization samples.
+     */
+    memoryInfo?: Schema$MemInfo[];
   }
   /**
    * Service-side response to WorkerMessage reporting resource utilization.
@@ -1772,6 +2030,10 @@ export namespace dataflow_v1b3 {
      * Whether to bypass the safety checks for the job&#39;s temporary directory. Use with caution.
      */
     bypassTempDirValidation?: boolean | null;
+    /**
+     * Configuration for VM IPs.
+     */
+    ipConfiguration?: string | null;
     /**
      * Optional. Name for the Cloud KMS key for the job. Key format is: projects/&lt;project&gt;/locations/&lt;location&gt;/keyRings/&lt;keyring&gt;/cryptoKeys/&lt;key&gt;
      */
@@ -1805,13 +2067,56 @@ export namespace dataflow_v1b3 {
      */
     tempLocation?: string | null;
     /**
-     * Optional. Specifies whether worker pools should be started with private IP addresses. False by default.
+     * The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1&quot;. Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane&#39;s region.
      */
-    usePrivateIps?: boolean | null;
+    workerRegion?: string | null;
     /**
-     * The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline.
+     * The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1-a&quot;. Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane&#39;s region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence.
+     */
+    workerZone?: string | null;
+    /**
+     * The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline. In the future, worker_zone will take precedence.
      */
     zone?: string | null;
+  }
+  /**
+   * RuntimeMetadata describing a runtime environment.
+   */
+  export interface Schema$RuntimeMetadata {
+    /**
+     * The parameters for the template.
+     */
+    parameters?: Schema$ParameterMetadata[];
+    /**
+     * SDK Info for the template.
+     */
+    sdkInfo?: Schema$SDKInfo;
+  }
+  /**
+   * Defines a SDK harness container for executing Dataflow pipelines.
+   */
+  export interface Schema$SdkHarnessContainerImage {
+    /**
+     * A docker container image that resides in Google Container Registry.
+     */
+    containerImage?: string | null;
+    /**
+     * If true, recommends the Dataflow service to use only one core per SDK container instance with this image. If false (or unset) recommends using more than one core per SDK container instance with this image for efficiency. Note that Dataflow service may choose to override this property if needed.
+     */
+    useSingleCorePerContainer?: boolean | null;
+  }
+  /**
+   * SDK Information.
+   */
+  export interface Schema$SDKInfo {
+    /**
+     * Required. The SDK Language.
+     */
+    language?: string | null;
+    /**
+     * Optional. The SDK version.
+     */
+    version?: string | null;
   }
   /**
    * The version of the SDK used to run the job.
@@ -1961,6 +2266,68 @@ export namespace dataflow_v1b3 {
      * The sink to write to, plus its parameters.
      */
     spec?: {[key: string]: any} | null;
+  }
+  /**
+   * Represents a snapshot of a job.
+   */
+  export interface Schema$Snapshot {
+    /**
+     * The time this snapshot was created.
+     */
+    creationTime?: string | null;
+    /**
+     * User specified description of the snapshot. Maybe empty.
+     */
+    description?: string | null;
+    /**
+     * The disk byte size of the snapshot. Only available for snapshots in READY state.
+     */
+    diskSizeBytes?: string | null;
+    /**
+     * The unique ID of this snapshot.
+     */
+    id?: string | null;
+    /**
+     * The project this snapshot belongs to.
+     */
+    projectId?: string | null;
+    /**
+     * PubSub snapshot metadata.
+     */
+    pubsubMetadata?: Schema$PubsubSnapshotMetadata[];
+    /**
+     * The job this snapshot was created from.
+     */
+    sourceJobId?: string | null;
+    /**
+     * State of the snapshot.
+     */
+    state?: string | null;
+    /**
+     * The time after which this snapshot will be automatically deleted.
+     */
+    ttl?: string | null;
+  }
+  /**
+   * Request to create a snapshot of a job.
+   */
+  export interface Schema$SnapshotJobRequest {
+    /**
+     * User specified description of the snapshot. Maybe empty.
+     */
+    description?: string | null;
+    /**
+     * The location that contains this job.
+     */
+    location?: string | null;
+    /**
+     * If true, perform snapshots for sources which support this.
+     */
+    snapshotSources?: boolean | null;
+    /**
+     * TTL for the snapshot.
+     */
+    ttl?: string | null;
   }
   /**
    * A source that records can be read and decoded from.
@@ -2533,6 +2900,47 @@ export namespace dataflow_v1b3 {
     parameters?: Schema$ParameterMetadata[];
   }
   /**
+   * ///////////////////////////////////////////////////////////////////////////// //// Template Catalog is used to organize user TemplateVersions. //// TemplateVersions that have the same project_id and display_name are //// belong to the same Template. //// Templates with the same project_id belong to the same Project. //// TemplateVersion may have labels and multiple labels are allowed. //// Duplicated labels in the same `TemplateVersion` are not allowed. //// TemplateVersion may have tags and multiple tags are allowed. Duplicated //// tags in the same `Template` are not allowed!
+   */
+  export interface Schema$TemplateVersion {
+    /**
+     * Job graph and metadata if it is a legacy Template. Container image path and metadata if it is flex Template.
+     */
+    artifact?: Schema$Artifact;
+    /**
+     * Creation time of this TemplateVersion.
+     */
+    createTime?: string | null;
+    /**
+     * Template description from the user.
+     */
+    description?: string | null;
+    /**
+     * A customized name for Template. Multiple TemplateVersions per Template.
+     */
+    displayName?: string | null;
+    /**
+     * Labels for the Template Version. Labels can be duplicate within Template.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * A unique project_id. Multiple Templates per Project.
+     */
+    projectId?: string | null;
+    /**
+     * Alias for version_id, helps locate a TemplateVersion.
+     */
+    tags?: string[] | null;
+    /**
+     * Either LEGACY or FLEX. This should match with the type of artifact.
+     */
+    type?: string | null;
+    /**
+     * An auto generated version_id for TemplateVersion.
+     */
+    versionId?: string | null;
+  }
+  /**
    * Global topology of the streaming Dataflow job, including all computations and their sharded locations.
    */
   export interface Schema$TopologyConfig {
@@ -2594,6 +3002,10 @@ export namespace dataflow_v1b3 {
      * Will be empty if validation succeeds.
      */
     errorMessage?: string | null;
+    /**
+     * Information about the validated query. Not defined if validation fails.
+     */
+    queryInfo?: Schema$QueryInfo;
   }
   /**
    * WorkerHealthReport contains information about the health of a worker.  The VM should be identified by the labels attached to the WorkerMessage that this health ping belongs to.
@@ -2782,6 +3194,10 @@ export namespace dataflow_v1b3 {
      */
     poolArgs?: {[key: string]: any} | null;
     /**
+     * Set of SDK harness containers needed to execute this pipeline. This will only be set in the Fn API path. For non-cross-language pipelines this should have only one entry. Cross-language pipelines will have two or more entries.
+     */
+    sdkHarnessContainerImages?: Schema$SdkHarnessContainerImage[];
+    /**
      * Subnetwork to which VMs will be assigned, if desired.  Expected to be of the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
      */
     subnetwork?: string | null;
@@ -2794,7 +3210,7 @@ export namespace dataflow_v1b3 {
      */
     teardownPolicy?: string | null;
     /**
-     * Required. Docker container image that executes the Cloud Dataflow worker harness, residing in Google Container Registry.
+     * Required. Docker container image that executes the Cloud Dataflow worker harness, residing in Google Container Registry.  Deprecated for the Fn API path. Use sdk_harness_container_images instead.
      */
     workerHarnessContainerImage?: string | null;
     /**
@@ -3027,33 +3443,253 @@ export namespace dataflow_v1b3 {
 
   export class Resource$Projects {
     context: APIRequestContext;
+    catalogTemplates: Resource$Projects$Catalogtemplates;
     jobs: Resource$Projects$Jobs;
     locations: Resource$Projects$Locations;
+    snapshots: Resource$Projects$Snapshots;
     templates: Resource$Projects$Templates;
+    templateVersions: Resource$Projects$Templateversions;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.catalogTemplates = new Resource$Projects$Catalogtemplates(
+        this.context
+      );
       this.jobs = new Resource$Projects$Jobs(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
+      this.snapshots = new Resource$Projects$Snapshots(this.context);
       this.templates = new Resource$Projects$Templates(this.context);
+      this.templateVersions = new Resource$Projects$Templateversions(
+        this.context
+      );
+    }
+
+    /**
+     * dataflow.projects.deleteSnapshots
+     * @desc Deletes a snapshot.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.deleteSnapshots({
+     *     // The location that contains this snapshot.
+     *     location: 'placeholder-value',
+     *     // The ID of the Cloud Platform project that the snapshot belongs to.
+     *     projectId: 'placeholder-value',
+     *     // The ID of the snapshot.
+     *     snapshotId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.deleteSnapshots
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.location The location that contains this snapshot.
+     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
+     * @param {string=} params.snapshotId The ID of the snapshot.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteSnapshots(
+      params: Params$Resource$Projects$Deletesnapshots,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteSnapshots(
+      params?: Params$Resource$Projects$Deletesnapshots,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeleteSnapshotResponse>;
+    deleteSnapshots(
+      params: Params$Resource$Projects$Deletesnapshots,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteSnapshots(
+      params: Params$Resource$Projects$Deletesnapshots,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
+      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
+    ): void;
+    deleteSnapshots(
+      params: Params$Resource$Projects$Deletesnapshots,
+      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
+    ): void;
+    deleteSnapshots(
+      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
+    ): void;
+    deleteSnapshots(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Deletesnapshots
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DeleteSnapshotResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Deletesnapshots;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Deletesnapshots;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/snapshots').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeleteSnapshotResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$DeleteSnapshotResponse>(parameters);
+      }
     }
 
     /**
      * dataflow.projects.workerMessages
      * @desc Send a worker_message to the service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.workerMessages({
+     *     // The project to send the WorkerMessages to.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "location": "my_location",
+     *       //   "workerMessages": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "workerMessageResponses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.workerMessages
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId The project to send the WorkerMessages to.
-     * @param {().SendWorkerMessagesRequest} params.resource Request body data
+     * @param {().SendWorkerMessagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     workerMessages(
+      params: Params$Resource$Projects$Workermessages,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    workerMessages(
       params?: Params$Resource$Projects$Workermessages,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SendWorkerMessagesResponse>;
+    workerMessages(
+      params: Params$Resource$Projects$Workermessages,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     workerMessages(
       params: Params$Resource$Projects$Workermessages,
       options:
@@ -3071,12 +3707,20 @@ export namespace dataflow_v1b3 {
     workerMessages(
       paramsOrCallback?:
         | Params$Resource$Projects$Workermessages
-        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
-      callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
-    ): void | GaxiosPromise<Schema$SendWorkerMessagesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SendWorkerMessagesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workermessages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3111,7 +3755,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$SendWorkerMessagesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SendWorkerMessagesResponse>(parameters);
@@ -3119,13 +3763,23 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Workermessages
+  export interface Params$Resource$Projects$Deletesnapshots
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
+     * The location that contains this snapshot.
      */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the snapshot belongs to.
+     */
+    projectId?: string;
+    /**
+     * The ID of the snapshot.
+     */
+    snapshotId?: string;
+  }
+  export interface Params$Resource$Projects$Workermessages
+    extends StandardParameters {
     /**
      * The project to send the WorkerMessages to.
      */
@@ -3135,6 +3789,985 @@ export namespace dataflow_v1b3 {
      * Request body metadata
      */
     requestBody?: Schema$SendWorkerMessagesRequest;
+  }
+
+  export class Resource$Projects$Catalogtemplates {
+    context: APIRequestContext;
+    templateVersions: Resource$Projects$Catalogtemplates$Templateversions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.templateVersions = new Resource$Projects$Catalogtemplates$Templateversions(
+        this.context
+      );
+    }
+
+    /**
+     * dataflow.projects.catalogTemplates.commit
+     * @desc Creates a new TemplateVersion (Important: not new Template) entry in the spanner table. Requires project_id and display_name (template).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.catalogTemplates.commit({
+     *     // The location of the template, name includes project_id and display_name.
+     *     //
+     *     // Commit using project_id(pid1) and display_name(tid1).
+     *     //   Format: projects/{pid1}/catalogTemplates/{tid1}
+     *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "templateVersion": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifact": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "tags": [],
+     *   //   "type": "my_type",
+     *   //   "versionId": "my_versionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.catalogTemplates.commit
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The location of the template, name includes project_id and display_name.  Commit using project_id(pid1) and display_name(tid1).   Format: projects/{pid1}/catalogTemplates/{tid1}
+     * @param {().CommitTemplateVersionRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    commit(
+      params: Params$Resource$Projects$Catalogtemplates$Commit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    commit(
+      params?: Params$Resource$Projects$Catalogtemplates$Commit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TemplateVersion>;
+    commit(
+      params: Params$Resource$Projects$Catalogtemplates$Commit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    commit(
+      params: Params$Resource$Projects$Catalogtemplates$Commit,
+      options: MethodOptions | BodyResponseCallback<Schema$TemplateVersion>,
+      callback: BodyResponseCallback<Schema$TemplateVersion>
+    ): void;
+    commit(
+      params: Params$Resource$Projects$Catalogtemplates$Commit,
+      callback: BodyResponseCallback<Schema$TemplateVersion>
+    ): void;
+    commit(callback: BodyResponseCallback<Schema$TemplateVersion>): void;
+    commit(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Catalogtemplates$Commit
+        | BodyResponseCallback<Schema$TemplateVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TemplateVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TemplateVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TemplateVersion> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Catalogtemplates$Commit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Catalogtemplates$Commit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/{+name}:commit').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TemplateVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$TemplateVersion>(parameters);
+      }
+    }
+
+    /**
+     * dataflow.projects.catalogTemplates.delete
+     * @desc Deletes an existing Template. Do nothing if Template does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.catalogTemplates.delete({
+     *     // name includes project_id and display_name.
+     *     //
+     *     // Delete by project_id(pid1) and display_name(tid1).
+     *     //   Format: projects/{pid1}/catalogTemplates/{tid1}
+     *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.catalogTemplates.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name name includes project_id and display_name.  Delete by project_id(pid1) and display_name(tid1).   Format: projects/{pid1}/catalogTemplates/{tid1}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Projects$Catalogtemplates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Catalogtemplates$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Catalogtemplates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Catalogtemplates$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Catalogtemplates$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Catalogtemplates$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Catalogtemplates$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Catalogtemplates$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * dataflow.projects.catalogTemplates.get
+     * @desc Get TemplateVersion using project_id and display_name with an optional version_id field. Get latest (has tag "latest") TemplateVersion if version_id not set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.catalogTemplates.get({
+     *     // Resource name includes project_id and display_name. version_id is optional.
+     *     // Get the latest TemplateVersion if version_id not set.
+     *     //
+     *     // Get by project_id(pid1) and display_name(tid1):
+     *     //   Format: projects/{pid1}/catalogTemplates/{tid1}
+     *     //
+     *     // Get by project_id(pid1), display_name(tid1), and version_id(vid1):
+     *     //   Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifact": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "tags": [],
+     *   //   "type": "my_type",
+     *   //   "versionId": "my_versionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.catalogTemplates.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name includes project_id and display_name. version_id is optional. Get the latest TemplateVersion if version_id not set.  Get by project_id(pid1) and display_name(tid1):   Format: projects/{pid1}/catalogTemplates/{tid1}  Get by project_id(pid1), display_name(tid1), and version_id(vid1):   Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Catalogtemplates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Catalogtemplates$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TemplateVersion>;
+    get(
+      params: Params$Resource$Projects$Catalogtemplates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Catalogtemplates$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TemplateVersion>,
+      callback: BodyResponseCallback<Schema$TemplateVersion>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Catalogtemplates$Get,
+      callback: BodyResponseCallback<Schema$TemplateVersion>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$TemplateVersion>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Catalogtemplates$Get
+        | BodyResponseCallback<Schema$TemplateVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TemplateVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TemplateVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TemplateVersion> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Catalogtemplates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Catalogtemplates$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TemplateVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$TemplateVersion>(parameters);
+      }
+    }
+
+    /**
+     * dataflow.projects.catalogTemplates.label
+     * @desc Updates the label of the TemplateVersion. Label can be duplicated in Template, so either add or remove the label in the TemplateVersion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.catalogTemplates.label({
+     *     // Resource name includes project_id, display_name, and version_id.
+     *     //
+     *     // Updates by project_id(pid1), display_name(tid1), and version_id(vid1):
+     *     //   Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "key": "my_key",
+     *       //   "op": "my_op",
+     *       //   "value": "my_value"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labels": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.catalogTemplates.label
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name includes project_id, display_name, and version_id.  Updates by project_id(pid1), display_name(tid1), and version_id(vid1):   Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     * @param {().ModifyTemplateVersionLabelRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    label(
+      params: Params$Resource$Projects$Catalogtemplates$Label,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    label(
+      params?: Params$Resource$Projects$Catalogtemplates$Label,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ModifyTemplateVersionLabelResponse>;
+    label(
+      params: Params$Resource$Projects$Catalogtemplates$Label,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    label(
+      params: Params$Resource$Projects$Catalogtemplates$Label,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>,
+      callback: BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>
+    ): void;
+    label(
+      params: Params$Resource$Projects$Catalogtemplates$Label,
+      callback: BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>
+    ): void;
+    label(
+      callback: BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>
+    ): void;
+    label(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Catalogtemplates$Label
+        | BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ModifyTemplateVersionLabelResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Catalogtemplates$Label;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Catalogtemplates$Label;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/{+name}:label').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ModifyTemplateVersionLabelResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ModifyTemplateVersionLabelResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * dataflow.projects.catalogTemplates.tag
+     * @desc Updates the tag of the TemplateVersion, and tag is unique in Template. If tag exists in another TemplateVersion in the Template, updates the tag to this TemplateVersion will remove it from the old TemplateVersion and add it to this TemplateVersion. If request is remove_only (remove_only = true), remove the tag from this TemplateVersion.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.catalogTemplates.tag({
+     *     // Resource name includes project_id, display_name, and version_id.
+     *     //
+     *     // Updates by project_id(pid1), display_name(tid1), and version_id(vid1):
+     *     //   Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "removeOnly": false,
+     *       //   "tag": "my_tag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "tags": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.catalogTemplates.tag
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name includes project_id, display_name, and version_id.  Updates by project_id(pid1), display_name(tid1), and version_id(vid1):   Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     * @param {().ModifyTemplateVersionTagRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    tag(
+      params: Params$Resource$Projects$Catalogtemplates$Tag,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    tag(
+      params?: Params$Resource$Projects$Catalogtemplates$Tag,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ModifyTemplateVersionTagResponse>;
+    tag(
+      params: Params$Resource$Projects$Catalogtemplates$Tag,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    tag(
+      params: Params$Resource$Projects$Catalogtemplates$Tag,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>,
+      callback: BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>
+    ): void;
+    tag(
+      params: Params$Resource$Projects$Catalogtemplates$Tag,
+      callback: BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>
+    ): void;
+    tag(
+      callback: BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>
+    ): void;
+    tag(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Catalogtemplates$Tag
+        | BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ModifyTemplateVersionTagResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Catalogtemplates$Tag;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Catalogtemplates$Tag;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/{+name}:tag').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ModifyTemplateVersionTagResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ModifyTemplateVersionTagResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Catalogtemplates$Commit
+    extends StandardParameters {
+    /**
+     * The location of the template, name includes project_id and display_name.  Commit using project_id(pid1) and display_name(tid1).   Format: projects/{pid1}/catalogTemplates/{tid1}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CommitTemplateVersionRequest;
+  }
+  export interface Params$Resource$Projects$Catalogtemplates$Delete
+    extends StandardParameters {
+    /**
+     * name includes project_id and display_name.  Delete by project_id(pid1) and display_name(tid1).   Format: projects/{pid1}/catalogTemplates/{tid1}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Catalogtemplates$Get
+    extends StandardParameters {
+    /**
+     * Resource name includes project_id and display_name. version_id is optional. Get the latest TemplateVersion if version_id not set.  Get by project_id(pid1) and display_name(tid1):   Format: projects/{pid1}/catalogTemplates/{tid1}  Get by project_id(pid1), display_name(tid1), and version_id(vid1):   Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Catalogtemplates$Label
+    extends StandardParameters {
+    /**
+     * Resource name includes project_id, display_name, and version_id.  Updates by project_id(pid1), display_name(tid1), and version_id(vid1):   Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ModifyTemplateVersionLabelRequest;
+  }
+  export interface Params$Resource$Projects$Catalogtemplates$Tag
+    extends StandardParameters {
+    /**
+     * Resource name includes project_id, display_name, and version_id.  Updates by project_id(pid1), display_name(tid1), and version_id(vid1):   Format: projects/{pid1}/catalogTemplates/{tid1@vid}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ModifyTemplateVersionTagRequest;
+  }
+
+  export class Resource$Projects$Catalogtemplates$Templateversions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dataflow.projects.catalogTemplates.templateVersions.create
+     * @desc Creates a new Template with TemplateVersion. Requires project_id(projects) and template display_name(catalogTemplates). The template display_name is set by the user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.catalogTemplates.templateVersions.create({
+     *     // The parent project and template that the TemplateVersion will be created
+     *     // under.
+     *     //
+     *     // Create using project_id(pid1) and display_name(tid1).
+     *     //   Format: projects/{pid1}/catalogTemplates/{tid1}
+     *     parent: 'projects/my-project/catalogTemplates/my-catalogTemplate',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "templateVersion": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifact": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "tags": [],
+     *   //   "type": "my_type",
+     *   //   "versionId": "my_versionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.catalogTemplates.templateVersions.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The parent project and template that the TemplateVersion will be created under.  Create using project_id(pid1) and display_name(tid1).   Format: projects/{pid1}/catalogTemplates/{tid1}
+     * @param {().CreateTemplateVersionRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Catalogtemplates$Templateversions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Catalogtemplates$Templateversions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TemplateVersion>;
+    create(
+      params: Params$Resource$Projects$Catalogtemplates$Templateversions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Catalogtemplates$Templateversions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$TemplateVersion>,
+      callback: BodyResponseCallback<Schema$TemplateVersion>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Catalogtemplates$Templateversions$Create,
+      callback: BodyResponseCallback<Schema$TemplateVersion>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$TemplateVersion>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Catalogtemplates$Templateversions$Create
+        | BodyResponseCallback<Schema$TemplateVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TemplateVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TemplateVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TemplateVersion> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Catalogtemplates$Templateversions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Catalogtemplates$Templateversions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/{+parent}/templateVersions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TemplateVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$TemplateVersion>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Catalogtemplates$Templateversions$Create
+    extends StandardParameters {
+    /**
+     * The parent project and template that the TemplateVersion will be created under.  Create using project_id(pid1) and display_name(tid1).   Format: projects/{pid1}/catalogTemplates/{tid1}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreateTemplateVersionRequest;
   }
 
   export class Resource$Projects$Jobs {
@@ -3152,6 +4785,68 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.jobs.aggregated
      * @desc List the jobs of a project across all regions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.jobs.aggregated({
+     *     // The kind of filter to use.
+     *     filter: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains this job.
+     *     location: 'placeholder-value',
+     *     // If there are many jobs, limit response to at most this many.
+     *     // The actual number of jobs returned will be the lesser of max_responses
+     *     // and an unspecified server-defined limit.
+     *     pageSize: 'placeholder-value',
+     *     // Set this to the 'next_page_token' field of a previous response
+     *     // to request additional results in a long list.
+     *     pageToken: 'placeholder-value',
+     *     // The project which owns the jobs.
+     *     projectId: 'placeholder-value',
+     *     // Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "failedLocation": [],
+     *   //   "jobs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.jobs.aggregated
      * @memberOf! ()
      *
@@ -3167,9 +4862,18 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     aggregated(
+      params: Params$Resource$Projects$Jobs$Aggregated,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    aggregated(
       params?: Params$Resource$Projects$Jobs$Aggregated,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListJobsResponse>;
+    aggregated(
+      params: Params$Resource$Projects$Jobs$Aggregated,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     aggregated(
       params: Params$Resource$Projects$Jobs$Aggregated,
       options: MethodOptions | BodyResponseCallback<Schema$ListJobsResponse>,
@@ -3183,12 +4887,17 @@ export namespace dataflow_v1b3 {
     aggregated(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Aggregated
-        | BodyResponseCallback<Schema$ListJobsResponse>,
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListJobsResponse>,
-      callback?: BodyResponseCallback<Schema$ListJobsResponse>
-    ): void | GaxiosPromise<Schema$ListJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListJobsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Aggregated;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3221,7 +4930,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
       }
@@ -3230,6 +4942,113 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.jobs.create
      * @desc Creates a Cloud Dataflow job.  To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.jobs.create({
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains this job.
+     *     location: 'placeholder-value',
+     *     // The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. This field is now in the Job message.
+     *     replaceJobId: 'placeholder-value',
+     *     // The level of information requested in response.
+     *     view: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientRequestId": "my_clientRequestId",
+     *       //   "createTime": "my_createTime",
+     *       //   "createdFromSnapshotId": "my_createdFromSnapshotId",
+     *       //   "currentState": "my_currentState",
+     *       //   "currentStateTime": "my_currentStateTime",
+     *       //   "environment": {},
+     *       //   "executionInfo": {},
+     *       //   "id": "my_id",
+     *       //   "jobMetadata": {},
+     *       //   "labels": {},
+     *       //   "location": "my_location",
+     *       //   "name": "my_name",
+     *       //   "pipelineDescription": {},
+     *       //   "projectId": "my_projectId",
+     *       //   "replaceJobId": "my_replaceJobId",
+     *       //   "replacedByJobId": "my_replacedByJobId",
+     *       //   "requestedState": "my_requestedState",
+     *       //   "stageStates": [],
+     *       //   "startTime": "my_startTime",
+     *       //   "steps": [],
+     *       //   "stepsLocation": "my_stepsLocation",
+     *       //   "tempFiles": [],
+     *       //   "transformNameMapping": {},
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientRequestId": "my_clientRequestId",
+     *   //   "createTime": "my_createTime",
+     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
+     *   //   "currentState": "my_currentState",
+     *   //   "currentStateTime": "my_currentStateTime",
+     *   //   "environment": {},
+     *   //   "executionInfo": {},
+     *   //   "id": "my_id",
+     *   //   "jobMetadata": {},
+     *   //   "labels": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "pipelineDescription": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "replaceJobId": "my_replaceJobId",
+     *   //   "replacedByJobId": "my_replacedByJobId",
+     *   //   "requestedState": "my_requestedState",
+     *   //   "stageStates": [],
+     *   //   "startTime": "my_startTime",
+     *   //   "steps": [],
+     *   //   "stepsLocation": "my_stepsLocation",
+     *   //   "tempFiles": [],
+     *   //   "transformNameMapping": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.jobs.create
      * @memberOf! ()
      *
@@ -3238,15 +5057,24 @@ export namespace dataflow_v1b3 {
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
      * @param {string=} params.replaceJobId Deprecated. This field is now in the Job message.
      * @param {string=} params.view The level of information requested in response.
-     * @param {().Job} params.resource Request body data
+     * @param {().Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Jobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Jobs$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    create(
+      params: Params$Resource$Projects$Jobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Jobs$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -3260,10 +5088,17 @@ export namespace dataflow_v1b3 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Create
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3297,7 +5132,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -3306,6 +5144,82 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.jobs.get
      * @desc Gets the state of the specified Cloud Dataflow job.  To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.jobs.get({
+     *     // The job ID.
+     *     jobId: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains this job.
+     *     location: 'placeholder-value',
+     *     // The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // The level of information requested in response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientRequestId": "my_clientRequestId",
+     *   //   "createTime": "my_createTime",
+     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
+     *   //   "currentState": "my_currentState",
+     *   //   "currentStateTime": "my_currentStateTime",
+     *   //   "environment": {},
+     *   //   "executionInfo": {},
+     *   //   "id": "my_id",
+     *   //   "jobMetadata": {},
+     *   //   "labels": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "pipelineDescription": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "replaceJobId": "my_replaceJobId",
+     *   //   "replacedByJobId": "my_replacedByJobId",
+     *   //   "requestedState": "my_requestedState",
+     *   //   "stageStates": [],
+     *   //   "startTime": "my_startTime",
+     *   //   "steps": [],
+     *   //   "stepsLocation": "my_stepsLocation",
+     *   //   "tempFiles": [],
+     *   //   "transformNameMapping": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.jobs.get
      * @memberOf! ()
      *
@@ -3319,9 +5233,18 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Jobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Jobs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    get(
+      params: Params$Resource$Projects$Jobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Jobs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -3335,10 +5258,17 @@ export namespace dataflow_v1b3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Get
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3372,7 +5302,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -3381,6 +5314,61 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.jobs.getMetrics
      * @desc Request the job status.  To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.jobs.getMetrics({
+     *     // The job to get messages for.
+     *     jobId: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains the job specified by job_id.
+     *     location: 'placeholder-value',
+     *     // A project id.
+     *     projectId: 'placeholder-value',
+     *     // Return only metric data that has changed since this time.
+     *     // Default is to return all information about all metrics for the job.
+     *     startTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metricTime": "my_metricTime",
+     *   //   "metrics": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.jobs.getMetrics
      * @memberOf! ()
      *
@@ -3394,9 +5382,18 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     getMetrics(
+      params: Params$Resource$Projects$Jobs$Getmetrics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getMetrics(
       params?: Params$Resource$Projects$Jobs$Getmetrics,
       options?: MethodOptions
     ): GaxiosPromise<Schema$JobMetrics>;
+    getMetrics(
+      params: Params$Resource$Projects$Jobs$Getmetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getMetrics(
       params: Params$Resource$Projects$Jobs$Getmetrics,
       options: MethodOptions | BodyResponseCallback<Schema$JobMetrics>,
@@ -3410,12 +5407,17 @@ export namespace dataflow_v1b3 {
     getMetrics(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Getmetrics
-        | BodyResponseCallback<Schema$JobMetrics>,
+        | BodyResponseCallback<Schema$JobMetrics>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$JobMetrics>,
-      callback?: BodyResponseCallback<Schema$JobMetrics>
-    ): void | GaxiosPromise<Schema$JobMetrics> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$JobMetrics>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$JobMetrics>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$JobMetrics> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Getmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3448,7 +5450,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$JobMetrics>(parameters, callback);
+        createAPIRequest<Schema$JobMetrics>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$JobMetrics>(parameters);
       }
@@ -3457,6 +5462,68 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.jobs.list
      * @desc List the jobs of a project.  To list the jobs of a project in a region, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.jobs.list({
+     *     // The kind of filter to use.
+     *     filter: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains this job.
+     *     location: 'placeholder-value',
+     *     // If there are many jobs, limit response to at most this many.
+     *     // The actual number of jobs returned will be the lesser of max_responses
+     *     // and an unspecified server-defined limit.
+     *     pageSize: 'placeholder-value',
+     *     // Set this to the 'next_page_token' field of a previous response
+     *     // to request additional results in a long list.
+     *     pageToken: 'placeholder-value',
+     *     // The project which owns the jobs.
+     *     projectId: 'placeholder-value',
+     *     // Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "failedLocation": [],
+     *   //   "jobs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.jobs.list
      * @memberOf! ()
      *
@@ -3472,9 +5539,18 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Jobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Jobs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Jobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Jobs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListJobsResponse>,
@@ -3488,12 +5564,17 @@ export namespace dataflow_v1b3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$List
-        | BodyResponseCallback<Schema$ListJobsResponse>,
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListJobsResponse>,
-      callback?: BodyResponseCallback<Schema$ListJobsResponse>
-    ): void | GaxiosPromise<Schema$ListJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListJobsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3527,15 +5608,281 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
       }
     }
 
     /**
+     * dataflow.projects.jobs.snapshot
+     * @desc Snapshot the state of a streaming job.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.jobs.snapshot({
+     *     // The job to be snapshotted.
+     *     jobId: 'placeholder-value',
+     *     // The project which owns the job to be snapshotted.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "location": "my_location",
+     *       //   "snapshotSources": false,
+     *       //   "ttl": "my_ttl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTime": "my_creationTime",
+     *   //   "description": "my_description",
+     *   //   "diskSizeBytes": "my_diskSizeBytes",
+     *   //   "id": "my_id",
+     *   //   "projectId": "my_projectId",
+     *   //   "pubsubMetadata": [],
+     *   //   "sourceJobId": "my_sourceJobId",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.jobs.snapshot
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId The job to be snapshotted.
+     * @param {string} params.projectId The project which owns the job to be snapshotted.
+     * @param {().SnapshotJobRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    snapshot(
+      params: Params$Resource$Projects$Jobs$Snapshot,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    snapshot(
+      params?: Params$Resource$Projects$Jobs$Snapshot,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Snapshot>;
+    snapshot(
+      params: Params$Resource$Projects$Jobs$Snapshot,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    snapshot(
+      params: Params$Resource$Projects$Jobs$Snapshot,
+      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    snapshot(
+      params: Params$Resource$Projects$Jobs$Snapshot,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    snapshot(callback: BodyResponseCallback<Schema$Snapshot>): void;
+    snapshot(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$Snapshot
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Snapshot> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$Snapshot;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Snapshot;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}:snapshot'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'jobId'],
+        pathParams: ['jobId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Snapshot>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Snapshot>(parameters);
+      }
+    }
+
+    /**
      * dataflow.projects.jobs.update
      * @desc Updates the state of an existing Cloud Dataflow job.  To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.jobs.update({
+     *     // The job ID.
+     *     jobId: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains this job.
+     *     location: 'placeholder-value',
+     *     // The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientRequestId": "my_clientRequestId",
+     *       //   "createTime": "my_createTime",
+     *       //   "createdFromSnapshotId": "my_createdFromSnapshotId",
+     *       //   "currentState": "my_currentState",
+     *       //   "currentStateTime": "my_currentStateTime",
+     *       //   "environment": {},
+     *       //   "executionInfo": {},
+     *       //   "id": "my_id",
+     *       //   "jobMetadata": {},
+     *       //   "labels": {},
+     *       //   "location": "my_location",
+     *       //   "name": "my_name",
+     *       //   "pipelineDescription": {},
+     *       //   "projectId": "my_projectId",
+     *       //   "replaceJobId": "my_replaceJobId",
+     *       //   "replacedByJobId": "my_replacedByJobId",
+     *       //   "requestedState": "my_requestedState",
+     *       //   "stageStates": [],
+     *       //   "startTime": "my_startTime",
+     *       //   "steps": [],
+     *       //   "stepsLocation": "my_stepsLocation",
+     *       //   "tempFiles": [],
+     *       //   "transformNameMapping": {},
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientRequestId": "my_clientRequestId",
+     *   //   "createTime": "my_createTime",
+     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
+     *   //   "currentState": "my_currentState",
+     *   //   "currentStateTime": "my_currentStateTime",
+     *   //   "environment": {},
+     *   //   "executionInfo": {},
+     *   //   "id": "my_id",
+     *   //   "jobMetadata": {},
+     *   //   "labels": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "pipelineDescription": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "replaceJobId": "my_replaceJobId",
+     *   //   "replacedByJobId": "my_replacedByJobId",
+     *   //   "requestedState": "my_requestedState",
+     *   //   "stageStates": [],
+     *   //   "startTime": "my_startTime",
+     *   //   "steps": [],
+     *   //   "stepsLocation": "my_stepsLocation",
+     *   //   "tempFiles": [],
+     *   //   "transformNameMapping": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.jobs.update
      * @memberOf! ()
      *
@@ -3543,15 +5890,24 @@ export namespace dataflow_v1b3 {
      * @param {string} params.jobId The job ID.
      * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-     * @param {().Job} params.resource Request body data
+     * @param {().Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Jobs$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Jobs$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    update(
+      params: Params$Resource$Projects$Jobs$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Jobs$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -3565,10 +5921,17 @@ export namespace dataflow_v1b3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Update
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3602,7 +5965,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -3611,11 +5977,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Jobs$Aggregated
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The kind of filter to use.
      */
@@ -3644,11 +6005,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Jobs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
@@ -3673,11 +6029,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Jobs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job ID.
      */
     jobId?: string;
@@ -3697,11 +6048,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Jobs$Getmetrics
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job to get messages for.
      */
     jobId?: string;
@@ -3720,11 +6066,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Jobs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The kind of filter to use.
      */
@@ -3750,13 +6091,24 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Update
+  export interface Params$Resource$Projects$Jobs$Snapshot
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
+     * The job to be snapshotted.
      */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+    jobId?: string;
+    /**
+     * The project which owns the job to be snapshotted.
+     */
+    projectId?: string;
 
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SnapshotJobRequest;
+  }
+  export interface Params$Resource$Projects$Jobs$Update
+    extends StandardParameters {
     /**
      * The job ID.
      */
@@ -3785,21 +6137,87 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.jobs.debug.getConfig
      * @desc Get encoded debug configuration for component. Not cacheable.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.jobs.debug.getConfig({
+     *     // The job id.
+     *     jobId: 'placeholder-value',
+     *     // The project id.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "componentId": "my_componentId",
+     *       //   "location": "my_location",
+     *       //   "workerId": "my_workerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": "my_config"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.jobs.debug.getConfig
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job id.
      * @param {string} params.projectId The project id.
-     * @param {().GetDebugConfigRequest} params.resource Request body data
+     * @param {().GetDebugConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getConfig(
+      params: Params$Resource$Projects$Jobs$Debug$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
       params?: Params$Resource$Projects$Jobs$Debug$Getconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetDebugConfigResponse>;
+    getConfig(
+      params: Params$Resource$Projects$Jobs$Debug$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getConfig(
       params: Params$Resource$Projects$Jobs$Debug$Getconfig,
       options:
@@ -3817,12 +6235,20 @@ export namespace dataflow_v1b3 {
     getConfig(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Debug$Getconfig
-        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
+        | BodyResponseCallback<Schema$GetDebugConfigResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
-      callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>
-    ): void | GaxiosPromise<Schema$GetDebugConfigResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetDebugConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetDebugConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetDebugConfigResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Debug$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3856,7 +6282,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetDebugConfigResponse>(parameters, callback);
+        createAPIRequest<Schema$GetDebugConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetDebugConfigResponse>(parameters);
       }
@@ -3865,21 +6294,86 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.jobs.debug.sendCapture
      * @desc Send encoded debug capture data for component.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.jobs.debug.sendCapture({
+     *     // The job id.
+     *     jobId: 'placeholder-value',
+     *     // The project id.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "componentId": "my_componentId",
+     *       //   "data": "my_data",
+     *       //   "location": "my_location",
+     *       //   "workerId": "my_workerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.jobs.debug.sendCapture
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job id.
      * @param {string} params.projectId The project id.
-     * @param {().SendDebugCaptureRequest} params.resource Request body data
+     * @param {().SendDebugCaptureRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     sendCapture(
+      params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    sendCapture(
       params?: Params$Resource$Projects$Jobs$Debug$Sendcapture,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SendDebugCaptureResponse>;
+    sendCapture(
+      params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     sendCapture(
       params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
       options:
@@ -3897,12 +6391,20 @@ export namespace dataflow_v1b3 {
     sendCapture(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Debug$Sendcapture
-        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+        | BodyResponseCallback<Schema$SendDebugCaptureResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
-      callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>
-    ): void | GaxiosPromise<Schema$SendDebugCaptureResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SendDebugCaptureResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SendDebugCaptureResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SendDebugCaptureResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Debug$Sendcapture;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3936,7 +6438,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SendDebugCaptureResponse>(parameters, callback);
+        createAPIRequest<Schema$SendDebugCaptureResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SendDebugCaptureResponse>(parameters);
       }
@@ -3945,11 +6450,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Jobs$Debug$Getconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The job id.
      */
@@ -3966,11 +6466,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Jobs$Debug$Sendcapture
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The job id.
      */
@@ -3995,6 +6490,75 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.jobs.messages.list
      * @desc Request the job status.  To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.jobs.messages.list({
+     *     // Return only messages with timestamps < end_time. The default is now
+     *     // (i.e. return up to the latest messages available).
+     *     endTime: 'placeholder-value',
+     *     // The job to get messages about.
+     *     jobId: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains the job specified by job_id.
+     *     location: 'placeholder-value',
+     *     // Filter to only get messages with importance >= level
+     *     minimumImportance: 'placeholder-value',
+     *     // If specified, determines the maximum number of messages to
+     *     // return.  If unspecified, the service may choose an appropriate
+     *     // default, or may return an arbitrarily large number of results.
+     *     pageSize: 'placeholder-value',
+     *     // If supplied, this should be the value of next_page_token returned
+     *     // by an earlier call. This will cause the next page of results to
+     *     // be returned.
+     *     pageToken: 'placeholder-value',
+     *     // A project id.
+     *     projectId: 'placeholder-value',
+     *     // If specified, return only messages with timestamps >= start_time.
+     *     // The default is the job creation time (i.e. beginning of messages).
+     *     startTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoscalingEvents": [],
+     *   //   "jobMessages": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.jobs.messages.list
      * @memberOf! ()
      *
@@ -4012,9 +6576,18 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Jobs$Messages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Jobs$Messages$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListJobMessagesResponse>;
+    list(
+      params: Params$Resource$Projects$Jobs$Messages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Jobs$Messages$List,
       options:
@@ -4030,12 +6603,20 @@ export namespace dataflow_v1b3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Messages$List
-        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
+        | BodyResponseCallback<Schema$ListJobMessagesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
-      callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>
-    ): void | GaxiosPromise<Schema$ListJobMessagesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListJobMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListJobMessagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListJobMessagesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Messages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4068,7 +6649,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListJobMessagesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListJobMessagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListJobMessagesResponse>(parameters);
       }
@@ -4077,11 +6661,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Jobs$Messages$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
      */
@@ -4125,21 +6704,92 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.jobs.workItems.lease
      * @desc Leases a dataflow WorkItem to run.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.jobs.workItems.lease({
+     *     // Identifies the workflow job this worker belongs to.
+     *     jobId: 'placeholder-value',
+     *     // Identifies the project this worker belongs to.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "currentWorkerTime": "my_currentWorkerTime",
+     *       //   "location": "my_location",
+     *       //   "requestedLeaseDuration": "my_requestedLeaseDuration",
+     *       //   "unifiedWorkerRequest": {},
+     *       //   "workItemTypes": [],
+     *       //   "workerCapabilities": [],
+     *       //   "workerId": "my_workerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "unifiedWorkerResponse": {},
+     *   //   "workItems": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.jobs.workItems.lease
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId Identifies the workflow job this worker belongs to.
      * @param {string} params.projectId Identifies the project this worker belongs to.
-     * @param {().LeaseWorkItemRequest} params.resource Request body data
+     * @param {().LeaseWorkItemRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     lease(
+      params: Params$Resource$Projects$Jobs$Workitems$Lease,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lease(
       params?: Params$Resource$Projects$Jobs$Workitems$Lease,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LeaseWorkItemResponse>;
+    lease(
+      params: Params$Resource$Projects$Jobs$Workitems$Lease,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     lease(
       params: Params$Resource$Projects$Jobs$Workitems$Lease,
       options:
@@ -4155,12 +6805,20 @@ export namespace dataflow_v1b3 {
     lease(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Workitems$Lease
-        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+        | BodyResponseCallback<Schema$LeaseWorkItemResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
-      callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>
-    ): void | GaxiosPromise<Schema$LeaseWorkItemResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LeaseWorkItemResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LeaseWorkItemResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LeaseWorkItemResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Workitems$Lease;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4194,7 +6852,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LeaseWorkItemResponse>(parameters, callback);
+        createAPIRequest<Schema$LeaseWorkItemResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LeaseWorkItemResponse>(parameters);
       }
@@ -4203,21 +6864,90 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.jobs.workItems.reportStatus
      * @desc Reports the status of dataflow WorkItems leased by a worker.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.jobs.workItems.reportStatus({
+     *     // The job which the WorkItem is part of.
+     *     jobId: 'placeholder-value',
+     *     // The project which owns the WorkItem's job.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "currentWorkerTime": "my_currentWorkerTime",
+     *       //   "location": "my_location",
+     *       //   "unifiedWorkerRequest": {},
+     *       //   "workItemStatuses": [],
+     *       //   "workerId": "my_workerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "unifiedWorkerResponse": {},
+     *   //   "workItemServiceStates": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.jobs.workItems.reportStatus
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job which the WorkItem is part of.
      * @param {string} params.projectId The project which owns the WorkItem's job.
-     * @param {().ReportWorkItemStatusRequest} params.resource Request body data
+     * @param {().ReportWorkItemStatusRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     reportStatus(
+      params: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reportStatus(
       params?: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReportWorkItemStatusResponse>;
+    reportStatus(
+      params: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reportStatus(
       params: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
       options:
@@ -4235,12 +6965,20 @@ export namespace dataflow_v1b3 {
     reportStatus(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Workitems$Reportstatus
-        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
-      callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
-    ): void | GaxiosPromise<Schema$ReportWorkItemStatusResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReportWorkItemStatusResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Workitems$Reportstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4276,7 +7014,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ReportWorkItemStatusResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ReportWorkItemStatusResponse>(
@@ -4288,11 +7026,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Jobs$Workitems$Lease
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifies the workflow job this worker belongs to.
      */
@@ -4310,11 +7043,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Jobs$Workitems$Reportstatus
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job which the WorkItem is part of.
      */
     jobId?: string;
@@ -4331,12 +7059,18 @@ export namespace dataflow_v1b3 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    flexTemplates: Resource$Projects$Locations$Flextemplates;
     jobs: Resource$Projects$Locations$Jobs;
+    snapshots: Resource$Projects$Locations$Snapshots;
     sql: Resource$Projects$Locations$Sql;
     templates: Resource$Projects$Locations$Templates;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.flexTemplates = new Resource$Projects$Locations$Flextemplates(
+        this.context
+      );
       this.jobs = new Resource$Projects$Locations$Jobs(this.context);
+      this.snapshots = new Resource$Projects$Locations$Snapshots(this.context);
       this.sql = new Resource$Projects$Locations$Sql(this.context);
       this.templates = new Resource$Projects$Locations$Templates(this.context);
     }
@@ -4344,21 +7078,88 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.workerMessages
      * @desc Send a worker_message to the service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.workerMessages({
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains the job.
+     *     location: 'placeholder-value',
+     *     // The project to send the WorkerMessages to.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "location": "my_location",
+     *       //   "workerMessages": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "workerMessageResponses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.workerMessages
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job.
      * @param {string} params.projectId The project to send the WorkerMessages to.
-     * @param {().SendWorkerMessagesRequest} params.resource Request body data
+     * @param {().SendWorkerMessagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     workerMessages(
+      params: Params$Resource$Projects$Locations$Workermessages,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    workerMessages(
       params?: Params$Resource$Projects$Locations$Workermessages,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SendWorkerMessagesResponse>;
+    workerMessages(
+      params: Params$Resource$Projects$Locations$Workermessages,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     workerMessages(
       params: Params$Resource$Projects$Locations$Workermessages,
       options:
@@ -4376,12 +7177,20 @@ export namespace dataflow_v1b3 {
     workerMessages(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Workermessages
-        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
-      callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
-    ): void | GaxiosPromise<Schema$SendWorkerMessagesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SendWorkerMessagesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workermessages;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4417,7 +7226,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$SendWorkerMessagesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SendWorkerMessagesResponse>(parameters);
@@ -4427,11 +7236,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Locations$Workermessages
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job.
      */
@@ -4447,15 +7251,201 @@ export namespace dataflow_v1b3 {
     requestBody?: Schema$SendWorkerMessagesRequest;
   }
 
+  export class Resource$Projects$Locations$Flextemplates {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dataflow.projects.locations.flexTemplates.launch
+     * @desc Launch a job with a FlexTemplate.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.flexTemplates.launch({
+     *     // Required. The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
+     *     // which to direct the request. E.g., us-central1, us-west1.
+     *     location: 'placeholder-value',
+     *     // Required. The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "launchParameter": {},
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "job": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.locations.flexTemplates.launch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.location Required. The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request. E.g., us-central1, us-west1.
+     * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
+     * @param {().LaunchFlexTemplateRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    launch(
+      params: Params$Resource$Projects$Locations$Flextemplates$Launch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    launch(
+      params?: Params$Resource$Projects$Locations$Flextemplates$Launch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LaunchFlexTemplateResponse>;
+    launch(
+      params: Params$Resource$Projects$Locations$Flextemplates$Launch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    launch(
+      params: Params$Resource$Projects$Locations$Flextemplates$Launch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LaunchFlexTemplateResponse>,
+      callback: BodyResponseCallback<Schema$LaunchFlexTemplateResponse>
+    ): void;
+    launch(
+      params: Params$Resource$Projects$Locations$Flextemplates$Launch,
+      callback: BodyResponseCallback<Schema$LaunchFlexTemplateResponse>
+    ): void;
+    launch(
+      callback: BodyResponseCallback<Schema$LaunchFlexTemplateResponse>
+    ): void;
+    launch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Flextemplates$Launch
+        | BodyResponseCallback<Schema$LaunchFlexTemplateResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LaunchFlexTemplateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LaunchFlexTemplateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LaunchFlexTemplateResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Flextemplates$Launch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Flextemplates$Launch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/flexTemplates:launch'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'location'],
+        pathParams: ['location', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LaunchFlexTemplateResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LaunchFlexTemplateResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Flextemplates$Launch
+    extends StandardParameters {
+    /**
+     * Required. The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request. E.g., us-central1, us-west1.
+     */
+    location?: string;
+    /**
+     * Required. The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LaunchFlexTemplateRequest;
+  }
+
   export class Resource$Projects$Locations$Jobs {
     context: APIRequestContext;
     debug: Resource$Projects$Locations$Jobs$Debug;
     messages: Resource$Projects$Locations$Jobs$Messages;
+    snapshots: Resource$Projects$Locations$Jobs$Snapshots;
     workItems: Resource$Projects$Locations$Jobs$Workitems;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.debug = new Resource$Projects$Locations$Jobs$Debug(this.context);
       this.messages = new Resource$Projects$Locations$Jobs$Messages(
+        this.context
+      );
+      this.snapshots = new Resource$Projects$Locations$Jobs$Snapshots(
         this.context
       );
       this.workItems = new Resource$Projects$Locations$Jobs$Workitems(
@@ -4466,6 +7456,113 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.jobs.create
      * @desc Creates a Cloud Dataflow job.  To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.jobs.create({
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains this job.
+     *     location: 'placeholder-value',
+     *     // The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. This field is now in the Job message.
+     *     replaceJobId: 'placeholder-value',
+     *     // The level of information requested in response.
+     *     view: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientRequestId": "my_clientRequestId",
+     *       //   "createTime": "my_createTime",
+     *       //   "createdFromSnapshotId": "my_createdFromSnapshotId",
+     *       //   "currentState": "my_currentState",
+     *       //   "currentStateTime": "my_currentStateTime",
+     *       //   "environment": {},
+     *       //   "executionInfo": {},
+     *       //   "id": "my_id",
+     *       //   "jobMetadata": {},
+     *       //   "labels": {},
+     *       //   "location": "my_location",
+     *       //   "name": "my_name",
+     *       //   "pipelineDescription": {},
+     *       //   "projectId": "my_projectId",
+     *       //   "replaceJobId": "my_replaceJobId",
+     *       //   "replacedByJobId": "my_replacedByJobId",
+     *       //   "requestedState": "my_requestedState",
+     *       //   "stageStates": [],
+     *       //   "startTime": "my_startTime",
+     *       //   "steps": [],
+     *       //   "stepsLocation": "my_stepsLocation",
+     *       //   "tempFiles": [],
+     *       //   "transformNameMapping": {},
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientRequestId": "my_clientRequestId",
+     *   //   "createTime": "my_createTime",
+     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
+     *   //   "currentState": "my_currentState",
+     *   //   "currentStateTime": "my_currentStateTime",
+     *   //   "environment": {},
+     *   //   "executionInfo": {},
+     *   //   "id": "my_id",
+     *   //   "jobMetadata": {},
+     *   //   "labels": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "pipelineDescription": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "replaceJobId": "my_replaceJobId",
+     *   //   "replacedByJobId": "my_replacedByJobId",
+     *   //   "requestedState": "my_requestedState",
+     *   //   "stageStates": [],
+     *   //   "startTime": "my_startTime",
+     *   //   "steps": [],
+     *   //   "stepsLocation": "my_stepsLocation",
+     *   //   "tempFiles": [],
+     *   //   "transformNameMapping": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.jobs.create
      * @memberOf! ()
      *
@@ -4474,15 +7571,24 @@ export namespace dataflow_v1b3 {
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
      * @param {string=} params.replaceJobId Deprecated. This field is now in the Job message.
      * @param {string=} params.view The level of information requested in response.
-     * @param {().Job} params.resource Request body data
+     * @param {().Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Jobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Jobs$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    create(
+      params: Params$Resource$Projects$Locations$Jobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Jobs$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -4496,10 +7602,17 @@ export namespace dataflow_v1b3 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobs$Create
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4532,7 +7645,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -4541,6 +7657,82 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.jobs.get
      * @desc Gets the state of the specified Cloud Dataflow job.  To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.jobs.get({
+     *     // The job ID.
+     *     jobId: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains this job.
+     *     location: 'placeholder-value',
+     *     // The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // The level of information requested in response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientRequestId": "my_clientRequestId",
+     *   //   "createTime": "my_createTime",
+     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
+     *   //   "currentState": "my_currentState",
+     *   //   "currentStateTime": "my_currentStateTime",
+     *   //   "environment": {},
+     *   //   "executionInfo": {},
+     *   //   "id": "my_id",
+     *   //   "jobMetadata": {},
+     *   //   "labels": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "pipelineDescription": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "replaceJobId": "my_replaceJobId",
+     *   //   "replacedByJobId": "my_replacedByJobId",
+     *   //   "requestedState": "my_requestedState",
+     *   //   "stageStates": [],
+     *   //   "startTime": "my_startTime",
+     *   //   "steps": [],
+     *   //   "stepsLocation": "my_stepsLocation",
+     *   //   "tempFiles": [],
+     *   //   "transformNameMapping": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.jobs.get
      * @memberOf! ()
      *
@@ -4554,9 +7746,18 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Jobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Jobs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    get(
+      params: Params$Resource$Projects$Locations$Jobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Jobs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -4570,10 +7771,17 @@ export namespace dataflow_v1b3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobs$Get
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4607,7 +7815,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -4616,6 +7827,61 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.jobs.getMetrics
      * @desc Request the job status.  To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.jobs.getMetrics({
+     *     // The job to get messages for.
+     *     jobId: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains the job specified by job_id.
+     *     location: 'placeholder-value',
+     *     // A project id.
+     *     projectId: 'placeholder-value',
+     *     // Return only metric data that has changed since this time.
+     *     // Default is to return all information about all metrics for the job.
+     *     startTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metricTime": "my_metricTime",
+     *   //   "metrics": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.jobs.getMetrics
      * @memberOf! ()
      *
@@ -4629,9 +7895,18 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     getMetrics(
+      params: Params$Resource$Projects$Locations$Jobs$Getmetrics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getMetrics(
       params?: Params$Resource$Projects$Locations$Jobs$Getmetrics,
       options?: MethodOptions
     ): GaxiosPromise<Schema$JobMetrics>;
+    getMetrics(
+      params: Params$Resource$Projects$Locations$Jobs$Getmetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getMetrics(
       params: Params$Resource$Projects$Locations$Jobs$Getmetrics,
       options: MethodOptions | BodyResponseCallback<Schema$JobMetrics>,
@@ -4645,12 +7920,17 @@ export namespace dataflow_v1b3 {
     getMetrics(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobs$Getmetrics
-        | BodyResponseCallback<Schema$JobMetrics>,
+        | BodyResponseCallback<Schema$JobMetrics>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$JobMetrics>,
-      callback?: BodyResponseCallback<Schema$JobMetrics>
-    ): void | GaxiosPromise<Schema$JobMetrics> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$JobMetrics>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$JobMetrics>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$JobMetrics> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Getmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4684,7 +7964,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$JobMetrics>(parameters, callback);
+        createAPIRequest<Schema$JobMetrics>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$JobMetrics>(parameters);
       }
@@ -4693,6 +7976,68 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.jobs.list
      * @desc List the jobs of a project.  To list the jobs of a project in a region, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.jobs.list({
+     *     // The kind of filter to use.
+     *     filter: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains this job.
+     *     location: 'placeholder-value',
+     *     // If there are many jobs, limit response to at most this many.
+     *     // The actual number of jobs returned will be the lesser of max_responses
+     *     // and an unspecified server-defined limit.
+     *     pageSize: 'placeholder-value',
+     *     // Set this to the 'next_page_token' field of a previous response
+     *     // to request additional results in a long list.
+     *     pageToken: 'placeholder-value',
+     *     // The project which owns the jobs.
+     *     projectId: 'placeholder-value',
+     *     // Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "failedLocation": [],
+     *   //   "jobs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.jobs.list
      * @memberOf! ()
      *
@@ -4708,9 +8053,18 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Jobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Jobs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Jobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Jobs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListJobsResponse>,
@@ -4724,12 +8078,17 @@ export namespace dataflow_v1b3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobs$List
-        | BodyResponseCallback<Schema$ListJobsResponse>,
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListJobsResponse>,
-      callback?: BodyResponseCallback<Schema$ListJobsResponse>
-    ): void | GaxiosPromise<Schema$ListJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListJobsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4762,15 +8121,285 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
       }
     }
 
     /**
+     * dataflow.projects.locations.jobs.snapshot
+     * @desc Snapshot the state of a streaming job.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.jobs.snapshot({
+     *     // The job to be snapshotted.
+     *     jobId: 'placeholder-value',
+     *     // The location that contains this job.
+     *     location: 'placeholder-value',
+     *     // The project which owns the job to be snapshotted.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "location": "my_location",
+     *       //   "snapshotSources": false,
+     *       //   "ttl": "my_ttl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTime": "my_creationTime",
+     *   //   "description": "my_description",
+     *   //   "diskSizeBytes": "my_diskSizeBytes",
+     *   //   "id": "my_id",
+     *   //   "projectId": "my_projectId",
+     *   //   "pubsubMetadata": [],
+     *   //   "sourceJobId": "my_sourceJobId",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.locations.jobs.snapshot
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId The job to be snapshotted.
+     * @param {string} params.location The location that contains this job.
+     * @param {string} params.projectId The project which owns the job to be snapshotted.
+     * @param {().SnapshotJobRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    snapshot(
+      params: Params$Resource$Projects$Locations$Jobs$Snapshot,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    snapshot(
+      params?: Params$Resource$Projects$Locations$Jobs$Snapshot,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Snapshot>;
+    snapshot(
+      params: Params$Resource$Projects$Locations$Jobs$Snapshot,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    snapshot(
+      params: Params$Resource$Projects$Locations$Jobs$Snapshot,
+      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    snapshot(
+      params: Params$Resource$Projects$Locations$Jobs$Snapshot,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    snapshot(callback: BodyResponseCallback<Schema$Snapshot>): void;
+    snapshot(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Snapshot
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Snapshot> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Snapshot;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Jobs$Snapshot;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}:snapshot'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'location', 'jobId'],
+        pathParams: ['jobId', 'location', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Snapshot>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Snapshot>(parameters);
+      }
+    }
+
+    /**
      * dataflow.projects.locations.jobs.update
      * @desc Updates the state of an existing Cloud Dataflow job.  To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.jobs.update({
+     *     // The job ID.
+     *     jobId: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains this job.
+     *     location: 'placeholder-value',
+     *     // The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientRequestId": "my_clientRequestId",
+     *       //   "createTime": "my_createTime",
+     *       //   "createdFromSnapshotId": "my_createdFromSnapshotId",
+     *       //   "currentState": "my_currentState",
+     *       //   "currentStateTime": "my_currentStateTime",
+     *       //   "environment": {},
+     *       //   "executionInfo": {},
+     *       //   "id": "my_id",
+     *       //   "jobMetadata": {},
+     *       //   "labels": {},
+     *       //   "location": "my_location",
+     *       //   "name": "my_name",
+     *       //   "pipelineDescription": {},
+     *       //   "projectId": "my_projectId",
+     *       //   "replaceJobId": "my_replaceJobId",
+     *       //   "replacedByJobId": "my_replacedByJobId",
+     *       //   "requestedState": "my_requestedState",
+     *       //   "stageStates": [],
+     *       //   "startTime": "my_startTime",
+     *       //   "steps": [],
+     *       //   "stepsLocation": "my_stepsLocation",
+     *       //   "tempFiles": [],
+     *       //   "transformNameMapping": {},
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientRequestId": "my_clientRequestId",
+     *   //   "createTime": "my_createTime",
+     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
+     *   //   "currentState": "my_currentState",
+     *   //   "currentStateTime": "my_currentStateTime",
+     *   //   "environment": {},
+     *   //   "executionInfo": {},
+     *   //   "id": "my_id",
+     *   //   "jobMetadata": {},
+     *   //   "labels": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "pipelineDescription": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "replaceJobId": "my_replaceJobId",
+     *   //   "replacedByJobId": "my_replacedByJobId",
+     *   //   "requestedState": "my_requestedState",
+     *   //   "stageStates": [],
+     *   //   "startTime": "my_startTime",
+     *   //   "steps": [],
+     *   //   "stepsLocation": "my_stepsLocation",
+     *   //   "tempFiles": [],
+     *   //   "transformNameMapping": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.jobs.update
      * @memberOf! ()
      *
@@ -4778,15 +8407,24 @@ export namespace dataflow_v1b3 {
      * @param {string} params.jobId The job ID.
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-     * @param {().Job} params.resource Request body data
+     * @param {().Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Locations$Jobs$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Locations$Jobs$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    update(
+      params: Params$Resource$Projects$Locations$Jobs$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Locations$Jobs$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -4800,10 +8438,17 @@ export namespace dataflow_v1b3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobs$Update
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4837,7 +8482,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -4846,11 +8494,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Locations$Jobs$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
@@ -4876,11 +8519,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Jobs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job ID.
      */
     jobId?: string;
@@ -4900,11 +8538,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Jobs$Getmetrics
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job to get messages for.
      */
     jobId?: string;
@@ -4923,11 +8556,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Locations$Jobs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The kind of filter to use.
      */
@@ -4953,13 +8581,28 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Update
+  export interface Params$Resource$Projects$Locations$Jobs$Snapshot
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
+     * The job to be snapshotted.
      */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+    jobId?: string;
+    /**
+     * The location that contains this job.
+     */
+    location?: string;
+    /**
+     * The project which owns the job to be snapshotted.
+     */
+    projectId?: string;
 
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SnapshotJobRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Jobs$Update
+    extends StandardParameters {
     /**
      * The job ID.
      */
@@ -4988,6 +8631,67 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.jobs.debug.getConfig
      * @desc Get encoded debug configuration for component. Not cacheable.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.jobs.debug.getConfig({
+     *     // The job id.
+     *     jobId: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains the job specified by job_id.
+     *     location: 'placeholder-value',
+     *     // The project id.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "componentId": "my_componentId",
+     *       //   "location": "my_location",
+     *       //   "workerId": "my_workerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": "my_config"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.jobs.debug.getConfig
      * @memberOf! ()
      *
@@ -4995,15 +8699,24 @@ export namespace dataflow_v1b3 {
      * @param {string} params.jobId The job id.
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      * @param {string} params.projectId The project id.
-     * @param {().GetDebugConfigRequest} params.resource Request body data
+     * @param {().GetDebugConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     getConfig(
+      params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
       params?: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetDebugConfigResponse>;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getConfig(
       params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
       options:
@@ -5021,12 +8734,20 @@ export namespace dataflow_v1b3 {
     getConfig(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobs$Debug$Getconfig
-        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
+        | BodyResponseCallback<Schema$GetDebugConfigResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
-      callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>
-    ): void | GaxiosPromise<Schema$GetDebugConfigResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetDebugConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetDebugConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetDebugConfigResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Debug$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5060,7 +8781,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetDebugConfigResponse>(parameters, callback);
+        createAPIRequest<Schema$GetDebugConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetDebugConfigResponse>(parameters);
       }
@@ -5069,6 +8793,66 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.jobs.debug.sendCapture
      * @desc Send encoded debug capture data for component.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.jobs.debug.sendCapture({
+     *     // The job id.
+     *     jobId: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains the job specified by job_id.
+     *     location: 'placeholder-value',
+     *     // The project id.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "componentId": "my_componentId",
+     *       //   "data": "my_data",
+     *       //   "location": "my_location",
+     *       //   "workerId": "my_workerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.jobs.debug.sendCapture
      * @memberOf! ()
      *
@@ -5076,15 +8860,24 @@ export namespace dataflow_v1b3 {
      * @param {string} params.jobId The job id.
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      * @param {string} params.projectId The project id.
-     * @param {().SendDebugCaptureRequest} params.resource Request body data
+     * @param {().SendDebugCaptureRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     sendCapture(
+      params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    sendCapture(
       params?: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SendDebugCaptureResponse>;
+    sendCapture(
+      params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     sendCapture(
       params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
       options:
@@ -5102,12 +8895,20 @@ export namespace dataflow_v1b3 {
     sendCapture(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture
-        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+        | BodyResponseCallback<Schema$SendDebugCaptureResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
-      callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>
-    ): void | GaxiosPromise<Schema$SendDebugCaptureResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SendDebugCaptureResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SendDebugCaptureResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SendDebugCaptureResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5141,7 +8942,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SendDebugCaptureResponse>(parameters, callback);
+        createAPIRequest<Schema$SendDebugCaptureResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SendDebugCaptureResponse>(parameters);
       }
@@ -5150,11 +8954,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Locations$Jobs$Debug$Getconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The job id.
      */
@@ -5175,11 +8974,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The job id.
      */
@@ -5208,6 +9002,75 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.jobs.messages.list
      * @desc Request the job status.  To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.jobs.messages.list({
+     *     // Return only messages with timestamps < end_time. The default is now
+     *     // (i.e. return up to the latest messages available).
+     *     endTime: 'placeholder-value',
+     *     // The job to get messages about.
+     *     jobId: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains the job specified by job_id.
+     *     location: 'placeholder-value',
+     *     // Filter to only get messages with importance >= level
+     *     minimumImportance: 'placeholder-value',
+     *     // If specified, determines the maximum number of messages to
+     *     // return.  If unspecified, the service may choose an appropriate
+     *     // default, or may return an arbitrarily large number of results.
+     *     pageSize: 'placeholder-value',
+     *     // If supplied, this should be the value of next_page_token returned
+     *     // by an earlier call. This will cause the next page of results to
+     *     // be returned.
+     *     pageToken: 'placeholder-value',
+     *     // A project id.
+     *     projectId: 'placeholder-value',
+     *     // If specified, return only messages with timestamps >= start_time.
+     *     // The default is the job creation time (i.e. beginning of messages).
+     *     startTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoscalingEvents": [],
+     *   //   "jobMessages": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.jobs.messages.list
      * @memberOf! ()
      *
@@ -5225,9 +9088,18 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Jobs$Messages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Jobs$Messages$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListJobMessagesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Jobs$Messages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Jobs$Messages$List,
       options:
@@ -5243,12 +9115,20 @@ export namespace dataflow_v1b3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobs$Messages$List
-        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
+        | BodyResponseCallback<Schema$ListJobMessagesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
-      callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>
-    ): void | GaxiosPromise<Schema$ListJobMessagesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListJobMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListJobMessagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListJobMessagesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Messages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5282,7 +9162,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListJobMessagesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListJobMessagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListJobMessagesResponse>(parameters);
       }
@@ -5291,11 +9174,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Locations$Jobs$Messages$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
      */
@@ -5330,6 +9208,176 @@ export namespace dataflow_v1b3 {
     startTime?: string;
   }
 
+  export class Resource$Projects$Locations$Jobs$Snapshots {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dataflow.projects.locations.jobs.snapshots.list
+     * @desc Lists snapshots.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.jobs.snapshots.list({
+     *     // If specified, list snapshots created from this job.
+     *     jobId: 'placeholder-value',
+     *     // The location to list snapshots in.
+     *     location: 'placeholder-value',
+     *     // The project ID to list snapshots for.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "snapshots": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.locations.jobs.snapshots.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId If specified, list snapshots created from this job.
+     * @param {string} params.location The location to list snapshots in.
+     * @param {string} params.projectId The project ID to list snapshots for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSnapshotsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Snapshots$List
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSnapshotsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Snapshots$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Jobs$Snapshots$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/snapshots'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'location', 'jobId'],
+        pathParams: ['jobId', 'location', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSnapshotsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Jobs$Snapshots$List
+    extends StandardParameters {
+    /**
+     * If specified, list snapshots created from this job.
+     */
+    jobId?: string;
+    /**
+     * The location to list snapshots in.
+     */
+    location?: string;
+    /**
+     * The project ID to list snapshots for.
+     */
+    projectId?: string;
+  }
+
   export class Resource$Projects$Locations$Jobs$Workitems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5339,6 +9387,72 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.jobs.workItems.lease
      * @desc Leases a dataflow WorkItem to run.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.jobs.workItems.lease({
+     *     // Identifies the workflow job this worker belongs to.
+     *     jobId: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains the WorkItem's job.
+     *     location: 'placeholder-value',
+     *     // Identifies the project this worker belongs to.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "currentWorkerTime": "my_currentWorkerTime",
+     *       //   "location": "my_location",
+     *       //   "requestedLeaseDuration": "my_requestedLeaseDuration",
+     *       //   "unifiedWorkerRequest": {},
+     *       //   "workItemTypes": [],
+     *       //   "workerCapabilities": [],
+     *       //   "workerId": "my_workerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "unifiedWorkerResponse": {},
+     *   //   "workItems": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.jobs.workItems.lease
      * @memberOf! ()
      *
@@ -5346,15 +9460,24 @@ export namespace dataflow_v1b3 {
      * @param {string} params.jobId Identifies the workflow job this worker belongs to.
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
      * @param {string} params.projectId Identifies the project this worker belongs to.
-     * @param {().LeaseWorkItemRequest} params.resource Request body data
+     * @param {().LeaseWorkItemRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     lease(
+      params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lease(
       params?: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LeaseWorkItemResponse>;
+    lease(
+      params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     lease(
       params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
       options:
@@ -5370,12 +9493,20 @@ export namespace dataflow_v1b3 {
     lease(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobs$Workitems$Lease
-        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+        | BodyResponseCallback<Schema$LeaseWorkItemResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
-      callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>
-    ): void | GaxiosPromise<Schema$LeaseWorkItemResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LeaseWorkItemResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LeaseWorkItemResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LeaseWorkItemResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Workitems$Lease;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5409,7 +9540,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LeaseWorkItemResponse>(parameters, callback);
+        createAPIRequest<Schema$LeaseWorkItemResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LeaseWorkItemResponse>(parameters);
       }
@@ -5418,6 +9552,70 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.jobs.workItems.reportStatus
      * @desc Reports the status of dataflow WorkItems leased by a worker.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.jobs.workItems.reportStatus({
+     *     // The job which the WorkItem is part of.
+     *     jobId: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     *     // contains the WorkItem's job.
+     *     location: 'placeholder-value',
+     *     // The project which owns the WorkItem's job.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "currentWorkerTime": "my_currentWorkerTime",
+     *       //   "location": "my_location",
+     *       //   "unifiedWorkerRequest": {},
+     *       //   "workItemStatuses": [],
+     *       //   "workerId": "my_workerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "unifiedWorkerResponse": {},
+     *   //   "workItemServiceStates": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.jobs.workItems.reportStatus
      * @memberOf! ()
      *
@@ -5425,15 +9623,24 @@ export namespace dataflow_v1b3 {
      * @param {string} params.jobId The job which the WorkItem is part of.
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
      * @param {string} params.projectId The project which owns the WorkItem's job.
-     * @param {().ReportWorkItemStatusRequest} params.resource Request body data
+     * @param {().ReportWorkItemStatusRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     reportStatus(
+      params: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reportStatus(
       params?: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReportWorkItemStatusResponse>;
+    reportStatus(
+      params: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reportStatus(
       params: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
       options:
@@ -5451,12 +9658,20 @@ export namespace dataflow_v1b3 {
     reportStatus(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus
-        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
-      callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
-    ): void | GaxiosPromise<Schema$ReportWorkItemStatusResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReportWorkItemStatusResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5492,7 +9707,7 @@ export namespace dataflow_v1b3 {
       if (callback) {
         createAPIRequest<Schema$ReportWorkItemStatusResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ReportWorkItemStatusResponse>(
@@ -5504,11 +9719,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Locations$Jobs$Workitems$Lease
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifies the workflow job this worker belongs to.
      */
@@ -5530,11 +9740,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job which the WorkItem is part of.
      */
     jobId?: string;
@@ -5553,6 +9758,501 @@ export namespace dataflow_v1b3 {
     requestBody?: Schema$ReportWorkItemStatusRequest;
   }
 
+  export class Resource$Projects$Locations$Snapshots {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dataflow.projects.locations.snapshots.delete
+     * @desc Deletes a snapshot.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.snapshots.delete({
+     *     // The location that contains this snapshot.
+     *     location: 'placeholder-value',
+     *     // The ID of the Cloud Platform project that the snapshot belongs to.
+     *     projectId: 'placeholder-value',
+     *     // The ID of the snapshot.
+     *     snapshotId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.locations.snapshots.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.location The location that contains this snapshot.
+     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
+     * @param {string} params.snapshotId The ID of the snapshot.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Snapshots$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Snapshots$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeleteSnapshotResponse>;
+    delete(
+      params: Params$Resource$Projects$Locations$Snapshots$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Snapshots$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
+      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Snapshots$Delete,
+      callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Snapshots$Delete
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeleteSnapshotResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DeleteSnapshotResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Snapshots$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Snapshots$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/snapshots/{snapshotId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'location', 'snapshotId'],
+        pathParams: ['location', 'projectId', 'snapshotId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeleteSnapshotResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$DeleteSnapshotResponse>(parameters);
+      }
+    }
+
+    /**
+     * dataflow.projects.locations.snapshots.get
+     * @desc Gets information about a snapshot.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.snapshots.get({
+     *     // The location that contains this snapshot.
+     *     location: 'placeholder-value',
+     *     // The ID of the Cloud Platform project that the snapshot belongs to.
+     *     projectId: 'placeholder-value',
+     *     // The ID of the snapshot.
+     *     snapshotId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTime": "my_creationTime",
+     *   //   "description": "my_description",
+     *   //   "diskSizeBytes": "my_diskSizeBytes",
+     *   //   "id": "my_id",
+     *   //   "projectId": "my_projectId",
+     *   //   "pubsubMetadata": [],
+     *   //   "sourceJobId": "my_sourceJobId",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.locations.snapshots.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.location The location that contains this snapshot.
+     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
+     * @param {string} params.snapshotId The ID of the snapshot.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Snapshots$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Snapshots$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Snapshot>;
+    get(
+      params: Params$Resource$Projects$Locations$Snapshots$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Snapshots$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Snapshots$Get,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Snapshot>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Snapshots$Get
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Snapshot> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Snapshots$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Snapshots$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/snapshots/{snapshotId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'location', 'snapshotId'],
+        pathParams: ['location', 'projectId', 'snapshotId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Snapshot>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Snapshot>(parameters);
+      }
+    }
+
+    /**
+     * dataflow.projects.locations.snapshots.list
+     * @desc Lists snapshots.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.snapshots.list({
+     *     // If specified, list snapshots created from this job.
+     *     jobId: 'placeholder-value',
+     *     // The location to list snapshots in.
+     *     location: 'placeholder-value',
+     *     // The project ID to list snapshots for.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "snapshots": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.locations.snapshots.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.jobId If specified, list snapshots created from this job.
+     * @param {string} params.location The location to list snapshots in.
+     * @param {string} params.projectId The project ID to list snapshots for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Snapshots$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Snapshots$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSnapshotsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Snapshots$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Snapshots$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Snapshots$List,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Snapshots$List
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSnapshotsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Snapshots$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Snapshots$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/snapshots'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'location'],
+        pathParams: ['location', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSnapshotsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Snapshots$Delete
+    extends StandardParameters {
+    /**
+     * The location that contains this snapshot.
+     */
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the snapshot belongs to.
+     */
+    projectId?: string;
+    /**
+     * The ID of the snapshot.
+     */
+    snapshotId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Snapshots$Get
+    extends StandardParameters {
+    /**
+     * The location that contains this snapshot.
+     */
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the snapshot belongs to.
+     */
+    projectId?: string;
+    /**
+     * The ID of the snapshot.
+     */
+    snapshotId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Snapshots$List
+    extends StandardParameters {
+    /**
+     * If specified, list snapshots created from this job.
+     */
+    jobId?: string;
+    /**
+     * The location to list snapshots in.
+     */
+    location?: string;
+    /**
+     * The project ID to list snapshots for.
+     */
+    projectId?: string;
+  }
+
   export class Resource$Projects$Locations$Sql {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5562,6 +10262,56 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.sql.validate
      * @desc Validates a GoogleSQL query for Cloud Dataflow syntax. Will always confirm the given query parses correctly, and if able to look up schema information from DataCatalog, will validate that the query analyzes properly as well.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.sql.validate({
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
+     *     // which to direct the request.
+     *     location: 'placeholder-value',
+     *     // Required. The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // The sql query to validate.
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "queryInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.sql.validate
      * @memberOf! ()
      *
@@ -5574,9 +10324,18 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     validate(
+      params: Params$Resource$Projects$Locations$Sql$Validate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    validate(
       params?: Params$Resource$Projects$Locations$Sql$Validate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ValidateResponse>;
+    validate(
+      params: Params$Resource$Projects$Locations$Sql$Validate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     validate(
       params: Params$Resource$Projects$Locations$Sql$Validate,
       options: MethodOptions | BodyResponseCallback<Schema$ValidateResponse>,
@@ -5590,12 +10349,17 @@ export namespace dataflow_v1b3 {
     validate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Sql$Validate
-        | BodyResponseCallback<Schema$ValidateResponse>,
+        | BodyResponseCallback<Schema$ValidateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ValidateResponse>,
-      callback?: BodyResponseCallback<Schema$ValidateResponse>
-    ): void | GaxiosPromise<Schema$ValidateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ValidateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ValidateResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ValidateResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Sql$Validate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5629,7 +10393,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ValidateResponse>(parameters, callback);
+        createAPIRequest<Schema$ValidateResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ValidateResponse>(parameters);
       }
@@ -5638,11 +10405,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Locations$Sql$Validate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      */
@@ -5666,21 +10428,114 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.templates.create
      * @desc Creates a Cloud Dataflow job from a template.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.templates.create({
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
+     *     // which to direct the request.
+     *     location: 'placeholder-value',
+     *     // Required. The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "environment": {},
+     *       //   "gcsPath": "my_gcsPath",
+     *       //   "jobName": "my_jobName",
+     *       //   "location": "my_location",
+     *       //   "parameters": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientRequestId": "my_clientRequestId",
+     *   //   "createTime": "my_createTime",
+     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
+     *   //   "currentState": "my_currentState",
+     *   //   "currentStateTime": "my_currentStateTime",
+     *   //   "environment": {},
+     *   //   "executionInfo": {},
+     *   //   "id": "my_id",
+     *   //   "jobMetadata": {},
+     *   //   "labels": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "pipelineDescription": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "replaceJobId": "my_replaceJobId",
+     *   //   "replacedByJobId": "my_replacedByJobId",
+     *   //   "requestedState": "my_requestedState",
+     *   //   "stageStates": [],
+     *   //   "startTime": "my_startTime",
+     *   //   "steps": [],
+     *   //   "stepsLocation": "my_stepsLocation",
+     *   //   "tempFiles": [],
+     *   //   "transformNameMapping": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.templates.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-     * @param {().CreateJobFromTemplateRequest} params.resource Request body data
+     * @param {().CreateJobFromTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Templates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Templates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    create(
+      params: Params$Resource$Projects$Locations$Templates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Templates$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -5694,10 +10549,17 @@ export namespace dataflow_v1b3 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Templates$Create
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Templates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5731,7 +10593,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -5740,6 +10605,64 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.templates.get
      * @desc Get the template associated with a template.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.templates.get({
+     *     // Required. A Cloud Storage path to the template from which to
+     *     // create the job.
+     *     // Must be valid Cloud Storage URL, beginning with 'gs://'.
+     *     gcsPath: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
+     *     // which to direct the request.
+     *     location: 'placeholder-value',
+     *     // Required. The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // The view to retrieve. Defaults to METADATA_ONLY.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metadata": {},
+     *   //   "runtimeMetadata": {},
+     *   //   "status": {},
+     *   //   "templateType": "my_templateType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.templates.get
      * @memberOf! ()
      *
@@ -5753,9 +10676,18 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Templates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Templates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetTemplateResponse>;
+    get(
+      params: Params$Resource$Projects$Locations$Templates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Templates$Get,
       options: MethodOptions | BodyResponseCallback<Schema$GetTemplateResponse>,
@@ -5769,12 +10701,20 @@ export namespace dataflow_v1b3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Templates$Get
-        | BodyResponseCallback<Schema$GetTemplateResponse>,
+        | BodyResponseCallback<Schema$GetTemplateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetTemplateResponse>,
-      callback?: BodyResponseCallback<Schema$GetTemplateResponse>
-    ): void | GaxiosPromise<Schema$GetTemplateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetTemplateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetTemplateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetTemplateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Templates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5808,7 +10748,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetTemplateResponse>(parameters, callback);
+        createAPIRequest<Schema$GetTemplateResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetTemplateResponse>(parameters);
       }
@@ -5817,6 +10760,80 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.locations.templates.launch
      * @desc Launch a template.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.templates.launch({
+     *     // Path to dynamic template spec file on GCS.
+     *     // The file must be a Json serialized DynamicTemplateFieSpec object.
+     *     'dynamicTemplate.gcsPath': 'placeholder-value',
+     *     // Cloud Storage path for staging dependencies.
+     *     // Must be a valid Cloud Storage URL, beginning with `gs://`.
+     *     'dynamicTemplate.stagingLocation': 'placeholder-value',
+     *     // A Cloud Storage path to the template from which to create
+     *     // the job.
+     *     // Must be valid Cloud Storage URL, beginning with 'gs://'.
+     *     gcsPath: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
+     *     // which to direct the request.
+     *     location: 'placeholder-value',
+     *     // Required. The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // If true, the request is validated but not actually executed.
+     *     // Defaults to false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "environment": {},
+     *       //   "jobName": "my_jobName",
+     *       //   "parameters": {},
+     *       //   "transformNameMapping": {},
+     *       //   "update": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "job": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.locations.templates.launch
      * @memberOf! ()
      *
@@ -5827,15 +10844,24 @@ export namespace dataflow_v1b3 {
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
      * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
-     * @param {().LaunchTemplateParameters} params.resource Request body data
+     * @param {().LaunchTemplateParameters} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     launch(
+      params: Params$Resource$Projects$Locations$Templates$Launch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    launch(
       params?: Params$Resource$Projects$Locations$Templates$Launch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LaunchTemplateResponse>;
+    launch(
+      params: Params$Resource$Projects$Locations$Templates$Launch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     launch(
       params: Params$Resource$Projects$Locations$Templates$Launch,
       options:
@@ -5851,12 +10877,20 @@ export namespace dataflow_v1b3 {
     launch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Templates$Launch
-        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
+        | BodyResponseCallback<Schema$LaunchTemplateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
-      callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>
-    ): void | GaxiosPromise<Schema$LaunchTemplateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LaunchTemplateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LaunchTemplateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LaunchTemplateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Templates$Launch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5890,7 +10924,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LaunchTemplateResponse>(parameters, callback);
+        createAPIRequest<Schema$LaunchTemplateResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LaunchTemplateResponse>(parameters);
       }
@@ -5899,11 +10936,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Locations$Templates$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      */
@@ -5920,11 +10952,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Locations$Templates$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      */
@@ -5944,11 +10971,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Locations$Templates$Launch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
      */
@@ -5980,6 +11002,340 @@ export namespace dataflow_v1b3 {
     requestBody?: Schema$LaunchTemplateParameters;
   }
 
+  export class Resource$Projects$Snapshots {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dataflow.projects.snapshots.get
+     * @desc Gets information about a snapshot.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.snapshots.get({
+     *     // The location that contains this snapshot.
+     *     location: 'placeholder-value',
+     *     // The ID of the Cloud Platform project that the snapshot belongs to.
+     *     projectId: 'placeholder-value',
+     *     // The ID of the snapshot.
+     *     snapshotId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTime": "my_creationTime",
+     *   //   "description": "my_description",
+     *   //   "diskSizeBytes": "my_diskSizeBytes",
+     *   //   "id": "my_id",
+     *   //   "projectId": "my_projectId",
+     *   //   "pubsubMetadata": [],
+     *   //   "sourceJobId": "my_sourceJobId",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.snapshots.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.location The location that contains this snapshot.
+     * @param {string} params.projectId The ID of the Cloud Platform project that the snapshot belongs to.
+     * @param {string} params.snapshotId The ID of the snapshot.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Snapshots$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Snapshots$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Snapshot>;
+    get(
+      params: Params$Resource$Projects$Snapshots$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Snapshots$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Snapshots$Get,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Snapshot>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Snapshots$Get
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Snapshot> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Snapshots$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snapshots$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1b3/projects/{projectId}/snapshots/{snapshotId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'snapshotId'],
+        pathParams: ['projectId', 'snapshotId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Snapshot>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Snapshot>(parameters);
+      }
+    }
+
+    /**
+     * dataflow.projects.snapshots.list
+     * @desc Lists snapshots.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.snapshots.list({
+     *     // If specified, list snapshots created from this job.
+     *     jobId: 'placeholder-value',
+     *     // The location to list snapshots in.
+     *     location: 'placeholder-value',
+     *     // The project ID to list snapshots for.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "snapshots": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.snapshots.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.jobId If specified, list snapshots created from this job.
+     * @param {string=} params.location The location to list snapshots in.
+     * @param {string} params.projectId The project ID to list snapshots for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Snapshots$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Snapshots$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSnapshotsResponse>;
+    list(
+      params: Params$Resource$Projects$Snapshots$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Snapshots$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Snapshots$List,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Snapshots$List
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSnapshotsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Snapshots$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snapshots$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/snapshots').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSnapshotsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Snapshots$Get
+    extends StandardParameters {
+    /**
+     * The location that contains this snapshot.
+     */
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the snapshot belongs to.
+     */
+    projectId?: string;
+    /**
+     * The ID of the snapshot.
+     */
+    snapshotId?: string;
+  }
+  export interface Params$Resource$Projects$Snapshots$List
+    extends StandardParameters {
+    /**
+     * If specified, list snapshots created from this job.
+     */
+    jobId?: string;
+    /**
+     * The location to list snapshots in.
+     */
+    location?: string;
+    /**
+     * The project ID to list snapshots for.
+     */
+    projectId?: string;
+  }
+
   export class Resource$Projects$Templates {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5989,20 +11345,109 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.templates.create
      * @desc Creates a Cloud Dataflow job from a template.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.templates.create({
+     *     // Required. The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "environment": {},
+     *       //   "gcsPath": "my_gcsPath",
+     *       //   "jobName": "my_jobName",
+     *       //   "location": "my_location",
+     *       //   "parameters": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientRequestId": "my_clientRequestId",
+     *   //   "createTime": "my_createTime",
+     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
+     *   //   "currentState": "my_currentState",
+     *   //   "currentStateTime": "my_currentStateTime",
+     *   //   "environment": {},
+     *   //   "executionInfo": {},
+     *   //   "id": "my_id",
+     *   //   "jobMetadata": {},
+     *   //   "labels": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "pipelineDescription": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "replaceJobId": "my_replaceJobId",
+     *   //   "replacedByJobId": "my_replacedByJobId",
+     *   //   "requestedState": "my_requestedState",
+     *   //   "stageStates": [],
+     *   //   "startTime": "my_startTime",
+     *   //   "steps": [],
+     *   //   "stepsLocation": "my_stepsLocation",
+     *   //   "tempFiles": [],
+     *   //   "transformNameMapping": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.templates.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-     * @param {().CreateJobFromTemplateRequest} params.resource Request body data
+     * @param {().CreateJobFromTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Templates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Templates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    create(
+      params: Params$Resource$Projects$Templates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Templates$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -6016,10 +11461,17 @@ export namespace dataflow_v1b3 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Templates$Create
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Templates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6053,7 +11505,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -6062,6 +11517,64 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.templates.get
      * @desc Get the template associated with a template.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.templates.get({
+     *     // Required. A Cloud Storage path to the template from which to
+     *     // create the job.
+     *     // Must be valid Cloud Storage URL, beginning with 'gs://'.
+     *     gcsPath: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
+     *     // which to direct the request.
+     *     location: 'placeholder-value',
+     *     // Required. The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // The view to retrieve. Defaults to METADATA_ONLY.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metadata": {},
+     *   //   "runtimeMetadata": {},
+     *   //   "status": {},
+     *   //   "templateType": "my_templateType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.templates.get
      * @memberOf! ()
      *
@@ -6075,9 +11588,18 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Templates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Templates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetTemplateResponse>;
+    get(
+      params: Params$Resource$Projects$Templates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Templates$Get,
       options: MethodOptions | BodyResponseCallback<Schema$GetTemplateResponse>,
@@ -6091,12 +11613,20 @@ export namespace dataflow_v1b3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Templates$Get
-        | BodyResponseCallback<Schema$GetTemplateResponse>,
+        | BodyResponseCallback<Schema$GetTemplateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetTemplateResponse>,
-      callback?: BodyResponseCallback<Schema$GetTemplateResponse>
-    ): void | GaxiosPromise<Schema$GetTemplateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetTemplateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetTemplateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetTemplateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Templates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6130,7 +11660,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetTemplateResponse>(parameters, callback);
+        createAPIRequest<Schema$GetTemplateResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetTemplateResponse>(parameters);
       }
@@ -6139,6 +11672,80 @@ export namespace dataflow_v1b3 {
     /**
      * dataflow.projects.templates.launch
      * @desc Launch a template.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.templates.launch({
+     *     // Path to dynamic template spec file on GCS.
+     *     // The file must be a Json serialized DynamicTemplateFieSpec object.
+     *     'dynamicTemplate.gcsPath': 'placeholder-value',
+     *     // Cloud Storage path for staging dependencies.
+     *     // Must be a valid Cloud Storage URL, beginning with `gs://`.
+     *     'dynamicTemplate.stagingLocation': 'placeholder-value',
+     *     // A Cloud Storage path to the template from which to create
+     *     // the job.
+     *     // Must be valid Cloud Storage URL, beginning with 'gs://'.
+     *     gcsPath: 'placeholder-value',
+     *     // The [regional endpoint]
+     *     // (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
+     *     // which to direct the request.
+     *     location: 'placeholder-value',
+     *     // Required. The ID of the Cloud Platform project that the job belongs to.
+     *     projectId: 'placeholder-value',
+     *     // If true, the request is validated but not actually executed.
+     *     // Defaults to false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "environment": {},
+     *       //   "jobName": "my_jobName",
+     *       //   "parameters": {},
+     *       //   "transformNameMapping": {},
+     *       //   "update": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "job": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias dataflow.projects.templates.launch
      * @memberOf! ()
      *
@@ -6149,15 +11756,24 @@ export namespace dataflow_v1b3 {
      * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
      * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
-     * @param {().LaunchTemplateParameters} params.resource Request body data
+     * @param {().LaunchTemplateParameters} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     launch(
+      params: Params$Resource$Projects$Templates$Launch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    launch(
       params?: Params$Resource$Projects$Templates$Launch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LaunchTemplateResponse>;
+    launch(
+      params: Params$Resource$Projects$Templates$Launch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     launch(
       params: Params$Resource$Projects$Templates$Launch,
       options:
@@ -6173,12 +11789,20 @@ export namespace dataflow_v1b3 {
     launch(
       paramsOrCallback?:
         | Params$Resource$Projects$Templates$Launch
-        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
+        | BodyResponseCallback<Schema$LaunchTemplateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
-      callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>
-    ): void | GaxiosPromise<Schema$LaunchTemplateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LaunchTemplateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LaunchTemplateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LaunchTemplateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Templates$Launch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6211,7 +11835,10 @@ export namespace dataflow_v1b3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LaunchTemplateResponse>(parameters, callback);
+        createAPIRequest<Schema$LaunchTemplateResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LaunchTemplateResponse>(parameters);
       }
@@ -6220,11 +11847,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Templates$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the Cloud Platform project that the job belongs to.
      */
@@ -6237,11 +11859,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Templates$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      */
@@ -6261,11 +11878,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Templates$Launch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
      */
@@ -6295,5 +11907,185 @@ export namespace dataflow_v1b3 {
      * Request body metadata
      */
     requestBody?: Schema$LaunchTemplateParameters;
+  }
+
+  export class Resource$Projects$Templateversions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dataflow.projects.templateVersions.list
+     * @desc List TemplateVersions using project_id and an optional display_name field. List all the TemplateVersions in the Template if display set. List all the TemplateVersions in the Project if display_name not set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/userinfo.email',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.templateVersions.list({
+     *     // The maximum number of TemplateVersions to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // The page token, received from a previous ListTemplateVersions call.
+     *     // Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // parent includes project_id, and display_name is optional.
+     *     //
+     *     // List by project_id(pid1) and display_name(tid1).
+     *     //   Format: projects/{pid1}/catalogTemplates/{tid1}
+     *     //
+     *     // List by project_id(pid1).
+     *     //   Format: projects/{pid1}
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "templateVersions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dataflow.projects.templateVersions.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of TemplateVersions to return per page.
+     * @param {string=} params.pageToken The page token, received from a previous ListTemplateVersions call. Provide this to retrieve the subsequent page.
+     * @param {string} params.parent parent includes project_id, and display_name is optional.  List by project_id(pid1) and display_name(tid1).   Format: projects/{pid1}/catalogTemplates/{tid1}  List by project_id(pid1).   Format: projects/{pid1}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Templateversions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Templateversions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTemplateVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Templateversions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Templateversions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTemplateVersionsResponse>,
+      callback: BodyResponseCallback<Schema$ListTemplateVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Templateversions$List,
+      callback: BodyResponseCallback<Schema$ListTemplateVersionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListTemplateVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Templateversions$List
+        | BodyResponseCallback<Schema$ListTemplateVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTemplateVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTemplateVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTemplateVersionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Templateversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Templateversions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/{+parent}/templateVersions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTemplateVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListTemplateVersionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Templateversions$List
+    extends StandardParameters {
+    /**
+     * The maximum number of TemplateVersions to return per page.
+     */
+    pageSize?: number;
+    /**
+     * The page token, received from a previous ListTemplateVersions call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * parent includes project_id, and display_name is optional.  List by project_id(pid1) and display_name(tid1).   Format: projects/{pid1}/catalogTemplates/{tid1}  List by project_id(pid1).   Format: projects/{pid1}
+     */
+    parent?: string;
   }
 }

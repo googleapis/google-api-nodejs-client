@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace adexperiencereport_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace adexperiencereport_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -188,6 +198,51 @@ export namespace adexperiencereport_v1 {
     /**
      * adexperiencereport.sites.get
      * @desc Gets a site's Ad Experience Report summary.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexperiencereport.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexperiencereport = google.adexperiencereport('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexperiencereport.sites.get({
+     *     // Required. The name of the site whose summary to get, e.g.
+     *     // `sites/http%3A%2F%2Fwww.google.com%2F`.
+     *     //
+     *     // Format: `sites/{site}`
+     *     name: 'sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "desktopSummary": {},
+     *   //   "mobileSummary": {},
+     *   //   "reviewedSite": "my_reviewedSite"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexperiencereport.sites.get
      * @memberOf! ()
      *
@@ -198,9 +253,18 @@ export namespace adexperiencereport_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Sites$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Sites$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SiteSummaryResponse>;
+    get(
+      params: Params$Resource$Sites$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Sites$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SiteSummaryResponse>,
@@ -214,12 +278,20 @@ export namespace adexperiencereport_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Sites$Get
-        | BodyResponseCallback<Schema$SiteSummaryResponse>,
+        | BodyResponseCallback<Schema$SiteSummaryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SiteSummaryResponse>,
-      callback?: BodyResponseCallback<Schema$SiteSummaryResponse>
-    ): void | GaxiosPromise<Schema$SiteSummaryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SiteSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SiteSummaryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SiteSummaryResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -250,7 +322,10 @@ export namespace adexperiencereport_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SiteSummaryResponse>(parameters, callback);
+        createAPIRequest<Schema$SiteSummaryResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SiteSummaryResponse>(parameters);
       }
@@ -258,11 +333,6 @@ export namespace adexperiencereport_v1 {
   }
 
   export interface Params$Resource$Sites$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`.  Format: `sites/{site}`
      */
@@ -278,6 +348,43 @@ export namespace adexperiencereport_v1 {
     /**
      * adexperiencereport.violatingSites.list
      * @desc Lists sites that are failing in the Ad Experience Report on at least one platform.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexperiencereport.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexperiencereport = google.adexperiencereport('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexperiencereport.violatingSites.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "violatingSites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias adexperiencereport.violatingSites.list
      * @memberOf! ()
      *
@@ -287,9 +394,18 @@ export namespace adexperiencereport_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Violatingsites$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Violatingsites$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ViolatingSitesResponse>;
+    list(
+      params: Params$Resource$Violatingsites$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Violatingsites$List,
       options:
@@ -305,12 +421,20 @@ export namespace adexperiencereport_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Violatingsites$List
-        | BodyResponseCallback<Schema$ViolatingSitesResponse>,
+        | BodyResponseCallback<Schema$ViolatingSitesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ViolatingSitesResponse>,
-      callback?: BodyResponseCallback<Schema$ViolatingSitesResponse>
-    ): void | GaxiosPromise<Schema$ViolatingSitesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ViolatingSitesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ViolatingSitesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ViolatingSitesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Violatingsites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -342,7 +466,10 @@ export namespace adexperiencereport_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ViolatingSitesResponse>(parameters, callback);
+        createAPIRequest<Schema$ViolatingSitesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ViolatingSitesResponse>(parameters);
       }
@@ -350,10 +477,5 @@ export namespace adexperiencereport_v1 {
   }
 
   export interface Params$Resource$Violatingsites$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
 }

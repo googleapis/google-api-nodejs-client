@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -10,7 +10,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 /*! THIS FILE IS AUTO-GENERATED */
 
 import * as abusiveexperiencereport from './abusiveexperiencereport';
@@ -21,6 +20,7 @@ import * as adexchangebuyer from './adexchangebuyer';
 import * as adexchangebuyer2 from './adexchangebuyer2';
 import * as adexperiencereport from './adexperiencereport';
 import * as admin from './admin';
+import * as admob from './admob';
 import * as adsense from './adsense';
 import * as adsensehost from './adsensehost';
 import * as alertcenter from './alertcenter';
@@ -32,16 +32,19 @@ import * as androidmanagement from './androidmanagement';
 import * as androidpublisher from './androidpublisher';
 import * as appengine from './appengine';
 import * as appsactivity from './appsactivity';
+import * as artifactregistry from './artifactregistry';
 import * as bigquery from './bigquery';
 import * as bigqueryconnection from './bigqueryconnection';
 import * as bigquerydatatransfer from './bigquerydatatransfer';
 import * as bigqueryreservation from './bigqueryreservation';
 import * as bigtableadmin from './bigtableadmin';
+import * as billingbudgets from './billingbudgets';
 import * as binaryauthorization from './binaryauthorization';
 import * as blogger from './blogger';
 import * as books from './books';
 import * as calendar from './calendar';
 import * as chat from './chat';
+import * as chromeuxreport from './chromeuxreport';
 import * as civicinfo from './civicinfo';
 import * as classroom from './classroom';
 import * as cloudasset from './cloudasset';
@@ -53,8 +56,6 @@ import * as cloudfunctions from './cloudfunctions';
 import * as cloudidentity from './cloudidentity';
 import * as cloudiot from './cloudiot';
 import * as cloudkms from './cloudkms';
-import * as cloudprivatecatalog from './cloudprivatecatalog';
-import * as cloudprivatecatalogproducer from './cloudprivatecatalogproducer';
 import * as cloudprofiler from './cloudprofiler';
 import * as cloudresourcemanager from './cloudresourcemanager';
 import * as cloudscheduler from './cloudscheduler';
@@ -62,13 +63,13 @@ import * as cloudsearch from './cloudsearch';
 import * as cloudshell from './cloudshell';
 import * as cloudtasks from './cloudtasks';
 import * as cloudtrace from './cloudtrace';
-import * as commentanalyzer from './commentanalyzer';
 import * as composer from './composer';
 import * as compute from './compute';
 import * as container from './container';
 import * as containeranalysis from './containeranalysis';
 import * as content from './content';
 import * as customsearch from './customsearch';
+import * as datacatalog from './datacatalog';
 import * as dataflow from './dataflow';
 import * as datafusion from './datafusion';
 import * as dataproc from './dataproc';
@@ -78,6 +79,7 @@ import * as dfareporting from './dfareporting';
 import * as dialogflow from './dialogflow';
 import * as digitalassetlinks from './digitalassetlinks';
 import * as discovery from './discovery';
+import * as displayvideo from './displayvideo';
 import * as dlp from './dlp';
 import * as dns from './dns';
 import * as docs from './docs';
@@ -92,13 +94,14 @@ import * as file from './file';
 import * as firebase from './firebase';
 import * as firebasedynamiclinks from './firebasedynamiclinks';
 import * as firebasehosting from './firebasehosting';
+import * as firebaseml from './firebaseml';
 import * as firebaserules from './firebaserules';
 import * as firestore from './firestore';
 import * as fitness from './fitness';
-import * as fusiontables from './fusiontables';
 import * as games from './games';
 import * as gamesConfiguration from './gamesConfiguration';
 import * as gamesManagement from './gamesManagement';
+import * as gameservices from './gameservices';
 import * as genomics from './genomics';
 import * as gmail from './gmail';
 import * as groupsmigration from './groupsmigration';
@@ -115,34 +118,40 @@ import * as kgsearch from './kgsearch';
 import * as language from './language';
 import * as libraryagent from './libraryagent';
 import * as licensing from './licensing';
+import * as lifesciences from './lifesciences';
 import * as logging from './logging';
+import * as managedidentities from './managedidentities';
 import * as manufacturers from './manufacturers';
-import * as mirror from './mirror';
+import * as memcache from './memcache';
 import * as ml from './ml';
 import * as monitoring from './monitoring';
+import * as networkmanagement from './networkmanagement';
 import * as oauth2 from './oauth2';
+import * as osconfig from './osconfig';
 import * as oslogin from './oslogin';
 import * as pagespeedonline from './pagespeedonline';
 import * as people from './people';
 import * as playcustomapp from './playcustomapp';
 import * as plus from './plus';
-import * as plusDomains from './plusDomains';
+import * as policytroubleshooter from './policytroubleshooter';
 import * as poly from './poly';
-import * as proximitybeacon from './proximitybeacon';
+import * as prod_tt_sasportal from './prod_tt_sasportal';
 import * as pubsub from './pubsub';
+import * as recommender from './recommender';
 import * as redis from './redis';
 import * as remotebuildexecution from './remotebuildexecution';
-import * as replicapool from './replicapool';
 import * as reseller from './reseller';
 import * as run from './run';
 import * as runtimeconfig from './runtimeconfig';
 import * as safebrowsing from './safebrowsing';
+import * as sasportal from './sasportal';
 import * as script from './script';
 import * as searchconsole from './searchconsole';
+import * as secretmanager from './secretmanager';
 import * as securitycenter from './securitycenter';
-import * as servicebroker from './servicebroker';
 import * as serviceconsumermanagement from './serviceconsumermanagement';
 import * as servicecontrol from './servicecontrol';
+import * as servicedirectory from './servicedirectory';
 import * as servicemanagement from './servicemanagement';
 import * as servicenetworking from './servicenetworking';
 import * as serviceusage from './serviceusage';
@@ -152,11 +161,10 @@ import * as slides from './slides';
 import * as sourcerepo from './sourcerepo';
 import * as spanner from './spanner';
 import * as speech from './speech';
-import * as sqladmin from './sqladmin';
+import * as sql from './sql';
 import * as storage from './storage';
 import * as storagetransfer from './storagetransfer';
 import * as streetviewpublish from './streetviewpublish';
-import * as surveys from './surveys';
 import * as tagmanager from './tagmanager';
 import * as tasks from './tasks';
 import * as testing from './testing';
@@ -164,7 +172,6 @@ import * as texttospeech from './texttospeech';
 import * as toolresults from './toolresults';
 import * as tpu from './tpu';
 import * as translate from './translate';
-import * as urlshortener from './urlshortener';
 import * as vault from './vault';
 import * as verifiedaccess from './verifiedaccess';
 import * as videointelligence from './videointelligence';
@@ -177,7 +184,7 @@ import * as youtubeAnalytics from './youtubeAnalytics';
 import * as youtubereporting from './youtubereporting';
 
 export interface APIList {
-  // tslint:disable-next-line: no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [index: string]: {[index: string]: any};
 }
 
@@ -190,6 +197,7 @@ export const APIS: APIList = {
   adexchangebuyer2: adexchangebuyer2.VERSIONS,
   adexperiencereport: adexperiencereport.VERSIONS,
   admin: admin.VERSIONS,
+  admob: admob.VERSIONS,
   adsense: adsense.VERSIONS,
   adsensehost: adsensehost.VERSIONS,
   alertcenter: alertcenter.VERSIONS,
@@ -201,16 +209,19 @@ export const APIS: APIList = {
   androidpublisher: androidpublisher.VERSIONS,
   appengine: appengine.VERSIONS,
   appsactivity: appsactivity.VERSIONS,
+  artifactregistry: artifactregistry.VERSIONS,
   bigquery: bigquery.VERSIONS,
   bigqueryconnection: bigqueryconnection.VERSIONS,
   bigquerydatatransfer: bigquerydatatransfer.VERSIONS,
   bigqueryreservation: bigqueryreservation.VERSIONS,
   bigtableadmin: bigtableadmin.VERSIONS,
+  billingbudgets: billingbudgets.VERSIONS,
   binaryauthorization: binaryauthorization.VERSIONS,
   blogger: blogger.VERSIONS,
   books: books.VERSIONS,
   calendar: calendar.VERSIONS,
   chat: chat.VERSIONS,
+  chromeuxreport: chromeuxreport.VERSIONS,
   civicinfo: civicinfo.VERSIONS,
   classroom: classroom.VERSIONS,
   cloudasset: cloudasset.VERSIONS,
@@ -222,8 +233,6 @@ export const APIS: APIList = {
   cloudidentity: cloudidentity.VERSIONS,
   cloudiot: cloudiot.VERSIONS,
   cloudkms: cloudkms.VERSIONS,
-  cloudprivatecatalog: cloudprivatecatalog.VERSIONS,
-  cloudprivatecatalogproducer: cloudprivatecatalogproducer.VERSIONS,
   cloudprofiler: cloudprofiler.VERSIONS,
   cloudresourcemanager: cloudresourcemanager.VERSIONS,
   cloudscheduler: cloudscheduler.VERSIONS,
@@ -231,13 +240,13 @@ export const APIS: APIList = {
   cloudshell: cloudshell.VERSIONS,
   cloudtasks: cloudtasks.VERSIONS,
   cloudtrace: cloudtrace.VERSIONS,
-  commentanalyzer: commentanalyzer.VERSIONS,
   composer: composer.VERSIONS,
   compute: compute.VERSIONS,
   container: container.VERSIONS,
   containeranalysis: containeranalysis.VERSIONS,
   content: content.VERSIONS,
   customsearch: customsearch.VERSIONS,
+  datacatalog: datacatalog.VERSIONS,
   dataflow: dataflow.VERSIONS,
   datafusion: datafusion.VERSIONS,
   dataproc: dataproc.VERSIONS,
@@ -247,6 +256,7 @@ export const APIS: APIList = {
   dialogflow: dialogflow.VERSIONS,
   digitalassetlinks: digitalassetlinks.VERSIONS,
   discovery: discovery.VERSIONS,
+  displayvideo: displayvideo.VERSIONS,
   dlp: dlp.VERSIONS,
   dns: dns.VERSIONS,
   docs: docs.VERSIONS,
@@ -261,13 +271,14 @@ export const APIS: APIList = {
   firebase: firebase.VERSIONS,
   firebasedynamiclinks: firebasedynamiclinks.VERSIONS,
   firebasehosting: firebasehosting.VERSIONS,
+  firebaseml: firebaseml.VERSIONS,
   firebaserules: firebaserules.VERSIONS,
   firestore: firestore.VERSIONS,
   fitness: fitness.VERSIONS,
-  fusiontables: fusiontables.VERSIONS,
   games: games.VERSIONS,
   gamesConfiguration: gamesConfiguration.VERSIONS,
   gamesManagement: gamesManagement.VERSIONS,
+  gameservices: gameservices.VERSIONS,
   genomics: genomics.VERSIONS,
   gmail: gmail.VERSIONS,
   groupsmigration: groupsmigration.VERSIONS,
@@ -284,34 +295,40 @@ export const APIS: APIList = {
   language: language.VERSIONS,
   libraryagent: libraryagent.VERSIONS,
   licensing: licensing.VERSIONS,
+  lifesciences: lifesciences.VERSIONS,
   logging: logging.VERSIONS,
+  managedidentities: managedidentities.VERSIONS,
   manufacturers: manufacturers.VERSIONS,
-  mirror: mirror.VERSIONS,
+  memcache: memcache.VERSIONS,
   ml: ml.VERSIONS,
   monitoring: monitoring.VERSIONS,
+  networkmanagement: networkmanagement.VERSIONS,
   oauth2: oauth2.VERSIONS,
+  osconfig: osconfig.VERSIONS,
   oslogin: oslogin.VERSIONS,
   pagespeedonline: pagespeedonline.VERSIONS,
   people: people.VERSIONS,
   playcustomapp: playcustomapp.VERSIONS,
   plus: plus.VERSIONS,
-  plusDomains: plusDomains.VERSIONS,
+  policytroubleshooter: policytroubleshooter.VERSIONS,
   poly: poly.VERSIONS,
-  proximitybeacon: proximitybeacon.VERSIONS,
+  prod_tt_sasportal: prod_tt_sasportal.VERSIONS,
   pubsub: pubsub.VERSIONS,
+  recommender: recommender.VERSIONS,
   redis: redis.VERSIONS,
   remotebuildexecution: remotebuildexecution.VERSIONS,
-  replicapool: replicapool.VERSIONS,
   reseller: reseller.VERSIONS,
   run: run.VERSIONS,
   runtimeconfig: runtimeconfig.VERSIONS,
   safebrowsing: safebrowsing.VERSIONS,
+  sasportal: sasportal.VERSIONS,
   script: script.VERSIONS,
   searchconsole: searchconsole.VERSIONS,
+  secretmanager: secretmanager.VERSIONS,
   securitycenter: securitycenter.VERSIONS,
-  servicebroker: servicebroker.VERSIONS,
   serviceconsumermanagement: serviceconsumermanagement.VERSIONS,
   servicecontrol: servicecontrol.VERSIONS,
+  servicedirectory: servicedirectory.VERSIONS,
   servicemanagement: servicemanagement.VERSIONS,
   servicenetworking: servicenetworking.VERSIONS,
   serviceusage: serviceusage.VERSIONS,
@@ -321,11 +338,10 @@ export const APIS: APIList = {
   sourcerepo: sourcerepo.VERSIONS,
   spanner: spanner.VERSIONS,
   speech: speech.VERSIONS,
-  sqladmin: sqladmin.VERSIONS,
+  sql: sql.VERSIONS,
   storage: storage.VERSIONS,
   storagetransfer: storagetransfer.VERSIONS,
   streetviewpublish: streetviewpublish.VERSIONS,
-  surveys: surveys.VERSIONS,
   tagmanager: tagmanager.VERSIONS,
   tasks: tasks.VERSIONS,
   testing: testing.VERSIONS,
@@ -333,7 +349,6 @@ export const APIS: APIList = {
   toolresults: toolresults.VERSIONS,
   tpu: tpu.VERSIONS,
   translate: translate.VERSIONS,
-  urlshortener: urlshortener.VERSIONS,
   vault: vault.VERSIONS,
   verifiedaccess: verifiedaccess.VERSIONS,
   videointelligence: videointelligence.VERSIONS,
@@ -355,6 +370,7 @@ export class GeneratedAPIs {
   adexchangebuyer2 = adexchangebuyer2.adexchangebuyer2;
   adexperiencereport = adexperiencereport.adexperiencereport;
   admin = admin.admin;
+  admob = admob.admob;
   adsense = adsense.adsense;
   adsensehost = adsensehost.adsensehost;
   alertcenter = alertcenter.alertcenter;
@@ -367,16 +383,19 @@ export class GeneratedAPIs {
   androidpublisher = androidpublisher.androidpublisher;
   appengine = appengine.appengine;
   appsactivity = appsactivity.appsactivity;
+  artifactregistry = artifactregistry.artifactregistry;
   bigquery = bigquery.bigquery;
   bigqueryconnection = bigqueryconnection.bigqueryconnection;
   bigquerydatatransfer = bigquerydatatransfer.bigquerydatatransfer;
   bigqueryreservation = bigqueryreservation.bigqueryreservation;
   bigtableadmin = bigtableadmin.bigtableadmin;
+  billingbudgets = billingbudgets.billingbudgets;
   binaryauthorization = binaryauthorization.binaryauthorization;
   blogger = blogger.blogger;
   books = books.books;
   calendar = calendar.calendar;
   chat = chat.chat;
+  chromeuxreport = chromeuxreport.chromeuxreport;
   civicinfo = civicinfo.civicinfo;
   classroom = classroom.classroom;
   cloudasset = cloudasset.cloudasset;
@@ -388,9 +407,6 @@ export class GeneratedAPIs {
   cloudidentity = cloudidentity.cloudidentity;
   cloudiot = cloudiot.cloudiot;
   cloudkms = cloudkms.cloudkms;
-  cloudprivatecatalog = cloudprivatecatalog.cloudprivatecatalog;
-  cloudprivatecatalogproducer =
-    cloudprivatecatalogproducer.cloudprivatecatalogproducer;
   cloudprofiler = cloudprofiler.cloudprofiler;
   cloudresourcemanager = cloudresourcemanager.cloudresourcemanager;
   cloudscheduler = cloudscheduler.cloudscheduler;
@@ -398,13 +414,13 @@ export class GeneratedAPIs {
   cloudshell = cloudshell.cloudshell;
   cloudtasks = cloudtasks.cloudtasks;
   cloudtrace = cloudtrace.cloudtrace;
-  commentanalyzer = commentanalyzer.commentanalyzer;
   composer = composer.composer;
   compute = compute.compute;
   container = container.container;
   containeranalysis = containeranalysis.containeranalysis;
   content = content.content;
   customsearch = customsearch.customsearch;
+  datacatalog = datacatalog.datacatalog;
   dataflow = dataflow.dataflow;
   datafusion = datafusion.datafusion;
   dataproc = dataproc.dataproc;
@@ -414,6 +430,7 @@ export class GeneratedAPIs {
   dialogflow = dialogflow.dialogflow;
   digitalassetlinks = digitalassetlinks.digitalassetlinks;
   discovery = discovery.discovery;
+  displayvideo = displayvideo.displayvideo;
   dlp = dlp.dlp;
   dns = dns.dns;
   docs = docs.docs;
@@ -428,13 +445,14 @@ export class GeneratedAPIs {
   firebase = firebase.firebase;
   firebasedynamiclinks = firebasedynamiclinks.firebasedynamiclinks;
   firebasehosting = firebasehosting.firebasehosting;
+  firebaseml = firebaseml.firebaseml;
   firebaserules = firebaserules.firebaserules;
   firestore = firestore.firestore;
   fitness = fitness.fitness;
-  fusiontables = fusiontables.fusiontables;
   games = games.games;
   gamesConfiguration = gamesConfiguration.gamesConfiguration;
   gamesManagement = gamesManagement.gamesManagement;
+  gameservices = gameservices.gameservices;
   genomics = genomics.genomics;
   gmail = gmail.gmail;
   groupsmigration = groupsmigration.groupsmigration;
@@ -451,35 +469,41 @@ export class GeneratedAPIs {
   language = language.language;
   libraryagent = libraryagent.libraryagent;
   licensing = licensing.licensing;
+  lifesciences = lifesciences.lifesciences;
   logging = logging.logging;
+  managedidentities = managedidentities.managedidentities;
   manufacturers = manufacturers.manufacturers;
-  mirror = mirror.mirror;
+  memcache = memcache.memcache;
   ml = ml.ml;
   monitoring = monitoring.monitoring;
+  networkmanagement = networkmanagement.networkmanagement;
   oauth2 = oauth2.oauth2;
+  osconfig = osconfig.osconfig;
   oslogin = oslogin.oslogin;
   pagespeedonline = pagespeedonline.pagespeedonline;
   people = people.people;
   playcustomapp = playcustomapp.playcustomapp;
   plus = plus.plus;
-  plusDomains = plusDomains.plusDomains;
+  policytroubleshooter = policytroubleshooter.policytroubleshooter;
   poly = poly.poly;
-  proximitybeacon = proximitybeacon.proximitybeacon;
+  prod_tt_sasportal = prod_tt_sasportal.prod_tt_sasportal;
   pubsub = pubsub.pubsub;
+  recommender = recommender.recommender;
   redis = redis.redis;
   remotebuildexecution = remotebuildexecution.remotebuildexecution;
-  replicapool = replicapool.replicapool;
   reseller = reseller.reseller;
   run = run.run;
   runtimeconfig = runtimeconfig.runtimeconfig;
   safebrowsing = safebrowsing.safebrowsing;
+  sasportal = sasportal.sasportal;
   script = script.script;
   searchconsole = searchconsole.searchconsole;
+  secretmanager = secretmanager.secretmanager;
   securitycenter = securitycenter.securitycenter;
-  servicebroker = servicebroker.servicebroker;
   serviceconsumermanagement =
     serviceconsumermanagement.serviceconsumermanagement;
   servicecontrol = servicecontrol.servicecontrol;
+  servicedirectory = servicedirectory.servicedirectory;
   servicemanagement = servicemanagement.servicemanagement;
   servicenetworking = servicenetworking.servicenetworking;
   serviceusage = serviceusage.serviceusage;
@@ -489,11 +513,10 @@ export class GeneratedAPIs {
   sourcerepo = sourcerepo.sourcerepo;
   spanner = spanner.spanner;
   speech = speech.speech;
-  sqladmin = sqladmin.sqladmin;
+  sql = sql.sql;
   storage = storage.storage;
   storagetransfer = storagetransfer.storagetransfer;
   streetviewpublish = streetviewpublish.streetviewpublish;
-  surveys = surveys.surveys;
   tagmanager = tagmanager.tagmanager;
   tasks = tasks.tasks;
   testing = testing.testing;
@@ -501,7 +524,6 @@ export class GeneratedAPIs {
   toolresults = toolresults.toolresults;
   tpu = tpu.tpu;
   translate = translate.translate;
-  urlshortener = urlshortener.urlshortener;
   vault = vault.vault;
   verifiedaccess = verifiedaccess.verifiedaccess;
   videointelligence = videointelligence.videointelligence;

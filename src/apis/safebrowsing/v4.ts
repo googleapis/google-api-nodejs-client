@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace safebrowsing_v4 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace safebrowsing_v4 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -91,7 +101,7 @@ export namespace safebrowsing_v4 {
   /**
    * Safe Browsing API
    *
-   * Enables client applications to check web resources (most commonly URLs) against Google-generated lists of unsafe web resources.
+   * Enables client applications to check web resources (most commonly URLs) against Google-generated lists of unsafe web resources. The Safe Browsing APIs are for non-commercial use only. If you need to use APIs to detect malicious URLs for commercial purposes – meaning “for sale or revenue-generating purposes” – please refer to the Web Risk API.
    *
    * @example
    * const {google} = require('googleapis');
@@ -164,7 +174,7 @@ export namespace safebrowsing_v4 {
      */
     language?: string | null;
     /**
-     * Sets the maximum number of entries that the client is willing to have in the local database. This should be a power of 2 between 2**10 and 2**20. If zero, no database size limit is set.
+     * Sets the maximum number of entries that the client is willing to have in the local database for the specified list. This should be a power of 2 between 2**10 and 2**20. If zero, no database size limit is set.
      */
     maxDatabaseEntries?: number | null;
     /**
@@ -572,6 +582,53 @@ export namespace safebrowsing_v4 {
 
     /**
      * safebrowsing.encodedFullHashes.get
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const safebrowsing = google.safebrowsing('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await safebrowsing.encodedFullHashes.get({
+     *     // A client ID that (hopefully) uniquely identifies the client implementation
+     *     // of the Safe Browsing API.
+     *     clientId: 'placeholder-value',
+     *     // The version of the client implementation.
+     *     clientVersion: 'placeholder-value',
+     *     // A serialized FindFullHashesRequest proto.
+     *     encodedRequest: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "matches": [],
+     *   //   "minimumWaitDuration": "my_minimumWaitDuration",
+     *   //   "negativeCacheDuration": "my_negativeCacheDuration"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias safebrowsing.encodedFullHashes.get
      * @memberOf! ()
      *
@@ -584,9 +641,18 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Encodedfullhashes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Encodedfullhashes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FindFullHashesResponse>;
+    get(
+      params: Params$Resource$Encodedfullhashes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Encodedfullhashes$Get,
       options:
@@ -602,12 +668,20 @@ export namespace safebrowsing_v4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Encodedfullhashes$Get
-        | BodyResponseCallback<Schema$FindFullHashesResponse>,
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FindFullHashesResponse>,
-      callback?: BodyResponseCallback<Schema$FindFullHashesResponse>
-    ): void | GaxiosPromise<Schema$FindFullHashesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FindFullHashesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Encodedfullhashes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -641,7 +715,10 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback);
+        createAPIRequest<Schema$FindFullHashesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FindFullHashesResponse>(parameters);
       }
@@ -650,11 +727,6 @@ export namespace safebrowsing_v4 {
 
   export interface Params$Resource$Encodedfullhashes$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.
      */
@@ -677,6 +749,52 @@ export namespace safebrowsing_v4 {
 
     /**
      * safebrowsing.encodedUpdates.get
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const safebrowsing = google.safebrowsing('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await safebrowsing.encodedUpdates.get({
+     *     // A client ID that uniquely identifies the client implementation of the Safe
+     *     // Browsing API.
+     *     clientId: 'placeholder-value',
+     *     // The version of the client implementation.
+     *     clientVersion: 'placeholder-value',
+     *     // A serialized FetchThreatListUpdatesRequest proto.
+     *     encodedRequest: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "listUpdateResponses": [],
+     *   //   "minimumWaitDuration": "my_minimumWaitDuration"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias safebrowsing.encodedUpdates.get
      * @memberOf! ()
      *
@@ -689,9 +807,18 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Encodedupdates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Encodedupdates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FetchThreatListUpdatesResponse>;
+    get(
+      params: Params$Resource$Encodedupdates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Encodedupdates$Get,
       options:
@@ -709,12 +836,20 @@ export namespace safebrowsing_v4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Encodedupdates$Get
-        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
-      callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
-    ): void | GaxiosPromise<Schema$FetchThreatListUpdatesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchThreatListUpdatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Encodedupdates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -750,7 +885,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
@@ -762,11 +897,6 @@ export namespace safebrowsing_v4 {
 
   export interface Params$Resource$Encodedupdates$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A client ID that uniquely identifies the client implementation of the Safe Browsing API.
      */
@@ -790,19 +920,78 @@ export namespace safebrowsing_v4 {
     /**
      * safebrowsing.fullHashes.find
      * @desc Finds the full hashes that match the requested hash prefixes.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const safebrowsing = google.safebrowsing('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await safebrowsing.fullHashes.find({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiClient": {},
+     *       //   "client": {},
+     *       //   "clientStates": [],
+     *       //   "threatInfo": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "matches": [],
+     *   //   "minimumWaitDuration": "my_minimumWaitDuration",
+     *   //   "negativeCacheDuration": "my_negativeCacheDuration"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias safebrowsing.fullHashes.find
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().FindFullHashesRequest} params.resource Request body data
+     * @param {().FindFullHashesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     find(
+      params: Params$Resource$Fullhashes$Find,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    find(
       params?: Params$Resource$Fullhashes$Find,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FindFullHashesResponse>;
+    find(
+      params: Params$Resource$Fullhashes$Find,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     find(
       params: Params$Resource$Fullhashes$Find,
       options:
@@ -818,12 +1007,20 @@ export namespace safebrowsing_v4 {
     find(
       paramsOrCallback?:
         | Params$Resource$Fullhashes$Find
-        | BodyResponseCallback<Schema$FindFullHashesResponse>,
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FindFullHashesResponse>,
-      callback?: BodyResponseCallback<Schema$FindFullHashesResponse>
-    ): void | GaxiosPromise<Schema$FindFullHashesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FindFullHashesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Fullhashes$Find;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -856,7 +1053,10 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback);
+        createAPIRequest<Schema$FindFullHashesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FindFullHashesResponse>(parameters);
       }
@@ -864,11 +1064,6 @@ export namespace safebrowsing_v4 {
   }
 
   export interface Params$Resource$Fullhashes$Find extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -884,19 +1079,76 @@ export namespace safebrowsing_v4 {
     /**
      * safebrowsing.threatHits.create
      * @desc Reports a Safe Browsing threat list hit to Google. Only projects with TRUSTED_REPORTER visibility can use this method.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const safebrowsing = google.safebrowsing('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await safebrowsing.threatHits.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clientInfo": {},
+     *       //   "entry": {},
+     *       //   "platformType": "my_platformType",
+     *       //   "resources": [],
+     *       //   "threatType": "my_threatType",
+     *       //   "userInfo": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias safebrowsing.threatHits.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ThreatHit} params.resource Request body data
+     * @param {().ThreatHit} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Threathits$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Threathits$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    create(
+      params: Params$Resource$Threathits$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Threathits$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -910,10 +1162,17 @@ export namespace safebrowsing_v4 {
     create(
       paramsOrCallback?:
         | Params$Resource$Threathits$Create
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threathits$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -944,7 +1203,10 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -953,11 +1215,6 @@ export namespace safebrowsing_v4 {
 
   export interface Params$Resource$Threathits$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -973,6 +1230,43 @@ export namespace safebrowsing_v4 {
     /**
      * safebrowsing.threatLists.list
      * @desc Lists the Safe Browsing threat lists available for download.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const safebrowsing = google.safebrowsing('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await safebrowsing.threatLists.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "threatLists": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias safebrowsing.threatLists.list
      * @memberOf! ()
      *
@@ -982,9 +1276,18 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Threatlists$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Threatlists$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListThreatListsResponse>;
+    list(
+      params: Params$Resource$Threatlists$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Threatlists$List,
       options:
@@ -1000,12 +1303,20 @@ export namespace safebrowsing_v4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Threatlists$List
-        | BodyResponseCallback<Schema$ListThreatListsResponse>,
+        | BodyResponseCallback<Schema$ListThreatListsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListThreatListsResponse>,
-      callback?: BodyResponseCallback<Schema$ListThreatListsResponse>
-    ): void | GaxiosPromise<Schema$ListThreatListsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListThreatListsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListThreatListsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListThreatListsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Threatlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1035,19 +1346,18 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListThreatListsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListThreatListsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListThreatListsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Threatlists$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Threatlists$List
+    extends StandardParameters {}
 
   export class Resource$Threatlistupdates {
     context: APIRequestContext;
@@ -1058,19 +1368,75 @@ export namespace safebrowsing_v4 {
     /**
      * safebrowsing.threatListUpdates.fetch
      * @desc Fetches the most recent threat list updates. A client can request updates for multiple lists at once.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const safebrowsing = google.safebrowsing('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await safebrowsing.threatListUpdates.fetch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "client": {},
+     *       //   "listUpdateRequests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "listUpdateResponses": [],
+     *   //   "minimumWaitDuration": "my_minimumWaitDuration"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias safebrowsing.threatListUpdates.fetch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().FetchThreatListUpdatesRequest} params.resource Request body data
+     * @param {().FetchThreatListUpdatesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     fetch(
+      params: Params$Resource$Threatlistupdates$Fetch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetch(
       params?: Params$Resource$Threatlistupdates$Fetch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FetchThreatListUpdatesResponse>;
+    fetch(
+      params: Params$Resource$Threatlistupdates$Fetch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     fetch(
       params: Params$Resource$Threatlistupdates$Fetch,
       options:
@@ -1088,12 +1454,20 @@ export namespace safebrowsing_v4 {
     fetch(
       paramsOrCallback?:
         | Params$Resource$Threatlistupdates$Fetch
-        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
-      callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
-    ): void | GaxiosPromise<Schema$FetchThreatListUpdatesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchThreatListUpdatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threatlistupdates$Fetch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1129,7 +1503,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
@@ -1141,11 +1515,6 @@ export namespace safebrowsing_v4 {
 
   export interface Params$Resource$Threatlistupdates$Fetch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1161,19 +1530,74 @@ export namespace safebrowsing_v4 {
     /**
      * safebrowsing.threatMatches.find
      * @desc Finds the threat entries that match the Safe Browsing lists.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const safebrowsing = google.safebrowsing('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await safebrowsing.threatMatches.find({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "client": {},
+     *       //   "threatInfo": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "matches": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias safebrowsing.threatMatches.find
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().FindThreatMatchesRequest} params.resource Request body data
+     * @param {().FindThreatMatchesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     find(
+      params: Params$Resource$Threatmatches$Find,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    find(
       params?: Params$Resource$Threatmatches$Find,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FindThreatMatchesResponse>;
+    find(
+      params: Params$Resource$Threatmatches$Find,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     find(
       params: Params$Resource$Threatmatches$Find,
       options:
@@ -1191,12 +1615,20 @@ export namespace safebrowsing_v4 {
     find(
       paramsOrCallback?:
         | Params$Resource$Threatmatches$Find
-        | BodyResponseCallback<Schema$FindThreatMatchesResponse>,
+        | BodyResponseCallback<Schema$FindThreatMatchesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FindThreatMatchesResponse>,
-      callback?: BodyResponseCallback<Schema$FindThreatMatchesResponse>
-    ): void | GaxiosPromise<Schema$FindThreatMatchesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FindThreatMatchesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FindThreatMatchesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FindThreatMatchesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threatmatches$Find;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1232,7 +1664,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FindThreatMatchesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$FindThreatMatchesResponse>(parameters);
@@ -1242,11 +1674,6 @@ export namespace safebrowsing_v4 {
 
   export interface Params$Resource$Threatmatches$Find
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace cloudidentity_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace cloudidentity_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -118,114 +128,579 @@ export namespace cloudidentity_v1beta1 {
   }
 
   /**
-   * An EntityKey uniquely identifies an Entity. Namespaces are used to provide isolation for ids.  A single Id can be reused across namespaces but the combination of a namespace and an id must be unique.
+   * Resource representing the Android specific attributes of a Device.
+   */
+  export interface Schema$AndroidAttributes {
+    /**
+     * Whether applications from unknown sources can be installed on device.
+     */
+    enabledUnknownSources?: boolean | null;
+    /**
+     * Whether this account is on an owner/primary profile. For phones, only true for owner profiles. Android 4+ devices can have secondary or restricted user profiles.
+     */
+    ownerProfileAccount?: boolean | null;
+    /**
+     * Ownership privileges on device.
+     */
+    ownershipPrivilege?: string | null;
+    /**
+     * Whether device supports Android work profiles. If false, this service will not block access to corp data even if an administrator turns on the &quot;Enforce Work Profile&quot; policy.
+     */
+    supportsWorkProfile?: boolean | null;
+  }
+  /**
+   * Response message for approving the device to access user data.
+   */
+  export interface Schema$ApproveDeviceUserResponse {
+    /**
+     * Resultant DeviceUser object for the action.
+     */
+    deviceUser?: Schema$DeviceUser;
+  }
+  /**
+   * Response message for blocking the device from accessing user data.
+   */
+  export interface Schema$BlockDeviceUserResponse {
+    /**
+     * Resultant DeviceUser object for the action.
+     */
+    deviceUser?: Schema$DeviceUser;
+  }
+  /**
+   * Response message for cancelling an unfinished device wipe.
+   */
+  export interface Schema$CancelWipeDeviceResponse {
+    /**
+     * Resultant Device object for the action. Note that asset tags will not be returned in the device object.
+     */
+    device?: Schema$Device;
+  }
+  /**
+   * Response message for cancelling an unfinished user account wipe.
+   */
+  export interface Schema$CancelWipeDeviceUserResponse {
+    /**
+     * Resultant DeviceUser object for the action.
+     */
+    deviceUser?: Schema$DeviceUser;
+  }
+  /**
+   * Resource representing ClientState and supports updates from API users
+   */
+  export interface Schema$ClientState {
+    /**
+     * The caller can specify asset tags for this resource
+     */
+    assetTags?: string[] | null;
+    /**
+     * The compliance state of the resource as specified by the API client.
+     */
+    complianceState?: string | null;
+    /**
+     * Output only. The time the client state data was created.
+     */
+    createTime?: string | null;
+    /**
+     * This field may be used to store a unique identifier for the API resource within which these CustomAttributes are a field.
+     */
+    customId?: string | null;
+    /**
+     * The token that needs to be passed back for concurrency control in updates. Token needs to be passed back in UpdateRequest
+     */
+    etag?: string | null;
+    /**
+     * The Health score of the resource
+     */
+    healthScore?: string | null;
+    /**
+     * The map of key-value attributes stored by callers specific to a device. The total serialized length of this map may not exceed 10KB. No limit is placed on the number of attributes in a map.
+     */
+    keyValuePairs?: {[key: string]: Schema$CustomAttributeValue} | null;
+    /**
+     * Output only. The time the client state data was last updated.
+     */
+    lastUpdateTime?: string | null;
+    /**
+     * The management state of the resource as specified by the API client.
+     */
+    managed?: string | null;
+    /**
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientState/{partner_id}`, where partner_id corresponds to the partner storing the data.
+     */
+    name?: string | null;
+    /**
+     * Output only. The owner of the ClientState
+     */
+    ownerType?: string | null;
+    /**
+     * A descriptive cause of the health score.
+     */
+    scoreReason?: string | null;
+  }
+  /**
+   * Additional custom attribute values may be one of these types
+   */
+  export interface Schema$CustomAttributeValue {
+    /**
+     * Represents a boolean value.
+     */
+    boolValue?: boolean | null;
+    /**
+     * Represents a double value.
+     */
+    numberValue?: number | null;
+    /**
+     * Represents a string value.
+     */
+    stringValue?: string | null;
+  }
+  /**
+   * Represents a Device known to Google Cloud, independent of the device ownership, type, and whether it is assigned or in use by a user.
+   */
+  export interface Schema$Device {
+    /**
+     * Output only. Attributes specific to Android devices.
+     */
+    androidSpecificAttributes?: Schema$AndroidAttributes;
+    /**
+     * Asset tag of the device.
+     */
+    assetTag?: string | null;
+    /**
+     * Output only. Baseband version of the device.
+     */
+    basebandVersion?: string | null;
+    /**
+     * Output only. Device bootloader version. Example: 0.6.7.
+     */
+    bootloaderVersion?: string | null;
+    /**
+     * Output only. Device brand. Example: Samsung.
+     */
+    brand?: string | null;
+    /**
+     * Output only. Build number of the device.
+     */
+    buildNumber?: string | null;
+    /**
+     * Output only. Represents whether the Device is compromised.
+     */
+    compromisedState?: string | null;
+    /**
+     * Output only. When the Company-Owned device was imported. This field is empty for BYOD devices.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Type of device.
+     */
+    deviceType?: string | null;
+    /**
+     * Output only. Whether developer options is enabled on device.
+     */
+    enabledDeveloperOptions?: boolean | null;
+    /**
+     * Output only. Whether USB debugging is enabled on device.
+     */
+    enabledUsbDebugging?: boolean | null;
+    /**
+     * Output only. Device encryption state.
+     */
+    encryptionState?: string | null;
+    /**
+     * Output only. IMEI number of device if GSM device; empty otherwise.
+     */
+    imei?: string | null;
+    /**
+     * Output only. Kernel version of the device.
+     */
+    kernelVersion?: string | null;
+    /**
+     * Most recent time when device synced with this service.
+     */
+    lastSyncTime?: string | null;
+    /**
+     * Output only. Management state of the device
+     */
+    managementState?: string | null;
+    /**
+     * Output only. Device manufacturer. Example: Motorola.
+     */
+    manufacturer?: string | null;
+    /**
+     * Output only. MEID number of device if CDMA device; empty otherwise.
+     */
+    meid?: string | null;
+    /**
+     * Output only. Model name of device. Example: Pixel 3.
+     */
+    model?: string | null;
+    /**
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}`, where device_id is the unique id assigned to the Device.
+     */
+    name?: string | null;
+    /**
+     * Output only. Mobile or network operator of device, if available.
+     */
+    networkOperator?: string | null;
+    /**
+     * Output only. OS version of the device. Example: Android 8.1.0.
+     */
+    osVersion?: string | null;
+    /**
+     * Output only. Domain name for Google accounts on device. Type for other accounts on device. On Android, will only be populated if |ownership_privilege| is |PROFILE_OWNER| or |DEVICE_OWNER|. Does not include the account signed in to the device policy app if that account&#39;s domain has only one account. Examples: &quot;com.example&quot;, &quot;xyz.com&quot;.
+     */
+    otherAccounts?: string[] | null;
+    /**
+     * Whether the device is owned by the company or an individual
+     */
+    ownerType?: string | null;
+    /**
+     * Output only. OS release version. Example: 6.0.
+     */
+    releaseVersion?: string | null;
+    /**
+     * Output only. OS security patch update time on device.
+     */
+    securityPatchTime?: string | null;
+    /**
+     * Serial Number of device. Example: HT82V1A01076.
+     */
+    serialNumber?: string | null;
+    /**
+     * WiFi MAC addresses of device.
+     */
+    wifiMacAddresses?: string[] | null;
+  }
+  /**
+   * A DeviceUser is a resource representing a user&#39;s use of a Device
+   */
+  export interface Schema$DeviceUser {
+    /**
+     * Compromised State of the DeviceUser object
+     */
+    compromisedState?: string | null;
+    /**
+     * When the user first signed in to the device
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Most recent time when user registered with this service.
+     */
+    firstSyncTime?: string | null;
+    /**
+     * Output only. Default locale used on device, in IETF BCP-47 format.
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. Last time when user synced with policies.
+     */
+    lastSyncTime?: string | null;
+    /**
+     * Output only. Management state of the user on the device.
+     */
+    managementState?: string | null;
+    /**
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device_id}/deviceUsers/{user_id}`, where user_id is the ID of the user associated with the user session.
+     */
+    name?: string | null;
+    /**
+     * Password state of the DeviceUser object
+     */
+    passwordState?: string | null;
+    /**
+     * Output only. User agent on the device for this specific user
+     */
+    userAgent?: string | null;
+    /**
+     * Email address of the user registered on the device.
+     */
+    userEmail?: string | null;
+  }
+  /**
+   * An EndpointApp represents an app that is installed on a device
+   */
+  export interface Schema$EndpointApp {
+    /**
+     * Output only. Name of the app displayed to the user
+     */
+    displayName?: string | null;
+    /**
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the EndpointApp in format: `devices/{device}/deviceUsers/{device_user}/endpointApps/{endpoint_app}`, where client_app_id is the ID of the app associated with the Device.
+     */
+    name?: string | null;
+    /**
+     * Output only. Full package name of the installed app
+     */
+    packageName?: string | null;
+    /**
+     * Output only. Names of all permissions granted to the installed app
+     */
+    permissions?: string[] | null;
+    /**
+     * Output only. Version code of the installed app
+     */
+    versionCode?: number | null;
+    /**
+     * Output only. Version name of the installed app
+     */
+    versionName?: string | null;
+  }
+  /**
+   * A unique identifier for an entity in the Cloud Identity Groups API.  An entity can represent either a group with an optional `namespace` or a user without a `namespace`. The combination of `id` and `namespace` must be unique; however, the same `id` can be used with different `namespace`s.
    */
   export interface Schema$EntityKey {
     /**
-     * The id of the entity within the given namespace. The id must be unique within its namespace.
+     * The ID of the entity.  For Google-managed entities, the `id` must be the email address of an existing group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source&#39;s requirements.  Must be unique within a `namespace`.
      */
     id?: string | null;
     /**
-     * Namespaces provide isolation for ids, i.e an id only needs to be unique within its namespace.  Namespaces are currently only created as part of IdentitySource creation from Admin Console. A namespace `&quot;identitysources/{identity_source_id}&quot;` is created corresponding to every Identity Source `identity_source_id`.
+     * The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id}.
      */
     namespace?: string | null;
   }
   /**
-   * Resource representing a Group
+   * The response message for MembershipsService.GetMembershipGraph.
+   */
+  export interface Schema$GetMembershipGraphResponse {
+    /**
+     * The membership graph&#39;s path information represented as an adjacency list.
+     */
+    adjacencyList?: Schema$MembershipAdjacencyList[];
+    /**
+     * The resources representing each group in the adjacency list. Each group in this list can be correlated to a &#39;group&#39; of the MembershipAdjacencyList using the &#39;name&#39; of the Group resource.
+     */
+    groups?: Schema$Group[];
+  }
+  /**
+   * A group within the Cloud Identity Groups API.  A `Group` is a collection of entities, where each entity is either a user, another group or a service account.
    */
   export interface Schema$Group {
     /**
-     * Optional. Additional entity key aliases for a Group
+     * Additional entity key aliases for a Group.
      */
     additionalGroupKeys?: Schema$EntityKey[];
     /**
-     * The time when the Group was created. Output only
+     * Output only. The time when the `Group` was created.
      */
     createTime?: string | null;
     /**
-     * An extended description to help users determine the purpose of a Group. For example, you can include information about who should join the Group, the types of messages to send to the Group, links to FAQs about the Group, or related Groups. Maximum length is 4,096 characters.
+     * An extended description to help users determine the purpose of a `Group`.  Must not be longer than 4,096 characters.
      */
     description?: string | null;
     /**
-     * The Group&#39;s display name.
+     * The display name of the `Group`.
      */
     displayName?: string | null;
     /**
-     * EntityKey of the Group.  Must be set when creating a Group, read-only afterwards.
+     * Required. Immutable. The `EntityKey` of the `Group`.
      */
     groupKey?: Schema$EntityKey;
     /**
-     * Labels for Group resource. Required. For creating Groups under a namespace, set label key to &#39;labels/system/groups/external&#39; and label value as empty.
+     * Required. The labels that apply to the `Group`.  Must not contain more than one entry. Must contain the entry `&#39;cloudidentity.googleapis.com/groups.discussion_forum&#39;: &#39;&#39;` if the `Group` is a Google Group or `&#39;system/groups/external&#39;: &#39;&#39;` if the `Group` is an external-identity-mapped group.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where group_id is the unique id assigned to the Group.  Must be left blank while creating a Group
+     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`.  Shall be of the form `groups/{group_id}`.
      */
     name?: string | null;
     /**
-     * The entity under which this Group resides in Cloud Identity resource hierarchy. Must be set when creating a Group, read-only afterwards.  Currently allowed types: &#39;identitysources&#39;.
+     * Required. Immutable. The resource name of the entity under which this `Group` resides in the Cloud Identity resource hierarchy.  Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups.
      */
     parent?: string | null;
     /**
-     * The time when the Group was last updated. Output only
+     * Output only. The time when the `Group` was last updated.
      */
     updateTime?: string | null;
   }
-  export interface Schema$ListMembershipsResponse {
+  /**
+   * Response message that is returned in LRO result of ListClientStates Operation.
+   */
+  export interface Schema$ListClientStatesResponse {
     /**
-     * List of Memberships
+     * Client states meeting the list restrictions.
      */
-    memberships?: Schema$Membership[];
+    clientStates?: Schema$ClientState[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more results available for listing.
+     * Token to retrieve the next page of results. Empty if there are no more results.
      */
     nextPageToken?: string | null;
   }
+  /**
+   * Response message that is returned in LRO result of ListDevices Operation.
+   */
+  export interface Schema$ListDevicesResponse {
+    /**
+     * Devices meeting the list restrictions.
+     */
+    devices?: Schema$Device[];
+    /**
+     * Token to retrieve the next page of results. Empty if there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message that is returned in LRO result of ListDeviceUsers Operation.
+   */
+  export interface Schema$ListDeviceUsersResponse {
+    /**
+     * Devices meeting the list restrictions.
+     */
+    deviceUsers?: Schema$DeviceUser[];
+    /**
+     * Token to retrieve the next page of results. Empty if there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for listing all apps on the device.
+   */
+  export interface Schema$ListEndpointAppsResponse {
+    /**
+     * The list of matching EndpointApps found as a result of the request.
+     */
+    endpointApps?: Schema$EndpointApp[];
+    /**
+     * Token to retrieve the next page of results. Empty if there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response message for GroupsService.ListGroups.
+   */
+  export interface Schema$ListGroupsResponse {
+    /**
+     * The `Group`s under the specified `parent`.
+     */
+    groups?: Schema$Group[];
+    /**
+     * A continuation token to retrieve the next page of results, or empty if there are no more results available.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response message for MembershipsService.ListMemberships.
+   */
+  export interface Schema$ListMembershipsResponse {
+    /**
+     * The `Membership`s under the specified `parent`.
+     */
+    memberships?: Schema$Membership[];
+    /**
+     * A continuation token to retrieve the next page of results, or empty if there are no more results available.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response message for GroupsService.LookupGroupName.
+   */
   export interface Schema$LookupGroupNameResponse {
     /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group.
-     */
-    name?: string | null;
-  }
-  export interface Schema$LookupMembershipNameResponse {
-    /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Membership being looked up.  Format: `groups/{group_id}/memberships/{member_id}`, where `group_id` is the unique id assigned to the Group to which Membership belongs to, and `member_id` is the unique id assigned to the member.
+     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the looked-up `Group`.
      */
     name?: string | null;
   }
   /**
-   * Resource representing a Membership within a Group
+   * The response message for MembershipsService.LookupMembershipName.
+   */
+  export interface Schema$LookupMembershipNameResponse {
+    /**
+     * The [resource name](https://cloud.google.com/apis/design/resource_names) of the looked-up `Membership`.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     */
+    name?: string | null;
+  }
+  /**
+   * Response containing resource names of the DeviceUsers associated with the caller&#39;s credentials.
+   */
+  export interface Schema$LookupSelfDeviceUsersResponse {
+    /**
+     * The obfuscated customer Id that may be passed back to other Devices API methods such as List, Get, etc.
+     */
+    customer?: string | null;
+    /**
+     * [Resource names](https://cloud.google.com/apis/design/resource_names) of the DeviceUsers in the format: `devices/{device_id}/deviceUsers/{user_resource_id}`, where device_id is the unique ID assigned to a Device and user_resource_id is the unique user ID
+     */
+    names?: string[] | null;
+    /**
+     * Token to retrieve the next page of results. Empty if there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * A membership within the Cloud Identity Groups API.  A `Membership` defines a relationship between a `Group` and an entity belonging to that `Group`, referred to as a &quot;member&quot;.
    */
   export interface Schema$Membership {
     /**
-     * Creation timestamp of the Membership.
+     * Output only. The time when the `Membership` was created.
      */
     createTime?: string | null;
     /**
-     * EntityKey of the entity to be added as the member. Must be set while creating a Membership, read-only afterwards.  Currently allowed entity types: `Users`, `Groups`.
+     * Immutable. The `EntityKey` of the member.  Either `member_key` or `preferred_member_key` must be set when calling MembershipsService.CreateMembership but not both; both shall be set when returned.
      */
     memberKey?: Schema$EntityKey;
     /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Membership in the format: `groups/{group_id}/memberships/{member_id}`, where group_id is the unique id assigned to the Group to which Membership belongs to, and member_id is the unique id assigned to the member  Must be left blank while creating a Membership.
+     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership`.  Shall be of the form `groups/{group_id}/memberships/{membership_id}`.
      */
     name?: string | null;
     /**
-     * Roles for a member within the Group.  Currently supported MembershipRoles: `&quot;MEMBER&quot;`.
+     * Required. Immutable. The `EntityKey` of the member.  Either `member_key` or `preferred_member_key` must be set when calling MembershipsService.CreateMembership but not both; both shall be set when returned.
+     */
+    preferredMemberKey?: Schema$EntityKey;
+    /**
+     * The `MembershipRole`s that apply to the `Membership`.  If unspecified, defaults to a single `MembershipRole` with `name` `MEMBER`.  Must not contain duplicate `MembershipRole`s with the same `name`.
      */
     roles?: Schema$MembershipRole[];
     /**
-     * Last updated timestamp of the Membership.
+     * Output only. The time when the `Membership` was last updated.
      */
     updateTime?: string | null;
   }
   /**
-   * Resource representing a role within a Membership.
+   * Membership graph&#39;s path information as an adjacency list.
+   */
+  export interface Schema$MembershipAdjacencyList {
+    /**
+     * Each edge contains information about the member that belongs to this group.
+     */
+    edges?: Schema$Membership[];
+    /**
+     * Resource name of the group that the members belong to.
+     */
+    group?: string | null;
+  }
+  /**
+   * A membership role within the Cloud Identity Groups API.  A `MembershipRole` defines the privileges granted to a `Membership`.
    */
   export interface Schema$MembershipRole {
     /**
-     * MembershipRole in string format.  Currently supported MembershipRoles: `&quot;MEMBER&quot;`.
+     * The name of the `MembershipRole`.  Must be one of `OWNER`, `MANAGER`, `MEMBER`.
      */
     name?: string | null;
+  }
+  /**
+   * The request message for MembershipsService.ModifyMembershipRoles.
+   */
+  export interface Schema$ModifyMembershipRolesRequest {
+    /**
+     * The `MembershipRole`s to be added.  Adding or removing roles in the same request as updating roles is not supported.  Must not be set if `update_roles_params` is set.
+     */
+    addRoles?: Schema$MembershipRole[];
+    /**
+     * The `name`s of the `MembershipRole`s to be removed.  Adding or removing roles in the same request as updating roles is not supported.  It is not possible to remove the `MEMBER` `MembershipRole`. If you wish to delete a `Membership`, call MembershipsService.DeleteMembership instead.  Must not contain `MEMBER`. Must not be set if `update_roles_params` is set.
+     */
+    removeRoles?: string[] | null;
+    /**
+     * The `MembershipRole`s to be updated.  Updating roles in the same request as adding or removing roles is not supported.  Must not be set if either `add_roles` or `remove_roles` is set.
+     */
+    updateRolesParams?: Schema$UpdateMembershipRolesParams[];
+  }
+  /**
+   * The response message for MembershipsService.ModifyMembershipRoles.
+   */
+  export interface Schema$ModifyMembershipRolesResponse {
+    /**
+     * The `Membership` resource after modifying its `MembershipRole`s.
+     */
+    membership?: Schema$Membership;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -252,13 +727,16 @@ export namespace cloudidentity_v1beta1 {
      */
     response?: {[key: string]: any} | null;
   }
+  /**
+   * The response message for GroupsService.SearchGroups.
+   */
   export interface Schema$SearchGroupsResponse {
     /**
-     * List of Groups satisfying the search query.
+     * The `Group`s that match the search query.
      */
     groups?: Schema$Group[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more results available for specified query.
+     * A continuation token to retrieve the next page of results, or empty if there are no more results available.
      */
     nextPageToken?: string | null;
   }
@@ -279,6 +757,37 @@ export namespace cloudidentity_v1beta1 {
      */
     message?: string | null;
   }
+  /**
+   * The details of an update to a `MembershipRole`.
+   */
+  export interface Schema$UpdateMembershipRolesParams {
+    /**
+     * The fully-qualified names of fields to update.  May only contain the field `expiry_detail`.
+     */
+    fieldMask?: string | null;
+    /**
+     * The `MembershipRole`s to be updated.  Only `MEMBER` `MembershipRoles` can currently be updated.  May only contain a `MembershipRole` with `name` `MEMBER`.
+     */
+    membershipRole?: Schema$MembershipRole;
+  }
+  /**
+   * Response message for wiping all data on the device.
+   */
+  export interface Schema$WipeDeviceResponse {
+    /**
+     * Resultant Device object for the action. Note that asset tags will not be returned in the device object.
+     */
+    device?: Schema$Device;
+  }
+  /**
+   * Response message for wiping the user&#39;s account from the device.
+   */
+  export interface Schema$WipeDeviceUserResponse {
+    /**
+     * Resultant DeviceUser object for the action.
+     */
+    deviceUser?: Schema$DeviceUser;
+  }
 
   export class Resource$Groups {
     context: APIRequestContext;
@@ -290,20 +799,93 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.create
-     * @desc Creates a Group.
+     * @desc Creates a `Group`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.create({
+     *     // Required. The initial configuration option for the `Group`.
+     *     initialGroupConfig: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalGroupKeys": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "groupKey": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Group} params.resource Request body data
+     * @param {string=} params.initialGroupConfig Required. The initial configuration option for the `Group`.
+     * @param {().Group} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Groups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Groups$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Groups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Groups$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -317,12 +899,17 @@ export namespace cloudidentity_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Groups$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -353,7 +940,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -361,20 +951,79 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.delete
-     * @desc Deletes a Group.
+     * @desc Deletes a `Group`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.delete({
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of
+     *     // the `Group` to retrieve.
+     *     //
+     *     // Must be of the form `groups/{group_id}`.
+     *     name: 'groups/my-group',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group.
+     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve.  Must be of the form `groups/{group_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Groups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Groups$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Groups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Groups$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -388,12 +1037,17 @@ export namespace cloudidentity_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Groups$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -424,7 +1078,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -432,20 +1089,84 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.get
-     * @desc Retrieves a Group.
+     * @desc Retrieves a `Group`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.get({
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of
+     *     // the `Group` to retrieve.
+     *     //
+     *     // Must be of the form `groups/{group_id}`.
+     *     name: 'groups/my-group',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalGroupKeys": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "groupKey": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group.
+     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve.  Must be of the form `groups/{group_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Groups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Groups$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Group>;
+    get(
+      params: Params$Resource$Groups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Groups$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Group>,
@@ -459,10 +1180,17 @@ export namespace cloudidentity_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Groups$Get
-        | BodyResponseCallback<Schema$Group>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Group>,
-      callback?: BodyResponseCallback<Schema$Group>
-    ): void | GaxiosPromise<Schema$Group> {
+        | BodyResponseCallback<Schema$Group>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Group>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Group>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Group> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -493,29 +1221,261 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Group>(parameters, callback);
+        createAPIRequest<Schema$Group>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
       }
     }
 
     /**
+     * cloudidentity.groups.list
+     * @desc Lists the `Group`s under a customer or namespace.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.list({
+     *     // The maximum number of results to return.
+     *     //
+     *     // Note that the number of results returned may be less than this value even
+     *     // if there are more available results. To fetch all results, clients must
+     *     // continue calling this method repeatedly until the response no longer
+     *     // contains a `next_page_token`.
+     *     //
+     *     // If unspecified, defaults to 200 for `View.BASIC` and to 50 for `View.FULL`.
+     *     //
+     *     // Must not be greater than 1000 for `View.BASIC` or 500 for `View.FULL`.
+     *     pageSize: 'placeholder-value',
+     *     // The `next_page_token` value returned from a previous list request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource under which to list all `Group`s.
+     *     //
+     *     // Must be of the form `identitysources/{identity_source_id}` for external-
+     *     // identity-mapped groups or `customers/{customer_id}` for Google Groups.
+     *     parent: 'placeholder-value',
+     *     // The level of detail to be returned.
+     *     //
+     *     // If unspecified, defaults to `View.BASIC`.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "groups": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudidentity.groups.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of results to return.  Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`.  If unspecified, defaults to 200 for `View.BASIC` and to 50 for `View.FULL`.  Must not be greater than 1000 for `View.BASIC` or 500 for `View.FULL`.
+     * @param {string=} params.pageToken The `next_page_token` value returned from a previous list request, if any.
+     * @param {string=} params.parent Required. The parent resource under which to list all `Group`s.  Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups.
+     * @param {string=} params.view The level of detail to be returned.  If unspecified, defaults to `View.BASIC`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Groups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Groups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGroupsResponse>;
+    list(
+      params: Params$Resource$Groups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Groups$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Groups$List,
+      callback: BodyResponseCallback<Schema$ListGroupsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListGroupsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Groups$List
+        | BodyResponseCallback<Schema$ListGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Groups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/groups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGroupsResponse>(parameters);
+      }
+    }
+
+    /**
      * cloudidentity.groups.lookup
-     * @desc Looks up [resource name](https://cloud.google.com/apis/design/resource_names) of a Group by its EntityKey.
+     * @desc Looks up the [resource name](https://cloud.google.com/apis/design/resource_names) of a `Group` by its `EntityKey`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.lookup({
+     *     // The ID of the entity.
+     *     //
+     *     // For Google-managed entities, the `id` must be the email address of an
+     *     // existing group or user.
+     *     //
+     *     // For external-identity-mapped entities, the `id` must be a string conforming
+     *     // to the Identity Source's requirements.
+     *     //
+     *     // Must be unique within a `namespace`.
+     *     'groupKey.id': 'placeholder-value',
+     *     // The namespace in which the entity exists.
+     *     //
+     *     // If not specified, the `EntityKey` represents a Google-managed entity such
+     *     // as a Google user or a Google Group.
+     *     //
+     *     // If specified, the `EntityKey` represents an external-identity-mapped group.
+     *     // The namespace must correspond to an identity source created in Admin
+     *     // Console and must be in the form of `identitysources/{identity_source_id}.
+     *     'groupKey.namespace': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.lookup
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.groupKey.id The id of the entity within the given namespace. The id must be unique within its namespace.
-     * @param {string=} params.groupKey.namespace Namespaces provide isolation for ids, i.e an id only needs to be unique within its namespace.  Namespaces are currently only created as part of IdentitySource creation from Admin Console. A namespace `"identitysources/{identity_source_id}"` is created corresponding to every Identity Source `identity_source_id`.
+     * @param {string=} params.groupKey.id The ID of the entity.  For Google-managed entities, the `id` must be the email address of an existing group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements.  Must be unique within a `namespace`.
+     * @param {string=} params.groupKey.namespace The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     lookup(
+      params: Params$Resource$Groups$Lookup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lookup(
       params?: Params$Resource$Groups$Lookup,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LookupGroupNameResponse>;
+    lookup(
+      params: Params$Resource$Groups$Lookup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     lookup(
       params: Params$Resource$Groups$Lookup,
       options:
@@ -533,12 +1493,20 @@ export namespace cloudidentity_v1beta1 {
     lookup(
       paramsOrCallback?:
         | Params$Resource$Groups$Lookup
-        | BodyResponseCallback<Schema$LookupGroupNameResponse>,
+        | BodyResponseCallback<Schema$LookupGroupNameResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LookupGroupNameResponse>,
-      callback?: BodyResponseCallback<Schema$LookupGroupNameResponse>
-    ): void | GaxiosPromise<Schema$LookupGroupNameResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LookupGroupNameResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LookupGroupNameResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LookupGroupNameResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -572,7 +1540,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LookupGroupNameResponse>(parameters, callback);
+        createAPIRequest<Schema$LookupGroupNameResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LookupGroupNameResponse>(parameters);
       }
@@ -580,22 +1551,101 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.patch
-     * @desc Updates a Group.
+     * @desc Updates a `Group`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.patch({
+     *     // Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of
+     *     // the `Group`.
+     *     //
+     *     // Shall be of the form `groups/{group_id}`.
+     *     name: 'groups/my-group',
+     *     // Required. The fully-qualified names of fields to update.
+     *     //
+     *     // May only contain the following fields: `display_name`, `description`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalGroupKeys": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "groupKey": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where group_id is the unique id assigned to the Group.  Must be left blank while creating a Group
-     * @param {string=} params.updateMask Editable fields: `display_name`, `description`
-     * @param {().Group} params.resource Request body data
+     * @param {string} params.name Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`.  Shall be of the form `groups/{group_id}`.
+     * @param {string=} params.updateMask Required. The fully-qualified names of fields to update.  May only contain the following fields: `display_name`, `description`.
+     * @param {().Group} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Groups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Groups$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Groups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Groups$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -609,12 +1659,17 @@ export namespace cloudidentity_v1beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Groups$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -645,7 +1700,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -653,23 +1711,103 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.search
-     * @desc Searches for Groups.
+     * @desc Searches for `Group`s matching a specified query.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.search({
+     *     // The maximum number of results to return.
+     *     //
+     *     // Note that the number of results returned may be less than this value even
+     *     // if there are more available results. To fetch all results, clients must
+     *     // continue calling this method repeatedly until the response no longer
+     *     // contains a `next_page_token`.
+     *     //
+     *     // If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for
+     *     // `GroupView.FULL`.
+     *     //
+     *     // Must not be greater than 1000 for `GroupView.BASIC` or 500 for
+     *     // `GroupView.FULL`.
+     *     pageSize: 'placeholder-value',
+     *     // The `next_page_token` value returned from a previous search request, if
+     *     // any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The search query.
+     *     //
+     *     // Must be specified in [Common Expression
+     *     // Language](https://opensource.google/projects/cel). May only contain
+     *     // equality operators on the parent and inclusion operators on labels (e.g.,
+     *     // `parent == 'customers/{customer_id}' &&
+     *     // 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
+     *     query: 'placeholder-value',
+     *     // The level of detail to be returned.
+     *     //
+     *     // If unspecified, defaults to `View.BASIC`.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "groups": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.search
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The default page size is 200 (max 1000) for the BASIC view, and 50 (max 500) for the FULL view.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous search request, if any.
-     * @param {string=} params.query Query string for performing search on groups. Users can search on namespace and label attributes of groups. EXACT match ('=') is supported on namespace, and CONTAINS match (':') is supported on labels. This is a `required` field. Multiple queries can be combined using `AND` operator. The operator is case sensitive. An example query would be: "namespace=<namespace_value> AND labels:<labels_value>".
-     * @param {string=} params.view Group resource view to be returned. Defaults to [GroupView.BASIC]().
+     * @param {integer=} params.pageSize The maximum number of results to return.  Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`.  If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for `GroupView.FULL`.  Must not be greater than 1000 for `GroupView.BASIC` or 500 for `GroupView.FULL`.
+     * @param {string=} params.pageToken The `next_page_token` value returned from a previous search request, if any.
+     * @param {string=} params.query Required. The search query.  Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
+     * @param {string=} params.view The level of detail to be returned.  If unspecified, defaults to `View.BASIC`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Groups$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Groups$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchGroupsResponse>;
+    search(
+      params: Params$Resource$Groups$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Groups$Search,
       options:
@@ -685,12 +1823,20 @@ export namespace cloudidentity_v1beta1 {
     search(
       paramsOrCallback?:
         | Params$Resource$Groups$Search
-        | BodyResponseCallback<Schema$SearchGroupsResponse>,
+        | BodyResponseCallback<Schema$SearchGroupsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchGroupsResponse>,
-      callback?: BodyResponseCallback<Schema$SearchGroupsResponse>
-    ): void | GaxiosPromise<Schema$SearchGroupsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchGroupsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -724,7 +1870,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SearchGroupsResponse>(parameters, callback);
+        createAPIRequest<Schema$SearchGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SearchGroupsResponse>(parameters);
       }
@@ -733,9 +1882,9 @@ export namespace cloudidentity_v1beta1 {
 
   export interface Params$Resource$Groups$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
+     * Required. The initial configuration option for the `Group`.
      */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+    initialGroupConfig?: string;
 
     /**
      * Request body metadata
@@ -744,53 +1893,51 @@ export namespace cloudidentity_v1beta1 {
   }
   export interface Params$Resource$Groups$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve.  Must be of the form `groups/{group_id}`.
      */
     name?: string;
   }
   export interface Params$Resource$Groups$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve.  Must be of the form `groups/{group_id}`.
      */
     name?: string;
   }
+  export interface Params$Resource$Groups$List extends StandardParameters {
+    /**
+     * The maximum number of results to return.  Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`.  If unspecified, defaults to 200 for `View.BASIC` and to 50 for `View.FULL`.  Must not be greater than 1000 for `View.BASIC` or 500 for `View.FULL`.
+     */
+    pageSize?: number;
+    /**
+     * The `next_page_token` value returned from a previous list request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource under which to list all `Group`s.  Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups.
+     */
+    parent?: string;
+    /**
+     * The level of detail to be returned.  If unspecified, defaults to `View.BASIC`.
+     */
+    view?: string;
+  }
   export interface Params$Resource$Groups$Lookup extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The id of the entity within the given namespace. The id must be unique within its namespace.
+     * The ID of the entity.  For Google-managed entities, the `id` must be the email address of an existing group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements.  Must be unique within a `namespace`.
      */
     'groupKey.id'?: string;
     /**
-     * Namespaces provide isolation for ids, i.e an id only needs to be unique within its namespace.  Namespaces are currently only created as part of IdentitySource creation from Admin Console. A namespace `"identitysources/{identity_source_id}"` is created corresponding to every Identity Source `identity_source_id`.
+     * The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id}.
      */
     'groupKey.namespace'?: string;
   }
   export interface Params$Resource$Groups$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where group_id is the unique id assigned to the Group.  Must be left blank while creating a Group
+     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`.  Shall be of the form `groups/{group_id}`.
      */
     name?: string;
     /**
-     * Editable fields: `display_name`, `description`
+     * Required. The fully-qualified names of fields to update.  May only contain the following fields: `display_name`, `description`.
      */
     updateMask?: string;
 
@@ -801,24 +1948,19 @@ export namespace cloudidentity_v1beta1 {
   }
   export interface Params$Resource$Groups$Search extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The default page size is 200 (max 1000) for the BASIC view, and 50 (max 500) for the FULL view.
+     * The maximum number of results to return.  Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`.  If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for `GroupView.FULL`.  Must not be greater than 1000 for `GroupView.BASIC` or 500 for `GroupView.FULL`.
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from a previous search request, if any.
+     * The `next_page_token` value returned from a previous search request, if any.
      */
     pageToken?: string;
     /**
-     * Query string for performing search on groups. Users can search on namespace and label attributes of groups. EXACT match ('=') is supported on namespace, and CONTAINS match (':') is supported on labels. This is a `required` field. Multiple queries can be combined using `AND` operator. The operator is case sensitive. An example query would be: "namespace=<namespace_value> AND labels:<labels_value>".
+     * Required. The search query.  Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
      */
     query?: string;
     /**
-     * Group resource view to be returned. Defaults to [GroupView.BASIC]().
+     * The level of detail to be returned.  If unspecified, defaults to `View.BASIC`.
      */
     view?: string;
   }
@@ -831,21 +1973,92 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.memberships.create
-     * @desc Creates a Membership.
+     * @desc Creates a `Membership`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.create({
+     *     // Required. The parent `Group` resource under which to create the `Membership`.
+     *     //
+     *     // Must be of the form `groups/{group_id}`.
+     *     parent: 'groups/my-group',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "memberKey": {},
+     *       //   "name": "my_name",
+     *       //   "preferredMemberKey": {},
+     *       //   "roles": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.memberships.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group to create Membership within. Format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group.
-     * @param {().Membership} params.resource Request body data
+     * @param {string} params.parent Required. The parent `Group` resource under which to create the `Membership`.  Must be of the form `groups/{group_id}`.
+     * @param {().Membership} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Groups$Memberships$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Groups$Memberships$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Groups$Memberships$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Groups$Memberships$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -859,12 +2072,17 @@ export namespace cloudidentity_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Groups$Memberships$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Memberships$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -899,7 +2117,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -907,20 +2128,79 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.memberships.delete
-     * @desc Deletes a Membership.
+     * @desc Deletes a `Membership`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.delete({
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of
+     *     // the `Membership` to delete.
+     *     //
+     *     // Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     *     name: 'groups/my-group/memberships/my-membership',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.memberships.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name [Resource name](https://cloud.google.com/apis/design/resource_names) of the Membership to be deleted.  Format: `groups/{group_id}/memberships/{member_id}`, where `group_id` is the unique id assigned to the Group to which Membership belongs to, and member_id is the unique id assigned to the member.
+     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Groups$Memberships$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Groups$Memberships$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Groups$Memberships$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Groups$Memberships$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -934,12 +2214,17 @@ export namespace cloudidentity_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Groups$Memberships$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Memberships$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -971,7 +2256,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -979,20 +2267,81 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.memberships.get
-     * @desc Retrieves a Membership.
+     * @desc Retrieves a `Membership`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.get({
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of
+     *     // the `Membership` to retrieve.
+     *     //
+     *     // Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     *     name: 'groups/my-group/memberships/my-membership',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "memberKey": {},
+     *   //   "name": "my_name",
+     *   //   "preferredMemberKey": {},
+     *   //   "roles": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.memberships.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name [Resource name](https://cloud.google.com/apis/design/resource_names) of the Membership to be retrieved.  Format: `groups/{group_id}/memberships/{member_id}`, where `group_id` is the unique id assigned to the Group to which Membership belongs to, and `member_id` is the unique id assigned to the member.
+     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Groups$Memberships$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Groups$Memberships$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Membership>;
+    get(
+      params: Params$Resource$Groups$Memberships$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Groups$Memberships$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Membership>,
@@ -1006,12 +2355,17 @@ export namespace cloudidentity_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Groups$Memberships$Get
-        | BodyResponseCallback<Schema$Membership>,
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Membership>,
-      callback?: BodyResponseCallback<Schema$Membership>
-    ): void | GaxiosPromise<Schema$Membership> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Membership> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Memberships$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1043,7 +2397,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Membership>(parameters, callback);
+        createAPIRequest<Schema$Membership>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Membership>(parameters);
       }
@@ -1051,23 +2408,99 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.memberships.list
-     * @desc List Memberships within a Group.
+     * @desc Lists the `Membership`s within a `Group`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.list({
+     *     // The maximum number of results to return.
+     *     //
+     *     // Note that the number of results returned may be less than this value even
+     *     // if there are more available results. To fetch all results, clients must
+     *     // continue calling this method repeatedly until the response no longer
+     *     // contains a `next_page_token`.
+     *     //
+     *     // If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for
+     *     // `GroupView.FULL`.
+     *     //
+     *     // Must not be greater than 1000 for `GroupView.BASIC` or 500 for
+     *     // `GroupView.FULL`.
+     *     pageSize: 'placeholder-value',
+     *     // The `next_page_token` value returned from a previous search request, if
+     *     // any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent `Group` resource under which to lookup the `Membership` name.
+     *     //
+     *     // Must be of the form `groups/{group_id}`.
+     *     parent: 'groups/my-group',
+     *     // The level of detail to be returned.
+     *     //
+     *     // If unspecified, defaults to `MembershipView.BASIC`.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "memberships": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.memberships.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The default page size is 200 (max 1000) for the BASIC view, and 50 (max 500) for the FULL view.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request, if any
-     * @param {string} params.parent [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group to list Memberships within.  Format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group.
-     * @param {string=} params.view Membership resource view to be returned. Defaults to MembershipView.BASIC.
+     * @param {integer=} params.pageSize The maximum number of results to return.  Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`.  If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for `GroupView.FULL`.  Must not be greater than 1000 for `GroupView.BASIC` or 500 for `GroupView.FULL`.
+     * @param {string=} params.pageToken The `next_page_token` value returned from a previous search request, if any.
+     * @param {string} params.parent Required. The parent `Group` resource under which to lookup the `Membership` name.  Must be of the form `groups/{group_id}`.
+     * @param {string=} params.view The level of detail to be returned.  If unspecified, defaults to `MembershipView.BASIC`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Groups$Memberships$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Groups$Memberships$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListMembershipsResponse>;
+    list(
+      params: Params$Resource$Groups$Memberships$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Groups$Memberships$List,
       options:
@@ -1083,12 +2516,20 @@ export namespace cloudidentity_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Groups$Memberships$List
-        | BodyResponseCallback<Schema$ListMembershipsResponse>,
+        | BodyResponseCallback<Schema$ListMembershipsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListMembershipsResponse>,
-      callback?: BodyResponseCallback<Schema$ListMembershipsResponse>
-    ): void | GaxiosPromise<Schema$ListMembershipsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMembershipsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMembershipsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Memberships$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1123,7 +2564,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListMembershipsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListMembershipsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListMembershipsResponse>(parameters);
       }
@@ -1131,22 +2575,96 @@ export namespace cloudidentity_v1beta1 {
 
     /**
      * cloudidentity.groups.memberships.lookup
-     * @desc Looks up [resource name](https://cloud.google.com/apis/design/resource_names) of a Membership within a Group by member's EntityKey.
+     * @desc Looks up the [resource name](https://cloud.google.com/apis/design/resource_names) of a `Membership` by its `EntityKey`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.lookup({
+     *     // The ID of the entity.
+     *     //
+     *     // For Google-managed entities, the `id` must be the email address of an
+     *     // existing group or user.
+     *     //
+     *     // For external-identity-mapped entities, the `id` must be a string conforming
+     *     // to the Identity Source's requirements.
+     *     //
+     *     // Must be unique within a `namespace`.
+     *     'memberKey.id': 'placeholder-value',
+     *     // The namespace in which the entity exists.
+     *     //
+     *     // If not specified, the `EntityKey` represents a Google-managed entity such
+     *     // as a Google user or a Google Group.
+     *     //
+     *     // If specified, the `EntityKey` represents an external-identity-mapped group.
+     *     // The namespace must correspond to an identity source created in Admin
+     *     // Console and must be in the form of `identitysources/{identity_source_id}.
+     *     'memberKey.namespace': 'placeholder-value',
+     *     // Required. The parent `Group` resource under which to lookup the `Membership` name.
+     *     //
+     *     // Must be of the form `groups/{group_id}`.
+     *     parent: 'groups/my-group',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudidentity.groups.memberships.lookup
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.memberKey.id The id of the entity within the given namespace. The id must be unique within its namespace.
-     * @param {string=} params.memberKey.namespace Namespaces provide isolation for ids, i.e an id only needs to be unique within its namespace.  Namespaces are currently only created as part of IdentitySource creation from Admin Console. A namespace `"identitysources/{identity_source_id}"` is created corresponding to every Identity Source `identity_source_id`.
-     * @param {string} params.parent [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group to lookup Membership within.  Format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group.
+     * @param {string=} params.memberKey.id The ID of the entity.  For Google-managed entities, the `id` must be the email address of an existing group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements.  Must be unique within a `namespace`.
+     * @param {string=} params.memberKey.namespace The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id}.
+     * @param {string} params.parent Required. The parent `Group` resource under which to lookup the `Membership` name.  Must be of the form `groups/{group_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     lookup(
+      params: Params$Resource$Groups$Memberships$Lookup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lookup(
       params?: Params$Resource$Groups$Memberships$Lookup,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LookupMembershipNameResponse>;
+    lookup(
+      params: Params$Resource$Groups$Memberships$Lookup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     lookup(
       params: Params$Resource$Groups$Memberships$Lookup,
       options:
@@ -1164,12 +2682,20 @@ export namespace cloudidentity_v1beta1 {
     lookup(
       paramsOrCallback?:
         | Params$Resource$Groups$Memberships$Lookup
-        | BodyResponseCallback<Schema$LookupMembershipNameResponse>,
+        | BodyResponseCallback<Schema$LookupMembershipNameResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LookupMembershipNameResponse>,
-      callback?: BodyResponseCallback<Schema$LookupMembershipNameResponse>
-    ): void | GaxiosPromise<Schema$LookupMembershipNameResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LookupMembershipNameResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LookupMembershipNameResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LookupMembershipNameResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Memberships$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1206,10 +2732,168 @@ export namespace cloudidentity_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$LookupMembershipNameResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$LookupMembershipNameResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * cloudidentity.groups.memberships.modifyMembershipRoles
+     * @desc Modifies the `MembershipRole`s of a `Membership`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.modifyMembershipRoles({
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of
+     *     // the `Membership` whose roles are to be modified.
+     *     //
+     *     // Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     *     name: 'groups/my-group/memberships/my-membership',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addRoles": [],
+     *       //   "removeRoles": [],
+     *       //   "updateRolesParams": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "membership": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudidentity.groups.memberships.modifyMembershipRoles
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     * @param {().ModifyMembershipRolesRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    modifyMembershipRoles(
+      params: Params$Resource$Groups$Memberships$Modifymembershiproles,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    modifyMembershipRoles(
+      params?: Params$Resource$Groups$Memberships$Modifymembershiproles,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ModifyMembershipRolesResponse>;
+    modifyMembershipRoles(
+      params: Params$Resource$Groups$Memberships$Modifymembershiproles,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    modifyMembershipRoles(
+      params: Params$Resource$Groups$Memberships$Modifymembershiproles,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ModifyMembershipRolesResponse>,
+      callback: BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
+    ): void;
+    modifyMembershipRoles(
+      params: Params$Resource$Groups$Memberships$Modifymembershiproles,
+      callback: BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
+    ): void;
+    modifyMembershipRoles(
+      callback: BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
+    ): void;
+    modifyMembershipRoles(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Memberships$Modifymembershiproles
+        | BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ModifyMembershipRolesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Memberships$Modifymembershiproles;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Memberships$Modifymembershiproles;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:modifyMembershipRoles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ModifyMembershipRolesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ModifyMembershipRolesResponse>(
           parameters
         );
       }
@@ -1219,12 +2903,7 @@ export namespace cloudidentity_v1beta1 {
   export interface Params$Resource$Groups$Memberships$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group to create Membership within. Format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group.
+     * Required. The parent `Group` resource under which to create the `Membership`.  Must be of the form `groups/{group_id}`.
      */
     parent?: string;
 
@@ -1236,69 +2915,61 @@ export namespace cloudidentity_v1beta1 {
   export interface Params$Resource$Groups$Memberships$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Membership to be deleted.  Format: `groups/{group_id}/memberships/{member_id}`, where `group_id` is the unique id assigned to the Group to which Membership belongs to, and member_id is the unique id assigned to the member.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
      */
     name?: string;
   }
   export interface Params$Resource$Groups$Memberships$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Membership to be retrieved.  Format: `groups/{group_id}/memberships/{member_id}`, where `group_id` is the unique id assigned to the Group to which Membership belongs to, and `member_id` is the unique id assigned to the member.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
      */
     name?: string;
   }
   export interface Params$Resource$Groups$Memberships$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The default page size is 200 (max 1000) for the BASIC view, and 50 (max 500) for the FULL view.
+     * The maximum number of results to return.  Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`.  If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for `GroupView.FULL`.  Must not be greater than 1000 for `GroupView.BASIC` or 500 for `GroupView.FULL`.
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from a previous list request, if any
+     * The `next_page_token` value returned from a previous search request, if any.
      */
     pageToken?: string;
     /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group to list Memberships within.  Format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group.
+     * Required. The parent `Group` resource under which to lookup the `Membership` name.  Must be of the form `groups/{group_id}`.
      */
     parent?: string;
     /**
-     * Membership resource view to be returned. Defaults to MembershipView.BASIC.
+     * The level of detail to be returned.  If unspecified, defaults to `MembershipView.BASIC`.
      */
     view?: string;
   }
   export interface Params$Resource$Groups$Memberships$Lookup
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The id of the entity within the given namespace. The id must be unique within its namespace.
+     * The ID of the entity.  For Google-managed entities, the `id` must be the email address of an existing group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements.  Must be unique within a `namespace`.
      */
     'memberKey.id'?: string;
     /**
-     * Namespaces provide isolation for ids, i.e an id only needs to be unique within its namespace.  Namespaces are currently only created as part of IdentitySource creation from Admin Console. A namespace `"identitysources/{identity_source_id}"` is created corresponding to every Identity Source `identity_source_id`.
+     * The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id}.
      */
     'memberKey.namespace'?: string;
     /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group to lookup Membership within.  Format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group.
+     * Required. The parent `Group` resource under which to lookup the `Membership` name.  Must be of the form `groups/{group_id}`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Groups$Memberships$Modifymembershiproles
+    extends StandardParameters {
+    /**
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ModifyMembershipRolesRequest;
   }
 }

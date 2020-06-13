@@ -1,4 +1,4 @@
-// Copyright 2016, Google, Inc.
+// Copyright 2016 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -14,16 +14,20 @@
 'use strict';
 
 const {google} = require('googleapis');
-const sampleClient = require('../sampleclient');
+const path = require('path');
+const {authenticate} = require('@google-cloud/local-auth');
 
 // initialize the Youtube API library
-const youtube = google.youtube({
-  version: 'v3',
-  auth: sampleClient.oAuth2Client,
-});
+const youtube = google.youtube('v3');
 
 // a very simple example of getting data from a playlist
 async function runSample() {
+  const auth = await authenticate({
+    keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
+    scopes: ['https://www.googleapis.com/auth/youtube'],
+  });
+  google.options({auth});
+
   // the first query will return data with an etag
   const res = await getPlaylistData(null);
   const etag = res.data.etag;
@@ -51,9 +55,7 @@ async function getPlaylistData(etag) {
   return res;
 }
 
-const scopes = ['https://www.googleapis.com/auth/youtube'];
-
-sampleClient
-  .authenticate(scopes)
-  .then(runSample)
-  .catch(console.error);
+if (module === require.main) {
+  runSample().catch(console.error);
+}
+module.exports = runSample;

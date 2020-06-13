@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace serviceconsumermanagement_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace serviceconsumermanagement_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -234,7 +244,7 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$AuthProvider {
     /**
-     * The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, only JWTs with audience &quot;https://Service_name/API_name&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will only accept JWTs with the following audience &quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;.  Example:      audiences: bookstore_android.apps.googleusercontent.com,                bookstore_web.apps.googleusercontent.com
+     * The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, JWTs with audiences:   - &quot;https://[service.name]/[google.protobuf.Api.name]&quot;   - &quot;https://[service.name]/&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will accept JWTs with the following audiences:   -   https://library-example.googleapis.com/google.example.library.v1.LibraryService   - https://library-example.googleapis.com/  Example:      audiences: bookstore_android.apps.googleusercontent.com,                bookstore_web.apps.googleusercontent.com
      */
     audiences?: string | null;
     /**
@@ -253,6 +263,10 @@ export namespace serviceconsumermanagement_v1 {
      * URL of the provider&#39;s public key set to validate signature of the JWT. See [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). Optional if the key set document:  - can be retrieved from    [OpenID    Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html of    the issuer.  - can be inferred from the email domain of the issuer (e.g. a Google  service account).  Example: https://www.googleapis.com/oauth2/v1/certs
      */
     jwksUri?: string | null;
+    /**
+     * Defines the locations to extract the JWT.  JWT locations can be either from HTTP headers or URL query parameters. The rule is that the first match wins. The checking order is: checking all headers first, then URL query parameters.  If not specified,  default to use following 3 locations:    1) Authorization: Bearer    2) x-goog-iap-jwt-assertion    3) access_token query parameter  Default locations can be specified as followings:    jwt_locations:    - header: Authorization      value_prefix: &quot;Bearer &quot;    - header: x-goog-iap-jwt-assertion    - query: access_token
+     */
+    jwtLocations?: Schema$JwtLocation[];
   }
   /**
    * User-defined authentication requirements, including support for [JSON Web Token (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32).
@@ -281,15 +295,19 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$BackendRule {
     /**
-     * The address of the API backend.
+     * The address of the API backend.  The scheme is used to determine the backend protocol and security. The following schemes are accepted:     SCHEME        PROTOCOL    SECURITY    http://       HTTP        None    https://      HTTP        TLS    grpc://       gRPC        None    grpcs://      gRPC        TLS  It is recommended to explicitly include a scheme. Leaving out the scheme may cause constrasting behaviors across platforms.  If the port is unspecified, the default is: - 80 for schemes without TLS - 443 for schemes with TLS  For HTTP backends, use protocol to specify the protocol version.
      */
     address?: string | null;
     /**
-     * The number of seconds to wait for a response from a request.  The default deadline for gRPC is infinite (no deadline) and HTTP requests is 5 seconds.
+     * The number of seconds to wait for a response from a request. The default varies based on the request protocol and deployment environment.
      */
     deadline?: number | null;
     /**
-     * The JWT audience is used when generating a JWT id token for the backend.
+     * When disable_auth is true, a JWT ID token won&#39;t be generated and the original &quot;Authorization&quot; HTTP header will be preserved. If the header is used to carry the original token and is expected by the backend, this field must be set to true to preserve the header.
+     */
+    disableAuth?: boolean | null;
+    /**
+     * The JWT audience is used when generating a JWT ID token for the backend. This ID token will be added in the HTTP &quot;authorization&quot; header, and sent to the backend.
      */
     jwtAudience?: string | null;
     /**
@@ -302,12 +320,16 @@ export namespace serviceconsumermanagement_v1 {
     operationDeadline?: number | null;
     pathTranslation?: string | null;
     /**
+     * The protocol used for sending a request to the backend. The supported values are &quot;http/1.1&quot; and &quot;h2&quot;.  The default value is inferred from the scheme in the address field:     SCHEME        PROTOCOL    http://       http/1.1    https://      http/1.1    grpc://       h2    grpcs://      h2  For secure HTTP backends (https://) that support HTTP/2, set this field to &quot;h2&quot; for improved performance.  Configuring this field to non-default values is only supported for secure HTTP backends. This field will be ignored for all other backends.  See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for more details on the supported values.
+     */
+    protocol?: string | null;
+    /**
      * Selects the methods to which this rule applies.  Refer to selector for syntax details.
      */
     selector?: string | null;
   }
   /**
-   * Billing related configuration of the service.  The following example shows how to configure monitored resources and metrics for billing:      monitored_resources:     - type: library.googleapis.com/branch       labels:       - key: /city         description: The city where the library branch is located in.       - key: /name         description: The name of the branch.     metrics:     - name: library.googleapis.com/book/borrowed_count       metric_kind: DELTA       value_type: INT64     billing:       consumer_destinations:       - monitored_resource: library.googleapis.com/branch         metrics:         - library.googleapis.com/book/borrowed_count
+   * Billing related configuration of the service.  The following example shows how to configure monitored resources and metrics for billing, `consumer_destinations` is the only supported destination and the monitored resources need at least one label key `cloud.googleapis.com/location` to indicate the location of the billing usage, using different monitored resources between monitoring and billing is recommended so they can be evolved independently:       monitored_resources:     - type: library.googleapis.com/billing_branch       labels:       - key: cloud.googleapis.com/location         description: |           Predefined label to support billing location restriction.       - key: city         description: |           Custom label to define the city where the library branch is located           in.       - key: name         description: Custom label to define the name of the library branch.     metrics:     - name: library.googleapis.com/book/borrowed_count       metric_kind: DELTA       value_type: INT64       unit: &quot;1&quot;     billing:       consumer_destinations:       - monitored_resource: library.googleapis.com/billing_branch         metrics:         - library.googleapis.com/book/borrowed_count
    */
   export interface Schema$Billing {
     /**
@@ -504,10 +526,6 @@ export namespace serviceconsumermanagement_v1 {
      */
     allowCors?: boolean | null;
     /**
-     * The list of features enabled on this endpoint.
-     */
-    features?: string[] | null;
-    /**
      * The canonical name of this endpoint.
      */
     name?: string | null;
@@ -625,6 +643,10 @@ export namespace serviceconsumermanagement_v1 {
      */
     additionalBindings?: Schema$HttpRule[];
     /**
+     * When this flag is set to true, HTTP requests will be allowed to invoke a half-duplex streaming method.
+     */
+    allowHalfDuplex?: boolean | null;
+    /**
      * The name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields not captured by the path pattern to the HTTP body, or omitted for not having any HTTP request body.  NOTE: the referred field must be present at the top-level of the request message type.
      */
     body?: string | null;
@@ -660,6 +682,23 @@ export namespace serviceconsumermanagement_v1 {
      * Selects a method to which this rule applies.  Refer to selector for syntax details.
      */
     selector?: string | null;
+  }
+  /**
+   * Specifies a location to extract JWT from an API request.
+   */
+  export interface Schema$JwtLocation {
+    /**
+     * Specifies HTTP header name to extract JWT token.
+     */
+    header?: string | null;
+    /**
+     * Specifies URL query parameter name to extract JWT token.
+     */
+    query?: string | null;
+    /**
+     * The value prefix. The value format is &quot;value_prefix{token}&quot; Only applies to &quot;in&quot; header type. Must be empty for &quot;in&quot; query type. If not empty, the header value has to match (case sensitive) this prefix. If not matched, JWT will not be extracted. If matched, JWT will be extracted after the prefix is removed.  For example, for &quot;Authorization: Bearer {JWT}&quot;, value_prefix=&quot;Bearer &quot; with a space at the end.
+     */
+    valuePrefix?: string | null;
   }
   /**
    * A description of a label.
@@ -785,7 +824,7 @@ export namespace serviceconsumermanagement_v1 {
     syntax?: string | null;
   }
   /**
-   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.
+   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.  The following are specific rules for service defined Monitoring metric descriptors:  * `type`, `metric_kind`, `value_type`, `description`, `display_name`,   `launch_stage` fields are all required. The `unit` field must be specified   if the `value_type` is any of DOUBLE, INT64, DISTRIBUTION. * Maximum of default 500 metric descriptors per service is allowed. * Maximum of default 10 labels per metric descriptor is allowed.  The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
    */
   export interface Schema$MetricDescriptor {
     /**
@@ -797,7 +836,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * The set of labels that can be used to describe a specific instance of this metric type. For example, the `appengine.googleapis.com/http/server/response_latencies` metric type has a label for the HTTP response code, `response_code`, so you can look at latencies for successful responses or just for responses that failed.
+     * The set of labels that can be used to describe a specific instance of this metric type.  The label key name must follow:  * Only upper and lower-case letters, digits and underscores (_) are   allowed. * Label name must start with a letter or digit. * The maximum length of a label name is 100 characters.  For example, the `appengine.googleapis.com/http/server/response_latencies` metric type has a label for the HTTP response code, `response_code`, so you can look at latencies for successful responses or just for responses that failed.
      */
     labels?: Schema$LabelDescriptor[];
     /**
@@ -813,15 +852,19 @@ export namespace serviceconsumermanagement_v1 {
      */
     metricKind?: string | null;
     /**
+     * Read-only. If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that is associated with this metric type can only be associated with one of the monitored resource types listed here.
+     */
+    monitoredResourceTypes?: string[] | null;
+    /**
      * The resource name of the metric descriptor.
      */
     name?: string | null;
     /**
-     * The metric type, including its DNS name prefix. The type is not URL-encoded.  All user-defined metric types have the DNS name `custom.googleapis.com` or `external.googleapis.com`.  Metric types should use a natural hierarchical grouping. For example:      &quot;custom.googleapis.com/invoice/paid/amount&quot;     &quot;external.googleapis.com/prometheus/up&quot;     &quot;appengine.googleapis.com/http/server/response_latencies&quot;
+     * The metric type, including its DNS name prefix. The type is not URL-encoded.  All service defined metrics must be prefixed with the service name, in the format of `{service name}/{relative metric name}`, such as `cloudsql.googleapis.com/database/cpu/utilization`. The relative metric name must follow:  * Only upper and lower-case letters, digits, &#39;/&#39; and underscores &#39;_&#39; are   allowed. * The maximum number of characters allowed for the relative_metric_name is   100.  All user-defined metric types have the DNS name `custom.googleapis.com`, `external.googleapis.com`, or `logging.googleapis.com/user/`.  Metric types should use a natural hierarchical grouping. For example:      &quot;custom.googleapis.com/invoice/paid/amount&quot;     &quot;external.googleapis.com/prometheus/up&quot;     &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string | null;
     /**
-     * The unit in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The supported units are a subset of [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard:  **Basic units (UNIT)**  * `bit`   bit * `By`    byte * `s`     second * `min`   minute * `h`     hour * `d`     day  **Prefixes (PREFIX)**  * `k`     kilo    (10**3) * `M`     mega    (10**6) * `G`     giga    (10**9) * `T`     tera    (10**12) * `P`     peta    (10**15) * `E`     exa     (10**18) * `Z`     zetta   (10**21) * `Y`     yotta   (10**24) * `m`     milli   (10**-3) * `u`     micro   (10**-6) * `n`     nano    (10**-9) * `p`     pico    (10**-12) * `f`     femto   (10**-15) * `a`     atto    (10**-18) * `z`     zepto   (10**-21) * `y`     yocto   (10**-24) * `Ki`    kibi    (2**10) * `Mi`    mebi    (2**20) * `Gi`    gibi    (2**30) * `Ti`    tebi    (2**40)  **Grammar**  The grammar also includes these connectors:  * `/`    division (as an infix operator, e.g. `1/s`). * `.`    multiplication (as an infix operator, e.g. `GBy.d`)  The grammar for a unit is as follows:      Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;      Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]               | Annotation               | &quot;1&quot;               ;      Annotation = &quot;{&quot; NAME &quot;}&quot; ;  Notes:  * `Annotation` is just a comment if it follows a `UNIT` and is    equivalent to `1` if it is used alone. For examples,    `{requests}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not    containing &#39;{&#39; or &#39;}&#39;. * `1` represents dimensionless value 1, such as in `1/s`. * `%` represents dimensionless value 1/100, and annotates values giving    a percentage.
+     * The units in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit` defines the representation of the stored metric values.  Different systems may scale the values to be more easily displayed (so a value of `0.02KBy` _might_ be displayed as `20By`, and a value of `3523KBy` _might_ be displayed as `3.5MBy`). However, if the `unit` is `KBy`, then the value of the metric is always in thousands of bytes, no matter how it may be displayed..  If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an `INT64 CUMULATIVE` metric whose `unit` is `s{CPU}` (or equivalently `1s{CPU}` or just `s`). If the job uses 12,005 CPU-seconds, then the value is written as `12005`.  Alternatively, if you want a custom metric to record data in a more granular way, you can create a `DOUBLE CUMULATIVE` metric whose `unit` is `ks{CPU}`, and then write the value `12.005` (which is `12005/1000`), or use `Kis{CPU}` and write `11.723` (which is `12005/1024`).  The supported units are a subset of [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard:  **Basic units (UNIT)**  * `bit`   bit * `By`    byte * `s`     second * `min`   minute * `h`     hour * `d`     day  **Prefixes (PREFIX)**  * `k`     kilo    (10^3) * `M`     mega    (10^6) * `G`     giga    (10^9) * `T`     tera    (10^12) * `P`     peta    (10^15) * `E`     exa     (10^18) * `Z`     zetta   (10^21) * `Y`     yotta   (10^24)  * `m`     milli   (10^-3) * `u`     micro   (10^-6) * `n`     nano    (10^-9) * `p`     pico    (10^-12) * `f`     femto   (10^-15) * `a`     atto    (10^-18) * `z`     zepto   (10^-21) * `y`     yocto   (10^-24)  * `Ki`    kibi    (2^10) * `Mi`    mebi    (2^20) * `Gi`    gibi    (2^30) * `Ti`    tebi    (2^40) * `Pi`    pebi    (2^50)  **Grammar**  The grammar also includes these connectors:  * `/`    division or ratio (as an infix operator). For examples,          `kBy/{email}` or `MiBy/10ms` (although you should almost never          have `/s` in a metric `unit`; rates should always be computed at          query time from the underlying cumulative or delta value). * `.`    multiplication or composition (as an infix operator). For          examples, `GBy.d` or `k{watt}.h`.  The grammar for a unit is as follows:      Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;      Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]               | Annotation               | &quot;1&quot;               ;      Annotation = &quot;{&quot; NAME &quot;}&quot; ;  Notes:  * `Annotation` is just a comment if it follows a `UNIT`. If the annotation    is used alone, then the unit is equivalent to `1`. For examples,    `{request}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not    containing `{` or `}`. * `1` represents a unitary [dimensionless    unit](https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such    as in `1/s`. It is typically used when none of the basic units are    appropriate. For example, &quot;new users per day&quot; can be represented as    `1/d` or `{new-users}/d` (and a metric value `5` would mean &quot;5 new    users). Alternatively, &quot;thousands of page views per day&quot; would be    represented as `1000/d` or `k1/d` or `k{page_views}/d` (and a metric    value of `5.3` would mean &quot;5300 page views per day&quot;). * `%` represents dimensionless value of 1/100, and annotates values giving    a percentage (so the metric values are typically in the range of 0..100,    and a metric value `3` means &quot;3 percent&quot;). * `10^2.%` indicates a metric contains a ratio, typically in the range    0..1, that will be multiplied by 100 and displayed as a percentage    (so a metric value `0.03` means &quot;3 percent&quot;).
      */
     unit?: string | null;
     /**
@@ -838,7 +881,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     ingestDelay?: string | null;
     /**
-     * Deprecated. Please use the MetricDescriptor.launch_stage instead. The launch stage of the metric definition.
+     * Deprecated. Must use the MetricDescriptor.launch_stage instead.
      */
     launchStage?: string | null;
     /**
@@ -873,7 +916,7 @@ export namespace serviceconsumermanagement_v1 {
     root?: string | null;
   }
   /**
-   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels.  For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of `&quot;gce_instance&quot;` and specifies the use of the labels `&quot;instance_id&quot;` and `&quot;zone&quot;` to identify particular VM instances.  Different APIs can support different monitored resource types. APIs generally provide a `list` method that returns the monitored resource descriptors used by the API.
+   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels.  For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of `&quot;gce_instance&quot;` and specifies the use of the labels `&quot;instance_id&quot;` and `&quot;zone&quot;` to identify particular VM instances.  Different services can support different monitored resource types.  The following are specific rules to service defined monitored resources for Monitoring and Logging:  * The `type`, `display_name`, `description`, `labels` and `launch_stage`   fields are all required. * The first label of the monitored resource descriptor must be   `resource_container`. There are legacy monitored resource descritptors   start with `project_id`. * It must include a `location` label. * Maximum of default 5 service defined monitored resource descriptors   is allowed per service. * Maximum of default 10 labels per monitored resource is allowed.  The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
    */
   export interface Schema$MonitoredResourceDescriptor {
     /**
@@ -885,7 +928,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels `&quot;database_id&quot;` and `&quot;zone&quot;`.
+     * Required. A set of labels used to describe instances of this monitored resource type. The label key name must follow:  * Only upper and lower-case letters, digits and underscores (_) are   allowed. * Label name must start with a letter or digit. * The maximum length of a label name is 100 characters.  For example, an individual Google Cloud SQL database is identified by values for the labels `database_id` and `location`.
      */
     labels?: Schema$LabelDescriptor[];
     /**
@@ -897,7 +940,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     name?: string | null;
     /**
-     * Required. The monitored resource type. For example, the type `&quot;cloudsql_database&quot;` represents databases in Google Cloud SQL. The maximum length of this value is 256 characters.
+     * Note there are legacy service monitored resources not following this rule.
      */
     type?: string | null;
   }
@@ -1105,7 +1148,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     billing?: Schema$Billing;
     /**
-     * The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions. The latest config version is `3`.
+     * The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions.  The latest config version is `3`.
      */
     configVersion?: number | null;
     /**
@@ -1137,7 +1180,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     http?: Schema$Http;
     /**
-     * A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. If empty, the server may choose to generate one instead. Must be no longer than 60 characters.
+     * A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. Must be no longer than 63 characters and only lower case letters, digits, &#39;.&#39;, &#39;_&#39; and &#39;-&#39; are allowed. If empty, the server may choose to generate one instead.
      */
     id?: string | null;
     /**
@@ -1209,6 +1252,23 @@ export namespace serviceconsumermanagement_v1 {
      * Roles for the associated service account for the tenant project.
      */
     tenantProjectRoles?: string[] | null;
+  }
+  /**
+   * The per-product per-project service identity for a service.   Use this field to configure per-product per-project service identity. Example of a service identity configuration.      usage:       service_identity:       - service_account_parent: &quot;projects/123456789&quot;         display_name: &quot;Cloud XXX Service Agent&quot;         description: &quot;Used as the identity of Cloud XXX to access resources&quot;
+   */
+  export interface Schema$ServiceIdentity {
+    /**
+     * Optional. A user-specified opaque description of the service account. Must be less than or equal to 256 UTF-8 bytes.
+     */
+    description?: string | null;
+    /**
+     * Optional. A user-specified name for the service account. Must be less than or equal to 100 UTF-8 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * A service account project that hosts the service accounts.  An example name would be: `projects/123456789`
+     */
+    serviceAccountParent?: string | null;
   }
   /**
    * `SourceContext` represents information about the source of a protobuf element, like the file in which it is defined.
@@ -1418,6 +1478,10 @@ export namespace serviceconsumermanagement_v1 {
      * A list of usage rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
     rules?: Schema$UsageRule[];
+    /**
+     * The configuration of a per-product per-project service identity.
+     */
+    serviceIdentity?: Schema$ServiceIdentity;
   }
   /**
    * Usage configuration rules for the service.  NOTE: Under development.   Use this rule to configure unregistered calls for the service. Unregistered calls are calls that do not contain consumer project identity. (Example: calls that do not contain an API key). By default, API methods do not allow unregistered calls, and each method call must be identified by a consumer project identity. Use this rule to allow/disallow unregistered calls.  Example of an API that wants to allow unregistered calls for entire service.      usage:       rules:       - selector: &quot;*&quot;         allow_unregistered_calls: true  Example of a method that wants to allow unregistered calls.      usage:       rules:       - selector: &quot;google.example.library.v1.LibraryService.CreateBook&quot;         allow_unregistered_calls: true
@@ -1463,6 +1527,15 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$V1Beta1EnableConsumerResponse {}
   /**
+   * Response message for the `GenerateServiceIdentity` method.  This response message is assigned to the `response` field of the returned Operation when that operation is done.
+   */
+  export interface Schema$V1Beta1GenerateServiceIdentityResponse {
+    /**
+     * ServiceIdentity that was created or retrieved.
+     */
+    identity?: Schema$V1Beta1ServiceIdentity;
+  }
+  /**
    * Response message for ImportProducerOverrides
    */
   export interface Schema$V1Beta1ImportProducerOverridesResponse {
@@ -1472,11 +1545,49 @@ export namespace serviceconsumermanagement_v1 {
     overrides?: Schema$V1Beta1QuotaOverride[];
   }
   /**
+   * Response message for ImportProducerQuotaPolicies
+   */
+  export interface Schema$V1Beta1ImportProducerQuotaPoliciesResponse {
+    /**
+     * The policies that were created from the imported data.
+     */
+    policies?: Schema$V1Beta1ProducerQuotaPolicy[];
+  }
+  /**
+   * Quota policy created by service producer.
+   */
+  export interface Schema$V1Beta1ProducerQuotaPolicy {
+    /**
+     * The cloud resource container at which the quota policy is created. The format is {container_type}/{container_number}
+     */
+    container?: string | null;
+    /**
+     *  If this map is nonempty, then this policy applies only to specific values for dimensions defined in the limit unit.  For example, an policy on a limit with the unit 1/{project}/{region} could contain an entry with the key &quot;region&quot; and the value &quot;us-east-1&quot;; the policy is only applied to quota consumed in that region.  This map has the following restrictions:  *   Keys that are not defined in the limit&#39;s unit are not valid keys.     Any string appearing in {brackets} in the unit (besides {project} or     {user}) is a defined key. *   &quot;project&quot; is not a valid key; the project is already specified in     the parent resource name. *   &quot;user&quot; is not a valid key; the API does not support quota polcies     that apply only to a specific user. *   If &quot;region&quot; appears as a key, its value must be a valid Cloud region. *   If &quot;zone&quot; appears as a key, its value must be a valid Cloud zone. *   If any valid key other than &quot;region&quot; or &quot;zone&quot; appears in the map, then     all valid keys other than &quot;region&quot; or &quot;zone&quot; must also appear in the     map.
+     */
+    dimensions?: {[key: string]: string} | null;
+    /**
+     * The name of the metric to which this policy applies.  An example name would be: `compute.googleapis.com/cpus`
+     */
+    metric?: string | null;
+    /**
+     * The resource name of the producer policy. An example name would be: `services/compute.googleapis.com/organizations/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerQuotaPolicies/4a3f2c1d`
+     */
+    name?: string | null;
+    /**
+     * The quota policy value. Can be any nonnegative integer, or -1 (unlimited quota).
+     */
+    policyValue?: string | null;
+    /**
+     * The limit unit of the limit to which this policy applies.  An example unit would be: `1/{project}/{region}` Note that `{project}` and `{region}` are not placeholders in this example; the literal characters `{` and `}` occur in the string.
+     */
+    unit?: string | null;
+  }
+  /**
    * A quota override
    */
   export interface Schema$V1Beta1QuotaOverride {
     /**
-     * If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit.  For example, an override on a limit with the unit 1/{project}/{region} could contain an entry with the key &quot;region&quot; and the value &quot;us-east-1&quot;; the override is only applied to quota consumed in that region.  This map has the following restrictions: - Keys that are not defined in the limit&#39;s unit are not valid keys.   Any string appearing in {brackets} in the unit (besides {project} or   {user}) is a defined key. - &quot;project&quot; is not a valid key; the project is already specified in   the parent resource name. - &quot;user&quot; is not a valid key; the API does not support quota overrides   that apply only to a specific user. - If &quot;region&quot; appears as a key, its value must be a valid Cloud region. - If &quot;zone&quot; appears as a key, its value must be a valid Cloud zone. - If any valid key other than &quot;region&quot; or &quot;zone&quot; appears in the map, then   all valid keys other than &quot;region&quot; or &quot;zone&quot; must also appear in the map.
+     *  If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit.  For example, an override on a limit with the unit 1/{project}/{region} could contain an entry with the key &quot;region&quot; and the value &quot;us-east-1&quot;; the override is only applied to quota consumed in that region.  This map has the following restrictions:  *   Keys that are not defined in the limit&#39;s unit are not valid keys.     Any string appearing in {brackets} in the unit (besides {project} or     {user}) is a defined key. *   &quot;project&quot; is not a valid key; the project is already specified in     the parent resource name. *   &quot;user&quot; is not a valid key; the API does not support quota overrides     that apply only to a specific user. *   If &quot;region&quot; appears as a key, its value must be a valid Cloud region. *   If &quot;zone&quot; appears as a key, its value must be a valid Cloud zone. *   If any valid key other than &quot;region&quot; or &quot;zone&quot; appears in the map, then     all valid keys other than &quot;region&quot; or &quot;zone&quot; must also appear in the     map.
      */
     dimensions?: {[key: string]: string} | null;
     /**
@@ -1501,6 +1612,44 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$V1Beta1RefreshConsumerResponse {}
   /**
+   * A service identity in the Identity and Access Management API.
+   */
+  export interface Schema$V1Beta1ServiceIdentity {
+    /**
+     * The email address of the service identity.
+     */
+    email?: string | null;
+    /**
+     * P4 service identity resource name.  An example name would be: `services/serviceconsumermanagement.googleapis.com/projects/123/serviceIdentities/default`
+     */
+    name?: string | null;
+    /**
+     * The P4 service identity configuration tag. This must be defined in activation_grants. If not specified when creating the account, the tag is set to &quot;default&quot;.
+     */
+    tag?: string | null;
+    /**
+     * The unique and stable id of the service identity.
+     */
+    uniqueId?: string | null;
+  }
+  /**
+   * A default identity in the Identity and Access Management API.
+   */
+  export interface Schema$V1DefaultIdentity {
+    /**
+     * The email address of the default identity.
+     */
+    email?: string | null;
+    /**
+     * Default identity resource name.  An example name would be: `services/serviceconsumermanagement.googleapis.com/projects/123/defaultIdentity`
+     */
+    name?: string | null;
+    /**
+     * The unique and stable id of the default identity.
+     */
+    uniqueId?: string | null;
+  }
+  /**
    * Response message for the `DisableConsumer` method. This response message is assigned to the `response` field of the returned Operation when that operation is done.
    */
   export interface Schema$V1DisableConsumerResponse {}
@@ -1508,6 +1657,23 @@ export namespace serviceconsumermanagement_v1 {
    * Response message for the `EnableConsumer` method. This response message is assigned to the `response` field of the returned Operation when that operation is done.
    */
   export interface Schema$V1EnableConsumerResponse {}
+  /**
+   * Response message for the `GenerateDefaultIdentity` method.  This response message is assigned to the `response` field of the returned Operation when that operation is done.
+   */
+  export interface Schema$V1GenerateDefaultIdentityResponse {
+    /**
+     * Status of the role attachment. Under development (go/si-attach-role), currently always return ATTACH_STATUS_UNSPECIFIED)
+     */
+    attachStatus?: string | null;
+    /**
+     * DefaultIdentity that was created or retrieved.
+     */
+    identity?: Schema$V1DefaultIdentity;
+    /**
+     * Role attached to consumer project. Empty if not attached in this request. (Under development, currently always return empty.)
+     */
+    role?: string | null;
+  }
   /**
    * Response message for the `GenerateServiceAccount` method.  This response message is assigned to the `response` field of the returned Operation when that operation is done.
    */
@@ -1565,20 +1731,73 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'operations/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.operations.cancel
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1592,10 +1811,17 @@ export namespace serviceconsumermanagement_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1627,7 +1853,10 @@ export namespace serviceconsumermanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1636,6 +1865,44 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.operations.delete
      * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.operations.delete
      * @memberOf! ()
      *
@@ -1646,9 +1913,18 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1662,10 +1938,17 @@ export namespace serviceconsumermanagement_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1697,7 +1980,10 @@ export namespace serviceconsumermanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1706,6 +1992,50 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.operations.get
      * @memberOf! ()
      *
@@ -1716,9 +2046,18 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1732,12 +2071,17 @@ export namespace serviceconsumermanagement_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1768,7 +2112,10 @@ export namespace serviceconsumermanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1777,6 +2124,53 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.operations.list
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'operations',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.operations.list
      * @memberOf! ()
      *
@@ -1790,9 +2184,18 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Operations$List,
       options:
@@ -1808,12 +2211,20 @@ export namespace serviceconsumermanagement_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1844,7 +2255,10 @@ export namespace serviceconsumermanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
@@ -1853,11 +2267,6 @@ export namespace serviceconsumermanagement_v1 {
 
   export interface Params$Resource$Operations$Cancel
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -1871,32 +2280,17 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Operations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -1926,6 +2320,78 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.services.search
      * @desc Search tenancy units for a managed service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.search({
+     *     // The maximum number of results returned by this request. Currently, the
+     *     // default maximum is set to 1000. If `page_size` isn't provided or the size
+     *     // provided is a number larger than 1000, it's automatically set to 1000.
+     *     //
+     *     // Optional.
+     *     pageSize: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets.
+     *     // To get the next page of results, set this parameter to the value of
+     *     // `nextPageToken` from the previous response.
+     *     //
+     *     // Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Service for which search is performed.
+     *     // services/{service}
+     *     // {service} the name of a service, for example 'service.googleapis.com'.
+     *     parent: 'services/my-service',
+     *     // Set a query `{expression}` for querying tenancy units. Your `{expression}`
+     *     // must be in the format: `field_name=literal_string`. The `field_name` is the
+     *     // name of the field you want to compare. Supported fields are
+     *     // `tenant_resources.tag` and `tenant_resources.resource`.
+     *     //
+     *     // For example, to search tenancy units that contain at least one tenant
+     *     // resource with a given tag 'xyz', use the query `tenant_resources.tag=xyz`.
+     *     // To search tenancy units that contain at least one tenant resource with
+     *     // a given resource name 'projects/123456', use the query
+     *     // `tenant_resources.resource=projects/123456`.
+     *     //
+     *     // Multiple expressions can be joined with `AND`s. Tenancy units must match
+     *     // all expressions to be included in the result set. For example,
+     *     // `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`
+     *     //
+     *     // Optional.
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tenancyUnits": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.search
      * @memberOf! ()
      *
@@ -1939,9 +2405,18 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Services$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Services$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchTenancyUnitsResponse>;
+    search(
+      params: Params$Resource$Services$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Services$Search,
       options:
@@ -1959,12 +2434,20 @@ export namespace serviceconsumermanagement_v1 {
     search(
       paramsOrCallback?:
         | Params$Resource$Services$Search
-        | BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
+        | BodyResponseCallback<Schema$SearchTenancyUnitsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
-      callback?: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>
-    ): void | GaxiosPromise<Schema$SearchTenancyUnitsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchTenancyUnitsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchTenancyUnitsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchTenancyUnitsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2000,7 +2483,7 @@ export namespace serviceconsumermanagement_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchTenancyUnitsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SearchTenancyUnitsResponse>(parameters);
@@ -2009,11 +2492,6 @@ export namespace serviceconsumermanagement_v1 {
   }
 
   export interface Params$Resource$Services$Search extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If `page_size` isn't provided or the size provided is a number larger than 1000, it's automatically set to 1000.  Optional.
      */
@@ -2041,20 +2519,83 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.services.tenancyUnits.addProject
      * @desc Add a new tenant project to the tenancy unit. There can be a maximum of 512 tenant projects in a tenancy unit. If there are previously failed `AddTenantProject` calls, you might need to call `RemoveTenantProject` first to resolve them before you can make another call to `AddTenantProject` with the same tag. Operation<response: Empty>.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.tenancyUnits.addProject({
+     *     // Name of the tenancy unit.
+     *     // Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     *     parent: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "projectConfig": {},
+     *       //   "tag": "my_tag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.tenancyUnits.addProject
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
-     * @param {().AddTenantProjectRequest} params.resource Request body data
+     * @param {().AddTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     addProject(
+      params: Params$Resource$Services$Tenancyunits$Addproject,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addProject(
       params?: Params$Resource$Services$Tenancyunits$Addproject,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    addProject(
+      params: Params$Resource$Services$Tenancyunits$Addproject,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addProject(
       params: Params$Resource$Services$Tenancyunits$Addproject,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2068,12 +2609,17 @@ export namespace serviceconsumermanagement_v1 {
     addProject(
       paramsOrCallback?:
         | Params$Resource$Services$Tenancyunits$Addproject
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Addproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2108,7 +2654,10 @@ export namespace serviceconsumermanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2117,20 +2666,85 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.services.tenancyUnits.applyProjectConfig
      * @desc Apply a configuration to an existing tenant project. This project must exist in an active state and have the original owner account. The caller must have permission to add a project to the given tenancy unit. The configuration is applied, but any existing settings on the project aren't modified. Specified policy bindings are applied. Existing bindings aren't modified. Specified services are activated. No service is deactivated. If specified, new billing configuration is applied. Omit a billing configuration to keep the existing one. A service account in the project is created if previously non existed. Specified labels will be appended to tenant project, note that the value of existing label key will be updated if the same label key is requested. The specified folder is ignored, as moving a tenant project to a different folder isn't supported. The operation fails if any of the steps fail, but no rollback of already applied configuration changes is attempted. Operation<response: Empty>.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.tenancyUnits.applyProjectConfig(
+     *     {
+     *       // Name of the tenancy unit.
+     *       // Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     *       name: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "projectConfig": {},
+     *         //   "tag": "my_tag"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.tenancyUnits.applyProjectConfig
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
-     * @param {().ApplyTenantProjectConfigRequest} params.resource Request body data
+     * @param {().ApplyTenantProjectConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     applyProjectConfig(
+      params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    applyProjectConfig(
       params?: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    applyProjectConfig(
+      params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     applyProjectConfig(
       params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2144,12 +2758,17 @@ export namespace serviceconsumermanagement_v1 {
     applyProjectConfig(
       paramsOrCallback?:
         | Params$Resource$Services$Tenancyunits$Applyprojectconfig
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Applyprojectconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2184,7 +2803,10 @@ export namespace serviceconsumermanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2193,20 +2815,86 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.services.tenancyUnits.attachProject
      * @desc Attach an existing project to the tenancy unit as a new tenant resource. The project could either be the tenant project reserved by calling `AddTenantProject` under a tenancy unit of a service producer's project of a managed service, or from a separate project. The caller is checked against a set of permissions as if calling `AddTenantProject` on the same service consumer. To trigger the attachment, the targeted tenant project must be in a folder. Make sure the ServiceConsumerManagement service account is the owner of that project. These two requirements are already met if the project is reserved by calling `AddTenantProject`. Operation<response: Empty>.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.tenancyUnits.attachProject(
+     *     {
+     *       // Name of the tenancy unit that the project will be attached to.
+     *       // Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     *       name: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "externalResource": "my_externalResource",
+     *         //   "reservedResource": "my_reservedResource",
+     *         //   "tag": "my_tag"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.tenancyUnits.attachProject
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the tenancy unit that the project will be attached to. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
-     * @param {().AttachTenantProjectRequest} params.resource Request body data
+     * @param {().AttachTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     attachProject(
+      params: Params$Resource$Services$Tenancyunits$Attachproject,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    attachProject(
       params?: Params$Resource$Services$Tenancyunits$Attachproject,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    attachProject(
+      params: Params$Resource$Services$Tenancyunits$Attachproject,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     attachProject(
       params: Params$Resource$Services$Tenancyunits$Attachproject,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2220,12 +2908,17 @@ export namespace serviceconsumermanagement_v1 {
     attachProject(
       paramsOrCallback?:
         | Params$Resource$Services$Tenancyunits$Attachproject
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Attachproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2260,7 +2953,10 @@ export namespace serviceconsumermanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2269,20 +2965,86 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.services.tenancyUnits.create
      * @desc Creates a tenancy unit with no tenant resources. If tenancy unit already exists, it will be returned, however, in this case, returned TenancyUnit does not have tenant_resources field set and ListTenancyUnit has to be used to get a complete TenancyUnit with all fields populated.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.tenancyUnits.create({
+     *     // services/{service}/{collection id}/{resource id}
+     *     // {collection id} is the cloud resource collection type representing the
+     *     // service consumer, for example 'projects', or 'organizations'.
+     *     // {resource id} is the consumer numeric id, such as project number: '123456'.
+     *     // {service} the name of a managed service, such as 'service.googleapis.com'.
+     *     // Enables service binding using the new tenancy unit.
+     *     parent: 'services/my-service/[^/]+/[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "tenancyUnitId": "my_tenancyUnitId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consumer": "my_consumer",
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "service": "my_service",
+     *   //   "tenantResources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.tenancyUnits.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.
-     * @param {().CreateTenancyUnitRequest} params.resource Request body data
+     * @param {().CreateTenancyUnitRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Services$Tenancyunits$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Services$Tenancyunits$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TenancyUnit>;
+    create(
+      params: Params$Resource$Services$Tenancyunits$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Services$Tenancyunits$Create,
       options: MethodOptions | BodyResponseCallback<Schema$TenancyUnit>,
@@ -2296,12 +3058,17 @@ export namespace serviceconsumermanagement_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Services$Tenancyunits$Create
-        | BodyResponseCallback<Schema$TenancyUnit>,
+        | BodyResponseCallback<Schema$TenancyUnit>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TenancyUnit>,
-      callback?: BodyResponseCallback<Schema$TenancyUnit>
-    ): void | GaxiosPromise<Schema$TenancyUnit> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TenancyUnit>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TenancyUnit>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TenancyUnit> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2336,7 +3103,10 @@ export namespace serviceconsumermanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TenancyUnit>(parameters, callback);
+        createAPIRequest<Schema$TenancyUnit>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TenancyUnit>(parameters);
       }
@@ -2345,6 +3115,50 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.services.tenancyUnits.delete
      * @desc Delete a tenancy unit. Before you delete the tenancy unit, there should be no tenant resources in it that aren't in a DELETED state. Operation<response: Empty>.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.tenancyUnits.delete({
+     *     // Name of the tenancy unit to be deleted.
+     *     name: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.tenancyUnits.delete
      * @memberOf! ()
      *
@@ -2355,9 +3169,18 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Services$Tenancyunits$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Services$Tenancyunits$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Services$Tenancyunits$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Services$Tenancyunits$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2371,12 +3194,17 @@ export namespace serviceconsumermanagement_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Services$Tenancyunits$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2408,7 +3236,10 @@ export namespace serviceconsumermanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2417,20 +3248,84 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.services.tenancyUnits.deleteProject
      * @desc Deletes the specified project resource identified by a tenant resource tag. The mothod removes a project lien with a 'TenantManager' origin if that was added. It will then attempt to delete the project. If that operation fails, this method also fails. After the project has been deleted, the tenant resource state is set to DELETED.  To permanently remove resource metadata, call the `RemoveTenantProject` method. New resources with the same tag can't be added if there are existing resources in a DELETED state. Operation<response: Empty>.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.tenancyUnits.deleteProject(
+     *     {
+     *       // Name of the tenancy unit.
+     *       // Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     *       name: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "tag": "my_tag"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.tenancyUnits.deleteProject
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
-     * @param {().DeleteTenantProjectRequest} params.resource Request body data
+     * @param {().DeleteTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     deleteProject(
+      params: Params$Resource$Services$Tenancyunits$Deleteproject,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteProject(
       params?: Params$Resource$Services$Tenancyunits$Deleteproject,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    deleteProject(
+      params: Params$Resource$Services$Tenancyunits$Deleteproject,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteProject(
       params: Params$Resource$Services$Tenancyunits$Deleteproject,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2444,12 +3339,17 @@ export namespace serviceconsumermanagement_v1 {
     deleteProject(
       paramsOrCallback?:
         | Params$Resource$Services$Tenancyunits$Deleteproject
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Deleteproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2484,7 +3384,10 @@ export namespace serviceconsumermanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2493,6 +3396,60 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.services.tenancyUnits.list
      * @desc Find the tenancy unit for a managed service and service consumer. This method shouldn't be used in a service producer's runtime path, for example to find the tenant project number when creating VMs. Service producers must persist the tenant project's information after the project is created.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.tenancyUnits.list({
+     *     // Filter expression over tenancy resources field. Optional.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results returned by this request.
+     *     pageSize: 'placeholder-value',
+     *     // The continuation token, which is used to page through large result sets.
+     *     // To get the next page of results, set this parameter to the value of
+     *     // `nextPageToken` from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // Managed service and service consumer. Required.
+     *     // services/{service}/{collection id}/{resource id}
+     *     // {collection id} is the cloud resource collection type representing the
+     *     // service consumer, for example 'projects', or 'organizations'.
+     *     // {resource id} is the consumer numeric id, such as project number: '123456'.
+     *     // {service} the name of a service, such as 'service.googleapis.com'.
+     *     parent: 'services/my-service/[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tenancyUnits": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.tenancyUnits.list
      * @memberOf! ()
      *
@@ -2506,9 +3463,18 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Services$Tenancyunits$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Services$Tenancyunits$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTenancyUnitsResponse>;
+    list(
+      params: Params$Resource$Services$Tenancyunits$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Services$Tenancyunits$List,
       options:
@@ -2524,12 +3490,20 @@ export namespace serviceconsumermanagement_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Services$Tenancyunits$List
-        | BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
+        | BodyResponseCallback<Schema$ListTenancyUnitsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
-      callback?: BodyResponseCallback<Schema$ListTenancyUnitsResponse>
-    ): void | GaxiosPromise<Schema$ListTenancyUnitsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTenancyUnitsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTenancyUnitsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTenancyUnitsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2564,7 +3538,10 @@ export namespace serviceconsumermanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTenancyUnitsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTenancyUnitsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTenancyUnitsResponse>(parameters);
       }
@@ -2573,20 +3550,84 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.services.tenancyUnits.removeProject
      * @desc Removes the specified project resource identified by a tenant resource tag. The method removes the project lien with 'TenantManager' origin if that was added. It then attempts to delete the project. If that operation fails, this method also fails. Calls to remove already removed or non-existent tenant project succeed. After the project has been deleted, or if was already in a DELETED state, resource metadata is permanently removed from the tenancy unit. Operation<response: Empty>.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.tenancyUnits.removeProject(
+     *     {
+     *       // Name of the tenancy unit.
+     *       // Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     *       name: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "tag": "my_tag"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.tenancyUnits.removeProject
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
-     * @param {().RemoveTenantProjectRequest} params.resource Request body data
+     * @param {().RemoveTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     removeProject(
+      params: Params$Resource$Services$Tenancyunits$Removeproject,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeProject(
       params?: Params$Resource$Services$Tenancyunits$Removeproject,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    removeProject(
+      params: Params$Resource$Services$Tenancyunits$Removeproject,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     removeProject(
       params: Params$Resource$Services$Tenancyunits$Removeproject,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2600,12 +3641,17 @@ export namespace serviceconsumermanagement_v1 {
     removeProject(
       paramsOrCallback?:
         | Params$Resource$Services$Tenancyunits$Removeproject
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Removeproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2640,7 +3686,10 @@ export namespace serviceconsumermanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2649,20 +3698,84 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.services.tenancyUnits.undeleteProject
      * @desc Attempts to undelete a previously deleted tenant project. The project must be in a DELETED state. There are no guarantees that an undeleted project will be in a fully restored and functional state. Call the `ApplyTenantProjectConfig` method to update its configuration and then validate all managed service resources. Operation<response: Empty>.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceconsumermanagement.services.tenancyUnits.undeleteProject(
+     *     {
+     *       // Name of the tenancy unit.
+     *       // Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     *       name: 'services/my-service/[^/]+/[^/]+/tenancyUnits/my-tenancyUnit',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "tag": "my_tag"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias serviceconsumermanagement.services.tenancyUnits.undeleteProject
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
-     * @param {().UndeleteTenantProjectRequest} params.resource Request body data
+     * @param {().UndeleteTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     undeleteProject(
+      params: Params$Resource$Services$Tenancyunits$Undeleteproject,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undeleteProject(
       params?: Params$Resource$Services$Tenancyunits$Undeleteproject,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    undeleteProject(
+      params: Params$Resource$Services$Tenancyunits$Undeleteproject,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     undeleteProject(
       params: Params$Resource$Services$Tenancyunits$Undeleteproject,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2676,12 +3789,17 @@ export namespace serviceconsumermanagement_v1 {
     undeleteProject(
       paramsOrCallback?:
         | Params$Resource$Services$Tenancyunits$Undeleteproject
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Tenancyunits$Undeleteproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2716,7 +3834,10 @@ export namespace serviceconsumermanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2725,11 +3846,6 @@ export namespace serviceconsumermanagement_v1 {
 
   export interface Params$Resource$Services$Tenancyunits$Addproject
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
@@ -2743,11 +3859,6 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Applyprojectconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
     name?: string;
@@ -2759,11 +3870,6 @@ export namespace serviceconsumermanagement_v1 {
   }
   export interface Params$Resource$Services$Tenancyunits$Attachproject
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the tenancy unit that the project will be attached to. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
@@ -2777,11 +3883,6 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.
      */
     parent?: string;
@@ -2794,22 +3895,12 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the tenancy unit to be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Services$Tenancyunits$Deleteproject
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
@@ -2822,11 +3913,6 @@ export namespace serviceconsumermanagement_v1 {
   }
   export interface Params$Resource$Services$Tenancyunits$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Filter expression over tenancy resources field. Optional.
      */
@@ -2847,11 +3933,6 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Removeproject
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
     name?: string;
@@ -2863,11 +3944,6 @@ export namespace serviceconsumermanagement_v1 {
   }
   export interface Params$Resource$Services$Tenancyunits$Undeleteproject
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */

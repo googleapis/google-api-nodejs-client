@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace vision_v1p2beta1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace vision_v1p2beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1040,7 +1050,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string | null;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
+     * Immutable. The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
@@ -1538,7 +1548,7 @@ export namespace vision_v1p2beta1 {
      */
     parent?: string | null;
     /**
-     * Individual async file annotation requests for this batch.
+     * Required. Individual async file annotation requests for this batch.
      */
     requests?: Schema$GoogleCloudVisionV1p2beta1AsyncAnnotateFileRequest[];
   }
@@ -1564,7 +1574,7 @@ export namespace vision_v1p2beta1 {
      */
     parent?: string | null;
     /**
-     * Individual image annotation requests for this batch.
+     * Required. Individual image annotation requests for this batch.
      */
     requests?: Schema$GoogleCloudVisionV1p2beta1AnnotateImageRequest[];
   }
@@ -1577,7 +1587,7 @@ export namespace vision_v1p2beta1 {
      */
     parent?: string | null;
     /**
-     * The list of file annotation requests. Right now we support only one AnnotateFileRequest in BatchAnnotateFilesRequest.
+     * Required. The list of file annotation requests. Right now we support only one AnnotateFileRequest in BatchAnnotateFilesRequest.
      */
     requests?: Schema$GoogleCloudVisionV1p2beta1AnnotateFileRequest[];
   }
@@ -1599,7 +1609,7 @@ export namespace vision_v1p2beta1 {
      */
     parent?: string | null;
     /**
-     * Individual image annotation requests for this batch.
+     * Required. Individual image annotation requests for this batch.
      */
     requests?: Schema$GoogleCloudVisionV1p2beta1AnnotateImageRequest[];
   }
@@ -1900,7 +1910,7 @@ export namespace vision_v1p2beta1 {
      */
     cropHintsParams?: Schema$GoogleCloudVisionV1p2beta1CropHintsParams;
     /**
-     * List of languages to use for TEXT_DETECTION. In most cases, an empty value yields the best results since it enables automatic language detection. For languages based on the Latin alphabet, setting `language_hints` is not needed. In rare cases, when the language of the text in the image is known, setting a hint will help get better results (although it will be a significant hindrance if the hint is wrong). Text detection returns an error if one or more of the specified languages is not one of the [supported languages](/vision/docs/languages).
+     * List of languages to use for TEXT_DETECTION. In most cases, an empty value yields the best results since it enables automatic language detection. For languages based on the Latin alphabet, setting `language_hints` is not needed. In rare cases, when the language of the text in the image is known, setting a hint will help get better results (although it will be a significant hindrance if the hint is wrong). Text detection returns an error if one or more of the specified languages is not one of the [supported languages](https://cloud.google.com/vision/docs/languages).
      */
     languageHints?: string[] | null;
     /**
@@ -2125,7 +2135,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string | null;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
+     * Immutable. The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
@@ -2151,7 +2161,7 @@ export namespace vision_v1p2beta1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1ProductSearchParams {
     /**
-     * The bounding polygon around the area of interest in the image. Optional. If it is not specified, system discretion will be applied.
+     * The bounding polygon around the area of interest in the image. If it is not specified, system discretion will be applied.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
@@ -2159,7 +2169,7 @@ export namespace vision_v1p2beta1 {
      */
     filter?: string | null;
     /**
-     * The list of product categories to search in. Currently, we only consider the first category, and either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot; should be specified. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported but will be deprecated. For new products, please use &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot; for better product search accuracy. It is recommended to migrate existing products to these categories as well.
+     * The list of product categories to search in. Currently, we only consider the first category, and either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, &quot;toys-v2&quot;, &quot;packagedgoods-v1&quot;, or &quot;general-v1&quot; should be specified. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported but will be deprecated. For new products, please use &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot; for better product search accuracy. It is recommended to migrate existing products to these categories as well.
      */
     productCategories?: string[] | null;
     /**
@@ -3047,7 +3057,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string | null;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
+     * Immutable. The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
@@ -3162,7 +3172,7 @@ export namespace vision_v1p2beta1 {
    */
   export interface Schema$GoogleCloudVisionV1p3beta1ReferenceImage {
     /**
-     * Bounding polygons around the areas of interest in the reference image. Optional. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
+     * Optional. Bounding polygons around the areas of interest in the reference image. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
      */
     boundingPolys?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly[];
     /**
@@ -3170,7 +3180,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string | null;
     /**
-     * The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.  Required.
+     * Required. The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.
      */
     uri?: string | null;
   }
@@ -3453,10 +3463,6 @@ export namespace vision_v1p2beta1 {
      */
     imagePropertiesAnnotation?: Schema$GoogleCloudVisionV1p4beta1ImageProperties;
     /**
-     * If present, image quality calculation has completed successfully.
-     */
-    imageQualityAnnotation?: Schema$GoogleCloudVisionV1p4beta1ImageQuality;
-    /**
      * If present, label detection has completed successfully.
      */
     labelAnnotations?: Schema$GoogleCloudVisionV1p4beta1EntityAnnotation[];
@@ -3476,10 +3482,6 @@ export namespace vision_v1p2beta1 {
      * If present, product search has completed successfully.
      */
     productSearchResults?: Schema$GoogleCloudVisionV1p4beta1ProductSearchResults;
-    /**
-     * If present, image quality optimization has completed successfully.
-     */
-    qualityOptimizationResult?: Schema$GoogleCloudVisionV1p4beta1QualityOptimizationResult;
     /**
      * If present, safe-search annotation has completed successfully.
      */
@@ -3583,6 +3585,23 @@ export namespace vision_v1p2beta1 {
      * The bounding polygon vertices.
      */
     vertices?: Schema$GoogleCloudVisionV1p4beta1Vertex[];
+  }
+  /**
+   * A Celebrity is a group of Faces with an identity.
+   */
+  export interface Schema$GoogleCloudVisionV1p4beta1Celebrity {
+    /**
+     * The Celebrity&#39;s description.
+     */
+    description?: string | null;
+    /**
+     * The Celebrity&#39;s display name.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the preloaded Celebrity. Has the format `builtin/{mid}`.
+     */
+    name?: string | null;
   }
   /**
    * Color information consists of RGB channels, score, and the fraction of the image that the color occupies in the image.
@@ -3722,6 +3741,10 @@ export namespace vision_v1p2beta1 {
      */
     panAngle?: number | null;
     /**
+     * Additional recognition information. Only computed if image_context.face_recognition_params is provided, **and** a match is found to a Celebrity in the input CelebritySet. This field is sorted in order of decreasing confidence values.
+     */
+    recognitionResult?: Schema$GoogleCloudVisionV1p4beta1FaceRecognitionResult[];
+    /**
      * Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].
      */
     rollAngle?: number | null;
@@ -3754,6 +3777,19 @@ export namespace vision_v1p2beta1 {
      * Face landmark type.
      */
     type?: string | null;
+  }
+  /**
+   * Information about a face&#39;s identity.
+   */
+  export interface Schema$GoogleCloudVisionV1p4beta1FaceRecognitionResult {
+    /**
+     * The Celebrity that this face was matched to.
+     */
+    celebrity?: Schema$GoogleCloudVisionV1p4beta1Celebrity;
+    /**
+     * Recognition confidence. Range [0, 1].
+     */
+    confidence?: number | null;
   }
   /**
    * The Google Cloud Storage location where the output will be written to.
@@ -3794,15 +3830,6 @@ export namespace vision_v1p2beta1 {
      * If present, dominant colors completed successfully.
      */
     dominantColors?: Schema$GoogleCloudVisionV1p4beta1DominantColorsAnnotation;
-  }
-  /**
-   * Stores image quality scores, could be aesthetic quality or technical quality.
-   */
-  export interface Schema$GoogleCloudVisionV1p4beta1ImageQuality {
-    /**
-     * A score representing the aesthetic/technical quality of the image. The score is in range [0, 1]. Higher value corresponds to more professional looking photos. 0 means the image looks very bad, 1 means the image with very high quality.
-     */
-    qualityScore?: number | null;
   }
   /**
    * Response message for the `ImportProductSets` method.  This message is returned by the google.longrunning.Operations.GetOperation method in the returned google.longrunning.Operation.response field.
@@ -3991,7 +4018,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string | null;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
+     * Immutable. The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
@@ -4102,28 +4129,11 @@ export namespace vision_v1p2beta1 {
     value?: string | null;
   }
   /**
-   * Stores enhanced image bytes.
-   */
-  export interface Schema$GoogleCloudVisionV1p4beta1QualityOptimizationResult {
-    /**
-     * Optimized image bytes.
-     */
-    image?: string | null;
-    /**
-     * Mime type of the output image.
-     */
-    mimeType?: string | null;
-    /**
-     * Required optimization type.
-     */
-    qualityOptimizationType?: string | null;
-  }
-  /**
    * A `ReferenceImage` represents a product image and its associated metadata, such as bounding boxes.
    */
   export interface Schema$GoogleCloudVisionV1p4beta1ReferenceImage {
     /**
-     * Bounding polygons around the areas of interest in the reference image. Optional. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
+     * Optional. Bounding polygons around the areas of interest in the reference image. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
      */
     boundingPolys?: Schema$GoogleCloudVisionV1p4beta1BoundingPoly[];
     /**
@@ -4131,7 +4141,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string | null;
     /**
-     * The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.  Required.
+     * Required. The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.
      */
     uri?: string | null;
   }
@@ -4144,45 +4154,21 @@ export namespace vision_v1p2beta1 {
      */
     adult?: string | null;
     /**
-     * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    adultConfidence?: number | null;
-    /**
      * Likelihood that this is a medical image.
      */
     medical?: string | null;
-    /**
-     * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    medicalConfidence?: number | null;
-    /**
-     * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    nsfwConfidence?: number | null;
     /**
      * Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
      */
     racy?: string | null;
     /**
-     * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    racyConfidence?: number | null;
-    /**
      * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
      */
     spoof?: string | null;
     /**
-     * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    spoofConfidence?: number | null;
-    /**
      * Likelihood that this image contains violent content.
      */
     violence?: string | null;
-    /**
-     * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    violenceConfidence?: number | null;
   }
   /**
    * A single symbol representation.
@@ -4387,1049 +4373,6 @@ export namespace vision_v1p2beta1 {
      * List of symbols in the word. The order of the symbols follows the natural reading order.
      */
     symbols?: Schema$GoogleCloudVisionV1p4beta1Symbol[];
-  }
-  /**
-   * Response to a single file annotation request. A file may contain one or more images, which individually have their own responses.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1AnnotateFileResponse {
-    /**
-     * If set, represents the error message for the failed request. The `responses` field will not be set in this case.
-     */
-    error?: Schema$Status;
-    /**
-     * Information about the file for which this response is generated.
-     */
-    inputConfig?: Schema$GoogleCloudVisionV1p5beta1InputConfig;
-    /**
-     * Individual responses to images found within the file. This field will be empty if the `error` field is set.
-     */
-    responses?: Schema$GoogleCloudVisionV1p5beta1AnnotateImageResponse[];
-    /**
-     * This field gives the total number of pages in the file.
-     */
-    totalPages?: number | null;
-  }
-  /**
-   * Response to an image annotation request.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1AnnotateImageResponse {
-    /**
-     * If present, contextual information is needed to understand where this image comes from.
-     */
-    context?: Schema$GoogleCloudVisionV1p5beta1ImageAnnotationContext;
-    /**
-     * If present, crop hints have completed successfully.
-     */
-    cropHintsAnnotation?: Schema$GoogleCloudVisionV1p5beta1CropHintsAnnotation;
-    /**
-     * If set, represents the error message for the operation. Note that filled-in image annotations are guaranteed to be correct, even when `error` is set.
-     */
-    error?: Schema$Status;
-    /**
-     * If present, face detection has completed successfully.
-     */
-    faceAnnotations?: Schema$GoogleCloudVisionV1p5beta1FaceAnnotation[];
-    /**
-     * If present, text (OCR) detection or document (OCR) text detection has completed successfully. This annotation provides the structural hierarchy for the OCR detected text.
-     */
-    fullTextAnnotation?: Schema$GoogleCloudVisionV1p5beta1TextAnnotation;
-    /**
-     * If present, image properties were extracted successfully.
-     */
-    imagePropertiesAnnotation?: Schema$GoogleCloudVisionV1p5beta1ImageProperties;
-    /**
-     * If present, label detection has completed successfully.
-     */
-    labelAnnotations?: Schema$GoogleCloudVisionV1p5beta1EntityAnnotation[];
-    /**
-     * If present, landmark detection has completed successfully.
-     */
-    landmarkAnnotations?: Schema$GoogleCloudVisionV1p5beta1EntityAnnotation[];
-    /**
-     * If present, localized object detection has completed successfully. This will be sorted descending by confidence score.
-     */
-    localizedObjectAnnotations?: Schema$GoogleCloudVisionV1p5beta1LocalizedObjectAnnotation[];
-    /**
-     * If present, logo detection has completed successfully.
-     */
-    logoAnnotations?: Schema$GoogleCloudVisionV1p5beta1EntityAnnotation[];
-    /**
-     * If present, product search has completed successfully.
-     */
-    productSearchResults?: Schema$GoogleCloudVisionV1p5beta1ProductSearchResults;
-    /**
-     * If present, safe-search annotation has completed successfully.
-     */
-    safeSearchAnnotation?: Schema$GoogleCloudVisionV1p5beta1SafeSearchAnnotation;
-    /**
-     * If present, text (OCR) detection has completed successfully.
-     */
-    textAnnotations?: Schema$GoogleCloudVisionV1p5beta1EntityAnnotation[];
-    /**
-     * If present, web detection has completed successfully.
-     */
-    webDetection?: Schema$GoogleCloudVisionV1p5beta1WebDetection;
-  }
-  /**
-   * The response for a single offline file annotation request.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1AsyncAnnotateFileResponse {
-    /**
-     * The output location and metadata from AsyncAnnotateFileRequest.
-     */
-    outputConfig?: Schema$GoogleCloudVisionV1p5beta1OutputConfig;
-  }
-  /**
-   * Response to an async batch file annotation request.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1AsyncBatchAnnotateFilesResponse {
-    /**
-     * The list of file annotation responses, one for each request in AsyncBatchAnnotateFilesRequest.
-     */
-    responses?: Schema$GoogleCloudVisionV1p5beta1AsyncAnnotateFileResponse[];
-  }
-  /**
-   * Response to an async batch image annotation request.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1AsyncBatchAnnotateImagesResponse {
-    /**
-     * The output location and metadata from AsyncBatchAnnotateImagesRequest.
-     */
-    outputConfig?: Schema$GoogleCloudVisionV1p5beta1OutputConfig;
-  }
-  /**
-   * A list of file annotation responses.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1BatchAnnotateFilesResponse {
-    /**
-     * The list of file annotation responses, each response corresponding to each AnnotateFileRequest in BatchAnnotateFilesRequest.
-     */
-    responses?: Schema$GoogleCloudVisionV1p5beta1AnnotateFileResponse[];
-  }
-  /**
-   * Metadata for the batch operations such as the current state.  This is included in the `metadata` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1BatchOperationMetadata {
-    /**
-     * The time when the batch request is finished and google.longrunning.Operation.done is set to true.
-     */
-    endTime?: string | null;
-    /**
-     * The current state of the batch operation.
-     */
-    state?: string | null;
-    /**
-     * The time when the batch request was submitted to the server.
-     */
-    submitTime?: string | null;
-  }
-  /**
-   * Logical element on the page.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Block {
-    /**
-     * Detected block type (text, image etc) for this block.
-     */
-    blockType?: string | null;
-    /**
-     * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:  * when the text is horizontal it might look like:          0----1         |    |         3----2  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:          2----3         |    |         1----0    and the vertex order will still be (0, 1, 2, 3).
-     */
-    boundingBox?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Confidence of the OCR results on the block. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * Detected pair for KEY_VALUE_PAIR block_type. This detection can be turned off by explicitly setting desired fields in DocumentParsingParams.block_filter.
-     */
-    keyValuePair?: Schema$GoogleCloudVisionV1p5beta1KeyValuePair;
-    /**
-     * All UTF-8 text detected in this block. This field is by default not returned unless specified in TextDetectionParams.block_filter or DocumentParsingParams.block_filter.
-     */
-    mergedText?: string | null;
-    /**
-     * List of paragraphs in this block (if this blocks is of type text).
-     */
-    paragraphs?: Schema$GoogleCloudVisionV1p5beta1Paragraph[];
-    /**
-     * Additional information detected for the block.
-     */
-    property?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationTextProperty;
-    /**
-     * Detected table for TABLE block_type. This detection can be turned off by explicitly setting desired fields in DocumentParsingParams.block_filter.
-     */
-    table?: Schema$GoogleCloudVisionV1p5beta1Table;
-  }
-  /**
-   * A bounding polygon for the detected image annotation.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1BoundingPoly {
-    /**
-     * The bounding polygon normalized vertices.
-     */
-    normalizedVertices?: Schema$GoogleCloudVisionV1p5beta1NormalizedVertex[];
-    /**
-     * The bounding polygon vertices.
-     */
-    vertices?: Schema$GoogleCloudVisionV1p5beta1Vertex[];
-  }
-  /**
-   * Color information consists of RGB channels, score, and the fraction of the image that the color occupies in the image.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ColorInfo {
-    /**
-     * RGB components of the color.
-     */
-    color?: Schema$Color;
-    /**
-     * The fraction of pixels the color occupies in the image. Value in range [0, 1].
-     */
-    pixelFraction?: number | null;
-    /**
-     * Image-specific score for this color. Value in range [0, 1].
-     */
-    score?: number | null;
-  }
-  /**
-   * Single crop hint that is used to generate a new crop when serving an image.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1CropHint {
-    /**
-     * The bounding polygon for the crop region. The coordinates of the bounding box are in the original image&#39;s scale.
-     */
-    boundingPoly?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Confidence of this being a salient region.  Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * Fraction of importance of this salient region with respect to the original image.
-     */
-    importanceFraction?: number | null;
-  }
-  /**
-   * Set of crop hints that are used to generate new crops when serving images.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1CropHintsAnnotation {
-    /**
-     * Crop hint results.
-     */
-    cropHints?: Schema$GoogleCloudVisionV1p5beta1CropHint[];
-  }
-  /**
-   * Set of dominant colors and their corresponding scores.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1DominantColorsAnnotation {
-    /**
-     * RGB color values with their score and pixel fraction.
-     */
-    colors?: Schema$GoogleCloudVisionV1p5beta1ColorInfo[];
-  }
-  /**
-   * Set of detected entity features.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1EntityAnnotation {
-    /**
-     * Image region to which this entity belongs. Not produced for `LABEL_DETECTION` features.
-     */
-    boundingPoly?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * Entity textual description, expressed in its `locale` language.
-     */
-    description?: string | null;
-    /**
-     * The language code for the locale in which the entity textual `description` is expressed.
-     */
-    locale?: string | null;
-    /**
-     * The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks.
-     */
-    locations?: Schema$GoogleCloudVisionV1p5beta1LocationInfo[];
-    /**
-     * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
-     */
-    mid?: string | null;
-    /**
-     * Some entities may have optional user-supplied `Property` (name/value) fields, such a score or string that qualifies the entity.
-     */
-    properties?: Schema$GoogleCloudVisionV1p5beta1Property[];
-    /**
-     * Overall score of the result. Range [0, 1].
-     */
-    score?: number | null;
-    /**
-     * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
-     */
-    topicality?: number | null;
-  }
-  /**
-   * A face annotation object contains the results of face detection.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1FaceAnnotation {
-    /**
-     * Anger likelihood.
-     */
-    angerLikelihood?: string | null;
-    /**
-     * Blurred likelihood.
-     */
-    blurredLikelihood?: string | null;
-    /**
-     * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
-     */
-    boundingPoly?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Detection confidence. Range [0, 1].
-     */
-    detectionConfidence?: number | null;
-    /**
-     * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
-     */
-    fdBoundingPoly?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Headwear likelihood.
-     */
-    headwearLikelihood?: string | null;
-    /**
-     * Joy likelihood.
-     */
-    joyLikelihood?: string | null;
-    /**
-     * Face landmarking confidence. Range [0, 1].
-     */
-    landmarkingConfidence?: number | null;
-    /**
-     * Detected face landmarks.
-     */
-    landmarks?: Schema$GoogleCloudVisionV1p5beta1FaceAnnotationLandmark[];
-    /**
-     * Yaw angle, which indicates the leftward/rightward angle that the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180].
-     */
-    panAngle?: number | null;
-    /**
-     * Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].
-     */
-    rollAngle?: number | null;
-    /**
-     * Sorrow likelihood.
-     */
-    sorrowLikelihood?: string | null;
-    /**
-     * Surprise likelihood.
-     */
-    surpriseLikelihood?: string | null;
-    /**
-     * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
-     */
-    tiltAngle?: number | null;
-    /**
-     * Under-exposed likelihood.
-     */
-    underExposedLikelihood?: string | null;
-  }
-  /**
-   * A face-specific landmark (for example, a face feature).
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1FaceAnnotationLandmark {
-    /**
-     * Face landmark position.
-     */
-    position?: Schema$GoogleCloudVisionV1p5beta1Position;
-    /**
-     * Face landmark type.
-     */
-    type?: string | null;
-  }
-  /**
-   * The Google Cloud Storage location where the output will be written to.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1GcsDestination {
-    /**
-     * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide.  Examples:  *    File Prefix: gs://bucket-name/here/filenameprefix   The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;.  *    Directory Prefix: gs://bucket-name/some/location/   The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified.  If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
-     */
-    uri?: string | null;
-  }
-  /**
-   * The Google Cloud Storage location where the input will be read from.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1GcsSource {
-    /**
-     * Google Cloud Storage URI for the input file. This must only be a Google Cloud Storage object. Wildcards are not currently supported.
-     */
-    uri?: string | null;
-  }
-  /**
-   * If an image was produced from a file (e.g. a PDF), this message gives information about the source of that image.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ImageAnnotationContext {
-    /**
-     * If the file was a PDF or TIFF, this field gives the page number within the file used to produce the image.
-     */
-    pageNumber?: number | null;
-    /**
-     * The URI of the file used to produce the image.
-     */
-    uri?: string | null;
-  }
-  /**
-   * Stores image properties, such as dominant colors.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ImageProperties {
-    /**
-     * If present, dominant colors completed successfully.
-     */
-    dominantColors?: Schema$GoogleCloudVisionV1p5beta1DominantColorsAnnotation;
-  }
-  /**
-   * Response message for the `ImportProductSets` method.  This message is returned by the google.longrunning.Operations.GetOperation method in the returned google.longrunning.Operation.response field.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ImportProductSetsResponse {
-    /**
-     * The list of reference_images that are imported successfully.
-     */
-    referenceImages?: Schema$GoogleCloudVisionV1p5beta1ReferenceImage[];
-    /**
-     * The rpc status for each ImportProductSet request, including both successes and errors.  The number of statuses here matches the number of lines in the csv file, and statuses[i] stores the success or failure status of processing the i-th line of the csv, starting from line 0.
-     */
-    statuses?: Schema$Status[];
-  }
-  /**
-   * The desired input location and metadata.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1InputConfig {
-    /**
-     * File content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.  Currently, this field only works for BatchAnnotateFiles requests. It does not work for AsyncBatchAnnotateFiles requests.
-     */
-    content?: string | null;
-    /**
-     * The Google Cloud Storage location to read the input from.
-     */
-    gcsSource?: Schema$GoogleCloudVisionV1p5beta1GcsSource;
-    /**
-     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
-     */
-    mimeType?: string | null;
-  }
-  /**
-   * Proto for a key value pair.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1KeyValuePair {
-    /**
-     * The key string value.
-     */
-    key?: string | null;
-    /**
-     * Key block of the pair containing the normalized bounding box and key text.
-     */
-    keyBlock?: Schema$GoogleCloudVisionV1p5beta1Block;
-    /**
-     * Optional. The translation of key text if the text is not in English.
-     */
-    normalizedKey?: string | null;
-    /**
-     * Value block of the pair containing the normalized bounding box and value text, including potentially deeper structures within the value text.
-     */
-    valueBlock?: Schema$GoogleCloudVisionV1p5beta1Block;
-    /**
-     * Type of the value. Valid strings are the following:   &quot;generic&quot; - For generic text that is mapped to a value.  &quot;number&quot; - for numeric types  &quot;id&quot; - for generic identifiers.  &quot;currency&quot; - for currency values.  &quot;date&quot; - for dates.  &quot;time&quot; - for time and duration values.  &quot;date_range&quot; - for date ranges.  &quot;address&quot; - for address values (can be long).  &quot;person&quot; - for names of people or other personal identifiers.  &quot;phone&quot; - for phone numbers.
-     */
-    valueType?: string | null;
-  }
-  /**
-   * Set of detected objects with bounding boxes.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1LocalizedObjectAnnotation {
-    /**
-     * Image region to which this object belongs. This must be populated.
-     */
-    boundingPoly?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     */
-    languageCode?: string | null;
-    /**
-     * Object ID that should align with EntityAnnotation mid.
-     */
-    mid?: string | null;
-    /**
-     * Object name, expressed in its `language_code` language.
-     */
-    name?: string | null;
-    /**
-     * Score of the result. Range [0, 1].
-     */
-    score?: number | null;
-  }
-  /**
-   * Detected entity location information.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1LocationInfo {
-    /**
-     * lat/long location coordinates.
-     */
-    latLng?: Schema$LatLng;
-  }
-  /**
-   * A vertex represents a 2D point in the image. NOTE: the normalized vertex coordinates are relative to the original image and range from 0 to 1.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1NormalizedVertex {
-    /**
-     * X coordinate.
-     */
-    x?: number | null;
-    /**
-     * Y coordinate.
-     */
-    y?: number | null;
-  }
-  /**
-   * Contains metadata for the BatchAnnotateImages operation.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1OperationMetadata {
-    /**
-     * The time when the batch request was received.
-     */
-    createTime?: string | null;
-    /**
-     * Current state of the batch operation.
-     */
-    state?: string | null;
-    /**
-     * The time when the operation result was last updated.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * The desired output location and metadata.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1OutputConfig {
-    /**
-     * The max number of response protos to put into each output JSON file on Google Cloud Storage. The valid range is [1, 100]. If not specified, the default value is 20.  For example, for one pdf file with 100 pages, 100 response protos will be generated. If `batch_size` = 20, then 5 json files each containing 20 response protos will be written under the prefix `gcs_destination`.`uri`.  Currently, batch_size only applies to GcsDestination, with potential future support for other output configurations.
-     */
-    batchSize?: number | null;
-    /**
-     * The Google Cloud Storage location to write the output(s) to.
-     */
-    gcsDestination?: Schema$GoogleCloudVisionV1p5beta1GcsDestination;
-  }
-  /**
-   * Detected page from OCR.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Page {
-    /**
-     * List of blocks of text, images etc on this page.
-     */
-    blocks?: Schema$GoogleCloudVisionV1p5beta1Block[];
-    /**
-     * Confidence of the OCR results on the page. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
-     */
-    height?: number | null;
-    /**
-     * All UTF-8 text detected in this page. This field is by default not returned unless specified in TextDetectionParams.page_filter.
-     */
-    mergedText?: string | null;
-    /**
-     * Additional information detected on the page.
-     */
-    property?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationTextProperty;
-    /**
-     * Page width. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
-     */
-    width?: number | null;
-  }
-  /**
-   * Structural unit of text representing a number of words in certain order.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Paragraph {
-    /**
-     * The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertex order will still be (0, 1, 2, 3).
-     */
-    boundingBox?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Confidence of the OCR results for the paragraph. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * All UTF-8 text detected in this paragraph. This field is by default not returned unless specified in TextDetectionParams.paragraph_filter.
-     */
-    mergedText?: string | null;
-    /**
-     * Additional information detected for the paragraph.
-     */
-    property?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationTextProperty;
-    /**
-     * List of all words in this paragraph.
-     */
-    words?: Schema$GoogleCloudVisionV1p5beta1Word[];
-  }
-  /**
-   * A 3D position in the image, used primarily for Face detection landmarks. A valid Position must have both x and y coordinates. The position coordinates are in the same scale as the original image.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Position {
-    /**
-     * X coordinate.
-     */
-    x?: number | null;
-    /**
-     * Y coordinate.
-     */
-    y?: number | null;
-    /**
-     * Z coordinate (or depth).
-     */
-    z?: number | null;
-  }
-  /**
-   * A Product contains ReferenceImages.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Product {
-    /**
-     * User-provided metadata to be stored with this product. Must be at most 4096 characters long.
-     */
-    description?: string | null;
-    /**
-     * The user-provided name for this Product. Must not be empty. Must be at most 4096 characters long.
-     */
-    displayName?: string | null;
-    /**
-     * The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
-     */
-    name?: string | null;
-    /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
-     */
-    productCategory?: string | null;
-    /**
-     * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels.  Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon.  Multiple values can be assigned to the same key. One product may have up to 500 product_labels.  Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
-     */
-    productLabels?: Schema$GoogleCloudVisionV1p5beta1ProductKeyValue[];
-  }
-  /**
-   * A product label represented as a key-value pair.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ProductKeyValue {
-    /**
-     * The key of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
-     */
-    key?: string | null;
-    /**
-     * The value of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
-     */
-    value?: string | null;
-  }
-  /**
-   * Results for a product search request.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ProductSearchResults {
-    /**
-     * Timestamp of the index which provided these results. Products added to the product set and products removed from the product set after this time are not reflected in the current results.
-     */
-    indexTime?: string | null;
-    /**
-     * List of results grouped by products detected in the query image. Each entry corresponds to one bounding polygon in the query image, and contains the matching products specific to that region. There may be duplicate product matches in the union of all the per-product results.
-     */
-    productGroupedResults?: Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsGroupedResult[];
-    /**
-     * List of results, one for each product match.
-     */
-    results?: Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsResult[];
-  }
-  /**
-   * Information about the products similar to a single product in a query image.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsGroupedResult {
-    /**
-     * The bounding polygon around the product detected in the query image.
-     */
-    boundingPoly?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * List of generic predictions for the object in the bounding box.
-     */
-    objectAnnotations?: Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsObjectAnnotation[];
-    /**
-     * List of results, one for each product match.
-     */
-    results?: Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsResult[];
-  }
-  /**
-   * Prediction for what the object in the bounding box is.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsObjectAnnotation {
-    /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     */
-    languageCode?: string | null;
-    /**
-     * Object ID that should align with EntityAnnotation mid.
-     */
-    mid?: string | null;
-    /**
-     * Object name, expressed in its `language_code` language.
-     */
-    name?: string | null;
-    /**
-     * Score of the result. Range [0, 1].
-     */
-    score?: number | null;
-  }
-  /**
-   * Information about a product.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ProductSearchResultsResult {
-    /**
-     * The resource name of the image from the product that is the closest match to the query.
-     */
-    image?: string | null;
-    /**
-     * The Product.
-     */
-    product?: Schema$GoogleCloudVisionV1p5beta1Product;
-    /**
-     * A confidence level on the match, ranging from 0 (no confidence) to 1 (full confidence).
-     */
-    score?: number | null;
-  }
-  /**
-   * A `Property` consists of a user-supplied name/value pair.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Property {
-    /**
-     * Name of the property.
-     */
-    name?: string | null;
-    /**
-     * Value of numeric properties.
-     */
-    uint64Value?: string | null;
-    /**
-     * Value of the property.
-     */
-    value?: string | null;
-  }
-  /**
-   * A `ReferenceImage` represents a product image and its associated metadata, such as bounding boxes.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1ReferenceImage {
-    /**
-     * Bounding polygons around the areas of interest in the reference image. Optional. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
-     */
-    boundingPolys?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly[];
-    /**
-     * The resource name of the reference image.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.  This field is ignored when creating a reference image.
-     */
-    name?: string | null;
-    /**
-     * The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.  Required.
-     */
-    uri?: string | null;
-  }
-  /**
-   * Set of features pertaining to the image, computed by computer vision methods over safe-search verticals (for example, adult, spoof, medical, violence).
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1SafeSearchAnnotation {
-    /**
-     * Represents the adult content likelihood for the image. Adult content may contain elements such as nudity, pornographic images or cartoons, or sexual activities.
-     */
-    adult?: string | null;
-    /**
-     * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    adultConfidence?: number | null;
-    /**
-     * Likelihood that this is a medical image.
-     */
-    medical?: string | null;
-    /**
-     * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    medicalConfidence?: number | null;
-    /**
-     * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    nsfwConfidence?: number | null;
-    /**
-     * Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
-     */
-    racy?: string | null;
-    /**
-     * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    racyConfidence?: number | null;
-    /**
-     * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
-     */
-    spoof?: string | null;
-    /**
-     * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    spoofConfidence?: number | null;
-    /**
-     * Likelihood that this image contains violent content.
-     */
-    violence?: string | null;
-    /**
-     * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    violenceConfidence?: number | null;
-  }
-  /**
-   * A single symbol representation.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Symbol {
-    /**
-     * The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertex order will still be (0, 1, 2, 3).
-     */
-    boundingBox?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Confidence of the OCR results for the symbol. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * Additional information detected for the symbol.
-     */
-    property?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationTextProperty;
-    /**
-     * The actual UTF-8 representation of the symbol.
-     */
-    text?: string | null;
-  }
-  /**
-   * A table representation similar to HTML table structure.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Table {
-    /**
-     * Body rows of the table
-     */
-    bodyRows?: Schema$GoogleCloudVisionV1p5beta1TableTableRow[];
-    /**
-     * Header rows of the table
-     */
-    headerRows?: Schema$GoogleCloudVisionV1p5beta1TableTableRow[];
-  }
-  /**
-   * A cell representation inside of tables.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1TableTableCell {
-    /**
-     * How many columns this cell spans.
-     */
-    colSpan?: number | null;
-    /**
-     * How many rows this cell spans.
-     */
-    rowSpan?: number | null;
-    /**
-     * The merged text value of this cell, omitting any deeper structural information unlike `text_block`. This is useful for simple cells.
-     */
-    text?: string | null;
-    /**
-     * Text block for this cell which also contains the normalized bounding box for the cell and deeper structures within a cell if present.
-     */
-    textBlock?: Schema$GoogleCloudVisionV1p5beta1Block;
-  }
-  /**
-   * A row of table cells.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1TableTableRow {
-    /**
-     * Cells that make up this row.
-     */
-    cells?: Schema$GoogleCloudVisionV1p5beta1TableTableCell[];
-  }
-  /**
-   * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this:     TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1TextAnnotation {
-    /**
-     * List of pages detected by OCR.
-     */
-    pages?: Schema$GoogleCloudVisionV1p5beta1Page[];
-    /**
-     * UTF-8 text detected on the pages.
-     */
-    text?: string | null;
-  }
-  /**
-   * Detected start or end of a structural component.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1TextAnnotationDetectedBreak {
-    /**
-     * True if break prepends the element.
-     */
-    isPrefix?: boolean | null;
-    /**
-     * Detected break type.
-     */
-    type?: string | null;
-  }
-  /**
-   * Detected language for a structural component.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1TextAnnotationDetectedLanguage {
-    /**
-     * Confidence of detected language. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     */
-    languageCode?: string | null;
-  }
-  /**
-   * Additional information detected on the structural component.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1TextAnnotationTextProperty {
-    /**
-     * Detected start or end of a text segment.
-     */
-    detectedBreak?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationDetectedBreak;
-    /**
-     * A list of detected languages together with confidence.
-     */
-    detectedLanguages?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationDetectedLanguage[];
-  }
-  /**
-   * A vertex represents a 2D point in the image. NOTE: the vertex coordinates are in the same scale as the original image.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Vertex {
-    /**
-     * X coordinate.
-     */
-    x?: number | null;
-    /**
-     * Y coordinate.
-     */
-    y?: number | null;
-  }
-  /**
-   * Relevant information for the image from the Internet.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1WebDetection {
-    /**
-     * The service&#39;s best guess as to the topic of the request image. Inferred from similar images on the open web.
-     */
-    bestGuessLabels?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebLabel[];
-    /**
-     * Fully matching images from the Internet. Can include resized copies of the query image.
-     */
-    fullMatchingImages?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebImage[];
-    /**
-     * Web pages containing the matching images from the Internet.
-     */
-    pagesWithMatchingImages?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebPage[];
-    /**
-     * Partial matching images from the Internet. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
-     */
-    partialMatchingImages?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebImage[];
-    /**
-     * The visually similar image results.
-     */
-    visuallySimilarImages?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebImage[];
-    /**
-     * Deduced entities from similar images on the Internet.
-     */
-    webEntities?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebEntity[];
-  }
-  /**
-   * Entity deduced from similar images on the Internet.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1WebDetectionWebEntity {
-    /**
-     * Canonical description of the entity, in English.
-     */
-    description?: string | null;
-    /**
-     * Opaque entity ID.
-     */
-    entityId?: string | null;
-    /**
-     * Overall relevancy score for the entity. Not normalized and not comparable across different image queries.
-     */
-    score?: number | null;
-  }
-  /**
-   * Metadata for online images.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1WebDetectionWebImage {
-    /**
-     * (Deprecated) Overall relevancy score for the image.
-     */
-    score?: number | null;
-    /**
-     * The result image URL.
-     */
-    url?: string | null;
-  }
-  /**
-   * Label to provide extra metadata for the web detection.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1WebDetectionWebLabel {
-    /**
-     * Label for extra metadata.
-     */
-    label?: string | null;
-    /**
-     * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     */
-    languageCode?: string | null;
-  }
-  /**
-   * Metadata for web pages.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1WebDetectionWebPage {
-    /**
-     * Fully matching images on the page. Can include resized copies of the query image.
-     */
-    fullMatchingImages?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebImage[];
-    /**
-     * Title for the web page, may contain HTML markups.
-     */
-    pageTitle?: string | null;
-    /**
-     * Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
-     */
-    partialMatchingImages?: Schema$GoogleCloudVisionV1p5beta1WebDetectionWebImage[];
-    /**
-     * (Deprecated) Overall relevancy score for the web page.
-     */
-    score?: number | null;
-    /**
-     * The result web page URL.
-     */
-    url?: string | null;
-  }
-  /**
-   * A word representation.
-   */
-  export interface Schema$GoogleCloudVisionV1p5beta1Word {
-    /**
-     * The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertex order will still be (0, 1, 2, 3).
-     */
-    boundingBox?: Schema$GoogleCloudVisionV1p5beta1BoundingPoly;
-    /**
-     * Confidence of the OCR results for the word. Range [0, 1].
-     */
-    confidence?: number | null;
-    /**
-     * All UTF-8 text detected in this word. This field is by default not returned unless specified in TextDetectionParams.word_filter.
-     */
-    mergedText?: string | null;
-    /**
-     * Additional information detected for the word.
-     */
-    property?: Schema$GoogleCloudVisionV1p5beta1TextAnnotationTextProperty;
-    /**
-     * List of symbols in the word. The order of the symbols follows the natural reading order.
-     */
-    symbols?: Schema$GoogleCloudVisionV1p5beta1Symbol[];
   }
   /**
    * Information about the products similar to a single product in a query image.
@@ -5742,7 +4685,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string | null;
     /**
-     * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
+     * Immutable. The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
@@ -5789,7 +4732,7 @@ export namespace vision_v1p2beta1 {
    */
   export interface Schema$ReferenceImage {
     /**
-     * Bounding polygons around the areas of interest in the reference image. Optional. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
+     * Optional. Bounding polygons around the areas of interest in the reference image. If this field is empty, the system will try to detect regions of interest. At most 10 bounding polygons will be used.  The provided shape is converted into a non-rotated rectangle. Once converted, the small edge of the rectangle must be greater than or equal to 300 pixels. The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
      */
     boundingPolys?: Schema$BoundingPoly[];
     /**
@@ -5797,7 +4740,7 @@ export namespace vision_v1p2beta1 {
      */
     name?: string | null;
     /**
-     * The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.  Required.
+     * Required. The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.
      */
     uri?: string | null;
   }
@@ -5827,45 +4770,21 @@ export namespace vision_v1p2beta1 {
      */
     adult?: string | null;
     /**
-     * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    adultConfidence?: number | null;
-    /**
      * Likelihood that this is a medical image.
      */
     medical?: string | null;
-    /**
-     * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    medicalConfidence?: number | null;
-    /**
-     * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    nsfwConfidence?: number | null;
     /**
      * Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
      */
     racy?: string | null;
     /**
-     * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    racyConfidence?: number | null;
-    /**
      * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
      */
     spoof?: string | null;
     /**
-     * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    spoofConfidence?: number | null;
-    /**
      * Likelihood that this image contains violent content.
      */
     violence?: string | null;
-    /**
-     * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means very confident.
-     */
-    violenceConfidence?: number | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -6072,21 +4991,79 @@ export namespace vision_v1p2beta1 {
     /**
      * vision.files.annotate
      * @desc Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported.  This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1p2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.files.annotate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.files.annotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    annotate(
+      params: Params$Resource$Files$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
     annotate(
       params?: Params$Resource$Files$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
     >;
+    annotate(
+      params: Params$Resource$Files$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Files$Annotate,
       options:
@@ -6114,18 +5091,26 @@ export namespace vision_v1p2beta1 {
         | Params$Resource$Files$Annotate
         | BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6160,7 +5145,7 @@ export namespace vision_v1p2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
@@ -6171,19 +5156,81 @@ export namespace vision_v1p2beta1 {
     /**
      * vision.files.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1p2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.files.asyncBatchAnnotate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.files.asyncBatchAnnotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asyncBatchAnnotate(
+      params: Params$Resource$Files$Asyncbatchannotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asyncBatchAnnotate(
       params?: Params$Resource$Files$Asyncbatchannotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+      params: Params$Resource$Files$Asyncbatchannotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asyncBatchAnnotate(
       params: Params$Resource$Files$Asyncbatchannotate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -6197,12 +5244,17 @@ export namespace vision_v1p2beta1 {
     asyncBatchAnnotate(
       paramsOrCallback?:
         | Params$Resource$Files$Asyncbatchannotate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6236,7 +5288,10 @@ export namespace vision_v1p2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6245,22 +5300,12 @@ export namespace vision_v1p2beta1 {
 
   export interface Params$Resource$Files$Annotate extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest;
   }
   export interface Params$Resource$Files$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -6276,21 +5321,79 @@ export namespace vision_v1p2beta1 {
     /**
      * vision.images.annotate
      * @desc Run image detection and annotation for a batch of images.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1p2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.images.annotate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.images.annotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    annotate(
+      params: Params$Resource$Images$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
     annotate(
       params?: Params$Resource$Images$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
     >;
+    annotate(
+      params: Params$Resource$Images$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Images$Annotate,
       options:
@@ -6318,18 +5421,26 @@ export namespace vision_v1p2beta1 {
         | Params$Resource$Images$Annotate
         | BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6364,7 +5475,7 @@ export namespace vision_v1p2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
@@ -6375,19 +5486,82 @@ export namespace vision_v1p2beta1 {
     /**
      * vision.images.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of images.  Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).  This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1p2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.images.asyncBatchAnnotate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "outputConfig": {},
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.images.asyncBatchAnnotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asyncBatchAnnotate(
+      params: Params$Resource$Images$Asyncbatchannotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asyncBatchAnnotate(
       params?: Params$Resource$Images$Asyncbatchannotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+      params: Params$Resource$Images$Asyncbatchannotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asyncBatchAnnotate(
       params: Params$Resource$Images$Asyncbatchannotate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -6401,12 +5575,17 @@ export namespace vision_v1p2beta1 {
     asyncBatchAnnotate(
       paramsOrCallback?:
         | Params$Resource$Images$Asyncbatchannotate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Images$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6440,7 +5619,10 @@ export namespace vision_v1p2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6449,22 +5631,12 @@ export namespace vision_v1p2beta1 {
 
   export interface Params$Resource$Images$Annotate extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest;
   }
   export interface Params$Resource$Images$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -6493,22 +5665,94 @@ export namespace vision_v1p2beta1 {
     /**
      * vision.projects.files.annotate
      * @desc Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported.  This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1p2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.files.annotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.files.annotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    annotate(
+      params: Params$Resource$Projects$Files$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
     annotate(
       params?: Params$Resource$Projects$Files$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
     >;
+    annotate(
+      params: Params$Resource$Projects$Files$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Projects$Files$Annotate,
       options:
@@ -6536,18 +5780,26 @@ export namespace vision_v1p2beta1 {
         | Params$Resource$Projects$Files$Annotate
         | BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Files$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6583,7 +5835,7 @@ export namespace vision_v1p2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
@@ -6594,20 +5846,96 @@ export namespace vision_v1p2beta1 {
     /**
      * vision.projects.files.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1p2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.files.asyncBatchAnnotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.files.asyncBatchAnnotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asyncBatchAnnotate(
+      params: Params$Resource$Projects$Files$Asyncbatchannotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asyncBatchAnnotate(
       params?: Params$Resource$Projects$Files$Asyncbatchannotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+      params: Params$Resource$Projects$Files$Asyncbatchannotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Files$Asyncbatchannotate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -6621,12 +5949,17 @@ export namespace vision_v1p2beta1 {
     asyncBatchAnnotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Files$Asyncbatchannotate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6659,7 +5992,10 @@ export namespace vision_v1p2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6668,11 +6004,6 @@ export namespace vision_v1p2beta1 {
 
   export interface Params$Resource$Projects$Files$Annotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -6685,11 +6016,6 @@ export namespace vision_v1p2beta1 {
   }
   export interface Params$Resource$Projects$Files$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -6710,22 +6036,94 @@ export namespace vision_v1p2beta1 {
     /**
      * vision.projects.images.annotate
      * @desc Run image detection and annotation for a batch of images.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1p2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.images.annotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.images.annotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    annotate(
+      params: Params$Resource$Projects$Images$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
     annotate(
       params?: Params$Resource$Projects$Images$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
     >;
+    annotate(
+      params: Params$Resource$Projects$Images$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Projects$Images$Annotate,
       options:
@@ -6753,18 +6151,26 @@ export namespace vision_v1p2beta1 {
         | Params$Resource$Projects$Images$Annotate
         | BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6800,7 +6206,7 @@ export namespace vision_v1p2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
@@ -6811,20 +6217,97 @@ export namespace vision_v1p2beta1 {
     /**
      * vision.projects.images.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of images.  Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).  This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1p2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.images.asyncBatchAnnotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "outputConfig": {},
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.images.asyncBatchAnnotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asyncBatchAnnotate(
+      params: Params$Resource$Projects$Images$Asyncbatchannotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asyncBatchAnnotate(
       params?: Params$Resource$Projects$Images$Asyncbatchannotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+      params: Params$Resource$Projects$Images$Asyncbatchannotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Images$Asyncbatchannotate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -6838,12 +6321,17 @@ export namespace vision_v1p2beta1 {
     asyncBatchAnnotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Images$Asyncbatchannotate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Images$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6876,7 +6364,10 @@ export namespace vision_v1p2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6885,11 +6376,6 @@ export namespace vision_v1p2beta1 {
 
   export interface Params$Resource$Projects$Images$Annotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -6902,11 +6388,6 @@ export namespace vision_v1p2beta1 {
   }
   export interface Params$Resource$Projects$Images$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -6938,22 +6419,94 @@ export namespace vision_v1p2beta1 {
     /**
      * vision.projects.locations.files.annotate
      * @desc Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported.  This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1p2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.files.annotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.files.annotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    annotate(
+      params: Params$Resource$Projects$Locations$Files$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
     annotate(
       params?: Params$Resource$Projects$Locations$Files$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
     >;
+    annotate(
+      params: Params$Resource$Projects$Locations$Files$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Projects$Locations$Files$Annotate,
       options:
@@ -6981,18 +6534,26 @@ export namespace vision_v1p2beta1 {
         | Params$Resource$Projects$Locations$Files$Annotate
         | BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Files$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7028,7 +6589,7 @@ export namespace vision_v1p2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
@@ -7039,20 +6600,96 @@ export namespace vision_v1p2beta1 {
     /**
      * vision.projects.locations.files.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1p2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.files.asyncBatchAnnotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.files.asyncBatchAnnotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asyncBatchAnnotate(
+      params: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asyncBatchAnnotate(
       params?: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+      params: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -7066,12 +6703,17 @@ export namespace vision_v1p2beta1 {
     asyncBatchAnnotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Files$Asyncbatchannotate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7104,7 +6746,10 @@ export namespace vision_v1p2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -7113,11 +6758,6 @@ export namespace vision_v1p2beta1 {
 
   export interface Params$Resource$Projects$Locations$Files$Annotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -7130,11 +6770,6 @@ export namespace vision_v1p2beta1 {
   }
   export interface Params$Resource$Projects$Locations$Files$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -7155,22 +6790,94 @@ export namespace vision_v1p2beta1 {
     /**
      * vision.projects.locations.images.annotate
      * @desc Run image detection and annotation for a batch of images.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1p2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.images.annotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.images.annotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    annotate(
+      params: Params$Resource$Projects$Locations$Images$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
     annotate(
       params?: Params$Resource$Projects$Locations$Images$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
     >;
+    annotate(
+      params: Params$Resource$Projects$Locations$Images$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Projects$Locations$Images$Annotate,
       options:
@@ -7198,18 +6905,26 @@ export namespace vision_v1p2beta1 {
         | Params$Resource$Projects$Locations$Images$Annotate
         | BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7245,7 +6960,7 @@ export namespace vision_v1p2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
@@ -7256,20 +6971,97 @@ export namespace vision_v1p2beta1 {
     /**
      * vision.projects.locations.images.asyncBatchAnnotate
      * @desc Run asynchronous image detection and annotation for a list of images.  Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).  This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vision.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vision = google.vision('v1p2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-vision',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vision.projects.locations.images.asyncBatchAnnotate({
+     *     // Optional. Target project and location to make a call.
+     *     //
+     *     // Format: `projects/{project-id}/locations/{location-id}`.
+     *     //
+     *     // If no parent is specified, a region will be chosen automatically.
+     *     //
+     *     // Supported location-ids:
+     *     //     `us`: USA country only,
+     *     //     `asia`: East asia areas, like Japan, Taiwan,
+     *     //     `eu`: The European Union.
+     *     //
+     *     // Example: `projects/project-A/locations/eu`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "outputConfig": {},
+     *       //   "parent": "my_parent",
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias vision.projects.locations.images.asyncBatchAnnotate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     asyncBatchAnnotate(
+      params: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    asyncBatchAnnotate(
       params?: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    asyncBatchAnnotate(
+      params: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -7283,12 +7075,17 @@ export namespace vision_v1p2beta1 {
     asyncBatchAnnotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Images$Asyncbatchannotate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Images$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7321,7 +7118,10 @@ export namespace vision_v1p2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -7330,11 +7130,6 @@ export namespace vision_v1p2beta1 {
 
   export interface Params$Resource$Projects$Locations$Images$Annotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -7347,11 +7142,6 @@ export namespace vision_v1p2beta1 {
   }
   export interface Params$Resource$Projects$Locations$Images$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */

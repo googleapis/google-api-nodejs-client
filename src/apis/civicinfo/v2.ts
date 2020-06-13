@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace civicinfo_v2 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace civicinfo_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -493,30 +503,6 @@ export namespace civicinfo_v2 {
     dataset?: string | null;
     provider?: string | null;
   }
-  export interface Schema$LivegraphBacktraceRecordInfo {
-    dataSourcePublishMsec?: string | null;
-    expId?: string | null;
-    expInfo?: Schema$LivegraphBacktraceRecordInfoExpInfo;
-    isRecon?: boolean | null;
-    isWlmThrottled?: boolean | null;
-    numberOfTriples?: string | null;
-    priority?: string | null;
-    process?: string | null;
-    proxyReceiveMsec?: string | null;
-    proxySentMsec?: string | null;
-    recordId?: string | null;
-    shouldMonitorLatency?: boolean | null;
-    subscriberReceiveMsec?: string | null;
-    topicBuildFinishMsec?: string | null;
-    topicBuildStartMsec?: string | null;
-    version?: string | null;
-  }
-  export interface Schema$LivegraphBacktraceRecordInfoExpInfo {
-    deletedIns?: string[] | null;
-  }
-  export interface Schema$MessageSet {
-    recordMessageSetExt?: Schema$LivegraphBacktraceRecordInfo;
-  }
   /**
    * Information about an Office held by one or more Officials.
    */
@@ -587,7 +573,6 @@ export namespace civicinfo_v2 {
     latE7?: number | null;
     lngE7?: number | null;
     metadata?: Schema$FieldMetadataProto;
-    temporaryData?: Schema$MessageSet;
   }
   /**
    * A location where a voter can vote. This may be an early vote site, an election day voting location, or a drop off location for a completed ballot.
@@ -792,8 +777,8 @@ export namespace civicinfo_v2 {
     published?: boolean | null;
     schoolDistrict?: string | null;
     startHouseNumber?: string | null;
-    startLatE7?: string | null;
-    startLngE7?: string | null;
+    startLatE7?: number | null;
+    startLngE7?: number | null;
     state?: string | null;
     stateHouseDistrict?: string | null;
     stateSenateDistrict?: string | null;
@@ -883,20 +868,78 @@ export namespace civicinfo_v2 {
     /**
      * civicinfo.divisions.search
      * @desc Searches for political divisions by their natural name or OCD ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const civicinfo = google.civicinfo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await civicinfo.divisions.search({
+     *     // The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
+     *     query: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contextParams": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias civicinfo.divisions.search
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.query The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
-     * @param {().DivisionSearchRequest} params.resource Request body data
+     * @param {().DivisionSearchRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Divisions$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Divisions$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DivisionSearchResponse>;
+    search(
+      params: Params$Resource$Divisions$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Divisions$Search,
       options:
@@ -912,12 +955,20 @@ export namespace civicinfo_v2 {
     search(
       paramsOrCallback?:
         | Params$Resource$Divisions$Search
-        | BodyResponseCallback<Schema$DivisionSearchResponse>,
+        | BodyResponseCallback<Schema$DivisionSearchResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DivisionSearchResponse>,
-      callback?: BodyResponseCallback<Schema$DivisionSearchResponse>
-    ): void | GaxiosPromise<Schema$DivisionSearchResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DivisionSearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DivisionSearchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DivisionSearchResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Divisions$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -950,7 +1001,10 @@ export namespace civicinfo_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DivisionSearchResponse>(parameters, callback);
+        createAPIRequest<Schema$DivisionSearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DivisionSearchResponse>(parameters);
       }
@@ -958,11 +1012,6 @@ export namespace civicinfo_v2 {
   }
 
   export interface Params$Resource$Divisions$Search extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
      */
@@ -983,19 +1032,74 @@ export namespace civicinfo_v2 {
     /**
      * civicinfo.elections.electionQuery
      * @desc List of available elections to query.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const civicinfo = google.civicinfo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await civicinfo.elections.electionQuery({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contextParams": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "elections": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias civicinfo.elections.electionQuery
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ElectionsQueryRequest} params.resource Request body data
+     * @param {().ElectionsQueryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     electionQuery(
+      params: Params$Resource$Elections$Electionquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    electionQuery(
       params?: Params$Resource$Elections$Electionquery,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ElectionsQueryResponse>;
+    electionQuery(
+      params: Params$Resource$Elections$Electionquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     electionQuery(
       params: Params$Resource$Elections$Electionquery,
       options:
@@ -1013,12 +1117,20 @@ export namespace civicinfo_v2 {
     electionQuery(
       paramsOrCallback?:
         | Params$Resource$Elections$Electionquery
-        | BodyResponseCallback<Schema$ElectionsQueryResponse>,
+        | BodyResponseCallback<Schema$ElectionsQueryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ElectionsQueryResponse>,
-      callback?: BodyResponseCallback<Schema$ElectionsQueryResponse>
-    ): void | GaxiosPromise<Schema$ElectionsQueryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ElectionsQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ElectionsQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ElectionsQueryResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Elections$Electionquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1052,7 +1164,10 @@ export namespace civicinfo_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ElectionsQueryResponse>(parameters, callback);
+        createAPIRequest<Schema$ElectionsQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ElectionsQueryResponse>(parameters);
       }
@@ -1061,6 +1176,72 @@ export namespace civicinfo_v2 {
     /**
      * civicinfo.elections.voterInfoQuery
      * @desc Looks up information relevant to a voter based on the voter's registered address.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const civicinfo = google.civicinfo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await civicinfo.elections.voterInfoQuery({
+     *     // The registered address of the voter to look up.
+     *     address: 'placeholder-value',
+     *     // The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/electionsIf no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
+     *     electionId: 'placeholder-value',
+     *     // If set to true, only data from official state sources will be returned.
+     *     officialOnly: 'placeholder-value',
+     *     // If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
+     *     returnAllAvailableData: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contextParams": {},
+     *       //   "voterInfoSegmentResult": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contests": [],
+     *   //   "dropOffLocations": [],
+     *   //   "earlyVoteSites": [],
+     *   //   "election": {},
+     *   //   "kind": "my_kind",
+     *   //   "mailOnly": false,
+     *   //   "normalizedInput": {},
+     *   //   "otherElections": [],
+     *   //   "pollingLocations": [],
+     *   //   "precinctId": "my_precinctId",
+     *   //   "segments": [],
+     *   //   "state": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias civicinfo.elections.voterInfoQuery
      * @memberOf! ()
      *
@@ -1069,15 +1250,24 @@ export namespace civicinfo_v2 {
      * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/electionsIf no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
      * @param {boolean=} params.officialOnly If set to true, only data from official state sources will be returned.
      * @param {boolean=} params.returnAllAvailableData If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
-     * @param {().VoterInfoRequest} params.resource Request body data
+     * @param {().VoterInfoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     voterInfoQuery(
+      params: Params$Resource$Elections$Voterinfoquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    voterInfoQuery(
       params?: Params$Resource$Elections$Voterinfoquery,
       options?: MethodOptions
     ): GaxiosPromise<Schema$VoterInfoResponse>;
+    voterInfoQuery(
+      params: Params$Resource$Elections$Voterinfoquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     voterInfoQuery(
       params: Params$Resource$Elections$Voterinfoquery,
       options: MethodOptions | BodyResponseCallback<Schema$VoterInfoResponse>,
@@ -1093,12 +1283,20 @@ export namespace civicinfo_v2 {
     voterInfoQuery(
       paramsOrCallback?:
         | Params$Resource$Elections$Voterinfoquery
-        | BodyResponseCallback<Schema$VoterInfoResponse>,
+        | BodyResponseCallback<Schema$VoterInfoResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$VoterInfoResponse>,
-      callback?: BodyResponseCallback<Schema$VoterInfoResponse>
-    ): void | GaxiosPromise<Schema$VoterInfoResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VoterInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VoterInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VoterInfoResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Elections$Voterinfoquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1132,7 +1330,10 @@ export namespace civicinfo_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$VoterInfoResponse>(parameters, callback);
+        createAPIRequest<Schema$VoterInfoResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$VoterInfoResponse>(parameters);
       }
@@ -1142,22 +1343,12 @@ export namespace civicinfo_v2 {
   export interface Params$Resource$Elections$Electionquery
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$ElectionsQueryRequest;
   }
   export interface Params$Resource$Elections$Voterinfoquery
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The registered address of the voter to look up.
      */
@@ -1190,6 +1381,64 @@ export namespace civicinfo_v2 {
     /**
      * civicinfo.representatives.representativeInfoByAddress
      * @desc Looks up political geography and representative information for a single address.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const civicinfo = google.civicinfo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await civicinfo.representatives.representativeInfoByAddress({
+     *     // The address to look up. May only be specified if the field ocdId is not given in the URL.
+     *     address: 'placeholder-value',
+     *     // Whether to return information about offices and officials. If false, only the top-level district information will be returned.
+     *     includeOffices: 'placeholder-value',
+     *     // A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
+     *     levels: 'placeholder-value',
+     *     // A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
+     *     roles: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contextParams": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "divisions": {},
+     *   //   "kind": "my_kind",
+     *   //   "normalizedInput": {},
+     *   //   "offices": [],
+     *   //   "officials": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias civicinfo.representatives.representativeInfoByAddress
      * @memberOf! ()
      *
@@ -1198,15 +1447,24 @@ export namespace civicinfo_v2 {
      * @param {boolean=} params.includeOffices Whether to return information about offices and officials. If false, only the top-level district information will be returned.
      * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
      * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param {().RepresentativeInfoRequest} params.resource Request body data
+     * @param {().RepresentativeInfoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     representativeInfoByAddress(
+      params: Params$Resource$Representatives$Representativeinfobyaddress,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    representativeInfoByAddress(
       params?: Params$Resource$Representatives$Representativeinfobyaddress,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RepresentativeInfoResponse>;
+    representativeInfoByAddress(
+      params: Params$Resource$Representatives$Representativeinfobyaddress,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     representativeInfoByAddress(
       params: Params$Resource$Representatives$Representativeinfobyaddress,
       options:
@@ -1224,12 +1482,20 @@ export namespace civicinfo_v2 {
     representativeInfoByAddress(
       paramsOrCallback?:
         | Params$Resource$Representatives$Representativeinfobyaddress
-        | BodyResponseCallback<Schema$RepresentativeInfoResponse>,
+        | BodyResponseCallback<Schema$RepresentativeInfoResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RepresentativeInfoResponse>,
-      callback?: BodyResponseCallback<Schema$RepresentativeInfoResponse>
-    ): void | GaxiosPromise<Schema$RepresentativeInfoResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RepresentativeInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RepresentativeInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RepresentativeInfoResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Representatives$Representativeinfobyaddress;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1265,7 +1531,7 @@ export namespace civicinfo_v2 {
       if (callback) {
         createAPIRequest<Schema$RepresentativeInfoResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$RepresentativeInfoResponse>(parameters);
@@ -1275,6 +1541,62 @@ export namespace civicinfo_v2 {
     /**
      * civicinfo.representatives.representativeInfoByDivision
      * @desc Looks up representative information for a single geographic division.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const civicinfo = google.civicinfo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await civicinfo.representatives.representativeInfoByDivision({
+     *     // A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
+     *     levels: 'placeholder-value',
+     *     // The Open Civic Data division identifier of the division to look up.
+     *     ocdId: 'placeholder-value',
+     *     // If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
+     *     recursive: 'placeholder-value',
+     *     // A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
+     *     roles: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contextParams": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "divisions": {},
+     *   //   "offices": [],
+     *   //   "officials": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias civicinfo.representatives.representativeInfoByDivision
      * @memberOf! ()
      *
@@ -1283,15 +1605,24 @@ export namespace civicinfo_v2 {
      * @param {string} params.ocdId The Open Civic Data division identifier of the division to look up.
      * @param {boolean=} params.recursive If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
      * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param {().DivisionRepresentativeInfoRequest} params.resource Request body data
+     * @param {().DivisionRepresentativeInfoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     representativeInfoByDivision(
+      params: Params$Resource$Representatives$Representativeinfobydivision,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    representativeInfoByDivision(
       params?: Params$Resource$Representatives$Representativeinfobydivision,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RepresentativeInfoData>;
+    representativeInfoByDivision(
+      params: Params$Resource$Representatives$Representativeinfobydivision,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     representativeInfoByDivision(
       params: Params$Resource$Representatives$Representativeinfobydivision,
       options:
@@ -1309,12 +1640,20 @@ export namespace civicinfo_v2 {
     representativeInfoByDivision(
       paramsOrCallback?:
         | Params$Resource$Representatives$Representativeinfobydivision
-        | BodyResponseCallback<Schema$RepresentativeInfoData>,
+        | BodyResponseCallback<Schema$RepresentativeInfoData>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RepresentativeInfoData>,
-      callback?: BodyResponseCallback<Schema$RepresentativeInfoData>
-    ): void | GaxiosPromise<Schema$RepresentativeInfoData> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RepresentativeInfoData>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RepresentativeInfoData>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RepresentativeInfoData>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Representatives$Representativeinfobydivision;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1348,7 +1687,10 @@ export namespace civicinfo_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RepresentativeInfoData>(parameters, callback);
+        createAPIRequest<Schema$RepresentativeInfoData>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RepresentativeInfoData>(parameters);
       }
@@ -1357,11 +1699,6 @@ export namespace civicinfo_v2 {
 
   export interface Params$Resource$Representatives$Representativeinfobyaddress
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The address to look up. May only be specified if the field ocdId is not given in the URL.
      */
@@ -1386,11 +1723,6 @@ export namespace civicinfo_v2 {
   }
   export interface Params$Resource$Representatives$Representativeinfobydivision
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
      */

@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace driveactivity_v2 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace driveactivity_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -241,6 +251,10 @@ export namespace driveactivity_v2 {
    * A comment with an assignment.
    */
   export interface Schema$Assignment {
+    /**
+     * The user to whom the comment was assigned.
+     */
+    assignedUser?: Schema$User;
     /**
      * The sub-type of this event.
      */
@@ -658,11 +672,11 @@ export namespace driveactivity_v2 {
      */
     ancestorName?: string | null;
     /**
-     * Details on how to consolidate related actions that make up the activity. If not set, then related actions will not be consolidated.
+     * Details on how to consolidate related actions that make up the activity. If not set, then related actions are not consolidated.
      */
     consolidationStrategy?: Schema$ConsolidationStrategy;
     /**
-     * The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional &quot;AND&quot;, where each expression is of the form &quot;field operator value&quot;.  Supported fields:    - &lt;tt&gt;time&lt;/tt&gt;: Uses numerical operators on date values either in     terms of milliseconds since Jan 1, 1970 or in RFC 3339 format.     Examples:       - &lt;tt&gt;time &gt; 1452409200000 AND time &lt;= 1492812924310&lt;/tt&gt;       - &lt;tt&gt;time &gt;= &quot;2016-01-10T01:02:03-05:00&quot;&lt;/tt&gt;    - &lt;tt&gt;detail.action_detail_case&lt;/tt&gt;: Uses the &quot;has&quot; operator (:) and     either a singular value or a list of allowed action types enclosed in     parentheses.     Examples:       - &lt;tt&gt;detail.action_detail_case: RENAME&lt;/tt&gt;       - &lt;tt&gt;detail.action_detail_case:(CREATE UPLOAD)&lt;/tt&gt;       - &lt;tt&gt;-detail.action_detail_case:MOVE&lt;/tt&gt;
+     * The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional &quot;AND&quot;, where each expression is of the form &quot;field operator value&quot;.  Supported fields:    - &lt;tt&gt;time&lt;/tt&gt;: Uses numerical operators on date values either in     terms of milliseconds since Jan 1, 1970 or in RFC 3339 format.     Examples:       - &lt;tt&gt;time &gt; 1452409200000 AND time &lt;= 1492812924310&lt;/tt&gt;       - &lt;tt&gt;time &gt;= &quot;2016-01-10T01:02:03-05:00&quot;&lt;/tt&gt;    - &lt;tt&gt;detail.action_detail_case&lt;/tt&gt;: Uses the &quot;has&quot; operator (:) and     either a singular value or a list of allowed action types enclosed in     parentheses.     Examples:       - &lt;tt&gt;detail.action_detail_case: RENAME&lt;/tt&gt;       - &lt;tt&gt;detail.action_detail_case:(CREATE EDIT)&lt;/tt&gt;       - &lt;tt&gt;-detail.action_detail_case:MOVE&lt;/tt&gt;
      */
     filter?: string | null;
     /**
@@ -670,11 +684,11 @@ export namespace driveactivity_v2 {
      */
     itemName?: string | null;
     /**
-     * The requested number of activity to return. If not set, a default value will be used.
+     * The miminum number of activities desired in the response; the server will attempt to return at least this quanitity. The server may also return fewer activities if it has a partial response ready before the request times out. If not set, a default value is used.
      */
     pageSize?: number | null;
     /**
-     * The next_page_token value returned from a previous QueryDriveActivity request, if any.
+     * The token identifying which page of results to return. Set this to the next_page_token value returned from a previous query to obtain the following page of results. If not set, the first page of results will be returned.
      */
     pageToken?: string | null;
   }
@@ -869,19 +883,82 @@ export namespace driveactivity_v2 {
     /**
      * driveactivity.activity.query
      * @desc Query past activity in Google Drive.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/driveactivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const driveactivity = google.driveactivity('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.activity',
+     *       'https://www.googleapis.com/auth/drive.activity.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await driveactivity.activity.query({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ancestorName": "my_ancestorName",
+     *       //   "consolidationStrategy": {},
+     *       //   "filter": "my_filter",
+     *       //   "itemName": "my_itemName",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activities": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias driveactivity.activity.query
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().QueryDriveActivityRequest} params.resource Request body data
+     * @param {().QueryDriveActivityRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     query(
+      params: Params$Resource$Activity$Query,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    query(
       params?: Params$Resource$Activity$Query,
       options?: MethodOptions
     ): GaxiosPromise<Schema$QueryDriveActivityResponse>;
+    query(
+      params: Params$Resource$Activity$Query,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     query(
       params: Params$Resource$Activity$Query,
       options:
@@ -899,12 +976,20 @@ export namespace driveactivity_v2 {
     query(
       paramsOrCallback?:
         | Params$Resource$Activity$Query
-        | BodyResponseCallback<Schema$QueryDriveActivityResponse>,
+        | BodyResponseCallback<Schema$QueryDriveActivityResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$QueryDriveActivityResponse>,
-      callback?: BodyResponseCallback<Schema$QueryDriveActivityResponse>
-    ): void | GaxiosPromise<Schema$QueryDriveActivityResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryDriveActivityResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryDriveActivityResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$QueryDriveActivityResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activity$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -937,7 +1022,7 @@ export namespace driveactivity_v2 {
       if (callback) {
         createAPIRequest<Schema$QueryDriveActivityResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$QueryDriveActivityResponse>(parameters);
@@ -946,11 +1031,6 @@ export namespace driveactivity_v2 {
   }
 
   export interface Params$Resource$Activity$Query extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

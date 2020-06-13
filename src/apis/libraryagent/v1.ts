@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace libraryagent_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace libraryagent_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -189,6 +199,47 @@ export namespace libraryagent_v1 {
     /**
      * libraryagent.shelves.get
      * @desc Gets a shelf. Returns NOT_FOUND if the shelf does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/libraryagent.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const libraryagent = google.libraryagent('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await libraryagent.shelves.get({
+     *     // Required. The name of the shelf to retrieve.
+     *     name: 'shelves/my-shelve',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "theme": "my_theme"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias libraryagent.shelves.get
      * @memberOf! ()
      *
@@ -199,9 +250,18 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Shelves$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Shelves$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf>;
+    get(
+      params: Params$Resource$Shelves$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Shelves$Get,
       options:
@@ -219,12 +279,20 @@ export namespace libraryagent_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Shelves$Get
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>,
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>,
-      callback?: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>
-    ): void | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Shelves$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -256,7 +324,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Shelf>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Shelf>(
@@ -268,6 +336,53 @@ export namespace libraryagent_v1 {
     /**
      * libraryagent.shelves.list
      * @desc Lists shelves. The order is unspecified but deterministic. Newly created shelves will not necessarily be added to the end of this list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/libraryagent.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const libraryagent = google.libraryagent('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await libraryagent.shelves.list({
+     *     // Requested page size. Server may return fewer shelves than requested.
+     *     // If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListShelvesResponse.next_page_token
+     *     // returned from the previous call to `ListShelves` method.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "shelves": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias libraryagent.shelves.list
      * @memberOf! ()
      *
@@ -279,9 +394,18 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Shelves$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Shelves$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>;
+    list(
+      params: Params$Resource$Shelves$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Shelves$List,
       options:
@@ -309,18 +433,24 @@ export namespace libraryagent_v1 {
         | Params$Resource$Shelves$List
         | BodyResponseCallback<
             Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleExampleLibraryagentV1ListShelvesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Shelves$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -352,7 +482,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -364,21 +494,11 @@ export namespace libraryagent_v1 {
 
   export interface Params$Resource$Shelves$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the shelf to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Shelves$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Requested page size. Server may return fewer shelves than requested. If unspecified, server will pick an appropriate default.
      */
@@ -398,6 +518,49 @@ export namespace libraryagent_v1 {
     /**
      * libraryagent.shelves.books.borrow
      * @desc Borrow a book from the library. Returns the book if it is borrowed successfully. Returns NOT_FOUND if the book does not exist in the library. Returns quota exceeded error if the amount of books borrowed exceeds allocation quota in any dimensions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/libraryagent.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const libraryagent = google.libraryagent('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await libraryagent.shelves.books.borrow({
+     *     // Required. The name of the book to borrow.
+     *     name: 'shelves/my-shelve/books/my-book',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": "my_author",
+     *   //   "name": "my_name",
+     *   //   "read": false,
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias libraryagent.shelves.books.borrow
      * @memberOf! ()
      *
@@ -408,9 +571,18 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     borrow(
+      params: Params$Resource$Shelves$Books$Borrow,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    borrow(
       params?: Params$Resource$Shelves$Books$Borrow,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+    borrow(
+      params: Params$Resource$Shelves$Books$Borrow,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     borrow(
       params: Params$Resource$Shelves$Books$Borrow,
       options:
@@ -428,12 +600,20 @@ export namespace libraryagent_v1 {
     borrow(
       paramsOrCallback?:
         | Params$Resource$Shelves$Books$Borrow
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-      callback?: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
-    ): void | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shelves$Books$Borrow;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -466,7 +646,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
@@ -478,6 +658,49 @@ export namespace libraryagent_v1 {
     /**
      * libraryagent.shelves.books.get
      * @desc Gets a book. Returns NOT_FOUND if the book does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/libraryagent.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const libraryagent = google.libraryagent('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await libraryagent.shelves.books.get({
+     *     // Required. The name of the book to retrieve.
+     *     name: 'shelves/my-shelve/books/my-book',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": "my_author",
+     *   //   "name": "my_name",
+     *   //   "read": false,
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias libraryagent.shelves.books.get
      * @memberOf! ()
      *
@@ -488,9 +711,18 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Shelves$Books$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Shelves$Books$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+    get(
+      params: Params$Resource$Shelves$Books$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Shelves$Books$Get,
       options:
@@ -508,12 +740,20 @@ export namespace libraryagent_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Shelves$Books$Get
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-      callback?: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
-    ): void | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shelves$Books$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -546,7 +786,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
@@ -558,6 +798,55 @@ export namespace libraryagent_v1 {
     /**
      * libraryagent.shelves.books.list
      * @desc Lists books in a shelf. The order is unspecified but deterministic. Newly created books will not necessarily be added to the end of this list. Returns NOT_FOUND if the shelf does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/libraryagent.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const libraryagent = google.libraryagent('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await libraryagent.shelves.books.list({
+     *     // Requested page size. Server may return fewer books than requested.
+     *     // If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     // Typically, this is the value of
+     *     // ListBooksResponse.next_page_token.
+     *     // returned from the previous call to `ListBooks` method.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the shelf whose books we'd like to list.
+     *     parent: 'shelves/my-shelve',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "books": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias libraryagent.shelves.books.list
      * @memberOf! ()
      *
@@ -570,9 +859,18 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Shelves$Books$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Shelves$Books$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListBooksResponse>;
+    list(
+      params: Params$Resource$Shelves$Books$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Shelves$Books$List,
       options:
@@ -600,18 +898,24 @@ export namespace libraryagent_v1 {
         | Params$Resource$Shelves$Books$List
         | BodyResponseCallback<
             Schema$GoogleExampleLibraryagentV1ListBooksResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleExampleLibraryagentV1ListBooksResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleExampleLibraryagentV1ListBooksResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleExampleLibraryagentV1ListBooksResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleExampleLibraryagentV1ListBooksResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListBooksResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shelves$Books$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -647,7 +951,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1ListBooksResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -659,6 +963,49 @@ export namespace libraryagent_v1 {
     /**
      * libraryagent.shelves.books.return
      * @desc Return a book to the library. Returns the book if it is returned to the library successfully. Returns error if the book does not belong to the library or the users didn't borrow before.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/libraryagent.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const libraryagent = google.libraryagent('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await libraryagent.shelves.books.return({
+     *     // Required. The name of the book to return.
+     *     name: 'shelves/my-shelve/books/my-book',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": "my_author",
+     *   //   "name": "my_name",
+     *   //   "read": false,
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias libraryagent.shelves.books.return
      * @memberOf! ()
      *
@@ -669,9 +1016,18 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     return(
+      params: Params$Resource$Shelves$Books$Return,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    return(
       params?: Params$Resource$Shelves$Books$Return,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+    return(
+      params: Params$Resource$Shelves$Books$Return,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     return(
       params: Params$Resource$Shelves$Books$Return,
       options:
@@ -689,12 +1045,20 @@ export namespace libraryagent_v1 {
     return(
       paramsOrCallback?:
         | Params$Resource$Shelves$Books$Return
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-      callback?: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
-    ): void | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shelves$Books$Return;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -727,7 +1091,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
@@ -740,11 +1104,6 @@ export namespace libraryagent_v1 {
   export interface Params$Resource$Shelves$Books$Borrow
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the book to borrow.
      */
     name?: string;
@@ -752,22 +1111,12 @@ export namespace libraryagent_v1 {
   export interface Params$Resource$Shelves$Books$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the book to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Shelves$Books$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Requested page size. Server may return fewer books than requested. If unspecified, server will pick an appropriate default.
      */
@@ -783,11 +1132,6 @@ export namespace libraryagent_v1 {
   }
   export interface Params$Resource$Shelves$Books$Return
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the book to return.
      */

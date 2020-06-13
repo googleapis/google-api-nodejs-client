@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace docs_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace docs_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -268,6 +278,72 @@ export namespace docs_v1 {
     textStyle?: Schema$TextStyle;
   }
   /**
+   * Creates a Footer. The new footer is applied to the SectionStyle at the location of the SectionBreak if specificed, otherwise it is applied to the DocumentStyle.  If a footer of the specified type already exists, a 400 bad request error is returned.
+   */
+  export interface Schema$CreateFooterRequest {
+    /**
+     * The location of the SectionBreak immediately preceding the section whose SectionStyle this footer should belong to. If this is unset or refers to the first section break in the document, the footer applies to the document style.
+     */
+    sectionBreakLocation?: Schema$Location;
+    /**
+     * The type of footer to create.
+     */
+    type?: string | null;
+  }
+  /**
+   * The result of creating a footer.
+   */
+  export interface Schema$CreateFooterResponse {
+    /**
+     * The ID of the created footer.
+     */
+    footerId?: string | null;
+  }
+  /**
+   * Creates a Footnote segment and inserts a new FootnoteReference to it at the given location.  The new Footnote segment will contain a space followed by a newline character.
+   */
+  export interface Schema$CreateFootnoteRequest {
+    /**
+     * Inserts the footnote reference at the end of the document body.  Footnote references cannot be inserted inside a header, footer or footnote. Since footnote references can only be inserted in the body, the segment ID field must be empty.
+     */
+    endOfSegmentLocation?: Schema$EndOfSegmentLocation;
+    /**
+     * Inserts the footnote reference at a specific index in the document.  The footnote reference must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph).  Footnote references cannot be inserted inside an equation, header, footer or footnote. Since footnote references can only be inserted in the body, the segment ID field must be empty.
+     */
+    location?: Schema$Location;
+  }
+  /**
+   * The result of creating a footnote.
+   */
+  export interface Schema$CreateFootnoteResponse {
+    /**
+     * The ID of the created footnote.
+     */
+    footnoteId?: string | null;
+  }
+  /**
+   * Creates a Header. The new header is applied to the SectionStyle at the location of the SectionBreak if specificed, otherwise it is applied to the DocumentStyle.  If a header of the specified type already exists, a 400 bad request error is returned.
+   */
+  export interface Schema$CreateHeaderRequest {
+    /**
+     * The location of the SectionBreak which begins the section this header should belong to. If `section_break_location&#39; is unset or if it refers to the first section break in the document body, the header applies to the DocumentStyle
+     */
+    sectionBreakLocation?: Schema$Location;
+    /**
+     * The type of header to create.
+     */
+    type?: string | null;
+  }
+  /**
+   * The result of creating a header.
+   */
+  export interface Schema$CreateHeaderResponse {
+    /**
+     * The ID of the created header.
+     */
+    headerId?: string | null;
+  }
+  /**
    * Creates a NamedRange referencing the given range.
    */
   export interface Schema$CreateNamedRangeRequest {
@@ -360,6 +436,24 @@ export namespace docs_v1 {
      * The range of content to delete.  Deleting text that crosses a paragraph boundary may result in changes to paragraph styles, lists, positioned objects and bookmarks as the two paragraphs are merged.  Attempting to delete certain ranges can result in an invalid document structure in which case a 400 bad request error is returned.  Some examples of invalid delete requests include:  * Deleting one code unit of a surrogate pair. * Deleting the last newline character of a Body, Header,   Footer, Footnote, TableCell or TableOfContents. * Deleting the start or end of a Table,   TableOfContents or Equation without deleting the entire element. * Deleting the newline character before a   Table,   TableOfContents or   SectionBreak without deleting the   element. * Deleting individual rows or cells of a table. Deleting the content within   a table cell is allowed.
      */
     range?: Schema$Range;
+  }
+  /**
+   * Deletes a Footer from the document.
+   */
+  export interface Schema$DeleteFooterRequest {
+    /**
+     * The id of the footer to delete. If this footer is defined on DocumentStyle, the reference to this footer is removed, resulting in no footer of that type for the first section of the document. If this footer is defined on a SectionStyle, the reference to this footer is removed and the footer of that type is now continued from the previous section.
+     */
+    footerId?: string | null;
+  }
+  /**
+   * Deletes a Header from the document.
+   */
+  export interface Schema$DeleteHeaderRequest {
+    /**
+     * The id of the header to delete. If this header is defined on DocumentStyle, the reference to this header is removed, resulting in no header of that type for the first section of the document. If this header is defined on a SectionStyle, the reference to this header is removed and the header of that type is now continued from the previous section.
+     */
+    headerId?: string | null;
   }
   /**
    * Deletes a NamedRange.
@@ -533,6 +627,14 @@ export namespace docs_v1 {
      */
     marginBottom?: Schema$Dimension;
     /**
+     * The amount of space between the bottom of the page and the contents of the footer.
+     */
+    marginFooter?: Schema$Dimension;
+    /**
+     * The amount of space between the top of the page and the contents of the header.
+     */
+    marginHeader?: Schema$Dimension;
+    /**
      * The left page margin.  Updating the left page margin on the document style clears the left page margin on all section styles. It may also cause columns to resize in all sections.
      */
     marginLeft?: Schema$Dimension;
@@ -553,11 +655,15 @@ export namespace docs_v1 {
      */
     pageSize?: Schema$Size;
     /**
-     * Indicates whether to use the even page header / footer IDs for the even pages.  This property is read-only.
+     * Indicates whether DocumentStyle margin_header, SectionStyle margin_header and DocumentStyle margin_footer, SectionStyle margin_footer are respected. When false, the default values in the Docs editor for header and footer margin are used.  This property is read-only.
+     */
+    useCustomHeaderFooterMargins?: boolean | null;
+    /**
+     * Indicates whether to use the even page header / footer IDs for the even pages.
      */
     useEvenPageHeaderFooter?: boolean | null;
     /**
-     * Indicates whether to use the first page header / footer IDs for the first page.  This property is read-only.
+     * Indicates whether to use the first page header / footer IDs for the first page.
      */
     useFirstPageHeaderFooter?: boolean | null;
   }
@@ -598,6 +704,14 @@ export namespace docs_v1 {
      */
     marginBottomSuggested?: boolean | null;
     /**
+     * Indicates if there was a suggested change to margin_footer.
+     */
+    marginFooterSuggested?: boolean | null;
+    /**
+     * Indicates if there was a suggested change to margin_header.
+     */
+    marginHeaderSuggested?: boolean | null;
+    /**
      * Indicates if there was a suggested change to margin_left.
      */
     marginLeftSuggested?: boolean | null;
@@ -617,6 +731,10 @@ export namespace docs_v1 {
      * A mask that indicates which of the fields in size have been changed in this suggestion.
      */
     pageSizeSuggestionState?: Schema$SizeSuggestionState;
+    /**
+     * Indicates if there was a suggested change to use_custom_header_footer_margins.
+     */
+    useCustomHeaderFooterMarginsSuggested?: boolean | null;
     /**
      * Indicates if there was a suggested change to use_even_page_header_footer.
      */
@@ -1078,6 +1196,23 @@ export namespace docs_v1 {
      * Inserts the page break at a specific index in the document.  The page break must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph).  Page breaks cannot be inserted inside a table, equation, footnote, header or footer. Since page breaks can only be inserted inside the body, the segment ID field must be empty.
      */
     location?: Schema$Location;
+  }
+  /**
+   * Inserts a section break at the given location.  A newline character will be inserted before the section break.
+   */
+  export interface Schema$InsertSectionBreakRequest {
+    /**
+     * Inserts a newline and a section break at the end of the document body.  Section breaks cannot be inserted inside a footnote, header or footer. Because section breaks can only be inserted inside the body, the segment ID field must be empty.
+     */
+    endOfSegmentLocation?: Schema$EndOfSegmentLocation;
+    /**
+     * Inserts a newline and a section break at a specific index in the document.  The section break must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph).  Section breaks cannot be inserted inside a table, equation, footnote, header, or footer. Since section breaks can only be inserted inside the body, the segment ID field must be empty.
+     */
+    location?: Schema$Location;
+    /**
+     * The type of section to insert.
+     */
+    sectionType?: string | null;
   }
   /**
    * Inserts an empty column into a table.
@@ -1859,9 +1994,38 @@ export namespace docs_v1 {
     uri?: string | null;
   }
   /**
+   * Replaces the contents of the specified NamedRange or NamedRanges with the given replacement content.  Note that an individual NamedRange may consist of multiple discontinuous ranges. In this case, only the content in the first range will be replaced. The other ranges and their content will be deleted.  In cases where replacing or deleting any ranges would result in an invalid document structure, a 400 bad request error is returned.
+   */
+  export interface Schema$ReplaceNamedRangeContentRequest {
+    /**
+     * The ID of the named range whose content will be replaced.  If there is no named range with the given ID a 400 bad request error is returned.
+     */
+    namedRangeId?: string | null;
+    /**
+     * The name of the NamedRanges whose content will be replaced.  If there are multiple named ranges with the given name, then the content of each one will be replaced. If there are no named ranges with the given name, then the request will be a no-op.
+     */
+    namedRangeName?: string | null;
+    /**
+     * Replaces the content of the specified named range(s) with the given text.
+     */
+    text?: string | null;
+  }
+  /**
    * A single update to apply to a document.
    */
   export interface Schema$Request {
+    /**
+     * Creates a footer.
+     */
+    createFooter?: Schema$CreateFooterRequest;
+    /**
+     * Creates a footnote.
+     */
+    createFootnote?: Schema$CreateFootnoteRequest;
+    /**
+     * Creates a header.
+     */
+    createHeader?: Schema$CreateHeaderRequest;
     /**
      * Creates a named range.
      */
@@ -1874,6 +2038,14 @@ export namespace docs_v1 {
      * Deletes content from the document.
      */
     deleteContentRange?: Schema$DeleteContentRangeRequest;
+    /**
+     * Deletes a footer from the document.
+     */
+    deleteFooter?: Schema$DeleteFooterRequest;
+    /**
+     * Deletes a header from the document.
+     */
+    deleteHeader?: Schema$DeleteHeaderRequest;
     /**
      * Deletes a named range.
      */
@@ -1903,6 +2075,10 @@ export namespace docs_v1 {
      */
     insertPageBreak?: Schema$InsertPageBreakRequest;
     /**
+     * Inserts a section break at the specified location.
+     */
+    insertSectionBreak?: Schema$InsertSectionBreakRequest;
+    /**
      * Inserts a table at the specified location.
      */
     insertTable?: Schema$InsertTableRequest;
@@ -1931,6 +2107,10 @@ export namespace docs_v1 {
      */
     replaceImage?: Schema$ReplaceImageRequest;
     /**
+     * Replaces the content in a named range.
+     */
+    replaceNamedRangeContent?: Schema$ReplaceNamedRangeContentRequest;
+    /**
      * Unmerges cells in a table.
      */
     unmergeTableCells?: Schema$UnmergeTableCellsRequest;
@@ -1942,6 +2122,10 @@ export namespace docs_v1 {
      * Updates the paragraph style at the specified range.
      */
     updateParagraphStyle?: Schema$UpdateParagraphStyleRequest;
+    /**
+     * Updates the section style of the specified range.
+     */
+    updateSectionStyle?: Schema$UpdateSectionStyleRequest;
     /**
      * Updates the style of table cells.
      */
@@ -1963,6 +2147,18 @@ export namespace docs_v1 {
    * A single response from an update.
    */
   export interface Schema$Response {
+    /**
+     * The result of creating a footer.
+     */
+    createFooter?: Schema$CreateFooterResponse;
+    /**
+     * The result of creating a footnote.
+     */
+    createFootnote?: Schema$CreateFootnoteResponse;
+    /**
+     * The result of creating a header.
+     */
+    createHeader?: Schema$CreateHeaderResponse;
     /**
      * The result of creating a named range.
      */
@@ -2023,7 +2219,7 @@ export namespace docs_v1 {
      */
     paddingEnd?: Schema$Dimension;
     /**
-     * The width of the column.
+     * Output only. The width of the column.
      */
     width?: Schema$Dimension;
   }
@@ -2032,17 +2228,77 @@ export namespace docs_v1 {
    */
   export interface Schema$SectionStyle {
     /**
-     * The section&#39;s columns properties.  If empty, the section contains one column with the default properties in the Docs editor.
+     * The section&#39;s columns properties.  If empty, the section contains one column with the default properties in the Docs editor. A section can be updated to have no more than three columns.  When updating this property, setting a concrete value is required. Unsetting this property will result in a 400 bad request error.
      */
     columnProperties?: Schema$SectionColumnProperties[];
     /**
-     * The style of column separators.  This style can be set even when there is one column in the section.
+     * The style of column separators.  This style can be set even when there is one column in the section.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
      */
     columnSeparatorStyle?: string | null;
     /**
-     * The content direction of this section. If unset, the value defaults to LEFT_TO_RIGHT.
+     * The content direction of this section. If unset, the value defaults to LEFT_TO_RIGHT.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
      */
     contentDirection?: string | null;
+    /**
+     * The ID of the default footer. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s default_footer_id.  This property is read-only.
+     */
+    defaultFooterId?: string | null;
+    /**
+     * The ID of the default header. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s default_header_id.  This property is read-only.
+     */
+    defaultHeaderId?: string | null;
+    /**
+     * The ID of the footer used only for even pages. If the value of DocumentStyle&#39;s use_even_page_header_footer is true, this value is used for the footers on even pages in the section. If it is false, the footers on even pages uses the default_footer_id. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s even_page_footer_id.  This property is read-only.
+     */
+    evenPageFooterId?: string | null;
+    /**
+     * The ID of the header used only for even pages. If the value of DocumentStyle&#39;s use_even_page_header_footer is true, this value is used for the headers on even pages in the section. If it is false, the headers on even pages uses the default_header_id. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s even_page_header_id.  This property is read-only.
+     */
+    evenPageHeaderId?: string | null;
+    /**
+     * The ID of the footer used only for the first page of the section. If use_first_page_header_footer is true, this value is used for the footer on the first page of the section. If it is false, the footer on the first page of the section uses the default_footer_id. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s first_page_footer_id.  This property is read-only.
+     */
+    firstPageFooterId?: string | null;
+    /**
+     * The ID of the header used only for the first page of the section. If use_first_page_header_footer is true, this value is used for the header on the first page of the section. If it is false, the header on the first page of the section uses the default_header_id. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s first_page_header_id.  This property is read-only.
+     */
+    firstPageHeaderId?: string | null;
+    /**
+     * The bottom page margin of the section. If unset, uses margin_bottom from DocumentStyle.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    marginBottom?: Schema$Dimension;
+    /**
+     * The footer margin of the section. If unset, uses margin_footer from DocumentStyle. If updated, use_custom_header_footer_margins is set to true on DocumentStyle. The value of use_custom_header_footer_margins on DocumentStyle indicates if a footer margin is being respected for this section  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    marginFooter?: Schema$Dimension;
+    /**
+     * The header margin of the section. If unset, uses margin_header from DocumentStyle. If updated, use_custom_header_footer_margins is set to true on DocumentStyle. The value of use_custom_header_footer_margins on DocumentStyle indicates if a header margin is being respected for this section.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    marginHeader?: Schema$Dimension;
+    /**
+     * The left page margin of the section. If unset, uses margin_left from DocumentStyle. Updating left margin causes columns in this section to resize. Since the margin affects column width, it is applied before column properties.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    marginLeft?: Schema$Dimension;
+    /**
+     * The right page margin of the section. If unset, uses margin_right from DocumentStyle. Updating right margin causes columns in this section to resize. Since the margin affects column width, it is applied before column properties.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    marginRight?: Schema$Dimension;
+    /**
+     * The top page margin of the section. If unset, uses margin_top from DocumentStyle.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    marginTop?: Schema$Dimension;
+    /**
+     * The page number from which to start counting the number of pages for this section. If unset, page numbering continues from the previous section. If the value is unset in the first SectionBreak, refer to DocumentStyle&#39;s page_number_start.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    pageNumberStart?: number | null;
+    /**
+     * Output only. The type of section.
+     */
+    sectionType?: string | null;
+    /**
+     * Indicates whether to use the first page header / footer IDs for the first page of the section. If unset, it inherits from DocumentStyle&#39;s use_first_page_header_footer for the first section. If the value is unset for subsequent sectors, it should be interpreted as false.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    useFirstPageHeaderFooter?: boolean | null;
   }
   /**
    * The shading of a paragraph.
@@ -2777,6 +3033,23 @@ export namespace docs_v1 {
     range?: Schema$Range;
   }
   /**
+   * Updates the SectionStyle.
+   */
+  export interface Schema$UpdateSectionStyleRequest {
+    /**
+     * The fields that should be updated.  At least one field must be specified. The root `section_style` is implied and must not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the left margin, set `fields` to `&quot;margin_left&quot;`.
+     */
+    fields?: string | null;
+    /**
+     * The range overlapping the sections to style.  Because section breaks can only be inserted inside the body, the segment ID field must be empty.
+     */
+    range?: Schema$Range;
+    /**
+     * The styles to  be set on the section.  Certain section style changes may cause other changes in order to mirror the behavior of the Docs editor. See the documentation of SectionStyle for more information.
+     */
+    sectionStyle?: Schema$SectionStyle;
+  }
+  /**
    * Updates the style of a range of table cells.
    */
   export interface Schema$UpdateTableCellStyleRequest {
@@ -2892,20 +3165,84 @@ export namespace docs_v1 {
     /**
      * docs.documents.batchUpdate
      * @desc Applies one or more updates to the document.  Each request is validated before being applied. If any request is not valid, then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they are applied. Other requests do not need to return information; these each return an empty reply. The order of replies matches that of the requests.  For example, suppose you call batchUpdate with four updates, and only the third one returns information. The response would have two empty replies, the reply to the third request, and another empty reply, in that order.  Because other users may be editing the document, the document might not exactly reflect your changes: your changes may be altered with respect to collaborator changes. If there are no collaborators, the document should reflect your changes. In any case, the updates in your request are guaranteed to be applied together atomically.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/docs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const docs = google.docs('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/documents',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await docs.documents.batchUpdate({
+     *     // The ID of the document to update.
+     *     documentId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": [],
+     *       //   "writeControl": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documentId": "my_documentId",
+     *   //   "replies": [],
+     *   //   "writeControl": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias docs.documents.batchUpdate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.documentId The ID of the document to update.
-     * @param {().BatchUpdateDocumentRequest} params.resource Request body data
+     * @param {().BatchUpdateDocumentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Documents$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Documents$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchUpdateDocumentResponse>;
+    batchUpdate(
+      params: Params$Resource$Documents$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Documents$Batchupdate,
       options:
@@ -2923,12 +3260,20 @@ export namespace docs_v1 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Documents$Batchupdate
-        | BodyResponseCallback<Schema$BatchUpdateDocumentResponse>,
+        | BodyResponseCallback<Schema$BatchUpdateDocumentResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdateDocumentResponse>,
-      callback?: BodyResponseCallback<Schema$BatchUpdateDocumentResponse>
-    ): void | GaxiosPromise<Schema$BatchUpdateDocumentResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateDocumentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateDocumentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdateDocumentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2964,7 +3309,7 @@ export namespace docs_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdateDocumentResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdateDocumentResponse>(parameters);
@@ -2974,19 +3319,107 @@ export namespace docs_v1 {
     /**
      * docs.documents.create
      * @desc Creates a blank document using the title given in the request. Other fields in the request, including any provided content, are ignored.  Returns the created document.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/docs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const docs = google.docs('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/documents',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await docs.documents.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "body": {},
+     *       //   "documentId": "my_documentId",
+     *       //   "documentStyle": {},
+     *       //   "footers": {},
+     *       //   "footnotes": {},
+     *       //   "headers": {},
+     *       //   "inlineObjects": {},
+     *       //   "lists": {},
+     *       //   "namedRanges": {},
+     *       //   "namedStyles": {},
+     *       //   "positionedObjects": {},
+     *       //   "revisionId": "my_revisionId",
+     *       //   "suggestedDocumentStyleChanges": {},
+     *       //   "suggestedNamedStylesChanges": {},
+     *       //   "suggestionsViewMode": "my_suggestionsViewMode",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "body": {},
+     *   //   "documentId": "my_documentId",
+     *   //   "documentStyle": {},
+     *   //   "footers": {},
+     *   //   "footnotes": {},
+     *   //   "headers": {},
+     *   //   "inlineObjects": {},
+     *   //   "lists": {},
+     *   //   "namedRanges": {},
+     *   //   "namedStyles": {},
+     *   //   "positionedObjects": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "suggestedDocumentStyleChanges": {},
+     *   //   "suggestedNamedStylesChanges": {},
+     *   //   "suggestionsViewMode": "my_suggestionsViewMode",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias docs.documents.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Document} params.resource Request body data
+     * @param {().Document} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Documents$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Documents$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Document>;
+    create(
+      params: Params$Resource$Documents$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Documents$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Document>,
@@ -3000,10 +3433,17 @@ export namespace docs_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Documents$Create
-        | BodyResponseCallback<Schema$Document>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Document>,
-      callback?: BodyResponseCallback<Schema$Document>
-    ): void | GaxiosPromise<Schema$Document> {
+        | BodyResponseCallback<Schema$Document>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Document>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Document>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Documents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3033,7 +3473,10 @@ export namespace docs_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Document>(parameters, callback);
+        createAPIRequest<Schema$Document>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Document>(parameters);
       }
@@ -3042,6 +3485,72 @@ export namespace docs_v1 {
     /**
      * docs.documents.get
      * @desc Gets the latest version of the specified document.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/docs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const docs = google.docs('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/documents',
+     *       'https://www.googleapis.com/auth/documents.readonly',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await docs.documents.get({
+     *     // The ID of the document to retrieve.
+     *     documentId: 'placeholder-value',
+     *     // The suggestions view mode to apply to the document. This allows viewing the
+     *     // document with all suggestions inline, accepted or rejected. If one is not
+     *     // specified, DEFAULT_FOR_CURRENT_ACCESS is
+     *     // used.
+     *     suggestionsViewMode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "body": {},
+     *   //   "documentId": "my_documentId",
+     *   //   "documentStyle": {},
+     *   //   "footers": {},
+     *   //   "footnotes": {},
+     *   //   "headers": {},
+     *   //   "inlineObjects": {},
+     *   //   "lists": {},
+     *   //   "namedRanges": {},
+     *   //   "namedStyles": {},
+     *   //   "positionedObjects": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "suggestedDocumentStyleChanges": {},
+     *   //   "suggestedNamedStylesChanges": {},
+     *   //   "suggestionsViewMode": "my_suggestionsViewMode",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias docs.documents.get
      * @memberOf! ()
      *
@@ -3053,9 +3562,18 @@ export namespace docs_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Documents$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Documents$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Document>;
+    get(
+      params: Params$Resource$Documents$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Documents$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Document>,
@@ -3069,10 +3587,17 @@ export namespace docs_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Documents$Get
-        | BodyResponseCallback<Schema$Document>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Document>,
-      callback?: BodyResponseCallback<Schema$Document>
-    ): void | GaxiosPromise<Schema$Document> {
+        | BodyResponseCallback<Schema$Document>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Document>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Document>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Documents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3105,7 +3630,10 @@ export namespace docs_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Document>(parameters, callback);
+        createAPIRequest<Schema$Document>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Document>(parameters);
       }
@@ -3114,11 +3642,6 @@ export namespace docs_v1 {
 
   export interface Params$Resource$Documents$Batchupdate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the document to update.
      */
@@ -3131,21 +3654,11 @@ export namespace docs_v1 {
   }
   export interface Params$Resource$Documents$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Document;
   }
   export interface Params$Resource$Documents$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the document to retrieve.
      */

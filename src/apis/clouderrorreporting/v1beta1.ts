@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace clouderrorreporting_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace clouderrorreporting_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -89,7 +99,7 @@ export namespace clouderrorreporting_v1beta1 {
   }
 
   /**
-   * Stackdriver Error Reporting API
+   * Error Reporting API
    *
    * Groups and counts similar errors from cloud services and applications, reports new errors, and provides access to error groups and their associated errors.
    *
@@ -172,7 +182,7 @@ export namespace clouderrorreporting_v1beta1 {
      */
     groupId?: string | null;
     /**
-     * The group resource name. Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
+     * The group resource name. Example: &lt;code&gt;projects/my-project-123/groups/CNSgkpnppqKCUw&lt;/code&gt;
      */
     name?: string | null;
     /**
@@ -289,19 +299,19 @@ export namespace clouderrorreporting_v1beta1 {
    */
   export interface Schema$ReportedErrorEvent {
     /**
-     * [Optional] A description of the context in which the error occurred.
+     * Optional. A description of the context in which the error occurred.
      */
     context?: Schema$ErrorContext;
     /**
-     * [Optional] Time when the event occurred. If not provided, the time when the event was received by the Error Reporting system will be used.
+     * Optional. Time when the event occurred. If not provided, the time when the event was received by the Error Reporting system will be used.
      */
     eventTime?: string | null;
     /**
-     * [Required] The error message. If no `context.reportLocation` is provided, the message must contain a header (typically consisting of the exception type name and an error message) and an exception stack trace in one of the supported programming languages and formats. Supported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go. Supported stack trace formats are:  * **Java**: Must be the return value of [`Throwable.printStackTrace()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29). * **Python**: Must be the return value of [`traceback.format_exc()`](https://docs.python.org/2/library/traceback.html#traceback.format_exc). * **JavaScript**: Must be the value of [`error.stack`](https://github.com/v8/v8/wiki/Stack-Trace-API) as returned by V8. * **Ruby**: Must contain frames returned by [`Exception.backtrace`](https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace). * **C#**: Must be the return value of [`Exception.ToString()`](https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx). * **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)` and contain the result of [`(string)$exception`](http://php.net/manual/en/exception.tostring.php). * **Go**: Must be the return value of [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
+     * Required. The error message. If no `context.reportLocation` is provided, the message must contain a header (typically consisting of the exception type name and an error message) and an exception stack trace in one of the supported programming languages and formats. Supported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go. Supported stack trace formats are:  * **Java**: Must be the return value of [`Throwable.printStackTrace()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29). * **Python**: Must be the return value of [`traceback.format_exc()`](https://docs.python.org/2/library/traceback.html#traceback.format_exc). * **JavaScript**: Must be the value of [`error.stack`](https://github.com/v8/v8/wiki/Stack-Trace-API) as returned by V8. * **Ruby**: Must contain frames returned by [`Exception.backtrace`](https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace). * **C#**: Must be the return value of [`Exception.ToString()`](https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx). * **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)` and contain the result of [`(string)$exception`](http://php.net/manual/en/exception.tostring.php). * **Go**: Must be the return value of [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
      */
     message?: string | null;
     /**
-     * [Required] The service context in which this error has occurred.
+     * Required. The service context in which this error has occurred.
      */
     serviceContext?: Schema$ServiceContext;
   }
@@ -398,19 +408,71 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * clouderrorreporting.projects.deleteEvents
      * @desc Deletes all error events of a given project.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouderrorreporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouderrorreporting = google.clouderrorreporting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouderrorreporting.projects.deleteEvents({
+     *     // Required. The resource name of the Google Cloud Platform project. Written
+     *     // as `projects/{projectID}`, where `{projectID}` is the
+     *     // [Google Cloud Platform project
+     *     // ID](https://support.google.com/cloud/answer/6158840).
+     *     //
+     *     // Example: `projects/my-project-123`.
+     *     projectName: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias clouderrorreporting.projects.deleteEvents
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
+     * @param {string} params.projectName Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: `projects/my-project-123`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     deleteEvents(
+      params: Params$Resource$Projects$Deleteevents,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteEvents(
       params?: Params$Resource$Projects$Deleteevents,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DeleteEventsResponse>;
+    deleteEvents(
+      params: Params$Resource$Projects$Deleteevents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteEvents(
       params: Params$Resource$Projects$Deleteevents,
       options:
@@ -428,12 +490,20 @@ export namespace clouderrorreporting_v1beta1 {
     deleteEvents(
       paramsOrCallback?:
         | Params$Resource$Projects$Deleteevents
-        | BodyResponseCallback<Schema$DeleteEventsResponse>,
+        | BodyResponseCallback<Schema$DeleteEventsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DeleteEventsResponse>,
-      callback?: BodyResponseCallback<Schema$DeleteEventsResponse>
-    ): void | GaxiosPromise<Schema$DeleteEventsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeleteEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeleteEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DeleteEventsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deleteevents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -468,7 +538,10 @@ export namespace clouderrorreporting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DeleteEventsResponse>(parameters, callback);
+        createAPIRequest<Schema$DeleteEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DeleteEventsResponse>(parameters);
       }
@@ -478,12 +551,7 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Deleteevents
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: `projects/my-project-123`.
      */
     projectName?: string;
   }
@@ -497,26 +565,99 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * clouderrorreporting.projects.events.list
      * @desc Lists the specified events.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouderrorreporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouderrorreporting = google.clouderrorreporting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouderrorreporting.projects.events.list({
+     *     // Required. The group for which events shall be returned.
+     *     groupId: 'placeholder-value',
+     *     // Optional. The maximum number of results to return per response.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A `next_page_token` provided by a previous response.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the Google Cloud Platform project. Written
+     *     // as `projects/{projectID}`, where `{projectID}` is the
+     *     // [Google Cloud Platform project
+     *     // ID](https://support.google.com/cloud/answer/6158840).
+     *     //
+     *     // Example: `projects/my-project-123`.
+     *     projectName: 'projects/my-project',
+     *     // Optional. The exact value to match against
+     *     // [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     *     'serviceFilter.resourceType': 'placeholder-value',
+     *     // Optional. The exact value to match against
+     *     // [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     *     'serviceFilter.service': 'placeholder-value',
+     *     // Optional. The exact value to match against
+     *     // [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     *     'serviceFilter.version': 'placeholder-value',
+     *     // Restricts the query to the specified time range.
+     *     'timeRange.period': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errorEvents": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "timeRangeBegin": "my_timeRangeBegin"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias clouderrorreporting.projects.events.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.groupId [Required] The group for which events shall be returned.
-     * @param {integer=} params.pageSize [Optional] The maximum number of results to return per response.
-     * @param {string=} params.pageToken [Optional] A `next_page_token` provided by a previous response.
-     * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
-     * @param {string=} params.serviceFilter.resourceType [Optional] The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
-     * @param {string=} params.serviceFilter.service [Optional] The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
-     * @param {string=} params.serviceFilter.version [Optional] The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     * @param {string=} params.groupId Required. The group for which events shall be returned.
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return per response.
+     * @param {string=} params.pageToken Optional. A `next_page_token` provided by a previous response.
+     * @param {string} params.projectName Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: `projects/my-project-123`.
+     * @param {string=} params.serviceFilter.resourceType Optional. The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     * @param {string=} params.serviceFilter.service Optional. The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     * @param {string=} params.serviceFilter.version Optional. The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      * @param {string=} params.timeRange.period Restricts the query to the specified time range.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Events$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Events$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListEventsResponse>;
+    list(
+      params: Params$Resource$Projects$Events$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Events$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListEventsResponse>,
@@ -530,12 +671,20 @@ export namespace clouderrorreporting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Events$List
-        | BodyResponseCallback<Schema$ListEventsResponse>,
+        | BodyResponseCallback<Schema$ListEventsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListEventsResponse>,
-      callback?: BodyResponseCallback<Schema$ListEventsResponse>
-    ): void | GaxiosPromise<Schema$ListEventsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEventsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Events$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -570,7 +719,10 @@ export namespace clouderrorreporting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListEventsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListEventsResponse>(parameters);
       }
@@ -578,21 +730,84 @@ export namespace clouderrorreporting_v1beta1 {
 
     /**
      * clouderrorreporting.projects.events.report
-     * @desc Report an individual error event.  This endpoint accepts **either** an OAuth token, **or** an [API key](https://support.google.com/cloud/answer/6158862) for authentication. To use an API key, append it to the URL as the value of a `key` parameter. For example:  `POST https://clouderrorreporting.googleapis.com/v1beta1/projects/example-project/events:report?key=123ABC456`
+     * @desc Report an individual error event.  This endpoint accepts **either** an OAuth token, **or** an [API key](https://support.google.com/cloud/answer/6158862) for authentication. To use an API key, append it to the URL as the value of a `key` parameter. For example:  `POST https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events:report?key=123ABC456`
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouderrorreporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouderrorreporting = google.clouderrorreporting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouderrorreporting.projects.events.report({
+     *     // Required. The resource name of the Google Cloud Platform project. Written
+     *     // as `projects/{projectId}`, where `{projectId}` is the
+     *     // [Google Cloud Platform project
+     *     // ID](https://support.google.com/cloud/answer/6158840).
+     *     //
+     *     // Example: // `projects/my-project-123`.
+     *     projectName: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "context": {},
+     *       //   "eventTime": "my_eventTime",
+     *       //   "message": "my_message",
+     *       //   "serviceContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias clouderrorreporting.projects.events.report
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
-     * @param {().ReportedErrorEvent} params.resource Request body data
+     * @param {string} params.projectName Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectId}`, where `{projectId}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: // `projects/my-project-123`.
+     * @param {().ReportedErrorEvent} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     report(
+      params: Params$Resource$Projects$Events$Report,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    report(
       params?: Params$Resource$Projects$Events$Report,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReportErrorEventResponse>;
+    report(
+      params: Params$Resource$Projects$Events$Report,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     report(
       params: Params$Resource$Projects$Events$Report,
       options:
@@ -610,12 +825,20 @@ export namespace clouderrorreporting_v1beta1 {
     report(
       paramsOrCallback?:
         | Params$Resource$Projects$Events$Report
-        | BodyResponseCallback<Schema$ReportErrorEventResponse>,
+        | BodyResponseCallback<Schema$ReportErrorEventResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReportErrorEventResponse>,
-      callback?: BodyResponseCallback<Schema$ReportErrorEventResponse>
-    ): void | GaxiosPromise<Schema$ReportErrorEventResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReportErrorEventResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReportErrorEventResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReportErrorEventResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Events$Report;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -650,7 +873,10 @@ export namespace clouderrorreporting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ReportErrorEventResponse>(parameters, callback);
+        createAPIRequest<Schema$ReportErrorEventResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ReportErrorEventResponse>(parameters);
       }
@@ -660,36 +886,31 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Events$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * [Required] The group for which events shall be returned.
+     * Required. The group for which events shall be returned.
      */
     groupId?: string;
     /**
-     * [Optional] The maximum number of results to return per response.
+     * Optional. The maximum number of results to return per response.
      */
     pageSize?: number;
     /**
-     * [Optional] A `next_page_token` provided by a previous response.
+     * Optional. A `next_page_token` provided by a previous response.
      */
     pageToken?: string;
     /**
-     * [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: `projects/my-project-123`.
      */
     projectName?: string;
     /**
-     * [Optional] The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     * Optional. The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      */
     'serviceFilter.resourceType'?: string;
     /**
-     * [Optional] The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     * Optional. The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      */
     'serviceFilter.service'?: string;
     /**
-     * [Optional] The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     * Optional. The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      */
     'serviceFilter.version'?: string;
     /**
@@ -700,12 +921,7 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Events$Report
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectId}`, where `{projectId}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: // `projects/my-project-123`.
      */
     projectName?: string;
 
@@ -724,19 +940,77 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * clouderrorreporting.projects.groups.get
      * @desc Get the specified group.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouderrorreporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouderrorreporting = google.clouderrorreporting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouderrorreporting.projects.groups.get({
+     *     // Required. The group resource name. Written as
+     *     // <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
+     *     // Call
+     *     // <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
+     *     // <code>groupStats.list</code></a> to return a list of groups belonging to
+     *     // this project.
+     *     //
+     *     // Example: <code>projects/my-project-123/groups/my-group</code>
+     *     groupName: 'projects/my-project/groups/my-group',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "groupId": "my_groupId",
+     *   //   "name": "my_name",
+     *   //   "trackingIssues": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias clouderrorreporting.projects.groups.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupName [Required] The group resource name. Written as <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>. Call <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list"> <code>groupStats.list</code></a> to return a list of groups belonging to this project.  Example: <code>projects/my-project-123/groups/my-group</code>
+     * @param {string} params.groupName Required. The group resource name. Written as <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>. Call <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list"> <code>groupStats.list</code></a> to return a list of groups belonging to this project.  Example: <code>projects/my-project-123/groups/my-group</code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Groups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Groups$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ErrorGroup>;
+    get(
+      params: Params$Resource$Projects$Groups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Groups$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ErrorGroup>,
@@ -750,12 +1024,17 @@ export namespace clouderrorreporting_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Groups$Get
-        | BodyResponseCallback<Schema$ErrorGroup>,
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ErrorGroup>,
-      callback?: BodyResponseCallback<Schema$ErrorGroup>
-    ): void | GaxiosPromise<Schema$ErrorGroup> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ErrorGroup> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -790,7 +1069,10 @@ export namespace clouderrorreporting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ErrorGroup>(parameters, callback);
+        createAPIRequest<Schema$ErrorGroup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ErrorGroup>(parameters);
       }
@@ -799,20 +1081,82 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * clouderrorreporting.projects.groups.update
      * @desc Replace the data for the specified group. Fails if the group does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouderrorreporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouderrorreporting = google.clouderrorreporting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouderrorreporting.projects.groups.update({
+     *     // The group resource name.
+     *     // Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
+     *     name: 'projects/my-project/groups/my-group',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "groupId": "my_groupId",
+     *       //   "name": "my_name",
+     *       //   "trackingIssues": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "groupId": "my_groupId",
+     *   //   "name": "my_name",
+     *   //   "trackingIssues": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias clouderrorreporting.projects.groups.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The group resource name. Example: <code>projects/my-project-123/groups/my-groupid</code>
-     * @param {().ErrorGroup} params.resource Request body data
+     * @param {string} params.name The group resource name. Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
+     * @param {().ErrorGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Groups$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Groups$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ErrorGroup>;
+    update(
+      params: Params$Resource$Projects$Groups$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Groups$Update,
       options: MethodOptions | BodyResponseCallback<Schema$ErrorGroup>,
@@ -826,12 +1170,17 @@ export namespace clouderrorreporting_v1beta1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Groups$Update
-        | BodyResponseCallback<Schema$ErrorGroup>,
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ErrorGroup>,
-      callback?: BodyResponseCallback<Schema$ErrorGroup>
-    ): void | GaxiosPromise<Schema$ErrorGroup> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ErrorGroup> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -863,7 +1212,10 @@ export namespace clouderrorreporting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ErrorGroup>(parameters, callback);
+        createAPIRequest<Schema$ErrorGroup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ErrorGroup>(parameters);
       }
@@ -873,24 +1225,14 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Groups$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * [Required] The group resource name. Written as <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>. Call <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list"> <code>groupStats.list</code></a> to return a list of groups belonging to this project.  Example: <code>projects/my-project-123/groups/my-group</code>
+     * Required. The group resource name. Written as <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>. Call <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list"> <code>groupStats.list</code></a> to return a list of groups belonging to this project.  Example: <code>projects/my-project-123/groups/my-group</code>
      */
     groupName?: string;
   }
   export interface Params$Resource$Projects$Groups$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The group resource name. Example: <code>projects/my-project-123/groups/my-groupid</code>
+     * The group resource name. Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
      */
     name?: string;
 
@@ -909,30 +1251,118 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * clouderrorreporting.projects.groupStats.list
      * @desc Lists the specified groups.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouderrorreporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouderrorreporting = google.clouderrorreporting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouderrorreporting.projects.groupStats.list({
+     *     // Optional. The alignment of the timed counts to be returned.
+     *     // Default is `ALIGNMENT_EQUAL_AT_END`.
+     *     alignment: 'placeholder-value',
+     *     // Optional. Time where the timed counts shall be aligned if rounded
+     *     // alignment is chosen. Default is 00:00 UTC.
+     *     alignmentTime: 'placeholder-value',
+     *     // Optional. List all <code>ErrorGroupStats</code> with these IDs.
+     *     groupId: 'placeholder-value',
+     *     // Optional. The sort order in which the results are returned.
+     *     // Default is `COUNT_DESC`.
+     *     order: 'placeholder-value',
+     *     // Optional. The maximum number of results to return per response.
+     *     // Default is 20.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A `next_page_token` provided by a previous response. To view
+     *     // additional results, pass this token along with the identical query
+     *     // parameters as the first request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the Google Cloud Platform project. Written
+     *     // as `projects/{projectID}`, where `{projectID}` is the
+     *     // [Google Cloud Platform project
+     *     // ID](https://support.google.com/cloud/answer/6158840).
+     *     //
+     *     // Example: `projects/my-project-123`.
+     *     projectName: 'projects/my-project',
+     *     // Optional. The exact value to match against
+     *     // [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     *     'serviceFilter.resourceType': 'placeholder-value',
+     *     // Optional. The exact value to match against
+     *     // [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     *     'serviceFilter.service': 'placeholder-value',
+     *     // Optional. The exact value to match against
+     *     // [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     *     'serviceFilter.version': 'placeholder-value',
+     *     // Optional. The preferred duration for a single returned `TimedCount`.
+     *     // If not set, no timed counts are returned.
+     *     timedCountDuration: 'placeholder-value',
+     *     // Restricts the query to the specified time range.
+     *     'timeRange.period': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errorGroupStats": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "timeRangeBegin": "my_timeRangeBegin"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias clouderrorreporting.projects.groupStats.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.alignment [Optional] The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
-     * @param {string=} params.alignmentTime [Optional] Time where the timed counts shall be aligned if rounded alignment is chosen. Default is 00:00 UTC.
-     * @param {string=} params.groupId [Optional] List all <code>ErrorGroupStats</code> with these IDs.
-     * @param {string=} params.order [Optional] The sort order in which the results are returned. Default is `COUNT_DESC`.
-     * @param {integer=} params.pageSize [Optional] The maximum number of results to return per response. Default is 20.
-     * @param {string=} params.pageToken [Optional] A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
-     * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as <code>projects/</code> plus the <a href="https://support.google.com/cloud/answer/6158840">Google Cloud Platform project ID</a>.  Example: <code>projects/my-project-123</code>.
-     * @param {string=} params.serviceFilter.resourceType [Optional] The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
-     * @param {string=} params.serviceFilter.service [Optional] The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
-     * @param {string=} params.serviceFilter.version [Optional] The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
-     * @param {string=} params.timedCountDuration [Optional] The preferred duration for a single returned `TimedCount`. If not set, no timed counts are returned.
+     * @param {string=} params.alignment Optional. The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
+     * @param {string=} params.alignmentTime Optional. Time where the timed counts shall be aligned if rounded alignment is chosen. Default is 00:00 UTC.
+     * @param {string=} params.groupId Optional. List all <code>ErrorGroupStats</code> with these IDs.
+     * @param {string=} params.order Optional. The sort order in which the results are returned. Default is `COUNT_DESC`.
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return per response. Default is 20.
+     * @param {string=} params.pageToken Optional. A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
+     * @param {string} params.projectName Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: `projects/my-project-123`.
+     * @param {string=} params.serviceFilter.resourceType Optional. The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     * @param {string=} params.serviceFilter.service Optional. The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     * @param {string=} params.serviceFilter.version Optional. The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     * @param {string=} params.timedCountDuration Optional. The preferred duration for a single returned `TimedCount`. If not set, no timed counts are returned.
      * @param {string=} params.timeRange.period Restricts the query to the specified time range.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Groupstats$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Groupstats$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListGroupStatsResponse>;
+    list(
+      params: Params$Resource$Projects$Groupstats$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Groupstats$List,
       options:
@@ -948,12 +1378,20 @@ export namespace clouderrorreporting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Groupstats$List
-        | BodyResponseCallback<Schema$ListGroupStatsResponse>,
+        | BodyResponseCallback<Schema$ListGroupStatsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListGroupStatsResponse>,
-      callback?: BodyResponseCallback<Schema$ListGroupStatsResponse>
-    ): void | GaxiosPromise<Schema$ListGroupStatsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGroupStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGroupStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGroupStatsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groupstats$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -988,7 +1426,10 @@ export namespace clouderrorreporting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListGroupStatsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListGroupStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListGroupStatsResponse>(parameters);
       }
@@ -998,52 +1439,47 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Groupstats$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * [Optional] The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
+     * Optional. The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
      */
     alignment?: string;
     /**
-     * [Optional] Time where the timed counts shall be aligned if rounded alignment is chosen. Default is 00:00 UTC.
+     * Optional. Time where the timed counts shall be aligned if rounded alignment is chosen. Default is 00:00 UTC.
      */
     alignmentTime?: string;
     /**
-     * [Optional] List all <code>ErrorGroupStats</code> with these IDs.
+     * Optional. List all <code>ErrorGroupStats</code> with these IDs.
      */
     groupId?: string[];
     /**
-     * [Optional] The sort order in which the results are returned. Default is `COUNT_DESC`.
+     * Optional. The sort order in which the results are returned. Default is `COUNT_DESC`.
      */
     order?: string;
     /**
-     * [Optional] The maximum number of results to return per response. Default is 20.
+     * Optional. The maximum number of results to return per response. Default is 20.
      */
     pageSize?: number;
     /**
-     * [Optional] A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
+     * Optional. A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
      */
     pageToken?: string;
     /**
-     * [Required] The resource name of the Google Cloud Platform project. Written as <code>projects/</code> plus the <a href="https://support.google.com/cloud/answer/6158840">Google Cloud Platform project ID</a>.  Example: <code>projects/my-project-123</code>.
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: `projects/my-project-123`.
      */
     projectName?: string;
     /**
-     * [Optional] The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     * Optional. The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      */
     'serviceFilter.resourceType'?: string;
     /**
-     * [Optional] The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     * Optional. The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      */
     'serviceFilter.service'?: string;
     /**
-     * [Optional] The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     * Optional. The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      */
     'serviceFilter.version'?: string;
     /**
-     * [Optional] The preferred duration for a single returned `TimedCount`. If not set, no timed counts are returned.
+     * Optional. The preferred duration for a single returned `TimedCount`. If not set, no timed counts are returned.
      */
     timedCountDuration?: string;
     /**

@@ -12,19 +12,42 @@
 
 * [Before you begin](#before-you-begin)
 * [Samples](#samples)
+  * [Access Token Auth](#access-token-auth)
   * [Defaultauth](#defaultauth)
   * [Jwt](#jwt)
   * [Mediaupload](#mediaupload)
   * [Multiple](#multiple)
   * [Oauth2](#oauth2)
-  * [Sampleclient](#sampleclient)
 
 ## Before you begin
 
 Before running the samples, make sure you've followed the steps outlined in
 [Using the client library](https://github.com/googleapis/google-api-nodejs-client#using-the-client-library).
 
+`cd samples`
+
+`npm install`
+
+`cd ..`
+
 ## Samples
+
+
+
+### Access Token Auth
+
+View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/master/samples/accessTokenAuth.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-api-nodejs-client&page=editor&open_in_editor=samples/accessTokenAuth.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/accessTokenAuth.js`
+
+
+-----
+
 
 
 
@@ -37,7 +60,7 @@ View the [source code](https://github.com/googleapis/google-api-nodejs-client/bl
 __Usage:__
 
 
-`node defaultauth.js`
+`node samples/defaultauth.js`
 
 
 -----
@@ -54,7 +77,7 @@ View the [source code](https://github.com/googleapis/google-api-nodejs-client/bl
 __Usage:__
 
 
-`node jwt.js`
+`node samples/jwt.js`
 
 
 -----
@@ -71,7 +94,7 @@ View the [source code](https://github.com/googleapis/google-api-nodejs-client/bl
 __Usage:__
 
 
-`node mediaupload.js`
+`node samples/mediaupload.js`
 
 
 -----
@@ -88,7 +111,7 @@ View the [source code](https://github.com/googleapis/google-api-nodejs-client/bl
 __Usage:__
 
 
-`node multiple.js`
+`node samples/multiple.js`
 
 
 -----
@@ -105,24 +128,7 @@ View the [source code](https://github.com/googleapis/google-api-nodejs-client/bl
 __Usage:__
 
 
-`node oauth2.js`
-
-
------
-
-
-
-
-### Sampleclient
-
-View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/master/samples/sampleclient.js).
-
-[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-api-nodejs-client&page=editor&open_in_editor=samples/sampleclient.js,samples/README.md)
-
-__Usage:__
-
-
-`node sampleclient.js`
+`node samples/oauth2.js`
 
 
 

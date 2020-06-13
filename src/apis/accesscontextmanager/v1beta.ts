@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace accesscontextmanager_v1beta {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace accesscontextmanager_v1beta {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -120,7 +130,7 @@ export namespace accesscontextmanager_v1beta {
   }
 
   /**
-   * An `AccessLevel` is a label that can be applied to requests to GCP services, along with a list of requirements necessary for the label to be applied.
+   * An `AccessLevel` is a label that can be applied to requests to Google Cloud services, along with a list of requirements necessary for the label to be applied.
    */
   export interface Schema$AccessLevel {
     /**
@@ -128,34 +138,26 @@ export namespace accesscontextmanager_v1beta {
      */
     basic?: Schema$BasicLevel;
     /**
-     * Output only. Time the `AccessLevel` was created in UTC.
+     * A `CustomLevel` written in the Common Expression Language.
      */
-    createTime?: string | null;
+    custom?: Schema$CustomLevel;
     /**
      * Description of the `AccessLevel` and its use. Does not affect behavior.
      */
     description?: string | null;
     /**
-     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`
+     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length  // of the `short_name` component is 50 characters.
      */
     name?: string | null;
     /**
      * Human readable title. Must be unique within the Policy.
      */
     title?: string | null;
-    /**
-     * Output only. Time the `AccessLevel` was updated in UTC.
-     */
-    updateTime?: string | null;
   }
   /**
-   * `AccessPolicy` is a container for `AccessLevels` (which define the necessary attributes to use GCP services) and `ServicePerimeters` (which define regions of services able to freely pass data within a perimeter). An access policy is globally visible within an organization, and the restrictions it specifies apply to all projects within an organization.
+   * `AccessPolicy` is a container for `AccessLevels` (which define the necessary attributes to use Google Cloud services) and `ServicePerimeters` (which define regions of services able to freely pass data within a perimeter). An access policy is globally visible within an organization, and the restrictions it specifies apply to all projects within an organization.
    */
   export interface Schema$AccessPolicy {
-    /**
-     * Output only. Time the `AccessPolicy` was created in UTC.
-     */
-    createTime?: string | null;
     /**
      * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id}`
      */
@@ -168,10 +170,6 @@ export namespace accesscontextmanager_v1beta {
      * Required. Human readable title. Does not affect behavior.
      */
     title?: string | null;
-    /**
-     * Output only. Time the `AccessPolicy` was updated in UTC.
-     */
-    updateTime?: string | null;
   }
   /**
    * `BasicLevel` is an `AccessLevel` using a set of recommended features.
@@ -185,19 +183,6 @@ export namespace accesscontextmanager_v1beta {
      * Required. A list of requirements for the `AccessLevel` to be granted.
      */
     conditions?: Schema$Condition[];
-  }
-  /**
-   * Alpha. Specifies which services are granted access via this Bridge Service Perimeter.
-   */
-  export interface Schema$BridgeServiceRestriction {
-    /**
-     * The list of APIs usable through the Bridge Perimeter. Must be empty unless &#39;enable_restriction&#39; is True.
-     */
-    allowedServices?: string[] | null;
-    /**
-     * Whether to restrict the set of APIs callable through the Bridge Service Perimeter.
-     */
-    enableRestriction?: boolean | null;
   }
   /**
    * A condition necessary for an `AccessLevel` to be granted. The Condition is an AND over its fields. So a Condition is true if: 1) the request IP is from one of the listed subnetworks AND 2) the originating device complies with the listed device policy AND 3) all listed access levels are granted AND 4) the request was sent at a time allowed by the DateTimeRestriction.
@@ -229,6 +214,15 @@ export namespace accesscontextmanager_v1beta {
     requiredAccessLevels?: string[] | null;
   }
   /**
+   * `CustomLevel` is an `AccessLevel` using the Cloud Common Expression Language to represent the necessary conditions for the level to apply to a request. See CEL spec at: https://github.com/google/cel-spec
+   */
+  export interface Schema$CustomLevel {
+    /**
+     * Required. A Cloud CEL expression evaluating to a boolean.
+     */
+    expr?: Schema$Expr;
+  }
+  /**
    * `DevicePolicy` specifies device specific restrictions necessary to acquire a given access level. A `DevicePolicy` specifies requirements for requests from devices to be granted access levels, it does not do any enforcement on the device. `DevicePolicy` acts as an AND over all specified fields, and each repeated field is an OR over its elements. Any unset fields are ignored. For example, if the proto is { os_type : DESKTOP_WINDOWS, os_type : DESKTOP_LINUX, encryption_status: ENCRYPTED}, then the DevicePolicy will be true for requests originating from encrypted Linux desktops and encrypted Windows desktops.
    */
   export interface Schema$DevicePolicy {
@@ -258,17 +252,25 @@ export namespace accesscontextmanager_v1beta {
     requireScreenlock?: boolean | null;
   }
   /**
-   * Alpha. Specifies how Access Levels are to be used for accessing the Service Perimeter.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
-  export interface Schema$IngressServiceRestriction {
+  export interface Schema$Expr {
     /**
-     * The list of APIs usable with a valid Access Level. Must be empty unless &#39;enable_restriction&#39; is True.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    allowedServices?: string[] | null;
+    description?: string | null;
     /**
-     * Whether to restrict the set of APIs callable outside the Service Perimeter via Access Levels.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
-    enableRestriction?: boolean | null;
+    expression?: string | null;
+    /**
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     */
+    location?: string | null;
+    /**
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     */
+    title?: string | null;
   }
   /**
    * A response to `ListAccessLevelsRequest`.
@@ -347,18 +349,14 @@ export namespace accesscontextmanager_v1beta {
      */
     osType?: string | null;
     /**
-     * Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to Dasher domain policies, and the caller has permission to call the API targeted by the request.
+     * Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to domain policies, and the caller has permission to call the API targeted by the request.
      */
     requireVerifiedChromeOs?: boolean | null;
   }
   /**
-   * `ServicePerimeter` describes a set of GCP resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single GCP project can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only GCP projects as members, a single GCP project may belong to multiple Service Perimeter Bridges.
+   * `ServicePerimeter` describes a set of Google Cloud resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single Google Cloud project can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only Google Cloud projects as members, a single Google Cloud project may belong to multiple Service Perimeter Bridges.
    */
   export interface Schema$ServicePerimeter {
-    /**
-     * Output only. Time the `ServicePerimeter` was created in UTC.
-     */
-    createTime?: string | null;
     /**
      * Description of the `ServicePerimeter` and its use. Does not affect behavior.
      */
@@ -379,43 +377,31 @@ export namespace accesscontextmanager_v1beta {
      * Human readable title. Must be unique within the Policy.
      */
     title?: string | null;
-    /**
-     * Output only. Time the `ServicePerimeter` was updated in UTC.
-     */
-    updateTime?: string | null;
   }
   /**
-   * `ServicePerimeterConfig` specifies a set of GCP resources that describe specific Service Perimeter configuration.
+   * `ServicePerimeterConfig` specifies a set of Google Cloud resources that describe specific Service Perimeter configuration.
    */
   export interface Schema$ServicePerimeterConfig {
     /**
-     * A list of `AccessLevel` resource names that allow resources within the `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed must be in the same policy as this `ServicePerimeter`. Referencing a nonexistent `AccessLevel` is a syntax error. If no `AccessLevel` names are listed, resources within the perimeter can only be accessed via GCP calls with request origins within the perimeter. Example: `&quot;accessPolicies/MY_POLICY/accessLevels/MY_LEVEL&quot;`. For Service Perimeter Bridge, must be empty.
+     * A list of `AccessLevel` resource names that allow resources within the `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed must be in the same policy as this `ServicePerimeter`. Referencing a nonexistent `AccessLevel` is a syntax error. If no `AccessLevel` names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `&quot;accessPolicies/MY_POLICY/accessLevels/MY_LEVEL&quot;`. For Service Perimeter Bridge, must be empty.
      */
     accessLevels?: string[] | null;
     /**
-     * Alpha. Configuration for what services are accessible via the Bridge Perimeter. Must be empty for non-Bridge Perimeters.
-     */
-    bridgeServiceRestriction?: Schema$BridgeServiceRestriction;
-    /**
-     * Alpha. Configuration for which services may be used with Access Levels.
-     */
-    ingressServiceRestriction?: Schema$IngressServiceRestriction;
-    /**
-     * A list of GCP resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`
+     * A list of Google Cloud resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`
      */
     resources?: string[] | null;
     /**
-     * GCP services that are subject to the Service Perimeter restrictions. Must contain a list of services. For example, if `storage.googleapis.com` is specified, access to the storage buckets inside the perimeter must meet the perimeter&#39;s access restrictions.
+     * Google Cloud services that are subject to the Service Perimeter restrictions. Must contain a list of services. For example, if `storage.googleapis.com` is specified, access to the storage buckets inside the perimeter must meet the perimeter&#39;s access restrictions.
      */
     restrictedServices?: string[] | null;
     /**
-     * GCP services that are not subject to the Service Perimeter restrictions. Deprecated. Must be set to a single wildcard &quot;*&quot;.  The wildcard means that unless explicitly specified by &quot;restricted_services&quot; list, any service is treated as unrestricted.
+     * Google Cloud services that are not subject to the Service Perimeter restrictions. Deprecated. Must be set to a single wildcard &quot;*&quot;.  The wildcard means that unless explicitly specified by &quot;restricted_services&quot; list, any service is treated as unrestricted.
      */
     unrestrictedServices?: string[] | null;
     /**
-     * Alpha. Configuration for within Perimeter allowed APIs.
+     * Beta. Configuration for APIs allowed within Perimeter.
      */
-    vpcServiceRestriction?: Schema$VpcServiceRestriction;
+    vpcAccessibleServices?: Schema$VpcAccessibleServices;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -435,9 +421,9 @@ export namespace accesscontextmanager_v1beta {
     message?: string | null;
   }
   /**
-   * Alpha. Specifies how APIs are allowed to communicate within the Service Perimeter.
+   * Specifies how APIs are allowed to communicate within the Service Perimeter.
    */
-  export interface Schema$VpcServiceRestriction {
+  export interface Schema$VpcAccessibleServices {
     /**
      * The list of APIs usable within the Service Perimeter. Must be empty unless &#39;enable_restriction&#39; is True.
      */
@@ -465,19 +451,79 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.create
      * @desc Create an `AccessPolicy`. Fails if this organization already has a `AccessPolicy`. The longrunning Operation will have a successful status once the `AccessPolicy` has propagated to long-lasting storage. Syntactic and basic semantic errors will be returned in `metadata` as a BadRequest proto.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AccessPolicy} params.resource Request body data
+     * @param {().AccessPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accesspolicies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accesspolicies$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Accesspolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accesspolicies$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -491,12 +537,17 @@ export namespace accesscontextmanager_v1beta {
     create(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -531,7 +582,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -540,6 +594,52 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.delete
      * @desc Delete an AccessPolicy by resource name. The longrunning Operation will have a successful status once the AccessPolicy has been removed from long-lasting storage.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.delete({
+     *     // Required. Resource name for the access policy to delete.
+     *     //
+     *     // Format `accessPolicies/{policy_id}`
+     *     name: 'accessPolicies/my-accessPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.delete
      * @memberOf! ()
      *
@@ -550,9 +650,18 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accesspolicies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accesspolicies$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Accesspolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accesspolicies$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -566,12 +675,17 @@ export namespace accesscontextmanager_v1beta {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -603,7 +717,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -612,6 +729,50 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.get
      * @desc Get an AccessPolicy by name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.get({
+     *     // Required. Resource name for the access policy to get.
+     *     //
+     *     // Format `accessPolicies/{policy_id}`
+     *     name: 'accessPolicies/my-accessPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.get
      * @memberOf! ()
      *
@@ -622,9 +783,18 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accesspolicies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accesspolicies$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessPolicy>;
+    get(
+      params: Params$Resource$Accesspolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accesspolicies$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AccessPolicy>,
@@ -638,12 +808,17 @@ export namespace accesscontextmanager_v1beta {
     get(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Get
-        | BodyResponseCallback<Schema$AccessPolicy>,
+        | BodyResponseCallback<Schema$AccessPolicy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessPolicy>,
-      callback?: BodyResponseCallback<Schema$AccessPolicy>
-    ): void | GaxiosPromise<Schema$AccessPolicy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessPolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AccessPolicy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -675,7 +850,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessPolicy>(parameters, callback);
+        createAPIRequest<Schema$AccessPolicy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessPolicy>(parameters);
       }
@@ -684,6 +862,56 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.list
      * @desc List all AccessPolicies under a container.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.list({
+     *     // Number of AccessPolicy instances to include in the list. Default 100.
+     *     pageSize: 'placeholder-value',
+     *     // Next page token for the next batch of AccessPolicy instances. Defaults to
+     *     // the first page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name for the container to list AccessPolicy instances
+     *     // from.
+     *     //
+     *     // Format:
+     *     // `organizations/{org_id}`
+     *     parent: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessPolicies": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.list
      * @memberOf! ()
      *
@@ -696,9 +924,18 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accesspolicies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accesspolicies$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAccessPoliciesResponse>;
+    list(
+      params: Params$Resource$Accesspolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accesspolicies$List,
       options:
@@ -716,12 +953,20 @@ export namespace accesscontextmanager_v1beta {
     list(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$List
-        | BodyResponseCallback<Schema$ListAccessPoliciesResponse>,
+        | BodyResponseCallback<Schema$ListAccessPoliciesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAccessPoliciesResponse>,
-      callback?: BodyResponseCallback<Schema$ListAccessPoliciesResponse>
-    ): void | GaxiosPromise<Schema$ListAccessPoliciesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAccessPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAccessPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAccessPoliciesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -758,7 +1003,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListAccessPoliciesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListAccessPoliciesResponse>(parameters);
@@ -768,21 +1013,87 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.patch
      * @desc Update an AccessPolicy. The longrunning Operation from this RPC will have a successful status once the changes to the AccessPolicy have propagated to long-lasting storage. Syntactic and basic semantic errors will be returned in `metadata` as a BadRequest proto.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.patch({
+     *     // Output only. Resource name of the `AccessPolicy`. Format:
+     *     // `accessPolicies/{policy_id}`
+     *     name: 'accessPolicies/my-accessPolicie',
+     *     // Required. Mask to control which fields get updated. Must be non-empty.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id}`
      * @param {string=} params.updateMask Required. Mask to control which fields get updated. Must be non-empty.
-     * @param {().AccessPolicy} params.resource Request body data
+     * @param {().AccessPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Accesspolicies$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Accesspolicies$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Accesspolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Accesspolicies$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -796,12 +1107,17 @@ export namespace accesscontextmanager_v1beta {
     patch(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -833,7 +1149,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -843,22 +1162,12 @@ export namespace accesscontextmanager_v1beta {
   export interface Params$Resource$Accesspolicies$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AccessPolicy;
   }
   export interface Params$Resource$Accesspolicies$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Resource name for the access policy to delete.  Format `accessPolicies/{policy_id}`
      */
@@ -867,22 +1176,12 @@ export namespace accesscontextmanager_v1beta {
   export interface Params$Resource$Accesspolicies$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name for the access policy to get.  Format `accessPolicies/{policy_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Accesspolicies$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Number of AccessPolicy instances to include in the list. Default 100.
      */
@@ -898,11 +1197,6 @@ export namespace accesscontextmanager_v1beta {
   }
   export interface Params$Resource$Accesspolicies$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id}`
      */
@@ -927,20 +1221,88 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.accessLevels.create
      * @desc Create an Access Level. The longrunning operation from this RPC will have a successful status once the Access Level has propagated to long-lasting storage. Access Levels containing errors will result in an error response for the first error encountered.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.accessLevels.create({
+     *     // Required. Resource name for the access policy which owns this Access
+     *     // Level.
+     *     //
+     *     // Format: `accessPolicies/{policy_id}`
+     *     parent: 'accessPolicies/my-accessPolicie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "basic": {},
+     *       //   "custom": {},
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.accessLevels.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Resource name for the access policy which owns this Access Level.  Format: `accessPolicies/{policy_id}`
-     * @param {().AccessLevel} params.resource Request body data
+     * @param {().AccessLevel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accesspolicies$Accesslevels$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accesspolicies$Accesslevels$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Accesspolicies$Accesslevels$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accesspolicies$Accesslevels$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -954,12 +1316,17 @@ export namespace accesscontextmanager_v1beta {
     create(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Accesslevels$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Accesslevels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -994,7 +1361,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1003,6 +1373,53 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.accessLevels.delete
      * @desc Delete an Access Level by resource name. The longrunning operation from this RPC will have a successful status once the Access Level has been removed from long-lasting storage.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.accessLevels.delete({
+     *     // Required. Resource name for the Access Level.
+     *     //
+     *     // Format:
+     *     // `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
+     *     name: 'accessPolicies/my-accessPolicie/accessLevels/my-accessLevel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.accessLevels.delete
      * @memberOf! ()
      *
@@ -1013,9 +1430,18 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accesspolicies$Accesslevels$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accesspolicies$Accesslevels$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Accesspolicies$Accesslevels$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accesspolicies$Accesslevels$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1029,12 +1455,17 @@ export namespace accesscontextmanager_v1beta {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Accesslevels$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Accesslevels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1066,7 +1497,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1075,6 +1509,61 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.accessLevels.get
      * @desc Get an Access Level by resource name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.accessLevels.get({
+     *     // Whether to return `BasicLevels` in the Cloud Common Expression
+     *     // Language rather than as `BasicLevels`. Defaults to AS_DEFINED, where
+     *     // Access Levels
+     *     // are returned as `BasicLevels` or `CustomLevels` based on how they were
+     *     // created. If set to CEL, all Access Levels are returned as
+     *     // `CustomLevels`. In the CEL case, `BasicLevels` are translated to equivalent
+     *     // `CustomLevels`.
+     *     accessLevelFormat: 'placeholder-value',
+     *     // Required. Resource name for the Access Level.
+     *     //
+     *     // Format:
+     *     // `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
+     *     name: 'accessPolicies/my-accessPolicie/accessLevels/my-accessLevel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basic": {},
+     *   //   "custom": {},
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.accessLevels.get
      * @memberOf! ()
      *
@@ -1086,9 +1575,18 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accesspolicies$Accesslevels$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accesspolicies$Accesslevels$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessLevel>;
+    get(
+      params: Params$Resource$Accesspolicies$Accesslevels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accesspolicies$Accesslevels$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AccessLevel>,
@@ -1102,12 +1600,17 @@ export namespace accesscontextmanager_v1beta {
     get(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Accesslevels$Get
-        | BodyResponseCallback<Schema$AccessLevel>,
+        | BodyResponseCallback<Schema$AccessLevel>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessLevel>,
-      callback?: BodyResponseCallback<Schema$AccessLevel>
-    ): void | GaxiosPromise<Schema$AccessLevel> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessLevel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessLevel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AccessLevel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Accesslevels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1139,7 +1642,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessLevel>(parameters, callback);
+        createAPIRequest<Schema$AccessLevel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessLevel>(parameters);
       }
@@ -1148,6 +1654,60 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.accessLevels.list
      * @desc List all Access Levels for an access policy.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.accessLevels.list({
+     *     // Whether to return `BasicLevels` in the Cloud Common Expression language, as
+     *     // `CustomLevels`, rather than as `BasicLevels`. Defaults to returning
+     *     // `AccessLevels` in the format they were defined.
+     *     accessLevelFormat: 'placeholder-value',
+     *     // Number of Access Levels to include in
+     *     // the list. Default 100.
+     *     pageSize: 'placeholder-value',
+     *     // Next page token for the next batch of Access Level instances.
+     *     // Defaults to the first page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name for the access policy to list Access Levels from.
+     *     //
+     *     // Format:
+     *     // `accessPolicies/{policy_id}`
+     *     parent: 'accessPolicies/my-accessPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessLevels": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.accessLevels.list
      * @memberOf! ()
      *
@@ -1161,9 +1721,18 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accesspolicies$Accesslevels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accesspolicies$Accesslevels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAccessLevelsResponse>;
+    list(
+      params: Params$Resource$Accesspolicies$Accesslevels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accesspolicies$Accesslevels$List,
       options:
@@ -1179,12 +1748,20 @@ export namespace accesscontextmanager_v1beta {
     list(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Accesslevels$List
-        | BodyResponseCallback<Schema$ListAccessLevelsResponse>,
+        | BodyResponseCallback<Schema$ListAccessLevelsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAccessLevelsResponse>,
-      callback?: BodyResponseCallback<Schema$ListAccessLevelsResponse>
-    ): void | GaxiosPromise<Schema$ListAccessLevelsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAccessLevelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAccessLevelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAccessLevelsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Accesslevels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1219,7 +1796,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListAccessLevelsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListAccessLevelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListAccessLevelsResponse>(parameters);
       }
@@ -1228,21 +1808,91 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.accessLevels.patch
      * @desc Update an Access Level. The longrunning operation from this RPC will have a successful status once the changes to the Access Level have propagated to long-lasting storage. Access Levels containing errors will result in an error response for the first error encountered.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.accessLevels.patch({
+     *     // Required. Resource name for the Access Level. The `short_name` component
+     *     // must begin with a letter and only include alphanumeric and '_'. Format:
+     *     // `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length
+     *     //  // of the `short_name` component is 50 characters.
+     *     name: 'accessPolicies/my-accessPolicie/accessLevels/my-accessLevel',
+     *     // Required. Mask to control which fields get updated. Must be non-empty.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "basic": {},
+     *       //   "custom": {},
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.accessLevels.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`
+     * @param {string} params.name Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length  // of the `short_name` component is 50 characters.
      * @param {string=} params.updateMask Required. Mask to control which fields get updated. Must be non-empty.
-     * @param {().AccessLevel} params.resource Request body data
+     * @param {().AccessLevel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Accesspolicies$Accesslevels$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Accesspolicies$Accesslevels$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Accesspolicies$Accesslevels$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Accesspolicies$Accesslevels$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1256,12 +1906,17 @@ export namespace accesscontextmanager_v1beta {
     patch(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Accesslevels$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Accesslevels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1293,7 +1948,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1302,11 +1960,6 @@ export namespace accesscontextmanager_v1beta {
 
   export interface Params$Resource$Accesspolicies$Accesslevels$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Resource name for the access policy which owns this Access Level.  Format: `accessPolicies/{policy_id}`
      */
@@ -1320,22 +1973,12 @@ export namespace accesscontextmanager_v1beta {
   export interface Params$Resource$Accesspolicies$Accesslevels$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name for the Access Level.  Format: `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Accesspolicies$Accesslevels$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether to return `BasicLevels` in the Cloud Common Expression Language rather than as `BasicLevels`. Defaults to AS_DEFINED, where Access Levels are returned as `BasicLevels` or `CustomLevels` based on how they were created. If set to CEL, all Access Levels are returned as `CustomLevels`. In the CEL case, `BasicLevels` are translated to equivalent `CustomLevels`.
      */
@@ -1347,11 +1990,6 @@ export namespace accesscontextmanager_v1beta {
   }
   export interface Params$Resource$Accesspolicies$Accesslevels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether to return `BasicLevels` in the Cloud Common Expression language, as `CustomLevels`, rather than as `BasicLevels`. Defaults to returning `AccessLevels` in the format they were defined.
      */
@@ -1372,12 +2010,7 @@ export namespace accesscontextmanager_v1beta {
   export interface Params$Resource$Accesspolicies$Accesslevels$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`
+     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length  // of the `short_name` component is 50 characters.
      */
     name?: string;
     /**
@@ -1399,21 +2032,91 @@ export namespace accesscontextmanager_v1beta {
 
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.create
-     * @desc Create an Service Perimeter. The longrunning operation from this RPC will have a successful status once the Service Perimeter has propagated to long-lasting storage. Service Perimeters containing errors will result in an error response for the first error encountered.
+     * @desc Create a Service Perimeter. The longrunning operation from this RPC will have a successful status once the Service Perimeter has propagated to long-lasting storage. Service Perimeters containing errors will result in an error response for the first error encountered.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.create(
+     *     {
+     *       // Required. Resource name for the access policy which owns this Service
+     *       // Perimeter.
+     *       //
+     *       // Format: `accessPolicies/{policy_id}`
+     *       parent: 'accessPolicies/my-accessPolicie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "description": "my_description",
+     *         //   "name": "my_name",
+     *         //   "perimeterType": "my_perimeterType",
+     *         //   "status": {},
+     *         //   "title": "my_title"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Resource name for the access policy which owns this Service Perimeter.  Format: `accessPolicies/{policy_id}`
-     * @param {().ServicePerimeter} params.resource Request body data
+     * @param {().ServicePerimeter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accesspolicies$Serviceperimeters$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1427,12 +2130,17 @@ export namespace accesscontextmanager_v1beta {
     create(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Serviceperimeters$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Serviceperimeters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1467,7 +2175,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1475,7 +2186,57 @@ export namespace accesscontextmanager_v1beta {
 
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.delete
-     * @desc Delete an Service Perimeter by resource name. The longrunning operation from this RPC will have a successful status once the Service Perimeter has been removed from long-lasting storage.
+     * @desc Delete a Service Perimeter by resource name. The longrunning operation from this RPC will have a successful status once the Service Perimeter has been removed from long-lasting storage.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.delete(
+     *     {
+     *       // Required. Resource name for the Service Perimeter.
+     *       //
+     *       // Format:
+     *       // `accessPolicies/{policy_id}/servicePerimeters/{service_perimeter_id}`
+     *       name:
+     *         'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.delete
      * @memberOf! ()
      *
@@ -1486,9 +2247,18 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1502,12 +2272,17 @@ export namespace accesscontextmanager_v1beta {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Serviceperimeters$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Serviceperimeters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1539,7 +2314,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1547,7 +2325,55 @@ export namespace accesscontextmanager_v1beta {
 
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.get
-     * @desc Get an Service Perimeter by resource name.
+     * @desc Get a Service Perimeter by resource name.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.get({
+     *     // Required. Resource name for the Service Perimeter.
+     *     //
+     *     // Format:
+     *     // `accessPolicies/{policy_id}/servicePerimeters/{service_perimeters_id}`
+     *     name:
+     *       'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "perimeterType": "my_perimeterType",
+     *   //   "status": {},
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.get
      * @memberOf! ()
      *
@@ -1558,9 +2384,18 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accesspolicies$Serviceperimeters$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ServicePerimeter>;
+    get(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ServicePerimeter>,
@@ -1574,12 +2409,17 @@ export namespace accesscontextmanager_v1beta {
     get(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Serviceperimeters$Get
-        | BodyResponseCallback<Schema$ServicePerimeter>,
+        | BodyResponseCallback<Schema$ServicePerimeter>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ServicePerimeter>,
-      callback?: BodyResponseCallback<Schema$ServicePerimeter>
-    ): void | GaxiosPromise<Schema$ServicePerimeter> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ServicePerimeter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ServicePerimeter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ServicePerimeter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Serviceperimeters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1611,7 +2451,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ServicePerimeter>(parameters, callback);
+        createAPIRequest<Schema$ServicePerimeter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ServicePerimeter>(parameters);
       }
@@ -1620,6 +2463,56 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.list
      * @desc List all Service Perimeters for an access policy.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.list({
+     *     // Number of Service Perimeters to include
+     *     // in the list. Default 100.
+     *     pageSize: 'placeholder-value',
+     *     // Next page token for the next batch of Service Perimeter instances.
+     *     // Defaults to the first page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name for the access policy to list Service Perimeters from.
+     *     //
+     *     // Format:
+     *     // `accessPolicies/{policy_id}`
+     *     parent: 'accessPolicies/my-accessPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "servicePerimeters": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.list
      * @memberOf! ()
      *
@@ -1632,9 +2525,18 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accesspolicies$Serviceperimeters$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListServicePerimetersResponse>;
+    list(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accesspolicies$Serviceperimeters$List,
       options:
@@ -1652,12 +2554,20 @@ export namespace accesscontextmanager_v1beta {
     list(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Serviceperimeters$List
-        | BodyResponseCallback<Schema$ListServicePerimetersResponse>,
+        | BodyResponseCallback<Schema$ListServicePerimetersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListServicePerimetersResponse>,
-      callback?: BodyResponseCallback<Schema$ListServicePerimetersResponse>
-    ): void | GaxiosPromise<Schema$ListServicePerimetersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListServicePerimetersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListServicePerimetersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListServicePerimetersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Serviceperimeters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1694,7 +2604,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListServicePerimetersResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListServicePerimetersResponse>(
@@ -1705,22 +2615,94 @@ export namespace accesscontextmanager_v1beta {
 
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.patch
-     * @desc Update an Service Perimeter. The longrunning operation from this RPC will have a successful status once the changes to the Service Perimeter have propagated to long-lasting storage. Service Perimeter containing errors will result in an error response for the first error encountered.
+     * @desc Update a Service Perimeter. The longrunning operation from this RPC will have a successful status once the changes to the Service Perimeter have propagated to long-lasting storage. Service Perimeter containing errors will result in an error response for the first error encountered.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.patch(
+     *     {
+     *       // Required. Resource name for the ServicePerimeter.  The `short_name`
+     *       // component must begin with a letter and only include alphanumeric and '_'.
+     *       // Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
+     *       name:
+     *         'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
+     *       // Required. Mask to control which fields get updated. Must be non-empty.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "description": "my_description",
+     *         //   "name": "my_name",
+     *         //   "perimeterType": "my_perimeterType",
+     *         //   "status": {},
+     *         //   "title": "my_title"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. Resource name for the ServicePerimeter.  The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
      * @param {string=} params.updateMask Required. Mask to control which fields get updated. Must be non-empty.
-     * @param {().ServicePerimeter} params.resource Request body data
+     * @param {().ServicePerimeter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1734,12 +2716,17 @@ export namespace accesscontextmanager_v1beta {
     patch(
       paramsOrCallback?:
         | Params$Resource$Accesspolicies$Serviceperimeters$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesspolicies$Serviceperimeters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1771,7 +2758,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1780,11 +2770,6 @@ export namespace accesscontextmanager_v1beta {
 
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Resource name for the access policy which owns this Service Perimeter.  Format: `accessPolicies/{policy_id}`
      */
@@ -1798,11 +2783,6 @@ export namespace accesscontextmanager_v1beta {
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name for the Service Perimeter.  Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeter_id}`
      */
     name?: string;
@@ -1810,22 +2790,12 @@ export namespace accesscontextmanager_v1beta {
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name for the Service Perimeter.  Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeters_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Accesspolicies$Serviceperimeters$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Number of Service Perimeters to include in the list. Default 100.
      */
@@ -1841,11 +2811,6 @@ export namespace accesscontextmanager_v1beta {
   }
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Resource name for the ServicePerimeter.  The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
      */
@@ -1870,6 +2835,50 @@ export namespace accesscontextmanager_v1beta {
     /**
      * accesscontextmanager.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accesscontextmanager.operations.get
      * @memberOf! ()
      *
@@ -1880,9 +2889,18 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1896,12 +2914,17 @@ export namespace accesscontextmanager_v1beta {
     get(
       paramsOrCallback?:
         | Params$Resource$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1932,7 +2955,10 @@ export namespace accesscontextmanager_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1940,11 +2966,6 @@ export namespace accesscontextmanager_v1beta {
   }
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */

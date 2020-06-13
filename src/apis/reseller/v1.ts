@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace reseller_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace reseller_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -379,6 +389,56 @@ export namespace reseller_v1 {
     /**
      * reseller.customers.get
      * @desc Get a customer account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apps.order',
+     *       'https://www.googleapis.com/auth/apps.order.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.customers.get({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateEmail": "my_alternateEmail",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerDomainVerified": false,
+     *   //   "customerId": "my_customerId",
+     *   //   "kind": "my_kind",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "postalAddress": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.customers.get
      * @memberOf! ()
      *
@@ -389,9 +449,18 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Customers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Customers$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Customer>;
+    get(
+      params: Params$Resource$Customers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Customers$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Customer>,
@@ -405,10 +474,17 @@ export namespace reseller_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Customers$Get
-        | BodyResponseCallback<Schema$Customer>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Customer>,
-      callback?: BodyResponseCallback<Schema$Customer>
-    ): void | GaxiosPromise<Schema$Customer> {
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Customer> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -441,7 +517,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Customer>(parameters, callback);
+        createAPIRequest<Schema$Customer>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
       }
@@ -450,20 +529,91 @@ export namespace reseller_v1 {
     /**
      * reseller.customers.insert
      * @desc Order a new customer's account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.customers.insert({
+     *     // The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
+     *     customerAuthToken: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateEmail": "my_alternateEmail",
+     *       //   "customerDomain": "my_customerDomain",
+     *       //   "customerDomainVerified": false,
+     *       //   "customerId": "my_customerId",
+     *       //   "kind": "my_kind",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "postalAddress": {},
+     *       //   "resourceUiUrl": "my_resourceUiUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateEmail": "my_alternateEmail",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerDomainVerified": false,
+     *   //   "customerId": "my_customerId",
+     *   //   "kind": "my_kind",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "postalAddress": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.customers.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.customerAuthToken The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
-     * @param {().Customer} params.resource Request body data
+     * @param {().Customer} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Customers$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Customers$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Customer>;
+    insert(
+      params: Params$Resource$Customers$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Customers$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Customer>,
@@ -477,10 +627,17 @@ export namespace reseller_v1 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Customers$Insert
-        | BodyResponseCallback<Schema$Customer>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Customer>,
-      callback?: BodyResponseCallback<Schema$Customer>
-    ): void | GaxiosPromise<Schema$Customer> {
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Customer> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -513,7 +670,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Customer>(parameters, callback);
+        createAPIRequest<Schema$Customer>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
       }
@@ -522,20 +682,91 @@ export namespace reseller_v1 {
     /**
      * reseller.customers.patch
      * @desc Update a customer account's settings. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.customers.patch({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateEmail": "my_alternateEmail",
+     *       //   "customerDomain": "my_customerDomain",
+     *       //   "customerDomainVerified": false,
+     *       //   "customerId": "my_customerId",
+     *       //   "kind": "my_kind",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "postalAddress": {},
+     *       //   "resourceUiUrl": "my_resourceUiUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateEmail": "my_alternateEmail",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerDomainVerified": false,
+     *   //   "customerId": "my_customerId",
+     *   //   "kind": "my_kind",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "postalAddress": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.customers.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
-     * @param {().Customer} params.resource Request body data
+     * @param {().Customer} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Customers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Customers$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Customer>;
+    patch(
+      params: Params$Resource$Customers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Customers$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Customer>,
@@ -549,10 +780,17 @@ export namespace reseller_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Customers$Patch
-        | BodyResponseCallback<Schema$Customer>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Customer>,
-      callback?: BodyResponseCallback<Schema$Customer>
-    ): void | GaxiosPromise<Schema$Customer> {
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Customer> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -585,7 +823,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Customer>(parameters, callback);
+        createAPIRequest<Schema$Customer>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
       }
@@ -594,20 +835,91 @@ export namespace reseller_v1 {
     /**
      * reseller.customers.update
      * @desc Update a customer account's settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.customers.update({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternateEmail": "my_alternateEmail",
+     *       //   "customerDomain": "my_customerDomain",
+     *       //   "customerDomainVerified": false,
+     *       //   "customerId": "my_customerId",
+     *       //   "kind": "my_kind",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "postalAddress": {},
+     *       //   "resourceUiUrl": "my_resourceUiUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateEmail": "my_alternateEmail",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerDomainVerified": false,
+     *   //   "customerId": "my_customerId",
+     *   //   "kind": "my_kind",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "postalAddress": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.customers.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
-     * @param {().Customer} params.resource Request body data
+     * @param {().Customer} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Customers$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Customers$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Customer>;
+    update(
+      params: Params$Resource$Customers$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Customers$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Customer>,
@@ -621,10 +933,17 @@ export namespace reseller_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Customers$Update
-        | BodyResponseCallback<Schema$Customer>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Customer>,
-      callback?: BodyResponseCallback<Schema$Customer>
-    ): void | GaxiosPromise<Schema$Customer> {
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Customer> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -657,7 +976,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Customer>(parameters, callback);
+        createAPIRequest<Schema$Customer>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
       }
@@ -666,21 +988,11 @@ export namespace reseller_v1 {
 
   export interface Params$Resource$Customers$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
   }
   export interface Params$Resource$Customers$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
      */
@@ -693,11 +1005,6 @@ export namespace reseller_v1 {
   }
   export interface Params$Resource$Customers$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
@@ -708,11 +1015,6 @@ export namespace reseller_v1 {
     requestBody?: Schema$Customer;
   }
   export interface Params$Resource$Customers$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
@@ -733,6 +1035,47 @@ export namespace reseller_v1 {
     /**
      * reseller.resellernotify.getwatchdetails
      * @desc Returns all the details of the watch corresponding to the reseller.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apps.order',
+     *       'https://www.googleapis.com/auth/apps.order.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.resellernotify.getwatchdetails({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "serviceAccountEmailAddresses": [],
+     *   //   "topicName": "my_topicName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.resellernotify.getwatchdetails
      * @memberOf! ()
      *
@@ -742,9 +1085,18 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     getwatchdetails(
+      params: Params$Resource$Resellernotify$Getwatchdetails,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getwatchdetails(
       params?: Params$Resource$Resellernotify$Getwatchdetails,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ResellernotifyGetwatchdetailsResponse>;
+    getwatchdetails(
+      params: Params$Resource$Resellernotify$Getwatchdetails,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getwatchdetails(
       params: Params$Resource$Resellernotify$Getwatchdetails,
       options:
@@ -768,14 +1120,20 @@ export namespace reseller_v1 {
     getwatchdetails(
       paramsOrCallback?:
         | Params$Resource$Resellernotify$Getwatchdetails
-        | BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>,
+        | BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$ResellernotifyGetwatchdetailsResponse
-      >
-    ): void | GaxiosPromise<Schema$ResellernotifyGetwatchdetailsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResellernotifyGetwatchdetailsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resellernotify$Getwatchdetails;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -810,7 +1168,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$ResellernotifyGetwatchdetailsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ResellernotifyGetwatchdetailsResponse>(
@@ -822,6 +1180,46 @@ export namespace reseller_v1 {
     /**
      * reseller.resellernotify.register
      * @desc Registers a Reseller for receiving notifications.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.resellernotify.register({
+     *     // The service account which will own the created Cloud-PubSub topic.
+     *     serviceAccountEmailAddress: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "topicName": "my_topicName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.resellernotify.register
      * @memberOf! ()
      *
@@ -832,9 +1230,18 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     register(
+      params: Params$Resource$Resellernotify$Register,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    register(
       params?: Params$Resource$Resellernotify$Register,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ResellernotifyResource>;
+    register(
+      params: Params$Resource$Resellernotify$Register,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     register(
       params: Params$Resource$Resellernotify$Register,
       options:
@@ -852,12 +1259,20 @@ export namespace reseller_v1 {
     register(
       paramsOrCallback?:
         | Params$Resource$Resellernotify$Register
-        | BodyResponseCallback<Schema$ResellernotifyResource>,
+        | BodyResponseCallback<Schema$ResellernotifyResource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ResellernotifyResource>,
-      callback?: BodyResponseCallback<Schema$ResellernotifyResource>
-    ): void | GaxiosPromise<Schema$ResellernotifyResource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResellernotifyResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResellernotifyResource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResellernotifyResource>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resellernotify$Register;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -890,7 +1305,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ResellernotifyResource>(parameters, callback);
+        createAPIRequest<Schema$ResellernotifyResource>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ResellernotifyResource>(parameters);
       }
@@ -899,6 +1317,46 @@ export namespace reseller_v1 {
     /**
      * reseller.resellernotify.unregister
      * @desc Unregisters a Reseller for receiving notifications.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.resellernotify.unregister({
+     *     // The service account which owns the Cloud-PubSub topic.
+     *     serviceAccountEmailAddress: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "topicName": "my_topicName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.resellernotify.unregister
      * @memberOf! ()
      *
@@ -909,9 +1367,18 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     unregister(
+      params: Params$Resource$Resellernotify$Unregister,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unregister(
       params?: Params$Resource$Resellernotify$Unregister,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ResellernotifyResource>;
+    unregister(
+      params: Params$Resource$Resellernotify$Unregister,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     unregister(
       params: Params$Resource$Resellernotify$Unregister,
       options:
@@ -929,12 +1396,20 @@ export namespace reseller_v1 {
     unregister(
       paramsOrCallback?:
         | Params$Resource$Resellernotify$Unregister
-        | BodyResponseCallback<Schema$ResellernotifyResource>,
+        | BodyResponseCallback<Schema$ResellernotifyResource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ResellernotifyResource>,
-      callback?: BodyResponseCallback<Schema$ResellernotifyResource>
-    ): void | GaxiosPromise<Schema$ResellernotifyResource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResellernotifyResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResellernotifyResource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResellernotifyResource>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resellernotify$Unregister;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -967,7 +1442,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ResellernotifyResource>(parameters, callback);
+        createAPIRequest<Schema$ResellernotifyResource>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ResellernotifyResource>(parameters);
       }
@@ -975,19 +1453,9 @@ export namespace reseller_v1 {
   }
 
   export interface Params$Resource$Resellernotify$Getwatchdetails
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Resellernotify$Register
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The service account which will own the created Cloud-PubSub topic.
      */
@@ -995,11 +1463,6 @@ export namespace reseller_v1 {
   }
   export interface Params$Resource$Resellernotify$Unregister
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The service account which owns the Cloud-PubSub topic.
      */
@@ -1015,6 +1478,65 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.activate
      * @desc Activates a subscription previously suspended by the reseller
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.activate({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.activate
      * @memberOf! ()
      *
@@ -1026,9 +1548,18 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     activate(
+      params: Params$Resource$Subscriptions$Activate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    activate(
       params?: Params$Resource$Subscriptions$Activate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Subscription>;
+    activate(
+      params: Params$Resource$Subscriptions$Activate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     activate(
       params: Params$Resource$Subscriptions$Activate,
       options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
@@ -1042,12 +1573,17 @@ export namespace reseller_v1 {
     activate(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Activate
-        | BodyResponseCallback<Schema$Subscription>,
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Subscription>,
-      callback?: BodyResponseCallback<Schema$Subscription>
-    ): void | GaxiosPromise<Schema$Subscription> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1081,7 +1617,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Subscription>(parameters, callback);
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
@@ -1090,21 +1629,101 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.changePlan
      * @desc Update a subscription plan. Use this method to update a plan for a 30-day trial or a flexible plan subscription to an annual commitment plan with monthly or yearly payments.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.changePlan({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dealCode": "my_dealCode",
+     *       //   "kind": "my_kind",
+     *       //   "planName": "my_planName",
+     *       //   "purchaseOrderId": "my_purchaseOrderId",
+     *       //   "seats": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.changePlan
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      * @param {string} params.subscriptionId This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
-     * @param {().ChangePlanRequest} params.resource Request body data
+     * @param {().ChangePlanRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     changePlan(
+      params: Params$Resource$Subscriptions$Changeplan,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    changePlan(
       params?: Params$Resource$Subscriptions$Changeplan,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Subscription>;
+    changePlan(
+      params: Params$Resource$Subscriptions$Changeplan,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     changePlan(
       params: Params$Resource$Subscriptions$Changeplan,
       options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
@@ -1118,12 +1737,17 @@ export namespace reseller_v1 {
     changePlan(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Changeplan
-        | BodyResponseCallback<Schema$Subscription>,
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Subscription>,
-      callback?: BodyResponseCallback<Schema$Subscription>
-    ): void | GaxiosPromise<Schema$Subscription> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Changeplan;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1157,7 +1781,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Subscription>(parameters, callback);
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
@@ -1166,21 +1793,98 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.changeRenewalSettings
      * @desc Update a user license's renewal settings. This is applicable for accounts with annual commitment plans only.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.changeRenewalSettings({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "renewalType": "my_renewalType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.changeRenewalSettings
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      * @param {string} params.subscriptionId This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
-     * @param {().RenewalSettings} params.resource Request body data
+     * @param {().RenewalSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     changeRenewalSettings(
+      params: Params$Resource$Subscriptions$Changerenewalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    changeRenewalSettings(
       params?: Params$Resource$Subscriptions$Changerenewalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Subscription>;
+    changeRenewalSettings(
+      params: Params$Resource$Subscriptions$Changerenewalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     changeRenewalSettings(
       params: Params$Resource$Subscriptions$Changerenewalsettings,
       options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
@@ -1196,12 +1900,17 @@ export namespace reseller_v1 {
     changeRenewalSettings(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Changerenewalsettings
-        | BodyResponseCallback<Schema$Subscription>,
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Subscription>,
-      callback?: BodyResponseCallback<Schema$Subscription>
-    ): void | GaxiosPromise<Schema$Subscription> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Changerenewalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1235,7 +1944,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Subscription>(parameters, callback);
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
@@ -1244,21 +1956,100 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.changeSeats
      * @desc Update a subscription's user license settings.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.changeSeats({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "licensedNumberOfSeats": 0,
+     *       //   "maximumNumberOfSeats": 0,
+     *       //   "numberOfSeats": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.changeSeats
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      * @param {string} params.subscriptionId This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
-     * @param {().Seats} params.resource Request body data
+     * @param {().Seats} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     changeSeats(
+      params: Params$Resource$Subscriptions$Changeseats,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    changeSeats(
       params?: Params$Resource$Subscriptions$Changeseats,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Subscription>;
+    changeSeats(
+      params: Params$Resource$Subscriptions$Changeseats,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     changeSeats(
       params: Params$Resource$Subscriptions$Changeseats,
       options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
@@ -1272,12 +2063,17 @@ export namespace reseller_v1 {
     changeSeats(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Changeseats
-        | BodyResponseCallback<Schema$Subscription>,
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Subscription>,
-      callback?: BodyResponseCallback<Schema$Subscription>
-    ): void | GaxiosPromise<Schema$Subscription> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Changeseats;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1311,7 +2107,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Subscription>(parameters, callback);
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
@@ -1319,7 +2118,46 @@ export namespace reseller_v1 {
 
     /**
      * reseller.subscriptions.delete
-     * @desc Cancel or transfer a subscription to direct.
+     * @desc Cancel, suspend, or transfer a subscription to direct.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.delete({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // The deletionType query string enables the cancellation, downgrade, or suspension of a subscription.
+     *     deletionType: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.delete
      * @memberOf! ()
      *
@@ -1332,9 +2170,18 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Subscriptions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Subscriptions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Subscriptions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Subscriptions$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1348,10 +2195,15 @@ export namespace reseller_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1385,7 +2237,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1394,6 +2249,68 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.get
      * @desc Get a specific subscription.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apps.order',
+     *       'https://www.googleapis.com/auth/apps.order.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.get({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.get
      * @memberOf! ()
      *
@@ -1405,9 +2322,18 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Subscriptions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Subscriptions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Subscription>;
+    get(
+      params: Params$Resource$Subscriptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Subscriptions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
@@ -1421,12 +2347,17 @@ export namespace reseller_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Get
-        | BodyResponseCallback<Schema$Subscription>,
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Subscription>,
-      callback?: BodyResponseCallback<Schema$Subscription>
-    ): void | GaxiosPromise<Schema$Subscription> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1460,7 +2391,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Subscription>(parameters, callback);
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
@@ -1469,21 +2403,114 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.insert
      * @desc Create or transfer a subscription.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.insert({
+     *     // The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
+     *     customerAuthToken: 'placeholder-value',
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billingMethod": "my_billingMethod",
+     *       //   "creationTime": "my_creationTime",
+     *       //   "customerDomain": "my_customerDomain",
+     *       //   "customerId": "my_customerId",
+     *       //   "dealCode": "my_dealCode",
+     *       //   "kind": "my_kind",
+     *       //   "plan": {},
+     *       //   "purchaseOrderId": "my_purchaseOrderId",
+     *       //   "renewalSettings": {},
+     *       //   "resourceUiUrl": "my_resourceUiUrl",
+     *       //   "seats": {},
+     *       //   "skuId": "my_skuId",
+     *       //   "skuName": "my_skuName",
+     *       //   "status": "my_status",
+     *       //   "subscriptionId": "my_subscriptionId",
+     *       //   "suspensionReasons": [],
+     *       //   "transferInfo": {},
+     *       //   "trialSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.customerAuthToken The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
      * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
-     * @param {().Subscription} params.resource Request body data
+     * @param {().Subscription} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Subscriptions$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Subscriptions$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Subscription>;
+    insert(
+      params: Params$Resource$Subscriptions$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Subscriptions$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
@@ -1497,12 +2524,17 @@ export namespace reseller_v1 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Insert
-        | BodyResponseCallback<Schema$Subscription>,
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Subscription>,
-      callback?: BodyResponseCallback<Schema$Subscription>
-    ): void | GaxiosPromise<Schema$Subscription> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1535,7 +2567,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Subscription>(parameters, callback);
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
@@ -1544,6 +2579,61 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.list
      * @desc List of subscriptions managed by the reseller. The list can be all subscriptions, all of a customer's subscriptions, or all of a customer's transferable subscriptions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apps.order',
+     *       'https://www.googleapis.com/auth/apps.order.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.list({
+     *     // The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
+     *     customerAuthToken: 'placeholder-value',
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // When retrieving all of your subscriptions and filtering for specific customers, you can enter a prefix for a customer name. Using an example customer group that includes exam.com, example20.com and example.com:
+     *     // - exa -- Returns all customer names that start with 'exa' which could include exam.com, example20.com, and example.com. A name prefix is similar to using a regular expression's asterisk, exa*.
+     *     // - example -- Returns example20.com and example.com.
+     *     customerNamePrefix: 'placeholder-value',
+     *     // When retrieving a large list, the maxResults is the maximum number of results per page. The nextPageToken value takes you to the next page. The default is 20.
+     *     maxResults: 'placeholder-value',
+     *     // Token to specify next page in the list
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "subscriptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.list
      * @memberOf! ()
      *
@@ -1558,9 +2648,18 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Subscriptions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Subscriptions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Subscriptions>;
+    list(
+      params: Params$Resource$Subscriptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Subscriptions$List,
       options: MethodOptions | BodyResponseCallback<Schema$Subscriptions>,
@@ -1574,12 +2673,17 @@ export namespace reseller_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$List
-        | BodyResponseCallback<Schema$Subscriptions>,
+        | BodyResponseCallback<Schema$Subscriptions>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Subscriptions>,
-      callback?: BodyResponseCallback<Schema$Subscriptions>
-    ): void | GaxiosPromise<Schema$Subscriptions> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscriptions>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscriptions>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscriptions> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1613,7 +2717,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Subscriptions>(parameters, callback);
+        createAPIRequest<Schema$Subscriptions>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Subscriptions>(parameters);
       }
@@ -1622,6 +2729,65 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.startPaidService
      * @desc Immediately move a 30-day free trial subscription to a paid service subscription.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.startPaidService({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.startPaidService
      * @memberOf! ()
      *
@@ -1633,9 +2799,18 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     startPaidService(
+      params: Params$Resource$Subscriptions$Startpaidservice,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    startPaidService(
       params?: Params$Resource$Subscriptions$Startpaidservice,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Subscription>;
+    startPaidService(
+      params: Params$Resource$Subscriptions$Startpaidservice,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     startPaidService(
       params: Params$Resource$Subscriptions$Startpaidservice,
       options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
@@ -1649,12 +2824,17 @@ export namespace reseller_v1 {
     startPaidService(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Startpaidservice
-        | BodyResponseCallback<Schema$Subscription>,
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Subscription>,
-      callback?: BodyResponseCallback<Schema$Subscription>
-    ): void | GaxiosPromise<Schema$Subscription> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Startpaidservice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1688,7 +2868,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Subscription>(parameters, callback);
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
@@ -1697,6 +2880,65 @@ export namespace reseller_v1 {
     /**
      * reseller.subscriptions.suspend
      * @desc Suspends an active subscription.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/reseller.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const reseller = google.reseller('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await reseller.subscriptions.suspend({
+     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     *     customerId: 'placeholder-value',
+     *     // This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     *     subscriptionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingMethod": "my_billingMethod",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "customerDomain": "my_customerDomain",
+     *   //   "customerId": "my_customerId",
+     *   //   "dealCode": "my_dealCode",
+     *   //   "kind": "my_kind",
+     *   //   "plan": {},
+     *   //   "purchaseOrderId": "my_purchaseOrderId",
+     *   //   "renewalSettings": {},
+     *   //   "resourceUiUrl": "my_resourceUiUrl",
+     *   //   "seats": {},
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "status": "my_status",
+     *   //   "subscriptionId": "my_subscriptionId",
+     *   //   "suspensionReasons": [],
+     *   //   "transferInfo": {},
+     *   //   "trialSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias reseller.subscriptions.suspend
      * @memberOf! ()
      *
@@ -1708,9 +2950,18 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     suspend(
+      params: Params$Resource$Subscriptions$Suspend,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suspend(
       params?: Params$Resource$Subscriptions$Suspend,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Subscription>;
+    suspend(
+      params: Params$Resource$Subscriptions$Suspend,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     suspend(
       params: Params$Resource$Subscriptions$Suspend,
       options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
@@ -1724,12 +2975,17 @@ export namespace reseller_v1 {
     suspend(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Suspend
-        | BodyResponseCallback<Schema$Subscription>,
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Subscription>,
-      callback?: BodyResponseCallback<Schema$Subscription>
-    ): void | GaxiosPromise<Schema$Subscription> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Suspend;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1763,7 +3019,10 @@ export namespace reseller_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Subscription>(parameters, callback);
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
@@ -1772,11 +3031,6 @@ export namespace reseller_v1 {
 
   export interface Params$Resource$Subscriptions$Activate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
@@ -1788,11 +3042,6 @@ export namespace reseller_v1 {
   }
   export interface Params$Resource$Subscriptions$Changeplan
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
@@ -1810,11 +3059,6 @@ export namespace reseller_v1 {
   export interface Params$Resource$Subscriptions$Changerenewalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
@@ -1830,11 +3074,6 @@ export namespace reseller_v1 {
   }
   export interface Params$Resource$Subscriptions$Changeseats
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
@@ -1852,11 +3091,6 @@ export namespace reseller_v1 {
   export interface Params$Resource$Subscriptions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
@@ -1872,11 +3106,6 @@ export namespace reseller_v1 {
   export interface Params$Resource$Subscriptions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
@@ -1887,11 +3116,6 @@ export namespace reseller_v1 {
   }
   export interface Params$Resource$Subscriptions$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
      */
@@ -1908,11 +3132,6 @@ export namespace reseller_v1 {
   }
   export interface Params$Resource$Subscriptions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
      */
@@ -1937,11 +3156,6 @@ export namespace reseller_v1 {
   export interface Params$Resource$Subscriptions$Startpaidservice
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */
     customerId?: string;
@@ -1952,11 +3166,6 @@ export namespace reseller_v1 {
   }
   export interface Params$Resource$Subscriptions$Suspend
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      */

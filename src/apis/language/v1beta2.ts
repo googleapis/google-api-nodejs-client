@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace language_v1beta2 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace language_v1beta2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -284,7 +294,7 @@ export namespace language_v1beta2 {
      */
     confidence?: number | null;
     /**
-     * The name of the category representing the document, from the [predefined taxonomy](/natural-language/docs/categories).
+     * The name of the category representing the document, from the [predefined taxonomy](https://cloud.google.com/natural-language/docs/categories).
      */
     name?: string | null;
   }
@@ -324,6 +334,10 @@ export namespace language_v1beta2 {
    */
   export interface Schema$Document {
     /**
+     * Indicates how detected boilerplate(e.g. advertisements, copyright declarations, banners) should be handled for this document. If not specified, boilerplate will be treated the same as content.
+     */
+    boilerplateHandling?: string | null;
+    /**
      * The content of the input in string format. Cloud audit logging exempt since it is based on user data.
      */
     content?: string | null;
@@ -332,9 +346,13 @@ export namespace language_v1beta2 {
      */
     gcsContentUri?: string | null;
     /**
-     * The language of the document (if not specified, the language is automatically detected). Both ISO and BCP-47 language codes are accepted.&lt;br&gt; [Language Support](/natural-language/docs/languages) lists currently supported languages for each API method. If the language (either specified by the caller or automatically detected) is not supported by the called API method, an `INVALID_ARGUMENT` error is returned.
+     * The language of the document (if not specified, the language is automatically detected). Both ISO and BCP-47 language codes are accepted.&lt;br&gt; [Language Support](https://cloud.google.com/natural-language/docs/languages) lists currently supported languages for each API method. If the language (either specified by the caller or automatically detected) is not supported by the called API method, an `INVALID_ARGUMENT` error is returned.
      */
     language?: string | null;
+    /**
+     * The web URI where the document comes from. This URI is not used for fetching the content, but as a hint for analyzing the document.
+     */
+    referenceWebUri?: string | null;
     /**
      * Required. If the type is not set or is `TYPE_UNSPECIFIED`, returns an `INVALID_ARGUMENT` error.
      */
@@ -391,7 +409,7 @@ export namespace language_v1beta2 {
    */
   export interface Schema$Features {
     /**
-     * Classify the full document into categories. If this is true, the API will use the default model which classifies into a [predefined taxonomy](/natural-language/docs/categories).
+     * Classify the full document into categories. If this is true, the API will use the default model which classifies into a [predefined taxonomy](https://cloud.google.com/natural-language/docs/categories).
      */
     classifyText?: boolean | null;
     /**
@@ -551,19 +569,78 @@ export namespace language_v1beta2 {
     /**
      * language.documents.analyzeEntities
      * @desc Finds named entities (currently proper names and common nouns) in the text along with entity types, salience, mentions for each entity, and other properties.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.analyzeEntities({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "document": {},
+     *       //   "encodingType": "my_encodingType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "language": "my_language"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias language.documents.analyzeEntities
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AnalyzeEntitiesRequest} params.resource Request body data
+     * @param {().AnalyzeEntitiesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     analyzeEntities(
+      params: Params$Resource$Documents$Analyzeentities,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeEntities(
       params?: Params$Resource$Documents$Analyzeentities,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnalyzeEntitiesResponse>;
+    analyzeEntities(
+      params: Params$Resource$Documents$Analyzeentities,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     analyzeEntities(
       params: Params$Resource$Documents$Analyzeentities,
       options:
@@ -581,12 +658,20 @@ export namespace language_v1beta2 {
     analyzeEntities(
       paramsOrCallback?:
         | Params$Resource$Documents$Analyzeentities
-        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
+        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
-      callback?: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
-    ): void | GaxiosPromise<Schema$AnalyzeEntitiesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeEntitiesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzeentities;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -620,7 +705,10 @@ export namespace language_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AnalyzeEntitiesResponse>(parameters, callback);
+        createAPIRequest<Schema$AnalyzeEntitiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AnalyzeEntitiesResponse>(parameters);
       }
@@ -629,19 +717,78 @@ export namespace language_v1beta2 {
     /**
      * language.documents.analyzeEntitySentiment
      * @desc Finds entities, similar to AnalyzeEntities in the text and analyzes sentiment associated with each entity and its mentions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.analyzeEntitySentiment({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "document": {},
+     *       //   "encodingType": "my_encodingType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "language": "my_language"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias language.documents.analyzeEntitySentiment
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AnalyzeEntitySentimentRequest} params.resource Request body data
+     * @param {().AnalyzeEntitySentimentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     analyzeEntitySentiment(
+      params: Params$Resource$Documents$Analyzeentitysentiment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeEntitySentiment(
       params?: Params$Resource$Documents$Analyzeentitysentiment,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnalyzeEntitySentimentResponse>;
+    analyzeEntitySentiment(
+      params: Params$Resource$Documents$Analyzeentitysentiment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     analyzeEntitySentiment(
       params: Params$Resource$Documents$Analyzeentitysentiment,
       options:
@@ -659,12 +806,20 @@ export namespace language_v1beta2 {
     analyzeEntitySentiment(
       paramsOrCallback?:
         | Params$Resource$Documents$Analyzeentitysentiment
-        | BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>,
+        | BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>,
-      callback?: BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>
-    ): void | GaxiosPromise<Schema$AnalyzeEntitySentimentResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeEntitySentimentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzeentitysentiment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -699,7 +854,7 @@ export namespace language_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$AnalyzeEntitySentimentResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AnalyzeEntitySentimentResponse>(
@@ -711,19 +866,79 @@ export namespace language_v1beta2 {
     /**
      * language.documents.analyzeSentiment
      * @desc Analyzes the sentiment of the provided text.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.analyzeSentiment({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "document": {},
+     *       //   "encodingType": "my_encodingType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documentSentiment": {},
+     *   //   "language": "my_language",
+     *   //   "sentences": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias language.documents.analyzeSentiment
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AnalyzeSentimentRequest} params.resource Request body data
+     * @param {().AnalyzeSentimentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     analyzeSentiment(
+      params: Params$Resource$Documents$Analyzesentiment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeSentiment(
       params?: Params$Resource$Documents$Analyzesentiment,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnalyzeSentimentResponse>;
+    analyzeSentiment(
+      params: Params$Resource$Documents$Analyzesentiment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     analyzeSentiment(
       params: Params$Resource$Documents$Analyzesentiment,
       options:
@@ -741,12 +956,20 @@ export namespace language_v1beta2 {
     analyzeSentiment(
       paramsOrCallback?:
         | Params$Resource$Documents$Analyzesentiment
-        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
+        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
-      callback?: BodyResponseCallback<Schema$AnalyzeSentimentResponse>
-    ): void | GaxiosPromise<Schema$AnalyzeSentimentResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeSentimentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzesentiment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -780,7 +1003,10 @@ export namespace language_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AnalyzeSentimentResponse>(parameters, callback);
+        createAPIRequest<Schema$AnalyzeSentimentResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AnalyzeSentimentResponse>(parameters);
       }
@@ -789,19 +1015,79 @@ export namespace language_v1beta2 {
     /**
      * language.documents.analyzeSyntax
      * @desc Analyzes the syntax of the text and provides sentence boundaries and tokenization along with part of speech tags, dependency trees, and other properties.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.analyzeSyntax({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "document": {},
+     *       //   "encodingType": "my_encodingType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "language": "my_language",
+     *   //   "sentences": [],
+     *   //   "tokens": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias language.documents.analyzeSyntax
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AnalyzeSyntaxRequest} params.resource Request body data
+     * @param {().AnalyzeSyntaxRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     analyzeSyntax(
+      params: Params$Resource$Documents$Analyzesyntax,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeSyntax(
       params?: Params$Resource$Documents$Analyzesyntax,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnalyzeSyntaxResponse>;
+    analyzeSyntax(
+      params: Params$Resource$Documents$Analyzesyntax,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     analyzeSyntax(
       params: Params$Resource$Documents$Analyzesyntax,
       options:
@@ -819,12 +1105,20 @@ export namespace language_v1beta2 {
     analyzeSyntax(
       paramsOrCallback?:
         | Params$Resource$Documents$Analyzesyntax
-        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
+        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
-      callback?: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>
-    ): void | GaxiosPromise<Schema$AnalyzeSyntaxResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeSyntaxResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzesyntax;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -858,7 +1152,10 @@ export namespace language_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AnalyzeSyntaxResponse>(parameters, callback);
+        createAPIRequest<Schema$AnalyzeSyntaxResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AnalyzeSyntaxResponse>(parameters);
       }
@@ -867,19 +1164,83 @@ export namespace language_v1beta2 {
     /**
      * language.documents.annotateText
      * @desc A convenience method that provides all syntax, sentiment, entity, and classification features in one call.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.annotateText({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "document": {},
+     *       //   "encodingType": "my_encodingType",
+     *       //   "features": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "categories": [],
+     *   //   "documentSentiment": {},
+     *   //   "entities": [],
+     *   //   "language": "my_language",
+     *   //   "sentences": [],
+     *   //   "tokens": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias language.documents.annotateText
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AnnotateTextRequest} params.resource Request body data
+     * @param {().AnnotateTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     annotateText(
+      params: Params$Resource$Documents$Annotatetext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    annotateText(
       params?: Params$Resource$Documents$Annotatetext,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnnotateTextResponse>;
+    annotateText(
+      params: Params$Resource$Documents$Annotatetext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotateText(
       params: Params$Resource$Documents$Annotatetext,
       options:
@@ -897,12 +1258,20 @@ export namespace language_v1beta2 {
     annotateText(
       paramsOrCallback?:
         | Params$Resource$Documents$Annotatetext
-        | BodyResponseCallback<Schema$AnnotateTextResponse>,
+        | BodyResponseCallback<Schema$AnnotateTextResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AnnotateTextResponse>,
-      callback?: BodyResponseCallback<Schema$AnnotateTextResponse>
-    ): void | GaxiosPromise<Schema$AnnotateTextResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnnotateTextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnnotateTextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnnotateTextResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Annotatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -936,7 +1305,10 @@ export namespace language_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AnnotateTextResponse>(parameters, callback);
+        createAPIRequest<Schema$AnnotateTextResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AnnotateTextResponse>(parameters);
       }
@@ -945,19 +1317,76 @@ export namespace language_v1beta2 {
     /**
      * language.documents.classifyText
      * @desc Classifies a document into categories.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.classifyText({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "document": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "categories": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias language.documents.classifyText
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ClassifyTextRequest} params.resource Request body data
+     * @param {().ClassifyTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     classifyText(
+      params: Params$Resource$Documents$Classifytext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    classifyText(
       params?: Params$Resource$Documents$Classifytext,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ClassifyTextResponse>;
+    classifyText(
+      params: Params$Resource$Documents$Classifytext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     classifyText(
       params: Params$Resource$Documents$Classifytext,
       options:
@@ -975,12 +1404,20 @@ export namespace language_v1beta2 {
     classifyText(
       paramsOrCallback?:
         | Params$Resource$Documents$Classifytext
-        | BodyResponseCallback<Schema$ClassifyTextResponse>,
+        | BodyResponseCallback<Schema$ClassifyTextResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ClassifyTextResponse>,
-      callback?: BodyResponseCallback<Schema$ClassifyTextResponse>
-    ): void | GaxiosPromise<Schema$ClassifyTextResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ClassifyTextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ClassifyTextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ClassifyTextResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Classifytext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1014,7 +1451,10 @@ export namespace language_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ClassifyTextResponse>(parameters, callback);
+        createAPIRequest<Schema$ClassifyTextResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ClassifyTextResponse>(parameters);
       }
@@ -1024,22 +1464,12 @@ export namespace language_v1beta2 {
   export interface Params$Resource$Documents$Analyzeentities
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeEntitiesRequest;
   }
   export interface Params$Resource$Documents$Analyzeentitysentiment
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1048,22 +1478,12 @@ export namespace language_v1beta2 {
   export interface Params$Resource$Documents$Analyzesentiment
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeSentimentRequest;
   }
   export interface Params$Resource$Documents$Analyzesyntax
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1072,22 +1492,12 @@ export namespace language_v1beta2 {
   export interface Params$Resource$Documents$Annotatetext
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AnnotateTextRequest;
   }
   export interface Params$Resource$Documents$Classifytext
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

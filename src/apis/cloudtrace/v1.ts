@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace cloudtrace_v1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace cloudtrace_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -89,9 +99,9 @@ export namespace cloudtrace_v1 {
   }
 
   /**
-   * Stackdriver Trace API
+   * Cloud Trace API
    *
-   * Sends application trace data to Stackdriver Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Trace API directly. If you are looking to instrument your application for Stackdriver Trace, we recommend using OpenCensus.
+   * Sends application trace data to Cloud Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Cloud Trace API directly. If you are looking to instrument your application for Cloud Trace, we recommend using OpenCensus.
    *
    * @example
    * const {google} = require('googleapis');
@@ -181,7 +191,7 @@ export namespace cloudtrace_v1 {
      */
     name?: string | null;
     /**
-     * ID of the parent span, if any. Optional.
+     * Optional. ID of the parent span, if any.
      */
     parentSpanId?: string | null;
     /**
@@ -204,69 +214,79 @@ export namespace cloudtrace_v1 {
 
     /**
      * cloudtrace.projects.patchTraces
-     * @desc Sends new traces to Stackdriver Trace or updates existing traces. If the ID of a trace that you send matches that of an existing trace, any fields in the existing trace and its spans are overwritten by the provided values, and any new fields provided are merged with the existing trace data. If the ID does not match, a new trace is created.
+     * @desc Sends new traces to Stackdriver Trace or updates existing traces. If the ID of a trace that you send matches that of an existing trace, any fields in the existing trace and its spans are overwritten by the provided values, and any new fields provided are merged with the existing trace data. If the ID does not match, a new trace is created. In this case, writing traces is not considered an active developer method since traces are machine generated.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Trace API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudtrace
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudtrace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudTrace = google.cloudtrace('v1');
+     * const cloudtrace = google.cloudtrace('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // ID of the Cloud project where the trace data is stored.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudTrace.projects.patchTraces(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/trace.append',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudtrace.projects.patchTraces({
+     *     // Required. ID of the Cloud project where the trace data is stored.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "traces": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudtrace.projects.patchTraces
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
-     * @param {().Traces} params.resource Request body data
+     * @param {string} params.projectId Required. ID of the Cloud project where the trace data is stored.
+     * @param {().Traces} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patchTraces(
+      params: Params$Resource$Projects$Patchtraces,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patchTraces(
       params?: Params$Resource$Projects$Patchtraces,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    patchTraces(
+      params: Params$Resource$Projects$Patchtraces,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patchTraces(
       params: Params$Resource$Projects$Patchtraces,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -280,10 +300,17 @@ export namespace cloudtrace_v1 {
     patchTraces(
       paramsOrCallback?:
         | Params$Resource$Projects$Patchtraces
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchtraces;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -317,7 +344,10 @@ export namespace cloudtrace_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -327,12 +357,7 @@ export namespace cloudtrace_v1 {
   export interface Params$Resource$Projects$Patchtraces
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the Cloud project where the trace data is stored.
+     * Required. ID of the Cloud project where the trace data is stored.
      */
     projectId?: string;
 
@@ -350,70 +375,77 @@ export namespace cloudtrace_v1 {
 
     /**
      * cloudtrace.projects.traces.get
-     * @desc Gets a single trace by its ID.
+     * @desc Gets a single trace by its ID. In this case, getting for traces is considered an active developer method, even though it is technically a read-only method.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Trace API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudtrace
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudtrace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudTrace = google.cloudtrace('v1');
+     * const cloudtrace = google.cloudtrace('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // ID of the Cloud project where the trace data is stored.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // ID of the trace to return.
-     *     traceId: 'my-trace-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudTrace.projects.traces.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/trace.readonly',
+     *     ],
      *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudtrace.projects.traces.get({
+     *     // Required. ID of the Cloud project where the trace data is stored.
+     *     projectId: 'placeholder-value',
+     *     // Required. ID of the trace to return.
+     *     traceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "projectId": "my_projectId",
+     *   //   "spans": [],
+     *   //   "traceId": "my_traceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudtrace.projects.traces.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
-     * @param {string} params.traceId ID of the trace to return.
+     * @param {string} params.projectId Required. ID of the Cloud project where the trace data is stored.
+     * @param {string} params.traceId Required. ID of the trace to return.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Traces$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Traces$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Trace>;
+    get(
+      params: Params$Resource$Projects$Traces$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Traces$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Trace>,
@@ -427,10 +459,17 @@ export namespace cloudtrace_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Traces$Get
-        | BodyResponseCallback<Schema$Trace>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Trace>,
-      callback?: BodyResponseCallback<Schema$Trace>
-    ): void | GaxiosPromise<Schema$Trace> {
+        | BodyResponseCallback<Schema$Trace>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Trace>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Trace>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Trace> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Traces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -463,7 +502,10 @@ export namespace cloudtrace_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Trace>(parameters, callback);
+        createAPIRequest<Schema$Trace>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Trace>(parameters);
       }
@@ -471,86 +513,141 @@ export namespace cloudtrace_v1 {
 
     /**
      * cloudtrace.projects.traces.list
-     * @desc Returns of a list of traces that match the specified filter conditions.
+     * @desc Returns of a list of traces that match the specified filter conditions. In this case, listing for traces is considered an active developer method, even though it is technically a read-only method.
      * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Trace API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudtrace
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudtrace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * var cloudTrace = google.cloudtrace('v1');
+     * const cloudtrace = google.cloudtrace('v1');
      *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // ID of the Cloud project where the trace data is stored.
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/trace.readonly',
+     *     ],
+     *   });
      *
-     *     auth: authClient,
-     *   };
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
      *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
+     *   // Do the magic
+     *   const res = await cloudtrace.projects.traces.list({
+     *     // End of the time interval (inclusive) during which the trace data was
+     *     // collected from the application.
+     *     endTime: 'placeholder-value',
+     *     // Optional. A filter against labels for the request.
+     *     //
+     *     // By default, searches use prefix matching. To specify exact match, prepend
+     *     // a plus symbol (`+`) to the search term.
+     *     // Multiple terms are ANDed. Syntax:
+     *     //
+     *     // *   `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root
+     *     //     span starts with `NAME_PREFIX`.
+     *     // *   `+root:NAME` or `+NAME`: Return traces where any root span's name is
+     *     //     exactly `NAME`.
+     *     // *   `span:NAME_PREFIX`: Return traces where any span starts with
+     *     //     `NAME_PREFIX`.
+     *     // *   `+span:NAME`: Return traces where any span's name is exactly
+     *     //     `NAME`.
+     *     // *   `latency:DURATION`: Return traces whose overall latency is
+     *     //     greater or equal to than `DURATION`. Accepted units are nanoseconds
+     *     //     (`ns`), milliseconds (`ms`), and seconds (`s`). Default is `ms`. For
+     *     //     example, `latency:24ms` returns traces whose overall latency
+     *     //     is greater than or equal to 24 milliseconds.
+     *     // *   `label:LABEL_KEY`: Return all traces containing the specified
+     *     //     label key (exact match, case-sensitive) regardless of the key:value
+     *     //     pair's value (including empty values).
+     *     // *   `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified
+     *     //     label key (exact match, case-sensitive) whose value starts with
+     *     //     `VALUE_PREFIX`. Both a key and a value must be specified.
+     *     // *   `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair
+     *     //     exactly matching the specified text. Both a key and a value must be
+     *     //     specified.
+     *     // *   `method:VALUE`: Equivalent to `/http/method:VALUE`.
+     *     // *   `url:VALUE`: Equivalent to `/http/url:VALUE`.
+     *     filter: 'placeholder-value',
+     *     // Optional. Field used to sort the returned traces.
+     *     // Can be one of the following:
+     *     //
+     *     // *   `trace_id`
+     *     // *   `name` (`name` field of root span in the trace)
+     *     // *   `duration` (difference between `end_time` and `start_time` fields of
+     *     //      the root span)
+     *     // *   `start` (`start_time` field of the root span)
+     *     //
+     *     // Descending order can be specified by appending `desc` to the sort field
+     *     // (for example, `name desc`).
+     *     //
+     *     // Only one sort field is permitted.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of traces to return. If not specified or <= 0, the
+     *     // implementation selects a reasonable value.  The implementation may
+     *     // return fewer traces than the requested page size.
+     *     pageSize: 'placeholder-value',
+     *     // Token identifying the page of results to return. If provided, use the
+     *     // value of the `next_page_token` field from a previous request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. ID of the Cloud project where the trace data is stored.
+     *     projectId: 'placeholder-value',
+     *     // Start of the time interval (inclusive) during which the trace data was
+     *     // collected from the application.
+     *     startTime: 'placeholder-value',
+     *     // Optional. Type of data returned for traces in the list. Default is
+     *     // `MINIMAL`.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
      *
-     *     var tracesPage = response['traces'];
-     *     if (!tracesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < tracesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `tracesPage`:
-     *       console.log(JSON.stringify(tracesPage[i], null, 2));
-     *     }
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "traces": []
+     *   // }
+     * }
      *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       cloudTrace.projects.traces.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   cloudTrace.projects.traces.list(request, handlePage);
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
      * });
      *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
      * @alias cloudtrace.projects.traces.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.endTime End of the time interval (inclusive) during which the trace data was collected from the application.
-     * @param {string=} params.filter An optional filter against labels for the request.  By default, searches use prefix matching. To specify exact match, prepend a plus symbol (`+`) to the search term. Multiple terms are ANDed. Syntax:  *   `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root     span starts with `NAME_PREFIX`. *   `+root:NAME` or `+NAME`: Return traces where any root span's name is     exactly `NAME`. *   `span:NAME_PREFIX`: Return traces where any span starts with     `NAME_PREFIX`. *   `+span:NAME`: Return traces where any span's name is exactly     `NAME`. *   `latency:DURATION`: Return traces whose overall latency is     greater or equal to than `DURATION`. Accepted units are nanoseconds     (`ns`), milliseconds (`ms`), and seconds (`s`). Default is `ms`. For     example, `latency:24ms` returns traces whose overall latency     is greater than or equal to 24 milliseconds. *   `label:LABEL_KEY`: Return all traces containing the specified     label key (exact match, case-sensitive) regardless of the key:value     pair's value (including empty values). *   `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified     label key (exact match, case-sensitive) whose value starts with     `VALUE_PREFIX`. Both a key and a value must be specified. *   `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair     exactly matching the specified text. Both a key and a value must be     specified. *   `method:VALUE`: Equivalent to `/http/method:VALUE`. *   `url:VALUE`: Equivalent to `/http/url:VALUE`.
-     * @param {string=} params.orderBy Field used to sort the returned traces. Optional. Can be one of the following:  *   `trace_id` *   `name` (`name` field of root span in the trace) *   `duration` (difference between `end_time` and `start_time` fields of      the root span) *   `start` (`start_time` field of the root span)  Descending order can be specified by appending `desc` to the sort field (for example, `name desc`).  Only one sort field is permitted.
-     * @param {integer=} params.pageSize Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value.  The implementation may return fewer traces than the requested page size. Optional.
-     * @param {string=} params.pageToken Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request. Optional.
-     * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
+     * @param {string=} params.filter Optional. A filter against labels for the request.  By default, searches use prefix matching. To specify exact match, prepend a plus symbol (`+`) to the search term. Multiple terms are ANDed. Syntax:  *   `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root     span starts with `NAME_PREFIX`. *   `+root:NAME` or `+NAME`: Return traces where any root span's name is     exactly `NAME`. *   `span:NAME_PREFIX`: Return traces where any span starts with     `NAME_PREFIX`. *   `+span:NAME`: Return traces where any span's name is exactly     `NAME`. *   `latency:DURATION`: Return traces whose overall latency is     greater or equal to than `DURATION`. Accepted units are nanoseconds     (`ns`), milliseconds (`ms`), and seconds (`s`). Default is `ms`. For     example, `latency:24ms` returns traces whose overall latency     is greater than or equal to 24 milliseconds. *   `label:LABEL_KEY`: Return all traces containing the specified     label key (exact match, case-sensitive) regardless of the key:value     pair's value (including empty values). *   `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified     label key (exact match, case-sensitive) whose value starts with     `VALUE_PREFIX`. Both a key and a value must be specified. *   `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair     exactly matching the specified text. Both a key and a value must be     specified. *   `method:VALUE`: Equivalent to `/http/method:VALUE`. *   `url:VALUE`: Equivalent to `/http/url:VALUE`.
+     * @param {string=} params.orderBy Optional. Field used to sort the returned traces. Can be one of the following:  *   `trace_id` *   `name` (`name` field of root span in the trace) *   `duration` (difference between `end_time` and `start_time` fields of      the root span) *   `start` (`start_time` field of the root span)  Descending order can be specified by appending `desc` to the sort field (for example, `name desc`).  Only one sort field is permitted.
+     * @param {integer=} params.pageSize Optional. Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value.  The implementation may return fewer traces than the requested page size.
+     * @param {string=} params.pageToken Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request.
+     * @param {string} params.projectId Required. ID of the Cloud project where the trace data is stored.
      * @param {string=} params.startTime Start of the time interval (inclusive) during which the trace data was collected from the application.
-     * @param {string=} params.view Type of data returned for traces in the list. Optional. Default is `MINIMAL`.
+     * @param {string=} params.view Optional. Type of data returned for traces in the list. Default is `MINIMAL`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Traces$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Traces$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTracesResponse>;
+    list(
+      params: Params$Resource$Projects$Traces$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Traces$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListTracesResponse>,
@@ -564,12 +661,20 @@ export namespace cloudtrace_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Traces$List
-        | BodyResponseCallback<Schema$ListTracesResponse>,
+        | BodyResponseCallback<Schema$ListTracesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTracesResponse>,
-      callback?: BodyResponseCallback<Schema$ListTracesResponse>
-    ): void | GaxiosPromise<Schema$ListTracesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTracesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTracesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTracesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Traces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -603,7 +708,10 @@ export namespace cloudtrace_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTracesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTracesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTracesResponse>(parameters);
       }
@@ -613,48 +721,38 @@ export namespace cloudtrace_v1 {
   export interface Params$Resource$Projects$Traces$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * ID of the Cloud project where the trace data is stored.
+     * Required. ID of the Cloud project where the trace data is stored.
      */
     projectId?: string;
     /**
-     * ID of the trace to return.
+     * Required. ID of the trace to return.
      */
     traceId?: string;
   }
   export interface Params$Resource$Projects$Traces$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * End of the time interval (inclusive) during which the trace data was collected from the application.
      */
     endTime?: string;
     /**
-     * An optional filter against labels for the request.  By default, searches use prefix matching. To specify exact match, prepend a plus symbol (`+`) to the search term. Multiple terms are ANDed. Syntax:  *   `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root     span starts with `NAME_PREFIX`. *   `+root:NAME` or `+NAME`: Return traces where any root span's name is     exactly `NAME`. *   `span:NAME_PREFIX`: Return traces where any span starts with     `NAME_PREFIX`. *   `+span:NAME`: Return traces where any span's name is exactly     `NAME`. *   `latency:DURATION`: Return traces whose overall latency is     greater or equal to than `DURATION`. Accepted units are nanoseconds     (`ns`), milliseconds (`ms`), and seconds (`s`). Default is `ms`. For     example, `latency:24ms` returns traces whose overall latency     is greater than or equal to 24 milliseconds. *   `label:LABEL_KEY`: Return all traces containing the specified     label key (exact match, case-sensitive) regardless of the key:value     pair's value (including empty values). *   `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified     label key (exact match, case-sensitive) whose value starts with     `VALUE_PREFIX`. Both a key and a value must be specified. *   `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair     exactly matching the specified text. Both a key and a value must be     specified. *   `method:VALUE`: Equivalent to `/http/method:VALUE`. *   `url:VALUE`: Equivalent to `/http/url:VALUE`.
+     * Optional. A filter against labels for the request.  By default, searches use prefix matching. To specify exact match, prepend a plus symbol (`+`) to the search term. Multiple terms are ANDed. Syntax:  *   `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root     span starts with `NAME_PREFIX`. *   `+root:NAME` or `+NAME`: Return traces where any root span's name is     exactly `NAME`. *   `span:NAME_PREFIX`: Return traces where any span starts with     `NAME_PREFIX`. *   `+span:NAME`: Return traces where any span's name is exactly     `NAME`. *   `latency:DURATION`: Return traces whose overall latency is     greater or equal to than `DURATION`. Accepted units are nanoseconds     (`ns`), milliseconds (`ms`), and seconds (`s`). Default is `ms`. For     example, `latency:24ms` returns traces whose overall latency     is greater than or equal to 24 milliseconds. *   `label:LABEL_KEY`: Return all traces containing the specified     label key (exact match, case-sensitive) regardless of the key:value     pair's value (including empty values). *   `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified     label key (exact match, case-sensitive) whose value starts with     `VALUE_PREFIX`. Both a key and a value must be specified. *   `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair     exactly matching the specified text. Both a key and a value must be     specified. *   `method:VALUE`: Equivalent to `/http/method:VALUE`. *   `url:VALUE`: Equivalent to `/http/url:VALUE`.
      */
     filter?: string;
     /**
-     * Field used to sort the returned traces. Optional. Can be one of the following:  *   `trace_id` *   `name` (`name` field of root span in the trace) *   `duration` (difference between `end_time` and `start_time` fields of      the root span) *   `start` (`start_time` field of the root span)  Descending order can be specified by appending `desc` to the sort field (for example, `name desc`).  Only one sort field is permitted.
+     * Optional. Field used to sort the returned traces. Can be one of the following:  *   `trace_id` *   `name` (`name` field of root span in the trace) *   `duration` (difference between `end_time` and `start_time` fields of      the root span) *   `start` (`start_time` field of the root span)  Descending order can be specified by appending `desc` to the sort field (for example, `name desc`).  Only one sort field is permitted.
      */
     orderBy?: string;
     /**
-     * Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value.  The implementation may return fewer traces than the requested page size. Optional.
+     * Optional. Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value.  The implementation may return fewer traces than the requested page size.
      */
     pageSize?: number;
     /**
-     * Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request. Optional.
+     * Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request.
      */
     pageToken?: string;
     /**
-     * ID of the Cloud project where the trace data is stored.
+     * Required. ID of the Cloud project where the trace data is stored.
      */
     projectId?: string;
     /**
@@ -662,7 +760,7 @@ export namespace cloudtrace_v1 {
      */
     startTime?: string;
     /**
-     * Type of data returned for traces in the list. Optional. Default is `MINIMAL`.
+     * Optional. Type of data returned for traces in the list. Default is `MINIMAL`.
      */
     view?: string;
   }

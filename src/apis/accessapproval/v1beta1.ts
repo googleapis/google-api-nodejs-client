@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace accessapproval_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace accessapproval_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -126,7 +136,11 @@ export namespace accessapproval_v1beta1 {
    */
   export interface Schema$AccessApprovalSettings {
     /**
-     * A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. If name refers to an organization, enrollment can be done for individual services. If name refers to a folder or project, enrollment can only be done on an all or nothing basis.  If a cloud_product is repeated in this list, the first entry will be honored and all following entries will be discarded.
+     * Output only. This field is read only (not settable via UpdateAccessAccessApprovalSettings method). If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Project or Folder (this field will always be unset for the organization since organizations do not have ancestors).
+     */
+    enrolledAncestor?: boolean | null;
+    /**
+     * A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. If name refers to an organization, enrollment can be done for individual services. If name refers to a folder or project, enrollment can only be done on an all or nothing basis.  If a cloud_product is repeated in this list, the first entry will be honored and all following entries will be discarded. A maximum of 10 enrolled services will be enforced, to be expanded as the set of supported services is expanded.
      */
     enrolledServices?: Schema$EnrolledService[];
     /**
@@ -134,7 +148,7 @@ export namespace accessapproval_v1beta1 {
      */
     name?: string | null;
     /**
-     * A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to a resource will be sent to all emails in the settings of ancestor resources of that resource.
+     * A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to a resource will be sent to all emails in the settings of ancestor resources of that resource. A maximum of 50 email addresses are allowed.
      */
     notificationEmails?: string[] | null;
   }
@@ -238,6 +252,10 @@ export namespace accessapproval_v1beta1 {
     dismissTime?: string | null;
   }
   /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   */
+  export interface Schema$Empty {}
+  /**
    * Represents the enrollment of a cloud resource into a specific service.
    */
   export interface Schema$EnrolledService {
@@ -284,8 +302,180 @@ export namespace accessapproval_v1beta1 {
     }
 
     /**
+     * accessapproval.folders.deleteAccessApprovalSettings
+     * @desc Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.deleteAccessApprovalSettings({
+     *     // Name of the AccessApprovalSettings to delete.
+     *     name: 'folders/my-folder/accessApprovalSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias accessapproval.folders.deleteAccessApprovalSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Name of the AccessApprovalSettings to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Folders$Deleteaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteAccessApprovalSettings(
+      params?: Params$Resource$Folders$Deleteaccessapprovalsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Folders$Deleteaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Folders$Deleteaccessapprovalsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Folders$Deleteaccessapprovalsettings,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteAccessApprovalSettings(
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteAccessApprovalSettings(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Deleteaccessapprovalsettings
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Deleteaccessapprovalsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Deleteaccessapprovalsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * accessapproval.folders.getAccessApprovalSettings
      * @desc Gets the settings associated with a project, folder, or organization.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.getAccessApprovalSettings({
+     *     // Name of the AccessApprovalSettings to retrieve.
+     *     name: 'folders/my-folder/accessApprovalSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledAncestor": false,
+     *   //   "enrolledServices": [],
+     *   //   "name": "my_name",
+     *   //   "notificationEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.folders.getAccessApprovalSettings
      * @memberOf! ()
      *
@@ -296,9 +486,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     getAccessApprovalSettings(
+      params: Params$Resource$Folders$Getaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAccessApprovalSettings(
       params?: Params$Resource$Folders$Getaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    getAccessApprovalSettings(
+      params: Params$Resource$Folders$Getaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAccessApprovalSettings(
       params: Params$Resource$Folders$Getaccessapprovalsettings,
       options:
@@ -316,12 +515,20 @@ export namespace accessapproval_v1beta1 {
     getAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Folders$Getaccessapprovalsettings
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
-      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
-    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalSettings>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -353,7 +560,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
+        createAPIRequest<Schema$AccessApprovalSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
       }
@@ -362,21 +572,94 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.folders.updateAccessApprovalSettings
      * @desc Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.updateAccessApprovalSettings({
+     *     // The resource name of the settings. Format is one of:
+     *     // <ol>
+     *     //   <li>"projects/{project_id}/accessApprovalSettings"</li>
+     *     //   <li>"folders/{folder_id}/accessApprovalSettings"</li>
+     *     //   <li>"organizations/{organization_id}/accessApprovalSettings"</li>
+     *     // <ol>
+     *     name: 'folders/my-folder/accessApprovalSettings',
+     *     // For the `FieldMask` definition, see
+     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // If this field is left unset, only the notification_emails field will be
+     *     // updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "enrolledAncestor": false,
+     *       //   "enrolledServices": [],
+     *       //   "name": "my_name",
+     *       //   "notificationEmails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledAncestor": false,
+     *   //   "enrolledServices": [],
+     *   //   "name": "my_name",
+     *   //   "notificationEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.folders.updateAccessApprovalSettings
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
-     * @param {string=} params.updateMask The update mask applies to the settings. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
-     * @param {().AccessApprovalSettings} params.resource Request body data
+     * @param {string=} params.updateMask For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     * @param {().AccessApprovalSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     updateAccessApprovalSettings(
+      params: Params$Resource$Folders$Updateaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAccessApprovalSettings(
       params?: Params$Resource$Folders$Updateaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    updateAccessApprovalSettings(
+      params: Params$Resource$Folders$Updateaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateAccessApprovalSettings(
       params: Params$Resource$Folders$Updateaccessapprovalsettings,
       options:
@@ -394,12 +677,20 @@ export namespace accessapproval_v1beta1 {
     updateAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Folders$Updateaccessapprovalsettings
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
-      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
-    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalSettings>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Updateaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -431,20 +722,25 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
+        createAPIRequest<Schema$AccessApprovalSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Folders$Getaccessapprovalsettings
+  export interface Params$Resource$Folders$Deleteaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
+     * Name of the AccessApprovalSettings to delete.
      */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Getaccessapprovalsettings
+    extends StandardParameters {
     /**
      * Name of the AccessApprovalSettings to retrieve.
      */
@@ -453,16 +749,11 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Folders$Updateaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
     name?: string;
     /**
-     * The update mask applies to the settings. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     * For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      */
     updateMask?: string;
 
@@ -481,20 +772,85 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.folders.approvalRequests.approve
      * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.approvalRequests.approve({
+     *     // Name of the approval request to approve.
+     *     name: 'folders/my-folder/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expireTime": "my_expireTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.folders.approvalRequests.approve
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the approval request to approve.
-     * @param {().ApproveApprovalRequestMessage} params.resource Request body data
+     * @param {().ApproveApprovalRequestMessage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     approve(
+      params: Params$Resource$Folders$Approvalrequests$Approve,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    approve(
       params?: Params$Resource$Folders$Approvalrequests$Approve,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    approve(
+      params: Params$Resource$Folders$Approvalrequests$Approve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     approve(
       params: Params$Resource$Folders$Approvalrequests$Approve,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -508,12 +864,17 @@ export namespace accessapproval_v1beta1 {
     approve(
       paramsOrCallback?:
         | Params$Resource$Folders$Approvalrequests$Approve
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Approvalrequests$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -548,7 +909,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -557,20 +921,83 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.folders.approvalRequests.dismiss
      * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.approvalRequests.dismiss({
+     *     // Name of the ApprovalRequest to dismiss.
+     *     name: 'folders/my-folder/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.folders.approvalRequests.dismiss
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the ApprovalRequest to dismiss.
-     * @param {().DismissApprovalRequestMessage} params.resource Request body data
+     * @param {().DismissApprovalRequestMessage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     dismiss(
+      params: Params$Resource$Folders$Approvalrequests$Dismiss,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dismiss(
       params?: Params$Resource$Folders$Approvalrequests$Dismiss,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    dismiss(
+      params: Params$Resource$Folders$Approvalrequests$Dismiss,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     dismiss(
       params: Params$Resource$Folders$Approvalrequests$Dismiss,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -584,12 +1011,17 @@ export namespace accessapproval_v1beta1 {
     dismiss(
       paramsOrCallback?:
         | Params$Resource$Folders$Approvalrequests$Dismiss
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Approvalrequests$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -624,7 +1056,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -633,6 +1068,54 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.folders.approvalRequests.get
      * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.approvalRequests.get({
+     *     // Name of the approval request to retrieve.
+     *     name: 'folders/my-folder/approvalRequests/my-approvalRequest',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.folders.approvalRequests.get
      * @memberOf! ()
      *
@@ -643,9 +1126,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Folders$Approvalrequests$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Folders$Approvalrequests$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    get(
+      params: Params$Resource$Folders$Approvalrequests$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Folders$Approvalrequests$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -659,12 +1151,17 @@ export namespace accessapproval_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Folders$Approvalrequests$Get
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Approvalrequests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -696,7 +1193,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -705,6 +1205,62 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.folders.approvalRequests.list
      * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.approvalRequests.list({
+     *     // A filter on the type of approval requests to retrieve. Must be one of the
+     *     // following values:
+     *     // <ol>
+     *     //   <li>[not set]: Requests that are pending or have active approvals.</li>
+     *     //   <li>ALL: All requests.</li>
+     *     //   <li>PENDING: Only pending requests.</li>
+     *     //   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>
+     *     //   <li>DISMISSED: Only dismissed (including expired) requests.</li>
+     *     // </ol>
+     *     filter: 'placeholder-value',
+     *     // Requested page size.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying the page of results to return.
+     *     pageToken: 'placeholder-value',
+     *     // The parent resource. This may be "projects/{project_id}",
+     *     // "folders/{folder_id}", or "organizations/{organization_id}".
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approvalRequests": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.folders.approvalRequests.list
      * @memberOf! ()
      *
@@ -718,9 +1274,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Folders$Approvalrequests$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Folders$Approvalrequests$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListApprovalRequestsResponse>;
+    list(
+      params: Params$Resource$Folders$Approvalrequests$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Folders$Approvalrequests$List,
       options:
@@ -738,12 +1303,20 @@ export namespace accessapproval_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Folders$Approvalrequests$List
-        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-      callback?: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
-    ): void | GaxiosPromise<Schema$ListApprovalRequestsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListApprovalRequestsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Approvalrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -780,7 +1353,7 @@ export namespace accessapproval_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(
@@ -792,11 +1365,6 @@ export namespace accessapproval_v1beta1 {
 
   export interface Params$Resource$Folders$Approvalrequests$Approve
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the approval request to approve.
      */
@@ -810,11 +1378,6 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Folders$Approvalrequests$Dismiss
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the ApprovalRequest to dismiss.
      */
     name?: string;
@@ -827,22 +1390,12 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Folders$Approvalrequests$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Approvalrequests$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */
@@ -872,8 +1425,180 @@ export namespace accessapproval_v1beta1 {
     }
 
     /**
+     * accessapproval.organizations.deleteAccessApprovalSettings
+     * @desc Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.deleteAccessApprovalSettings({
+     *     // Name of the AccessApprovalSettings to delete.
+     *     name: 'organizations/my-organization/accessApprovalSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias accessapproval.organizations.deleteAccessApprovalSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Name of the AccessApprovalSettings to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Organizations$Deleteaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteAccessApprovalSettings(
+      params?: Params$Resource$Organizations$Deleteaccessapprovalsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Organizations$Deleteaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Organizations$Deleteaccessapprovalsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Organizations$Deleteaccessapprovalsettings,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteAccessApprovalSettings(
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteAccessApprovalSettings(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Deleteaccessapprovalsettings
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Deleteaccessapprovalsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Deleteaccessapprovalsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * accessapproval.organizations.getAccessApprovalSettings
      * @desc Gets the settings associated with a project, folder, or organization.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.getAccessApprovalSettings({
+     *     // Name of the AccessApprovalSettings to retrieve.
+     *     name: 'organizations/my-organization/accessApprovalSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledAncestor": false,
+     *   //   "enrolledServices": [],
+     *   //   "name": "my_name",
+     *   //   "notificationEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.organizations.getAccessApprovalSettings
      * @memberOf! ()
      *
@@ -884,9 +1609,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     getAccessApprovalSettings(
+      params: Params$Resource$Organizations$Getaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAccessApprovalSettings(
       params?: Params$Resource$Organizations$Getaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    getAccessApprovalSettings(
+      params: Params$Resource$Organizations$Getaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAccessApprovalSettings(
       params: Params$Resource$Organizations$Getaccessapprovalsettings,
       options:
@@ -904,12 +1638,20 @@ export namespace accessapproval_v1beta1 {
     getAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Organizations$Getaccessapprovalsettings
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
-      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
-    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalSettings>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -941,7 +1683,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
+        createAPIRequest<Schema$AccessApprovalSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
       }
@@ -950,21 +1695,94 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.organizations.updateAccessApprovalSettings
      * @desc Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.updateAccessApprovalSettings({
+     *     // The resource name of the settings. Format is one of:
+     *     // <ol>
+     *     //   <li>"projects/{project_id}/accessApprovalSettings"</li>
+     *     //   <li>"folders/{folder_id}/accessApprovalSettings"</li>
+     *     //   <li>"organizations/{organization_id}/accessApprovalSettings"</li>
+     *     // <ol>
+     *     name: 'organizations/my-organization/accessApprovalSettings',
+     *     // For the `FieldMask` definition, see
+     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // If this field is left unset, only the notification_emails field will be
+     *     // updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "enrolledAncestor": false,
+     *       //   "enrolledServices": [],
+     *       //   "name": "my_name",
+     *       //   "notificationEmails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledAncestor": false,
+     *   //   "enrolledServices": [],
+     *   //   "name": "my_name",
+     *   //   "notificationEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.organizations.updateAccessApprovalSettings
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
-     * @param {string=} params.updateMask The update mask applies to the settings. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
-     * @param {().AccessApprovalSettings} params.resource Request body data
+     * @param {string=} params.updateMask For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     * @param {().AccessApprovalSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     updateAccessApprovalSettings(
+      params: Params$Resource$Organizations$Updateaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAccessApprovalSettings(
       params?: Params$Resource$Organizations$Updateaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    updateAccessApprovalSettings(
+      params: Params$Resource$Organizations$Updateaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateAccessApprovalSettings(
       params: Params$Resource$Organizations$Updateaccessapprovalsettings,
       options:
@@ -982,12 +1800,20 @@ export namespace accessapproval_v1beta1 {
     updateAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Organizations$Updateaccessapprovalsettings
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
-      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
-    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalSettings>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Updateaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1019,20 +1845,25 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
+        createAPIRequest<Schema$AccessApprovalSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Organizations$Getaccessapprovalsettings
+  export interface Params$Resource$Organizations$Deleteaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
+     * Name of the AccessApprovalSettings to delete.
      */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Getaccessapprovalsettings
+    extends StandardParameters {
     /**
      * Name of the AccessApprovalSettings to retrieve.
      */
@@ -1041,16 +1872,11 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Organizations$Updateaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
     name?: string;
     /**
-     * The update mask applies to the settings. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     * For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      */
     updateMask?: string;
 
@@ -1069,20 +1895,85 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.organizations.approvalRequests.approve
      * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.approvalRequests.approve({
+     *     // Name of the approval request to approve.
+     *     name: 'organizations/my-organization/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expireTime": "my_expireTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.organizations.approvalRequests.approve
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the approval request to approve.
-     * @param {().ApproveApprovalRequestMessage} params.resource Request body data
+     * @param {().ApproveApprovalRequestMessage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     approve(
+      params: Params$Resource$Organizations$Approvalrequests$Approve,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    approve(
       params?: Params$Resource$Organizations$Approvalrequests$Approve,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    approve(
+      params: Params$Resource$Organizations$Approvalrequests$Approve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     approve(
       params: Params$Resource$Organizations$Approvalrequests$Approve,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -1096,12 +1987,17 @@ export namespace accessapproval_v1beta1 {
     approve(
       paramsOrCallback?:
         | Params$Resource$Organizations$Approvalrequests$Approve
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Approvalrequests$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1136,7 +2032,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -1145,20 +2044,83 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.organizations.approvalRequests.dismiss
      * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.approvalRequests.dismiss({
+     *     // Name of the ApprovalRequest to dismiss.
+     *     name: 'organizations/my-organization/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.organizations.approvalRequests.dismiss
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the ApprovalRequest to dismiss.
-     * @param {().DismissApprovalRequestMessage} params.resource Request body data
+     * @param {().DismissApprovalRequestMessage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     dismiss(
+      params: Params$Resource$Organizations$Approvalrequests$Dismiss,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dismiss(
       params?: Params$Resource$Organizations$Approvalrequests$Dismiss,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    dismiss(
+      params: Params$Resource$Organizations$Approvalrequests$Dismiss,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     dismiss(
       params: Params$Resource$Organizations$Approvalrequests$Dismiss,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -1172,12 +2134,17 @@ export namespace accessapproval_v1beta1 {
     dismiss(
       paramsOrCallback?:
         | Params$Resource$Organizations$Approvalrequests$Dismiss
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Approvalrequests$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1212,7 +2179,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -1221,6 +2191,54 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.organizations.approvalRequests.get
      * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.approvalRequests.get({
+     *     // Name of the approval request to retrieve.
+     *     name: 'organizations/my-organization/approvalRequests/my-approvalRequest',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.organizations.approvalRequests.get
      * @memberOf! ()
      *
@@ -1231,9 +2249,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Approvalrequests$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Approvalrequests$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    get(
+      params: Params$Resource$Organizations$Approvalrequests$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Approvalrequests$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -1247,12 +2274,17 @@ export namespace accessapproval_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Approvalrequests$Get
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Approvalrequests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1284,7 +2316,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -1293,6 +2328,62 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.organizations.approvalRequests.list
      * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.approvalRequests.list({
+     *     // A filter on the type of approval requests to retrieve. Must be one of the
+     *     // following values:
+     *     // <ol>
+     *     //   <li>[not set]: Requests that are pending or have active approvals.</li>
+     *     //   <li>ALL: All requests.</li>
+     *     //   <li>PENDING: Only pending requests.</li>
+     *     //   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>
+     *     //   <li>DISMISSED: Only dismissed (including expired) requests.</li>
+     *     // </ol>
+     *     filter: 'placeholder-value',
+     *     // Requested page size.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying the page of results to return.
+     *     pageToken: 'placeholder-value',
+     *     // The parent resource. This may be "projects/{project_id}",
+     *     // "folders/{folder_id}", or "organizations/{organization_id}".
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approvalRequests": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.organizations.approvalRequests.list
      * @memberOf! ()
      *
@@ -1306,9 +2397,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Approvalrequests$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Approvalrequests$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListApprovalRequestsResponse>;
+    list(
+      params: Params$Resource$Organizations$Approvalrequests$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Approvalrequests$List,
       options:
@@ -1326,12 +2426,20 @@ export namespace accessapproval_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Approvalrequests$List
-        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-      callback?: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
-    ): void | GaxiosPromise<Schema$ListApprovalRequestsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListApprovalRequestsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Approvalrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1368,7 +2476,7 @@ export namespace accessapproval_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(
@@ -1380,11 +2488,6 @@ export namespace accessapproval_v1beta1 {
 
   export interface Params$Resource$Organizations$Approvalrequests$Approve
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the approval request to approve.
      */
@@ -1398,11 +2501,6 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Organizations$Approvalrequests$Dismiss
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the ApprovalRequest to dismiss.
      */
     name?: string;
@@ -1415,22 +2513,12 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Organizations$Approvalrequests$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Approvalrequests$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */
@@ -1460,8 +2548,180 @@ export namespace accessapproval_v1beta1 {
     }
 
     /**
+     * accessapproval.projects.deleteAccessApprovalSettings
+     * @desc Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.deleteAccessApprovalSettings({
+     *     // Name of the AccessApprovalSettings to delete.
+     *     name: 'projects/my-project/accessApprovalSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias accessapproval.projects.deleteAccessApprovalSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Name of the AccessApprovalSettings to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Projects$Deleteaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteAccessApprovalSettings(
+      params?: Params$Resource$Projects$Deleteaccessapprovalsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Projects$Deleteaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Projects$Deleteaccessapprovalsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Projects$Deleteaccessapprovalsettings,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteAccessApprovalSettings(
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteAccessApprovalSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Deleteaccessapprovalsettings
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Deleteaccessapprovalsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Deleteaccessapprovalsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * accessapproval.projects.getAccessApprovalSettings
      * @desc Gets the settings associated with a project, folder, or organization.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.getAccessApprovalSettings({
+     *     // Name of the AccessApprovalSettings to retrieve.
+     *     name: 'projects/my-project/accessApprovalSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledAncestor": false,
+     *   //   "enrolledServices": [],
+     *   //   "name": "my_name",
+     *   //   "notificationEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.projects.getAccessApprovalSettings
      * @memberOf! ()
      *
@@ -1472,9 +2732,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     getAccessApprovalSettings(
+      params: Params$Resource$Projects$Getaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAccessApprovalSettings(
       params?: Params$Resource$Projects$Getaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    getAccessApprovalSettings(
+      params: Params$Resource$Projects$Getaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAccessApprovalSettings(
       params: Params$Resource$Projects$Getaccessapprovalsettings,
       options:
@@ -1492,12 +2761,20 @@ export namespace accessapproval_v1beta1 {
     getAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Projects$Getaccessapprovalsettings
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
-      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
-    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalSettings>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1529,7 +2806,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
+        createAPIRequest<Schema$AccessApprovalSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
       }
@@ -1538,21 +2818,94 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.projects.updateAccessApprovalSettings
      * @desc Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.updateAccessApprovalSettings({
+     *     // The resource name of the settings. Format is one of:
+     *     // <ol>
+     *     //   <li>"projects/{project_id}/accessApprovalSettings"</li>
+     *     //   <li>"folders/{folder_id}/accessApprovalSettings"</li>
+     *     //   <li>"organizations/{organization_id}/accessApprovalSettings"</li>
+     *     // <ol>
+     *     name: 'projects/my-project/accessApprovalSettings',
+     *     // For the `FieldMask` definition, see
+     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // If this field is left unset, only the notification_emails field will be
+     *     // updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "enrolledAncestor": false,
+     *       //   "enrolledServices": [],
+     *       //   "name": "my_name",
+     *       //   "notificationEmails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledAncestor": false,
+     *   //   "enrolledServices": [],
+     *   //   "name": "my_name",
+     *   //   "notificationEmails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.projects.updateAccessApprovalSettings
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
-     * @param {string=} params.updateMask The update mask applies to the settings. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
-     * @param {().AccessApprovalSettings} params.resource Request body data
+     * @param {string=} params.updateMask For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     * @param {().AccessApprovalSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     updateAccessApprovalSettings(
+      params: Params$Resource$Projects$Updateaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAccessApprovalSettings(
       params?: Params$Resource$Projects$Updateaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    updateAccessApprovalSettings(
+      params: Params$Resource$Projects$Updateaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateAccessApprovalSettings(
       params: Params$Resource$Projects$Updateaccessapprovalsettings,
       options:
@@ -1570,12 +2923,20 @@ export namespace accessapproval_v1beta1 {
     updateAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Projects$Updateaccessapprovalsettings
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
-      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
-    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalSettings>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updateaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1607,20 +2968,25 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
+        createAPIRequest<Schema$AccessApprovalSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Getaccessapprovalsettings
+  export interface Params$Resource$Projects$Deleteaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
+     * Name of the AccessApprovalSettings to delete.
      */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Getaccessapprovalsettings
+    extends StandardParameters {
     /**
      * Name of the AccessApprovalSettings to retrieve.
      */
@@ -1629,16 +2995,11 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Projects$Updateaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
     name?: string;
     /**
-     * The update mask applies to the settings. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
+     * For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      */
     updateMask?: string;
 
@@ -1657,20 +3018,85 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.projects.approvalRequests.approve
      * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.approvalRequests.approve({
+     *     // Name of the approval request to approve.
+     *     name: 'projects/my-project/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expireTime": "my_expireTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.projects.approvalRequests.approve
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the approval request to approve.
-     * @param {().ApproveApprovalRequestMessage} params.resource Request body data
+     * @param {().ApproveApprovalRequestMessage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     approve(
+      params: Params$Resource$Projects$Approvalrequests$Approve,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    approve(
       params?: Params$Resource$Projects$Approvalrequests$Approve,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    approve(
+      params: Params$Resource$Projects$Approvalrequests$Approve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     approve(
       params: Params$Resource$Projects$Approvalrequests$Approve,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -1684,12 +3110,17 @@ export namespace accessapproval_v1beta1 {
     approve(
       paramsOrCallback?:
         | Params$Resource$Projects$Approvalrequests$Approve
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Approvalrequests$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1724,7 +3155,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -1733,20 +3167,83 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.projects.approvalRequests.dismiss
      * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.approvalRequests.dismiss({
+     *     // Name of the ApprovalRequest to dismiss.
+     *     name: 'projects/my-project/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.projects.approvalRequests.dismiss
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the ApprovalRequest to dismiss.
-     * @param {().DismissApprovalRequestMessage} params.resource Request body data
+     * @param {().DismissApprovalRequestMessage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     dismiss(
+      params: Params$Resource$Projects$Approvalrequests$Dismiss,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dismiss(
       params?: Params$Resource$Projects$Approvalrequests$Dismiss,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    dismiss(
+      params: Params$Resource$Projects$Approvalrequests$Dismiss,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     dismiss(
       params: Params$Resource$Projects$Approvalrequests$Dismiss,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -1760,12 +3257,17 @@ export namespace accessapproval_v1beta1 {
     dismiss(
       paramsOrCallback?:
         | Params$Resource$Projects$Approvalrequests$Dismiss
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Approvalrequests$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1800,7 +3302,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -1809,6 +3314,54 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.projects.approvalRequests.get
      * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.approvalRequests.get({
+     *     // Name of the approval request to retrieve.
+     *     name: 'projects/my-project/approvalRequests/my-approvalRequest',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.projects.approvalRequests.get
      * @memberOf! ()
      *
@@ -1819,9 +3372,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Approvalrequests$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Approvalrequests$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    get(
+      params: Params$Resource$Projects$Approvalrequests$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Approvalrequests$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -1835,12 +3397,17 @@ export namespace accessapproval_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Approvalrequests$Get
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Approvalrequests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1872,7 +3439,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -1881,6 +3451,62 @@ export namespace accessapproval_v1beta1 {
     /**
      * accessapproval.projects.approvalRequests.list
      * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.approvalRequests.list({
+     *     // A filter on the type of approval requests to retrieve. Must be one of the
+     *     // following values:
+     *     // <ol>
+     *     //   <li>[not set]: Requests that are pending or have active approvals.</li>
+     *     //   <li>ALL: All requests.</li>
+     *     //   <li>PENDING: Only pending requests.</li>
+     *     //   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>
+     *     //   <li>DISMISSED: Only dismissed (including expired) requests.</li>
+     *     // </ol>
+     *     filter: 'placeholder-value',
+     *     // Requested page size.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying the page of results to return.
+     *     pageToken: 'placeholder-value',
+     *     // The parent resource. This may be "projects/{project_id}",
+     *     // "folders/{folder_id}", or "organizations/{organization_id}".
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approvalRequests": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias accessapproval.projects.approvalRequests.list
      * @memberOf! ()
      *
@@ -1894,9 +3520,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Approvalrequests$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Approvalrequests$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListApprovalRequestsResponse>;
+    list(
+      params: Params$Resource$Projects$Approvalrequests$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Approvalrequests$List,
       options:
@@ -1914,12 +3549,20 @@ export namespace accessapproval_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Approvalrequests$List
-        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-      callback?: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
-    ): void | GaxiosPromise<Schema$ListApprovalRequestsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListApprovalRequestsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Approvalrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1956,7 +3599,7 @@ export namespace accessapproval_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(
@@ -1968,11 +3611,6 @@ export namespace accessapproval_v1beta1 {
 
   export interface Params$Resource$Projects$Approvalrequests$Approve
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the approval request to approve.
      */
@@ -1986,11 +3624,6 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Projects$Approvalrequests$Dismiss
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the ApprovalRequest to dismiss.
      */
     name?: string;
@@ -2003,22 +3636,12 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Projects$Approvalrequests$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Approvalrequests$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */

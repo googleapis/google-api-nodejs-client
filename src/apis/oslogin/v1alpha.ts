@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace oslogin_v1alpha {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace oslogin_v1alpha {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -91,7 +101,7 @@ export namespace oslogin_v1alpha {
   /**
    * Cloud OS Login API
    *
-   * You can use OS Login to manage access to your VM instances using IAM roles. For more information, read [OS Login](/compute/docs/oslogin/).
+   * You can use OS Login to manage access to your VM instances using IAM roles.
    *
    * @example
    * const {google} = require('googleapis');
@@ -168,6 +178,10 @@ export namespace oslogin_v1alpha {
      */
     homeDirectory?: string | null;
     /**
+     * Output only. The canonical resource name.
+     */
+    name?: string | null;
+    /**
      * The operating system type where this account applies.
      */
     operatingSystemType?: string | null;
@@ -208,6 +222,10 @@ export namespace oslogin_v1alpha {
      * Public key text in SSH format, defined by &lt;a href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot; target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt; section 6.6.
      */
     key?: string | null;
+    /**
+     * Output only. The canonical resource name.
+     */
+    name?: string | null;
   }
 
   export class Resource$Users {
@@ -223,6 +241,59 @@ export namespace oslogin_v1alpha {
     /**
      * oslogin.users.getLoginProfile
      * @desc Retrieves the profile information used for logging in to a virtual machine on Google Compute Engine.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.getLoginProfile({
+     *     // The unique ID for the user in format `users/{user}`.
+     *     name: 'users/my-user',
+     *     // The type of operating system associated with the account.
+     *     operatingSystemType: 'placeholder-value',
+     *     // The project ID of the Google Cloud Platform project.
+     *     projectId: 'placeholder-value',
+     *     // A system ID for filtering the results of the request.
+     *     systemId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "posixAccounts": [],
+     *   //   "sshPublicKeys": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oslogin.users.getLoginProfile
      * @memberOf! ()
      *
@@ -236,9 +307,18 @@ export namespace oslogin_v1alpha {
      * @return {object} Request object
      */
     getLoginProfile(
+      params: Params$Resource$Users$Getloginprofile,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getLoginProfile(
       params?: Params$Resource$Users$Getloginprofile,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LoginProfile>;
+    getLoginProfile(
+      params: Params$Resource$Users$Getloginprofile,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getLoginProfile(
       params: Params$Resource$Users$Getloginprofile,
       options: MethodOptions | BodyResponseCallback<Schema$LoginProfile>,
@@ -252,12 +332,17 @@ export namespace oslogin_v1alpha {
     getLoginProfile(
       paramsOrCallback?:
         | Params$Resource$Users$Getloginprofile
-        | BodyResponseCallback<Schema$LoginProfile>,
+        | BodyResponseCallback<Schema$LoginProfile>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LoginProfile>,
-      callback?: BodyResponseCallback<Schema$LoginProfile>
-    ): void | GaxiosPromise<Schema$LoginProfile> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LoginProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LoginProfile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LoginProfile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Getloginprofile;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -291,7 +376,10 @@ export namespace oslogin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LoginProfile>(parameters, callback);
+        createAPIRequest<Schema$LoginProfile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LoginProfile>(parameters);
       }
@@ -300,21 +388,86 @@ export namespace oslogin_v1alpha {
     /**
      * oslogin.users.importSshPublicKey
      * @desc Adds an SSH public key and returns the profile information. Default POSIX account information is set when no username and UID exist as part of the login profile.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.importSshPublicKey({
+     *     // The unique ID for the user in format `users/{user}`.
+     *     parent: 'users/my-user',
+     *     // The project ID of the Google Cloud Platform project.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "key": "my_key",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "loginProfile": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oslogin.users.importSshPublicKey
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The unique ID for the user in format `users/{user}`.
      * @param {string=} params.projectId The project ID of the Google Cloud Platform project.
-     * @param {().SshPublicKey} params.resource Request body data
+     * @param {().SshPublicKey} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     importSshPublicKey(
+      params: Params$Resource$Users$Importsshpublickey,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    importSshPublicKey(
       params?: Params$Resource$Users$Importsshpublickey,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ImportSshPublicKeyResponse>;
+    importSshPublicKey(
+      params: Params$Resource$Users$Importsshpublickey,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     importSshPublicKey(
       params: Params$Resource$Users$Importsshpublickey,
       options:
@@ -332,12 +485,20 @@ export namespace oslogin_v1alpha {
     importSshPublicKey(
       paramsOrCallback?:
         | Params$Resource$Users$Importsshpublickey
-        | BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
+        | BodyResponseCallback<Schema$ImportSshPublicKeyResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
-      callback?: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>
-    ): void | GaxiosPromise<Schema$ImportSshPublicKeyResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImportSshPublicKeyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImportSshPublicKeyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ImportSshPublicKeyResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Importsshpublickey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -373,7 +534,7 @@ export namespace oslogin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ImportSshPublicKeyResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ImportSshPublicKeyResponse>(parameters);
@@ -383,11 +544,6 @@ export namespace oslogin_v1alpha {
 
   export interface Params$Resource$Users$Getloginprofile
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The unique ID for the user in format `users/{user}`.
      */
@@ -407,11 +563,6 @@ export namespace oslogin_v1alpha {
   }
   export interface Params$Resource$Users$Importsshpublickey
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The unique ID for the user in format `users/{user}`.
      */
@@ -436,6 +587,51 @@ export namespace oslogin_v1alpha {
     /**
      * oslogin.users.projects.delete
      * @desc Deletes a POSIX account.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.projects.delete({
+     *     // A reference to the POSIX account to update. POSIX accounts are identified
+     *     // by the project ID they are associated with. A reference to the POSIX
+     *     // account is in format `users/{user}/projects/{project}`.
+     *     name: 'users/my-user/projects/my-project',
+     *     // The type of operating system associated with the account.
+     *     operatingSystemType: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oslogin.users.projects.delete
      * @memberOf! ()
      *
@@ -447,9 +643,18 @@ export namespace oslogin_v1alpha {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Projects$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Projects$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Users$Projects$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Projects$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -463,10 +668,17 @@ export namespace oslogin_v1alpha {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Projects$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Projects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -497,7 +709,10 @@ export namespace oslogin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -506,11 +721,6 @@ export namespace oslogin_v1alpha {
 
   export interface Params$Resource$Users$Projects$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
      */
@@ -530,6 +740,49 @@ export namespace oslogin_v1alpha {
     /**
      * oslogin.users.sshPublicKeys.delete
      * @desc Deletes an SSH public key.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.sshPublicKeys.delete({
+     *     // The fingerprint of the public key to update. Public keys are identified by
+     *     // their SHA-256 fingerprint. The fingerprint of the public key is in format
+     *     // `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oslogin.users.sshPublicKeys.delete
      * @memberOf! ()
      *
@@ -540,9 +793,18 @@ export namespace oslogin_v1alpha {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Sshpublickeys$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Sshpublickeys$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Users$Sshpublickeys$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Sshpublickeys$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -556,10 +818,17 @@ export namespace oslogin_v1alpha {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Sshpublickeys$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sshpublickeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -590,7 +859,10 @@ export namespace oslogin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -599,6 +871,54 @@ export namespace oslogin_v1alpha {
     /**
      * oslogin.users.sshPublicKeys.get
      * @desc Retrieves an SSH public key.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.sshPublicKeys.get({
+     *     // The fingerprint of the public key to retrieve. Public keys are identified
+     *     // by their SHA-256 fingerprint. The fingerprint of the public key is in
+     *     // format `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "key": "my_key",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oslogin.users.sshPublicKeys.get
      * @memberOf! ()
      *
@@ -609,9 +929,18 @@ export namespace oslogin_v1alpha {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Sshpublickeys$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Sshpublickeys$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SshPublicKey>;
+    get(
+      params: Params$Resource$Users$Sshpublickeys$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Sshpublickeys$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SshPublicKey>,
@@ -625,12 +954,17 @@ export namespace oslogin_v1alpha {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Sshpublickeys$Get
-        | BodyResponseCallback<Schema$SshPublicKey>,
+        | BodyResponseCallback<Schema$SshPublicKey>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SshPublicKey>,
-      callback?: BodyResponseCallback<Schema$SshPublicKey>
-    ): void | GaxiosPromise<Schema$SshPublicKey> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SshPublicKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SshPublicKey>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SshPublicKey> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sshpublickeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -661,7 +995,10 @@ export namespace oslogin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SshPublicKey>(parameters, callback);
+        createAPIRequest<Schema$SshPublicKey>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SshPublicKey>(parameters);
       }
@@ -670,21 +1007,91 @@ export namespace oslogin_v1alpha {
     /**
      * oslogin.users.sshPublicKeys.patch
      * @desc Updates an SSH public key and returns the profile information. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.sshPublicKeys.patch({
+     *     // The fingerprint of the public key to update. Public keys are identified by
+     *     // their SHA-256 fingerprint. The fingerprint of the public key is in format
+     *     // `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
+     *     // Mask to control which fields get updated. Updates all if not present.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "key": "my_key",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "key": "my_key",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias oslogin.users.sshPublicKeys.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param {string=} params.updateMask Mask to control which fields get updated. Updates all if not present.
-     * @param {().SshPublicKey} params.resource Request body data
+     * @param {().SshPublicKey} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Users$Sshpublickeys$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Users$Sshpublickeys$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SshPublicKey>;
+    patch(
+      params: Params$Resource$Users$Sshpublickeys$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Users$Sshpublickeys$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$SshPublicKey>,
@@ -698,12 +1105,17 @@ export namespace oslogin_v1alpha {
     patch(
       paramsOrCallback?:
         | Params$Resource$Users$Sshpublickeys$Patch
-        | BodyResponseCallback<Schema$SshPublicKey>,
+        | BodyResponseCallback<Schema$SshPublicKey>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SshPublicKey>,
-      callback?: BodyResponseCallback<Schema$SshPublicKey>
-    ): void | GaxiosPromise<Schema$SshPublicKey> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SshPublicKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SshPublicKey>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SshPublicKey> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sshpublickeys$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -734,7 +1146,10 @@ export namespace oslogin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SshPublicKey>(parameters, callback);
+        createAPIRequest<Schema$SshPublicKey>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SshPublicKey>(parameters);
       }
@@ -744,11 +1159,6 @@ export namespace oslogin_v1alpha {
   export interface Params$Resource$Users$Sshpublickeys$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
     name?: string;
@@ -756,22 +1166,12 @@ export namespace oslogin_v1alpha {
   export interface Params$Resource$Users$Sshpublickeys$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
     name?: string;
   }
   export interface Params$Resource$Users$Sshpublickeys$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      */

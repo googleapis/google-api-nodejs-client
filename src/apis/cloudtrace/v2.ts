@@ -1,40 +1,39 @@
-/**
- * Copyright 2019 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 Google LLC
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
 
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
+import {Readable} from 'stream';
 
 export namespace cloudtrace_v2 {
   export interface Options extends GlobalOptions {
@@ -42,6 +41,17 @@ export namespace cloudtrace_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -89,9 +99,9 @@ export namespace cloudtrace_v2 {
   }
 
   /**
-   * Stackdriver Trace API
+   * Cloud Trace API
    *
-   * Sends application trace data to Stackdriver Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Trace API directly. If you are looking to instrument your application for Stackdriver Trace, we recommend using OpenCensus.
+   * Sends application trace data to Cloud Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Cloud Trace API directly. If you are looking to instrument your application for Cloud Trace, we recommend using OpenCensus.
    *
    * @example
    * const {google} = require('googleapis');
@@ -135,7 +145,7 @@ export namespace cloudtrace_v2 {
    */
   export interface Schema$Attributes {
     /**
-     * The set of attributes. Each attribute&#39;s key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example:      &quot;/instance_id&quot;: &quot;my-instance&quot;     &quot;/http/user_agent&quot;: &quot;&quot;     &quot;/http/request_bytes&quot;: 300     &quot;abc.com/myattribute&quot;: true
+     * The set of attributes. Each attribute&#39;s key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example:      &quot;/instance_id&quot;: { &quot;string_value&quot;: { &quot;value&quot;: &quot;my-instance&quot; } }     &quot;/http/request_bytes&quot;: { &quot;int_value&quot;: 300 }     &quot;abc.com/myattribute&quot;: { &quot;bool_value&quot;: false }
      */
     attributeMap?: {[key: string]: Schema$AttributeValue} | null;
     /**
@@ -165,7 +175,7 @@ export namespace cloudtrace_v2 {
    */
   export interface Schema$BatchWriteSpansRequest {
     /**
-     * A list of new spans. The span names must not match existing spans, or the results are undefined.
+     * Required. A list of new spans. The span names must not match existing spans, or the results are undefined.
      */
     spans?: Schema$Span[];
   }
@@ -250,15 +260,15 @@ export namespace cloudtrace_v2 {
      */
     attributes?: Schema$Attributes;
     /**
-     * An optional number of child spans that were generated while this span was active. If set, allows implementation to detect missing child spans.
+     * Optional. The number of child spans that were generated while this span was active. If set, allows implementation to detect missing child spans.
      */
     childSpanCount?: number | null;
     /**
-     * A description of the span&#39;s operation (up to 128 bytes). Stackdriver Trace displays the description in the Google Cloud Platform Console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces.
+     * Required. A description of the span&#39;s operation (up to 128 bytes). Stackdriver Trace displays the description in the Google Cloud Platform Console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces.
      */
     displayName?: Schema$TruncatableString;
     /**
-     * The end time of the span. On the client side, this is the time kept by the local machine where the span execution ends. On the server side, this is the time when the server application handler stops running.
+     * Required. The end time of the span. On the client side, this is the time kept by the local machine where the span execution ends. On the server side, this is the time when the server application handler stops running.
      */
     endTime?: string | null;
     /**
@@ -274,11 +284,11 @@ export namespace cloudtrace_v2 {
      */
     parentSpanId?: string | null;
     /**
-     * (Optional) Set this parameter to indicate whether this span is in the same process as its parent. If you do not set this parameter, Stackdriver Trace is unable to take advantage of this helpful information.
+     * Optional. Set this parameter to indicate whether this span is in the same process as its parent. If you do not set this parameter, Stackdriver Trace is unable to take advantage of this helpful information.
      */
     sameProcessAsParentSpan?: boolean | null;
     /**
-     * The [SPAN_ID] portion of the span&#39;s resource name.
+     * Required. The [SPAN_ID] portion of the span&#39;s resource name.
      */
     spanId?: string | null;
     /**
@@ -290,11 +300,11 @@ export namespace cloudtrace_v2 {
      */
     stackTrace?: Schema$StackTrace;
     /**
-     * The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server&#39;s application handler starts running.
+     * Required. The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server&#39;s application handler starts running.
      */
     startTime?: string | null;
     /**
-     * An optional final status for this span.
+     * Optional. The final status for this span.
      */
     status?: Schema$Status;
     /**
@@ -445,21 +455,80 @@ export namespace cloudtrace_v2 {
 
     /**
      * cloudtrace.projects.traces.batchWrite
-     * @desc Sends new spans to new or existing traces. You cannot update existing spans.
+     * @desc Sends new spans to new or existing traces. You cannot update existing spans. In this case, writing traces is not considered an active developer method since traces are machine generated.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudtrace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudtrace = google.cloudtrace('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/trace.append',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudtrace.projects.traces.batchWrite({
+     *     // Required. The name of the project where the spans belong. The format is
+     *     // `projects/[PROJECT_ID]`.
+     *     name: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "spans": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudtrace.projects.traces.batchWrite
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The name of the project where the spans belong. The format is `projects/[PROJECT_ID]`.
-     * @param {().BatchWriteSpansRequest} params.resource Request body data
+     * @param {().BatchWriteSpansRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     batchWrite(
+      params: Params$Resource$Projects$Traces$Batchwrite,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchWrite(
       params?: Params$Resource$Projects$Traces$Batchwrite,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    batchWrite(
+      params: Params$Resource$Projects$Traces$Batchwrite,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchWrite(
       params: Params$Resource$Projects$Traces$Batchwrite,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -473,10 +542,17 @@ export namespace cloudtrace_v2 {
     batchWrite(
       paramsOrCallback?:
         | Params$Resource$Projects$Traces$Batchwrite
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Traces$Batchwrite;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -510,7 +586,10 @@ export namespace cloudtrace_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -519,11 +598,6 @@ export namespace cloudtrace_v2 {
 
   export interface Params$Resource$Projects$Traces$Batchwrite
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the project where the spans belong. The format is `projects/[PROJECT_ID]`.
      */
@@ -543,21 +617,113 @@ export namespace cloudtrace_v2 {
 
     /**
      * cloudtrace.projects.traces.spans.createSpan
-     * @desc Creates a new span.
+     * @desc Creates a new span. In this case, writing traces is not considered an active developer method since traces are machine generated.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudtrace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudtrace = google.cloudtrace('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/trace.append',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudtrace.projects.traces.spans.createSpan({
+     *     // The resource name of the span in the following format:
+     *     //
+     *     //     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project;
+     *     // it is a 32-character hexadecimal encoding of a 16-byte array.
+     *     //
+     *     // [SPAN_ID] is a unique identifier for a span within a trace; it
+     *     // is a 16-character hexadecimal encoding of an 8-byte array.
+     *     name: 'projects/my-project/traces/my-trace/spans/my-span',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": {},
+     *       //   "childSpanCount": 0,
+     *       //   "displayName": {},
+     *       //   "endTime": "my_endTime",
+     *       //   "links": {},
+     *       //   "name": "my_name",
+     *       //   "parentSpanId": "my_parentSpanId",
+     *       //   "sameProcessAsParentSpan": false,
+     *       //   "spanId": "my_spanId",
+     *       //   "spanKind": "my_spanKind",
+     *       //   "stackTrace": {},
+     *       //   "startTime": "my_startTime",
+     *       //   "status": {},
+     *       //   "timeEvents": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "childSpanCount": 0,
+     *   //   "displayName": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "links": {},
+     *   //   "name": "my_name",
+     *   //   "parentSpanId": "my_parentSpanId",
+     *   //   "sameProcessAsParentSpan": false,
+     *   //   "spanId": "my_spanId",
+     *   //   "spanKind": "my_spanKind",
+     *   //   "stackTrace": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": {},
+     *   //   "timeEvents": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
      * @alias cloudtrace.projects.traces.spans.createSpan
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
-     * @param {().Span} params.resource Request body data
+     * @param {().Span} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     createSpan(
+      params: Params$Resource$Projects$Traces$Spans$Createspan,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createSpan(
       params?: Params$Resource$Projects$Traces$Spans$Createspan,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Span>;
+    createSpan(
+      params: Params$Resource$Projects$Traces$Spans$Createspan,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     createSpan(
       params: Params$Resource$Projects$Traces$Spans$Createspan,
       options: MethodOptions | BodyResponseCallback<Schema$Span>,
@@ -571,10 +737,17 @@ export namespace cloudtrace_v2 {
     createSpan(
       paramsOrCallback?:
         | Params$Resource$Projects$Traces$Spans$Createspan
-        | BodyResponseCallback<Schema$Span>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Span>,
-      callback?: BodyResponseCallback<Schema$Span>
-    ): void | GaxiosPromise<Schema$Span> {
+        | BodyResponseCallback<Schema$Span>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Span>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Span>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Span> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Traces$Spans$Createspan;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -605,7 +778,10 @@ export namespace cloudtrace_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Span>(parameters, callback);
+        createAPIRequest<Schema$Span>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Span>(parameters);
       }
@@ -614,11 +790,6 @@ export namespace cloudtrace_v2 {
 
   export interface Params$Resource$Projects$Traces$Spans$Createspan
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
      */

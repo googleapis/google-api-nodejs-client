@@ -10,7 +10,7 @@
 {% endif %}
 {% if m.fragment %}
  * @example
- * {{ m.fragment|safe }}
+ * {{ m.fragment|safe|replace("\n", "\n * ") }}
 {% endif %}
  * @alias {{ m.id }}
  * @memberOf! {{ api.name }}({{ api.version }})
@@ -23,27 +23,29 @@
 {% endif %}
 {% if m.supportsMediaUpload %}
   {% if m.request %}
-    * @param  {object} params.resource Media resource metadata
+    * @param  {object} params.requestBody Media resource metadata
   {% endif %}
   * @param {object} params.media Media object
   * @param {string} params.media.mimeType Media mime-type
   * @param {string|object} params.media.body Media body contents
 {% elif m.request %}
   {% if m.request.$ref %}
-    * @param {{ lb }}{{ api.name }}({{ api.version }}).{{ m.request.$ref }}{{ rb }} params.resource Request body data
+    * @param {{ lb }}{{ api.name }}({{ api.version }}).{{ m.request.$ref }}{{ rb }} params.requestBody Request body data
   {% else %}
-    * @param {object} params.resource Request body data
+    * @param {object} params.requestBody Request body data
   {% endif %}
 {% endif %}
  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
+{{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, options: StreamMethodOptions): GaxiosPromise<Readable>;
 {{ mname|camelify }}(params?: Params${{ClassName}}${{mname|camelify|capitalize}}, options?: MethodOptions): GaxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>;
+{{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, options: StreamMethodOptions|BodyResponseCallback<Readable>, callback: BodyResponseCallback<Readable>): void;
 {{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, options: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
 {{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, callback: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
 {{ mname|camelify }}(callback: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
-{{ mname|camelify }}(paramsOrCallback?: Params${{ClassName}}${{mname|camelify|capitalize}}|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, optionsOrCallback?: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void|GaxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}> {
+{{ mname|camelify }}(paramsOrCallback?: Params${{ClassName}}${{mname|camelify|capitalize}}|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>|BodyResponseCallback<Readable>, optionsOrCallback?: MethodOptions|StreamMethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>|BodyResponseCallback<Readable>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>|BodyResponseCallback<Readable>): void|GaxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>|GaxiosPromise<Readable> {
   let params = (paramsOrCallback || {}) as Params${{ClassName}}${{mname|camelify|capitalize}};
   let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -72,7 +74,7 @@
   };
   {% set responseType = "Schema$" + m.response.$ref|default() %}
   if (callback) {
-    createAPIRequest<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>(parameters, callback);
+    createAPIRequest<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>(parameters, callback as BodyResponseCallback<{}|void>);
   } else {
     return createAPIRequest<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>(parameters);
   }

@@ -1,0 +1,1870 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/cloud-platform": {
+          "description": "View and manage your data across Google Cloud Platform services"
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://networkmanagement.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Network Management",
+  "description": "The Network Management API provides a collection of network performance monitoring and diagnostic capabilities.",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://cloud.google.com/",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "networkmanagement:v1beta1",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://networkmanagement.mtls.googleapis.com/",
+  "name": "networkmanagement",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "projects": {
+      "resources": {
+        "locations": {
+          "methods": {
+            "get": {
+              "description": "Gets information about a location.",
+              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}",
+              "httpMethod": "GET",
+              "id": "networkmanagement.projects.locations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Resource name for the location.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "Location"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists information about the supported locations for this service.",
+              "flatPath": "v1beta1/projects/{projectsId}/locations",
+              "httpMethod": "GET",
+              "id": "networkmanagement.projects.locations.list",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "The standard list filter.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The resource that owns the locations collection, if applicable.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The standard list page size.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The standard list page token.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}/locations",
+              "response": {
+                "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "global": {
+              "resources": {
+                "connectivityTests": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new Connectivity Test.\nAfter you create a test, the reachability analysis is performed as part\nof the long running operation, which completes when the analysis completes.\n\nIf the endpoint specifications in `ConnectivityTest` are invalid\n(for example, containing non-existent resources in the network, or you\ndon't have read permissions to the network configurations of listed\nprojects), then the reachability result returns a value of `UNKNOWN`.\n\nIf the endpoint specifications in `ConnectivityTest` are\nincomplete, the reachability result returns a value of\n<code>AMBIGUOUS</code>. For more information,\nsee the Connectivity Test documentation.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/connectivityTests",
+                      "httpMethod": "POST",
+                      "id": "networkmanagement.projects.locations.global.connectivityTests.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource of the Connectivity Test to create:\n    `projects/{project_id}/locations/global`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "testId": {
+                          "description": "Required. The logical name of the Connectivity Test in your project\nwith the following restrictions:\n\n* Must contain only lowercase letters, numbers, and hyphens.\n* Must start with a letter.\n* Must be between 1-40 characters.\n* Must end with a number or a letter.\n* Must be unique within the customer project",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/connectivityTests",
+                      "request": {
+                        "$ref": "ConnectivityTest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a specific `ConnectivityTest`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/connectivityTests/{connectivityTestsId}",
+                      "httpMethod": "DELETE",
+                      "id": "networkmanagement.projects.locations.global.connectivityTests.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Connectivity Test resource name using the form:\n    `projects/{project_id}/locations/global/connectivityTests/{test_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/connectivityTests/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the details of a specific Connectivity Test.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/connectivityTests/{connectivityTestsId}",
+                      "httpMethod": "GET",
+                      "id": "networkmanagement.projects.locations.global.connectivityTests.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. `ConnectivityTest` resource name using the form:\n    `projects/{project_id}/locations/global/connectivityTests/{test_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/connectivityTests/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "ConnectivityTest"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/connectivityTests/{connectivityTestsId}:getIamPolicy",
+                      "httpMethod": "GET",
+                      "id": "networkmanagement.projects.locations.global.connectivityTests.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The policy format version to be returned.\n\nValid values are 0, 1, and 3. Requests specifying an invalid value will be\nrejected.\n\nRequests for policies with any conditional bindings must specify version 3.\nPolicies without any conditional bindings may specify any valid value or\nleave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/connectivityTests/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all Connectivity Tests owned by a project.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/connectivityTests",
+                      "httpMethod": "GET",
+                      "id": "networkmanagement.projects.locations.global.connectivityTests.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Lists the `ConnectivityTests` that match the filter expression. A filter\nexpression filters the resources listed in the response. The expression\nmust be of the form `<field> <operator> <value>` where operators: `<`, `>`,\n`<=`,\n`>=`,\n`!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is\nroughly synonymous with equality). <field> can refer to a proto or JSON\nfield, or a synthetic field. Field names can be camelCase or snake_case.\n\nExamples:\n- Filter by name:\n  name = \"projects/proj-1/locations/global/connectivityTests/test-1\n\n- Filter by labels:\n  - Resources that have a key called `foo`\n    labels.foo:*\n  - Resources that have a key called `foo` whose value is `bar`\n    labels.foo = bar",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Field to use to sort the list.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Number of `ConnectivityTests` to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Page token from an earlier query, as returned in `next_page_token`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource of the Connectivity Tests:\n    `projects/{project_id}/locations/global`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/connectivityTests",
+                      "response": {
+                        "$ref": "ListConnectivityTestsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the configuration of an existing `ConnectivityTest`.\nAfter you update a test, the reachability analysis is performed as part\nof the long running operation, which completes when the analysis completes.\nThe Reachability state in the test resource is updated with the new result.\n\nIf the endpoint specifications in `ConnectivityTest` are invalid\n(for example, they contain non-existent resources in the network, or the\nuser does not have read permissions to the network configurations of\nlisted projects), then the reachability result returns a value of\n<code>UNKNOWN</code>.\n\nIf the endpoint specifications in `ConnectivityTest` are incomplete, the\nreachability result returns a value of `AMBIGUOUS`. See the documentation\nin `ConnectivityTest` for for more details.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/connectivityTests/{connectivityTestsId}",
+                      "httpMethod": "PATCH",
+                      "id": "networkmanagement.projects.locations.global.connectivityTests.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Unique name of the resource using the form:\n    `projects/{project_id}/locations/global/connectivityTests/{test}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/connectivityTests/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Mask of fields to update. At least one path must be supplied in\nthis field.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "request": {
+                        "$ref": "ConnectivityTest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "rerun": {
+                      "description": "Rerun an existing `ConnectivityTest`.\nAfter the user triggers the rerun, the reachability analysis is performed\nas part of the long running operation, which completes when the analysis\ncompletes.\n\nEven though the test configuration remains the same, the reachability\nresult may change due to underlying network configuration changes.\n\nIf the endpoint specifications in `ConnectivityTest` become invalid (for\nexample, specified resources are deleted in the network, or you lost\nread permissions to the network configurations of listed projects), then\nthe reachability result returns a value of `UNKNOWN`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/connectivityTests/{connectivityTestsId}:rerun",
+                      "httpMethod": "POST",
+                      "id": "networkmanagement.projects.locations.global.connectivityTests.rerun",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Connectivity Test resource name using the form:\n    `projects/{project_id}/locations/global/connectivityTests/{test_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/connectivityTests/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:rerun",
+                      "request": {
+                        "$ref": "RerunConnectivityTestRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.\n\nCan return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/connectivityTests/{connectivityTestsId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "networkmanagement.projects.locations.global.connectivityTests.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified.\nSee the operation documentation for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/connectivityTests/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that a caller has on the specified resource.\nIf the resource does not exist, this will return an empty set of\npermissions, not a `NOT_FOUND` error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/connectivityTests/{connectivityTestsId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "networkmanagement.projects.locations.global.connectivityTests.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy detail is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/connectivityTests/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+resource}:testIamPermissions",
+                      "request": {
+                        "$ref": "TestIamPermissionsRequest"
+                      },
+                      "response": {
+                        "$ref": "TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "operations": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Starts asynchronous cancellation on a long-running operation.  The server\nmakes a best effort to cancel the operation, but success is not\nguaranteed.  If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.  Clients can use\nOperations.GetOperation or\nother methods to check whether the cancellation succeeded or whether the\noperation completed despite cancellation. On successful cancellation,\nthe operation is not deleted; instead, it becomes an operation with\nan Operation.error value with a google.rpc.Status.code of 1,\ncorresponding to `Code.CANCELLED`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/operations/{operationsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "networkmanagement.projects.locations.global.operations.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be cancelled.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:cancel",
+                      "request": {
+                        "$ref": "CancelOperationRequest"
+                      },
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a long-running operation. This method indicates that the client is\nno longer interested in the operation result. It does not cancel the\noperation. If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/operations/{operationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "networkmanagement.projects.locations.global.operations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be deleted.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "networkmanagement.projects.locations.global.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request. If the\nserver doesn't support this method, it returns `UNIMPLEMENTED`.\n\nNOTE: the `name` binding allows API services to override the binding\nto use different resource name schemes, such as `users/*/operations`. To\noverride the binding, API services can add a binding such as\n`\"/v1/{name=users/*}/operations\"` to their service configuration.\nFor backwards compatibility, the default name includes the operations\ncollection id, however overriding users must ensure the name binding\nis the parent resource, without the operations collection id.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/operations",
+                      "httpMethod": "GET",
+                      "id": "networkmanagement.projects.locations.global.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}/operations",
+                      "response": {
+                        "$ref": "ListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20200505",
+  "rootUrl": "https://networkmanagement.googleapis.com/",
+  "schemas": {
+    "AbortInfo": {
+      "description": "Details of the final state \"abort\" and associated resource.",
+      "id": "AbortInfo",
+      "properties": {
+        "cause": {
+          "description": "Causes that the analysis is aborted.",
+          "enum": [
+            "CAUSE_UNSPECIFIED",
+            "UNKNOWN_NETWORK",
+            "UNKNOWN_IP",
+            "UNKNOWN_PROJECT",
+            "PERMISSION_DENIED",
+            "NO_SOURCE_LOCATION",
+            "INVALID_ARGUMENT",
+            "NO_EXTERNAL_IP",
+            "UNINTENDED_DESTINATION",
+            "TRACE_TOO_LONG",
+            "INTERNAL_ERROR"
+          ],
+          "enumDescriptions": [
+            "Cause is unspecified.",
+            "Aborted due to unknown network.\nThe reachability analysis cannot proceed because the user does not have\naccess to the host project's network configurations, including firewall\nrules and routes. This happens when the project is a service project and\nthe endpoints being traced are in the host project's network.",
+            "Aborted because the IP address(es) are unknown.",
+            "Aborted because no project information can be derived from the test\ninput.",
+            "Aborted because the user lacks the permission to access all or part of\nthe network configurations required to run the test.",
+            "Aborted because no valid source endpoint is derived from the input test\nrequest.",
+            "Aborted because the source and/or destination endpoint specified in\nthe test are invalid. The possible reasons that an endpoint is\ninvalid include: malformed IP address; nonexistent instance or\nnetwork URI; IP address not in the range of specified network URI; and\ninstance not owning the network interface in the specified network.",
+            "Aborted because traffic is sent from a public IP to an instance without\nan external IP.",
+            "Aborted because none of the traces matches destination information\nspecified in the input test request.",
+            "Aborted because the number of steps in the trace exceeding a certain\nlimit which may be caused by routing loop.",
+            "Aborted due to internal server error."
+          ],
+          "type": "string"
+        },
+        "resourceUri": {
+          "description": "URI of the resource that caused the abort.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuditConfig": {
+      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n            },\n            {\n              \"log_type\": \"ADMIN_READ\",\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
+      "id": "AuditConfig",
+      "properties": {
+        "auditLogConfigs": {
+          "description": "The configuration for logging of each type of permission.",
+          "items": {
+            "$ref": "AuditLogConfig"
+          },
+          "type": "array"
+        },
+        "service": {
+          "description": "Specifies a service that will be enabled for audit logging.\nFor example, `storage.googleapis.com`, `cloudsql.googleapis.com`.\n`allServices` is a special value that covers all services.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuditLogConfig": {
+      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\",\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
+      "id": "AuditLogConfig",
+      "properties": {
+        "exemptedMembers": {
+          "description": "Specifies the identities that do not cause logging for this type of\npermission.\nFollows the same format of Binding.members.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "logType": {
+          "description": "The log type that this config enables.",
+          "enum": [
+            "LOG_TYPE_UNSPECIFIED",
+            "ADMIN_READ",
+            "DATA_WRITE",
+            "DATA_READ"
+          ],
+          "enumDescriptions": [
+            "Default case. Should never be this.",
+            "Admin reads. Example: CloudIAM getIamPolicy",
+            "Data writes. Example: CloudSQL Users create",
+            "Data reads. Example: CloudSQL Users list"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Binding": {
+      "description": "Associates `members` with a `role`.",
+      "id": "Binding",
+      "properties": {
+        "condition": {
+          "$ref": "Expr",
+          "description": "The condition that is associated with this binding.\n\nIf the condition evaluates to `true`, then this binding applies to the\ncurrent request.\n\nIf the condition evaluates to `false`, then this binding does not apply to\nthe current request. However, a different role binding might grant the same\nrole to one or more of the members in this binding.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+        },
+        "members": {
+          "description": "Specifies the identities requesting access for a Cloud Platform resource.\n`members` can have the following values:\n\n* `allUsers`: A special identifier that represents anyone who is\n   on the internet; with or without a Google account.\n\n* `allAuthenticatedUsers`: A special identifier that represents anyone\n   who is authenticated with a Google account or a service account.\n\n* `user:{emailid}`: An email address that represents a specific Google\n   account. For example, `alice@example.com` .\n\n\n* `serviceAccount:{emailid}`: An email address that represents a service\n   account. For example, `my-other-app@appspot.gserviceaccount.com`.\n\n* `group:{emailid}`: An email address that represents a Google group.\n   For example, `admins@example.com`.\n\n* `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a user that has been recently deleted. For\n   example, `alice@example.com?uid=123456789012345678901`. If the user is\n   recovered, this value reverts to `user:{emailid}` and the recovered user\n   retains the role in the binding.\n\n* `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus\n   unique identifier) representing a service account that has been recently\n   deleted. For example,\n   `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.\n   If the service account is undeleted, this value reverts to\n   `serviceAccount:{emailid}` and the undeleted service account retains the\n   role in the binding.\n\n* `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a Google group that has been recently\n   deleted. For example, `admins@example.com?uid=123456789012345678901`. If\n   the group is recovered, this value reverts to `group:{emailid}` and the\n   recovered group retains the role in the binding.\n\n\n* `domain:{domain}`: The G Suite domain (primary) that represents all the\n   users of that domain. For example, `google.com` or `example.com`.\n\n",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "role": {
+          "description": "Role that is assigned to `members`.\nFor example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CancelOperationRequest": {
+      "description": "The request message for Operations.CancelOperation.",
+      "id": "CancelOperationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "ConnectivityTest": {
+      "description": "A Connectivity Test for a network reachability analysis.",
+      "id": "ConnectivityTest",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the test was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "description": {
+          "description": "The user-supplied description of the Connectivity Test.\nMaximum of 512 characters.",
+          "type": "string"
+        },
+        "destination": {
+          "$ref": "Endpoint",
+          "description": "Required. Destination specification of the Connectivity Test.\n\nYou can use a combination of destination IP address, Compute Engine\nVM instance, or VPC network to uniquely identify the destination\nlocation.\n\nEven if the destination IP address is not unique, the source IP\nlocation is unique. Usually, the analysis can infer the destination\nendpoint from route information.\n\nIf the destination you specify is a VM instance and the instance has\nmultiple network interfaces, then you must also specify either\na destination IP address  or VPC network to identify the destination\ninterface.\n\nA reachability analysis proceeds even if the destination location is\nambiguous. However, the result can include endpoints that you don't\nintend to test."
+        },
+        "displayName": {
+          "description": "Output only. The display name of a Connectivity Test.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Resource labels to represent user-provided metadata.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. Unique name of the resource using the form:\n    `projects/{project_id}/locations/global/connectivityTests/{test}`",
+          "type": "string"
+        },
+        "protocol": {
+          "description": "IP Protocol of the test. When not provided, \"TCP\" is assumed.",
+          "type": "string"
+        },
+        "reachabilityDetails": {
+          "$ref": "ReachabilityDetails",
+          "description": "Output only. The reachability details of this test from the latest run.\nThe details are updated when creating a new test, updating an\nexisting test, or triggering a one-time rerun of an existing test."
+        },
+        "relatedProjects": {
+          "description": "Other projects that may be relevant for reachability analysis.\nThis is applicable to scenarios where a test can cross project boundaries.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source": {
+          "$ref": "Endpoint",
+          "description": "Required. Source specification of the Connectivity Test.\n\nYou can use a combination of source IP address, virtual machine\n(VM) instance, or Compute Engine network to uniquely identify\nthe source location.\n\nExamples:\nIf the source IP address is an internal IP address within a Google Cloud\nVirtual Private Cloud (VPC) network, then you must also specify the VPC\nnetwork. Otherwise, specify the VM instance, which already contains its\ninternal IP address and VPC network information.\n\nIf the source of the test is within an on-premises network, then you must\nprovide the destination VPC network.\n\nIf the source endpoint is a Compute Engine VM instance with multiple\nnetwork interfaces, the instance itself is not sufficient to identify the\nendpoint. So, you must also specify the source IP address or VPC network.\n\nA reachability analysis proceeds even if the source location is\nambiguous. However, the test result may include endpoints that you don't\nintend to test."
+        },
+        "updateTime": {
+          "description": "Output only. The time the test's configuration was updated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeliverInfo": {
+      "description": "Details of the final state \"deliver\" and associated resource.",
+      "id": "DeliverInfo",
+      "properties": {
+        "resourceUri": {
+          "description": "URI of the resource that the packet is delivered to.",
+          "type": "string"
+        },
+        "target": {
+          "description": "Target type where the packet is delivered to.",
+          "enum": [
+            "TARGET_UNSPECIFIED",
+            "INSTANCE",
+            "INTERNET",
+            "GOOGLE_API"
+          ],
+          "enumDescriptions": [
+            "Target not specified.",
+            "Target is a Compute Engine instance.",
+            "Target is the Internet.",
+            "Target is a Google API."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DropInfo": {
+      "description": "Details of the final state \"drop\" and associated resource.",
+      "id": "DropInfo",
+      "properties": {
+        "cause": {
+          "description": "Cause that the packet is dropped.",
+          "enum": [
+            "CAUSE_UNSPECIFIED",
+            "UNKNOWN_EXTERNAL_ADDRESS",
+            "FOREIGN_IP_DISALLOWED",
+            "FIREWALL_RULE",
+            "NO_ROUTE",
+            "ROUTE_BLACKHOLE",
+            "ROUTE_WRONG_NETWORK",
+            "PRIVATE_TRAFFIC_TO_INTERNET",
+            "PRIVATE_GOOGLE_ACCESS_DISALLOWED",
+            "NO_EXTERNAL_ADDRESS",
+            "UNKNOWN_INTERNAL_ADDRESS",
+            "FORWARDING_RULE_MISMATCH",
+            "FORWARDING_RULE_NO_INSTANCES",
+            "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK",
+            "INSTANCE_NOT_RUNNING",
+            "TRAFFIC_TYPE_BLOCKED",
+            "GKE_MASTER_UNAUTHORIZED_ACCESS"
+          ],
+          "enumDescriptions": [
+            "Cause is unspecified.",
+            "Destination external address cannot be resolved to a known target.",
+            "a Compute Engine instance can only send or receive a packet with a\nforeign IP <code>if ip_forward</code> is enabled.",
+            "Dropped due to a firewall rule unless allowed due to connection tracking.",
+            "Dropped due to no routes.",
+            "Dropped due to invalid route. Route's next hop is a blackhole.",
+            "Packet is sent to a wrong (unintended) network. Example: user traces a\npacket from VM1:Network1 to VM2:Network2, however, the route configured\nin Network1 sends the packet destined for VM2's IP addresss to Network3.",
+            "Packet with internal destination address sent to Internet gateway.",
+            "Instance with only an internal IP tries to access Google API and\nServices, and private Google access is not enabled.",
+            "Instance with only internal IP tries to access external hosts, but\nCloud NAT is not enabled in the subnet, unless special configurations\non a VM allows this connection. See [Special Configurations for VM\ninstances](/vpc/docs/special-configurations) for details.",
+            "Destination internal address cannot be resolved to a known target.",
+            "Forwarding rule's protocol and ports do not match the packet header.",
+            "Forwarding rule does not have backends configured.",
+            "Firewalls block the health check probes to the backends and cause\nthe backends to be unavailable for traffic from the load balancer.\nSee [Health check firewall rules](/load-balancing/docs/\nhealth-checks#firewall_rules) for more details.",
+            "Packet is sent from or to a Compute Engine instance that is not in a\nrunning state.",
+            "The type of traffic is blocked and the user cannot configure a firewall\nrule to enable it. See [Always blocked traffic](/vpc/docs/firewalls#\nblockedtraffic) for more details.",
+            "Access to GKE master's endpoint is not authorized.\nSee [Access to the cluster endpoints](/kubernetes-engine/docs/how-to/\nprivate-clusters#access_to_the_cluster_endpoints) for more details."
+          ],
+          "type": "string"
+        },
+        "resourceUri": {
+          "description": "URI of the resource that caused the drop.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "Endpoint": {
+      "description": "Source or destination of the Connectivity Test.",
+      "id": "Endpoint",
+      "properties": {
+        "instance": {
+          "description": "A Compute Engine instance URI.",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "The IP address of the endpoint, which can be an external or internal IP.\nAn IPv6 address is only allowed when the test's destination is a\n[global load balancer VIP](/load-balancing/docs/load-balancing-overview).",
+          "type": "string"
+        },
+        "network": {
+          "description": "A Compute Engine network URI.",
+          "type": "string"
+        },
+        "networkType": {
+          "description": "Type of the network where the endpoint is located.\nApplicable only to source endpoint, as destination network type can be\ninferred from the source.",
+          "enum": [
+            "NETWORK_TYPE_UNSPECIFIED",
+            "GCP_NETWORK",
+            "NON_GCP_NETWORK"
+          ],
+          "enumDescriptions": [
+            "Default type if unspecified.",
+            "A network hosted within Google Cloud Platform.\nTo receive more detailed output, specify the URI for the source or\ndestination network.",
+            "A network hosted outside of Google Cloud Platform.\nThis can be an on-premises network, or a network hosted by another cloud\nprovider."
+          ],
+          "type": "string"
+        },
+        "port": {
+          "description": "The IP protocol port of the endpoint.\nOnly applicable when protocol is TCP or UDP.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "projectId": {
+          "description": "Project ID where the endpoint is located.\nThe Project ID can be derived from the URI if you provide a VM instance or\nnetwork URI.\nThe following are two cases where you must provide the project ID:\n1. Only the IP address is specified, and the IP address is within a GCP\nproject.\n2. When you are using Shared VPC and the IP address that you provide is\nfrom the service project. In this case, the network that the IP address\nresides in is defined in the host project.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EndpointInfo": {
+      "description": "For display only. The specification of the endpoints for the test.\nEndpointInfo is derived from source and destination Endpoint and validated\nby the backend data plane model.",
+      "id": "EndpointInfo",
+      "properties": {
+        "destinationIp": {
+          "description": "Destination IP address.",
+          "type": "string"
+        },
+        "destinationNetworkUri": {
+          "description": "URI of the network where this packet is sent to.",
+          "type": "string"
+        },
+        "destinationPort": {
+          "description": "Destination port. Only valid when protocol is TCP or UDP.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "protocol": {
+          "description": "IP protocol in string format, for example: \"TCP\", \"UDP\", \"ICMP\".",
+          "type": "string"
+        },
+        "sourceIp": {
+          "description": "Source IP address.",
+          "type": "string"
+        },
+        "sourceNetworkUri": {
+          "description": "URI of the network where this packet originates from.",
+          "type": "string"
+        },
+        "sourcePort": {
+          "description": "Source port. Only valid when protocol is TCP or UDP.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Expr": {
+      "description": "Represents a textual expression in the Common Expression Language (CEL)\nsyntax. CEL is a C-like expression language. The syntax and semantics of CEL\nare documented at https://github.com/google/cel-spec.\n\nExample (Comparison):\n\n    title: \"Summary size limit\"\n    description: \"Determines if a summary is less than 100 chars\"\n    expression: \"document.summary.size() < 100\"\n\nExample (Equality):\n\n    title: \"Requestor is owner\"\n    description: \"Determines if requestor is the document owner\"\n    expression: \"document.owner == request.auth.claims.email\"\n\nExample (Logic):\n\n    title: \"Public documents\"\n    description: \"Determine whether the document should be publicly visible\"\n    expression: \"document.type != 'private' && document.type != 'internal'\"\n\nExample (Data Manipulation):\n\n    title: \"Notification string\"\n    description: \"Create a notification string with a timestamp.\"\n    expression: \"'New message received at ' + string(document.create_time)\"\n\nThe exact variables and functions that may be referenced within an expression\nare determined by the service that evaluates it. See the service\ndocumentation for additional information.",
+      "id": "Expr",
+      "properties": {
+        "description": {
+          "description": "Optional. Description of the expression. This is a longer text which\ndescribes the expression, e.g. when hovered over it in a UI.",
+          "type": "string"
+        },
+        "expression": {
+          "description": "Textual representation of an expression in Common Expression Language\nsyntax.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Optional. String indicating the location of the expression for error\nreporting, e.g. a file name and a position in the file.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. Title for the expression, i.e. a short string describing\nits purpose. This can be used e.g. in UIs which allow to enter the\nexpression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FirewallInfo": {
+      "description": "For display only. Metadata associated with a Compute Engine firewall rule.",
+      "id": "FirewallInfo",
+      "properties": {
+        "action": {
+          "description": "Possible values: ALLOW, DENY",
+          "type": "string"
+        },
+        "direction": {
+          "description": "Possible values: INGRESS, EGRESS",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Name of a Compute Engine firewall rule.",
+          "type": "string"
+        },
+        "networkUri": {
+          "description": "URI of a Compute Engine network.",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Priority of the firewall rule.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "targetServiceAccounts": {
+          "description": "Target service accounts of the firewall rule.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetTags": {
+          "description": "Target tags of the firewall rule.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "uri": {
+          "description": "URI of a Compute Engine firewall rule.\nImplied default rule does not have URI.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ForwardInfo": {
+      "description": "Details of the final state \"forward\" and associated resource.",
+      "id": "ForwardInfo",
+      "properties": {
+        "resourceUri": {
+          "description": "URI of the resource that the packet is forwarded to.",
+          "type": "string"
+        },
+        "target": {
+          "description": "Target type where this packet is forwarded to.",
+          "enum": [
+            "TARGET_UNSPECIFIED",
+            "PEERING_VPC",
+            "VPN_GATEWAY",
+            "INTERCONNECT",
+            "GKE_MASTER",
+            "IMPORTED_CUSTOM_ROUTE_NEXT_HOP"
+          ],
+          "enumDescriptions": [
+            "Target not specified.",
+            "Forwarded to a VPC peering network.",
+            "Forwarded to a Cloud VPN gateway.",
+            "Forwarded to an Cloud Interconnect connection.",
+            "Forwarded to a Google Kubernetes Engine Container cluster master.",
+            "Forwarded to the next hop of a custom route imported from a peering VPC."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ForwardingRuleInfo": {
+      "description": "For display only. Metadata associated with a Compute Engine forwarding rule.",
+      "id": "ForwardingRuleInfo",
+      "properties": {
+        "displayName": {
+          "description": "Name of a Compute Engine forwarding rule.",
+          "type": "string"
+        },
+        "matchedPortRange": {
+          "description": "Port range defined in the forwarding rule that matches the test.",
+          "type": "string"
+        },
+        "matchedProtocol": {
+          "description": "Protocol defined in the forwarding rule that matches the test.",
+          "type": "string"
+        },
+        "networkUri": {
+          "description": "Network URI. Only valid for Internal Load Balancer.",
+          "type": "string"
+        },
+        "target": {
+          "description": "Target type of the forwarding rule.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of a Compute Engine forwarding rule.",
+          "type": "string"
+        },
+        "vip": {
+          "description": "VIP of the forwarding rule.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceInfo": {
+      "description": "For display only. Metadata associated with a Compute Engine instance.",
+      "id": "InstanceInfo",
+      "properties": {
+        "displayName": {
+          "description": "Name of a Compute Engine instance.",
+          "type": "string"
+        },
+        "externalIp": {
+          "description": "External IP address of the network interface.",
+          "type": "string"
+        },
+        "interface": {
+          "description": "Name of the network interface of a Compute Engine instance.",
+          "type": "string"
+        },
+        "internalIp": {
+          "description": "Internal IP address of the network interface.",
+          "type": "string"
+        },
+        "networkTags": {
+          "description": "Network tags configured on the instance.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "networkUri": {
+          "description": "URI of a Compute Engine network.",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Service account authorized for the instance.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of a Compute Engine instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListConnectivityTestsResponse": {
+      "description": "Response for the `ListConnectivityTests` method.",
+      "id": "ListConnectivityTestsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Page token to fetch the next set of Connectivity Tests.",
+          "type": "string"
+        },
+        "resources": {
+          "description": "List of Connectivity Tests.",
+          "items": {
+            "$ref": "ConnectivityTest"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached (when querying all locations with `-`).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListLocationsResponse": {
+      "description": "The response message for Locations.ListLocations.",
+      "id": "ListLocationsResponse",
+      "properties": {
+        "locations": {
+          "description": "A list of locations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "Location"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListOperationsResponse": {
+      "description": "The response message for Operations.ListOperations.",
+      "id": "ListOperationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        },
+        "operations": {
+          "description": "A list of operations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LoadBalancerBackend": {
+      "description": "For display only. Metadata associated with a specific load balancer backend.",
+      "id": "LoadBalancerBackend",
+      "properties": {
+        "displayName": {
+          "description": "Name of a Compute Engine instance or network endpoint.",
+          "type": "string"
+        },
+        "healthCheckAllowingFirewallRules": {
+          "description": "A list of firewall rule URIs allowing probes from health check IP ranges.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "healthCheckBlockingFirewallRules": {
+          "description": "A list of firewall rule URIs blocking probes from health check IP ranges.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "healthCheckFirewallState": {
+          "description": "State of the health check firewall configuration.",
+          "enum": [
+            "HEALTH_CHECK_FIREWALL_STATE_UNSPECIFIED",
+            "CONFIGURED",
+            "MISCONFIGURED"
+          ],
+          "enumDescriptions": [
+            "State is unspecified. Default state if not populated.",
+            "There are configured firewall rules to allow health check probes to the\nbackend.",
+            "There are firewall rules configured to allow partial health check ranges\nor block all health check ranges.\nIf a health check probe is sent from denied IP ranges,\nthe health check to the backend will fail. Then, the backend will be\nmarked unhealthy and will not receive traffic sent to the load balancer."
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of a Compute Engine instance or network endpoint.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LoadBalancerInfo": {
+      "description": "For display only. Metadata associated with a load balancer.",
+      "id": "LoadBalancerInfo",
+      "properties": {
+        "backendType": {
+          "description": "Type of load balancer's backend configuration.",
+          "enum": [
+            "BACKEND_TYPE_UNSPECIFIED",
+            "BACKEND_SERVICE",
+            "TARGET_POOL"
+          ],
+          "enumDescriptions": [
+            "Type is unspecified.",
+            "Backend Service as the load balancer's backend.",
+            "Target Pool as the load balancer's backend."
+          ],
+          "type": "string"
+        },
+        "backendUri": {
+          "description": "Backend configuration URI.",
+          "type": "string"
+        },
+        "backends": {
+          "description": "Information for the loadbalancer backends.",
+          "items": {
+            "$ref": "LoadBalancerBackend"
+          },
+          "type": "array"
+        },
+        "healthCheckUri": {
+          "description": "URI of the health check for the load balancer.",
+          "type": "string"
+        },
+        "loadBalancerType": {
+          "description": "Type of the load balancer.",
+          "enum": [
+            "LOAD_BALANCER_TYPE_UNSPECIFIED",
+            "INTERNAL_TCP_UDP",
+            "NETWORK_TCP_UDP",
+            "HTTP_PROXY",
+            "TCP_PROXY",
+            "SSL_PROXY"
+          ],
+          "enumDescriptions": [
+            "Type is unspecified.",
+            "Internal TCP/UDP load balancer.",
+            "Network TCP/UDP load balancer.",
+            "HTTP(S) proxy load balancer.",
+            "TCP proxy load balancer.",
+            "SSL proxy load balancer."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Location": {
+      "description": "A resource that represents Google Cloud Platform location.",
+      "id": "Location",
+      "properties": {
+        "displayName": {
+          "description": "The friendly name for this location, typically a nearby city name.\nFor example, \"Tokyo\".",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Cross-service attributes for the location. For example\n\n    {\"cloud.googleapis.com/region\": \"us-east1\"}",
+          "type": "object"
+        },
+        "locationId": {
+          "description": "The canonical id for this location. For example: `\"us-east1\"`.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata. For example the available capacity at the given\nlocation.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Resource name for the location, which may vary between implementations.\nFor example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NetworkInfo": {
+      "description": "For display only. Metadata associated with a Compute Engine network.",
+      "id": "NetworkInfo",
+      "properties": {
+        "displayName": {
+          "description": "Name of a Compute Engine network.",
+          "type": "string"
+        },
+        "matchedIpRange": {
+          "description": "The IP range that matches the test.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of a Compute Engine network.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Operation": {
+      "description": "This resource represents a long-running operation that is the result of a\nnetwork API call.",
+      "id": "Operation",
+      "properties": {
+        "done": {
+          "description": "If the value is `false`, it means the operation is still in progress.\nIf `true`, the operation is completed, and either `error` or `response` is\navailable.",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "The error result of the operation in case of failure or cancellation."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata associated with the operation.  It typically\ncontains progress information and common metadata such as create time.\nSome services might not provide such metadata.  Any method that returns a\nlong-running operation should document the metadata type, if any.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The server-assigned name, which is only unique within the same service that\noriginally returns it. If you use the default HTTP mapping, the\n`name` should be a resource name ending with `operations/{unique_id}`.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The normal response of the operation in case of success.  If the original\nmethod returns no data on success, such as `Delete`, the response is\n`google.protobuf.Empty`.  If the original method is standard\n`Get`/`Create`/`Update`, the response should be the resource.  For other\nmethods, the response should have the type `XxxResponse`, where `Xxx`\nis the original method name.  For example, if the original method name\nis `TakeSnapshot()`, the inferred response type is\n`TakeSnapshotResponse`.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "OperationMetadata": {
+      "description": "Metadata describing an Operation",
+      "id": "OperationMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "API version.",
+          "type": "string"
+        },
+        "cancelRequested": {
+          "description": "Specifies if cancellation was requested for the operation.",
+          "type": "boolean"
+        },
+        "createTime": {
+          "description": "The time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the operation finished running.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "statusDetail": {
+          "description": "Human-readable status of the operation, if any.",
+          "type": "string"
+        },
+        "target": {
+          "description": "Target of the operation - for example\nprojects/project-1/locations/global/connectivityTests/test-1",
+          "type": "string"
+        },
+        "verb": {
+          "description": "Name of the verb executed by the operation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Policy": {
+      "description": "An Identity and Access Management (IAM) policy, which specifies access\ncontrols for Google Cloud resources.\n\n\nA `Policy` is a collection of `bindings`. A `binding` binds one or more\n`members` to a single `role`. Members can be user accounts, service accounts,\nGoogle groups, and domains (such as G Suite). A `role` is a named list of\npermissions; each `role` can be an IAM predefined role or a user-created\ncustom role.\n\nFor some types of Google Cloud resources, a `binding` can also specify a\n`condition`, which is a logical expression that allows access to a resource\nonly if the expression evaluates to `true`. A condition can add constraints\nbased on attributes of the request, the resource, or both. To learn which\nresources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).\n\n**JSON example:**\n\n    {\n      \"bindings\": [\n        {\n          \"role\": \"roles/resourcemanager.organizationAdmin\",\n          \"members\": [\n            \"user:mike@example.com\",\n            \"group:admins@example.com\",\n            \"domain:google.com\",\n            \"serviceAccount:my-project-id@appspot.gserviceaccount.com\"\n          ]\n        },\n        {\n          \"role\": \"roles/resourcemanager.organizationViewer\",\n          \"members\": [\n            \"user:eve@example.com\"\n          ],\n          \"condition\": {\n            \"title\": \"expirable access\",\n            \"description\": \"Does not grant access after Sep 2020\",\n            \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\",\n          }\n        }\n      ],\n      \"etag\": \"BwWWja0YfJA=\",\n      \"version\": 3\n    }\n\n**YAML example:**\n\n    bindings:\n    - members:\n      - user:mike@example.com\n      - group:admins@example.com\n      - domain:google.com\n      - serviceAccount:my-project-id@appspot.gserviceaccount.com\n      role: roles/resourcemanager.organizationAdmin\n    - members:\n      - user:eve@example.com\n      role: roles/resourcemanager.organizationViewer\n      condition:\n        title: expirable access\n        description: Does not grant access after Sep 2020\n        expression: request.time < timestamp('2020-10-01T00:00:00.000Z')\n    - etag: BwWWja0YfJA=\n    - version: 3\n\nFor a description of IAM and its features, see the\n[IAM documentation](https://cloud.google.com/iam/docs/).",
+      "id": "Policy",
+      "properties": {
+        "auditConfigs": {
+          "description": "Specifies cloud audit logging configuration for this policy.",
+          "items": {
+            "$ref": "AuditConfig"
+          },
+          "type": "array"
+        },
+        "bindings": {
+          "description": "Associates a list of `members` to a `role`. Optionally, may specify a\n`condition` that determines how and when the `bindings` are applied. Each\nof the `bindings` must contain at least one member.",
+          "items": {
+            "$ref": "Binding"
+          },
+          "type": "array"
+        },
+        "etag": {
+          "description": "`etag` is used for optimistic concurrency control as a way to help\nprevent simultaneous updates of a policy from overwriting each other.\nIt is strongly suggested that systems make use of the `etag` in the\nread-modify-write cycle to perform policy updates in order to avoid race\nconditions: An `etag` is returned in the response to `getIamPolicy`, and\nsystems are expected to put that etag in the request to `setIamPolicy` to\nensure that their change will be applied to the same version of the policy.\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.",
+          "format": "byte",
+          "type": "string"
+        },
+        "version": {
+          "description": "Specifies the format of the policy.\n\nValid values are `0`, `1`, and `3`. Requests that specify an invalid value\nare rejected.\n\nAny operation that affects conditional role bindings must specify version\n`3`. This requirement applies to the following operations:\n\n* Getting a policy that includes a conditional role binding\n* Adding a conditional role binding to a policy\n* Changing a conditional role binding in a policy\n* Removing any role binding, with or without a condition, from a policy\n  that includes conditions\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.\n\nIf a policy does not include any conditions, operations on that policy may\nspecify any valid version or leave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReachabilityDetails": {
+      "description": "The details of reachability state from the latest run.",
+      "id": "ReachabilityDetails",
+      "properties": {
+        "error": {
+          "$ref": "Status",
+          "description": "The details of a failure or a cancellation of reachability analysis."
+        },
+        "result": {
+          "description": "The overall reachability result of the test.",
+          "enum": [
+            "RESULT_UNSPECIFIED",
+            "REACHABLE",
+            "UNREACHABLE",
+            "AMBIGUOUS",
+            "UNDETERMINED"
+          ],
+          "enumDescriptions": [
+            "Result is not specified.",
+            "Packet originating from source is expected to reach destination.",
+            "Packet originating from source is expected to be dropped before\nreaching destination.",
+            "If the source and destination endpoint does not uniquely identify\nthe test location in the network, and the reachability result contains\nmultiple traces with mixed reachable and unreachable states, then this\nresult is returned.",
+            "The reachability could not be determined. Possible reasons are:\n\n* Analysis is aborted due to permission error. User does not have read\n  permission to the projects listed in the test.\n* Analysis is aborted due to internal errors.\n* Analysis is partially complete based on configurations where the user\n  has permission.\n  The Final state indicates that the packet is forwarded to another\nnetwork where the user has no permission to access the configurations."
+          ],
+          "type": "string"
+        },
+        "traces": {
+          "description": "Result may contain a list of traces if a test has multiple possible\npaths in the network, such as when destination endpoint is a load balancer\nwith multiple backends.",
+          "items": {
+            "$ref": "Trace"
+          },
+          "type": "array"
+        },
+        "verifyTime": {
+          "description": "The time the reachability state was verified.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RerunConnectivityTestRequest": {
+      "description": "Request for the `RerunConnectivityTest` method.",
+      "id": "RerunConnectivityTestRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "RouteInfo": {
+      "description": "For display only. Metadata associated with a Compute Engine route.",
+      "id": "RouteInfo",
+      "properties": {
+        "destIpRange": {
+          "description": "Destination IP range of the route.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Name of a Compute Engine route.",
+          "type": "string"
+        },
+        "instanceTags": {
+          "description": "Instance tags of the route.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "networkUri": {
+          "description": "URI of a Compute Engine network.",
+          "type": "string"
+        },
+        "nextHop": {
+          "description": "Next hop of the route.",
+          "type": "string"
+        },
+        "nextHopType": {
+          "description": "Type of next hop.",
+          "enum": [
+            "NEXT_HOP_TYPE_UNSPECIFIED",
+            "NEXT_HOP_IP",
+            "NEXT_HOP_INSTANCE",
+            "NEXT_HOP_NETWORK",
+            "NEXT_HOP_PEERING",
+            "NEXT_HOP_INTERCONNECT",
+            "NEXT_HOP_VPN_TUNNEL",
+            "NEXT_HOP_VPN_GATEWAY",
+            "NEXT_HOP_INTERNET_GATEWAY",
+            "NEXT_HOP_BLACKHOLE",
+            "NEXT_HOP_ILB"
+          ],
+          "enumDescriptions": [
+            "Unspecified type. Default value.",
+            "Next hop is an IP address.",
+            "Next hop is a Compute Engine instance.",
+            "Next hop is a VPC network gateway.",
+            "Next hop is a peering VPC.",
+            "Next hop is an interconnect.",
+            "Next hop is a VPN tunnel.",
+            "Next hop is a VPN Gateway. This scenario only happens when tracing\nconnectivity from an on-premises network to GCP through a VPN. The\nanalysis simulates a packet departing from the on-premises network\nthrough a VPN tunnel and arrives at a Cloud VPN gateway.",
+            "Next hop is an internet gateway.",
+            "Next hop is blackhole; that is, the next hop either does not exist or is\nnot running.",
+            "Next hop is the forwarding rule of an Internal Load Balancer."
+          ],
+          "type": "string"
+        },
+        "priority": {
+          "description": "Priority of the route.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "routeType": {
+          "description": "Type of route.",
+          "enum": [
+            "ROUTE_TYPE_UNSPECIFIED",
+            "SUBNET",
+            "STATIC",
+            "DYNAMIC",
+            "PEERING_SUBNET",
+            "PEERING_STATIC",
+            "PEERING_DYNAMIC"
+          ],
+          "enumDescriptions": [
+            "Unspecified type. Default value.",
+            "Route is a subnet route automatically created by the system.",
+            "Static route created by the user including the default route to the\nInternet.",
+            "Dynamic route exchanged between BGP peers.",
+            "A subnet route received from peering network.",
+            "A static route received from peering network.",
+            "A dynamic route received from peering network."
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of a Compute Engine route.\nDynamic route from cloud router does not have a URI.\nAdvertised route from Google Cloud VPC to on-premises network also does\nnot have a URI.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SetIamPolicyRequest": {
+      "description": "Request message for `SetIamPolicy` method.",
+      "id": "SetIamPolicyRequest",
+      "properties": {
+        "policy": {
+          "$ref": "Policy",
+          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of\nthe policy is limited to a few 10s of KB. An empty policy is a\nvalid policy but certain Cloud Platform services (such as Projects)\nmight reject them."
+        },
+        "updateMask": {
+          "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only\nthe fields in the mask will be modified. If no mask is provided, the\nfollowing default mask is used:\n\n`paths: \"bindings, etag\"`",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Status": {
+      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "Status",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\ngoogle.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Step": {
+      "description": "A simulated forwarding path is composed of multiple steps.\nEach step has a well-defined state and an associated configuration.",
+      "id": "Step",
+      "properties": {
+        "abort": {
+          "$ref": "AbortInfo",
+          "description": "Display info of the final state \"abort\" and reason."
+        },
+        "causesDrop": {
+          "description": "This is a step that leads to the final state Drop.",
+          "type": "boolean"
+        },
+        "deliver": {
+          "$ref": "DeliverInfo",
+          "description": "Display info of the final state \"deliver\" and reason."
+        },
+        "description": {
+          "description": "A description of the step. Usually this is a summary of the state.",
+          "type": "string"
+        },
+        "drop": {
+          "$ref": "DropInfo",
+          "description": "Display info of the final state \"drop\" and reason."
+        },
+        "endpoint": {
+          "$ref": "EndpointInfo",
+          "description": "Display info of the source and destination under analysis.\nThe endpiont info in an intermediate state may differ with the\ninitial input, as it might be modified by state like NAT,\nor Connection Proxy."
+        },
+        "firewall": {
+          "$ref": "FirewallInfo",
+          "description": "Display info of a Compute Engine firewall rule."
+        },
+        "forward": {
+          "$ref": "ForwardInfo",
+          "description": "Display info of the final state \"forward\" and reason."
+        },
+        "forwardingRule": {
+          "$ref": "ForwardingRuleInfo",
+          "description": "Display info of a Compute Engine forwarding rule."
+        },
+        "instance": {
+          "$ref": "InstanceInfo",
+          "description": "Display info of a Compute Engine instance."
+        },
+        "loadBalancer": {
+          "$ref": "LoadBalancerInfo",
+          "description": "Display info of the load balancers."
+        },
+        "network": {
+          "$ref": "NetworkInfo",
+          "description": "Display info of a GCP network."
+        },
+        "projectId": {
+          "description": "Project ID that contains the configuration this step is validating.",
+          "type": "string"
+        },
+        "route": {
+          "$ref": "RouteInfo",
+          "description": "Display info of a Compute Engine route."
+        },
+        "state": {
+          "description": "Each step is in one of the pre-defined states.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "START_FROM_INSTANCE",
+            "START_FROM_INTERNET",
+            "START_FROM_PRIVATE_NETWORK",
+            "APPLY_INGRESS_FIREWALL_RULE",
+            "APPLY_EGRESS_FIREWALL_RULE",
+            "APPLY_ROUTE",
+            "APPLY_FORWARDING_RULE",
+            "SPOOFING_APPROVED",
+            "ARRIVE_AT_INSTANCE",
+            "ARRIVE_AT_INTERNAL_LOAD_BALANCER",
+            "ARRIVE_AT_EXTERNAL_LOAD_BALANCER",
+            "ARRIVE_AT_VPN_GATEWAY",
+            "ARRIVE_AT_VPN_TUNNEL",
+            "NAT",
+            "PROXY_CONNECTION",
+            "DELIVER",
+            "DROP",
+            "FORWARD",
+            "ABORT",
+            "VIEWER_PERMISSION_MISSING"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Initial state: packet originating from a Compute Engine instance.\nAn InstanceInfo will be populated with starting instance info.",
+            "Initial state: packet originating from Internet.\nThe endpoint info will be populated.",
+            "Initial state: packet originating from a VPC or on-premises network\nwith internal source IP.\nIf the source is a VPC network visible to the user, a NetworkInfo\nwill be populated with details of the network.",
+            "Config checking state: verify ingress firewall rule.",
+            "Config checking state: verify egress firewall rule.",
+            "Config checking state: verify route.",
+            "Config checking state: match forwarding rule.",
+            "Config checking state: packet sent or received under foreign IP\naddress and allowed.",
+            "Forwarding state: arriving at a Compute Engine instance.",
+            "Forwarding state: arriving at a Compute Engine internal load balancer.",
+            "Forwarding state: arriving at a Compute Engine external load balancer.",
+            "Forwarding state: arriving at a Cloud VPN gateway.",
+            "Forwarding state: arriving at a Cloud VPN tunnel.",
+            "Transition state: packet header translated.",
+            "Transition state: original connection is terminated and a new proxied\nconnection is initiated.",
+            "Final state: packet delivered.",
+            "Final state: packet dropped.",
+            "Final state: packet forwarded to a network with an unknown configuration.",
+            "Final state: analysis is aborted.",
+            "Special state: viewer of the test result does not have permission to\nsee the configuration in this step."
+          ],
+          "type": "string"
+        },
+        "vpnGateway": {
+          "$ref": "VpnGatewayInfo",
+          "description": "Display info of a Compute Engine VPN gateway."
+        },
+        "vpnTunnel": {
+          "$ref": "VpnTunnelInfo",
+          "description": "Display info of a Compute Engine VPN tunnel."
+        }
+      },
+      "type": "object"
+    },
+    "TestIamPermissionsRequest": {
+      "description": "Request message for `TestIamPermissions` method.",
+      "id": "TestIamPermissionsRequest",
+      "properties": {
+        "permissions": {
+          "description": "The set of permissions to check for the `resource`. Permissions with\nwildcards (such as '*' or 'storage.*') are not allowed. For more\ninformation see\n[IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TestIamPermissionsResponse": {
+      "description": "Response message for `TestIamPermissions` method.",
+      "id": "TestIamPermissionsResponse",
+      "properties": {
+        "permissions": {
+          "description": "A subset of `TestPermissionsRequest.permissions` that the caller is\nallowed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Trace": {
+      "description": "Trace represents one simulated packet forwarding path.\n<ul>\n  <li>Each trace contains multiple ordered steps.</li>\n  <li>Each step is in a particular state and has an associated\n  configuration.</li> <li>State is categorized as a final or non-final\n  state.</li> <li>Each final state has a reason associated with it.</li>\n  <li>Each trace must end with a final state (the last step).</li>\n</ul>\n<pre><code>\n  |---------------------Trace----------------------|\n  Step1(State) Step2(State) ---  StepN(State(final))\n</code></pre>",
+      "id": "Trace",
+      "properties": {
+        "endpointInfo": {
+          "$ref": "EndpointInfo",
+          "description": "Derived from the source and destination endpoints definition, and validated\nby the data plane model.\nIf there are multiple traces starting from different source locations, then\nthe endpoint_info may be different between traces."
+        },
+        "steps": {
+          "description": "A trace of a test contains multiple steps from the initial state to the\nfinal state (delivered, dropped, forwarded, or aborted).\n\nThe steps are ordered by the processing sequence within the simulated\nnetwork state machine. It is critical to preserve the order of the steps\nand avoid reordering or sorting them.",
+          "items": {
+            "$ref": "Step"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VpnGatewayInfo": {
+      "description": "For display only. Metadata associated with a Compute Engine VPN gateway.",
+      "id": "VpnGatewayInfo",
+      "properties": {
+        "displayName": {
+          "description": "Name of a VPN gateway.",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "IP address of the VPN gateway.",
+          "type": "string"
+        },
+        "networkUri": {
+          "description": "URI of a Compute Engine network where the VPN gateway is configured.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Name of a GCP region where this VPN gateway is configured.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of a VPN gateway.",
+          "type": "string"
+        },
+        "vpnTunnelUri": {
+          "description": "A VPN tunnel that is associated with this VPN gateway.\nThere may be multiple VPN tunnels configured on a VPN gateway, and only\nthe one relevant to the test is displayed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VpnTunnelInfo": {
+      "description": "For display only. Metadata associated with a Compute Engine VPN tunnel.",
+      "id": "VpnTunnelInfo",
+      "properties": {
+        "displayName": {
+          "description": "Name of a VPN tunnel.",
+          "type": "string"
+        },
+        "networkUri": {
+          "description": "URI of a Compute Engine network where the VPN tunnel is configured.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Name of a GCP region where this VPN tunnel is configured.",
+          "type": "string"
+        },
+        "remoteGateway": {
+          "description": "URI of a VPN gateway at remote end of the tunnel.",
+          "type": "string"
+        },
+        "remoteGatewayIp": {
+          "description": "Remote VPN gateway's IP address.",
+          "type": "string"
+        },
+        "routingType": {
+          "description": "Type of the routing policy.",
+          "enum": [
+            "ROUTING_TYPE_UNSPECIFIED",
+            "ROUTE_BASED",
+            "POLICY_BASED",
+            "DYNAMIC"
+          ],
+          "enumDescriptions": [
+            "Unspecified type. Default value.",
+            "Route based VPN.",
+            "Policy based routing.",
+            "Dynamic (BGP) routing."
+          ],
+          "type": "string"
+        },
+        "sourceGateway": {
+          "description": "URI of the VPN gateway at local end of the tunnel.",
+          "type": "string"
+        },
+        "sourceGatewayIp": {
+          "description": "Local VPN gateway's IP address.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of a VPN tunnel.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Network Management API",
+  "version": "v1beta1",
+  "version_module": true
+}
