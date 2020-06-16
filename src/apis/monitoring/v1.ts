@@ -457,6 +457,19 @@ export namespace monitoring_v1 {
     sparkChartType?: string | null;
   }
   /**
+   * A filter that ranks streams based on their statistical relation to other streams in a request. Note: This field is deprecated and completely ignored by the API.
+   */
+  export interface Schema$StatisticalTimeSeriesFilter {
+    /**
+     * How many time series to output.
+     */
+    numTimeSeries?: number | null;
+    /**
+     * rankingMethod is applied to a set of time series, and then the produced value for each individual time series is used to compare a given time series to others. These are methods that cannot be applied stream-by-stream, but rather require the full context of a request to evaluate time series.
+     */
+    rankingMethod?: string | null;
+  }
+  /**
    * A widget that displays textual content.
    */
   export interface Schema$Text {
@@ -510,6 +523,10 @@ export namespace monitoring_v1 {
      * Apply a second aggregation after aggregation is applied.
      */
     secondaryAggregation?: Schema$Aggregation;
+    /**
+     * Statistics based time series filter. Note: This field is deprecated and completely ignored by the API.
+     */
+    statisticalTimeSeriesFilter?: Schema$StatisticalTimeSeriesFilter;
   }
   /**
    * A pair of time series filters that define a ratio computation. The output time series is the pair-wise division of each aligned element from the numerator and denominator time series.
@@ -531,6 +548,10 @@ export namespace monitoring_v1 {
      * Apply a second aggregation after the ratio is computed.
      */
     secondaryAggregation?: Schema$Aggregation;
+    /**
+     * Statistics based time series filter. Note: This field is deprecated and completely ignored by the API.
+     */
+    statisticalTimeSeriesFilter?: Schema$StatisticalTimeSeriesFilter;
   }
   /**
    * TimeSeriesQuery collects the set of supported methods for querying time series data from the Stackdriver metrics API.
