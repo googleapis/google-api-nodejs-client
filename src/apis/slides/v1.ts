@@ -1070,7 +1070,7 @@ export namespace slides_v1 {
    */
   export interface Schema$PageElement {
     /**
-     * The description of the page element. Combined with title to display alt text.
+     * The description of the page element. Combined with title to display alt text.  The field is not supported for Group elements.
      */
     description?: string | null;
     /**
@@ -1106,7 +1106,7 @@ export namespace slides_v1 {
      */
     table?: Schema$Table;
     /**
-     * The title of the page element. Combined with description to display alt text.
+     * The title of the page element. Combined with description to display alt text.  The field is not supported for Group elements.
      */
     title?: string | null;
     /**
