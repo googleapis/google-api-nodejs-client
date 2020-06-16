@@ -129,15 +129,15 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$Cluster {
     /**
-     * (`CreationOnly`) The type of storage used by this cluster to serve its parent instance&#39;s tables, unless explicitly overridden.
+     * Immutable. The type of storage used by this cluster to serve its parent instance&#39;s tables, unless explicitly overridden.
      */
     defaultStorageType?: string | null;
     /**
-     * (`CreationOnly`) The location where this cluster&#39;s nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/{project}/locations/{zone}`.
+     * Immutable. The location where this cluster&#39;s nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/{project}/locations/{zone}`.
      */
     location?: string | null;
     /**
-     * Required. (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
+     * The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
      */
     name?: string | null;
     /**
@@ -145,7 +145,7 @@ export namespace bigtableadmin_v1 {
      */
     serveNodes?: number | null;
     /**
-     * (`OutputOnly`) The current state of the cluster.
+     * Output only. The current state of the cluster.
      */
     state?: string | null;
   }
@@ -238,11 +238,11 @@ export namespace bigtableadmin_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. (`OutputOnly`) The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
+     * The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
      */
     name?: string | null;
     /**
-     * (`OutputOnly`) The current state of the instance.
+     * Output only. The current state of the instance.
      */
     state?: string | null;
     /**

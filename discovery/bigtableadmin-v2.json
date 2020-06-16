@@ -458,7 +458,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. (`OutputOnly`)\nThe unique name of the instance. Values are of the form\n`projects/{project}/instances/a-z+[a-z0-9]`.",
+                  "description": "The unique name of the instance. Values are of the form\n`projects/{project}/instances/a-z+[a-z0-9]`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/instances/[^/]+$",
                   "required": true,
@@ -563,7 +563,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. (`OutputOnly`)\nThe unique name of the instance. Values are of the form\n`projects/{project}/instances/a-z+[a-z0-9]`.",
+                  "description": "The unique name of the instance. Values are of the form\n`projects/{project}/instances/a-z+[a-z0-9]`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/instances/[^/]+$",
                   "required": true,
@@ -755,7 +755,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "(`OutputOnly`)\nThe unique name of the app profile. Values are of the form\n`projects/<project>/instances/<instance>/appProfiles/_a-zA-Z0-9*`.",
+                      "description": "The unique name of the app profile. Values are of the form\n`projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/instances/[^/]+/appProfiles/[^/]+$",
                       "required": true,
@@ -933,7 +933,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. (`OutputOnly`)\nThe unique name of the cluster. Values are of the form\n`projects/{project}/instances/{instance}/clusters/a-z*`.",
+                      "description": "The unique name of the cluster. Values are of the form\n`projects/{project}/instances/{instance}/clusters/a-z*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/instances/[^/]+/clusters/[^/]+$",
                       "required": true,
@@ -1531,7 +1531,7 @@
       }
     }
   },
-  "revision": "20200415",
+  "revision": "20200512",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -1539,7 +1539,7 @@
       "id": "AppProfile",
       "properties": {
         "description": {
-          "description": "Optional long form description of the use case for this AppProfile.",
+          "description": "Long form description of the use case for this AppProfile.",
           "type": "string"
         },
         "etag": {
@@ -1551,7 +1551,7 @@
           "description": "Use a multi-cluster routing policy."
         },
         "name": {
-          "description": "(`OutputOnly`)\nThe unique name of the app profile. Values are of the form\n`projects/<project>/instances/<instance>/appProfiles/_a-zA-Z0-9*`.",
+          "description": "The unique name of the app profile. Values are of the form\n`projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.",
           "type": "string"
         },
         "singleClusterRouting": {
@@ -1615,7 +1615,7 @@
       "properties": {
         "condition": {
           "$ref": "Expr",
-          "description": "The condition that is associated with this binding.\nNOTE: An unsatisfied condition will not allow user access via current\nbinding. Different bindings, including their conditions, are examined\nindependently."
+          "description": "The condition that is associated with this binding.\n\nIf the condition evaluates to `true`, then this binding applies to the\ncurrent request.\n\nIf the condition evaluates to `false`, then this binding does not apply to\nthe current request. However, a different role binding might grant the same\nrole to one or more of the members in this binding.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
           "description": "Specifies the identities requesting access for a Cloud Platform resource.\n`members` can have the following values:\n\n* `allUsers`: A special identifier that represents anyone who is\n   on the internet; with or without a Google account.\n\n* `allAuthenticatedUsers`: A special identifier that represents anyone\n   who is authenticated with a Google account or a service account.\n\n* `user:{emailid}`: An email address that represents a specific Google\n   account. For example, `alice@example.com` .\n\n\n* `serviceAccount:{emailid}`: An email address that represents a service\n   account. For example, `my-other-app@appspot.gserviceaccount.com`.\n\n* `group:{emailid}`: An email address that represents a Google group.\n   For example, `admins@example.com`.\n\n* `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a user that has been recently deleted. For\n   example, `alice@example.com?uid=123456789012345678901`. If the user is\n   recovered, this value reverts to `user:{emailid}` and the recovered user\n   retains the role in the binding.\n\n* `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus\n   unique identifier) representing a service account that has been recently\n   deleted. For example,\n   `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.\n   If the service account is undeleted, this value reverts to\n   `serviceAccount:{emailid}` and the undeleted service account retains the\n   role in the binding.\n\n* `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a Google group that has been recently\n   deleted. For example, `admins@example.com?uid=123456789012345678901`. If\n   the group is recovered, this value reverts to `group:{emailid}` and the\n   recovered group retains the role in the binding.\n\n\n* `domain:{domain}`: The G Suite domain (primary) that represents all the\n   users of that domain. For example, `google.com` or `example.com`.\n\n",
@@ -1658,7 +1658,7 @@
       "id": "Cluster",
       "properties": {
         "defaultStorageType": {
-          "description": "(`CreationOnly`)\nThe type of storage used by this cluster to serve its\nparent instance's tables, unless explicitly overridden.",
+          "description": "Immutable. The type of storage used by this cluster to serve its\nparent instance's tables, unless explicitly overridden.",
           "enum": [
             "STORAGE_TYPE_UNSPECIFIED",
             "SSD",
@@ -1672,11 +1672,11 @@
           "type": "string"
         },
         "location": {
-          "description": "(`CreationOnly`)\nThe location where this cluster's nodes and storage reside. For best\nperformance, clients should be located as close as possible to this\ncluster. Currently only zones are supported, so values should be of the\nform `projects/{project}/locations/{zone}`.",
+          "description": "Immutable. The location where this cluster's nodes and storage reside. For best\nperformance, clients should be located as close as possible to this\ncluster. Currently only zones are supported, so values should be of the\nform `projects/{project}/locations/{zone}`.",
           "type": "string"
         },
         "name": {
-          "description": "Required. (`OutputOnly`)\nThe unique name of the cluster. Values are of the form\n`projects/{project}/instances/{instance}/clusters/a-z*`.",
+          "description": "The unique name of the cluster. Values are of the form\n`projects/{project}/instances/{instance}/clusters/a-z*`.",
           "type": "string"
         },
         "serveNodes": {
@@ -1685,7 +1685,7 @@
           "type": "integer"
         },
         "state": {
-          "description": "(`OutputOnly`)\nThe current state of the cluster.",
+          "description": "Output only. The current state of the cluster.",
           "enum": [
             "STATE_NOT_KNOWN",
             "READY",
@@ -1960,7 +1960,7 @@
       "id": "GetPolicyOptions",
       "properties": {
         "requestedPolicyVersion": {
-          "description": "Optional. The policy format version to be returned.\n\nValid values are 0, 1, and 3. Requests specifying an invalid value will be\nrejected.\n\nRequests for policies with any conditional bindings must specify version 3.\nPolicies without any conditional bindings may specify any valid value or\nleave the field unset.",
+          "description": "Optional. The policy format version to be returned.\n\nValid values are 0, 1, and 3. Requests specifying an invalid value will be\nrejected.\n\nRequests for policies with any conditional bindings must specify version 3.\nPolicies without any conditional bindings may specify any valid value or\nleave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
         }
@@ -1983,11 +1983,11 @@
           "type": "object"
         },
         "name": {
-          "description": "Required. (`OutputOnly`)\nThe unique name of the instance. Values are of the form\n`projects/{project}/instances/a-z+[a-z0-9]`.",
+          "description": "The unique name of the instance. Values are of the form\n`projects/{project}/instances/a-z+[a-z0-9]`.",
           "type": "string"
         },
         "state": {
-          "description": "(`OutputOnly`)\nThe current state of the instance.",
+          "description": "Output only. The current state of the instance.",
           "enum": [
             "STATE_NOT_KNOWN",
             "READY",
@@ -2289,7 +2289,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access\ncontrols for Google Cloud resources.\n\n\nA `Policy` is a collection of `bindings`. A `binding` binds one or more\n`members` to a single `role`. Members can be user accounts, service accounts,\nGoogle groups, and domains (such as G Suite). A `role` is a named list of\npermissions; each `role` can be an IAM predefined role or a user-created\ncustom role.\n\nOptionally, a `binding` can specify a `condition`, which is a logical\nexpression that allows access to a resource only if the expression evaluates\nto `true`. A condition can add constraints based on attributes of the\nrequest, the resource, or both.\n\n**JSON example:**\n\n    {\n      \"bindings\": [\n        {\n          \"role\": \"roles/resourcemanager.organizationAdmin\",\n          \"members\": [\n            \"user:mike@example.com\",\n            \"group:admins@example.com\",\n            \"domain:google.com\",\n            \"serviceAccount:my-project-id@appspot.gserviceaccount.com\"\n          ]\n        },\n        {\n          \"role\": \"roles/resourcemanager.organizationViewer\",\n          \"members\": [\"user:eve@example.com\"],\n          \"condition\": {\n            \"title\": \"expirable access\",\n            \"description\": \"Does not grant access after Sep 2020\",\n            \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\",\n          }\n        }\n      ],\n      \"etag\": \"BwWWja0YfJA=\",\n      \"version\": 3\n    }\n\n**YAML example:**\n\n    bindings:\n    - members:\n      - user:mike@example.com\n      - group:admins@example.com\n      - domain:google.com\n      - serviceAccount:my-project-id@appspot.gserviceaccount.com\n      role: roles/resourcemanager.organizationAdmin\n    - members:\n      - user:eve@example.com\n      role: roles/resourcemanager.organizationViewer\n      condition:\n        title: expirable access\n        description: Does not grant access after Sep 2020\n        expression: request.time < timestamp('2020-10-01T00:00:00.000Z')\n    - etag: BwWWja0YfJA=\n    - version: 3\n\nFor a description of IAM and its features, see the\n[IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access\ncontrols for Google Cloud resources.\n\n\nA `Policy` is a collection of `bindings`. A `binding` binds one or more\n`members` to a single `role`. Members can be user accounts, service accounts,\nGoogle groups, and domains (such as G Suite). A `role` is a named list of\npermissions; each `role` can be an IAM predefined role or a user-created\ncustom role.\n\nFor some types of Google Cloud resources, a `binding` can also specify a\n`condition`, which is a logical expression that allows access to a resource\nonly if the expression evaluates to `true`. A condition can add constraints\nbased on attributes of the request, the resource, or both. To learn which\nresources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).\n\n**JSON example:**\n\n    {\n      \"bindings\": [\n        {\n          \"role\": \"roles/resourcemanager.organizationAdmin\",\n          \"members\": [\n            \"user:mike@example.com\",\n            \"group:admins@example.com\",\n            \"domain:google.com\",\n            \"serviceAccount:my-project-id@appspot.gserviceaccount.com\"\n          ]\n        },\n        {\n          \"role\": \"roles/resourcemanager.organizationViewer\",\n          \"members\": [\n            \"user:eve@example.com\"\n          ],\n          \"condition\": {\n            \"title\": \"expirable access\",\n            \"description\": \"Does not grant access after Sep 2020\",\n            \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\",\n          }\n        }\n      ],\n      \"etag\": \"BwWWja0YfJA=\",\n      \"version\": 3\n    }\n\n**YAML example:**\n\n    bindings:\n    - members:\n      - user:mike@example.com\n      - group:admins@example.com\n      - domain:google.com\n      - serviceAccount:my-project-id@appspot.gserviceaccount.com\n      role: roles/resourcemanager.organizationAdmin\n    - members:\n      - user:eve@example.com\n      role: roles/resourcemanager.organizationViewer\n      condition:\n        title: expirable access\n        description: Does not grant access after Sep 2020\n        expression: request.time < timestamp('2020-10-01T00:00:00.000Z')\n    - etag: BwWWja0YfJA=\n    - version: 3\n\nFor a description of IAM and its features, see the\n[IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -2312,7 +2312,7 @@
           "type": "string"
         },
         "version": {
-          "description": "Specifies the format of the policy.\n\nValid values are `0`, `1`, and `3`. Requests that specify an invalid value\nare rejected.\n\nAny operation that affects conditional role bindings must specify version\n`3`. This requirement applies to the following operations:\n\n* Getting a policy that includes a conditional role binding\n* Adding a conditional role binding to a policy\n* Changing a conditional role binding in a policy\n* Removing any role binding, with or without a condition, from a policy\n  that includes conditions\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.\n\nIf a policy does not include any conditions, operations on that policy may\nspecify any valid version or leave the field unset.",
+          "description": "Specifies the format of the policy.\n\nValid values are `0`, `1`, and `3`. Requests that specify an invalid value\nare rejected.\n\nAny operation that affects conditional role bindings must specify version\n`3`. This requirement applies to the following operations:\n\n* Getting a policy that includes a conditional role binding\n* Adding a conditional role binding to a policy\n* Changing a conditional role binding in a policy\n* Removing any role binding, with or without a condition, from a policy\n  that includes conditions\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.\n\nIf a policy does not include any conditions, operations on that policy may\nspecify any valid version or leave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
         }
@@ -2404,11 +2404,11 @@
           "additionalProperties": {
             "$ref": "ColumnFamily"
           },
-          "description": "(`CreationOnly`)\nThe column families configured for this table, mapped by column family ID.\nViews: `SCHEMA_VIEW`, `FULL`",
+          "description": "The column families configured for this table, mapped by column family ID.\nViews: `SCHEMA_VIEW`, `FULL`",
           "type": "object"
         },
         "granularity": {
-          "description": "(`CreationOnly`)\nThe granularity (i.e. `MILLIS`) at which timestamps are stored in\nthis table. Timestamps not matching the granularity will be rejected.\nIf unspecified at creation time, the value will be set to `MILLIS`.\nViews: `SCHEMA_VIEW`, `FULL`.",
+          "description": "Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored in this\ntable. Timestamps not matching the granularity will be rejected.\nIf unspecified at creation time, the value will be set to `MILLIS`.\nViews: `SCHEMA_VIEW`, `FULL`.",
           "enum": [
             "TIMESTAMP_GRANULARITY_UNSPECIFIED",
             "MILLIS"
@@ -2420,7 +2420,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The unique name of the table. Values are of the form\n`projects/<project>/instances/<instance>/tables/_a-zA-Z0-9*`.\nViews: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`",
+          "description": "The unique name of the table. Values are of the form\n`projects/{project}/instances/{instance}/tables/_a-zA-Z0-9*`.\nViews: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`",
           "type": "string"
         }
       },
