@@ -275,7 +275,7 @@
       }
     }
   },
-  "revision": "20200502",
+  "revision": "20200612",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -896,6 +896,30 @@
       },
       "type": "object"
     },
+    "StatisticalTimeSeriesFilter": {
+      "description": "A filter that ranks streams based on their statistical relation to other streams in a request. Note: This field is deprecated and completely ignored by the API.",
+      "id": "StatisticalTimeSeriesFilter",
+      "properties": {
+        "numTimeSeries": {
+          "description": "How many time series to output.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "rankingMethod": {
+          "description": "rankingMethod is applied to a set of time series, and then the produced value for each individual time series is used to compare a given time series to others. These are methods that cannot be applied stream-by-stream, but rather require the full context of a request to evaluate time series.",
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "METHOD_CLUSTER_OUTLIER"
+          ],
+          "enumDescriptions": [
+            "Not allowed in well-formed requests.",
+            "Compute the outlier score of each stream."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Text": {
       "description": "A widget that displays textual content.",
       "id": "Text",
@@ -984,6 +1008,10 @@
         "secondaryAggregation": {
           "$ref": "Aggregation",
           "description": "Apply a second aggregation after aggregation is applied."
+        },
+        "statisticalTimeSeriesFilter": {
+          "$ref": "StatisticalTimeSeriesFilter",
+          "description": "Statistics based time series filter. Note: This field is deprecated and completely ignored by the API."
         }
       },
       "type": "object"
@@ -1007,6 +1035,10 @@
         "secondaryAggregation": {
           "$ref": "Aggregation",
           "description": "Apply a second aggregation after the ratio is computed."
+        },
+        "statisticalTimeSeriesFilter": {
+          "$ref": "StatisticalTimeSeriesFilter",
+          "description": "Statistics based time series filter. Note: This field is deprecated and completely ignored by the API."
         }
       },
       "type": "object"

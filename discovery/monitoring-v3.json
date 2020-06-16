@@ -1848,7 +1848,7 @@
       }
     }
   },
-  "revision": "20200526",
+  "revision": "20200612",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3141,6 +3141,10 @@
             "$ref": "TimeSeries"
           },
           "type": "array"
+        },
+        "unit": {
+          "description": "The unit in which all time_series point values are reported. unit follows the UCUM format for units as seen in https://unitsofmeasure.org/ucum.html. If different time_series have different units (for example, because they come from different metric types, or a unit is absent), then unit will be \"{not_a_unit}\".",
+          "type": "string"
         }
       },
       "type": "object"

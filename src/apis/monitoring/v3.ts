@@ -985,6 +985,10 @@ export namespace monitoring_v3 {
      * One or more time series that match the filter included in the request.
      */
     timeSeries?: Schema$TimeSeries[];
+    /**
+     * The unit in which all time_series point values are reported. unit follows the UCUM format for units as seen in https://unitsofmeasure.org/ucum.html. If different time_series have different units (for example, because they come from different metric types, or a unit is absent), then unit will be &quot;{not_a_unit}&quot;.
+     */
+    unit?: string | null;
   }
   /**
    * The protocol for the ListUptimeCheckConfigs response.
@@ -6833,7 +6837,8 @@ export namespace monitoring_v3 {
      *   // {
      *   //   "executionErrors": [],
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "timeSeries": []
+     *   //   "timeSeries": [],
+     *   //   "unit": "my_unit"
      *   // }
      * }
      *
