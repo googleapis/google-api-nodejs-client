@@ -348,7 +348,7 @@ export namespace storagetransfer_v1 {
      */
     error?: Schema$Status;
     /**
-     * Represents the transfer operation object.
+     * Represents the transfer operation object. To request a TransferOperation object, use transferOperations.get.
      */
     metadata?: {[key: string]: any} | null;
     /**
