@@ -948,7 +948,7 @@
       }
     }
   },
-  "revision": "20200525",
+  "revision": "20200612",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1033,6 +1033,81 @@
         },
         "updateTime": {
           "description": "The time when the File was last updated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsArtifactregistryV1alpha1ErrorInfo": {
+      "description": "Error information explaining why a package was not imported.",
+      "id": "GoogleDevtoolsArtifactregistryV1alpha1ErrorInfo",
+      "properties": {
+        "error": {
+          "$ref": "Status",
+          "description": "The detailed error status."
+        },
+        "gcsSource": {
+          "$ref": "GoogleDevtoolsArtifactregistryV1alpha1GcsSource",
+          "description": "Google Cloud Storage location requested."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsArtifactregistryV1alpha1GcsSource": {
+      "description": "Google Cloud Storage location for the input content.",
+      "id": "GoogleDevtoolsArtifactregistryV1alpha1GcsSource",
+      "properties": {
+        "uris": {
+          "description": "Cloud Storage paths URI (e.g., gs://my_bucket//my_object).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsArtifactregistryV1alpha1ImportArtifactsResponse": {
+      "description": "The response message from importing artifacts.",
+      "id": "GoogleDevtoolsArtifactregistryV1alpha1ImportArtifactsResponse",
+      "properties": {
+        "errors": {
+          "description": "Detailed error info for packages that were not imported.",
+          "items": {
+            "$ref": "GoogleDevtoolsArtifactregistryV1alpha1ErrorInfo"
+          },
+          "type": "array"
+        },
+        "packages": {
+          "description": "The packages updated.",
+          "items": {
+            "$ref": "GoogleDevtoolsArtifactregistryV1alpha1Package"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsArtifactregistryV1alpha1Package": {
+      "description": "Packages are named collections of versions.",
+      "id": "GoogleDevtoolsArtifactregistryV1alpha1Package",
+      "properties": {
+        "createTime": {
+          "description": "The time when the package was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the package.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the package, for example:\n\"projects/p1/locations/us-central1/repositories/repo1/packages/pkg1\".",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The time when the package was last updated. This includes publishing a new\nversion of the package.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -1326,14 +1401,20 @@
             "FORMAT_UNSPECIFIED",
             "DOCKER",
             "MAVEN",
-            "NPM"
+            "NPM",
+            "APT"
           ],
           "enumDescriptions": [
             "Unspecified package format.",
             "Docker package format.",
             "Maven package format.",
-            "NPM package format."
+            "NPM package format.",
+            "APT package format."
           ],
+          "type": "string"
+        },
+        "kmsKeyName": {
+          "description": "The Cloud KMS resource name of the customer managed encryption key that’s\nused to encrypt the contents of the Repository. Has the form:\n`projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key`.\nThis value may not be changed after the Repository has been created.",
           "type": "string"
         },
         "labels": {

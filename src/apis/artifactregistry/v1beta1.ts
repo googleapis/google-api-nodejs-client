@@ -199,6 +199,62 @@ export namespace artifactregistry_v1beta1 {
     updateTime?: string | null;
   }
   /**
+   * Error information explaining why a package was not imported.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1alpha1ErrorInfo {
+    /**
+     * The detailed error status.
+     */
+    error?: Schema$Status;
+    /**
+     * Google Cloud Storage location requested.
+     */
+    gcsSource?: Schema$GoogleDevtoolsArtifactregistryV1alpha1GcsSource;
+  }
+  /**
+   * Google Cloud Storage location for the input content.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1alpha1GcsSource {
+    /**
+     * Cloud Storage paths URI (e.g., gs://my_bucket//my_object).
+     */
+    uris?: string[] | null;
+  }
+  /**
+   * The response message from importing artifacts.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1alpha1ImportArtifactsResponse {
+    /**
+     * Detailed error info for packages that were not imported.
+     */
+    errors?: Schema$GoogleDevtoolsArtifactregistryV1alpha1ErrorInfo[];
+    /**
+     * The packages updated.
+     */
+    packages?: Schema$GoogleDevtoolsArtifactregistryV1alpha1Package[];
+  }
+  /**
+   * Packages are named collections of versions.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1alpha1Package {
+    /**
+     * The time when the package was created.
+     */
+    createTime?: string | null;
+    /**
+     * The display name of the package.
+     */
+    displayName?: string | null;
+    /**
+     * The name of the package, for example: &quot;projects/p1/locations/us-central1/repositories/repo1/packages/pkg1&quot;.
+     */
+    name?: string | null;
+    /**
+     * The time when the package was last updated. This includes publishing a new version of the package.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * A hash of file content.
    */
   export interface Schema$Hash {
@@ -406,6 +462,10 @@ export namespace artifactregistry_v1beta1 {
      * The format of packages that are stored in the repository.
      */
     format?: string | null;
+    /**
+     * The Cloud KMS resource name of the customer managed encryption key that’s used to encrypt the contents of the Repository. Has the form: `projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key`. This value may not be changed after the Repository has been created.
+     */
+    kmsKeyName?: string | null;
     /**
      * Labels with user-defined metadata. This field may contain up to 64 entries. Label keys and values may be no longer than 63 characters. Label keys must begin with a lowercase letter and may only contain lowercase letters, numeric characters, underscores, and dashes.
      */
@@ -1206,6 +1266,7 @@ export namespace artifactregistry_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "format": "my_format",
+     *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "updateTime": "my_updateTime"
@@ -1495,6 +1556,7 @@ export namespace artifactregistry_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "format": "my_format",
+     *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime"
@@ -1937,6 +1999,7 @@ export namespace artifactregistry_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "format": "my_format",
+     *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "updateTime": "my_updateTime"
@@ -1950,6 +2013,7 @@ export namespace artifactregistry_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "format": "my_format",
+     *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime"
