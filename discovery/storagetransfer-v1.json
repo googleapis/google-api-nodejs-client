@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20200507",
+  "revision": "20200606",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AwsAccessKey": {
@@ -737,7 +737,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "Represents the transfer operation object.",
+          "description": "Represents the transfer operation object. To request a TransferOperation object, use transferOperations.get.",
           "type": "object"
         },
         "name": {
