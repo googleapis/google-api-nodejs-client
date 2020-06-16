@@ -197,7 +197,7 @@ export namespace iamcredentials_v1 {
      */
     delegates?: string[] | null;
     /**
-     * Required. The JWT payload to sign. Must be a serialized JSON object that contains a JWT Claim Set. For example: `{&quot;sub&quot;: &quot;user@example.com&quot;, &quot;iat&quot;: 313435}`  If the claim set contains an `exp` claim, it must be an integer timestamp that is not in the past and at most 12 hours in the future.
+     * Required. The JWT payload to sign. Must be a serialized JSON object that contains a JWT Claims Set. For example: `{&quot;sub&quot;: &quot;user@example.com&quot;, &quot;iat&quot;: 313435}`  If the JWT Claims Set contains an expiration time (`exp`) claim, it must be an integer timestamp that is not in the past and no more than 12 hours in the future.
      */
     payload?: string | null;
   }
