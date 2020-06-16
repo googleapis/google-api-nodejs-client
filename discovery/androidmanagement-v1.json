@@ -924,7 +924,7 @@
       }
     }
   },
-  "revision": "20200427",
+  "revision": "20200612",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1300,6 +1300,20 @@
           "description": "Number of days the policy is non-compliant before the device or work profile is blocked. To block access immediately, set to 0. blockAfterDays must be less than wipeAfterDays.",
           "format": "int32",
           "type": "integer"
+        },
+        "blockScope": {
+          "description": "Specifies the scope of this BlockAction. Only applicable to devices that are company-owned.",
+          "enum": [
+            "BLOCK_SCOPE_UNSPECIFIED",
+            "BLOCK_SCOPE_WORK_PROFILE",
+            "BLOCK_SCOPE_DEVICE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to BLOCK_SCOPE_WORK_PROFILE.",
+            "Block action is only applied to apps in the work profile. Apps in the personal profile are unaffected.",
+            "Block action is applied to the entire device, including apps in the personal profile."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1591,6 +1605,20 @@
           },
           "type": "array"
         },
+        "ownership": {
+          "description": "Ownership of the managed device.",
+          "enum": [
+            "OWNERSHIP_UNSPECIFIED",
+            "COMPANY_OWNED",
+            "PERSONALLY_OWNED"
+          ],
+          "enumDescriptions": [
+            "Ownership is unspecified.",
+            "Device is company-owned.",
+            "Device is personally-owned."
+          ],
+          "type": "string"
+        },
         "policyCompliant": {
           "description": "Whether the device is compliant with its policy.",
           "type": "boolean"
@@ -1776,6 +1804,20 @@
       "properties": {
         "additionalData": {
           "description": "Optional, arbitrary data associated with the enrollment token. This could contain, for example, the ID of an org unit the device is assigned to after enrollment. After a device enrolls with the token, this data will be exposed in the enrollment_token_data field of the Device resource. The data must be 1024 characters or less; otherwise, the creation request will fail.",
+          "type": "string"
+        },
+        "allowPersonalUsage": {
+          "description": "Controls personal usage on devices provisioned using this enrollment token.",
+          "enum": [
+            "ALLOW_PERSONAL_USAGE_UNSPECIFIED",
+            "PERSONAL_USAGE_ALLOWED",
+            "PERSONAL_USAGE_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Personal usage restriction is not specified",
+            "Personal usage is allowed",
+            "Personal usage is disallowed"
+          ],
           "type": "string"
         },
         "duration": {
@@ -2785,6 +2827,75 @@
       },
       "type": "object"
     },
+    "PersonalApplicationPolicy": {
+      "description": "Policies for apps on the personal profile of a Corporate Owned Personally Enabled device.",
+      "id": "PersonalApplicationPolicy",
+      "properties": {
+        "installType": {
+          "description": "The type of installation to perform.",
+          "enum": [
+            "INSTALL_TYPE_UNSPECIFIED",
+            "BLOCKED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. The default behavior is that all installs are allowed.",
+            "The app is blocked and can't be installed."
+          ],
+          "type": "string"
+        },
+        "packageName": {
+          "description": "The package name of the application.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PersonalUsagePolicies": {
+      "description": "Policies controlling personal usage on a Corporate Owned Personally Enabled device.",
+      "id": "PersonalUsagePolicies",
+      "properties": {
+        "accountTypesWithManagementDisabled": {
+          "description": "Account types that can't be managed by the user.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "cameraDisabled": {
+          "description": "Whether camera is disabled.",
+          "type": "boolean"
+        },
+        "maxDaysWithWorkOff": {
+          "description": "Controls how long the work profile can stay off.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "personalApplications": {
+          "description": "Policy applied to applications on the personal profile.",
+          "items": {
+            "$ref": "PersonalApplicationPolicy"
+          },
+          "type": "array"
+        },
+        "personalPlayStoreMode": {
+          "description": "Controls how apps on the personal profile are allowed or blocked.",
+          "enum": [
+            "PLAY_STORE_MODE_UNSPECIFIED",
+            "BLACKLIST"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Default behavior is to allow all installs.",
+            "All Play Store apps are available, except those whose install_type is BLOCKED in PersonalApplicationPolicy."
+          ],
+          "type": "string"
+        },
+        "screenCaptureDisabled": {
+          "description": "Whether screen capture is disabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Policy": {
       "description": "A policy resource represents a group of settings that govern the behavior of a managed device and the apps installed on it.",
       "id": "Policy",
@@ -3123,6 +3234,10 @@
           },
           "type": "array"
         },
+        "personalUsagePolicies": {
+          "$ref": "PersonalUsagePolicies",
+          "description": "Policies managing personal usage on a company-owned device."
+        },
         "playStoreMode": {
           "description": "This mode controls which apps are available to the user in the Play Store and the behavior on the device when apps are removed from the policy.",
           "enum": [
@@ -3434,6 +3549,20 @@
       "description": "A resource containing sign in details for an enterprise.",
       "id": "SigninDetail",
       "properties": {
+        "allowPersonalUsage": {
+          "description": "Controls whether personal usage is allowed on a device provisioned with this enrollment token.For company-owned devices:\nEnabling personal usage allows the user to set up a work profile on the device.\nDisabling personal usage requires the user provision the device as a fully managed device.For personally-owned devices:\nEnabling personal usage allows the user to set up a work profile on the device.\nDisabling personal usage will prevent the device from provisioning. Personal usage cannot be disabled on personally-owned device.",
+          "enum": [
+            "ALLOW_PERSONAL_USAGE_UNSPECIFIED",
+            "PERSONAL_USAGE_ALLOWED",
+            "PERSONAL_USAGE_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Personal usage restriction is not specified",
+            "Personal usage is allowed",
+            "Personal usage is disallowed"
+          ],
+          "type": "string"
+        },
         "qrCode": {
           "description": "A JSON string whose UTF-8 representation can be used to generate a QR code to enroll a device with this enrollment token. To enroll a device using NFC, the NFC record must contain a serialized java.util.Properties representation of the properties in the JSON. This is a read-only field generated by the server.",
           "type": "string"
