@@ -153,7 +153,7 @@
       }
     }
   },
-  "revision": "20200501",
+  "revision": "20200605",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AudioConfig": {
@@ -225,7 +225,7 @@
       "id": "SynthesisInput",
       "properties": {
         "ssml": {
-          "description": "The SSML document to be synthesized. The SSML document must be valid\nand well-formed. Otherwise the RPC will fail and return\ngoogle.rpc.Code.INVALID_ARGUMENT. For more information, see\n[SSML](/speech/text-to-speech/docs/ssml).",
+          "description": "The SSML document to be synthesized. The SSML document must be valid\nand well-formed. Otherwise the RPC will fail and return\ngoogle.rpc.Code.INVALID_ARGUMENT. For more information, see\n[SSML](https://cloud.google.com/text-to-speech/docs/ssml).",
           "type": "string"
         },
         "text": {
