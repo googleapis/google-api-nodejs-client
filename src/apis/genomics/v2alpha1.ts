@@ -385,6 +385,23 @@ export namespace genomics_v2alpha1 {
     code?: string | null;
   }
   /**
+   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can&#39;t be represented as JSON, such as raw binary or an HTML page.   This message can be used both in streaming and non-streaming API methods in the request as well as the response.  It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body.  Example:      message GetResourceRequest {       // A unique request id.       string request_id = 1;        // The raw HTTP body is bound to this field.       google.api.HttpBody http_body = 2;     }      service ResourceService {       rpc GetResource(GetResourceRequest) returns (google.api.HttpBody);       rpc UpdateResource(google.api.HttpBody) returns       (google.protobuf.Empty);     }  Example with streaming methods:      service CaldavService {       rpc GetCalendar(stream google.api.HttpBody)         returns (stream google.api.HttpBody);       rpc UpdateCalendar(stream google.api.HttpBody)         returns (stream google.api.HttpBody);     }  Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
+   */
+  export interface Schema$HttpBody {
+    /**
+     * The HTTP Content-Type header value specifying the content type of the body.
+     */
+    contentType?: string | null;
+    /**
+     * The HTTP request/response body as raw binary.
+     */
+    data?: string | null;
+    /**
+     * Application specific response metadata. Must be set in the first response for streaming APIs.
+     */
+    extensions?: Array<{[key: string]: any}> | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -699,6 +716,10 @@ export namespace genomics_v2alpha1 {
     exitStatus?: number | null;
   }
   /**
+   * The response to the UploadSOSReport method.
+   */
+  export interface Schema$UploadSOSReportResponse {}
+  /**
    * Carries information about a Compute Engine VM resource.
    */
   export interface Schema$VirtualMachine {
@@ -722,6 +743,10 @@ export namespace genomics_v2alpha1 {
      * The list of disks to create and attach to the VM.
      */
     disks?: Schema$Disk[];
+    /**
+     * The Compute Engine Disk Images to use as a Docker cache. The disks will be mounted into the Docker folder in a way that the images present in the cache will not need to be pulled. The digests of the cached images must match those of the tags used or the latest version will still be pulled. Only a single image is supported.
+     */
+    dockerCacheImages?: string[] | null;
     /**
      * Whether Stackdriver monitoring should be enabled on the VM.
      */
@@ -1506,7 +1531,8 @@ export namespace genomics_v2alpha1 {
      *
      *   // Do the magic
      *   const res = await genomics.projects.workers.checkIn({
-     *     // The worker id, assigned when it was created.
+     *     // The VM identity token for authenticating the VM instance.
+     *     // https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      *     id: 'projects/my-project/workers/my-worker',
      *
      *     // Request body metadata
@@ -1539,7 +1565,7 @@ export namespace genomics_v2alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id The worker id, assigned when it was created.
+     * @param {string} params.id The VM identity token for authenticating the VM instance. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      * @param {().CheckInRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1628,7 +1654,7 @@ export namespace genomics_v2alpha1 {
   export interface Params$Resource$Projects$Workers$Checkin
     extends StandardParameters {
     /**
-     * The worker id, assigned when it was created.
+     * The VM identity token for authenticating the VM instance. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      */
     id?: string;
 
@@ -1640,8 +1666,10 @@ export namespace genomics_v2alpha1 {
 
   export class Resource$Workers {
     context: APIRequestContext;
+    projects: Resource$Workers$Projects;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.projects = new Resource$Workers$Projects(this.context);
     }
 
     /**
@@ -1674,7 +1702,8 @@ export namespace genomics_v2alpha1 {
      *
      *   // Do the magic
      *   const res = await genomics.workers.checkIn({
-     *     // The worker id, assigned when it was created.
+     *     // The VM identity token for authenticating the VM instance.
+     *     // https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      *     id: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1707,7 +1736,7 @@ export namespace genomics_v2alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id The worker id, assigned when it was created.
+     * @param {string} params.id The VM identity token for authenticating the VM instance. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      * @param {().CheckInRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1794,7 +1823,7 @@ export namespace genomics_v2alpha1 {
 
   export interface Params$Resource$Workers$Checkin extends StandardParameters {
     /**
-     * The worker id, assigned when it was created.
+     * The VM identity token for authenticating the VM instance. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      */
     id?: string;
 
@@ -1802,5 +1831,185 @@ export namespace genomics_v2alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$CheckInRequest;
+  }
+
+  export class Resource$Workers$Projects {
+    context: APIRequestContext;
+    workers: Resource$Workers$Projects$Workers;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.workers = new Resource$Workers$Projects$Workers(this.context);
+    }
+  }
+
+  export class Resource$Workers$Projects$Workers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * genomics.workers.projects.workers.uploadSosReport
+     * @desc The worker uses this method to upload SOS reports for unexpected errors.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/genomics.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const genomics = google.genomics('v2alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/genomics',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await genomics.workers.projects.workers.uploadSosReport({
+     *     // The VM identity token for authenticating the VM instance.
+     *     // https://cloud.google.com/compute/docs/instances/verifying-instance-identity
+     *     id: 'projects/my-project/workers/my-worker',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentType": "my_contentType",
+     *       //   "data": "my_data",
+     *       //   "extensions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias genomics.workers.projects.workers.uploadSosReport
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.id The VM identity token for authenticating the VM instance. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
+     * @param {().HttpBody} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    uploadSosReport(
+      params: Params$Resource$Workers$Projects$Workers$Uploadsosreport,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    uploadSosReport(
+      params?: Params$Resource$Workers$Projects$Workers$Uploadsosreport,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadSOSReportResponse>;
+    uploadSosReport(
+      params: Params$Resource$Workers$Projects$Workers$Uploadsosreport,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    uploadSosReport(
+      params: Params$Resource$Workers$Projects$Workers$Uploadsosreport,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadSOSReportResponse>,
+      callback: BodyResponseCallback<Schema$UploadSOSReportResponse>
+    ): void;
+    uploadSosReport(
+      params: Params$Resource$Workers$Projects$Workers$Uploadsosreport,
+      callback: BodyResponseCallback<Schema$UploadSOSReportResponse>
+    ): void;
+    uploadSosReport(
+      callback: BodyResponseCallback<Schema$UploadSOSReportResponse>
+    ): void;
+    uploadSosReport(
+      paramsOrCallback?:
+        | Params$Resource$Workers$Projects$Workers$Uploadsosreport
+        | BodyResponseCallback<Schema$UploadSOSReportResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadSOSReportResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadSOSReportResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UploadSOSReportResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Workers$Projects$Workers$Uploadsosreport;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Workers$Projects$Workers$Uploadsosreport;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha1/workers/{+id}:uploadSosReport').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadSOSReportResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadSOSReportResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Workers$Projects$Workers$Uploadsosreport
+    extends StandardParameters {
+    /**
+     * The VM identity token for authenticating the VM instance. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
+     */
+    id?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
   }
 }
