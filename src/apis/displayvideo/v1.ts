@@ -57,10 +57,6 @@ export namespace displayvideo_v1 {
      */
     '$.xgafv'?: string;
     /**
-     * OAuth access token.
-     */
-    access_token?: string;
-    /**
      * Data format for response.
      */
     alt?: string;
@@ -76,10 +72,6 @@ export namespace displayvideo_v1 {
      * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
-    /**
-     * OAuth 2.0 token for the current user.
-     */
-    oauth_token?: string;
     /**
      * Returns response with indentations and line breaks.
      */
@@ -1358,7 +1350,7 @@ export namespace displayvideo_v1 {
      */
     jsTrackerUrl?: string | null;
     /**
-     * Output only. The IDs of the line items this creative associated with.  To associate a creative to a line item, use LineItem.creative_ids instead.
+     * Output only. The IDs of the line items this creative is associated with.  To associate a creative to a line item, use LineItem.creative_ids instead.
      */
     lineItemIds?: string[] | null;
     /**
@@ -5982,7 +5974,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.advertisers.channels.get
-     * @desc Gets a channel for a partner or advertiser.
+     * @desc Updates an existing inventory source. Returns the updated inventory source if successful. Gets a channel for a partner or advertiser.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -19284,7 +19276,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.partners.channels.get
-     * @desc Gets a channel for a partner or advertiser.
+     * @desc Updates an existing inventory source. Returns the updated inventory source if successful. Gets a channel for a partner or advertiser.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

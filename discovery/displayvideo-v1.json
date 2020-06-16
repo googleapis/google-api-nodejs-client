@@ -43,11 +43,6 @@
       "location": "query",
       "type": "string"
     },
-    "access_token": {
-      "description": "OAuth access token.",
-      "location": "query",
-      "type": "string"
-    },
     "alt": {
       "default": "json",
       "description": "Data format for response.",
@@ -76,11 +71,6 @@
     },
     "key": {
       "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
-      "location": "query",
-      "type": "string"
-    },
-    "oauth_token": {
-      "description": "OAuth 2.0 token for the current user.",
       "location": "query",
       "type": "string"
     },
@@ -578,7 +568,7 @@
         "channels": {
           "methods": {
             "get": {
-              "description": "Gets a channel for a partner or advertiser.",
+              "description": "Updates an existing inventory source.\nReturns the updated inventory source if successful.\nGets a channel for a partner or advertiser.",
               "flatPath": "v1/advertisers/{advertisersId}/channels/{channelsId}",
               "httpMethod": "GET",
               "id": "displayvideo.advertisers.channels.get",
@@ -3953,7 +3943,7 @@
         "channels": {
           "methods": {
             "get": {
-              "description": "Gets a channel for a partner or advertiser.",
+              "description": "Updates an existing inventory source.\nReturns the updated inventory source if successful.\nGets a channel for a partner or advertiser.",
               "flatPath": "v1/partners/{partnersId}/channels/{channelsId}",
               "httpMethod": "GET",
               "id": "displayvideo.partners.channels.get",
@@ -4529,7 +4519,7 @@
       }
     }
   },
-  "revision": "20200602",
+  "revision": "20200611",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -6624,7 +6614,7 @@
           "type": "string"
         },
         "lineItemIds": {
-          "description": "Output only. The IDs of the line items this creative associated with.\n\nTo associate a creative to a line item, use\nLineItem.creative_ids instead.",
+          "description": "Output only. The IDs of the line items this creative is associated with.\n\nTo associate a creative to a line item, use\nLineItem.creative_ids instead.",
           "items": {
             "format": "int64",
             "type": "string"
