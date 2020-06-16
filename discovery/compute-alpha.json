@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/C6naPwndpbeXcTR-HqK1djbE6fw\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/Tw7d5qByrzQGrI9D9LwLH04Iq4A\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -31696,7 +31696,7 @@
       }
     }
   },
-  "revision": "20200511",
+  "revision": "20200515",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -36005,7 +36005,7 @@
           "type": "string"
         },
         "physicalBlockSizeBytes": {
-          "description": "Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. Currently supported sizes are 4096 and 16384, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.",
+          "description": "Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.",
           "format": "int64",
           "type": "string"
         },
@@ -42053,6 +42053,10 @@
       "description": "InstanceGroupManagers.applyUpdatesToInstances",
       "id": "InstanceGroupManagersApplyUpdatesRequest",
       "properties": {
+        "allInstances": {
+          "description": "Flag to update all instances instead of specified list of ?instances?. If the flag is set to true then the instances may not be specified in the request.",
+          "type": "boolean"
+        },
         "instances": {
           "description": "The list of URLs of one or more instances for which you want to apply updates. Each URL can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].",
           "items": {
@@ -52995,6 +52999,10 @@
       "description": "InstanceGroupManagers.applyUpdatesToInstances",
       "id": "RegionInstanceGroupManagersApplyUpdatesRequest",
       "properties": {
+        "allInstances": {
+          "description": "Flag to update all instances instead of specified list of ?instances?. If the flag is set to true then the instances may not be specified in the request.",
+          "type": "boolean"
+        },
         "instances": {
           "description": "The list of URLs of one or more instances for which you want to apply updates. Each URL can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].",
           "items": {
@@ -54224,6 +54232,10 @@
           "format": "uint64",
           "type": "string"
         },
+        "instanceSchedulePolicy": {
+          "$ref": "ResourcePolicyInstanceSchedulePolicy",
+          "description": "Resource policy for scheduling instance operations."
+        },
         "kind": {
           "default": "compute#resourcePolicy",
           "description": "[Output Only] Type of the resource. Always compute#resource_policies for resource policies.",
@@ -54499,6 +54511,36 @@
       },
       "type": "object"
     },
+    "ResourcePolicyInstanceSchedulePolicy": {
+      "description": "An InstanceSchedulePolicy specifies when and how frequent certain operations are performed on the instance.",
+      "id": "ResourcePolicyInstanceSchedulePolicy",
+      "properties": {
+        "vmStartSchedule": {
+          "$ref": "ResourcePolicyInstanceSchedulePolicySchedule",
+          "description": "Specifies the schedule for starting instance."
+        },
+        "vmStopSchedule": {
+          "$ref": "ResourcePolicyInstanceSchedulePolicySchedule",
+          "description": "Specifies the schedule for stopping instance."
+        }
+      },
+      "type": "object"
+    },
+    "ResourcePolicyInstanceSchedulePolicySchedule": {
+      "description": "Schedule for the instance operation.",
+      "id": "ResourcePolicyInstanceSchedulePolicySchedule",
+      "properties": {
+        "schedule": {
+          "description": "Specifies the frequency for the operation, using the unix-cron format.",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Specifies the time zone to be used in interpreting Schedule.schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ResourcePolicyList": {
       "id": "ResourcePolicyList",
       "properties": {
@@ -54694,6 +54736,10 @@
       "description": "Specified snapshot properties for scheduled snapshots created by this policy.",
       "id": "ResourcePolicySnapshotSchedulePolicySnapshotProperties",
       "properties": {
+        "chainName": {
+          "description": "Chain name that the snapshot is created in.",
+          "type": "string"
+        },
         "guestFlush": {
           "description": "Indication to perform a 'guest aware' snapshot.",
           "type": "boolean"
@@ -57504,6 +57550,10 @@
         "autoCreated": {
           "description": "[Output Only] Set to true if snapshots are automatically created by applying resource policy on the target disk.",
           "type": "boolean"
+        },
+        "chainName": {
+          "description": "Chain name should conform to RFC1035.",
+          "type": "string"
         },
         "creationTimestamp": {
           "description": "[Output Only] Creation timestamp in RFC3339 text format.",
