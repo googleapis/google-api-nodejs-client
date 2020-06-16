@@ -677,7 +677,7 @@
       }
     }
   },
-  "revision": "20200609",
+  "revision": "20200611",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -2083,18 +2083,18 @@
       "type": "object"
     },
     "Monitoring": {
-      "description": "Monitoring configuration of the service.\n\nThe example below shows how to configure monitored resources and metrics\nfor monitoring. In the example, a monitored resource and two metrics are\ndefined. The `library.googleapis.com/book/returned_count` metric is sent\nto both producer and consumer projects, whereas the\n`library.googleapis.com/book/overdue_count` metric is only sent to the\nconsumer project.\n\n    monitored_resources:\n    - type: library.googleapis.com/branch\n      labels:\n      - key: /city\n        description: The city where the library branch is located in.\n      - key: /name\n        description: The name of the branch.\n    metrics:\n    - name: library.googleapis.com/book/returned_count\n      metric_kind: DELTA\n      value_type: INT64\n      labels:\n      - key: /customer_id\n    - name: library.googleapis.com/book/overdue_count\n      metric_kind: GAUGE\n      value_type: INT64\n      labels:\n      - key: /customer_id\n    monitoring:\n      producer_destinations:\n      - monitored_resource: library.googleapis.com/branch\n        metrics:\n        - library.googleapis.com/book/returned_count\n      consumer_destinations:\n      - monitored_resource: library.googleapis.com/branch\n        metrics:\n        - library.googleapis.com/book/returned_count\n        - library.googleapis.com/book/overdue_count",
+      "description": "Monitoring configuration of the service.\n\nThe example below shows how to configure monitored resources and metrics\nfor monitoring. In the example, a monitored resource and two metrics are\ndefined. The `library.googleapis.com/book/returned_count` metric is sent\nto both producer and consumer projects, whereas the\n`library.googleapis.com/book/num_overdue` metric is only sent to the\nconsumer project.\n\n    monitored_resources:\n    - type: library.googleapis.com/Branch\n      display_name: \"Library Branch\"\n      description: \"A branch of a library.\"\n      launch_stage: GA\n      labels:\n      - key: resource_container\n        description: \"The Cloud container (ie. project id) for the Branch.\"\n      - key: location\n        description: \"The location of the library branch.\"\n      - key: branch_id\n        description: \"The id of the branch.\"\n    metrics:\n    - name: library.googleapis.com/book/returned_count\n      display_name: \"Books Returned\"\n      description: \"The count of books that have been returned.\"\n      launch_stage: GA\n      metric_kind: DELTA\n      value_type: INT64\n      unit: \"1\"\n      labels:\n      - key: customer_id\n        description: \"The id of the customer.\"\n    - name: library.googleapis.com/book/num_overdue\n      display_name: \"Books Overdue\"\n      description: \"The current number of overdue books.\"\n      launch_stage: GA\n      metric_kind: GAUGE\n      value_type: INT64\n      unit: \"1\"\n      labels:\n      - key: customer_id\n        description: \"The id of the customer.\"\n    monitoring:\n      producer_destinations:\n      - monitored_resource: library.googleapis.com/Branch\n        metrics:\n        - library.googleapis.com/book/returned_count\n      consumer_destinations:\n      - monitored_resource: library.googleapis.com/Branch\n        metrics:\n        - library.googleapis.com/book/returned_count\n        - library.googleapis.com/book/num_overdue",
       "id": "Monitoring",
       "properties": {
         "consumerDestinations": {
-          "description": "Monitoring configurations for sending metrics to the consumer project.\nThere can be multiple consumer destinations. A monitored resouce type may\nappear in multiple monitoring destinations if different aggregations are\nneeded for different sets of metrics associated with that monitored\nresource type. A monitored resource and metric pair may only be used once\nin the Monitoring configuration.",
+          "description": "Monitoring configurations for sending metrics to the consumer project.\nThere can be multiple consumer destinations. A monitored resource type may\nappear in multiple monitoring destinations if different aggregations are\nneeded for different sets of metrics associated with that monitored\nresource type. A monitored resource and metric pair may only be used once\nin the Monitoring configuration.",
           "items": {
             "$ref": "MonitoringDestination"
           },
           "type": "array"
         },
         "producerDestinations": {
-          "description": "Monitoring configurations for sending metrics to the producer project.\nThere can be multiple producer destinations. A monitored resouce type may\nappear in multiple monitoring destinations if different aggregations are\nneeded for different sets of metrics associated with that monitored\nresource type. A monitored resource and metric pair may only be used once\nin the Monitoring configuration.",
+          "description": "Monitoring configurations for sending metrics to the producer project.\nThere can be multiple producer destinations. A monitored resource type may\nappear in multiple monitoring destinations if different aggregations are\nneeded for different sets of metrics associated with that monitored\nresource type. A monitored resource and metric pair may only be used once\nin the Monitoring configuration.",
           "items": {
             "$ref": "MonitoringDestination"
           },
@@ -2217,7 +2217,7 @@
           "type": "string"
         },
         "role": {
-          "description": "Required. Role to apply. Only whitelisted roles can be used at the specified\ngranularity. The role must be one of the following:\n  - 'roles/container.hostServiceAgentUser' applied on the shared VPC host\n    project",
+          "description": "Required. Role to apply. Only whitelisted roles can be used at the specified\ngranularity. The role must be one of the following:\n  - 'roles/container.hostServiceAgentUser' applied on the shared VPC host\n    project\n  - 'roles/compute.securityAdmin' applied on the shared VPC host project",
           "type": "string"
         }
       },
