@@ -272,7 +272,7 @@
     "v1": {
       "methods": {
         "batchGetAssetsHistory": {
-          "description": "Batch gets the update history of assets that overlap a time window.\nFor RESOURCE content, this API outputs history with asset in both\nnon-delete or deleted status.\nFor IAM_POLICY content, this API outputs history when the asset and its\nattached IAM POLICY both exist. This can create gaps in the output history.\nIf a specified asset does not exist, this API returns an INVALID_ARGUMENT\nerror.",
+          "description": "Batch gets the update history of assets that overlap a time window.\nFor IAM_POLICY content, this API outputs history when the asset and its\nattached IAM POLICY both exist. This can create gaps in the output history.\nOtherwise, this API outputs history with asset in both non-delete or\ndeleted status.\nIf a specified asset does not exist, this API returns an INVALID_ARGUMENT\nerror.",
           "flatPath": "v1/{v1Id}/{v1Id1}:batchGetAssetsHistory",
           "httpMethod": "GET",
           "id": "cloudasset.batchGetAssetsHistory",
@@ -327,7 +327,7 @@
           ]
         },
         "exportAssets": {
-          "description": "Exports assets with time and resource types to a given Cloud Storage\nlocation. The output format is newline-delimited JSON. Each line represents\na google.cloud.asset.v1.Asset in the JSON format.\nThis API implements the google.longrunning.Operation API allowing you\nto keep track of the export. We recommend intervals of at least 2 seconds\nwith exponential retry to poll the export operation result. For\nregular-size resource parent, the export operation usually finishes within\n5 minutes.",
+          "description": "Exports assets with time and resource types to a given Cloud Storage\nlocation/BigQuery table. For Cloud Storage location destinations, the\noutput format is newline-delimited JSON. Each line represents a\ngoogle.cloud.asset.v1.Asset in the JSON format; for BigQuery table\ndestinations, the output table stores the fields in asset proto as columns.\nThis API implements the google.longrunning.Operation API\n, which allows you to keep track of the export. We recommend intervals of\nat least 2 seconds with exponential retry to poll the export operation\nresult. For regular-size resource parent, the export operation usually\nfinishes within 5 minutes.",
           "flatPath": "v1/{v1Id}/{v1Id1}:exportAssets",
           "httpMethod": "POST",
           "id": "cloudasset.exportAssets",
@@ -353,104 +353,11 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
           ]
-        },
-        "searchAllIamPolicies": {
-          "description": "Searches all the IAM policies within the given accessible scope (e.g., a\nproject, a folder or an organization). Callers should have\ncloud.assets.SearchAllIamPolicies permission upon the requested scope,\notherwise the request will be rejected.",
-          "flatPath": "v1/{v1Id}/{v1Id1}:searchAllIamPolicies",
-          "httpMethod": "GET",
-          "id": "cloudasset.searchAllIamPolicies",
-          "parameterOrder": [
-            "scope"
-          ],
-          "parameters": {
-            "pageSize": {
-              "description": "Optional. The page size for search result pagination. Page size is capped at 500 even\nif a larger value is given. If set to zero, server will pick an appropriate\ndefault. Returned results may be fewer than requested. When this happens,\nthere could be more results as long as `next_page_token` is returned.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "Optional. If present, retrieve the next batch of results from the preceding call to\nthis method. `page_token` must be the value of `next_page_token` from the\nprevious response. The values of all other method parameters must be\nidentical to those in the previous call.",
-              "location": "query",
-              "type": "string"
-            },
-            "query": {
-              "description": "Optional. The query statement. An empty query can be specified to search all the IAM\npolicies within the given `scope`.\n\nExamples:\n\n* `policy : \"amy@gmail.com\"` to find Cloud IAM policy bindings that\n  specify user \"amy@gmail.com\".\n* `policy : \"roles/compute.admin\"` to find Cloud IAM policy bindings that\n  specify the Compute Admin role.\n* `policy.role.permissions : \"storage.buckets.update\"` to find Cloud IAM\n  policy bindings that specify a role containing \"storage.buckets.update\"\n  permission.\n* `resource : \"organizations/123\"` to find Cloud IAM policy bindings that\n  are set on \"organizations/123\".\n* `(resource : (\"organizations/123\" OR \"folders/1234\") AND policy : \"amy\")`\n  to find Cloud IAM policy bindings that are set on \"organizations/123\" or\n  \"folders/1234\", and also specify user \"amy\".\n\nSee [how to construct a\nquery](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)\nfor more details.",
-              "location": "query",
-              "type": "string"
-            },
-            "scope": {
-              "description": "Required. A scope can be a project, a folder or an organization. The search is\nlimited to the IAM policies within the `scope`.\n\nThe allowed values are:\n\n* projects/{PROJECT_ID}\n* projects/{PROJECT_NUMBER}\n* folders/{FOLDER_NUMBER}\n* organizations/{ORGANIZATION_NUMBER}",
-              "location": "path",
-              "pattern": "^[^/]+/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+scope}:searchAllIamPolicies",
-          "response": {
-            "$ref": "SearchAllIamPoliciesResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "searchAllResources": {
-          "description": "Searches all the resources within the given accessible scope (e.g., a\nproject, a folder or an organization). Callers should have\ncloud.assets.SearchAllResources permission upon the requested scope,\notherwise the request will be rejected.",
-          "flatPath": "v1/{v1Id}/{v1Id1}:searchAllResources",
-          "httpMethod": "GET",
-          "id": "cloudasset.searchAllResources",
-          "parameterOrder": [
-            "scope"
-          ],
-          "parameters": {
-            "assetTypes": {
-              "description": "Optional. A list of asset types that this request searches for. If empty, it will\nsearch all the [searchable asset\ntypes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
-            "orderBy": {
-              "description": "Optional. A comma separated list of fields specifying the sorting order of the\nresults. The default order is ascending. Add \" DESC\" after the field name\nto indicate descending order. Redundant space characters are ignored.\nExample: \"location DESC, name\". See [supported resource metadata\nfields](https://cloud.google.com/asset-inventory/docs/searching-resources#query_on_resource_metadata_fields)\nfor more details.",
-              "location": "query",
-              "type": "string"
-            },
-            "pageSize": {
-              "description": "Optional. The page size for search result pagination. Page size is capped at 500 even\nif a larger value is given. If set to zero, server will pick an appropriate\ndefault. Returned results may be fewer than requested. When this happens,\nthere could be more results as long as `next_page_token` is returned.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "Optional. If present, then retrieve the next batch of results from the preceding call\nto this method. `page_token` must be the value of `next_page_token` from\nthe previous response. The values of all other method parameters, must be\nidentical to those in the previous call.",
-              "location": "query",
-              "type": "string"
-            },
-            "query": {
-              "description": "Optional. The query statement. An empty query can be specified to search all the\nresources of certain `asset_types` within the given `scope`.\n\nExamples:\n\n* `name : \"Important\"` to find Cloud resources whose name contains\n  \"Important\" as a word.\n* `displayName : \"Impor*\"` to find Cloud resources whose display name\n  contains \"Impor\" as a word prefix.\n* `description : \"*por*\"` to find Cloud resources whose description\n  contains \"por\" as a substring.\n* `location : \"us-west*\"` to find Cloud resources whose location is\n  prefixed with \"us-west\".\n* `labels : \"prod\"` to find Cloud resources whose labels contain \"prod\" as\n  a key or value.\n* `labels.env : \"prod\"` to find Cloud resources which have a label \"env\"\n  and its value is \"prod\".\n* `labels.env : *` to find Cloud resources which have a label \"env\".\n* `\"Important\"` to find Cloud resources which contain \"Important\" as a word\n  in any of the searchable fields.\n* `\"Impor*\"` to find Cloud resources which contain \"Impor\" as a word prefix\n  in any of the searchable fields.\n* `\"*por*\"` to find Cloud resources which contain \"por\" as a substring in\n  any of the searchable fields.\n* `(\"Important\" AND location : (\"us-west1\" OR \"global\"))` to find Cloud\n  resources which contain \"Important\" as a word in any of the searchable\n  fields and are also located in the \"us-west1\" region or the \"global\"\n  location.\n\nSee [how to construct a\nquery](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query)\nfor more details.",
-              "location": "query",
-              "type": "string"
-            },
-            "scope": {
-              "description": "Required. A scope can be a project, a folder or an organization. The search is\nlimited to the resources within the `scope`.\n\nThe allowed values are:\n\n* projects/{PROJECT_ID}\n* projects/{PROJECT_NUMBER}\n* folders/{FOLDER_NUMBER}\n* organizations/{ORGANIZATION_NUMBER}",
-              "location": "path",
-              "pattern": "^[^/]+/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+scope}:searchAllResources",
-          "response": {
-            "$ref": "SearchAllResourcesResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
         }
       }
     }
   },
-  "revision": "20200515",
+  "revision": "20200605",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -471,7 +378,7 @@
           "type": "array"
         },
         "assetType": {
-          "description": "The type of the asset. Example: \"compute.googleapis.com/Disk\"\n\nSee [Supported asset\ntypes](https://cloud.google.com/asset-inventory/docs/supported-asset-types)\nfor more information.",
+          "description": "The type of the asset. Example: `compute.googleapis.com/Disk`\n\nSee [Supported asset\ntypes](https://cloud.google.com/asset-inventory/docs/supported-asset-types)\nfor more information.",
           "type": "string"
         },
         "iamPolicy": {
@@ -479,7 +386,7 @@
           "description": "A representation of the Cloud IAM policy set on a Google Cloud resource.\nThere can be a maximum of one Cloud IAM policy set on any given resource.\nIn addition, Cloud IAM policies inherit their granted access scope from any\npolicies set on parent resources in the resource hierarchy. Therefore, the\neffectively policy is the union of both the policy set on this resource\nand each policy set on all of the resource's ancestry resource levels in\nthe hierarchy. See\n[this topic](https://cloud.google.com/iam/docs/policies#inheritance) for\nmore information."
         },
         "name": {
-          "description": "The full name of the asset. Example:\n\"//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1\"\n\nSee [Resource\nnames](https://cloud.google.com/apis/design/resource_names#full_resource_name)\nfor more information.",
+          "description": "The full name of the asset. Example:\n`//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`\n\nSee [Resource\nnames](https://cloud.google.com/apis/design/resource_names#full_resource_name)\nfor more information.",
           "type": "string"
         },
         "orgPolicy": {
@@ -495,12 +402,17 @@
         },
         "servicePerimeter": {
           "$ref": "GoogleIdentityAccesscontextmanagerV1ServicePerimeter"
+        },
+        "updateTime": {
+          "description": "The last update timestamp of an asset. update_time is updated when\ncreate/update/delete operation is performed.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
     },
     "AuditConfig": {
-      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n            },\n            {\n              \"log_type\": \"ADMIN_READ\",\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
+      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\"\n            },\n            {\n              \"log_type\": \"ADMIN_READ\"\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\"\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
       "id": "AuditConfig",
       "properties": {
         "auditLogConfigs": {
@@ -518,7 +430,7 @@
       "type": "object"
     },
     "AuditLogConfig": {
-      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\",\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
+      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\"\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
       "id": "AuditLogConfig",
       "properties": {
         "exemptedMembers": {
@@ -562,7 +474,7 @@
       "type": "object"
     },
     "BigQueryDestination": {
-      "description": "A BigQuery destination.",
+      "description": "A BigQuery destination for exporting assets to.",
       "id": "BigQueryDestination",
       "properties": {
         "dataset": {
@@ -623,20 +535,6 @@
       "properties": {},
       "type": "object"
     },
-    "Explanation": {
-      "description": "Explanation about the IAM policy search result.",
-      "id": "Explanation",
-      "properties": {
-        "matchedPermissions": {
-          "additionalProperties": {
-            "$ref": "Permissions"
-          },
-          "description": "The map from roles to their included permissions that match the\npermission query (i.e., a query containing `policy.role.permissions:`).\nExample: if query `policy.role.permissions : \"compute.disk.get\"`\nmatches a policy binding that contains owner role, the\nmatched_permissions will be {\"roles/owner\": [\"compute.disk.get\"]}. The\nroles can also be found in the returned `policy` bindings. Note that the\nmap is populated only for requests with permission queries.",
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
     "ExportAssetsRequest": {
       "description": "Export asset request.",
       "id": "ExportAssetsRequest",
@@ -668,7 +566,7 @@
         },
         "outputConfig": {
           "$ref": "OutputConfig",
-          "description": "Required. Output configuration indicating where the results will be output\nto. All results will be in newline delimited JSON format."
+          "description": "Required. Output configuration indicating where the results will be output to."
         },
         "readTime": {
           "description": "Timestamp to take an asset snapshot. This can only be set to a timestamp\nbetween the current time and the current time minus 35 days (inclusive).\nIf not specified, the current time will be used. Due to delays in resource\ndata collection and indexing, there is a volatile window during which\nrunning the same query may get different results.",
@@ -1196,29 +1094,6 @@
       },
       "type": "object"
     },
-    "IamPolicySearchResult": {
-      "description": "A result of IAM Policy search, containing information of an IAM policy.",
-      "id": "IamPolicySearchResult",
-      "properties": {
-        "explanation": {
-          "$ref": "Explanation",
-          "description": "Explanation about the IAM policy search result. It contains additional\ninformation to explain why the search result matches the query."
-        },
-        "policy": {
-          "$ref": "Policy",
-          "description": "The IAM policy directly set on the given resource. Note that the original\nIAM policy can contain multiple bindings. This only contains the bindings\nthat match the given query. For queries that don't contain a constrain on\npolicies (e.g., an empty query), this contains all the bindings.\n\nTo search against the `policy` bindings:\n\n* use a field query, as following:\n    - query by the policy contained members. Example:\n      `policy : \"amy@gmail.com\"`\n    - query by the policy contained roles. Example:\n      `policy : \"roles/compute.admin\"`\n    - query by the policy contained roles' implied permissions. Example:\n      `policy.role.permissions : \"compute.instances.create\"`"
-        },
-        "project": {
-          "description": "The project that the associated GCP resource belongs to, in the form of\nprojects/{PROJECT_NUMBER}. If an IAM policy is set on a resource (like VM\ninstance, Cloud Storage bucket), the project field will indicate the\nproject that contains the resource. If an IAM policy is set on a folder or\norgnization, the project field will be empty.\n\nTo search against the `project`:\n\n* specify the `scope` field as this project in your search request.",
-          "type": "string"
-        },
-        "resource": {
-          "description": "The full resource name of the resource associated with this IAM policy.\nExample:\n\"//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1\".\nSee [Cloud Asset Inventory Resource Name\nFormat](https://cloud.google.com/asset-inventory/docs/resource-name-format)\nfor more information.\n\nTo search against the `resource`:\n\n* use a field query. Example: `resource : \"organizations/123\"`",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ListFeedsResponse": {
       "id": "ListFeedsResponse",
       "properties": {
@@ -1273,25 +1148,11 @@
       "properties": {
         "bigqueryDestination": {
           "$ref": "BigQueryDestination",
-          "description": "Destination on BigQuery. The output table stores the fields in asset\nproto as columns in BigQuery. The resource/iam_policy field is converted\nto a record with each field to a column, except metadata to a single JSON\nstring."
+          "description": "Destination on BigQuery. The output table stores the fields in asset\nproto as columns in BigQuery."
         },
         "gcsDestination": {
           "$ref": "GcsDestination",
           "description": "Destination on Cloud Storage."
-        }
-      },
-      "type": "object"
-    },
-    "Permissions": {
-      "description": "IAM permissions",
-      "id": "Permissions",
-      "properties": {
-        "permissions": {
-          "description": "A list of permissions. A sample permission string: \"compute.disk.get\".",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -1351,11 +1212,11 @@
           "type": "object"
         },
         "discoveryDocumentUri": {
-          "description": "The URL of the discovery document containing the resource's JSON schema.\nExample:\n\"https://www.googleapis.com/discovery/v1/apis/compute/v1/rest\"\n\nThis value is unspecified for resources that do not have an API based on a\ndiscovery document, such as Cloud Bigtable.",
+          "description": "The URL of the discovery document containing the resource's JSON schema.\nExample:\n`https://www.googleapis.com/discovery/v1/apis/compute/v1/rest`\n\nThis value is unspecified for resources that do not have an API based on a\ndiscovery document, such as Cloud Bigtable.",
           "type": "string"
         },
         "discoveryName": {
-          "description": "The JSON schema name listed in the discovery document. Example:\n\"Project\"\n\nThis value is unspecified for resources that do not have an API based on a\ndiscovery document, such as Cloud Bigtable.",
+          "description": "The JSON schema name listed in the discovery document. Example:\n`Project`\n\nThis value is unspecified for resources that do not have an API based on a\ndiscovery document, such as Cloud Bigtable.",
           "type": "string"
         },
         "location": {
@@ -1363,105 +1224,16 @@
           "type": "string"
         },
         "parent": {
-          "description": "The full name of the immediate parent of this resource. See\n[Resource\nNames](https://cloud.google.com/apis/design/resource_names#full_resource_name)\nfor more information.\n\nFor Google Cloud assets, this value is the parent resource defined in the\n[Cloud IAM policy\nhierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).\nExample:\n\"//cloudresourcemanager.googleapis.com/projects/my_project_123\"\n\nFor third-party assets, this field may be set differently.",
+          "description": "The full name of the immediate parent of this resource. See\n[Resource\nNames](https://cloud.google.com/apis/design/resource_names#full_resource_name)\nfor more information.\n\nFor Google Cloud assets, this value is the parent resource defined in the\n[Cloud IAM policy\nhierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).\nExample:\n`//cloudresourcemanager.googleapis.com/projects/my_project_123`\n\nFor third-party assets, this field may be set differently.",
           "type": "string"
         },
         "resourceUrl": {
-          "description": "The REST URL for accessing the resource. An HTTP `GET` request using this\nURL returns the resource itself. Example:\n\"https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123\"\n\nThis value is unspecified for resources without a REST API.",
+          "description": "The REST URL for accessing the resource. An HTTP `GET` request using this\nURL returns the resource itself. Example:\n`https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123`\n\nThis value is unspecified for resources without a REST API.",
           "type": "string"
         },
         "version": {
-          "description": "The API version. Example: \"v1\"",
+          "description": "The API version. Example: `v1`",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ResourceSearchResult": {
-      "description": "A result of Resource Search, containing information of a cloud resoure.",
-      "id": "ResourceSearchResult",
-      "properties": {
-        "additionalAttributes": {
-          "additionalProperties": {
-            "description": "Properties of the object.",
-            "type": "any"
-          },
-          "description": "The additional attributes of this resource. The attributes may vary from\none resource type to another. Examples: \"projectId\" for Project,\n\"dnsName\" for DNS ManagedZone.\n\nTo search against the `additional_attributes`:\n\n* use a free text query to match the attributes values. Example: to search\n  additional_attributes = { dnsName: \"foobar\" }, you can issue a query\n  `\"foobar\"`.",
-          "type": "object"
-        },
-        "assetType": {
-          "description": "The type of this resource. Example: \"compute.googleapis.com/Disk\".\n\nTo search against the `asset_type`:\n\n* specify the `asset_type` field in your search request.",
-          "type": "string"
-        },
-        "description": {
-          "description": "One or more paragraphs of text description of this resource. Maximum length\ncould be up to 1M bytes.\n\nTo search against the `description`:\n\n* use a field query. Example: `description : \"*important instance*\"`\n* use a free text query. Example: `\"*important instance*\"`",
-          "type": "string"
-        },
-        "displayName": {
-          "description": "The display name of this resource.\n\nTo search against the `display_name`:\n\n* use a field query. Example: `displayName : \"My Instance\"`\n* use a free text query. Example: `\"My Instance\"`",
-          "type": "string"
-        },
-        "labels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Labels associated with this resource. See [Labelling and grouping GCP\nresources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)\nfor more information.\n\nTo search against the `labels`:\n\n* use a field query, as following:\n    - query on any label's key or value. Example: `labels : \"prod\"`\n    - query by a given label. Example: `labels.env : \"prod\"`\n    - query by a given label'sexistence. Example: `labels.env : *`\n* use a free text query. Example: `\"prod\"`",
-          "type": "object"
-        },
-        "location": {
-          "description": "Location can be \"global\", regional like \"us-east1\", or zonal like\n\"us-west1-b\".\n\nTo search against the `location`:\n\n* use a field query. Example: `location : \"us-west*\"`\n* use a free text query. Example: `\"us-west*\"`",
-          "type": "string"
-        },
-        "name": {
-          "description": "The full resource name of this resource. Example:\n\"//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1\".\nSee [Cloud Asset Inventory Resource Name\nFormat](https://cloud.google.com/asset-inventory/docs/resource-name-format)\nfor more information.\n\nTo search against the `name`:\n\n* use a field query. Example: `name : \"instance1\"`\n* use a free text query. Example: `\"instance1\"`",
-          "type": "string"
-        },
-        "networkTags": {
-          "description": "Network tags associated with this resource. Like labels, network tags are a\ntype of annotations used to group GCP resources. See [Labelling GCP\nresources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)\nfor more information.\n\nTo search against the `network_tags`:\n\n* use a field query. Example: `networkTags : \"internal\"`\n* use a free text query. Example: `\"internal\"`",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "project": {
-          "description": "The project that this resource belongs to, in the form of\nprojects/{PROJECT_NUMBER}.\n\nTo search against the `project`:\n\n* specify the `scope` field as this project in your search request.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SearchAllIamPoliciesResponse": {
-      "description": "Search all IAM policies response.",
-      "id": "SearchAllIamPoliciesResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "Set if there are more results than those appearing in this response; to get\nthe next set of results, call this method again, using this value as the\n`page_token`.",
-          "type": "string"
-        },
-        "results": {
-          "description": "A list of IamPolicy that match the search query. Related information such\nas the associated resource is returned along with the policy.",
-          "items": {
-            "$ref": "IamPolicySearchResult"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "SearchAllResourcesResponse": {
-      "description": "Search all resources response.",
-      "id": "SearchAllResourcesResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "If there are more results than those appearing in this response, then\n`next_page_token` is included. To get the next set of results, call this\nmethod again using the value of `next_page_token` as `page_token`.",
-          "type": "string"
-        },
-        "results": {
-          "description": "A list of Resources that match the search query. It contains the resource\nstandard metadata information.",
-          "items": {
-            "$ref": "ResourceSearchResult"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -1513,7 +1285,7 @@
       "type": "object"
     },
     "TimeWindow": {
-      "description": "A time window specified by its \"start_time\" and \"end_time\".",
+      "description": "A time window specified by its `start_time` and `end_time`.",
       "id": "TimeWindow",
       "properties": {
         "endTime": {

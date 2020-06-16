@@ -130,7 +130,7 @@ export namespace cloudasset_v1p1beta1 {
   }
 
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -143,7 +143,7 @@ export namespace cloudasset_v1p1beta1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -329,7 +329,7 @@ export namespace cloudasset_v1p1beta1 {
 
     /**
      * cloudasset.iamPolicies.searchAll
-     * @desc Searches all the IAM policies under a given accessible CRM scope (project/folder/organization). This RPC gives callers especially admins the ability to search all the IAM policies under a scope, even if they don't have .getIamPolicy permission of all the IAM policies. Callers should have cloud.assets.SearchAllIamPolicies permission on the requested scope, otherwise it will be rejected.
+     * @desc Searches all the IAM policies within a given accessible CRM scope (project/folder/organization). This RPC gives callers especially administrators the ability to search all the IAM policies within a scope, even if they don't have `.getIamPolicy` permission of all the IAM policies. Callers should have `cloud.assets.SearchAllIamPolicies` permission on the requested scope, otherwise the request will be rejected.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -364,13 +364,14 @@ export namespace cloudasset_v1p1beta1 {
      *     // previous response. The values of all other method parameters must be
      *     // identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Optional. The query statement.
-     *     // Examples:
+     *     // Optional. The query statement. Examples:
+     *     //
      *     // * "policy:myuser@mydomain.com"
      *     // * "policy:(myuser@mydomain.com viewer)"
      *     query: 'placeholder-value',
      *     // Required. The relative name of an asset. The search is limited to the resources
      *     // within the `scope`. The allowed value must be:
+     *     //
      *     // * Organization number (such as "organizations/123")
      *     // * Folder number(such as "folders/1234")
      *     // * Project number (such as "projects/12345")
@@ -397,8 +398,8 @@ export namespace cloudasset_v1p1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.
      * @param {string=} params.pageToken Optional. If present, retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters must be identical to those in the previous call.
-     * @param {string=} params.query Optional. The query statement. Examples: * "policy:myuser@mydomain.com" * "policy:(myuser@mydomain.com viewer)"
-     * @param {string} params.scope Required. The relative name of an asset. The search is limited to the resources within the `scope`. The allowed value must be: * Organization number (such as "organizations/123") * Folder number(such as "folders/1234") * Project number (such as "projects/12345") * Project id (such as "projects/abc")
+     * @param {string=} params.query Optional. The query statement. Examples:  * "policy:myuser@mydomain.com" * "policy:(myuser@mydomain.com viewer)"
+     * @param {string} params.scope Required. The relative name of an asset. The search is limited to the resources within the `scope`. The allowed value must be:  * Organization number (such as "organizations/123") * Folder number(such as "folders/1234") * Project number (such as "projects/12345") * Project id (such as "projects/abc")
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -502,11 +503,11 @@ export namespace cloudasset_v1p1beta1 {
      */
     pageToken?: string;
     /**
-     * Optional. The query statement. Examples: * "policy:myuser@mydomain.com" * "policy:(myuser@mydomain.com viewer)"
+     * Optional. The query statement. Examples:  * "policy:myuser@mydomain.com" * "policy:(myuser@mydomain.com viewer)"
      */
     query?: string;
     /**
-     * Required. The relative name of an asset. The search is limited to the resources within the `scope`. The allowed value must be: * Organization number (such as "organizations/123") * Folder number(such as "folders/1234") * Project number (such as "projects/12345") * Project id (such as "projects/abc")
+     * Required. The relative name of an asset. The search is limited to the resources within the `scope`. The allowed value must be:  * Organization number (such as "organizations/123") * Folder number(such as "folders/1234") * Project number (such as "projects/12345") * Project id (such as "projects/abc")
      */
     scope?: string;
   }
@@ -519,7 +520,7 @@ export namespace cloudasset_v1p1beta1 {
 
     /**
      * cloudasset.resources.searchAll
-     * @desc Searches all the resources under a given accessible CRM scope (project/folder/organization). This RPC gives callers especially admins the ability to search all the resources under a scope, even if they don't have .get permission of all the resources. Callers should have cloud.assets.SearchAllResources permission on the requested scope, otherwise it will be rejected.
+     * @desc Searches all the resources within a given accessible CRM scope (project/folder/organization). This RPC gives callers especially administrators the ability to search all the resources within a scope, even if they don't have `.get` permission of all the resources. Callers should have `cloud.assets.SearchAllResources` permission on the requested scope, otherwise the request will be rejected.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -548,9 +549,9 @@ export namespace cloudasset_v1p1beta1 {
      *     // search all the supported asset types.
      *     assetTypes: 'placeholder-value',
      *     // Optional. A comma separated list of fields specifying the sorting order of the
-     *     // results. The default order is ascending. Add " desc" after the field name
+     *     // results. The default order is ascending. Add ` DESC` after the field name
      *     // to indicate descending order. Redundant space characters are ignored. For
-     *     // example, "  foo ,  bar  desc  ".
+     *     // example, `  location DESC ,  name  `.
      *     orderBy: 'placeholder-value',
      *     // Optional. The page size for search result pagination. Page size is capped at 500 even
      *     // if a larger value is given. If set to zero, server will pick an appropriate
@@ -566,6 +567,7 @@ export namespace cloudasset_v1p1beta1 {
      *     query: 'placeholder-value',
      *     // Required. The relative name of an asset. The search is limited to the resources
      *     // within the `scope`. The allowed value must be:
+     *     //
      *     // * Organization number (such as "organizations/123")
      *     // * Folder number(such as "folders/1234")
      *     // * Project number (such as "projects/12345")
@@ -591,11 +593,11 @@ export namespace cloudasset_v1p1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.assetTypes Optional. A list of asset types that this request searches for. If empty, it will search all the supported asset types.
-     * @param {string=} params.orderBy Optional. A comma separated list of fields specifying the sorting order of the results. The default order is ascending. Add " desc" after the field name to indicate descending order. Redundant space characters are ignored. For example, "  foo ,  bar  desc  ".
+     * @param {string=} params.orderBy Optional. A comma separated list of fields specifying the sorting order of the results. The default order is ascending. Add ` DESC` after the field name to indicate descending order. Redundant space characters are ignored. For example, `  location DESC ,  name  `.
      * @param {integer=} params.pageSize Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.
      * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method.  `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters, must be identical to those in the previous call.
      * @param {string=} params.query Optional. The query statement.
-     * @param {string} params.scope Required. The relative name of an asset. The search is limited to the resources within the `scope`. The allowed value must be: * Organization number (such as "organizations/123") * Folder number(such as "folders/1234") * Project number (such as "projects/12345") * Project id (such as "projects/abc")
+     * @param {string} params.scope Required. The relative name of an asset. The search is limited to the resources within the `scope`. The allowed value must be:  * Organization number (such as "organizations/123") * Folder number(such as "folders/1234") * Project number (such as "projects/12345") * Project id (such as "projects/abc")
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -694,7 +696,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     assetTypes?: string[];
     /**
-     * Optional. A comma separated list of fields specifying the sorting order of the results. The default order is ascending. Add " desc" after the field name to indicate descending order. Redundant space characters are ignored. For example, "  foo ,  bar  desc  ".
+     * Optional. A comma separated list of fields specifying the sorting order of the results. The default order is ascending. Add ` DESC` after the field name to indicate descending order. Redundant space characters are ignored. For example, `  location DESC ,  name  `.
      */
     orderBy?: string;
     /**
@@ -710,7 +712,7 @@ export namespace cloudasset_v1p1beta1 {
      */
     query?: string;
     /**
-     * Required. The relative name of an asset. The search is limited to the resources within the `scope`. The allowed value must be: * Organization number (such as "organizations/123") * Folder number(such as "folders/1234") * Project number (such as "projects/12345") * Project id (such as "projects/abc")
+     * Required. The relative name of an asset. The search is limited to the resources within the `scope`. The allowed value must be:  * Organization number (such as "organizations/123") * Folder number(such as "folders/1234") * Project number (such as "projects/12345") * Project id (such as "projects/abc")
      */
     scope?: string;
   }
