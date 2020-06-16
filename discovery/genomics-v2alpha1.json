@@ -245,7 +245,7 @@
               ],
               "parameters": {
                 "id": {
-                  "description": "The worker id, assigned when it was created.",
+                  "description": "The VM identity token for authenticating the VM instance.\nhttps://cloud.google.com/compute/docs/instances/verifying-instance-identity",
                   "location": "path",
                   "pattern": "^projects/[^/]+/workers/[^/]+$",
                   "required": true,
@@ -280,7 +280,7 @@
           ],
           "parameters": {
             "id": {
-              "description": "The worker id, assigned when it was created.",
+              "description": "The VM identity token for authenticating the VM instance.\nhttps://cloud.google.com/compute/docs/instances/verifying-instance-identity",
               "location": "path",
               "required": true,
               "type": "string"
@@ -298,10 +298,49 @@
             "https://www.googleapis.com/auth/genomics"
           ]
         }
+      },
+      "resources": {
+        "projects": {
+          "resources": {
+            "workers": {
+              "methods": {
+                "uploadSosReport": {
+                  "description": "The worker uses this method to upload SOS reports for unexpected errors.",
+                  "flatPath": "v2alpha1/workers/projects/{projectsId}/workers/{workersId}:uploadSosReport",
+                  "httpMethod": "POST",
+                  "id": "genomics.workers.projects.workers.uploadSosReport",
+                  "parameterOrder": [
+                    "id"
+                  ],
+                  "parameters": {
+                    "id": {
+                      "description": "The VM identity token for authenticating the VM instance.\nhttps://cloud.google.com/compute/docs/instances/verifying-instance-identity",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/workers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2alpha1/workers/{+id}:uploadSosReport",
+                  "request": {
+                    "$ref": "HttpBody"
+                  },
+                  "response": {
+                    "$ref": "UploadSOSReportResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/genomics"
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
-  "revision": "20200507",
+  "revision": "20200611",
   "rootUrl": "https://genomics.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -696,6 +735,33 @@
             "Unrecoverable data loss or corruption.\n\nHTTP Mapping: 500 Internal Server Error"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HttpBody": {
+      "description": "Message that represents an arbitrary HTTP body. It should only be used for\npayload formats that can't be represented as JSON, such as raw binary or\nan HTML page.\n\n\nThis message can be used both in streaming and non-streaming API methods in\nthe request as well as the response.\n\nIt can be used as a top-level request field, which is convenient if one\nwants to extract parameters from either the URL or HTTP template into the\nrequest fields and also want access to the raw HTTP body.\n\nExample:\n\n    message GetResourceRequest {\n      // A unique request id.\n      string request_id = 1;\n\n      // The raw HTTP body is bound to this field.\n      google.api.HttpBody http_body = 2;\n    }\n\n    service ResourceService {\n      rpc GetResource(GetResourceRequest) returns (google.api.HttpBody);\n      rpc UpdateResource(google.api.HttpBody) returns\n      (google.protobuf.Empty);\n    }\n\nExample with streaming methods:\n\n    service CaldavService {\n      rpc GetCalendar(stream google.api.HttpBody)\n        returns (stream google.api.HttpBody);\n      rpc UpdateCalendar(stream google.api.HttpBody)\n        returns (stream google.api.HttpBody);\n    }\n\nUse of this type only changes how the request and response bodies are\nhandled, all other features will continue to work unchanged.",
+      "id": "HttpBody",
+      "properties": {
+        "contentType": {
+          "description": "The HTTP Content-Type header value specifying the content type of the body.",
+          "type": "string"
+        },
+        "data": {
+          "description": "The HTTP request/response body as raw binary.",
+          "format": "byte",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "Application specific response metadata. Must be set in the first response\nfor streaming APIs.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1125,6 +1191,12 @@
       },
       "type": "object"
     },
+    "UploadSOSReportResponse": {
+      "description": "The response to the UploadSOSReport method.",
+      "id": "UploadSOSReportResponse",
+      "properties": {},
+      "type": "object"
+    },
     "VirtualMachine": {
       "description": "Carries information about a Compute Engine VM resource.",
       "id": "VirtualMachine",
@@ -1153,6 +1225,13 @@
           "description": "The list of disks to create and attach to the VM.",
           "items": {
             "$ref": "Disk"
+          },
+          "type": "array"
+        },
+        "dockerCacheImages": {
+          "description": "The Compute Engine Disk Images to use as a Docker cache. The disks will be\nmounted into the Docker folder in a way that the images present in the\ncache will not need to be pulled. The digests of the cached images must\nmatch those of the tags used or the latest version will still be pulled.\nOnly a single image is supported.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         },
