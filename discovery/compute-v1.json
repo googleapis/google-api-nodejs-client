@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/TsQz1DNIXY-nbvufkMv4C85tMsw\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/1qThsnp409WPlAMDctY9ILp8CKs\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -23387,7 +23387,7 @@
       }
     }
   },
-  "revision": "20200511",
+  "revision": "20200515",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -26912,7 +26912,7 @@
           "type": "string"
         },
         "physicalBlockSizeBytes": {
-          "description": "Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. Currently supported sizes are 4096 and 16384, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.",
+          "description": "Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.",
           "format": "int64",
           "type": "string"
         },
