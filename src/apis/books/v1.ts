@@ -53,17 +53,9 @@ export namespace books_v1 {
       | GoogleAuth;
 
     /**
-     * V1 error format.
-     */
-    '$.xgafv'?: string;
-    /**
-     * Data format for response.
+     * Data format for the response.
      */
     alt?: string;
-    /**
-     * JSONP
-     */
-    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -73,27 +65,27 @@ export namespace books_v1 {
      */
     key?: string;
     /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
      * Returns response with indentations and line breaks.
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Legacy upload protocol for media (e.g. "media", "multipart").
+     * Deprecated. Please use quotaUser instead.
      */
-    uploadType?: string;
-    /**
-     * Upload protocol for media (e.g. "raw", "multipart").
-     */
-    upload_protocol?: string;
+    userIp?: string;
   }
 
   /**
    * Books API
    *
-   * The Google Books API allows clients to access the Google Books repository.
+   * Searches for books and manages your Google Books library.
    *
    * @example
    * const {google} = require('googleapis');
@@ -226,6 +218,41 @@ export namespace books_v1 {
      */
     volumeId?: string | null;
   }
+  export interface Schema$Annotationdata {
+    /**
+     * The type of annotation this data is for.
+     */
+    annotationType?: string | null;
+    data?: any | null;
+    /**
+     * Base64 encoded data for this annotation data.
+     */
+    encoded_data?: string | null;
+    /**
+     * Unique id for this annotation data.
+     */
+    id?: string | null;
+    /**
+     * Resource Type
+     */
+    kind?: string | null;
+    /**
+     * The Layer id for this data. *
+     */
+    layerId?: string | null;
+    /**
+     * URL for this resource. *
+     */
+    selfLink?: string | null;
+    /**
+     * Timestamp for the last time this data was updated. (RFC 3339 UTC date-time format).
+     */
+    updated?: string | null;
+    /**
+     * The volume id for this data. *
+     */
+    volumeId?: string | null;
+  }
   export interface Schema$Annotations {
     /**
      * A list of annotations.
@@ -248,7 +275,7 @@ export namespace books_v1 {
     /**
      * A list of Annotation Data.
      */
-    items?: Schema$GeoAnnotationdata[];
+    items?: Schema$Annotationdata[];
     /**
      * Resource type
      */
@@ -348,6 +375,24 @@ export namespace books_v1 {
      */
     kind?: string | null;
   }
+  export interface Schema$BooksSubscriptionReleaseInfo {
+    /**
+     * Amount in micros of the specified currency code.
+     */
+    amountInMicros?: string | null;
+    /**
+     * Currency code of the amount.
+     */
+    currencyCode?: string | null;
+    /**
+     * The release number of this issue/volume/book.
+     */
+    releaseNumber?: string | null;
+    /**
+     * The release date.
+     */
+    releaseTimestampUs?: string | null;
+  }
   export interface Schema$BooksVolumesRecommendedRateResponse {
     consistency_token?: string | null;
   }
@@ -408,44 +453,6 @@ export namespace books_v1 {
     timeWindowSeconds?: number | null;
     /**
      * Identifies the volume for which this entry applies.
-     */
-    volumeId?: string | null;
-  }
-  export interface Schema$DictionaryAnnotationdata {
-    /**
-     * The type of annotation this data is for.
-     */
-    annotationType?: string | null;
-    /**
-     * JSON encoded data for this dictionary annotation data. Emitted with name &#39;data&#39; in JSON output. Either this or geo_data will be populated.
-     */
-    data?: Schema$Dictlayerdata;
-    /**
-     * Base64 encoded data for this annotation data.
-     */
-    encodedData?: string | null;
-    /**
-     * Unique id for this annotation data.
-     */
-    id?: string | null;
-    /**
-     * Resource Type
-     */
-    kind?: string | null;
-    /**
-     * The Layer id for this data. *
-     */
-    layerId?: string | null;
-    /**
-     * URL for this resource. *
-     */
-    selfLink?: string | null;
-    /**
-     * Timestamp for the last time this data was updated. (RFC 3339 UTC date-time format).
-     */
-    updated?: string | null;
-    /**
-     * The volume id for this data. *
      */
     volumeId?: string | null;
   }
@@ -548,7 +555,7 @@ export namespace books_v1 {
      */
     nonce?: string | null;
     /**
-     * Error/warning reason code.  Additional codes may be added in the future. 0 OK 100   ACCESS_DENIED_PUBLISHER_LIMIT 101   ACCESS_DENIED_LIMIT 200 WARNING_USED_LAST_ACCESS
+     * Error/warning reason code. Additional codes may be added in the future. 0 OK 100 ACCESS_DENIED_PUBLISHER_LIMIT 101 ACCESS_DENIED_LIMIT 200 WARNING_USED_LAST_ACCESS
      */
     reasonCode?: string | null;
     /**
@@ -568,10 +575,6 @@ export namespace books_v1 {
      */
     volumeId?: string | null;
   }
-  /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
-   */
-  export interface Schema$Empty {}
   export interface Schema$FamilyInfo {
     /**
      * Resource type.
@@ -588,44 +591,6 @@ export namespace books_v1 {
       role?: string;
     } | null;
   }
-  export interface Schema$GeoAnnotationdata {
-    /**
-     * The type of annotation this data is for.
-     */
-    annotationType?: string | null;
-    /**
-     * JSON encoded data for this geo annotation data. Emitted with name &#39;data&#39; in JSON output. Either this or dict_data will be populated.
-     */
-    data?: Schema$Geolayerdata;
-    /**
-     * Base64 encoded data for this annotation data.
-     */
-    encodedData?: string | null;
-    /**
-     * Unique id for this annotation data.
-     */
-    id?: string | null;
-    /**
-     * Resource Type
-     */
-    kind?: string | null;
-    /**
-     * The Layer id for this data. *
-     */
-    layerId?: string | null;
-    /**
-     * URL for this resource. *
-     */
-    selfLink?: string | null;
-    /**
-     * Timestamp for the last time this data was updated. (RFC 3339 UTC date-time format).
-     */
-    updated?: string | null;
-    /**
-     * The volume id for this data. *
-     */
-    volumeId?: string | null;
-  }
   export interface Schema$Geolayerdata {
     common?: {
       lang?: string;
@@ -635,7 +600,7 @@ export namespace books_v1 {
       title?: string;
     } | null;
     geo?: {
-      boundary?: string[];
+      boundary?: Array<Array<{latitude?: number; longitude?: number}>>;
       cachePolicy?: string;
       countryCode?: string;
       latitude?: number;
@@ -809,7 +774,7 @@ export namespace books_v1 {
      */
     volumeId?: string | null;
   }
-  export interface Schema$RequestAccessData {
+  export interface Schema$RequestAccess {
     /**
      * A concurrent access response.
      */
@@ -882,19 +847,9 @@ export namespace books_v1 {
       seriesFormatType?: string;
       seriesId?: string;
       seriesSubscriptionReleaseInfo?: {
-        cancelTime?: string;
-        currentReleaseInfo?: {
-          amountInMicros?: number;
-          currencyCode?: string;
-          releaseNumber?: string;
-          releaseTime?: string;
-        };
-        nextReleaseInfo?: {
-          amountInMicros?: number;
-          currencyCode?: string;
-          releaseNumber?: string;
-          releaseTime?: string;
-        };
+        cancellationTimestampUs?: string;
+        currentReleaseInfo?: Schema$BooksSubscriptionReleaseInfo;
+        nextReleaseInfo?: Schema$BooksSubscriptionReleaseInfo;
         seriesSubscriptionType?: string;
       };
       seriesType?: string;
@@ -1076,7 +1031,7 @@ export namespace books_v1 {
       publishedDate?: string;
       publisher?: string;
       ratingsCount?: number;
-      readingModes?: {image?: boolean; text?: boolean};
+      readingModes?: any;
       samplePageCount?: number;
       seriesInfo?: Schema$Volumeseriesinfo;
       subtitle?: string;
@@ -1716,7 +1671,6 @@ export namespace books_v1 {
 
     /**
      * books.cloudloading.addBook
-     * @desc Add a user-upload volume and triggers processing.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1747,7 +1701,7 @@ export namespace books_v1 {
      *     mime_type: 'placeholder-value',
      *     // The document name. It can be set only if the drive_document_id is set.
      *     name: 'placeholder-value',
-     *     // Scotty upload token.
+     *
      *     upload_client_token: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1769,11 +1723,11 @@ export namespace books_v1 {
      * @alias books.cloudloading.addBook
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.drive_document_id A drive document id. The upload_client_token must not be set.
      * @param {string=} params.mime_type The document MIME type. It can be set only if the drive_document_id is set.
      * @param {string=} params.name The document name. It can be set only if the drive_document_id is set.
-     * @param {string=} params.upload_client_token Scotty upload token.
+     * @param {string=} params.upload_client_token
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1895,9 +1849,6 @@ export namespace books_v1 {
      *     volumeId: 'placeholder-value',
      *   });
      *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
      * }
      *
      * main().catch(e => {
@@ -1909,7 +1860,7 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.volumeId The id of the book to be removed.
+     * @param {string} params.volumeId The id of the book to be removed.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1921,7 +1872,7 @@ export namespace books_v1 {
     deleteBook(
       params?: Params$Resource$Cloudloading$Deletebook,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<void>;
     deleteBook(
       params: Params$Resource$Cloudloading$Deletebook,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1929,28 +1880,26 @@ export namespace books_v1 {
     ): void;
     deleteBook(
       params: Params$Resource$Cloudloading$Deletebook,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
     ): void;
     deleteBook(
       params: Params$Resource$Cloudloading$Deletebook,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<void>
     ): void;
-    deleteBook(callback: BodyResponseCallback<Schema$Empty>): void;
+    deleteBook(callback: BodyResponseCallback<void>): void;
     deleteBook(
       paramsOrCallback?:
         | Params$Resource$Cloudloading$Deletebook
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cloudloading$Deletebook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1979,23 +1928,22 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['volumeId'],
         pathParams: [],
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<void>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<void>(parameters);
       }
     }
 
     /**
      * books.cloudloading.updateBook
-     * @desc Updates a user-upload volume.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2158,7 +2106,7 @@ export namespace books_v1 {
      */
     name?: string;
     /**
-     * Scotty upload token.
+     *
      */
     upload_client_token?: string;
   }
@@ -2231,7 +2179,7 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.cpksver The device/version ID from which to request the data.
+     * @param {string} params.cpksver The device/version ID from which to request the data.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2301,7 +2249,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['cpksver'],
         pathParams: [],
         context: this.context,
       };
@@ -2377,7 +2325,7 @@ export namespace books_v1 {
      * @alias books.familysharing.getFamilyInfo
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.source String to identify the originator of this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2497,9 +2445,6 @@ export namespace books_v1 {
      *     volumeId: 'placeholder-value',
      *   });
      *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
      * }
      *
      * main().catch(e => {
@@ -2510,7 +2455,7 @@ export namespace books_v1 {
      * @alias books.familysharing.share
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.docId The docid to share.
      * @param {string=} params.source String to identify the originator of this request.
      * @param {string=} params.volumeId The volume to share.
@@ -2525,7 +2470,7 @@ export namespace books_v1 {
     share(
       params?: Params$Resource$Familysharing$Share,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<void>;
     share(
       params: Params$Resource$Familysharing$Share,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2533,28 +2478,26 @@ export namespace books_v1 {
     ): void;
     share(
       params: Params$Resource$Familysharing$Share,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
     ): void;
     share(
       params: Params$Resource$Familysharing$Share,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<void>
     ): void;
-    share(callback: BodyResponseCallback<Schema$Empty>): void;
+    share(callback: BodyResponseCallback<void>): void;
     share(
       paramsOrCallback?:
         | Params$Resource$Familysharing$Share
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Familysharing$Share;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2588,12 +2531,12 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<void>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<void>(parameters);
       }
     }
 
@@ -2632,9 +2575,6 @@ export namespace books_v1 {
      *     volumeId: 'placeholder-value',
      *   });
      *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
      * }
      *
      * main().catch(e => {
@@ -2645,7 +2585,7 @@ export namespace books_v1 {
      * @alias books.familysharing.unshare
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.docId The docid to unshare.
      * @param {string=} params.source String to identify the originator of this request.
      * @param {string=} params.volumeId The volume to unshare.
@@ -2660,7 +2600,7 @@ export namespace books_v1 {
     unshare(
       params?: Params$Resource$Familysharing$Unshare,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<void>;
     unshare(
       params: Params$Resource$Familysharing$Unshare,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2668,28 +2608,26 @@ export namespace books_v1 {
     ): void;
     unshare(
       params: Params$Resource$Familysharing$Unshare,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
     ): void;
     unshare(
       params: Params$Resource$Familysharing$Unshare,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<void>
     ): void;
-    unshare(callback: BodyResponseCallback<Schema$Empty>): void;
+    unshare(callback: BodyResponseCallback<void>): void;
     unshare(
       paramsOrCallback?:
         | Params$Resource$Familysharing$Unshare
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Familysharing$Unshare;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2723,12 +2661,12 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<void>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<void>(parameters);
       }
     }
   }
@@ -3157,13 +3095,11 @@ export namespace books_v1 {
      *     annotationDataId: 'placeholder-value',
      *     // The content version for the volume you are trying to retrieve.
      *     contentVersion: 'placeholder-value',
-     *     // The requested pixel height for any images. If height is provided width must
-     *     // also be provided.
+     *     // The requested pixel height for any images. If height is provided width must also be provided.
      *     h: 'placeholder-value',
      *     // The ID for the layer to get the annotations.
      *     layerId: 'placeholder-value',
-     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1
-     *     // country code. Ex: 'en_US'.
+     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      *     locale: 'placeholder-value',
      *     // The requested scale for the image.
      *     scale: 'placeholder-value',
@@ -3171,8 +3107,7 @@ export namespace books_v1 {
      *     source: 'placeholder-value',
      *     // The volume to retrieve annotations for.
      *     volumeId: 'placeholder-value',
-     *     // The requested pixel width for any images. If width is provided height must
-     *     // also be provided.
+     *     // The requested pixel width for any images. If width is provided height must also be provided.
      *     w: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3181,7 +3116,7 @@ export namespace books_v1 {
      *   // {
      *   //   "annotationType": "my_annotationType",
      *   //   "data": {},
-     *   //   "encodedData": "my_encodedData",
+     *   //   "encoded_data": "my_encoded_data",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "layerId": "my_layerId",
@@ -3202,7 +3137,7 @@ export namespace books_v1 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.allowWebDefinitions For the dictionary layer. Whether or not to allow web definitions.
      * @param {string} params.annotationDataId The ID of the annotation data to retrieve.
-     * @param {string=} params.contentVersion The content version for the volume you are trying to retrieve.
+     * @param {string} params.contentVersion The content version for the volume you are trying to retrieve.
      * @param {integer=} params.h The requested pixel height for any images. If height is provided width must also be provided.
      * @param {string} params.layerId The ID for the layer to get the annotations.
      * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
@@ -3221,7 +3156,7 @@ export namespace books_v1 {
     get(
       params?: Params$Resource$Layers$Annotationdata$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DictionaryAnnotationdata>;
+    ): GaxiosPromise<Schema$Annotationdata>;
     get(
       params: Params$Resource$Layers$Annotationdata$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3229,33 +3164,28 @@ export namespace books_v1 {
     ): void;
     get(
       params: Params$Resource$Layers$Annotationdata$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DictionaryAnnotationdata>,
-      callback: BodyResponseCallback<Schema$DictionaryAnnotationdata>
+      options: MethodOptions | BodyResponseCallback<Schema$Annotationdata>,
+      callback: BodyResponseCallback<Schema$Annotationdata>
     ): void;
     get(
       params: Params$Resource$Layers$Annotationdata$Get,
-      callback: BodyResponseCallback<Schema$DictionaryAnnotationdata>
+      callback: BodyResponseCallback<Schema$Annotationdata>
     ): void;
-    get(callback: BodyResponseCallback<Schema$DictionaryAnnotationdata>): void;
+    get(callback: BodyResponseCallback<Schema$Annotationdata>): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Layers$Annotationdata$Get
-        | BodyResponseCallback<Schema$DictionaryAnnotationdata>
+        | BodyResponseCallback<Schema$Annotationdata>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$DictionaryAnnotationdata>
+        | BodyResponseCallback<Schema$Annotationdata>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DictionaryAnnotationdata>
+        | BodyResponseCallback<Schema$Annotationdata>
         | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$DictionaryAnnotationdata>
-      | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$Annotationdata> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Layers$Annotationdata$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3284,17 +3214,22 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['volumeId', 'layerId', 'annotationDataId'],
+        requiredParams: [
+          'volumeId',
+          'layerId',
+          'annotationDataId',
+          'contentVersion',
+        ],
         pathParams: ['annotationDataId', 'layerId', 'volumeId'],
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DictionaryAnnotationdata>(
+        createAPIRequest<Schema$Annotationdata>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$DictionaryAnnotationdata>(parameters);
+        return createAPIRequest<Schema$Annotationdata>(parameters);
       }
     }
 
@@ -3325,18 +3260,15 @@ export namespace books_v1 {
      *
      *   // Do the magic
      *   const res = await books.layers.annotationData.list({
-     *     // The list of Annotation Data Ids to retrieve. Pagination is ignored if this
-     *     // is set.
+     *     // The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
      *     annotationDataId: 'placeholder-value',
      *     // The content version for the requested volume.
      *     contentVersion: 'placeholder-value',
-     *     // The requested pixel height for any images. If height is provided width must
-     *     // also be provided.
+     *     // The requested pixel height for any images. If height is provided width must also be provided.
      *     h: 'placeholder-value',
      *     // The ID for the layer to get the annotation data.
      *     layerId: 'placeholder-value',
-     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1
-     *     // country code. Ex: 'en_US'.
+     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      *     locale: 'placeholder-value',
      *     // Maximum number of results to return
      *     maxResults: 'placeholder-value',
@@ -3346,16 +3278,13 @@ export namespace books_v1 {
      *     scale: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp
-     *     // (exclusive).
+     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
      *     updatedMax: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated since this timestamp
-     *     // (inclusive).
+     *     // RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
      *     updatedMin: 'placeholder-value',
      *     // The volume to retrieve annotation data for.
      *     volumeId: 'placeholder-value',
-     *     // The requested pixel width for any images. If width is provided height must
-     *     // also be provided.
+     *     // The requested pixel width for any images. If width is provided height must also be provided.
      *     w: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3379,7 +3308,7 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.annotationDataId The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
-     * @param {string=} params.contentVersion The content version for the requested volume.
+     * @param {string} params.contentVersion The content version for the requested volume.
      * @param {integer=} params.h The requested pixel height for any images. If height is provided width must also be provided.
      * @param {string} params.layerId The ID for the layer to get the annotation data.
      * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
@@ -3459,7 +3388,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['volumeId', 'layerId'],
+        requiredParams: ['volumeId', 'layerId', 'contentVersion'],
         pathParams: ['layerId', 'volumeId'],
         context: this.context,
       };
@@ -3610,8 +3539,7 @@ export namespace books_v1 {
      *     annotationId: 'placeholder-value',
      *     // The ID for the layer to get the annotations.
      *     layerId: 'placeholder-value',
-     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1
-     *     // country code. Ex: 'en_US'.
+     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      *     locale: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -3771,15 +3699,13 @@ export namespace books_v1 {
      *     endPosition: 'placeholder-value',
      *     // The ID for the layer to get the annotations.
      *     layerId: 'placeholder-value',
-     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1
-     *     // country code. Ex: 'en_US'.
+     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      *     locale: 'placeholder-value',
      *     // Maximum number of results to return
      *     maxResults: 'placeholder-value',
      *     // The value of the nextToken from the previous page.
      *     pageToken: 'placeholder-value',
-     *     // Set to true to return deleted annotations. updatedMin must be in the
-     *     // request to use this. Defaults to false.
+     *     // Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
      *     showDeleted: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -3787,11 +3713,9 @@ export namespace books_v1 {
      *     startOffset: 'placeholder-value',
      *     // The start position to start retrieving data from.
      *     startPosition: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp
-     *     // (exclusive).
+     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
      *     updatedMax: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated since this timestamp
-     *     // (inclusive).
+     *     // RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
      *     updatedMin: 'placeholder-value',
      *     // The version of the volume annotations that you are requesting.
      *     volumeAnnotationsVersion: 'placeholder-value',
@@ -3819,7 +3743,7 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.contentVersion The content version for the requested volume.
+     * @param {string} params.contentVersion The content version for the requested volume.
      * @param {string=} params.endOffset The end offset to end retrieving data from.
      * @param {string=} params.endPosition The end position to end retrieving data from.
      * @param {string} params.layerId The ID for the layer to get the annotations.
@@ -3905,7 +3829,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['volumeId', 'layerId'],
+        requiredParams: ['volumeId', 'layerId', 'contentVersion'],
         pathParams: ['layerId', 'volumeId'],
         context: this.context,
       };
@@ -4039,10 +3963,7 @@ export namespace books_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await books.myconfig.getUserSettings({
-     *     // Unused. Added only to workaround TEX mandatory request template requirement
-     *     country: 'placeholder-value',
-     *   });
+     *   const res = await books.myconfig.getUserSettings({});
      *   console.log(res.data);
      *
      *   // Example response
@@ -4061,8 +3982,7 @@ export namespace books_v1 {
      * @alias books.myconfig.getUserSettings
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.country Unused. Added only to workaround TEX mandatory request template requirement
+     * @param {object=} params Parameters for request
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4200,10 +4120,10 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.cpksver The device/version ID from which to release the restriction.
+     * @param {string} params.cpksver The device/version ID from which to release the restriction.
      * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeIds The volume(s) to release restrictions for.
+     * @param {string} params.volumeIds The volume(s) to release restrictions for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4275,7 +4195,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['volumeIds', 'cpksver'],
         pathParams: [],
         context: this.context,
       };
@@ -4318,8 +4238,7 @@ export namespace books_v1 {
      *   const res = await books.myconfig.requestAccess({
      *     // The device/version ID from which to request the restrictions.
      *     cpksver: 'placeholder-value',
-     *     // The type of access license to request. If not specified, the default is
-     *     // BOTH.
+     *     // The type of access license to request. If not specified, the default is BOTH.
      *     licenseTypes: 'placeholder-value',
      *     // ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
      *     locale: 'placeholder-value',
@@ -4349,12 +4268,12 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.cpksver The device/version ID from which to request the restrictions.
+     * @param {string} params.cpksver The device/version ID from which to request the restrictions.
      * @param {string=} params.licenseTypes The type of access license to request. If not specified, the default is BOTH.
      * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-     * @param {string=} params.nonce The client nonce value.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeId The volume to request concurrent/download restrictions for.
+     * @param {string} params.nonce The client nonce value.
+     * @param {string} params.source String to identify the originator of this request.
+     * @param {string} params.volumeId The volume to request concurrent/download restrictions for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4366,7 +4285,7 @@ export namespace books_v1 {
     requestAccess(
       params?: Params$Resource$Myconfig$Requestaccess,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RequestAccessData>;
+    ): GaxiosPromise<Schema$RequestAccess>;
     requestAccess(
       params: Params$Resource$Myconfig$Requestaccess,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4374,33 +4293,28 @@ export namespace books_v1 {
     ): void;
     requestAccess(
       params: Params$Resource$Myconfig$Requestaccess,
-      options: MethodOptions | BodyResponseCallback<Schema$RequestAccessData>,
-      callback: BodyResponseCallback<Schema$RequestAccessData>
+      options: MethodOptions | BodyResponseCallback<Schema$RequestAccess>,
+      callback: BodyResponseCallback<Schema$RequestAccess>
     ): void;
     requestAccess(
       params: Params$Resource$Myconfig$Requestaccess,
-      callback: BodyResponseCallback<Schema$RequestAccessData>
+      callback: BodyResponseCallback<Schema$RequestAccess>
     ): void;
-    requestAccess(
-      callback: BodyResponseCallback<Schema$RequestAccessData>
-    ): void;
+    requestAccess(callback: BodyResponseCallback<Schema$RequestAccess>): void;
     requestAccess(
       paramsOrCallback?:
         | Params$Resource$Myconfig$Requestaccess
-        | BodyResponseCallback<Schema$RequestAccessData>
+        | BodyResponseCallback<Schema$RequestAccess>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$RequestAccessData>
+        | BodyResponseCallback<Schema$RequestAccess>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$RequestAccessData>
+        | BodyResponseCallback<Schema$RequestAccess>
         | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$RequestAccessData>
-      | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$RequestAccess> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Myconfig$Requestaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4429,17 +4343,17 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['source', 'volumeId', 'nonce', 'cpksver'],
         pathParams: [],
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RequestAccessData>(
+        createAPIRequest<Schema$RequestAccess>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$RequestAccessData>(parameters);
+        return createAPIRequest<Schema$RequestAccess>(parameters);
       }
     }
 
@@ -4506,13 +4420,13 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.cpksver The device/version ID from which to release the restriction.
+     * @param {string} params.cpksver The device/version ID from which to release the restriction.
      * @param {string=} params.features List of features supported by the client, i.e., 'RENTALS'
      * @param {boolean=} params.includeNonComicsSeries Set to true to include non-comics series. Defaults to false.
      * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-     * @param {string=} params.nonce The client nonce value.
+     * @param {string} params.nonce The client nonce value.
      * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
-     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string} params.source String to identify the originator of this request.
      * @param {string=} params.volumeIds The volume(s) to request download restrictions for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4583,7 +4497,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['source', 'nonce', 'cpksver'],
         pathParams: [],
         context: this.context,
       };
@@ -4741,12 +4655,7 @@ export namespace books_v1 {
   }
 
   export interface Params$Resource$Myconfig$Getusersettings
-    extends StandardParameters {
-    /**
-     * Unused. Added only to workaround TEX mandatory request template requirement
-     */
-    country?: string;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Myconfig$Releasedownloadaccess
     extends StandardParameters {
     /**
@@ -4890,9 +4799,6 @@ export namespace books_v1 {
      *     source: 'placeholder-value',
      *   });
      *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
      * }
      *
      * main().catch(e => {
@@ -4917,7 +4823,7 @@ export namespace books_v1 {
     delete(
       params?: Params$Resource$Mylibrary$Annotations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<void>;
     delete(
       params: Params$Resource$Mylibrary$Annotations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4925,28 +4831,26 @@ export namespace books_v1 {
     ): void;
     delete(
       params: Params$Resource$Mylibrary$Annotations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
     ): void;
     delete(
       params: Params$Resource$Mylibrary$Annotations$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<void>
     ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<void>): void;
     delete(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Annotations$Delete
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Annotations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4979,12 +4883,12 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<void>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<void>(parameters);
       }
     }
 
@@ -5019,8 +4923,7 @@ export namespace books_v1 {
      *     annotationId: 'placeholder-value',
      *     // ISO-3166-1 code to override the IP-based location.
      *     country: 'placeholder-value',
-     *     // Requests that only the summary of the specified layer be provided in the
-     *     // response.
+     *     // Requests that only the summary of the specified layer be provided in the response.
      *     showOnlySummaryInResponse: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -5207,16 +5110,13 @@ export namespace books_v1 {
      *     maxResults: 'placeholder-value',
      *     // The value of the nextToken from the previous page.
      *     pageToken: 'placeholder-value',
-     *     // Set to true to return deleted annotations. updatedMin must be in the
-     *     // request to use this. Defaults to false.
+     *     // Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
      *     showDeleted: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp
-     *     // (exclusive).
+     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
      *     updatedMax: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated since this timestamp
-     *     // (inclusive).
+     *     // RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
      *     updatedMin: 'placeholder-value',
      *     // The volume to restrict annotations to.
      *     volumeId: 'placeholder-value',
@@ -5240,7 +5140,7 @@ export namespace books_v1 {
      * @alias books.mylibrary.annotations.list
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.contentVersion The content version for the requested volume.
      * @param {string=} params.layerId The layer ID to limit annotation by.
      * @param {string=} params.layerIds The layer ID(s) to limit annotation by.
@@ -5384,8 +5284,8 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.layerIds Array of layer IDs to get the summary for.
-     * @param {string=} params.volumeId Volume id to get the summary for.
+     * @param {string} params.layerIds Array of layer IDs to get the summary for.
+     * @param {string} params.volumeId Volume id to get the summary for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5458,7 +5358,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['layerIds', 'volumeId'],
         pathParams: [],
         context: this.context,
       };
@@ -5798,9 +5698,6 @@ export namespace books_v1 {
      *     volumeId: 'placeholder-value',
      *   });
      *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
      * }
      *
      * main().catch(e => {
@@ -5815,7 +5712,7 @@ export namespace books_v1 {
      * @param {string=} params.reason The reason for which the book is added to the library.
      * @param {string} params.shelf ID of bookshelf to which to add a volume.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeId ID of volume to add.
+     * @param {string} params.volumeId ID of volume to add.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5827,7 +5724,7 @@ export namespace books_v1 {
     addVolume(
       params?: Params$Resource$Mylibrary$Bookshelves$Addvolume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<void>;
     addVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5835,28 +5732,26 @@ export namespace books_v1 {
     ): void;
     addVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
     ): void;
     addVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<void>
     ): void;
-    addVolume(callback: BodyResponseCallback<Schema$Empty>): void;
+    addVolume(callback: BodyResponseCallback<void>): void;
     addVolume(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Bookshelves$Addvolume
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Addvolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5884,17 +5779,17 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['shelf'],
+        requiredParams: ['shelf', 'volumeId'],
         pathParams: ['shelf'],
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<void>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<void>(parameters);
       }
     }
 
@@ -5931,9 +5826,6 @@ export namespace books_v1 {
      *     source: 'placeholder-value',
      *   });
      *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
      * }
      *
      * main().catch(e => {
@@ -5958,7 +5850,7 @@ export namespace books_v1 {
     clearVolumes(
       params?: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<void>;
     clearVolumes(
       params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5966,28 +5858,26 @@ export namespace books_v1 {
     ): void;
     clearVolumes(
       params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
     ): void;
     clearVolumes(
       params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<void>
     ): void;
-    clearVolumes(callback: BodyResponseCallback<Schema$Empty>): void;
+    clearVolumes(callback: BodyResponseCallback<void>): void;
     clearVolumes(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Bookshelves$Clearvolumes
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Clearvolumes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6020,12 +5910,12 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<void>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<void>(parameters);
       }
     }
 
@@ -6219,7 +6109,7 @@ export namespace books_v1 {
      * @alias books.mylibrary.bookshelves.list
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.source String to identify the originator of this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6337,14 +6227,10 @@ export namespace books_v1 {
      *     source: 'placeholder-value',
      *     // ID of volume to move.
      *     volumeId: 'placeholder-value',
-     *     // Position on shelf to move the item (0 puts the item before the current
-     *     // first item, 1 puts it between the first and the second and so on.)
+     *     // Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
      *     volumePosition: 'placeholder-value',
      *   });
      *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
      * }
      *
      * main().catch(e => {
@@ -6358,8 +6244,8 @@ export namespace books_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.shelf ID of bookshelf with the volume.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeId ID of volume to move.
-     * @param {integer=} params.volumePosition Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
+     * @param {string} params.volumeId ID of volume to move.
+     * @param {integer} params.volumePosition Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6371,7 +6257,7 @@ export namespace books_v1 {
     moveVolume(
       params?: Params$Resource$Mylibrary$Bookshelves$Movevolume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<void>;
     moveVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6379,28 +6265,26 @@ export namespace books_v1 {
     ): void;
     moveVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
     ): void;
     moveVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<void>
     ): void;
-    moveVolume(callback: BodyResponseCallback<Schema$Empty>): void;
+    moveVolume(callback: BodyResponseCallback<void>): void;
     moveVolume(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Bookshelves$Movevolume
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Movevolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6428,17 +6312,17 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['shelf'],
+        requiredParams: ['shelf', 'volumeId', 'volumePosition'],
         pathParams: ['shelf'],
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<void>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<void>(parameters);
       }
     }
 
@@ -6479,9 +6363,6 @@ export namespace books_v1 {
      *     volumeId: 'placeholder-value',
      *   });
      *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
      * }
      *
      * main().catch(e => {
@@ -6496,7 +6377,7 @@ export namespace books_v1 {
      * @param {string=} params.reason The reason for which the book is removed from the library.
      * @param {string} params.shelf ID of bookshelf from which to remove a volume.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeId ID of volume to remove.
+     * @param {string} params.volumeId ID of volume to remove.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6508,7 +6389,7 @@ export namespace books_v1 {
     removeVolume(
       params?: Params$Resource$Mylibrary$Bookshelves$Removevolume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<void>;
     removeVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6516,28 +6397,26 @@ export namespace books_v1 {
     ): void;
     removeVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
     ): void;
     removeVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<void>
     ): void;
-    removeVolume(callback: BodyResponseCallback<Schema$Empty>): void;
+    removeVolume(callback: BodyResponseCallback<void>): void;
     removeVolume(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Bookshelves$Removevolume
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Removevolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6565,17 +6444,17 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['shelf'],
+        requiredParams: ['shelf', 'volumeId'],
         pathParams: ['shelf'],
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<void>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<void>(parameters);
       }
     }
   }
@@ -7054,9 +6933,6 @@ export namespace books_v1 {
      *     volumeId: 'placeholder-value',
      *   });
      *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
      * }
      *
      * main().catch(e => {
@@ -7071,9 +6947,9 @@ export namespace books_v1 {
      * @param {string=} params.action Action that caused this reading position to be set.
      * @param {string=} params.contentVersion Volume content version for which this reading position applies.
      * @param {string=} params.deviceCookie Random persistent device cookie optional on set position.
-     * @param {string=} params.position Position string for the new volume reading position.
+     * @param {string} params.position Position string for the new volume reading position.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.timestamp RFC 3339 UTC format timestamp associated with this reading position.
+     * @param {string} params.timestamp RFC 3339 UTC format timestamp associated with this reading position.
      * @param {string} params.volumeId ID of volume for which to update the reading position.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7086,7 +6962,7 @@ export namespace books_v1 {
     setPosition(
       params?: Params$Resource$Mylibrary$Readingpositions$Setposition,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<void>;
     setPosition(
       params: Params$Resource$Mylibrary$Readingpositions$Setposition,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7094,28 +6970,26 @@ export namespace books_v1 {
     ): void;
     setPosition(
       params: Params$Resource$Mylibrary$Readingpositions$Setposition,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
     ): void;
     setPosition(
       params: Params$Resource$Mylibrary$Readingpositions$Setposition,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<void>
     ): void;
-    setPosition(callback: BodyResponseCallback<Schema$Empty>): void;
+    setPosition(callback: BodyResponseCallback<void>): void;
     setPosition(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Readingpositions$Setposition
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Readingpositions$Setposition;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7144,17 +7018,17 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: ['volumeId'],
+        requiredParams: ['volumeId', 'timestamp', 'position'],
         pathParams: ['volumeId'],
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<void>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<void>(parameters);
       }
     }
   }
@@ -7239,8 +7113,7 @@ export namespace books_v1 {
      *
      *   // Do the magic
      *   const res = await books.notification.get({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     *     // generating notification title and body.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
      *     locale: 'placeholder-value',
      *     // String to identify the notification.
      *     notification_id: 'placeholder-value',
@@ -7280,7 +7153,7 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
-     * @param {string=} params.notification_id String to identify the notification.
+     * @param {string} params.notification_id String to identify the notification.
      * @param {string=} params.source String to identify the originator of this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7350,7 +7223,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['notification_id'],
         pathParams: [],
         context: this.context,
       };
@@ -7433,7 +7306,7 @@ export namespace books_v1 {
      * @alias books.onboarding.listCategories
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7549,8 +7422,7 @@ export namespace books_v1 {
      *     categoryId: 'placeholder-value',
      *     // ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
      *     locale: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned volumes. Books with a
-     *     // higher maturity rating are filtered out.
+     *     // The maximum allowed maturity rating of returned volumes. Books with a higher maturity rating are filtered out.
      *     maxAllowedMaturityRating: 'placeholder-value',
      *     // Number of maximum results per page to be included in the response.
      *     pageSize: 'placeholder-value',
@@ -7575,7 +7447,7 @@ export namespace books_v1 {
      * @alias books.onboarding.listCategoryVolumes
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.categoryId List of category ids requested.
      * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
      * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned volumes. Books with a higher maturity rating are filtered out.
@@ -7729,11 +7601,9 @@ export namespace books_v1 {
      *
      *   // Do the magic
      *   const res = await books.personalizedstream.get({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     *     // generating recommendations.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      *     locale: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned recommendations. Books with
-     *     // a higher maturity rating are filtered out.
+     *     // The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      *     maxAllowedMaturityRating: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -7756,7 +7626,7 @@ export namespace books_v1 {
      * @alias books.personalizedstream.get
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      * @param {string=} params.source String to identify the originator of this request.
@@ -7871,7 +7741,6 @@ export namespace books_v1 {
 
     /**
      * books.promooffer.accept
-     * @desc Accepts the promo offer.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7914,9 +7783,6 @@ export namespace books_v1 {
      *     volumeId: 'placeholder-value',
      *   });
      *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
      * }
      *
      * main().catch(e => {
@@ -7927,7 +7793,7 @@ export namespace books_v1 {
      * @alias books.promooffer.accept
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.androidId device android_id
      * @param {string=} params.device device device
      * @param {string=} params.manufacturer device manufacturer
@@ -7947,7 +7813,7 @@ export namespace books_v1 {
     accept(
       params?: Params$Resource$Promooffer$Accept,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<void>;
     accept(
       params: Params$Resource$Promooffer$Accept,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7955,28 +7821,26 @@ export namespace books_v1 {
     ): void;
     accept(
       params: Params$Resource$Promooffer$Accept,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
     ): void;
     accept(
       params: Params$Resource$Promooffer$Accept,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<void>
     ): void;
-    accept(callback: BodyResponseCallback<Schema$Empty>): void;
+    accept(callback: BodyResponseCallback<void>): void;
     accept(
       paramsOrCallback?:
         | Params$Resource$Promooffer$Accept
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Promooffer$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8010,18 +7874,17 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<void>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<void>(parameters);
       }
     }
 
     /**
      * books.promooffer.dismiss
-     * @desc Marks the promo offer as dismissed.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8062,9 +7925,6 @@ export namespace books_v1 {
      *     serial: 'placeholder-value',
      *   });
      *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
      * }
      *
      * main().catch(e => {
@@ -8075,7 +7935,7 @@ export namespace books_v1 {
      * @alias books.promooffer.dismiss
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.androidId device android_id
      * @param {string=} params.device device device
      * @param {string=} params.manufacturer device manufacturer
@@ -8094,7 +7954,7 @@ export namespace books_v1 {
     dismiss(
       params?: Params$Resource$Promooffer$Dismiss,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<void>;
     dismiss(
       params: Params$Resource$Promooffer$Dismiss,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8102,28 +7962,26 @@ export namespace books_v1 {
     ): void;
     dismiss(
       params: Params$Resource$Promooffer$Dismiss,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
     ): void;
     dismiss(
       params: Params$Resource$Promooffer$Dismiss,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<void>
     ): void;
-    dismiss(callback: BodyResponseCallback<Schema$Empty>): void;
+    dismiss(callback: BodyResponseCallback<void>): void;
     dismiss(
       paramsOrCallback?:
         | Params$Resource$Promooffer$Dismiss
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Promooffer$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8157,12 +8015,12 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<void>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<void>(parameters);
       }
     }
 
@@ -8223,7 +8081,7 @@ export namespace books_v1 {
      * @alias books.promooffer.get
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.androidId device android_id
      * @param {string=} params.device device device
      * @param {string=} params.manufacturer device manufacturer
@@ -8462,7 +8320,7 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.series_id String that identifies the series
+     * @param {string} params.series_id String that identifies the series
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8531,7 +8389,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['series_id'],
         pathParams: [],
         context: this.context,
       };
@@ -8614,7 +8472,7 @@ export namespace books_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.page_size Number of maximum results per page to be included in the response.
      * @param {string=} params.page_token The value of the nextToken from the previous page.
-     * @param {string=} params.series_id String that identifies the series
+     * @param {string} params.series_id String that identifies the series
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8684,7 +8542,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['series_id'],
         pathParams: [],
         context: this.context,
       };
@@ -8764,7 +8622,7 @@ export namespace books_v1 {
      *     partner: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
-     *     // string  to identify the originator of this request.
+     *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
      *
      *     user_library_consistent_read: 'placeholder-value',
@@ -8802,7 +8660,7 @@ export namespace books_v1 {
      * @param {boolean=} params.includeNonComicsSeries Set to true to include non-comics series. Defaults to false.
      * @param {string=} params.partner Brand results for partner ID.
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.source string  to identify the originator of this request.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {boolean=} params.user_library_consistent_read
      * @param {string} params.volumeId ID of volume to retrieve.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8922,8 +8780,7 @@ export namespace books_v1 {
      *     langRestrict: 'placeholder-value',
      *     // Restrict search to this user's library.
      *     libraryRestrict: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned recommendations. Books with
-     *     // a higher maturity rating are filtered out.
+     *     // The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      *     maxAllowedMaturityRating: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -8973,7 +8830,7 @@ export namespace books_v1 {
      * @param {string=} params.partner Restrict and brand results for partner ID.
      * @param {string=} params.printType Restrict to books or magazines.
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.q Full-text search query string.
+     * @param {string} params.q Full-text search query string.
      * @param {boolean=} params.showPreorders Set to true to show books available for preorder. Defaults to false.
      * @param {string=} params.source String to identify the originator of this request.
      * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
@@ -9042,7 +8899,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['q'],
         pathParams: [],
         context: this.context,
       };
@@ -9075,7 +8932,7 @@ export namespace books_v1 {
      */
     projection?: string;
     /**
-     * string  to identify the originator of this request.
+     * String to identify the originator of this request.
      */
     source?: string;
     /**
@@ -9181,11 +9038,9 @@ export namespace books_v1 {
      *   const res = await books.volumes.associated.list({
      *     // Association type.
      *     association: 'placeholder-value',
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     *     // generating recommendations.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      *     locale: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned recommendations. Books with
-     *     // a higher maturity rating are filtered out.
+     *     // The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      *     maxAllowedMaturityRating: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -9361,13 +9216,11 @@ export namespace books_v1 {
      *     acquireMethod: 'placeholder-value',
      *     // ISO-3166-1 code to override the IP-based location.
      *     country: 'placeholder-value',
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for
-     *     // generating recommendations.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for generating recommendations.
      *     locale: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
-     *     // The processing state of the user uploaded volumes to be returned.
-     *     // Applicable only if the UPLOADED is specified in the acquireMethod.
+     *     // The processing state of the user uploaded volumes to be returned. Applicable only if the UPLOADED is specified in the acquireMethod.
      *     processingState: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -9392,7 +9245,7 @@ export namespace books_v1 {
      * @alias books.volumes.mybooks.list
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.acquireMethod How the book was acquired
      * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
      * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for generating recommendations.
@@ -9549,11 +9402,9 @@ export namespace books_v1 {
      *
      *   // Do the magic
      *   const res = await books.volumes.recommended.list({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     *     // generating recommendations.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      *     locale: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned recommendations. Books with
-     *     // a higher maturity rating are filtered out.
+     *     // The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      *     maxAllowedMaturityRating: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -9576,7 +9427,7 @@ export namespace books_v1 {
      * @alias books.volumes.recommended.list
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      * @param {string=} params.source String to identify the originator of this request.
@@ -9690,8 +9541,7 @@ export namespace books_v1 {
      *
      *   // Do the magic
      *   const res = await books.volumes.recommended.rate({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     *     // generating recommendations.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      *     locale: 'placeholder-value',
      *     // Rating to be given to the volume.
      *     rating: 'placeholder-value',
@@ -9718,9 +9568,9 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-     * @param {string=} params.rating Rating to be given to the volume.
+     * @param {string} params.rating Rating to be given to the volume.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeId ID of the source volume.
+     * @param {string} params.volumeId ID of the source volume.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9797,7 +9647,7 @@ export namespace books_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['rating', 'volumeId'],
         pathParams: [],
         context: this.context,
       };
@@ -9882,8 +9732,7 @@ export namespace books_v1 {
      *
      *   // Do the magic
      *   const res = await books.volumes.useruploaded.list({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     *     // generating recommendations.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      *     locale: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -9893,8 +9742,7 @@ export namespace books_v1 {
      *     source: 'placeholder-value',
      *     // Index of the first result to return (starts at 0)
      *     startIndex: 'placeholder-value',
-     *     // The ids of the volumes to be returned. If not specified all that match the
-     *     // processingState are returned.
+     *     // The ids of the volumes to be returned. If not specified all that match the processingState are returned.
      *     volumeId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9915,7 +9763,7 @@ export namespace books_v1 {
      * @alias books.volumes.useruploaded.list
      * @memberOf! ()
      *
-     * @param {object} params Parameters for request
+     * @param {object=} params Parameters for request
      * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.processingState The processing state of the user uploaded volumes to be returned.
