@@ -108,7 +108,7 @@
     "iamPolicies": {
       "methods": {
         "searchAll": {
-          "description": "Searches all the IAM policies under a given accessible CRM scope\n(project/folder/organization). This RPC gives callers\nespecially admins the ability to search all the IAM policies under a scope,\neven if they don't have .getIamPolicy permission of all the IAM policies.\nCallers should have cloud.assets.SearchAllIamPolicies permission on the\nrequested scope, otherwise it will be rejected.",
+          "description": "Searches all the IAM policies within a given accessible CRM scope\n(project/folder/organization). This RPC gives callers especially\nadministrators the ability to search all the IAM policies within a scope,\neven if they don't have `.getIamPolicy` permission of all the IAM policies.\nCallers should have `cloud.assets.SearchAllIamPolicies` permission on the\nrequested scope, otherwise the request will be rejected.",
           "flatPath": "v1p1beta1/{v1p1beta1Id}/{v1p1beta1Id1}/iamPolicies:searchAll",
           "httpMethod": "GET",
           "id": "cloudasset.iamPolicies.searchAll",
@@ -128,12 +128,12 @@
               "type": "string"
             },
             "query": {
-              "description": "Optional. The query statement.\nExamples:\n* \"policy:myuser@mydomain.com\"\n* \"policy:(myuser@mydomain.com viewer)\"",
+              "description": "Optional. The query statement. Examples:\n\n* \"policy:myuser@mydomain.com\"\n* \"policy:(myuser@mydomain.com viewer)\"",
               "location": "query",
               "type": "string"
             },
             "scope": {
-              "description": "Required. The relative name of an asset. The search is limited to the resources\nwithin the `scope`. The allowed value must be:\n* Organization number (such as \"organizations/123\")\n* Folder number(such as \"folders/1234\")\n* Project number (such as \"projects/12345\")\n* Project id (such as \"projects/abc\")",
+              "description": "Required. The relative name of an asset. The search is limited to the resources\nwithin the `scope`. The allowed value must be:\n\n* Organization number (such as \"organizations/123\")\n* Folder number(such as \"folders/1234\")\n* Project number (such as \"projects/12345\")\n* Project id (such as \"projects/abc\")",
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
@@ -153,7 +153,7 @@
     "resources": {
       "methods": {
         "searchAll": {
-          "description": "Searches all the resources under a given accessible CRM scope\n(project/folder/organization). This RPC gives callers\nespecially admins the ability to search all the resources under a scope,\neven if they don't have .get permission of all the resources. Callers\nshould have cloud.assets.SearchAllResources permission on the requested\nscope, otherwise it will be rejected.",
+          "description": "Searches all the resources within a given accessible CRM scope\n(project/folder/organization). This RPC gives callers especially\nadministrators the ability to search all the resources within a scope, even\nif they don't have `.get` permission of all the resources. Callers should\nhave `cloud.assets.SearchAllResources` permission on the requested scope,\notherwise the request will be rejected.",
           "flatPath": "v1p1beta1/{v1p1beta1Id}/{v1p1beta1Id1}/resources:searchAll",
           "httpMethod": "GET",
           "id": "cloudasset.resources.searchAll",
@@ -168,7 +168,7 @@
               "type": "string"
             },
             "orderBy": {
-              "description": "Optional. A comma separated list of fields specifying the sorting order of the\nresults. The default order is ascending. Add \" desc\" after the field name\nto indicate descending order. Redundant space characters are ignored. For\nexample, \"  foo ,  bar  desc  \".",
+              "description": "Optional. A comma separated list of fields specifying the sorting order of the\nresults. The default order is ascending. Add ` DESC` after the field name\nto indicate descending order. Redundant space characters are ignored. For\nexample, `  location DESC ,  name  `.",
               "location": "query",
               "type": "string"
             },
@@ -189,7 +189,7 @@
               "type": "string"
             },
             "scope": {
-              "description": "Required. The relative name of an asset. The search is limited to the resources\nwithin the `scope`. The allowed value must be:\n* Organization number (such as \"organizations/123\")\n* Folder number(such as \"folders/1234\")\n* Project number (such as \"projects/12345\")\n* Project id (such as \"projects/abc\")",
+              "description": "Required. The relative name of an asset. The search is limited to the resources\nwithin the `scope`. The allowed value must be:\n\n* Organization number (such as \"organizations/123\")\n* Folder number(such as \"folders/1234\")\n* Project number (such as \"projects/12345\")\n* Project id (such as \"projects/abc\")",
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
@@ -207,11 +207,11 @@
       }
     }
   },
-  "revision": "20200515",
+  "revision": "20200605",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AuditConfig": {
-      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n            },\n            {\n              \"log_type\": \"ADMIN_READ\",\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
+      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\"\n            },\n            {\n              \"log_type\": \"ADMIN_READ\"\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\"\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
       "id": "AuditConfig",
       "properties": {
         "auditLogConfigs": {
@@ -229,7 +229,7 @@
       "type": "object"
     },
     "AuditLogConfig": {
-      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\",\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
+      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\"\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
       "id": "AuditLogConfig",
       "properties": {
         "exemptedMembers": {

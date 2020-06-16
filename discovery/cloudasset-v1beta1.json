@@ -171,7 +171,7 @@
     "organizations": {
       "methods": {
         "batchGetAssetsHistory": {
-          "description": "Batch gets the update history of assets that overlap a time window.\nFor RESOURCE content, this API outputs history with asset in both\nnon-delete or deleted status.\nFor IAM_POLICY content, this API outputs history when the asset and its\nattached IAM POLICY both exist. This can create gaps in the output history.\nIf a specified asset does not exist, this API returns an INVALID_ARGUMENT\nerror.",
+          "description": "Batch gets the update history of assets that overlap a time window.\nFor IAM_POLICY content, this API outputs history when the asset and its\nattached IAM POLICY both exist. This can create gaps in the output history.\nOtherwise, this API outputs history with asset in both non-delete or\ndeleted status.\nIf a specified asset does not exist, this API returns an INVALID_ARGUMENT\nerror.",
           "flatPath": "v1beta1/organizations/{organizationsId}:batchGetAssetsHistory",
           "httpMethod": "GET",
           "id": "cloudasset.organizations.batchGetAssetsHistory",
@@ -287,7 +287,7 @@
     "projects": {
       "methods": {
         "batchGetAssetsHistory": {
-          "description": "Batch gets the update history of assets that overlap a time window.\nFor RESOURCE content, this API outputs history with asset in both\nnon-delete or deleted status.\nFor IAM_POLICY content, this API outputs history when the asset and its\nattached IAM POLICY both exist. This can create gaps in the output history.\nIf a specified asset does not exist, this API returns an INVALID_ARGUMENT\nerror.",
+          "description": "Batch gets the update history of assets that overlap a time window.\nFor IAM_POLICY content, this API outputs history when the asset and its\nattached IAM POLICY both exist. This can create gaps in the output history.\nOtherwise, this API outputs history with asset in both non-delete or\ndeleted status.\nIf a specified asset does not exist, this API returns an INVALID_ARGUMENT\nerror.",
           "flatPath": "v1beta1/projects/{projectsId}:batchGetAssetsHistory",
           "httpMethod": "GET",
           "id": "cloudasset.projects.batchGetAssetsHistory",
@@ -401,7 +401,7 @@
       }
     }
   },
-  "revision": "20200515",
+  "revision": "20200605",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -428,7 +428,7 @@
       "type": "object"
     },
     "AuditConfig": {
-      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n            },\n            {\n              \"log_type\": \"ADMIN_READ\",\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
+      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\"\n            },\n            {\n              \"log_type\": \"ADMIN_READ\"\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\"\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
       "id": "AuditConfig",
       "properties": {
         "auditLogConfigs": {
@@ -446,7 +446,7 @@
       "type": "object"
     },
     "AuditLogConfig": {
-      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\",\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
+      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\"\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
       "id": "AuditLogConfig",
       "properties": {
         "exemptedMembers": {
