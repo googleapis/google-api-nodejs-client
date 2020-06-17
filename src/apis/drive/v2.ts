@@ -2247,7 +2247,7 @@ export namespace drive_v2 {
      *     changeId: 'placeholder-value',
      *     // The shared drive from which the change is returned.
      *     driveId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -2285,7 +2285,7 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.changeId The ID of the change.
      * @param {string=} params.driveId The shared drive from which the change is returned.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2408,7 +2408,7 @@ export namespace drive_v2 {
      *   const res = await drive.changes.getStartPageToken({
      *     // The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive is returned.
      *     driveId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -2434,7 +2434,7 @@ export namespace drive_v2 {
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.driveId The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive is returned.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2564,7 +2564,7 @@ export namespace drive_v2 {
      *     includeCorpusRemovals: 'placeholder-value',
      *     // Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      *     includeDeleted: 'placeholder-value',
-     *     // Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
+     *     // Whether both My Drive and shared drive items should be included in results.
      *     includeItemsFromAllDrives: 'placeholder-value',
      *     // Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
      *     includeSubscribed: 'placeholder-value',
@@ -2578,7 +2578,7 @@ export namespace drive_v2 {
      *     spaces: 'placeholder-value',
      *     // Deprecated - use pageToken instead.
      *     startChangeId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -2612,14 +2612,14 @@ export namespace drive_v2 {
      * @param {string=} params.driveId The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
      * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-     * @param {boolean=} params.includeItemsFromAllDrives Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
+     * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
      * @param {boolean=} params.includeSubscribed Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.maxResults Maximum number of changes to return.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param {string=} params.startChangeId Deprecated - use pageToken instead.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2743,7 +2743,7 @@ export namespace drive_v2 {
      *     includeCorpusRemovals: 'placeholder-value',
      *     // Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      *     includeDeleted: 'placeholder-value',
-     *     // Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
+     *     // Whether both My Drive and shared drive items should be included in results.
      *     includeItemsFromAllDrives: 'placeholder-value',
      *     // Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
      *     includeSubscribed: 'placeholder-value',
@@ -2757,7 +2757,7 @@ export namespace drive_v2 {
      *     spaces: 'placeholder-value',
      *     // Deprecated - use pageToken instead.
      *     startChangeId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -2810,14 +2810,14 @@ export namespace drive_v2 {
      * @param {string=} params.driveId The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
      * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-     * @param {boolean=} params.includeItemsFromAllDrives Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
+     * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
      * @param {boolean=} params.includeSubscribed Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.maxResults Maximum number of changes to return.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param {string=} params.startChangeId Deprecated - use pageToken instead.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {().Channel} params.requestBody Request body data
@@ -2914,7 +2914,7 @@ export namespace drive_v2 {
      */
     driveId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -2933,7 +2933,7 @@ export namespace drive_v2 {
      */
     driveId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -2959,7 +2959,7 @@ export namespace drive_v2 {
      */
     includeDeleted?: boolean;
     /**
-     * Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
+     * Whether both My Drive and shared drive items should be included in results.
      */
     includeItemsFromAllDrives?: boolean;
     /**
@@ -2987,7 +2987,7 @@ export namespace drive_v2 {
      */
     startChangeId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -3013,7 +3013,7 @@ export namespace drive_v2 {
      */
     includeDeleted?: boolean;
     /**
-     * Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items are included in the results.
+     * Whether both My Drive and shared drive items should be included in results.
      */
     includeItemsFromAllDrives?: boolean;
     /**
@@ -3041,7 +3041,7 @@ export namespace drive_v2 {
      */
     startChangeId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -3534,7 +3534,7 @@ export namespace drive_v2 {
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the folder.
      *     folderId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -3572,7 +3572,7 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the child's owner makes the request, the child is removed from all current folders and placed in the requested folder. Any other requests that increase the number of the child's parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
      * @param {string} params.folderId The ID of the folder.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {().ChildReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3847,7 +3847,7 @@ export namespace drive_v2 {
      */
     folderId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -6062,7 +6062,7 @@ export namespace drive_v2 {
      *     ocrLanguage: 'placeholder-value',
      *     // Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
      *     pinned: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -6240,7 +6240,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param {boolean=} params.pinned Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
@@ -6361,7 +6361,7 @@ export namespace drive_v2 {
      *   const res = await drive.files.delete({
      *     // The ID of the file to delete.
      *     fileId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -6379,7 +6379,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to delete.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6893,7 +6893,7 @@ export namespace drive_v2 {
      *     projection: 'placeholder-value',
      *     // Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
      *     revisionId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -6989,7 +6989,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file in question.
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7116,7 +7116,7 @@ export namespace drive_v2 {
      *     ocrLanguage: 'placeholder-value',
      *     // Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
      *     pinned: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -7299,7 +7299,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param {boolean=} params.pinned Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
@@ -7434,7 +7434,7 @@ export namespace drive_v2 {
      *     corpus: 'placeholder-value',
      *     // ID of the shared drive to search.
      *     driveId: 'placeholder-value',
-     *     // Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
+     *     // Whether both My Drive and shared drive items should be included in results.
      *     includeItemsFromAllDrives: 'placeholder-value',
      *     // Deprecated use includeItemsFromAllDrives instead.
      *     includeTeamDriveItems: 'placeholder-value',
@@ -7450,7 +7450,7 @@ export namespace drive_v2 {
      *     q: 'placeholder-value',
      *     // A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      *     spaces: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -7483,7 +7483,7 @@ export namespace drive_v2 {
      * @param {string=} params.corpora Bodies of items (files/documents) to which the query applies. Supported bodies are 'default', 'domain', 'drive' and 'allDrives'. Prefer 'default' or 'drive' to 'allDrives' for efficiency.
      * @param {string=} params.corpus The body of items (files/documents) to which the query applies. Deprecated: use 'corpora' instead.
      * @param {string=} params.driveId ID of the shared drive to search.
-     * @param {boolean=} params.includeItemsFromAllDrives Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
+     * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.maxResults The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
      * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', 'title', and 'title_natural'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
@@ -7491,7 +7491,7 @@ export namespace drive_v2 {
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.q Query string for searching files.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7629,7 +7629,7 @@ export namespace drive_v2 {
      *     removeParents: 'placeholder-value',
      *     // Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
      *     setModifiedDate: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -7814,7 +7814,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
      * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
      * @param {boolean=} params.setModifiedDate Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
@@ -7938,7 +7938,7 @@ export namespace drive_v2 {
      *   const res = await drive.files.touch({
      *     // The ID of the file to update.
      *     fileId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -8029,7 +8029,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to update.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8147,7 +8147,7 @@ export namespace drive_v2 {
      *   const res = await drive.files.trash({
      *     // The ID of the file to trash.
      *     fileId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -8238,7 +8238,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to trash.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8356,7 +8356,7 @@ export namespace drive_v2 {
      *   const res = await drive.files.untrash({
      *     // The ID of the file to untrash.
      *     fileId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -8447,7 +8447,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to untrash.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8587,7 +8587,7 @@ export namespace drive_v2 {
      *     removeParents: 'placeholder-value',
      *     // Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
      *     setModifiedDate: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -8776,7 +8776,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
      * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
      * @param {boolean=} params.setModifiedDate Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
@@ -8915,7 +8915,7 @@ export namespace drive_v2 {
      *     projection: 'placeholder-value',
      *     // Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
      *     revisionId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -8969,7 +8969,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file in question.
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
      * @param {().Channel} params.requestBody Request body data
@@ -9082,7 +9082,7 @@ export namespace drive_v2 {
      */
     pinned?: boolean;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -9113,7 +9113,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -9162,7 +9162,7 @@ export namespace drive_v2 {
      */
     revisionId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -9196,7 +9196,7 @@ export namespace drive_v2 {
      */
     pinned?: boolean;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -9254,7 +9254,7 @@ export namespace drive_v2 {
      */
     driveId?: string;
     /**
-     * Deprecated - Whether both My Drive and shared drive items should be included in results. This parameter will only be effective until June 1, 2020. Afterwards shared drive items will be included in the results.
+     * Whether both My Drive and shared drive items should be included in results.
      */
     includeItemsFromAllDrives?: boolean;
     /**
@@ -9286,7 +9286,7 @@ export namespace drive_v2 {
      */
     spaces?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -9344,7 +9344,7 @@ export namespace drive_v2 {
      */
     setModifiedDate?: boolean;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -9379,7 +9379,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -9393,7 +9393,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -9407,7 +9407,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -9461,7 +9461,7 @@ export namespace drive_v2 {
      */
     setModifiedDate?: boolean;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -9523,7 +9523,7 @@ export namespace drive_v2 {
      */
     revisionId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -9857,7 +9857,7 @@ export namespace drive_v2 {
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file.
      *     fileId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -9897,7 +9897,7 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the child's owner makes the request, the child is removed from all current folders and placed in the requested folder. Any other requests that increase the number of the child's parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {().ParentReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10158,7 +10158,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -10218,7 +10218,7 @@ export namespace drive_v2 {
      *     fileId: 'placeholder-value',
      *     // The ID for the permission.
      *     permissionId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -10239,7 +10239,7 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file or shared drive.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10360,7 +10360,7 @@ export namespace drive_v2 {
      *     fileId: 'placeholder-value',
      *     // The ID for the permission.
      *     permissionId: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -10403,7 +10403,7 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file or shared drive.
      * @param {string} params.permissionId The ID for the permission.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10668,7 +10668,7 @@ export namespace drive_v2 {
      *     moveToNewOwnersRoot: 'placeholder-value',
      *     // Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
      *     sendNotificationEmails: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -10739,7 +10739,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file or shared drive.
      * @param {boolean=} params.moveToNewOwnersRoot This parameter only takes effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. When set to true, the item will be moved to the new owner's My Drive root folder and all prior parents removed. If set to false, when enforceSingleParent=true, parents are not changed. If set to false, when enforceSingleParent=false, existing parents are not changed; however, the file will be added to the new owner's My Drive root folder, unless it is already in the new owner's My Drive.
      * @param {boolean=} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      * @param {().Permission} params.requestBody Request body data
@@ -10866,7 +10866,7 @@ export namespace drive_v2 {
      *     maxResults: 'placeholder-value',
      *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
      *     pageToken: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -10897,7 +10897,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file or shared drive.
      * @param {integer=} params.maxResults The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11018,7 +11018,7 @@ export namespace drive_v2 {
      *     permissionId: 'placeholder-value',
      *     // Whether to remove the expiration date.
      *     removeExpiration: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -11089,7 +11089,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file or shared drive.
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
@@ -11212,7 +11212,7 @@ export namespace drive_v2 {
      *     permissionId: 'placeholder-value',
      *     // Whether to remove the expiration date.
      *     removeExpiration: 'placeholder-value',
-     *     // Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
      *     supportsTeamDrives: 'placeholder-value',
@@ -11283,7 +11283,7 @@ export namespace drive_v2 {
      * @param {string} params.fileId The ID for the file or shared drive.
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
-     * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
@@ -11382,7 +11382,7 @@ export namespace drive_v2 {
      */
     permissionId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -11404,7 +11404,7 @@ export namespace drive_v2 {
      */
     permissionId?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -11446,7 +11446,7 @@ export namespace drive_v2 {
      */
     sendNotificationEmails?: boolean;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -11477,7 +11477,7 @@ export namespace drive_v2 {
      */
     pageToken?: string;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -11504,7 +11504,7 @@ export namespace drive_v2 {
      */
     removeExpiration?: boolean;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
@@ -11540,7 +11540,7 @@ export namespace drive_v2 {
      */
     removeExpiration?: boolean;
     /**
-     * Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
+     * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
     /**
