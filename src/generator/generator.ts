@@ -24,7 +24,7 @@ import * as prettier from 'prettier';
 import {downloadDiscoveryDocs, ChangeSet} from './download';
 import * as filters from './filters';
 import {addFragments} from './samplegen';
-import { Disclaimer } from './disclaimer';
+import {Disclaimer} from './disclaimer';
 
 const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);

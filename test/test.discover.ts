@@ -61,7 +61,7 @@ describe('GoogleApis#discover', () => {
     const scope = nock(Utils.rootHost)
       .get(Utils.rootPrefix)
       .replyWithFile(200, './discovery/index.json');
-    const scope1 = nock(Utils.rootHost)
+    nock(Utils.rootHost)
       .get('*')
       .reply(200, (url, body, callback) => {
         const paths = url.split('/');
