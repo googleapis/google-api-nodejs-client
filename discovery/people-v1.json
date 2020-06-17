@@ -345,7 +345,7 @@
     "otherContacts": {
       "methods": {
         "copyOtherContactToMyContactsGroup": {
-          "description": "Copies an other contact to a new contact in the user's MY_CONTACTS group",
+          "description": "Copies an \"Other contact\" to a new contact in the user's \"myContacts\" group",
           "flatPath": "v1/otherContacts/{otherContactsId}:copyOtherContactToMyContactsGroup",
           "httpMethod": "POST",
           "id": "people.otherContacts.copyOtherContactToMyContactsGroup",
@@ -354,7 +354,7 @@
           ],
           "parameters": {
             "resourceName": {
-              "description": "Required. The resource name of the other contact to copy.",
+              "description": "Required. The resource name of the \"Other contact\" to copy.",
               "location": "path",
               "pattern": "^otherContacts/[^/]+$",
               "required": true,
@@ -373,14 +373,14 @@
           ]
         },
         "list": {
-          "description": "List all other contacts, that is contacts that are not in a contact group.\nOther contacts are typically auto created contacts from interactions.",
+          "description": "List all \"Other contacts\", that is contacts that are not in a contact\ngroup. \"Other contacts\" are typically auto created contacts from\ninteractions.",
           "flatPath": "v1/otherContacts",
           "httpMethod": "GET",
           "id": "people.otherContacts.list",
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Optional. The number of other contacts to include in the response. Valid values are\nbetween 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.",
+              "description": "Optional. The number of \"Other contacts\" to include in the response. Valid values are\nbetween 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -930,7 +930,7 @@
       }
     }
   },
-  "revision": "20200609",
+  "revision": "20200615",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1196,7 +1196,7 @@
       "type": "object"
     },
     "CopyOtherContactToMyContactsGroupRequest": {
-      "description": "A request to copy an other contact to my contacts group.",
+      "description": "A request to copy an \"Other contact\" to my contacts group.",
       "id": "CopyOtherContactToMyContactsGroupRequest",
       "properties": {
         "copyMask": {
@@ -1560,7 +1560,7 @@
       "type": "object"
     },
     "ListOtherContactsResponse": {
-      "description": "The response to a request for the authenticated user's other contacts.",
+      "description": "The response to a request for the authenticated user's \"Other contacts\".",
       "id": "ListOtherContactsResponse",
       "properties": {
         "nextPageToken": {
@@ -1572,7 +1572,7 @@
           "type": "string"
         },
         "otherContacts": {
-          "description": "The list of other contacts returned as Person resources. Other contacts\nsupport a limited subset of supported fields. See\nListOtherContactsRequest.request_mask for more detailed information.",
+          "description": "The list of \"Other contacts\" returned as Person resources. \"Other contacts\"\nsupport a limited subset of fields. See\nListOtherContactsRequest.request_mask for more detailed information.",
           "items": {
             "$ref": "Person"
           },
@@ -2407,8 +2407,8 @@
             "[Google profile](https://profiles.google.com). You can view the\nprofile at\n[https://profiles.google.com/](https://profiles.google.com/){id}, where\n{id} is the source id.",
             "[G Suite domain profile](https://support.google.com/a/answer/1628008).",
             "[Google contact](https://contacts.google.com). You can view the\ncontact at\n[https://contact.google.com/](https://contact.google.com/){id}, where\n{id} is the source id.",
-            "[Google contact](https://contacts.google.com). You can view these kinds\nof contacts under the 'Other contacts' tab.",
-            "[G Suite shared domain\ncontact](https://support.google.com/a/answer/9281635)."
+            "[Google \"Other contact\"](https://contacts.google.com/other).",
+            "[G Suite domain shared\ncontact](https://support.google.com/a/answer/9281635)."
           ],
           "type": "string"
         },

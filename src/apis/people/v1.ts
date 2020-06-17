@@ -334,7 +334,7 @@ export namespace people_v1 {
     status?: Schema$Status;
   }
   /**
-   * A request to copy an other contact to my contacts group.
+   * A request to copy an &quot;Other contact&quot; to my contacts group.
    */
   export interface Schema$CopyOtherContactToMyContactsGroupRequest {
     /**
@@ -627,7 +627,7 @@ export namespace people_v1 {
     people?: Schema$Person[];
   }
   /**
-   * The response to a request for the authenticated user&#39;s other contacts.
+   * The response to a request for the authenticated user&#39;s &quot;Other contacts&quot;.
    */
   export interface Schema$ListOtherContactsResponse {
     /**
@@ -639,7 +639,7 @@ export namespace people_v1 {
      */
     nextSyncToken?: string | null;
     /**
-     * The list of other contacts returned as Person resources. Other contacts support a limited subset of supported fields. See ListOtherContactsRequest.request_mask for more detailed information.
+     * The list of &quot;Other contacts&quot; returned as Person resources. &quot;Other contacts&quot; support a limited subset of fields. See ListOtherContactsRequest.request_mask for more detailed information.
      */
     otherContacts?: Schema$Person[];
   }
@@ -2464,7 +2464,7 @@ export namespace people_v1 {
 
     /**
      * people.otherContacts.copyOtherContactToMyContactsGroup
-     * @desc Copies an other contact to a new contact in the user's MY_CONTACTS group
+     * @desc Copies an "Other contact" to a new contact in the user's "myContacts" group
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2489,7 +2489,7 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.otherContacts.copyOtherContactToMyContactsGroup({
-     *     // Required. The resource name of the other contact to copy.
+     *     // Required. The resource name of the "Other contact" to copy.
      *     resourceName: 'otherContacts/my-otherContact',
      *
      *     // Request body metadata
@@ -2551,7 +2551,7 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resourceName Required. The resource name of the other contact to copy.
+     * @param {string} params.resourceName Required. The resource name of the "Other contact" to copy.
      * @param {().CopyOtherContactToMyContactsGroupRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2639,7 +2639,7 @@ export namespace people_v1 {
 
     /**
      * people.otherContacts.list
-     * @desc List all other contacts, that is contacts that are not in a contact group. Other contacts are typically auto created contacts from interactions.
+     * @desc List all "Other contacts", that is contacts that are not in a contact group. "Other contacts" are typically auto created contacts from interactions.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2664,7 +2664,7 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.otherContacts.list({
-     *     // Optional. The number of other contacts to include in the response. Valid values are
+     *     // Optional. The number of "Other contacts" to include in the response. Valid values are
      *     // between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListOtherContacts` call.
@@ -2712,7 +2712,7 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The number of other contacts to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
+     * @param {integer=} params.pageSize Optional. The number of "Other contacts" to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
      * @param {string=} params.pageToken Optional. A page token, received from a previous `ListOtherContacts` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListOtherContacts` must match the call that provided the page token.
      * @param {string=} params.readMask Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * emailAddresses * names * phoneNumbers
      * @param {boolean=} params.requestSyncToken Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
@@ -2808,7 +2808,7 @@ export namespace people_v1 {
   export interface Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup
     extends StandardParameters {
     /**
-     * Required. The resource name of the other contact to copy.
+     * Required. The resource name of the "Other contact" to copy.
      */
     resourceName?: string;
 
@@ -2820,7 +2820,7 @@ export namespace people_v1 {
   export interface Params$Resource$Othercontacts$List
     extends StandardParameters {
     /**
-     * Optional. The number of other contacts to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
+     * Optional. The number of "Other contacts" to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
      */
     pageSize?: number;
     /**
