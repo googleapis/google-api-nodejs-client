@@ -877,7 +877,7 @@
       }
     }
   },
-  "revision": "20200605",
+  "revision": "20200613",
   "rootUrl": "https://servicemanagement.googleapis.com/",
   "schemas": {
     "Advice": {
@@ -2197,7 +2197,7 @@
       "type": "object"
     },
     "MetricDescriptor": {
-      "description": "Defines a metric type and its schema. Once a metric descriptor is created,\ndeleting or altering it stops data collection and makes the metric type's\nexisting data unusable.",
+      "description": "Defines a metric type and its schema. Once a metric descriptor is created,\ndeleting or altering it stops data collection and makes the metric type's\nexisting data unusable.\n\nThe following are specific rules for service defined Monitoring metric\ndescriptors:\n\n* `type`, `metric_kind`, `value_type`, `description`, `display_name`,\n  `launch_stage` fields are all required. The `unit` field must be specified\n  if the `value_type` is any of DOUBLE, INT64, DISTRIBUTION.\n* Maximum of default 500 metric descriptors per service is allowed.\n* Maximum of default 10 labels per metric descriptor is allowed.\n\nThe default maximum limit can be overridden. Please follow\nhttps://cloud.google.com/monitoring/quotas",
       "id": "MetricDescriptor",
       "properties": {
         "description": {
@@ -2209,7 +2209,7 @@
           "type": "string"
         },
         "labels": {
-          "description": "The set of labels that can be used to describe a specific\ninstance of this metric type. For example, the\n`appengine.googleapis.com/http/server/response_latencies` metric\ntype has a label for the HTTP response code, `response_code`, so\nyou can look at latencies for successful responses or just\nfor responses that failed.",
+          "description": "The set of labels that can be used to describe a specific\ninstance of this metric type.\n\nThe label key name must follow:\n\n* Only upper and lower-case letters, digits and underscores (_) are\n  allowed.\n* Label name must start with a letter or digit.\n* The maximum length of a label name is 100 characters.\n\nFor example, the\n`appengine.googleapis.com/http/server/response_latencies` metric\ntype has a label for the HTTP response code, `response_code`, so\nyou can look at latencies for successful responses or just\nfor responses that failed.",
           "items": {
             "$ref": "LabelDescriptor"
           },
@@ -2271,7 +2271,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The metric type, including its DNS name prefix. The type is not\nURL-encoded.  All user-defined metric types have the DNS name\n`custom.googleapis.com` or `external.googleapis.com`.  Metric types should\nuse a natural hierarchical grouping. For example:\n\n    \"custom.googleapis.com/invoice/paid/amount\"\n    \"external.googleapis.com/prometheus/up\"\n    \"appengine.googleapis.com/http/server/response_latencies\"",
+          "description": "The metric type, including its DNS name prefix. The type is not\nURL-encoded.\n\nAll service defined metrics must be prefixed with the service name, in the\nformat of `{service name}/{relative metric name}`, such as\n`cloudsql.googleapis.com/database/cpu/utilization`. The relative metric\nname must follow:\n\n* Only upper and lower-case letters, digits, '/' and underscores '_' are\n  allowed.\n* The maximum number of characters allowed for the relative_metric_name is\n  100.\n\nAll user-defined metric types have the DNS name\n`custom.googleapis.com`, `external.googleapis.com`, or\n`logging.googleapis.com/user/`.\n\nMetric types should use a natural hierarchical grouping. For example:\n\n    \"custom.googleapis.com/invoice/paid/amount\"\n    \"external.googleapis.com/prometheus/up\"\n    \"appengine.googleapis.com/http/server/response_latencies\"",
           "type": "string"
         },
         "unit": {
@@ -2379,7 +2379,7 @@
       "type": "object"
     },
     "MonitoredResourceDescriptor": {
-      "description": "An object that describes the schema of a MonitoredResource object using a\ntype name and a set of labels.  For example, the monitored resource\ndescriptor for Google Compute Engine VM instances has a type of\n`\"gce_instance\"` and specifies the use of the labels `\"instance_id\"` and\n`\"zone\"` to identify particular VM instances.\n\nDifferent APIs can support different monitored resource types. APIs generally\nprovide a `list` method that returns the monitored resource descriptors used\nby the API.",
+      "description": "An object that describes the schema of a MonitoredResource object using a\ntype name and a set of labels.  For example, the monitored resource\ndescriptor for Google Compute Engine VM instances has a type of\n`\"gce_instance\"` and specifies the use of the labels `\"instance_id\"` and\n`\"zone\"` to identify particular VM instances.\n\nDifferent services can support different monitored resource types.\n\nThe following are specific rules to service defined monitored resources for\nMonitoring and Logging:\n\n* The `type`, `display_name`, `description`, `labels` and `launch_stage`\n  fields are all required.\n* The first label of the monitored resource descriptor must be\n  `resource_container`. There are legacy monitored resource descritptors\n  start with `project_id`.\n* It must include a `location` label.\n* Maximum of default 5 service defined monitored resource descriptors\n  is allowed per service.\n* Maximum of default 10 labels per monitored resource is allowed.\n\nThe default maximum limit can be overridden. Please follow\nhttps://cloud.google.com/monitoring/quotas\n",
       "id": "MonitoredResourceDescriptor",
       "properties": {
         "description": {
@@ -2391,7 +2391,7 @@
           "type": "string"
         },
         "labels": {
-          "description": "Required. A set of labels used to describe instances of this monitored\nresource type. For example, an individual Google Cloud SQL database is\nidentified by values for the labels `\"database_id\"` and `\"zone\"`.",
+          "description": "Required. A set of labels used to describe instances of this monitored\nresource type.\nThe label key name must follow:\n\n* Only upper and lower-case letters, digits and underscores (_) are\n  allowed.\n* Label name must start with a letter or digit.\n* The maximum length of a label name is 100 characters.\n\nFor example, an individual Google Cloud SQL database is\nidentified by values for the labels `database_id` and `location`.",
           "items": {
             "$ref": "LabelDescriptor"
           },
@@ -2426,25 +2426,25 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The monitored resource type. For example, the type\n`\"cloudsql_database\"` represents databases in Google Cloud SQL.\nThe maximum length of this value is 256 characters.",
+          "description": "Required. The monitored resource type. For example, the type\n`cloudsql_database` represents databases in Google Cloud SQL.\n\nAll service defined monitored resource types must be prefixed with the\nservice name, in the format of `{service name}/{relative resource name}`.\nThe relative resource name must follow:\n\n* Only upper and lower-case letters and digits are allowed.\n* It must start with upper case character and is recommended to use Upper\n  Camel Case style.\n* The maximum number of characters allowed for the relative_resource_name\n  is 100.\n\nNote there are legacy service monitored resources not following this rule.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Monitoring": {
-      "description": "Monitoring configuration of the service.\n\nThe example below shows how to configure monitored resources and metrics\nfor monitoring. In the example, a monitored resource and two metrics are\ndefined. The `library.googleapis.com/book/returned_count` metric is sent\nto both producer and consumer projects, whereas the\n`library.googleapis.com/book/overdue_count` metric is only sent to the\nconsumer project.\n\n    monitored_resources:\n    - type: library.googleapis.com/branch\n      labels:\n      - key: /city\n        description: The city where the library branch is located in.\n      - key: /name\n        description: The name of the branch.\n    metrics:\n    - name: library.googleapis.com/book/returned_count\n      metric_kind: DELTA\n      value_type: INT64\n      labels:\n      - key: /customer_id\n    - name: library.googleapis.com/book/overdue_count\n      metric_kind: GAUGE\n      value_type: INT64\n      labels:\n      - key: /customer_id\n    monitoring:\n      producer_destinations:\n      - monitored_resource: library.googleapis.com/branch\n        metrics:\n        - library.googleapis.com/book/returned_count\n      consumer_destinations:\n      - monitored_resource: library.googleapis.com/branch\n        metrics:\n        - library.googleapis.com/book/returned_count\n        - library.googleapis.com/book/overdue_count",
+      "description": "Monitoring configuration of the service.\n\nThe example below shows how to configure monitored resources and metrics\nfor monitoring. In the example, a monitored resource and two metrics are\ndefined. The `library.googleapis.com/book/returned_count` metric is sent\nto both producer and consumer projects, whereas the\n`library.googleapis.com/book/num_overdue` metric is only sent to the\nconsumer project.\n\n    monitored_resources:\n    - type: library.googleapis.com/Branch\n      display_name: \"Library Branch\"\n      description: \"A branch of a library.\"\n      launch_stage: GA\n      labels:\n      - key: resource_container\n        description: \"The Cloud container (ie. project id) for the Branch.\"\n      - key: location\n        description: \"The location of the library branch.\"\n      - key: branch_id\n        description: \"The id of the branch.\"\n    metrics:\n    - name: library.googleapis.com/book/returned_count\n      display_name: \"Books Returned\"\n      description: \"The count of books that have been returned.\"\n      launch_stage: GA\n      metric_kind: DELTA\n      value_type: INT64\n      unit: \"1\"\n      labels:\n      - key: customer_id\n        description: \"The id of the customer.\"\n    - name: library.googleapis.com/book/num_overdue\n      display_name: \"Books Overdue\"\n      description: \"The current number of overdue books.\"\n      launch_stage: GA\n      metric_kind: GAUGE\n      value_type: INT64\n      unit: \"1\"\n      labels:\n      - key: customer_id\n        description: \"The id of the customer.\"\n    monitoring:\n      producer_destinations:\n      - monitored_resource: library.googleapis.com/Branch\n        metrics:\n        - library.googleapis.com/book/returned_count\n      consumer_destinations:\n      - monitored_resource: library.googleapis.com/Branch\n        metrics:\n        - library.googleapis.com/book/returned_count\n        - library.googleapis.com/book/num_overdue",
       "id": "Monitoring",
       "properties": {
         "consumerDestinations": {
-          "description": "Monitoring configurations for sending metrics to the consumer project.\nThere can be multiple consumer destinations. A monitored resouce type may\nappear in multiple monitoring destinations if different aggregations are\nneeded for different sets of metrics associated with that monitored\nresource type. A monitored resource and metric pair may only be used once\nin the Monitoring configuration.",
+          "description": "Monitoring configurations for sending metrics to the consumer project.\nThere can be multiple consumer destinations. A monitored resource type may\nappear in multiple monitoring destinations if different aggregations are\nneeded for different sets of metrics associated with that monitored\nresource type. A monitored resource and metric pair may only be used once\nin the Monitoring configuration.",
           "items": {
             "$ref": "MonitoringDestination"
           },
           "type": "array"
         },
         "producerDestinations": {
-          "description": "Monitoring configurations for sending metrics to the producer project.\nThere can be multiple producer destinations. A monitored resouce type may\nappear in multiple monitoring destinations if different aggregations are\nneeded for different sets of metrics associated with that monitored\nresource type. A monitored resource and metric pair may only be used once\nin the Monitoring configuration.",
+          "description": "Monitoring configurations for sending metrics to the producer project.\nThere can be multiple producer destinations. A monitored resource type may\nappear in multiple monitoring destinations if different aggregations are\nneeded for different sets of metrics associated with that monitored\nresource type. A monitored resource and metric pair may only be used once\nin the Monitoring configuration.",
           "items": {
             "$ref": "MonitoringDestination"
           },
