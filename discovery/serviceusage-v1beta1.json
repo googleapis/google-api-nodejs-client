@@ -402,6 +402,35 @@
                 "https://www.googleapis.com/auth/cloud-platform.read-only"
               ]
             },
+            "importConsumerOverrides": {
+              "description": "Create or update multiple consumer overrides atomically, all on the\nsame consumer, but on many different metrics or limits.\nThe name field in the quota override message should not be set.",
+              "flatPath": "v1beta1/{v1beta1Id}/{v1beta1Id1}/services/{servicesId}/consumerQuotaMetrics:importConsumerOverrides",
+              "httpMethod": "POST",
+              "id": "serviceusage.services.consumerQuotaMetrics.importConsumerOverrides",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "The resource name of the consumer.\n\nAn example name would be:\n`projects/123/services/compute.googleapis.com`",
+                  "location": "path",
+                  "pattern": "^[^/]+/[^/]+/services/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/consumerQuotaMetrics:importConsumerOverrides",
+              "request": {
+                "$ref": "ImportConsumerOverridesRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/service.management"
+              ]
+            },
             "list": {
               "description": "Retrieves a summary of all quota information visible to the service\nconsumer, organized by service metric. Each metric includes information\nabout all of its defined limits. Each limit includes the limit\nconfiguration (quota unit, preciseness, default value), the current\neffective limit value, and all of the overrides applied to the limit.",
               "flatPath": "v1beta1/{v1beta1Id}/{v1beta1Id1}/services/{servicesId}/consumerQuotaMetrics",
@@ -790,7 +819,7 @@
       }
     }
   },
-  "revision": "20200611",
+  "revision": "20200615",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AdminQuotaPolicy": {
@@ -2038,6 +2067,21 @@
       },
       "type": "object"
     },
+    "ImportConsumerOverridesRequest": {
+      "description": "Request message for ImportConsumerOverrides",
+      "id": "ImportConsumerOverridesRequest",
+      "properties": {
+        "force": {
+          "description": "Whether to force the creation of the quota overrides.\nIf creating an override would cause the effective quota for the consumer to\ndecrease by more than 10 percent, the call is rejected, as a safety measure\nto avoid accidentally decreasing quota too quickly. Setting the force\nparameter to true ignores this restriction.",
+          "type": "boolean"
+        },
+        "inlineSource": {
+          "$ref": "OverrideInlineSource",
+          "description": "The import data is specified in the request message itself"
+        }
+      },
+      "type": "object"
+    },
     "ImportConsumerOverridesResponse": {
       "description": "Response message for ImportConsumerOverrides",
       "id": "ImportConsumerOverridesResponse",
@@ -2380,7 +2424,7 @@
           "type": "string"
         },
         "unit": {
-          "description": "The units in which the metric value is reported. It is only applicable\nif the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit`\ndefines the representation of the stored metric values.\n\nDifferent systems may scale the values to be more easily displayed (so a\nvalue of `0.02KBy` _might_ be displayed as `20By`, and a value of\n`3523KBy` _might_ be displayed as `3.5MBy`). However, if the `unit` is\n`KBy`, then the value of the metric is always in thousands of bytes, no\nmatter how it may be displayed..\n\nIf you want a custom metric to record the exact number of CPU-seconds used\nby a job, you can create an `INT64 CUMULATIVE` metric whose `unit` is\n`s{CPU}` (or equivalently `1s{CPU}` or just `s`). If the job uses 12,005\nCPU-seconds, then the value is written as `12005`.\n\nAlternatively, if you want a custom metric to record data in a more\ngranular way, you can create a `DOUBLE CUMULATIVE` metric whose `unit` is\n`ks{CPU}`, and then write the value `12.005` (which is `12005/1000`),\nor use `Kis{CPU}` and write `11.723` (which is `12005/1024`).\n\nThe supported units are a subset of [The Unified Code for Units of\nMeasure](http://unitsofmeasure.org/ucum.html) standard:\n\n**Basic units (UNIT)**\n\n* `bit`   bit\n* `By`    byte\n* `s`     second\n* `min`   minute\n* `h`     hour\n* `d`     day\n\n**Prefixes (PREFIX)**\n\n* `k`     kilo    (10^3)\n* `M`     mega    (10^6)\n* `G`     giga    (10^9)\n* `T`     tera    (10^12)\n* `P`     peta    (10^15)\n* `E`     exa     (10^18)\n* `Z`     zetta   (10^21)\n* `Y`     yotta   (10^24)\n\n* `m`     milli   (10^-3)\n* `u`     micro   (10^-6)\n* `n`     nano    (10^-9)\n* `p`     pico    (10^-12)\n* `f`     femto   (10^-15)\n* `a`     atto    (10^-18)\n* `z`     zepto   (10^-21)\n* `y`     yocto   (10^-24)\n\n* `Ki`    kibi    (2^10)\n* `Mi`    mebi    (2^20)\n* `Gi`    gibi    (2^30)\n* `Ti`    tebi    (2^40)\n* `Pi`    pebi    (2^50)\n\n**Grammar**\n\nThe grammar also includes these connectors:\n\n* `/`    division or ratio (as an infix operator). For examples,\n         `kBy/{email}` or `MiBy/10ms` (although you should almost never\n         have `/s` in a metric `unit`; rates should always be computed at\n         query time from the underlying cumulative or delta value).\n* `.`    multiplication or composition (as an infix operator). For\n         examples, `GBy.d` or `k{watt}.h`.\n\nThe grammar for a unit is as follows:\n\n    Expression = Component { \".\" Component } { \"/\" Component } ;\n\n    Component = ( [ PREFIX ] UNIT | \"%\" ) [ Annotation ]\n              | Annotation\n              | \"1\"\n              ;\n\n    Annotation = \"{\" NAME \"}\" ;\n\nNotes:\n\n* `Annotation` is just a comment if it follows a `UNIT`. If the annotation\n   is used alone, then the unit is equivalent to `1`. For examples,\n   `{request}/s == 1/s`, `By{transmitted}/s == By/s`.\n* `NAME` is a sequence of non-blank printable ASCII characters not\n   containing `{` or `}`.\n* `1` represents a unitary [dimensionless\n   unit](https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such\n   as in `1/s`. It is typically used when none of the basic units are\n   appropriate. For example, \"new users per day\" can be represented as\n   `1/d` or `{new-users}/d` (and a metric value `5` would mean \"5 new\n   users). Alternatively, \"thousands of page views per day\" would be\n   represented as `1000/d` or `k1/d` or `k{page_views}/d` (and a metric\n   value of `5.3` would mean \"5300 page views per day\").\n* `%` represents dimensionless value of 1/100, and annotates values giving\n   a percentage (so the metric values are typically in the range of 0..100,\n   and a metric value `3` means \"3 percent\").\n* `10^2.%` indicates a metric contains a ratio, typically in the range\n   0..1, that will be multiplied by 100 and displayed as a percentage\n   (so a metric value `0.03` means \"3 percent\").",
+          "description": "The units in which the metric value is reported. It is only applicable\nif the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit`\ndefines the representation of the stored metric values.\n\nDifferent systems may scale the values to be more easily displayed (so a\nvalue of `0.02KBy` _might_ be displayed as `20By`, and a value of\n`3523KBy` _might_ be displayed as `3.5MBy`). However, if the `unit` is\n`KBy`, then the value of the metric is always in thousands of bytes, no\nmatter how it may be displayed..\n\nIf you want a custom metric to record the exact number of CPU-seconds used\nby a job, you can create an `INT64 CUMULATIVE` metric whose `unit` is\n`s{CPU}` (or equivalently `1s{CPU}` or just `s`). If the job uses 12,005\nCPU-seconds, then the value is written as `12005`.\n\nAlternatively, if you want a custom metric to record data in a more\ngranular way, you can create a `DOUBLE CUMULATIVE` metric whose `unit` is\n`ks{CPU}`, and then write the value `12.005` (which is `12005/1000`),\nor use `Kis{CPU}` and write `11.723` (which is `12005/1024`).\n\nThe supported units are a subset of [The Unified Code for Units of\nMeasure](http://unitsofmeasure.org/ucum.html) standard:\n\n**Basic units (UNIT)**\n\n* `bit`   bit\n* `By`    byte\n* `s`     second\n* `min`   minute\n* `h`     hour\n* `d`     day\n* `1`     dimensionless\n\n**Prefixes (PREFIX)**\n\n* `k`     kilo    (10^3)\n* `M`     mega    (10^6)\n* `G`     giga    (10^9)\n* `T`     tera    (10^12)\n* `P`     peta    (10^15)\n* `E`     exa     (10^18)\n* `Z`     zetta   (10^21)\n* `Y`     yotta   (10^24)\n\n* `m`     milli   (10^-3)\n* `u`     micro   (10^-6)\n* `n`     nano    (10^-9)\n* `p`     pico    (10^-12)\n* `f`     femto   (10^-15)\n* `a`     atto    (10^-18)\n* `z`     zepto   (10^-21)\n* `y`     yocto   (10^-24)\n\n* `Ki`    kibi    (2^10)\n* `Mi`    mebi    (2^20)\n* `Gi`    gibi    (2^30)\n* `Ti`    tebi    (2^40)\n* `Pi`    pebi    (2^50)\n\n**Grammar**\n\nThe grammar also includes these connectors:\n\n* `/`    division or ratio (as an infix operator). For examples,\n         `kBy/{email}` or `MiBy/10ms` (although you should almost never\n         have `/s` in a metric `unit`; rates should always be computed at\n         query time from the underlying cumulative or delta value).\n* `.`    multiplication or composition (as an infix operator). For\n         examples, `GBy.d` or `k{watt}.h`.\n\nThe grammar for a unit is as follows:\n\n    Expression = Component { \".\" Component } { \"/\" Component } ;\n\n    Component = ( [ PREFIX ] UNIT | \"%\" ) [ Annotation ]\n              | Annotation\n              | \"1\"\n              ;\n\n    Annotation = \"{\" NAME \"}\" ;\n\nNotes:\n\n* `Annotation` is just a comment if it follows a `UNIT`. If the annotation\n   is used alone, then the unit is equivalent to `1`. For examples,\n   `{request}/s == 1/s`, `By{transmitted}/s == By/s`.\n* `NAME` is a sequence of non-blank printable ASCII characters not\n   containing `{` or `}`.\n* `1` represents a unitary [dimensionless\n   unit](https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such\n   as in `1/s`. It is typically used when none of the basic units are\n   appropriate. For example, \"new users per day\" can be represented as\n   `1/d` or `{new-users}/d` (and a metric value `5` would mean \"5 new\n   users). Alternatively, \"thousands of page views per day\" would be\n   represented as `1000/d` or `k1/d` or `k{page_views}/d` (and a metric\n   value of `5.3` would mean \"5300 page views per day\").\n* `%` represents dimensionless value of 1/100, and annotates values giving\n   a percentage (so the metric values are typically in the range of 0..100,\n   and a metric value `3` means \"3 percent\").\n* `10^2.%` indicates a metric contains a ratio, typically in the range\n   0..1, that will be multiplied by 100 and displayed as a percentage\n   (so a metric value `0.03` means \"3 percent\").",
           "type": "string"
         },
         "valueType": {
@@ -2484,7 +2528,7 @@
       "type": "object"
     },
     "MonitoredResourceDescriptor": {
-      "description": "An object that describes the schema of a MonitoredResource object using a\ntype name and a set of labels.  For example, the monitored resource\ndescriptor for Google Compute Engine VM instances has a type of\n`\"gce_instance\"` and specifies the use of the labels `\"instance_id\"` and\n`\"zone\"` to identify particular VM instances.\n\nDifferent services can support different monitored resource types.\n\nThe following are specific rules to service defined monitored resources for\nMonitoring and Logging:\n\n* The `type`, `display_name`, `description`, `labels` and `launch_stage`\n  fields are all required.\n* The first label of the monitored resource descriptor must be\n  `resource_container`. There are legacy monitored resource descritptors\n  start with `project_id`.\n* It must include a `location` label. * Maximum of default 5 service defined monitored resource descriptors\n  is allowed per service.\n* Maximum of default 10 labels per monitored resource is allowed.\n\nThe default maximum limit can be overridden. Please follow\nhttps://cloud.google.com/monitoring/quotas",
+      "description": "An object that describes the schema of a MonitoredResource object using a\ntype name and a set of labels.  For example, the monitored resource\ndescriptor for Google Compute Engine VM instances has a type of\n`\"gce_instance\"` and specifies the use of the labels `\"instance_id\"` and\n`\"zone\"` to identify particular VM instances.\n\nDifferent services can support different monitored resource types.\n\nThe following are specific rules to service defined monitored resources for\nMonitoring and Logging:\n\n* The `type`, `display_name`, `description`, `labels` and `launch_stage`\n  fields are all required.\n* The first label of the monitored resource descriptor must be\n  `resource_container`. There are legacy monitored resource descritptors\n  start with `project_id`.\n* It must include a `location` label.\n* Maximum of default 5 service defined monitored resource descriptors\n  is allowed per service.\n* Maximum of default 10 labels per monitored resource is allowed.\n\nThe default maximum limit can be overridden. Please follow\nhttps://cloud.google.com/monitoring/quotas\n",
       "id": "MonitoredResourceDescriptor",
       "properties": {
         "description": {
@@ -2531,7 +2575,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Note there are legacy service monitored resources not following this rule.",
+          "description": "Required. The monitored resource type. For example, the type\n`cloudsql_database` represents databases in Google Cloud SQL.\n\nAll service defined monitored resource types must be prefixed with the\nservice name, in the format of `{service name}/{relative resource name}`.\nThe relative resource name must follow:\n\n* Only upper and lower-case letters and digits are allowed.\n* It must start with upper case character and is recommended to use Upper\n  Camel Case style.\n* The maximum number of characters allowed for the relative_resource_name\n  is 100.\n\nNote there are legacy service monitored resources not following this rule.",
           "type": "string"
         }
       },
@@ -2651,6 +2695,20 @@
           },
           "description": "The option's value packed in an Any message. If the value is a primitive,\nthe corresponding wrapper type defined in google/protobuf/wrappers.proto\nshould be used. If the value is an enum, it should be stored as an int32\nvalue using the google.protobuf.Int32Value type.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "OverrideInlineSource": {
+      "description": "Import data embedded in the request message",
+      "id": "OverrideInlineSource",
+      "properties": {
+        "overrides": {
+          "description": "The overrides to create.\nEach override must have a value for 'metric' and 'unit', to specify\nwhich metric and which limit the override should be applied to.",
+          "items": {
+            "$ref": "QuotaOverride"
+          },
+          "type": "array"
         }
       },
       "type": "object"
