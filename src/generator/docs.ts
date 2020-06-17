@@ -46,7 +46,7 @@ export async function main() {
   }
   const children = await gfs.readdir(apiPath);
   const dirs = children.filter(x => {
-    return !x.endsWith('.ts') && !x.includes('compute');
+    return !x.endsWith('.ts');
   });
   const contents = nunjucks.render(templatePath, {apis: dirs});
   await gfs.writeFile(indexPath, contents);
