@@ -4,10 +4,12 @@
 
 > The Cloud Billing Budget API stores Cloud Billing budgets, which define a budget plan and the rules to execute as spend is tracked against that plan.
 
-*NOTE*: There are multiple npm modules available for this service. This module
-provides a low level HTTP client which exposes the inner workings of the API.
-The [@google-cloud/billing-budgets](https://www.npmjs.com/package/@google-cloud/billing-budgets)
-npm module provides a [grpc](https://grpc.io/) based client that is faster, easier to use, and better maintained.
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-cloud/billing-budgets](https://www.npmjs.com/package/@google-cloud/billing-budgets) instead.
+The [@google-cloud/billing-budgets](https://www.npmjs.com/package/@google-cloud/billing-budgets) library is faster, easier to use, and better maintained.
 
 To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
 
