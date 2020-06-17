@@ -243,7 +243,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Optional limit on the number of roles to include in the response.",
+                  "description": "Optional limit on the number of roles to include in the response.\n\nThe default is 300, and the maximum is 1,000.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -469,7 +469,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Optional limit on the number of roles to include in the response.",
+                  "description": "Optional limit on the number of roles to include in the response.\n\nThe default is 300, and the maximum is 1,000.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -757,7 +757,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Optional limit on the number of service accounts to include in the\nresponse. Further accounts can subsequently be obtained by including the\nListServiceAccountsResponse.next_page_token\nin a subsequent request.",
+                  "description": "Optional limit on the number of service accounts to include in the\nresponse. Further accounts can subsequently be obtained by including the\nListServiceAccountsResponse.next_page_token\nin a subsequent request.\n\nThe default is 20, and the maximum is 100.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1169,7 +1169,7 @@
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Optional limit on the number of roles to include in the response.",
+              "description": "Optional limit on the number of roles to include in the response.\n\nThe default is 300, and the maximum is 1,000.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -1228,7 +1228,7 @@
       }
     }
   },
-  "revision": "20200605",
+  "revision": "20200611",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AdminAuditData": {
@@ -1376,7 +1376,7 @@
           "description": "The Role resource to create."
         },
         "roleId": {
-          "description": "The role ID to use for this role.",
+          "description": "The role ID to use for this role.\n\nA role ID may contain alphanumeric characters, underscores (`_`), and\nperiods (`.`). It must contain a minimum of 3 characters and a maximum of\n64 characters.",
           "type": "string"
         }
       },
@@ -1782,7 +1782,7 @@
           "type": "string"
         },
         "pageSize": {
-          "description": "Optional limit on the number of roles to include in the response.",
+          "description": "Optional limit on the number of roles to include in the response.\n\nThe default is 300, and the maximum is 1,000.",
           "format": "int32",
           "type": "integer"
         },
@@ -1831,7 +1831,7 @@
           "type": "string"
         },
         "pageSize": {
-          "description": "Optional limit on the number of permissions to include in the response.",
+          "description": "Optional limit on the number of permissions to include in the response.\n\nThe default is 100, and the maximum is 1,000.",
           "format": "int32",
           "type": "integer"
         },
